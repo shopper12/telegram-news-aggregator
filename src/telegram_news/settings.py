@@ -30,6 +30,7 @@ class Settings:
     telegram_api_id: int
     telegram_api_hash: str
     telegram_session_name: str
+    telegram_phone: str | None
     database_path: Path
     channel_config_path: Path
     timezone: str
@@ -62,6 +63,7 @@ def load_settings() -> Settings:
         telegram_api_id=int(api_id_raw),
         telegram_api_hash=api_hash,
         telegram_session_name=os.getenv("TELEGRAM_SESSION_NAME", "telegram_news_session").strip(),
+        telegram_phone=os.getenv("TELEGRAM_PHONE") or None,
         database_path=_sqlite_path(os.getenv("DATABASE_URL", "sqlite:///data/news.db")),
         channel_config_path=Path(os.getenv("CHANNEL_CONFIG", "config/channels.yaml")),
         timezone=os.getenv("TIMEZONE", "Asia/Seoul"),
