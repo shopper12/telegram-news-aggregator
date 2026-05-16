@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import hashlib
 import os
 from dotenv import load_dotenv
 import yaml
@@ -10,8 +11,18 @@ import yaml
 @dataclass(frozen=True)
 class ChannelConfig:
     name: str
-    username: str
+    username: str | None = None
+    invite_link: str | None = None
     category: str = "general"
+
+    @property
+    def source_key(self) -> str:
+        if self.username:
+            return self.username
+        if self.invite_link:
+            digest = hashlib.sha256(self.invite_link.encode("utf-8")).hexdigest()[:16]
+            return f"invite:{digest}"
+        return self.name
 
 
 @dataclass(frozen=True)
@@ -61,6 +72,15 @@ def load_settings() -> Settings:
     )
 
 
+def _clean_optional(value: object) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text or text.startswith("replace_with"):
+        return None
+    return text
+
+
 def load_channels(path: Path) -> list[ChannelConfig]:
     if not path.exists():
         raise FileNotFoundError(
@@ -73,13 +93,18 @@ def load_channels(path: Path) -> list[ChannelConfig]:
     result: list[ChannelConfig] = []
 
     for item in channels:
-        username = str(item.get("username", "")).strip()
-        if not username or username.startswith("replace_with"):
+        name = str(item.get("name") or "").strip()
+        username = _clean_optional(item.get("username"))
+        invite_link = _clean_optional(item.get("invite_link"))
+
+        if not username and not invite_link:
             continue
+
         result.append(
             ChannelConfig(
-                name=str(item.get("name") or username),
+                name=name or username or "private_invite_channel",
                 username=username,
+                invite_link=invite_link,
                 category=str(item.get("category") or "general"),
             )
         )
