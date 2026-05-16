@@ -15,7 +15,8 @@ def send_telegram_message(bot_token: str, chat_id: str, text: str) -> None:
     _validate_bot_token(bot_token)
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
-    # Telegram 메시지 길이 제한 대응
+    # Telegram 메시지 길이 제한 대응. parse_mode를 쓰지 않는다.
+    # 리포트 안의 _, [, ], -, # 등이 Markdown 파싱 오류를 만들 수 있기 때문이다.
     chunks = [text[i:i + 3800] for i in range(0, len(text), 3800)]
 
     for chunk in chunks:
@@ -24,7 +25,6 @@ def send_telegram_message(bot_token: str, chat_id: str, text: str) -> None:
             json={
                 "chat_id": chat_id,
                 "text": chunk,
-                "parse_mode": "Markdown",
                 "disable_web_page_preview": True,
             },
             timeout=20,
