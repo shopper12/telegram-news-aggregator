@@ -7,6 +7,54 @@ from collections import Counter
 from .summarizer import SummaryItem
 
 
+KNOWN_KOREAN_NAMES = [
+    "삼성전자",
+    "SK하이닉스",
+    "현대차",
+    "기아",
+    "한화에어로스페이스",
+    "HD현대일렉트릭",
+    "LS ELECTRIC",
+    "두산에너빌리티",
+    "우리기술",
+    "서전기전",
+]
+
+
+BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI"}
+
+
+def _pick_names(summary: SummaryItem) -> list[str]:
+    found: list[str] = []
+    source = f"{summary.title} {summary.body} {' '.join(summary.keywords)}"
+
+    for name in KNOWN_KOREAN_NAMES:
+        if name.lower() in source.lower() and name not in found:
+            found.append(name)
+
+    for ticker in summary.tickers:
+        if ticker not in BAD_TICKERS and ticker not in found:
+            found.append(ticker)
+
+    return found
+
+
+def _top_recommendations(summaries: list[SummaryItem], limit: int = 3) -> list[tuple[str, SummaryItem]]:
+    result: list[tuple[str, SummaryItem]] = []
+    seen: set[str] = set()
+
+    for summary in sorted(summaries, key=lambda x: x.importance_score, reverse=True):
+        for name in _pick_names(summary):
+            if name in seen:
+                continue
+            seen.add(name)
+            result.append((name, summary))
+            if len(result) >= limit:
+                return result
+
+    return result
+
+
 def build_markdown_report(
     summaries: list[SummaryItem],
     hours: int,
@@ -15,65 +63,58 @@ def build_markdown_report(
     now = datetime.now(ZoneInfo(timezone_name))
     lines: list[str] = []
 
-    lines.append("# 텔레그램 뉴스 판단 요약")
-    lines.append("")
-    lines.append(f"- 기준시각: {now:%Y-%m-%d %H:%M:%S} {timezone_name}")
-    lines.append(f"- 수집범위: 최근 {hours}시간")
-    lines.append(f"- 분석 뉴스 수: {len(summaries)}건")
-    lines.append("")
-
     sector_counter = Counter()
     keyword_counter = Counter()
-    ticker_counter = Counter()
-
     for s in summaries:
         sector_counter.update(s.sectors)
         keyword_counter.update(s.keywords)
-        ticker_counter.update(s.tickers)
 
-    lines.append("## 1. 지금 반복되는 섹터/키워드")
+    top_sectors = sector_counter.most_common(5)
+    top_summary = summaries[0] if summaries else None
+    recommendations = _top_recommendations(summaries, limit=3)
+
+    lines.append("# 텔레그램 뉴스 요약")
+    lines.append(f"기준: {now:%Y-%m-%d %H:%M} {timezone_name} / 최근 {hours}시간 / 뉴스 {len(summaries)}건")
     lines.append("")
-    if sector_counter:
-        for k, v in sector_counter.most_common(10):
-            lines.append(f"- {k}: {v}건")
+
+    lines.append("## 1. 시황")
+    if not summaries:
+        lines.append("- 수집된 뉴스가 없습니다.")
     else:
-        lines.append("- 감지된 섹터 없음")
+        if top_sectors:
+            sector_text = ", ".join([f"{name}({count})" for name, count in top_sectors])
+            lines.append(f"- 핵심 섹터: {sector_text}")
+        else:
+            lines.append("- 핵심 섹터: 뚜렷한 반복 섹터 없음")
+
+        if top_summary:
+            lines.append(f"- 가장 강한 이슈: {top_summary.title}")
+            lines.append(f"- 판단: {top_summary.judgment}")
     lines.append("")
 
-    lines.append("## 2. 언급 티커")
-    lines.append("")
-    if ticker_counter:
-        for k, v in ticker_counter.most_common(15):
-            lines.append(f"- {k}: {v}회")
+    lines.append("## 2. 추천하는 종목")
+    if recommendations:
+        for idx, (name, summary) in enumerate(recommendations, start=1):
+            sectors = ", ".join(summary.sectors) if summary.sectors else "-"
+            lines.append(f"{idx}. {name}")
+            lines.append(f"   - 근거: {summary.title}")
+            lines.append(f"   - 섹터: {sectors}")
+            lines.append(f"   - 우선순위: {summary.importance_score}점 / 반복 {summary.repeat_count}회")
     else:
-        lines.append("- 감지된 영문 티커 없음")
+        lines.append("- 명확한 종목명은 부족합니다. 오늘은 섹터 후보만 보고, 실시간 가격·거래대금 확인 후 종목을 확정해야 합니다.")
     lines.append("")
 
-    lines.append("## 3. 우선순위 뉴스 판단")
-    lines.append("")
-    for idx, s in enumerate(summaries, start=1):
-        sectors = ", ".join(s.sectors) if s.sectors else "-"
-        tickers = ", ".join(s.tickers) if s.tickers else "-"
-        channels = ", ".join(s.channels)
-        keywords = ", ".join(s.keywords[:8]) if s.keywords else "-"
+    lines.append("## 3. 매매 전략")
+    if recommendations:
+        for idx, (name, summary) in enumerate(recommendations, start=1):
+            lines.append(f"{idx}. {name}: {summary.trade_view} 리스크: {summary.risk}")
+    elif top_summary:
+        lines.append(f"- 섹터 관찰: {top_summary.trade_view}")
+        lines.append(f"- 리스크: {top_summary.risk}")
+    else:
+        lines.append("- 신규 매매 없음. 뉴스 수집량이 부족합니다.")
 
-        lines.append(f"### {idx}. {s.title}")
-        lines.append("")
-        lines.append(f"- 중요도: {s.importance_score}")
-        lines.append(f"- 반복출현: {s.repeat_count}회")
-        lines.append(f"- 채널: {channels}")
-        lines.append(f"- 섹터: {sectors}")
-        lines.append(f"- 티커: {tickers}")
-        lines.append(f"- 키워드: {keywords}")
-        lines.append(f"- 판단: {s.judgment}")
-        lines.append(f"- 매매 관점: {s.trade_view}")
-        lines.append(f"- 리스크: {s.risk}")
-        lines.append("")
-
-    lines.append("## 4. 결론")
     lines.append("")
-    lines.append("- 이 요약은 텔레그램 원문 복붙이 아니라 반복도·키워드·섹터·이벤트성을 기준으로 재분류한 판단형 요약이다.")
-    lines.append("- 단, 현재 버전은 뉴스 기반 필터다. 최종 매수/매도는 실시간 가격·거래대금·수급 확인 후 판단해야 한다.")
-    lines.append("- 급등·상한가·신고가 문구가 있는 뉴스는 신규 추격보다 눌림/재돌파 확인으로 처리한다.")
+    lines.append("※ 이 리포트는 텔레그램 뉴스 기반 필터입니다. 실제 진입 전 실시간 가격·거래대금·수급 확인이 필요합니다.")
 
     return "\n".join(lines)
