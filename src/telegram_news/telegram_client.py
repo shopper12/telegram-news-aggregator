@@ -1,0 +1,63 @@
+from __future__ import annotations
+
+from datetime import datetime, timedelta, timezone
+from telethon import TelegramClient
+from telethon.errors import RPCError
+
+from .settings import Settings, ChannelConfig
+from .store import NewsMessage
+from .normalizer import normalize_text
+
+
+async def collect_messages(
+    settings: Settings,
+    channels: list[ChannelConfig],
+    hours: int = 6,
+    limit_per_channel: int = 200,
+) -> list[NewsMessage]:
+    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+    messages: list[NewsMessage] = []
+
+    client = TelegramClient(
+        settings.telegram_session_name,
+        settings.telegram_api_id,
+        settings.telegram_api_hash,
+    )
+
+    async with client:
+        for ch in channels:
+            try:
+                entity = await client.get_entity(ch.username)
+                async for msg in client.iter_messages(entity, limit=limit_per_channel):
+                    if not msg.message:
+                        continue
+
+                    msg_date = msg.date
+                    if msg_date.tzinfo is None:
+                        msg_date = msg_date.replace(tzinfo=timezone.utc)
+
+                    if msg_date < since:
+                        break
+
+                    text = msg.message.strip()
+                    normalized = normalize_text(text)
+                    if len(normalized) < 10:
+                        continue
+
+                    messages.append(
+                        NewsMessage(
+                            channel_name=ch.name,
+                            channel_username=ch.username,
+                            category=ch.category,
+                            message_id=msg.id,
+                            message_date=msg_date,
+                            text=text,
+                            normalized_text=normalized,
+                        )
+                    )
+            except RPCError as e:
+                print(f"[WARN] Telegram RPC error for {ch.username}: {e}")
+            except Exception as e:
+                print(f"[WARN] Failed to collect {ch.username}: {e}")
+
+    return messages
