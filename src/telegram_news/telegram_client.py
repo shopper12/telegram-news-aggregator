@@ -9,6 +9,14 @@ from .store import NewsMessage
 from .normalizer import normalize_text
 
 
+async def _resolve_entity(client: TelegramClient, channel: ChannelConfig):
+    if channel.username:
+        return await client.get_entity(channel.username)
+    if channel.invite_link:
+        return await client.get_entity(channel.invite_link)
+    raise ValueError(f"Channel has neither username nor invite_link: {channel.name}")
+
+
 async def collect_messages(
     settings: Settings,
     channels: list[ChannelConfig],
@@ -27,7 +35,7 @@ async def collect_messages(
     async with client:
         for ch in channels:
             try:
-                entity = await client.get_entity(ch.username)
+                entity = await _resolve_entity(client, ch)
                 async for msg in client.iter_messages(entity, limit=limit_per_channel):
                     if not msg.message:
                         continue
@@ -47,7 +55,7 @@ async def collect_messages(
                     messages.append(
                         NewsMessage(
                             channel_name=ch.name,
-                            channel_username=ch.username,
+                            channel_username=ch.source_key,
                             category=ch.category,
                             message_id=msg.id,
                             message_date=msg_date,
@@ -56,8 +64,8 @@ async def collect_messages(
                         )
                     )
             except RPCError as e:
-                print(f"[WARN] Telegram RPC error for {ch.username}: {e}")
+                print(f"[WARN] Telegram RPC error for {ch.name}: {e}")
             except Exception as e:
-                print(f"[WARN] Failed to collect {ch.username}: {e}")
+                print(f"[WARN] Failed to collect {ch.name}: {e}")
 
     return messages
