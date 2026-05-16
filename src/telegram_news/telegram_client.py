@@ -32,7 +32,17 @@ async def collect_messages(
         settings.telegram_api_hash,
     )
 
-    async with client:
+    await client.connect()
+    try:
+        if not await client.is_user_authorized():
+            if not settings.telegram_phone:
+                raise RuntimeError(
+                    "Telegram login is not authorized yet. "
+                    "Set TELEGRAM_PHONE=+8210xxxxxxxx in .env and run again. "
+                    "Do not enter a bot token here."
+                )
+            await client.start(phone=settings.telegram_phone)
+
         for ch in channels:
             try:
                 entity = await _resolve_entity(client, ch)
@@ -67,5 +77,7 @@ async def collect_messages(
                 print(f"[WARN] Telegram RPC error for {ch.name}: {e}")
             except Exception as e:
                 print(f"[WARN] Failed to collect {ch.name}: {e}")
+    finally:
+        await client.disconnect()
 
     return messages
