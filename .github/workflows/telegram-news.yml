@@ -11,6 +11,14 @@ on:
         description: "Max items in report"
         required: false
         default: "15"
+  push:
+    paths:
+      - ".github/workflows/telegram-news.yml"
+      - "config/channels.yaml"
+      - "src/**"
+      - "scripts/**"
+      - "requirements.txt"
+      - "pyproject.toml"
   schedule:
     # Hourly. GitHub Actions cron uses UTC.
     - cron: "5 * * * *"
