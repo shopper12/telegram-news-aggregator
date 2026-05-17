@@ -25,7 +25,13 @@ class DedupedItem:
     message_dates: list[str]
 
 
-def deduplicate_rows(rows: list, threshold: int = 88) -> list[DedupedItem]:
+def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
+    """거의 같은 뉴스만 병합한다.
+
+    기존 threshold=88은 제목 일부가 비슷한 뉴스까지 한 덩어리로 묶을 수 있었다.
+    이제 중복은 '동일/거의 동일 원문 제거' 용도만 수행하고,
+    중요도 판단은 반복 횟수가 아니라 뉴스 자체 내용에서 한다.
+    """
     groups: list[dict] = []
 
     for row in rows:
@@ -68,4 +74,5 @@ def deduplicate_rows(rows: list, threshold: int = 88) -> list[DedupedItem]:
             )
         )
 
-    return sorted(result, key=lambda x: (x.count, x.message_dates[0]), reverse=True)
+    # 반복 출현이 아니라 최신성 기준으로 정렬한다.
+    return sorted(result, key=lambda x: x.message_dates[0], reverse=True)
