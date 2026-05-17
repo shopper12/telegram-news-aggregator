@@ -11,13 +11,46 @@ from .web_research import judge_web_impact
 
 DIVIDER = "━━━━━━━━━━━━━━━━━━━━"
 SUB_DIVIDER = "──────────────"
+CRYPTO_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
+STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
+CRYPTO_CATEGORIES = {"crypto", "coin"}
+
+
+def _category_asset(summary: SummaryItem) -> str:
+    cats = {c.lower() for c in summary.categories}
+    if cats & CRYPTO_CATEGORIES:
+        return "crypto"
+    if cats & STOCK_CATEGORIES:
+        return "stock"
+
+    # category가 비어 있거나 general일 때만 보조 추론을 사용한다.
+    sectors = set(summary.sectors)
+    text = f"{summary.title} {summary.body}".lower()
+    if sectors & CRYPTO_SECTORS:
+        return "crypto"
+    if any(word in text for word in ["btc", "비트코인", "코인", "업비트", "바이낸스", "온체인"]):
+        return "crypto"
+    return "stock"
+
+
+def _symbols_for_asset(summary: SummaryItem, asset_type: str) -> list[ResolvedSymbol]:
+    """카테고리 기준으로 종목을 강제 분리한다.
+
+    - stock 카테고리/섹션: 주식·미국주식만 표시하고 코인은 제거
+    - crypto 카테고리/섹션: 코인만 표시하고 주식은 제거
+    """
+    symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
+    if asset_type == "crypto":
+        return [s for s in symbols if s.asset_type == "crypto"]
+    return [s for s in symbols if s.asset_type != "crypto"]
 
 
 def _is_actionable(summary: SummaryItem) -> bool:
     text = f"{summary.title} {summary.body}".lower()
     event_words = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "상장", "인수", "합병", "실적", "가이던스"]
     risk_words = ["급락", "제재", "조사", "소송", "유상증자", "상장폐지", "거래정지"]
-    symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
+    asset_type = _category_asset(summary)
+    symbols = _symbols_for_asset(summary, asset_type)
     return (
         summary.repeat_count >= 2
         or summary.importance_score >= 7
@@ -52,22 +85,11 @@ def _impact_icon(level: str) -> str:
     return "▫️"
 
 
-def _asset_bucket(summary: SummaryItem) -> str:
-    cats = set(summary.categories)
-    sectors = set(summary.sectors)
-    text = f"{summary.title} {summary.body}".lower()
-    if "crypto" in cats or any(s in sectors for s in ["bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"]):
-        return "crypto"
-    if any(word in text for word in ["btc", "비트코인", "코인", "업비트", "바이낸스", "온체인"]):
-        return "crypto"
-    return "stock"
-
-
 def _split_by_asset(summaries: list[SummaryItem]) -> tuple[list[SummaryItem], list[SummaryItem]]:
     stock: list[SummaryItem] = []
     crypto: list[SummaryItem] = []
     for summary in summaries:
-        if _asset_bucket(summary) == "crypto":
+        if _category_asset(summary) == "crypto":
             crypto.append(summary)
         else:
             stock.append(summary)
@@ -78,12 +100,7 @@ def _unique_symbols(summaries: list[SummaryItem], asset_type: str, limit: int = 
     result: list[tuple[ResolvedSymbol, SummaryItem]] = []
     seen: set[str] = set()
     for summary in summaries:
-        symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
-        for symbol in symbols:
-            if asset_type == "crypto" and symbol.asset_type != "crypto":
-                continue
-            if asset_type == "stock" and symbol.asset_type == "crypto":
-                continue
+        for symbol in _symbols_for_asset(summary, asset_type):
             if symbol.ticker in seen:
                 continue
             seen.add(symbol.ticker)
@@ -112,11 +129,7 @@ def _render_asset_section(lines: list[str], title: str, summaries: list[SummaryI
     lines.append("⭐ 중요 뉴스")
     for idx, summary in enumerate(summaries[:5], start=1):
         icon = _signal_icon(summary.importance_score)
-        symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
-        if asset_type == "crypto":
-            symbols = [s for s in symbols if s.asset_type == "crypto"]
-        else:
-            symbols = [s for s in symbols if s.asset_type != "crypto"]
+        symbols = _symbols_for_asset(summary, asset_type)
         symbol_text = ", ".join([f"{s.name}({s.ticker})" for s in symbols]) or "종목명 미확정"
         impact_query = symbol_text if symbol_text != "종목명 미확정" else summary.title[:60]
         impact = judge_web_impact(impact_query)
