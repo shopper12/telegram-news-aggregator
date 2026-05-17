@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from telethon import TelegramClient
 from telethon.errors import RPCError
+from telethon.sessions import StringSession
 
 from .settings import Settings, ChannelConfig
 from .store import NewsMessage
@@ -17,6 +18,19 @@ async def _resolve_entity(client: TelegramClient, channel: ChannelConfig):
     raise ValueError(f"Channel has neither username nor invite_link: {channel.name}")
 
 
+def _make_client(settings: Settings) -> TelegramClient:
+    if settings.telegram_string_session:
+        session = StringSession(settings.telegram_string_session)
+    else:
+        session = settings.telegram_session_name
+
+    return TelegramClient(
+        session,
+        settings.telegram_api_id,
+        settings.telegram_api_hash,
+    )
+
+
 async def collect_messages(
     settings: Settings,
     channels: list[ChannelConfig],
@@ -26,11 +40,7 @@ async def collect_messages(
     since = datetime.now(timezone.utc) - timedelta(hours=hours)
     messages: list[NewsMessage] = []
 
-    client = TelegramClient(
-        settings.telegram_session_name,
-        settings.telegram_api_id,
-        settings.telegram_api_hash,
-    )
+    client = _make_client(settings)
 
     await client.connect()
     try:
