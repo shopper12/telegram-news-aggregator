@@ -8,6 +8,7 @@ from collections import Counter
 from .summarizer import SummaryItem
 from .symbol_resolver import resolve_symbols, ResolvedSymbol
 from .web_research import WebImpact, judge_web_impact
+from .market_data import build_strategy, fetch_market_overview
 
 
 DIVIDER = "━━━━━━━━━━━━━━━━━━━━"
@@ -43,7 +44,6 @@ def _category_asset(summary: SummaryItem) -> str:
     if cats & STOCK_CATEGORIES:
         return "stock"
 
-    # category가 비어 있거나 general일 때만 보조 추론을 사용한다.
     sectors = set(summary.sectors)
     text = f"{summary.title} {summary.body}".lower()
     if sectors & CRYPTO_SECTORS:
@@ -54,11 +54,6 @@ def _category_asset(summary: SummaryItem) -> str:
 
 
 def _symbols_for_asset(summary: SummaryItem, asset_type: str) -> list[ResolvedSymbol]:
-    """카테고리 기준으로 종목을 강제 분리한다.
-
-    - stock 카테고리/섹션: 주식·미국주식만 표시하고 코인은 제거
-    - crypto 카테고리/섹션: 코인만 표시하고 주식은 제거
-    """
     symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
     if asset_type == "crypto":
         return [s for s in symbols if s.asset_type == "crypto"]
@@ -96,38 +91,30 @@ def _score_news(summary: SummaryItem, asset_type: str, impact_cache: dict[str, W
     if any(word in text for word in EVENT_WORDS):
         score += 3
         reasons.append("실제 이벤트성 뉴스")
-
     if summary.repeat_count >= 2:
         score += 2
         reasons.append(f"복수 채널 반복 {summary.repeat_count}회")
-
     if any(word in text for word in MACRO_WORDS):
         score += 2
         reasons.append("매크로 변수 포함")
-
     if any(word in text for word in RISK_WORDS):
         score += 2
         reasons.append("리스크 이벤트 포함")
-
     if symbols:
         score += 1
         reasons.append("관련 종목/티커 명확")
-
     if impact.impact_level == "높음":
         score += 2
         reasons.append("외부 뉴스 확인 강함")
     elif impact.impact_level == "중간":
         score += 1
         reasons.append("외부 뉴스 확인 중간")
-
     if any(word in text for word in THEME_WORDS):
         score -= 1
         reasons.append("테마/기대성 문구 감점")
-
     if any(word in text for word in PRICED_IN_WORDS):
         score -= 1
         reasons.append("가격 선반영 가능성 감점")
-
     if any(word in text for word in NOISE_WORDS):
         score -= 3
         reasons.append("홍보성 문구 감점")
@@ -168,13 +155,13 @@ def _market_direction(items: list[ScoredNews], asset_label: str) -> list[str]:
 
     top_sector = sectors.most_common(1)[0][0] if sectors else "섹터 불명확"
     top_reason = reason_counter.most_common(1)[0][0] if reason_counter else "정보성 뉴스"
+    sector_text = ", ".join([f"{name} {count}건" for name, count in sectors.most_common(5)]) if sectors else "섹터 분류 부족"
 
     lines = [f"🔎 방향성: {top_sector} 중심으로 뉴스 강도 우세"]
-    lines.append(f"🧠 이유: {top_reason} 비중이 높아 단순 기사 나열보다 시장 반응 후보로 분류")
-
+    lines.append(f"🏷 주요 섹터: {sector_text}")
+    lines.append(f"🧠 이유: {top_reason} 비중이 높아 시장 반응 후보로 분류")
     if any("매크로" in reason for item in items for reason in item.reasons):
         lines.append("🌐 매크로: 금리·환율·물가 변수는 개별 종목보다 시장 전체 변동성 요인으로 우선 반영")
-
     return lines
 
 
@@ -192,12 +179,17 @@ def _unique_symbols(items: list[ScoredNews], limit: int = MAX_SYMBOLS_PER_ASSET)
     return result
 
 
+def _asset_type_for_strategy(symbol: ResolvedSymbol) -> str:
+    if symbol.asset_type == "crypto":
+        return "crypto"
+    return "stock"
+
+
 def _render_asset_section(lines: list[str], title: str, raw_count: int, items: list[ScoredNews]) -> None:
     lines.append(title)
     lines.append(SUB_DIVIDER)
     lines.append(f"📥 수집/중복제거 뉴스: {raw_count}건")
     lines.append(f"⭐ 중요 뉴스: {len(items)}건")
-
     lines.extend(_market_direction(items, title.replace("📈 ", "").replace("🪙 ", "")))
     lines.append("")
 
@@ -219,14 +211,23 @@ def _render_asset_section(lines: list[str], title: str, raw_count: int, items: l
         lines.append("▫️ 점수 기준을 통과한 뉴스 없음. 잡음으로 처리")
     lines.append("")
 
-    lines.append("🎯 관련 종목")
+    lines.append("🎯 관련 종목·가격 전략")
     symbols = _unique_symbols(items)
     if symbols:
         for idx, (symbol, item) in enumerate(symbols, start=1):
+            strategy = build_strategy(symbol.ticker, _asset_type_for_strategy(symbol), item.score, item.summary.risk)
+            quote = strategy.quote
+            quote_line = "가격확인불가"
+            if quote and quote.price is not None:
+                quote_line = f"현재가 {quote.price:,.2f} / 등락률 {quote.change_pct:+.2f}% / {quote.source} / {quote.timestamp}" if quote.change_pct is not None else f"현재가 {quote.price:,.2f} / {quote.source} / {quote.timestamp}"
             lines.append(f"{idx}) {symbol.name} / {symbol.ticker}")
             lines.append(f"   ├ 근거뉴스: {item.summary.title}")
-            lines.append("   ├ 진입조건: 실시간 가격·거래대금·수급 확인 후 판단")
-            lines.append(f"   └ 리스크: {item.summary.risk}")
+            lines.append(f"   ├ 가격: {quote_line}")
+            lines.append(f"   ├ 관점: {strategy.view}")
+            lines.append(f"   ├ 진입: {strategy.entry}")
+            lines.append(f"   ├ 손절: {strategy.stop}")
+            lines.append(f"   ├ 목표: {strategy.target}")
+            lines.append(f"   └ 리스크: {strategy.risk}")
     else:
         lines.append("▫️ 직접 언급 종목 없음. 섹터 흐름만 참고")
     lines.append("")
@@ -244,7 +245,6 @@ def build_markdown_report(
     stock_raw, crypto_raw = _split_by_asset(summaries)
     stock_items = _score_asset_news(stock_raw, "stock", impact_cache)
     crypto_items = _score_asset_news(crypto_raw, "crypto", impact_cache)
-
     total_important = len(stock_items) + len(crypto_items)
 
     lines.append("📰 텔레그램 뉴스 브리핑")
@@ -255,13 +255,23 @@ def build_markdown_report(
     lines.append(f"⭐ 중요 뉴스 선별: {total_important}건 / 기준 {IMPORTANT_THRESHOLD}점 이상")
     lines.append("")
 
+    lines.append("🌐 전체 시장")
+    lines.append(SUB_DIVIDER)
+    overview = fetch_market_overview()
+    if overview:
+        for item in overview:
+            lines.append(f"▫️ {item}")
+    else:
+        lines.append("▫️ 시장 데이터 확인 실패")
+    lines.append("")
+
     _render_asset_section(lines, "📈 주식 뉴스", len(stock_raw), stock_items)
     _render_asset_section(lines, "🪙 코인/크립토 뉴스", len(crypto_raw), crypto_items)
 
     lines.append("🧩 공통 대응 기준")
     lines.append(SUB_DIVIDER)
-    lines.append("✅ 볼 것: 실제 이벤트, 복수 채널 반복, 외부 뉴스 확인, 거래대금 증가")
+    lines.append("✅ 볼 것: 실제 이벤트, 복수 채널 반복, 외부 뉴스 확인, 실시간 가격·거래대금 증가")
     lines.append("⛔ 제외: 단일 채널 홍보성 글, 관련주/수혜/전망만 있는 테마성 글, 이미 급등 후 나온 뉴스")
-    lines.append("⚠️ 진입가/손절가 산출은 현재 리포트 범위 밖입니다. 실제 매매 전 실시간 가격·거래대금·수급 확인 필요.")
+    lines.append("⚠️ 자동 전략은 뉴스·실시간 가격 기반 1차 필터입니다. 최종 진입 전 차트·호가·수급을 재확인하세요.")
 
     return "\n".join(lines)
