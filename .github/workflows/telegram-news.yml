@@ -20,8 +20,8 @@ on:
       - "requirements.txt"
       - "pyproject.toml"
   schedule:
-    # Hourly. GitHub Actions cron uses UTC.
-    - cron: "5 * * * *"
+    # Every 5 minutes. GitHub Actions cron uses UTC.
+    - cron: "*/5 * * * *"
 
 concurrency:
   group: telegram-news-briefing
