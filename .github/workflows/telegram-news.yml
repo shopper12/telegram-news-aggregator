@@ -20,8 +20,8 @@ on:
       - "requirements.txt"
       - "pyproject.toml"
   schedule:
-    # Every 5 minutes. GitHub Actions cron uses UTC.
-    - cron: "*/5 * * * *"
+    # Hourly. GitHub Actions cron uses UTC.
+    - cron: "5 * * * *"
 
 concurrency:
   group: telegram-news-briefing
@@ -38,9 +38,7 @@ jobs:
       TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
       TELEGRAM_STRING_SESSION: ${{ secrets.TELEGRAM_STRING_SESSION }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      # Single recipient compatibility
       TELEGRAM_TARGET_CHAT_ID: ${{ secrets.TELEGRAM_TARGET_CHAT_ID }}
-      # Multiple recipients, comma-separated
       TELEGRAM_TARGET_CHAT_IDS: ${{ secrets.TELEGRAM_TARGET_CHAT_IDS }}
       TELEGRAM_SESSION_NAME: telegram_news_session
       DATABASE_URL: sqlite:///data/news.db
@@ -87,6 +85,32 @@ jobs:
               sys.exit(1)
 
           print("Required secrets are present.")
+          PY
+
+      - name: Show Telegram recipient count
+        run: |
+          python - <<'PY'
+          import os
+
+          def split_ids(value):
+              if not value:
+                  return []
+              return [x.strip() for x in value.replace('\n', ',').split(',') if x.strip()]
+
+          ids = []
+          single = os.getenv('TELEGRAM_TARGET_CHAT_ID')
+          many = split_ids(os.getenv('TELEGRAM_TARGET_CHAT_IDS'))
+          if single:
+              ids.append(single.strip())
+          for item in many:
+              if item not in ids:
+                  ids.append(item)
+
+          def mask(x):
+              return '***' + x[-4:] if len(x) > 4 else '***'
+
+          print(f"Telegram recipient count: {len(ids)}")
+          print("Telegram recipients masked: " + ", ".join(mask(x) for x in ids))
           PY
 
       - name: Run Telegram news briefing
