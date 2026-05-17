@@ -25,7 +25,7 @@ on:
 
 concurrency:
   group: telegram-news-briefing
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   send-briefing:
