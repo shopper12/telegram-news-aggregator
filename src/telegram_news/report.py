@@ -23,7 +23,6 @@ KNOWN_KOREAN_NAMES = [
     "성호전자",
 ]
 
-
 BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ"}
 DIVIDER = "━━━━━━━━━━━━━━━━━━━━"
 SUB_DIVIDER = "──────────────"
@@ -44,11 +43,31 @@ def _pick_names(summary: SummaryItem) -> list[str]:
     return found
 
 
+def _is_actionable(summary: SummaryItem) -> bool:
+    text = f"{summary.title} {summary.body}".lower()
+    event_words = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "상장", "인수", "합병", "실적", "가이던스"]
+    risk_words = ["급락", "제재", "조사", "소송", "유상증자", "상장폐지", "거래정지"]
+    return (
+        summary.repeat_count >= 2
+        or summary.importance_score >= 7
+        or any(word in text for word in event_words)
+        or any(word in text for word in risk_words)
+        or bool(_pick_names(summary))
+    )
+
+
+def _important_news(summaries: list[SummaryItem], limit: int = 5) -> list[SummaryItem]:
+    filtered = [s for s in summaries if _is_actionable(s)]
+    if not filtered:
+        filtered = summaries
+    return sorted(filtered, key=lambda x: (x.importance_score, x.repeat_count), reverse=True)[:limit]
+
+
 def _top_names(summaries: list[SummaryItem], limit: int = 5) -> list[tuple[str, SummaryItem]]:
     result: list[tuple[str, SummaryItem]] = []
     seen: set[str] = set()
 
-    for summary in sorted(summaries, key=lambda x: x.importance_score, reverse=True):
+    for summary in _important_news(summaries, limit=10):
         for name in _pick_names(summary):
             if name in seen:
                 continue
@@ -76,27 +95,30 @@ def build_markdown_report(
     now = datetime.now(ZoneInfo(timezone_name))
     lines: list[str] = []
 
+    important = _important_news(summaries, limit=5)
+    key_names = _top_names(summaries, limit=5)
+
     sector_counter = Counter()
     keyword_counter = Counter()
-    for s in summaries:
+    for s in important:
         sector_counter.update(s.sectors)
         keyword_counter.update(s.keywords)
 
     top_sectors = sector_counter.most_common(5)
-    top_summary = summaries[0] if summaries else None
-    key_names = _top_names(summaries, limit=5)
+    top_summary = important[0] if important else None
 
     lines.append("📰 텔레그램 뉴스 브리핑")
     lines.append(DIVIDER)
     lines.append(f"⏰ 기준: {now:%Y-%m-%d %H:%M} {timezone_name}")
     lines.append(f"🧭 범위: 최근 {hours}시간")
-    lines.append(f"📌 분석 뉴스: {len(summaries)}건")
+    lines.append(f"📌 중복 제거 후 분석 뉴스: {len(summaries)}건")
+    lines.append(f"⭐ 중요 뉴스 선별: {len(important)}건")
     lines.append("")
 
     lines.append("📊 1. 시황")
     lines.append(SUB_DIVIDER)
-    if not summaries:
-        lines.append("▫️ 수집된 뉴스가 없습니다.")
+    if not important:
+        lines.append("▫️ 수집된 중요 뉴스가 없습니다.")
     else:
         if top_sectors:
             sector_text = "  /  ".join([f"{name} {count}건" for name, count in top_sectors])
@@ -105,11 +127,26 @@ def build_markdown_report(
             lines.append("🔎 핵심 흐름: 뚜렷한 반복 섹터 없음")
 
         if top_summary:
-            lines.append(f"⚡ 주요 이슈: {top_summary.title}")
+            lines.append(f"⚡ 최우선 이슈: {top_summary.title}")
             lines.append(f"🧠 시장 해석: {top_summary.judgment}")
     lines.append("")
 
-    lines.append("📌 2. 주요 종목")
+    lines.append("⭐ 2. 중요 뉴스")
+    lines.append(SUB_DIVIDER)
+    if important:
+        for idx, summary in enumerate(important, start=1):
+            icon = _signal_icon(summary.importance_score)
+            sectors = ", ".join(summary.sectors) if summary.sectors else "-"
+            names = ", ".join(_pick_names(summary)) or "종목명 미확정"
+            lines.append(f"{icon} {idx}) {summary.title}")
+            lines.append(f"   ├ 관련: {names}")
+            lines.append(f"   ├ 섹터: {sectors}")
+            lines.append(f"   └ 판단: {summary.trade_view}")
+    else:
+        lines.append("▫️ 중요 뉴스 없음")
+    lines.append("")
+
+    lines.append("📌 3. 주요 종목")
     lines.append(SUB_DIVIDER)
     if key_names:
         for idx, (name, summary) in enumerate(key_names, start=1):
@@ -120,11 +157,11 @@ def build_markdown_report(
             lines.append(f"   ├ 섹터: {sectors}")
             lines.append(f"   └ 뉴스 강도: {summary.importance_score}점 / 반복 {summary.repeat_count}회")
     else:
-        lines.append("▫️ 명확한 종목명 부족")
+        lines.append("▫️ 명확한 주요 종목 부족")
         lines.append("▫️ 오늘은 섹터 흐름 중심으로만 해석")
     lines.append("")
 
-    lines.append("🧩 3. 대응 전략")
+    lines.append("🧩 4. 대응 전략")
     lines.append(SUB_DIVIDER)
     if key_names:
         for idx, (name, summary) in enumerate(key_names, start=1):
