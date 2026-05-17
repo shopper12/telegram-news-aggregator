@@ -11,7 +11,7 @@ from .store import connect, init_db, insert_messages, fetch_recent
 from .normalizer import deduplicate_rows
 from .summarizer import openai_summarize_if_available
 from .report import build_markdown_report
-from .notifier import send_telegram_message
+from .notifier import send_telegram_message_to_many
 
 
 def cmd_init_db(args: argparse.Namespace) -> None:
@@ -88,10 +88,10 @@ def cmd_run(args: argparse.Namespace) -> None:
 
     if args.send:
         settings = load_settings()
-        if not settings.telegram_bot_token or not settings.telegram_target_chat_id:
-            raise RuntimeError("TELEGRAM_BOT_TOKEN and TELEGRAM_TARGET_CHAT_ID are required for --send.")
-        send_telegram_message(settings.telegram_bot_token, settings.telegram_target_chat_id, report)
-        print("Sent to Telegram.")
+        if not settings.telegram_bot_token or not settings.telegram_target_chat_ids:
+            raise RuntimeError("TELEGRAM_BOT_TOKEN and TELEGRAM_TARGET_CHAT_ID(S) are required for --send.")
+        send_telegram_message_to_many(settings.telegram_bot_token, settings.telegram_target_chat_ids, report)
+        print(f"Sent to Telegram recipients: {len(settings.telegram_target_chat_ids)}")
 
 
 def build_parser() -> argparse.ArgumentParser:
