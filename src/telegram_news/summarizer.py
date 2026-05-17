@@ -23,7 +23,7 @@ class SummaryItem:
 
 def _make_title(text: str, max_len: int = 72) -> str:
     cleaned = " ".join(text.replace("\n", " ").split())
-    for splitter in [" - ", " | ", " / ", "[", "(" ]:
+    for splitter in [" - ", " | ", " / ", "[", "("]:
         if splitter in cleaned and len(cleaned) > max_len:
             cleaned = cleaned.split(splitter)[0].strip()
             break
@@ -36,7 +36,7 @@ def _contains_any(text: str, words: list[str]) -> bool:
 
 
 def _build_judgment(text: str, repeat_count: int, sectors: list[str], tickers: list[str]) -> str:
-    if _contains_any(text, ["수주", "계약", "공급", "납품", "승인", "허가", "인수", "합병"]):
+    if _contains_any(text, ["수주", "계약", "공급", "납품", "승인", "허가", "공시", "인수", "합병", "실적"]):
         base = "실제 이벤트성 뉴스로 분류. 단순 전망보다 가격 반응 가능성이 높다."
     elif _contains_any(text, ["급등", "상한가", "폭등", "돌파", "신고가"]):
         base = "가격 반응이 이미 나온 뉴스로 분류. 추격 매수보다 눌림·재돌파 확인이 우선이다."
@@ -47,12 +47,9 @@ def _build_judgment(text: str, repeat_count: int, sectors: list[str], tickers: l
     else:
         base = "정보성 뉴스로 분류. 단독 매매 근거보다는 섹터 강도 확인용으로 보는 게 맞다."
 
-    if repeat_count >= 3:
-        base += " 복수 채널 반복 출현으로 시장 관심도는 높다."
-    elif repeat_count == 2:
-        base += " 2개 채널에서 반복되어 중간 수준의 관심도다."
-    else:
-        base += " 단일 채널 출현이라 과신 금지다."
+    # 반복 출현은 보조 정보일 뿐, 중요도 핵심 기준으로 쓰지 않는다.
+    if repeat_count >= 2:
+        base += f" 동일/유사 뉴스 반복 {repeat_count}회."
 
     if sectors:
         base += f" 관련 섹터: {', '.join(sectors)}."
@@ -64,11 +61,11 @@ def _build_judgment(text: str, repeat_count: int, sectors: list[str], tickers: l
 def _build_trade_view(text: str, importance_score: int, repeat_count: int) -> str:
     if _contains_any(text, ["급등", "상한가", "폭등", "신고가"]):
         return "추격 금지. 5일선·VWAP·전고점 지지 확인 후 재진입 후보로만 분류."
-    if _contains_any(text, ["수주", "계약", "공급", "승인", "허가"]):
-        return "거래대금 증가와 장중 고점 돌파가 같이 나오면 관찰 우선순위 상향. 갭상승이면 첫 눌림 확인."
-    if importance_score >= 8 or repeat_count >= 3:
-        return "관심 후보. 가격·거래량·수급 검증 후에만 진입 판단."
-    return "단독 매매 근거 부족. 관련 섹터의 동시 강세가 없으면 제외."
+    if _contains_any(text, ["수주", "계약", "공급", "승인", "허가", "공시", "실적"]):
+        return "실제 이벤트 뉴스. 가격·거래대금 동반 시 우선 관찰. 갭상승이면 첫 눌림 확인."
+    if importance_score >= 8:
+        return "뉴스 강도는 높음. 실시간 가격·거래량·수급 검증 후 진입 판단."
+    return "단독 매매 근거 부족. 섹터 동시 강세와 가격 반응 확인 전에는 제외."
 
 
 def _build_risk(text: str) -> str:
@@ -82,9 +79,13 @@ def _build_risk(text: str) -> str:
 
 
 def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryItem]:
+    """요약 후보를 만들되, 여기서 limit로 잘라 중요 뉴스를 누락시키지 않는다.
+
+    최종 노출 개수 제한은 report.py의 중요도 스코어링 단계에서 수행한다.
+    """
     summaries: list[SummaryItem] = []
 
-    for item in items[:limit]:
+    for item in items:
         sig = extract_signals(item.text, repeat_count=item.count)
         judgment = _build_judgment(item.text, item.count, sig.sectors, sig.tickers)
         trade_view = _build_trade_view(item.text, sig.importance_score, item.count)
@@ -106,7 +107,7 @@ def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryIt
             )
         )
 
-    return sorted(summaries, key=lambda x: x.importance_score, reverse=True)
+    return summaries
 
 
 def openai_summarize_if_available(
