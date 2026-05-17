@@ -39,6 +39,7 @@ class Settings:
     openai_model: str
     telegram_bot_token: str | None
     telegram_target_chat_id: str | None
+    telegram_target_chat_ids: list[str]
 
 
 def _sqlite_path(database_url: str) -> Path:
@@ -46,6 +47,12 @@ def _sqlite_path(database_url: str) -> Path:
     if not database_url.startswith(prefix):
         raise ValueError("Only sqlite:/// DATABASE_URL is supported in this starter project.")
     return Path(database_url[len(prefix):])
+
+
+def _split_chat_ids(value: str | None) -> list[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.replace("\n", ",").split(",") if item.strip()]
 
 
 def load_settings() -> Settings:
@@ -60,6 +67,11 @@ def load_settings() -> Settings:
             "Create .env from .env.example first."
         )
 
+    single_chat_id = os.getenv("TELEGRAM_TARGET_CHAT_ID") or None
+    multi_chat_ids = _split_chat_ids(os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
+    if single_chat_id and single_chat_id not in multi_chat_ids:
+        multi_chat_ids.insert(0, single_chat_id)
+
     return Settings(
         telegram_api_id=int(api_id_raw),
         telegram_api_hash=api_hash,
@@ -72,7 +84,8 @@ def load_settings() -> Settings:
         openai_api_key=os.getenv("OPENAI_API_KEY") or None,
         openai_model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
         telegram_bot_token=os.getenv("TELEGRAM_BOT_TOKEN") or None,
-        telegram_target_chat_id=os.getenv("TELEGRAM_TARGET_CHAT_ID") or None,
+        telegram_target_chat_id=single_chat_id,
+        telegram_target_chat_ids=multi_chat_ids,
     )
 
 
