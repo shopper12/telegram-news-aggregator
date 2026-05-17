@@ -11,8 +11,7 @@ def _validate_bot_token(bot_token: str) -> None:
         )
 
 
-def send_telegram_message(bot_token: str, chat_id: str, text: str) -> None:
-    _validate_bot_token(bot_token)
+def _send_to_one_chat(bot_token: str, chat_id: str, text: str) -> None:
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
     # Telegram 메시지 길이 제한 대응. parse_mode를 쓰지 않는다.
@@ -36,8 +35,29 @@ def send_telegram_message(bot_token: str, chat_id: str, text: str) -> None:
             )
         if resp.status_code in (400, 403):
             raise RuntimeError(
-                f"Telegram bot send failed: HTTP {resp.status_code}. "
-                "Check TELEGRAM_TARGET_CHAT_ID and send /start or any message to the bot first. "
+                f"Telegram bot send failed for chat_id={chat_id}: HTTP {resp.status_code}. "
+                "Check the chat id and make sure that recipient sent /start or any message to the bot first. "
                 f"Response: {resp.text}"
             )
         resp.raise_for_status()
+
+
+def send_telegram_message(bot_token: str, chat_id: str, text: str) -> None:
+    _validate_bot_token(bot_token)
+    _send_to_one_chat(bot_token, chat_id, text)
+
+
+def send_telegram_message_to_many(bot_token: str, chat_ids: list[str], text: str) -> None:
+    _validate_bot_token(bot_token)
+    if not chat_ids:
+        raise RuntimeError("No Telegram target chat IDs configured.")
+
+    failures: list[str] = []
+    for chat_id in chat_ids:
+        try:
+            _send_to_one_chat(bot_token, chat_id, text)
+        except Exception as exc:
+            failures.append(f"{chat_id}: {exc}")
+
+    if failures:
+        raise RuntimeError("Telegram send failed for one or more recipients:\n" + "\n".join(failures))
