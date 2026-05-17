@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from collections import Counter
 
 from .summarizer import SummaryItem
 from .symbol_resolver import resolve_symbols, ResolvedSymbol
-from .web_research import judge_web_impact
+from .web_research import WebImpact, judge_web_impact
 
 
 DIVIDER = "━━━━━━━━━━━━━━━━━━━━"
@@ -14,6 +15,25 @@ SUB_DIVIDER = "──────────────"
 CRYPTO_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
 STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
 CRYPTO_CATEGORIES = {"crypto", "coin"}
+IMPORTANT_THRESHOLD = 7
+MAX_IMPORTANT_PER_ASSET = 3
+MAX_SYMBOLS_PER_ASSET = 5
+
+EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "어닝", "가이던스"]
+MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "실업률", "국채", "10년물", "달러", "dxy", "유가", "관세"]
+THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마"]
+PRICED_IN_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "이미 반영", "선반영"]
+RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", "상장폐지", "거래정지", "부도", "파산"]
+NOISE_WORDS = ["리딩", "무료방", "입장", "유료", "회원", "추천방", "수익인증", "이벤트 참여"]
+
+
+@dataclass(frozen=True)
+class ScoredNews:
+    summary: SummaryItem
+    score: int
+    reasons: list[str]
+    symbols: list[ResolvedSymbol]
+    impact: WebImpact
 
 
 def _category_asset(summary: SummaryItem) -> str:
@@ -45,36 +65,6 @@ def _symbols_for_asset(summary: SummaryItem, asset_type: str) -> list[ResolvedSy
     return [s for s in symbols if s.asset_type != "crypto"]
 
 
-def _is_actionable(summary: SummaryItem) -> bool:
-    text = f"{summary.title} {summary.body}".lower()
-    event_words = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "상장", "인수", "합병", "실적", "가이던스"]
-    risk_words = ["급락", "제재", "조사", "소송", "유상증자", "상장폐지", "거래정지"]
-    asset_type = _category_asset(summary)
-    symbols = _symbols_for_asset(summary, asset_type)
-    return (
-        summary.repeat_count >= 2
-        or summary.importance_score >= 7
-        or any(word in text for word in event_words)
-        or any(word in text for word in risk_words)
-        or bool(symbols)
-    )
-
-
-def _important_news(summaries: list[SummaryItem], limit: int = 8) -> list[SummaryItem]:
-    filtered = [s for s in summaries if _is_actionable(s)]
-    if not filtered:
-        filtered = summaries
-    return sorted(filtered, key=lambda x: (x.importance_score, x.repeat_count), reverse=True)[:limit]
-
-
-def _signal_icon(score: int) -> str:
-    if score >= 9:
-        return "🔥"
-    if score >= 6:
-        return "🟠"
-    return "⚪"
-
-
 def _impact_icon(level: str) -> str:
     if level == "높음":
         return "🔥"
@@ -83,6 +73,76 @@ def _impact_icon(level: str) -> str:
     if level == "낮음":
         return "⚪"
     return "▫️"
+
+
+def _query_for_impact(summary: SummaryItem, symbols: list[ResolvedSymbol]) -> str:
+    if symbols:
+        first = symbols[0]
+        return f"{first.name} {first.ticker} {summary.title[:50]}"
+    return summary.title[:80]
+
+
+def _score_news(summary: SummaryItem, asset_type: str, impact_cache: dict[str, WebImpact]) -> ScoredNews:
+    text = f"{summary.title} {summary.body}".lower()
+    symbols = _symbols_for_asset(summary, asset_type)
+    query = _query_for_impact(summary, symbols)
+    if query not in impact_cache:
+        impact_cache[query] = judge_web_impact(query)
+    impact = impact_cache[query]
+
+    score = 4
+    reasons: list[str] = []
+
+    if any(word in text for word in EVENT_WORDS):
+        score += 3
+        reasons.append("실제 이벤트성 뉴스")
+
+    if summary.repeat_count >= 2:
+        score += 2
+        reasons.append(f"복수 채널 반복 {summary.repeat_count}회")
+
+    if any(word in text for word in MACRO_WORDS):
+        score += 2
+        reasons.append("매크로 변수 포함")
+
+    if any(word in text for word in RISK_WORDS):
+        score += 2
+        reasons.append("리스크 이벤트 포함")
+
+    if symbols:
+        score += 1
+        reasons.append("관련 종목/티커 명확")
+
+    if impact.impact_level == "높음":
+        score += 2
+        reasons.append("외부 뉴스 확인 강함")
+    elif impact.impact_level == "중간":
+        score += 1
+        reasons.append("외부 뉴스 확인 중간")
+
+    if any(word in text for word in THEME_WORDS):
+        score -= 1
+        reasons.append("테마/기대성 문구 감점")
+
+    if any(word in text for word in PRICED_IN_WORDS):
+        score -= 1
+        reasons.append("가격 선반영 가능성 감점")
+
+    if any(word in text for word in NOISE_WORDS):
+        score -= 3
+        reasons.append("홍보성 문구 감점")
+
+    score = max(1, min(10, score))
+    if not reasons:
+        reasons.append("단순 정보성 뉴스")
+
+    return ScoredNews(summary=summary, score=score, reasons=reasons, symbols=symbols, impact=impact)
+
+
+def _score_asset_news(summaries: list[SummaryItem], asset_type: str, impact_cache: dict[str, WebImpact]) -> list[ScoredNews]:
+    scored = [_score_news(summary, asset_type, impact_cache) for summary in summaries]
+    important = [item for item in scored if item.score >= IMPORTANT_THRESHOLD]
+    return sorted(important, key=lambda x: (x.score, x.summary.repeat_count), reverse=True)[:MAX_IMPORTANT_PER_ASSET]
 
 
 def _split_by_asset(summaries: list[SummaryItem]) -> tuple[list[SummaryItem], list[SummaryItem]]:
@@ -96,61 +156,79 @@ def _split_by_asset(summaries: list[SummaryItem]) -> tuple[list[SummaryItem], li
     return stock, crypto
 
 
-def _unique_symbols(summaries: list[SummaryItem], asset_type: str, limit: int = 5) -> list[tuple[ResolvedSymbol, SummaryItem]]:
-    result: list[tuple[ResolvedSymbol, SummaryItem]] = []
+def _market_direction(items: list[ScoredNews], asset_label: str) -> list[str]:
+    if not items:
+        return [f"▫️ {asset_label}: 점수 {IMPORTANT_THRESHOLD}점 이상 중요 뉴스 없음"]
+
+    sectors = Counter()
+    reason_counter = Counter()
+    for item in items:
+        sectors.update(item.summary.sectors)
+        reason_counter.update(item.reasons)
+
+    top_sector = sectors.most_common(1)[0][0] if sectors else "섹터 불명확"
+    top_reason = reason_counter.most_common(1)[0][0] if reason_counter else "정보성 뉴스"
+
+    lines = [f"🔎 방향성: {top_sector} 중심으로 뉴스 강도 우세"]
+    lines.append(f"🧠 이유: {top_reason} 비중이 높아 단순 기사 나열보다 시장 반응 후보로 분류")
+
+    if any("매크로" in reason for item in items for reason in item.reasons):
+        lines.append("🌐 매크로: 금리·환율·물가 변수는 개별 종목보다 시장 전체 변동성 요인으로 우선 반영")
+
+    return lines
+
+
+def _unique_symbols(items: list[ScoredNews], limit: int = MAX_SYMBOLS_PER_ASSET) -> list[tuple[ResolvedSymbol, ScoredNews]]:
+    result: list[tuple[ResolvedSymbol, ScoredNews]] = []
     seen: set[str] = set()
-    for summary in summaries:
-        for symbol in _symbols_for_asset(summary, asset_type):
+    for item in items:
+        for symbol in item.symbols:
             if symbol.ticker in seen:
                 continue
             seen.add(symbol.ticker)
-            result.append((symbol, summary))
+            result.append((symbol, item))
             if len(result) >= limit:
                 return result
     return result
 
 
-def _render_asset_section(lines: list[str], title: str, summaries: list[SummaryItem], asset_type: str) -> None:
+def _render_asset_section(lines: list[str], title: str, raw_count: int, items: list[ScoredNews]) -> None:
     lines.append(title)
     lines.append(SUB_DIVIDER)
+    lines.append(f"📥 수집/중복제거 뉴스: {raw_count}건")
+    lines.append(f"⭐ 중요 뉴스: {len(items)}건")
 
-    if not summaries:
-        lines.append("▫️ 중요 뉴스 없음")
-        lines.append("")
-        return
+    lines.extend(_market_direction(items, title.replace("📈 ", "").replace("🪙 ", "")))
+    lines.append("")
 
-    sector_counter = Counter()
-    for summary in summaries:
-        sector_counter.update(summary.sectors)
-    if sector_counter:
-        sectors = "  /  ".join([f"{name} {count}건" for name, count in sector_counter.most_common(4)])
-        lines.append(f"🔎 핵심 흐름: {sectors}")
-
-    lines.append("⭐ 중요 뉴스")
-    for idx, summary in enumerate(summaries[:5], start=1):
-        icon = _signal_icon(summary.importance_score)
-        symbols = _symbols_for_asset(summary, asset_type)
-        symbol_text = ", ".join([f"{s.name}({s.ticker})" for s in symbols]) or "종목명 미확정"
-        impact_query = symbol_text if symbol_text != "종목명 미확정" else summary.title[:60]
-        impact = judge_web_impact(impact_query)
-        lines.append(f"{icon} {idx}) {summary.title}")
-        lines.append(f"   ├ 관련: {symbol_text}")
-        lines.append(f"   ├ 실시간 영향도: {_impact_icon(impact.impact_level)} {impact.impact_level} / 검색 {impact.result_count}건")
-        if impact.latest_title:
-            lines.append(f"   ├ 외부확인: {impact.latest_title[:90]}")
-        lines.append(f"   └ 판단: {summary.trade_view}")
-
-    symbols = _unique_symbols(summaries, asset_type=asset_type, limit=5)
-    lines.append("📌 주요 종목")
-    if symbols:
-        for idx, (symbol, summary) in enumerate(symbols, start=1):
-            impact = judge_web_impact(f"{symbol.name} {symbol.ticker} 뉴스")
-            lines.append(f"{_impact_icon(impact.impact_level)} {idx}) {symbol.name} / {symbol.ticker}")
-            lines.append(f"   ├ 이슈: {summary.title}")
-            lines.append(f"   ├ 영향도: {impact.impact_level}")
-            lines.append(f"   └ 대응: {summary.trade_view}")
+    lines.append("📌 핵심 뉴스")
+    if items:
+        for idx, item in enumerate(items, start=1):
+            summary = item.summary
+            symbol_text = ", ".join([f"{s.name}({s.ticker})" for s in item.symbols]) or "직접 종목 없음"
+            reason_text = ", ".join(item.reasons[:3])
+            lines.append(f"{_impact_icon(item.impact.impact_level)} {idx}) [{item.score}점] {summary.title}")
+            lines.append(f"   ├ 관련: {symbol_text}")
+            lines.append(f"   ├ 판단근거: {reason_text}")
+            lines.append(f"   ├ 외부확인: {item.impact.impact_level} / 검색 {item.impact.result_count}건")
+            if item.impact.latest_title:
+                lines.append(f"   └ 확인뉴스: {item.impact.latest_title[:90]}")
+            else:
+                lines.append("   └ 확인뉴스: 외부 검색 부족")
     else:
-        lines.append("▫️ 명확한 주요 종목 부족")
+        lines.append("▫️ 점수 기준을 통과한 뉴스 없음. 잡음으로 처리")
+    lines.append("")
+
+    lines.append("🎯 관련 종목")
+    symbols = _unique_symbols(items)
+    if symbols:
+        for idx, (symbol, item) in enumerate(symbols, start=1):
+            lines.append(f"{idx}) {symbol.name} / {symbol.ticker}")
+            lines.append(f"   ├ 근거뉴스: {item.summary.title}")
+            lines.append("   ├ 진입조건: 실시간 가격·거래대금·수급 확인 후 판단")
+            lines.append(f"   └ 리스크: {item.summary.risk}")
+    else:
+        lines.append("▫️ 직접 언급 종목 없음. 섹터 흐름만 참고")
     lines.append("")
 
 
@@ -161,27 +239,29 @@ def build_markdown_report(
 ) -> str:
     now = datetime.now(ZoneInfo(timezone_name))
     lines: list[str] = []
+    impact_cache: dict[str, WebImpact] = {}
 
-    important = _important_news(summaries, limit=10)
-    stock_news, crypto_news = _split_by_asset(important)
+    stock_raw, crypto_raw = _split_by_asset(summaries)
+    stock_items = _score_asset_news(stock_raw, "stock", impact_cache)
+    crypto_items = _score_asset_news(crypto_raw, "crypto", impact_cache)
+
+    total_important = len(stock_items) + len(crypto_items)
 
     lines.append("📰 텔레그램 뉴스 브리핑")
     lines.append(DIVIDER)
     lines.append(f"⏰ 기준: {now:%Y-%m-%d %H:%M} {timezone_name}")
     lines.append(f"🧭 범위: 최근 {hours}시간")
     lines.append(f"📌 중복 제거 후 분석 뉴스: {len(summaries)}건")
-    lines.append(f"⭐ 중요 뉴스 선별: {len(important)}건")
+    lines.append(f"⭐ 중요 뉴스 선별: {total_important}건 / 기준 {IMPORTANT_THRESHOLD}점 이상")
     lines.append("")
 
-    _render_asset_section(lines, "📈 1. 주식 뉴스", stock_news, "stock")
-    _render_asset_section(lines, "🪙 2. 코인/크립토 뉴스", crypto_news, "crypto")
+    _render_asset_section(lines, "📈 주식 뉴스", len(stock_raw), stock_items)
+    _render_asset_section(lines, "🪙 코인/크립토 뉴스", len(crypto_raw), crypto_items)
 
-    lines.append("🧩 3. 공통 대응 기준")
+    lines.append("🧩 공통 대응 기준")
     lines.append(SUB_DIVIDER)
-    lines.append("✅ 볼 것: 복수 채널 반복, 외부 뉴스 검색 결과, 실제 거래대금 증가, 장중 고점 돌파")
-    lines.append("⛔ 피할 것: 단일 채널 홍보성 뉴스, 이미 장대양봉 후 나온 재탕 뉴스, 종목명 불명확한 테마성 글")
-    lines.append("")
-    lines.append(DIVIDER)
-    lines.append("⚠️ 뉴스 기반 브리핑입니다. 매수·매도 확정 신호가 아니며, 실제 진입 전 가격·거래대금·수급 확인 필요.")
+    lines.append("✅ 볼 것: 실제 이벤트, 복수 채널 반복, 외부 뉴스 확인, 거래대금 증가")
+    lines.append("⛔ 제외: 단일 채널 홍보성 글, 관련주/수혜/전망만 있는 테마성 글, 이미 급등 후 나온 뉴스")
+    lines.append("⚠️ 진입가/손절가 산출은 현재 리포트 범위 밖입니다. 실제 매매 전 실시간 가격·거래대금·수급 확인 필요.")
 
     return "\n".join(lines)
