@@ -5,78 +5,33 @@ from zoneinfo import ZoneInfo
 from collections import Counter
 
 from .summarizer import SummaryItem
+from .symbol_resolver import resolve_symbols, ResolvedSymbol
+from .web_research import judge_web_impact
 
 
-KNOWN_KOREAN_NAMES = [
-    "삼성전자",
-    "SK하이닉스",
-    "현대차",
-    "기아",
-    "한화에어로스페이스",
-    "HD현대일렉트릭",
-    "LS ELECTRIC",
-    "두산에너빌리티",
-    "우리기술",
-    "서전기전",
-    "파워넷",
-    "비나텍",
-    "성호전자",
-]
-
-BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ"}
 DIVIDER = "━━━━━━━━━━━━━━━━━━━━"
 SUB_DIVIDER = "──────────────"
-
-
-def _pick_names(summary: SummaryItem) -> list[str]:
-    found: list[str] = []
-    source = f"{summary.title} {summary.body} {' '.join(summary.keywords)}"
-
-    for name in KNOWN_KOREAN_NAMES:
-        if name.lower() in source.lower() and name not in found:
-            found.append(name)
-
-    for ticker in summary.tickers:
-        if ticker not in BAD_TICKERS and ticker not in found:
-            found.append(ticker)
-
-    return found
 
 
 def _is_actionable(summary: SummaryItem) -> bool:
     text = f"{summary.title} {summary.body}".lower()
     event_words = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "상장", "인수", "합병", "실적", "가이던스"]
     risk_words = ["급락", "제재", "조사", "소송", "유상증자", "상장폐지", "거래정지"]
+    symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
     return (
         summary.repeat_count >= 2
         or summary.importance_score >= 7
         or any(word in text for word in event_words)
         or any(word in text for word in risk_words)
-        or bool(_pick_names(summary))
+        or bool(symbols)
     )
 
 
-def _important_news(summaries: list[SummaryItem], limit: int = 5) -> list[SummaryItem]:
+def _important_news(summaries: list[SummaryItem], limit: int = 8) -> list[SummaryItem]:
     filtered = [s for s in summaries if _is_actionable(s)]
     if not filtered:
         filtered = summaries
     return sorted(filtered, key=lambda x: (x.importance_score, x.repeat_count), reverse=True)[:limit]
-
-
-def _top_names(summaries: list[SummaryItem], limit: int = 5) -> list[tuple[str, SummaryItem]]:
-    result: list[tuple[str, SummaryItem]] = []
-    seen: set[str] = set()
-
-    for summary in _important_news(summaries, limit=10):
-        for name in _pick_names(summary):
-            if name in seen:
-                continue
-            seen.add(name)
-            result.append((name, summary))
-            if len(result) >= limit:
-                return result
-
-    return result
 
 
 def _signal_icon(score: int) -> str:
@@ -87,6 +42,105 @@ def _signal_icon(score: int) -> str:
     return "⚪"
 
 
+def _impact_icon(level: str) -> str:
+    if level == "높음":
+        return "🔥"
+    if level == "중간":
+        return "🟠"
+    if level == "낮음":
+        return "⚪"
+    return "▫️"
+
+
+def _asset_bucket(summary: SummaryItem) -> str:
+    cats = set(summary.categories)
+    sectors = set(summary.sectors)
+    text = f"{summary.title} {summary.body}".lower()
+    if "crypto" in cats or any(s in sectors for s in ["bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"]):
+        return "crypto"
+    if any(word in text for word in ["btc", "비트코인", "코인", "업비트", "바이낸스", "온체인"]):
+        return "crypto"
+    return "stock"
+
+
+def _split_by_asset(summaries: list[SummaryItem]) -> tuple[list[SummaryItem], list[SummaryItem]]:
+    stock: list[SummaryItem] = []
+    crypto: list[SummaryItem] = []
+    for summary in summaries:
+        if _asset_bucket(summary) == "crypto":
+            crypto.append(summary)
+        else:
+            stock.append(summary)
+    return stock, crypto
+
+
+def _unique_symbols(summaries: list[SummaryItem], asset_type: str, limit: int = 5) -> list[tuple[ResolvedSymbol, SummaryItem]]:
+    result: list[tuple[ResolvedSymbol, SummaryItem]] = []
+    seen: set[str] = set()
+    for summary in summaries:
+        symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
+        for symbol in symbols:
+            if asset_type == "crypto" and symbol.asset_type != "crypto":
+                continue
+            if asset_type == "stock" and symbol.asset_type == "crypto":
+                continue
+            if symbol.ticker in seen:
+                continue
+            seen.add(symbol.ticker)
+            result.append((symbol, summary))
+            if len(result) >= limit:
+                return result
+    return result
+
+
+def _render_asset_section(lines: list[str], title: str, summaries: list[SummaryItem], asset_type: str) -> None:
+    lines.append(title)
+    lines.append(SUB_DIVIDER)
+
+    if not summaries:
+        lines.append("▫️ 중요 뉴스 없음")
+        lines.append("")
+        return
+
+    sector_counter = Counter()
+    for summary in summaries:
+        sector_counter.update(summary.sectors)
+    if sector_counter:
+        sectors = "  /  ".join([f"{name} {count}건" for name, count in sector_counter.most_common(4)])
+        lines.append(f"🔎 핵심 흐름: {sectors}")
+
+    lines.append("⭐ 중요 뉴스")
+    for idx, summary in enumerate(summaries[:5], start=1):
+        icon = _signal_icon(summary.importance_score)
+        symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
+        if asset_type == "crypto":
+            symbols = [s for s in symbols if s.asset_type == "crypto"]
+        else:
+            symbols = [s for s in symbols if s.asset_type != "crypto"]
+        symbol_text = ", ".join([f"{s.name}({s.ticker})" for s in symbols]) or "종목명 미확정"
+        impact_query = symbol_text if symbol_text != "종목명 미확정" else summary.title[:60]
+        impact = judge_web_impact(impact_query)
+        lines.append(f"{icon} {idx}) {summary.title}")
+        lines.append(f"   ├ 관련: {symbol_text}")
+        lines.append(f"   ├ 실시간 영향도: {_impact_icon(impact.impact_level)} {impact.impact_level} / 검색 {impact.result_count}건")
+        if impact.latest_title:
+            lines.append(f"   ├ 외부확인: {impact.latest_title[:90]}")
+        lines.append(f"   └ 판단: {summary.trade_view}")
+
+    symbols = _unique_symbols(summaries, asset_type=asset_type, limit=5)
+    lines.append("📌 주요 종목")
+    if symbols:
+        for idx, (symbol, summary) in enumerate(symbols, start=1):
+            impact = judge_web_impact(f"{symbol.name} {symbol.ticker} 뉴스")
+            lines.append(f"{_impact_icon(impact.impact_level)} {idx}) {symbol.name} / {symbol.ticker}")
+            lines.append(f"   ├ 이슈: {summary.title}")
+            lines.append(f"   ├ 영향도: {impact.impact_level}")
+            lines.append(f"   └ 대응: {summary.trade_view}")
+    else:
+        lines.append("▫️ 명확한 주요 종목 부족")
+    lines.append("")
+
+
 def build_markdown_report(
     summaries: list[SummaryItem],
     hours: int,
@@ -95,17 +149,8 @@ def build_markdown_report(
     now = datetime.now(ZoneInfo(timezone_name))
     lines: list[str] = []
 
-    important = _important_news(summaries, limit=5)
-    key_names = _top_names(summaries, limit=5)
-
-    sector_counter = Counter()
-    keyword_counter = Counter()
-    for s in important:
-        sector_counter.update(s.sectors)
-        keyword_counter.update(s.keywords)
-
-    top_sectors = sector_counter.most_common(5)
-    top_summary = important[0] if important else None
+    important = _important_news(summaries, limit=10)
+    stock_news, crypto_news = _split_by_asset(important)
 
     lines.append("📰 텔레그램 뉴스 브리핑")
     lines.append(DIVIDER)
@@ -115,65 +160,13 @@ def build_markdown_report(
     lines.append(f"⭐ 중요 뉴스 선별: {len(important)}건")
     lines.append("")
 
-    lines.append("📊 1. 시황")
+    _render_asset_section(lines, "📈 1. 주식 뉴스", stock_news, "stock")
+    _render_asset_section(lines, "🪙 2. 코인/크립토 뉴스", crypto_news, "crypto")
+
+    lines.append("🧩 3. 공통 대응 기준")
     lines.append(SUB_DIVIDER)
-    if not important:
-        lines.append("▫️ 수집된 중요 뉴스가 없습니다.")
-    else:
-        if top_sectors:
-            sector_text = "  /  ".join([f"{name} {count}건" for name, count in top_sectors])
-            lines.append(f"🔎 핵심 흐름: {sector_text}")
-        else:
-            lines.append("🔎 핵심 흐름: 뚜렷한 반복 섹터 없음")
-
-        if top_summary:
-            lines.append(f"⚡ 최우선 이슈: {top_summary.title}")
-            lines.append(f"🧠 시장 해석: {top_summary.judgment}")
-    lines.append("")
-
-    lines.append("⭐ 2. 중요 뉴스")
-    lines.append(SUB_DIVIDER)
-    if important:
-        for idx, summary in enumerate(important, start=1):
-            icon = _signal_icon(summary.importance_score)
-            sectors = ", ".join(summary.sectors) if summary.sectors else "-"
-            names = ", ".join(_pick_names(summary)) or "종목명 미확정"
-            lines.append(f"{icon} {idx}) {summary.title}")
-            lines.append(f"   ├ 관련: {names}")
-            lines.append(f"   ├ 섹터: {sectors}")
-            lines.append(f"   └ 판단: {summary.trade_view}")
-    else:
-        lines.append("▫️ 중요 뉴스 없음")
-    lines.append("")
-
-    lines.append("📌 3. 주요 종목")
-    lines.append(SUB_DIVIDER)
-    if key_names:
-        for idx, (name, summary) in enumerate(key_names, start=1):
-            sectors = ", ".join(summary.sectors) if summary.sectors else "-"
-            icon = _signal_icon(summary.importance_score)
-            lines.append(f"{icon} {idx}) {name}")
-            lines.append(f"   ├ 이슈: {summary.title}")
-            lines.append(f"   ├ 섹터: {sectors}")
-            lines.append(f"   └ 뉴스 강도: {summary.importance_score}점 / 반복 {summary.repeat_count}회")
-    else:
-        lines.append("▫️ 명확한 주요 종목 부족")
-        lines.append("▫️ 오늘은 섹터 흐름 중심으로만 해석")
-    lines.append("")
-
-    lines.append("🧩 4. 대응 전략")
-    lines.append(SUB_DIVIDER)
-    if key_names:
-        for idx, (name, summary) in enumerate(key_names, start=1):
-            lines.append(f"▶️ {idx}) {name}")
-            lines.append(f"   ✅ 볼 것: {summary.trade_view}")
-            lines.append(f"   ⚠️ 주의: {summary.risk}")
-    elif top_summary:
-        lines.append(f"✅ 볼 것: {top_summary.trade_view}")
-        lines.append(f"⚠️ 주의: {top_summary.risk}")
-    else:
-        lines.append("▫️ 신규 대응 없음. 뉴스 수집량 부족")
-
+    lines.append("✅ 볼 것: 복수 채널 반복, 외부 뉴스 검색 결과, 실제 거래대금 증가, 장중 고점 돌파")
+    lines.append("⛔ 피할 것: 단일 채널 홍보성 뉴스, 이미 장대양봉 후 나온 재탕 뉴스, 종목명 불명확한 테마성 글")
     lines.append("")
     lines.append(DIVIDER)
     lines.append("⚠️ 뉴스 기반 브리핑입니다. 매수·매도 확정 신호가 아니며, 실제 진입 전 가격·거래대금·수급 확인 필요.")
