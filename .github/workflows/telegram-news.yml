@@ -20,7 +20,12 @@ on:
       - "requirements.txt"
       - "pyproject.toml"
   schedule:
-    # Hourly. GitHub Actions cron uses UTC.
+    # KRX active window, KST weekday 08:30-18:00.
+    # GitHub Actions cron uses UTC. KST = UTC+9.
+    - cron: "30-59/5 23 * * 0-4"  # KST Mon-Fri 08:30-08:55
+    - cron: "*/5 0-8 * * 1-5"     # KST Mon-Fri 09:00-17:55
+    - cron: "0 9 * * 1-5"          # KST Mon-Fri 18:00
+    # Outside KRX active window: hourly.
     - cron: "5 * * * *"
 
 concurrency:
@@ -51,18 +56,69 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Decide KRX cadence
+        id: cadence
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import time
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          from datetime import datetime
+
+          event_name = os.getenv("GITHUB_EVENT_NAME", "")
+          event_path = os.getenv("GITHUB_EVENT_PATH", "")
+          schedule = ""
+          if event_path and Path(event_path).exists():
+              with open(event_path, "r", encoding="utf-8") as f:
+                  schedule = json.load(f).get("schedule", "")
+
+          now = datetime.now(ZoneInfo("Asia/Seoul"))
+          is_weekday = now.weekday() < 5
+          active = is_weekday and time(8, 30) <= now.time() <= time(18, 0)
+
+          # Manual/push runs always execute.
+          should_run = True
+          reason = "manual_or_push"
+          hours = "6"
+
+          if event_name == "schedule":
+              if schedule == "5 * * * *" and active:
+                  should_run = False
+                  reason = "skip_hourly_duplicate_during_krx_active"
+              else:
+                  should_run = True
+                  reason = "krx_active_5min" if active else "off_hours_hourly"
+                  hours = "1" if active else "6"
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"should_run={str(should_run).lower()}\n")
+              out.write(f"reason={reason}\n")
+              out.write(f"hours={hours}\n")
+              out.write(f"kst_now={now:%Y-%m-%d %H:%M:%S KST}\n")
+              out.write(f"schedule={schedule}\n")
+
+          print(f"KST now: {now:%Y-%m-%d %H:%M:%S}")
+          print(f"event={event_name} schedule={schedule}")
+          print(f"krx_active={active} should_run={should_run} reason={reason} hours={hours}")
+          PY
+
       - name: Set up Python
+        if: steps.cadence.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
       - name: Install dependencies
+        if: steps.cadence.outputs.should_run == 'true'
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
       - name: Validate required secrets
+        if: steps.cadence.outputs.should_run == 'true'
         run: |
           python - <<'PY'
           import os, sys
@@ -88,6 +144,7 @@ jobs:
           PY
 
       - name: Show Telegram recipient count
+        if: steps.cadence.outputs.should_run == 'true'
         run: |
           python - <<'PY'
           import os
@@ -114,14 +171,15 @@ jobs:
           PY
 
       - name: Run Telegram news briefing
+        if: steps.cadence.outputs.should_run == 'true'
         run: |
           mkdir -p data reports
-          HOURS="${{ github.event.inputs.hours || '6' }}"
+          HOURS="${{ github.event.inputs.hours || steps.cadence.outputs.hours || '6' }}"
           LIMIT="${{ github.event.inputs.limit || '15' }}"
           python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT" --send
 
       - name: Upload report artifact
-        if: always()
+        if: always() && steps.cadence.outputs.should_run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: telegram-news-reports
