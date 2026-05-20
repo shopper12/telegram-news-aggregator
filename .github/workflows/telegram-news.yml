@@ -11,6 +11,10 @@ on:
         description: "Max items in report"
         required: false
         default: "15"
+      briefing_kind:
+        description: "regular, preopen_0850, afterclose_1530"
+        required: false
+        default: "regular"
   push:
     paths:
       - ".github/workflows/telegram-news.yml"
@@ -20,11 +24,13 @@ on:
       - "requirements.txt"
       - "pyproject.toml"
   schedule:
-    # KRX active window, KST weekday 08:30-18:00.
-    # GitHub Actions cron uses UTC. KST = UTC+9.
+    # KRX active window, KST weekday 08:30-18:00. GitHub Actions cron uses UTC. KST = UTC+9.
     - cron: "30-59/5 23 * * 0-4"  # KST Mon-Fri 08:30-08:55
     - cron: "*/5 0-8 * * 1-5"     # KST Mon-Fri 09:00-17:55
     - cron: "0 9 * * 1-5"          # KST Mon-Fri 18:00
+    # Special analyst briefings.
+    - cron: "50 23 * * 0-4"        # KST Mon-Fri 08:50 pre-open
+    - cron: "30 6 * * 1-5"         # KST Mon-Fri 15:30 after close
     # Outside KRX active window: hourly.
     - cron: "5 * * * *"
 
@@ -62,33 +68,43 @@ jobs:
           python - <<'PY'
           import json
           import os
-          from datetime import time
+          from datetime import time, datetime
           from pathlib import Path
           from zoneinfo import ZoneInfo
-          from datetime import datetime
 
           event_name = os.getenv("GITHUB_EVENT_NAME", "")
           event_path = os.getenv("GITHUB_EVENT_PATH", "")
           schedule = ""
+          inputs = {}
           if event_path and Path(event_path).exists():
               with open(event_path, "r", encoding="utf-8") as f:
-                  schedule = json.load(f).get("schedule", "")
+                  payload = json.load(f)
+              schedule = payload.get("schedule", "")
+              inputs = payload.get("inputs", {}) or {}
 
           now = datetime.now(ZoneInfo("Asia/Seoul"))
           is_weekday = now.weekday() < 5
           active = is_weekday and time(8, 30) <= now.time() <= time(18, 0)
 
-          # Manual/push runs always execute.
           should_run = True
           reason = "manual_or_push"
           hours = "6"
+          briefing_kind = inputs.get("briefing_kind") or "regular"
 
           if event_name == "schedule":
-              if schedule == "5 * * * *" and active:
+              if schedule == "50 23 * * 0-4":
+                  briefing_kind = "preopen_0850"
+                  hours = "12"
+                  reason = "preopen_0850"
+              elif schedule == "30 6 * * 1-5":
+                  briefing_kind = "afterclose_1530"
+                  hours = "6"
+                  reason = "afterclose_1530"
+              elif schedule == "5 * * * *" and active:
                   should_run = False
                   reason = "skip_hourly_duplicate_during_krx_active"
               else:
-                  should_run = True
+                  briefing_kind = "regular"
                   reason = "krx_active_5min" if active else "off_hours_hourly"
                   hours = "1" if active else "6"
 
@@ -96,12 +112,13 @@ jobs:
               out.write(f"should_run={str(should_run).lower()}\n")
               out.write(f"reason={reason}\n")
               out.write(f"hours={hours}\n")
+              out.write(f"briefing_kind={briefing_kind}\n")
               out.write(f"kst_now={now:%Y-%m-%d %H:%M:%S KST}\n")
               out.write(f"schedule={schedule}\n")
 
           print(f"KST now: {now:%Y-%m-%d %H:%M:%S}")
           print(f"event={event_name} schedule={schedule}")
-          print(f"krx_active={active} should_run={should_run} reason={reason} hours={hours}")
+          print(f"krx_active={active} should_run={should_run} reason={reason} hours={hours} briefing_kind={briefing_kind}")
           PY
 
       - name: Set up Python
@@ -123,23 +140,13 @@ jobs:
           python - <<'PY'
           import os, sys
 
-          required = [
-              "TELEGRAM_API_ID",
-              "TELEGRAM_API_HASH",
-              "TELEGRAM_STRING_SESSION",
-              "TELEGRAM_BOT_TOKEN",
-          ]
+          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION", "TELEGRAM_BOT_TOKEN"]
           missing = [name for name in required if not os.getenv(name)]
-
-          has_single = bool(os.getenv("TELEGRAM_TARGET_CHAT_ID"))
-          has_many = bool(os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
-          if not has_single and not has_many:
+          if not os.getenv("TELEGRAM_TARGET_CHAT_ID") and not os.getenv("TELEGRAM_TARGET_CHAT_IDS"):
               missing.append("TELEGRAM_TARGET_CHAT_ID or TELEGRAM_TARGET_CHAT_IDS")
-
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
               sys.exit(1)
-
           print("Required secrets are present.")
           PY
 
@@ -148,30 +155,23 @@ jobs:
         run: |
           python - <<'PY'
           import os
-
           def split_ids(value):
-              if not value:
-                  return []
-              return [x.strip() for x in value.replace('\n', ',').split(',') if x.strip()]
-
+              return [x.strip() for x in (value or '').replace('\n', ',').split(',') if x.strip()]
           ids = []
           single = os.getenv('TELEGRAM_TARGET_CHAT_ID')
-          many = split_ids(os.getenv('TELEGRAM_TARGET_CHAT_IDS'))
           if single:
               ids.append(single.strip())
-          for item in many:
+          for item in split_ids(os.getenv('TELEGRAM_TARGET_CHAT_IDS')):
               if item not in ids:
                   ids.append(item)
-
-          def mask(x):
-              return '***' + x[-4:] if len(x) > 4 else '***'
-
           print(f"Telegram recipient count: {len(ids)}")
-          print("Telegram recipients masked: " + ", ".join(mask(x) for x in ids))
+          print("Telegram recipients masked: " + ", ".join(('***' + x[-4:]) if len(x) > 4 else '***' for x in ids))
           PY
 
       - name: Run Telegram news briefing
         if: steps.cadence.outputs.should_run == 'true'
+        env:
+          BRIEFING_KIND: ${{ steps.cadence.outputs.briefing_kind }}
         run: |
           mkdir -p data reports
           HOURS="${{ github.event.inputs.hours || steps.cadence.outputs.hours || '6' }}"
