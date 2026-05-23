@@ -114,15 +114,23 @@ def _score(item: SummaryItem, cache: dict[str, WebImpact]) -> Pick:
     return Pick(item, max(1, min(10, score)), reasons or ["정보성"], syms, impact)
 
 
-def _select(items: list[SummaryItem]) -> tuple[list[Pick], int, int, int]:
+def _select(items: list[SummaryItem]) -> tuple[list[Pick], int, int, int, str]:
     stock = [x for x in items if _stock_candidate(x)]
     blocked = len([x for x in items if _blocked(x)])
     cache: dict[str, WebImpact] = {}
     scored = [_score(x, cache) for x in stock]
     strong = [x for x in scored if x.score >= BASE_SCORE]
-    threshold = 6 if not strong else (8 if len(strong) > MAX_NEWS else BASE_SCORE)
+    if not strong:
+        threshold = 6
+        rule = "완화: 중요 뉴스 부족"
+    elif len(strong) > MAX_NEWS:
+        threshold = 8
+        rule = "강화: 후보 과다"
+    else:
+        threshold = BASE_SCORE
+        rule = "기본"
     picks = sorted([x for x in scored if x.score >= threshold], key=lambda x: x.score, reverse=True)[:MAX_NEWS]
-    return picks, len(stock), blocked, threshold
+    return picks, len(stock), blocked, threshold, rule
 
 
 def _sectors(picks: list[Pick]) -> str:
@@ -168,7 +176,7 @@ def _overview() -> str:
 def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
     now = datetime.now(ZoneInfo(timezone_name))
     kind = os.getenv("BRIEFING_KIND", "regular")
-    picks, stock_count, blocked, threshold = _select(summaries)
+    picks, stock_count, blocked, threshold, rule = _select(summaries)
     lines: list[str] = [
         _header(kind),
         DIVIDER,
@@ -188,6 +196,6 @@ def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_nam
             lines.append(f"   영향: {', '.join(pick.reasons[:3])} / 섹터 {', '.join(pick.item.sectors[:3]) or '불명확'}")
             lines.append(f"   관련: {_links(pick.symbols)}")
     lines.append("")
-    lines.append(f"품질체크: 제외 {blocked}건 · 후보 {stock_count}건 · 원문 직접 언급 종목만 표시")
+    lines.append(f"검증: 기준={rule} · 제외 {blocked}건 · 후보 {stock_count}건 · 직접언급 종목만")
     report = "\n".join(lines)
     return report[:2180] + "\n… 이하 생략" if len(report) > 2200 else report
