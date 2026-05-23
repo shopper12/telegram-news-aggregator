@@ -56,7 +56,7 @@ jobs:
       CHANNEL_CONFIG: config/channels.yaml
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      GEMINI_MODEL: gemini-3.5-flash
+      GEMINI_MODEL: gemini-flash-latest
 
     steps:
       - name: Checkout
@@ -149,6 +149,7 @@ jobs:
               sys.exit(1)
           if os.getenv("GEMINI_API_KEY"):
               print("Gemini API key is present. Gemini synthesis will be attempted.")
+              print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
           else:
               print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
           print("Required secrets are present.")
