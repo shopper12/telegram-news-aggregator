@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from collections import Counter
+import json
 import os
 import re
 
@@ -24,6 +25,7 @@ STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
 BLOCK_CATEGORIES = {"crypto", "coin"}
 BLOCK_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
 BLOCK_WORDS = ["btc", "eth", "비트코인", "이더리움", "코인", "업비트", "바이낸스", "온체인", "usdt", "token"]
+ACTION_WORDS = ["진입", "손절", "목표", "매매전략"]
 
 EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "가이던스", "증설", "투자", "MOU"]
 OFFICIAL_WORDS = ["공시", "잠정", "ir", "전자공시", "거래소", "금감원", "분기보고서", "사업보고서"]
@@ -298,16 +300,23 @@ def _overview() -> str:
     return " / ".join(items[:5]) if items else "시장 데이터 확인 실패"
 
 
-def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
-    now = datetime.now(ZoneInfo(timezone_name))
-    kind = os.getenv("BRIEFING_KIND", "regular")
-    clusters, stock_count, blocked, threshold, rule = _select(summaries)
-
+def _fallback_report(
+    *,
+    now: datetime,
+    kind: str,
+    hours: int,
+    clusters: list[NewsCluster],
+    stock_count: int,
+    blocked: int,
+    threshold: int,
+    rule: str,
+    overview: str,
+) -> str:
     lines: list[str] = [
         _header(kind),
         DIVIDER,
         f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 이슈 {len(clusters)}개 | 기준 {threshold}",
-        f"시장: {_overview()}",
+        f"시장: {overview}",
         f"시황: {_market_view(clusters)}",
         f"주요 섹터: {_sectors(clusters)}",
         "",
@@ -325,6 +334,152 @@ def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_nam
             lines.append(f"   관련: {_links(cluster.symbols())}")
 
     lines.append("")
-    lines.append(f"검증: {rule} · 원문 {len(summaries)} · 후보 {stock_count} · 제외 {blocked} · 군집 후 선별")
+    lines.append(f"검증: {rule} · 원문선별 후보 {stock_count} · 제외 {blocked} · 군집 후 선별 · LLM 미사용")
     report = "\n".join(lines)
     return report[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(report) > MAX_REPORT_CHARS else report
+
+
+def _cluster_payload(clusters: list[NewsCluster]) -> list[dict]:
+    payload: list[dict] = []
+    for idx, cluster in enumerate(clusters, 1):
+        best = cluster.best()
+        payload.append(
+            {
+                "rank": idx,
+                "cluster_score": cluster.score(),
+                "type": best.news_type,
+                "title": best.item.title,
+                "body": _short(best.item.body, 420),
+                "sectors": cluster.sectors(),
+                "reasons": best.reasons,
+                "channels": sorted({c for n in cluster.items for c in n.item.channels}),
+                "external_check": {
+                    "level": best.impact.impact_level,
+                    "result_count": best.impact.result_count,
+                    "latest_title": best.impact.latest_title,
+                },
+                "symbols": [
+                    {"name": s.name, "ticker": s.ticker, "url": _quote_url(s)}
+                    for s in cluster.symbols()
+                ],
+            }
+        )
+    return payload
+
+
+def _llm_report(
+    *,
+    now: datetime,
+    kind: str,
+    hours: int,
+    clusters: list[NewsCluster],
+    stock_count: int,
+    blocked: int,
+    threshold: int,
+    rule: str,
+    overview: str,
+) -> str | None:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key or not clusters:
+        return None
+
+    try:
+        from openai import OpenAI
+
+        client = OpenAI(api_key=api_key)
+        model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
+        payload = {
+            "header": _header(kind),
+            "time_kst": now.strftime("%m/%d %H:%M KST"),
+            "hours": hours,
+            "market_overview": overview,
+            "market_view_hint": _market_view(clusters),
+            "major_sectors": _sectors(clusters),
+            "quality": {
+                "rule": rule,
+                "stock_candidate_count": stock_count,
+                "excluded_count": blocked,
+                "threshold": threshold,
+            },
+            "issues": _cluster_payload(clusters),
+        }
+        system = (
+            "너는 한국 주식시장 뉴스 데스크다. "
+            "입력된 텔레그램 이슈만 근거로 짧은 주식 뉴스 브리핑을 작성한다. "
+            "코인, 해외가상자산, 매매전략, 진입가, 손절가, 목표가, 추천 표현은 금지한다. "
+            "관련 종목은 입력 symbols에 있는 직접 언급 종목만 쓴다. "
+            "없는 사실, 관련주 확장, 추정 수혜주는 만들지 않는다. "
+            "출력은 2100자 이하의 한국어 plain text로 한다."
+        )
+        user = (
+            "아래 JSON을 바탕으로 텔레그램에 보낼 최종 브리핑을 작성해라.\n"
+            "형식:\n"
+            "제목\n"
+            "━━━━━━━━━━━━━━\n"
+            "시간 | 최근 n시간 | 이슈 n개\n"
+            "시장: ...\n"
+            "시황: 시장 전체 방향 1문장\n"
+            "주요 섹터: 섹터와 이유 1문장\n\n"
+            "📌 핵심 이슈\n"
+            "1) [점수] 이슈 제목\n"
+            "   요지: 왜 중요한지 1문장\n"
+            "   영향: 시장/섹터 영향 1문장\n"
+            "   관련: 종목명(티커) URL 또는 직접 언급 종목 없음\n\n"
+            "검증: ... · LLM 사용\n\n"
+            f"JSON:\n{json.dumps(payload, ensure_ascii=False)}"
+        )
+        response = client.chat.completions.create(
+            model=model,
+            temperature=0.1,
+            max_tokens=900,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+        )
+        text = (response.choices[0].message.content or "").strip()
+        if not text:
+            return None
+        lower = text.lower()
+        if any(w in lower for w in BLOCK_WORDS):
+            return None
+        if any(w in text for w in ACTION_WORDS):
+            return None
+        if "검증:" not in text:
+            text += f"\n\n검증: {rule} · 원문선별 후보 {stock_count} · 제외 {blocked} · 군집 후 선별 · LLM 사용"
+        return text[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(text) > MAX_REPORT_CHARS else text
+    except Exception:
+        return None
+
+
+def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
+    now = datetime.now(ZoneInfo(timezone_name))
+    kind = os.getenv("BRIEFING_KIND", "regular")
+    clusters, stock_count, blocked, threshold, rule = _select(summaries)
+    overview = _overview()
+
+    llm = _llm_report(
+        now=now,
+        kind=kind,
+        hours=hours,
+        clusters=clusters,
+        stock_count=stock_count,
+        blocked=blocked,
+        threshold=threshold,
+        rule=rule,
+        overview=overview,
+    )
+    if llm:
+        return llm
+
+    return _fallback_report(
+        now=now,
+        kind=kind,
+        hours=hours,
+        clusters=clusters,
+        stock_count=stock_count,
+        blocked=blocked,
+        threshold=threshold,
+        rule=rule,
+        overview=overview,
+    )
