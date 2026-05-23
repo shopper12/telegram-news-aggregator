@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 import html
 import json
 import os
@@ -78,12 +79,47 @@ def _related_html(symbols) -> str:
     )
 
 
+def _brief_market_view(selected) -> str:
+    if not selected:
+        return "뉴스 기준 주도 이슈 약함"
+
+    type_counts = Counter(cluster.best().news_type for cluster in selected)
+    risk_count = type_counts.get("리스크", 0) + type_counts.get("거시", 0)
+    core_count = type_counts.get("공시/확정", 0) + type_counts.get("이벤트", 0) + type_counts.get("실적", 0)
+    watch_count = type_counts.get("가격반응", 0) + type_counts.get("테마", 0) + type_counts.get("정보", 0)
+
+    if risk_count > core_count:
+        return "거시·리스크 변수 우세"
+    if core_count >= 2:
+        return "확정·이벤트성 뉴스 우세"
+    if watch_count > core_count:
+        return "가격반응·테마성 뉴스 혼재"
+    return "선별 뉴스 중심"
+
+
+def _brief_sector_line(selected) -> str:
+    if not selected:
+        return "뚜렷한 주도 섹터 없음"
+
+    counter: Counter[str] = Counter()
+    for cluster in selected:
+        weight = max(1, materiality_score(cluster) // 20)
+        for sector in cluster.sectors():
+            counter[sector] += weight
+
+    if not counter:
+        return "섹터 불명확"
+    return " > ".join(sector for sector, _ in counter.most_common(4))
+
+
 def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, engine: str) -> str:
     lines = [
         html.escape(s.base._header(kind), quote=False),
         s.base.DIVIDER,
         html.escape(f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 제목 {len(selected)}개 | 기준 {s.MATERIALITY_THRESHOLD}", quote=False),
         html.escape(f"시장: {overview}", quote=False),
+        html.escape(f"시황: {_brief_market_view(selected)}", quote=False),
+        html.escape(f"주요 섹터: {_brief_sector_line(selected)}", quote=False),
         "",
     ]
 
