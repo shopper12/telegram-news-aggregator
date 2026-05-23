@@ -24,6 +24,7 @@ class SummaryItem:
     judgment: str
     trade_view: str
     risk: str
+    source_urls: list[str]
 
 
 def _make_title(text: str, max_len: int = 72) -> str:
@@ -99,6 +100,7 @@ def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryIt
                 judgment=_build_judgment(item.text, item.count, sig.sectors, sig.tickers),
                 trade_view=_build_trade_view(item.text, sig.importance_score, item.count),
                 risk=_build_risk(item.text),
+                source_urls=item.message_urls,
             )
         )
     return summaries
