@@ -1,10 +1,13 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from collections import Counter
 import os
+import re
+
+from rapidfuzz import fuzz
 
 from .summarizer import SummaryItem
 from .symbol_resolver import resolve_symbols, ResolvedSymbol
@@ -13,28 +16,67 @@ from .market_data import fetch_market_overview
 
 
 DIVIDER = "━━━━━━━━━━━━━━"
+MAX_NEWS = 5
+BASE_SCORE = 72
+MAX_REPORT_CHARS = 2300
+
+STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
 BLOCK_CATEGORIES = {"crypto", "coin"}
 BLOCK_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
-BLOCK_WORDS = ["btc", "eth", "비트코인", "이더리움", "코인", "업비트", "바이낸스", "온체인"]
-STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
-EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "가이던스"]
-MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가", "관세"]
-RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", "거래정지", "부도", "파산"]
-SOFT_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마"]
-MAX_NEWS = 5
-BASE_SCORE = 7
+BLOCK_WORDS = ["btc", "eth", "비트코인", "이더리움", "코인", "업비트", "바이낸스", "온체인", "usdt", "token"]
+
+EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "가이던스", "증설", "투자", "MOU"]
+OFFICIAL_WORDS = ["공시", "잠정", "ir", "전자공시", "거래소", "금감원", "분기보고서", "사업보고서"]
+MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가", "관세", "수출", "수입"]
+RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", "거래정지", "부도", "파산", "감사", "리콜"]
+THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마", "가능성"]
+PRICE_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "강세", "상승세"]
+NOISE_WORDS = ["리딩", "무료방", "입장", "유료", "회원", "추천방", "수익인증", "체험", "선착순"]
 
 
 @dataclass(frozen=True)
-class Pick:
+class AnalyzedNews:
     item: SummaryItem
     score: int
+    news_type: str
     reasons: list[str]
     symbols: list[ResolvedSymbol]
     impact: WebImpact
 
 
-def _txt(item: SummaryItem) -> str:
+@dataclass
+class NewsCluster:
+    key: str
+    items: list[AnalyzedNews] = field(default_factory=list)
+
+    def best(self) -> AnalyzedNews:
+        return sorted(self.items, key=lambda x: x.score, reverse=True)[0]
+
+    def score(self) -> int:
+        best = self.best().score
+        channel_count = len({c for n in self.items for c in n.item.channels})
+        issue_count = len(self.items)
+        bonus = min(10, (channel_count - 1) * 3 + (issue_count - 1) * 2)
+        return min(100, best + bonus)
+
+    def sectors(self) -> list[str]:
+        counter = Counter()
+        for n in self.items:
+            counter.update(n.item.sectors)
+        return [k for k, _ in counter.most_common(4)]
+
+    def symbols(self) -> list[ResolvedSymbol]:
+        out: list[ResolvedSymbol] = []
+        seen: set[str] = set()
+        for n in sorted(self.items, key=lambda x: x.score, reverse=True):
+            for s in n.symbols:
+                if s.ticker not in seen:
+                    seen.add(s.ticker)
+                    out.append(s)
+        return out[:3]
+
+
+def _text(item: SummaryItem) -> str:
     return f"{item.title} {item.body}"
 
 
@@ -44,8 +86,8 @@ def _blocked(item: SummaryItem) -> bool:
         return True
     if set(item.sectors) & BLOCK_SECTORS:
         return True
-    low = _txt(item).lower()
-    return any(w in low for w in BLOCK_WORDS)
+    lower = _text(item).lower()
+    return any(w in lower for w in BLOCK_WORDS)
 
 
 def _stock_candidate(item: SummaryItem) -> bool:
@@ -63,90 +105,166 @@ def _quote_url(sym: ResolvedSymbol) -> str:
 
 
 def _direct_symbols(item: SummaryItem) -> list[ResolvedSymbol]:
-    text = _txt(item)
-    low = text.lower()
+    text = _text(item)
+    lower = text.lower()
     out: list[ResolvedSymbol] = []
     seen: set[str] = set()
     for sym in resolve_symbols(text, item.categories, item.tickers):
         if sym.asset_type == "crypto":
             continue
         base = sym.ticker.upper().replace(".KS", "").replace(".KQ", "")
-        direct = sym.name.lower() in low or sym.ticker.lower() in low or base in text
+        direct = sym.name.lower() in lower or sym.ticker.lower() in lower or base in text
         if direct and sym.ticker not in seen:
             seen.add(sym.ticker)
             out.append(sym)
     return out[:3]
 
 
-def _score(item: SummaryItem, cache: dict[str, WebImpact]) -> Pick:
-    low = _txt(item).lower()
-    syms = _direct_symbols(item)
-    query = f"{syms[0].name} {syms[0].ticker} {item.title[:50]}" if syms else item.title[:80]
+def _classify(text: str) -> str:
+    lower = text.lower()
+    if any(w in lower for w in NOISE_WORDS):
+        return "광고/잡음"
+    if any(w in lower for w in RISK_WORDS):
+        return "리스크"
+    if any(w in lower for w in OFFICIAL_WORDS):
+        return "공시/확정"
+    if any(w in lower for w in ["실적", "어닝", "가이던스", "매출", "영업이익"]):
+        return "실적"
+    if any(w in lower for w in ["수주", "계약", "공급", "납품", "승인", "허가", "인수", "합병", "상장"]):
+        return "이벤트"
+    if any(w in lower for w in MACRO_WORDS):
+        return "거시"
+    if any(w in lower for w in PRICE_WORDS):
+        return "가격반응"
+    if any(w in lower for w in THEME_WORDS):
+        return "테마"
+    return "정보"
+
+
+def _score_item(item: SummaryItem, cache: dict[str, WebImpact]) -> AnalyzedNews:
+    text = _text(item)
+    lower = text.lower()
+    news_type = _classify(text)
+    symbols = _direct_symbols(item)
+    query = f"{symbols[0].name} {symbols[0].ticker} {item.title[:50]}" if symbols else item.title[:80]
     if query not in cache:
         cache[query] = judge_web_impact(query)
     impact = cache[query]
-    score = 4
+
+    score = 40
     reasons: list[str] = []
-    if any(w in low for w in EVENT_WORDS):
-        score += 3
-        reasons.append("이벤트")
-    if any(w in low for w in MACRO_WORDS):
-        score += 2
-        reasons.append("거시")
-    if any(w in low for w in RISK_WORDS):
-        score += 2
-        reasons.append("리스크")
-    if syms:
-        score += 1
-        reasons.append("직접종목")
+    type_weight = {
+        "공시/확정": 24,
+        "이벤트": 22,
+        "실적": 20,
+        "리스크": 18,
+        "거시": 16,
+        "가격반응": 6,
+        "테마": -8,
+        "광고/잡음": -40,
+        "정보": 0,
+    }[news_type]
+    score += type_weight
+    reasons.append(news_type)
+
+    if symbols:
+        score += 8
+        reasons.append("종목직접")
+    if item.repeat_count >= 2:
+        score += min(8, item.repeat_count * 2)
+        reasons.append(f"반복{item.repeat_count}")
     if impact.impact_level == "높음":
-        score += 2
+        score += 12
         reasons.append("외부확인강")
     elif impact.impact_level == "중간":
-        score += 1
+        score += 6
         reasons.append("외부확인중")
-    if item.repeat_count >= 2:
-        score += 1
-        reasons.append(f"반복{item.repeat_count}")
-    if any(w in low for w in SOFT_WORDS):
-        score -= 1
-        reasons.append("테마감점")
-    return Pick(item, max(1, min(10, score)), reasons or ["정보성"], syms, impact)
+    elif impact.impact_level == "확인부족" and news_type not in {"공시/확정", "이벤트"}:
+        score -= 6
+        reasons.append("외부확인부족")
+
+    if any(w in lower for w in THEME_WORDS):
+        score -= 6
+        reasons.append("테마성")
+    if any(w in lower for w in PRICE_WORDS) and news_type != "공시/확정":
+        score -= 5
+        reasons.append("사후반응")
+    if any(w in lower for w in NOISE_WORDS):
+        score -= 40
+        reasons.append("광고제거")
+
+    return AnalyzedNews(item=item, score=max(1, min(100, score)), news_type=news_type, reasons=reasons, symbols=symbols, impact=impact)
 
 
-def _select(items: list[SummaryItem]) -> tuple[list[Pick], int, int, int, str]:
+def _cluster_key(news: AnalyzedNews) -> str:
+    if news.symbols:
+        tickers = "+".join(sorted(s.ticker for s in news.symbols[:2]))
+        return f"{news.news_type}:{tickers}"
+    if news.item.sectors:
+        return f"{news.news_type}:{news.item.sectors[0]}"
+    cleaned = re.sub(r"https?://\S+", "", news.item.title.lower())
+    cleaned = re.sub(r"[^0-9a-z가-힣 ]", " ", cleaned)
+    words = [w for w in cleaned.split() if len(w) >= 2][:6]
+    return f"{news.news_type}:{' '.join(words)}"
+
+
+def _cluster(scored: list[AnalyzedNews]) -> list[NewsCluster]:
+    clusters: list[NewsCluster] = []
+    for news in sorted(scored, key=lambda x: x.score, reverse=True):
+        key = _cluster_key(news)
+        matched: NewsCluster | None = None
+        for cluster in clusters:
+            same_key = cluster.key == key
+            similar_title = fuzz.token_set_ratio(news.item.title, cluster.best().item.title) >= 82
+            share_symbol = bool({s.ticker for s in news.symbols} & {s.ticker for s in cluster.symbols()})
+            if same_key or similar_title or share_symbol:
+                matched = cluster
+                break
+        if matched:
+            matched.items.append(news)
+        else:
+            clusters.append(NewsCluster(key=key, items=[news]))
+    return clusters
+
+
+def _select(items: list[SummaryItem]) -> tuple[list[NewsCluster], int, int, int, str]:
     stock = [x for x in items if _stock_candidate(x)]
     blocked = len([x for x in items if _blocked(x)])
     cache: dict[str, WebImpact] = {}
-    scored = [_score(x, cache) for x in stock]
-    strong = [x for x in scored if x.score >= BASE_SCORE]
+    scored = [_score_item(x, cache) for x in stock]
+    scored = [x for x in scored if x.news_type != "광고/잡음" and x.score >= 45]
+    clusters = _cluster(scored)
+
+    strong = [c for c in clusters if c.score() >= BASE_SCORE]
     if not strong:
-        threshold = 6
-        rule = "완화: 중요 뉴스 부족"
+        threshold = 62
+        rule = "완화"
     elif len(strong) > MAX_NEWS:
-        threshold = 8
-        rule = "강화: 후보 과다"
+        threshold = 78
+        rule = "강화"
     else:
         threshold = BASE_SCORE
         rule = "기본"
-    picks = sorted([x for x in scored if x.score >= threshold], key=lambda x: x.score, reverse=True)[:MAX_NEWS]
-    return picks, len(stock), blocked, threshold, rule
+
+    selected = [c for c in clusters if c.score() >= threshold]
+    selected = sorted(selected, key=lambda c: c.score(), reverse=True)[:MAX_NEWS]
+    return selected, len(stock), blocked, threshold, rule
 
 
-def _sectors(picks: list[Pick]) -> str:
+def _sectors(clusters: list[NewsCluster]) -> str:
     counter = Counter()
-    for pick in picks:
-        counter.update(pick.item.sectors)
+    for cluster in clusters:
+        counter.update(cluster.sectors())
     return ", ".join(f"{k}({v})" for k, v in counter.most_common(4)) or "불명확"
 
 
-def _view(picks: list[Pick]) -> str:
-    if not picks:
+def _market_view(clusters: list[NewsCluster]) -> str:
+    if not clusters:
         return "선별 기준 통과 뉴스 없음."
-    counter = Counter()
-    for pick in picks:
-        counter.update(pick.reasons)
-    return f"{_sectors(picks).split(',')[0]} 중심. 핵심={counter.most_common(1)[0][0]}."
+    types = Counter(c.best().news_type for c in clusters)
+    sector = _sectors(clusters).split(",")[0]
+    top_type = types.most_common(1)[0][0]
+    return f"{sector} 중심. {top_type} 뉴스가 핵심. 단순 테마보다 확정성 있는 재료 우선."
 
 
 def _links(symbols: list[ResolvedSymbol]) -> str:
@@ -158,6 +276,13 @@ def _links(symbols: list[ResolvedSymbol]) -> str:
 def _short(text: str, limit: int) -> str:
     one = " ".join(text.replace("\n", " ").split())
     return one if len(one) <= limit else one[:limit - 1] + "…"
+
+
+def _why(cluster: NewsCluster) -> str:
+    best = cluster.best()
+    channel_count = len({c for n in cluster.items for c in n.item.channels})
+    sectors = ", ".join(cluster.sectors()[:3]) or "불명확"
+    return f"유형={best.news_type}, 섹터={sectors}, 채널={channel_count}, 근거={', '.join(best.reasons[:3])}"
 
 
 def _header(kind: str) -> str:
@@ -176,26 +301,30 @@ def _overview() -> str:
 def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
     now = datetime.now(ZoneInfo(timezone_name))
     kind = os.getenv("BRIEFING_KIND", "regular")
-    picks, stock_count, blocked, threshold, rule = _select(summaries)
+    clusters, stock_count, blocked, threshold, rule = _select(summaries)
+
     lines: list[str] = [
         _header(kind),
         DIVIDER,
-        f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 선별 {len(picks)}건 | 기준 {threshold}점",
+        f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 이슈 {len(clusters)}개 | 기준 {threshold}",
         f"시장: {_overview()}",
-        f"시황: {_view(picks)}",
-        f"주요 섹터: {_sectors(picks)}",
+        f"시황: {_market_view(clusters)}",
+        f"주요 섹터: {_sectors(clusters)}",
         "",
     ]
-    if not picks:
+
+    if not clusters:
         lines.append("주요 뉴스: 기준 통과 없음")
     else:
-        lines.append("📌 주요 뉴스")
-        for i, pick in enumerate(picks, 1):
-            lines.append(f"{i}) [{pick.score}] {_short(pick.item.title, 70)}")
-            lines.append(f"   핵심: {_short(pick.item.body, 120)}")
-            lines.append(f"   영향: {', '.join(pick.reasons[:3])} / 섹터 {', '.join(pick.item.sectors[:3]) or '불명확'}")
-            lines.append(f"   관련: {_links(pick.symbols)}")
+        lines.append("📌 핵심 이슈")
+        for idx, cluster in enumerate(clusters, 1):
+            best = cluster.best()
+            lines.append(f"{idx}) [{cluster.score()}] {_short(best.item.title, 72)}")
+            lines.append(f"   요지: {_short(best.item.body, 118)}")
+            lines.append(f"   판단: {_why(cluster)}")
+            lines.append(f"   관련: {_links(cluster.symbols())}")
+
     lines.append("")
-    lines.append(f"검증: 기준={rule} · 제외 {blocked}건 · 후보 {stock_count}건 · 직접언급 종목만")
+    lines.append(f"검증: {rule} · 원문 {len(summaries)} · 후보 {stock_count} · 제외 {blocked} · 군집 후 선별")
     report = "\n".join(lines)
-    return report[:2180] + "\n… 이하 생략" if len(report) > 2200 else report
+    return report[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(report) > MAX_REPORT_CHARS else report
