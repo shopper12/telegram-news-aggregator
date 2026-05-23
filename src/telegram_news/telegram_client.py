@@ -31,6 +31,21 @@ def _make_client(settings: Settings) -> TelegramClient:
     )
 
 
+def _source_url(entity, msg_id: int) -> str | None:
+    username = getattr(entity, "username", None)
+    if username:
+        return f"https://t.me/{username}/{msg_id}"
+
+    entity_id = getattr(entity, "id", None)
+    if entity_id is None:
+        return None
+    # 비공개 채널/그룹은 t.me/c/<internal_id>/<message_id> 형식.
+    internal_id = str(entity_id)
+    if internal_id.startswith("-100"):
+        internal_id = internal_id[4:]
+    return f"https://t.me/c/{internal_id}/{msg_id}"
+
+
 async def collect_messages(
     settings: Settings,
     channels: list[ChannelConfig],
@@ -81,6 +96,7 @@ async def collect_messages(
                             message_date=msg_date,
                             text=text,
                             normalized_text=normalized,
+                            message_url=_source_url(entity, msg.id),
                         )
                     )
             except RPCError as e:
