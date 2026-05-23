@@ -21,6 +21,7 @@ DIVIDER = "━━━━━━━━━━━━━━"
 MAX_NEWS = 5
 BASE_SCORE = 72
 MAX_REPORT_CHARS = 2300
+DEFAULT_GEMINI_MODEL = "gemini-flash-latest"
 
 STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
 BLOCK_CATEGORIES = {"crypto", "coin"}
@@ -413,7 +414,7 @@ def _gemini_report(
     if not api_key or not clusters:
         return None
 
-    model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+    model = os.getenv("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
     payload = {
         "header": _header(kind),
@@ -428,6 +429,7 @@ def _gemini_report(
             "stock_candidate_count": stock_count,
             "excluded_count": blocked,
             "threshold": threshold,
+            "model": model,
         },
         "issues": _cluster_payload(clusters),
     }
@@ -439,7 +441,7 @@ def _gemini_report(
         "제목\n━━━━━━━━━━━━━━\n시간 | 최근 n시간 | 이슈 n개\n"
         "시장: ...\n시황: 1문장\n주요 섹터: 1문장\n\n"
         "📌 핵심 이슈\n1) [점수] 제목\n   요지: 왜 중요한지 1문장\n   영향: 섹터/시장 영향 1문장\n   관련: 종목명(티커) URL 또는 직접 언급 종목 없음\n\n"
-        "검증: Gemini · ...\n"
+        f"검증: Gemini({model}) · ...\n"
         "전체 2100자 이하.\n\n"
         f"JSON:\n{json.dumps(payload, ensure_ascii=False)}"
     )
@@ -469,7 +471,7 @@ def _gemini_report(
         if any(word in text for word in ACTION_WORDS):
             return None
         if "검증:" not in text:
-            text += "\n\n" + _quality_note("Gemini", rule, source_count, stock_count, blocked, clusters)
+            text += "\n\n" + _quality_note(f"Gemini({model})", rule, source_count, stock_count, blocked, clusters)
         return text[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(text) > MAX_REPORT_CHARS else text
     except Exception:
         return None
