@@ -35,8 +35,8 @@ class Settings:
     database_path: Path
     channel_config_path: Path
     timezone: str
-    openai_api_key: str | None
-    openai_model: str
+    gemini_api_key: str | None
+    gemini_model: str
     telegram_bot_token: str | None
     telegram_target_chat_id: str | None
     telegram_target_chat_ids: list[str]
@@ -81,8 +81,8 @@ def load_settings() -> Settings:
         database_path=_sqlite_path(os.getenv("DATABASE_URL", "sqlite:///data/news.db")),
         channel_config_path=Path(os.getenv("CHANNEL_CONFIG", "config/channels.yaml")),
         timezone=os.getenv("TIMEZONE", "Asia/Seoul"),
-        openai_api_key=os.getenv("OPENAI_API_KEY") or None,
-        openai_model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+        gemini_api_key=os.getenv("GEMINI_API_KEY") or None,
+        gemini_model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
         telegram_bot_token=os.getenv("TELEGRAM_BOT_TOKEN") or None,
         telegram_target_chat_id=single_chat_id,
         telegram_target_chat_ids=multi_chat_ids,
