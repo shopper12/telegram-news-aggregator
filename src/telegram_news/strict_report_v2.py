@@ -10,6 +10,7 @@ import requests
 
 from .summarizer import SummaryItem
 from . import strict_report as s
+from .strict_quality import materiality_score, materiality_grade
 
 MAX_REPORT_CHARS = 2300
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
@@ -52,6 +53,31 @@ def _append_diag(report: str, reason: str) -> str:
     return base + diag
 
 
+def _ensure_importance_labels(text: str, selected) -> str:
+    # Gemini가 "중요도"라는 단어를 빼도 이미 로컬 게이트에서 B+ 이상만 전달된다.
+    # 따라서 누락만으로 폐기하지 않고, 검증 footer에 등급 요약을 보강한다.
+    if not selected or "중요" in text:
+        return text
+    summary = ", ".join(
+        f"{idx}:{materiality_score(cluster)}/{materiality_grade(cluster)}"
+        for idx, cluster in enumerate(selected, 1)
+    )
+    return text.rstrip() + f"\n중요도: {summary}"
+
+
+def _audit_text_v2(text: str, selected) -> tuple[bool, str]:
+    lower = text.lower()
+    if any(word in lower for word in s.base.BLOCK_WORDS):
+        return False, "crypto_leak"
+    banned = ["진입", "손절", "목표가", "매매", "추천"]
+    if any(word in text for word in banned):
+        return False, "trading_language_leak"
+    item_count = len(re.findall(r"\n\d+\)", "\n" + text))
+    if item_count > len(selected):
+        return False, "invented_extra_issue"
+    return True, "pass"
+
+
 def _gemini_with_diagnostics(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count):
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -81,6 +107,7 @@ def _gemini_with_diagnostics(*, now, kind, hours, selected, stock_count, blocked
     prompt = (
         "너는 한국 주식시장 뉴스 데스크다. 입력 JSON의 사실만 사용한다.\n"
         "중요도 B+ 이상으로 선별된 이슈만 들어오며, 새 이슈를 만들면 안 된다.\n"
+        "각 핵심 이슈 번호에는 반드시 [중요도점수/등급] 형식을 붙인다. 예: 1) [92/A] 제목\n"
         "단순 사후 가격반응, 테마성 해석, 입력에 없는 종목 확장은 금지한다.\n"
         "코인/가상자산/매매전략/추천/진입가/손절가/목표가는 금지한다.\n"
         "symbols에 있는 직접 언급 종목만 쓴다.\n"
@@ -129,7 +156,8 @@ def _gemini_with_diagnostics(*, now, kind, hours, selected, stock_count, blocked
     if not text:
         return None, "Gemini report 빈값"
 
-    ok, reason = s._audit_text(text, selected)
+    text = _ensure_importance_labels(text, selected)
+    ok, reason = _audit_text_v2(text, selected)
     if not ok:
         return None, f"로컬 사후감사 탈락: {reason}"
 
