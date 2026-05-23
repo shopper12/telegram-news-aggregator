@@ -4,7 +4,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from collections import Counter
-import json
 import os
 import re
 
@@ -25,7 +24,6 @@ STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
 BLOCK_CATEGORIES = {"crypto", "coin"}
 BLOCK_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
 BLOCK_WORDS = ["btc", "eth", "비트코인", "이더리움", "코인", "업비트", "바이낸스", "온체인", "usdt", "token"]
-ACTION_WORDS = ["진입", "손절", "목표", "매매전략"]
 
 EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "가이던스", "증설", "투자", "MOU"]
 OFFICIAL_WORDS = ["공시", "잠정", "ir", "전자공시", "거래소", "금감원", "분기보고서", "사업보고서"]
@@ -34,6 +32,29 @@ RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", 
 THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마", "가능성"]
 PRICE_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "강세", "상승세"]
 NOISE_WORDS = ["리딩", "무료방", "입장", "유료", "회원", "추천방", "수익인증", "체험", "선착순"]
+
+TYPE_WEIGHT = {
+    "공시/확정": 24,
+    "이벤트": 22,
+    "실적": 20,
+    "리스크": 18,
+    "거시": 16,
+    "가격반응": 6,
+    "테마": -8,
+    "광고/잡음": -40,
+    "정보": 0,
+}
+
+TYPE_MEANING = {
+    "공시/확정": "확정성 높은 재료라 장중 수급 반응을 확인할 가치가 큼",
+    "이벤트": "수주·계약·승인성 재료라 해당 섹터의 단기 관심을 높일 수 있음",
+    "실적": "실적·가이던스 변화는 밸류에이션 재평가 요인",
+    "리스크": "악재성 이슈라 관련 섹터의 변동성 확대 요인",
+    "거시": "시장 전체 할인율·환율·수급에 영향을 줄 수 있는 변수",
+    "가격반응": "이미 가격 반응이 나온 사후성 뉴스라 추격 판단에는 감점",
+    "테마": "확정 사실보다 해석성 재료라 신뢰도를 낮게 봄",
+    "정보": "단독 매매 근거보다는 흐름 확인용 정보",
+}
 
 
 @dataclass(frozen=True)
@@ -76,6 +97,9 @@ class NewsCluster:
                     seen.add(s.ticker)
                     out.append(s)
         return out[:3]
+
+    def channel_count(self) -> int:
+        return len({c for n in self.items for c in n.item.channels})
 
 
 def _text(item: SummaryItem) -> str:
@@ -153,21 +177,8 @@ def _score_item(item: SummaryItem, cache: dict[str, WebImpact]) -> AnalyzedNews:
         cache[query] = judge_web_impact(query)
     impact = cache[query]
 
-    score = 40
-    reasons: list[str] = []
-    type_weight = {
-        "공시/확정": 24,
-        "이벤트": 22,
-        "실적": 20,
-        "리스크": 18,
-        "거시": 16,
-        "가격반응": 6,
-        "테마": -8,
-        "광고/잡음": -40,
-        "정보": 0,
-    }[news_type]
-    score += type_weight
-    reasons.append(news_type)
+    score = 40 + TYPE_WEIGHT[news_type]
+    reasons: list[str] = [news_type]
 
     if symbols:
         score += 8
@@ -256,17 +267,42 @@ def _select(items: list[SummaryItem]) -> tuple[list[NewsCluster], int, int, int,
 def _sectors(clusters: list[NewsCluster]) -> str:
     counter = Counter()
     for cluster in clusters:
-        counter.update(cluster.sectors())
+        weight = max(1, cluster.score() // 20)
+        for sector in cluster.sectors():
+            counter[sector] += weight
     return ", ".join(f"{k}({v})" for k, v in counter.most_common(4)) or "불명확"
+
+
+def _type_counts(clusters: list[NewsCluster]) -> Counter:
+    counter = Counter()
+    for cluster in clusters:
+        counter[cluster.best().news_type] += 1
+    return counter
 
 
 def _market_view(clusters: list[NewsCluster]) -> str:
     if not clusters:
         return "선별 기준 통과 뉴스 없음."
-    types = Counter(c.best().news_type for c in clusters)
+    types = _type_counts(clusters)
     sector = _sectors(clusters).split(",")[0]
     top_type = types.most_common(1)[0][0]
-    return f"{sector} 중심. {top_type} 뉴스가 핵심. 단순 테마보다 확정성 있는 재료 우선."
+    risk_count = types.get("리스크", 0) + types.get("거시", 0)
+    positive_count = types.get("공시/확정", 0) + types.get("이벤트", 0) + types.get("실적", 0)
+    if risk_count > positive_count:
+        tone = "방어적 해석 우선"
+    elif positive_count >= 2:
+        tone = "확정성 재료 우세"
+    else:
+        tone = "선별 대응"
+    return f"{sector} 중심. {top_type} 이슈가 핵심이며, 현재 톤은 {tone}."
+
+
+def _sector_sentence(clusters: list[NewsCluster]) -> str:
+    if not clusters:
+        return "주도 섹터 없음."
+    sector = _sectors(clusters).split(",")[0]
+    top = max(clusters, key=lambda c: c.score())
+    return f"{sector}가 가장 많이 반복됐고, 최상위 이슈는 {top.best().news_type} 성격이다."
 
 
 def _links(symbols: list[ResolvedSymbol]) -> str:
@@ -277,14 +313,38 @@ def _links(symbols: list[ResolvedSymbol]) -> str:
 
 def _short(text: str, limit: int) -> str:
     one = " ".join(text.replace("\n", " ").split())
+    one = re.sub(r"https?://\S+", "", one).strip()
     return one if len(one) <= limit else one[:limit - 1] + "…"
+
+
+def _issue_summary(cluster: NewsCluster) -> str:
+    best = cluster.best()
+    meaning = TYPE_MEANING.get(best.news_type, "뉴스 흐름 확인용")
+    symbols = cluster.symbols()
+    symbol_text = ", ".join(f"{s.name}" for s in symbols) if symbols else "직접 언급 종목 없음"
+    return f"{meaning}; 관련 표기는 {symbol_text} 기준."
+
+
+def _issue_impact(cluster: NewsCluster) -> str:
+    best = cluster.best()
+    sectors = ", ".join(cluster.sectors()[:3]) or "불명확"
+    external = best.impact.impact_level
+    channel_count = cluster.channel_count()
+    if best.news_type in {"공시/확정", "이벤트", "실적"}:
+        return f"{sectors} 섹터 관심도를 높일 수 있음. 외부확인={external}, 채널={channel_count}."
+    if best.news_type in {"리스크", "거시"}:
+        return f"{sectors} 관련 변동성 확대 요인. 외부확인={external}, 채널={channel_count}."
+    if best.news_type == "가격반응":
+        return f"이미 가격 반응이 포함된 뉴스라 신규 재료성은 낮게 평가. 외부확인={external}."
+    if best.news_type == "테마":
+        return f"테마성 해석이므로 확정 뉴스보다 낮은 비중으로 처리. 외부확인={external}."
+    return f"섹터 흐름 확인용. 외부확인={external}, 채널={channel_count}."
 
 
 def _why(cluster: NewsCluster) -> str:
     best = cluster.best()
-    channel_count = len({c for n in cluster.items for c in n.item.channels})
     sectors = ", ".join(cluster.sectors()[:3]) or "불명확"
-    return f"유형={best.news_type}, 섹터={sectors}, 채널={channel_count}, 근거={', '.join(best.reasons[:3])}"
+    return f"유형={best.news_type}, 섹터={sectors}, 근거={', '.join(best.reasons[:3])}"
 
 
 def _header(kind: str) -> str:
@@ -300,25 +360,24 @@ def _overview() -> str:
     return " / ".join(items[:5]) if items else "시장 데이터 확인 실패"
 
 
-def _fallback_report(
-    *,
-    now: datetime,
-    kind: str,
-    hours: int,
-    clusters: list[NewsCluster],
-    stock_count: int,
-    blocked: int,
-    threshold: int,
-    rule: str,
-    overview: str,
-) -> str:
+def _quality_note(rule: str, source_count: int, stock_count: int, blocked: int, clusters: list[NewsCluster]) -> str:
+    type_text = ", ".join(f"{k}{v}" for k, v in _type_counts(clusters).most_common(4)) or "없음"
+    return f"검증: 로컬엔진 · {rule} · 원문 {source_count} · 후보 {stock_count} · 제외 {blocked} · 유형 {type_text}"
+
+
+def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
+    now = datetime.now(ZoneInfo(timezone_name))
+    kind = os.getenv("BRIEFING_KIND", "regular")
+    clusters, stock_count, blocked, threshold, rule = _select(summaries)
+    overview = _overview()
+
     lines: list[str] = [
         _header(kind),
         DIVIDER,
         f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 이슈 {len(clusters)}개 | 기준 {threshold}",
         f"시장: {overview}",
         f"시황: {_market_view(clusters)}",
-        f"주요 섹터: {_sectors(clusters)}",
+        f"주요 섹터: {_sector_sentence(clusters)}",
         "",
     ]
 
@@ -329,157 +388,12 @@ def _fallback_report(
         for idx, cluster in enumerate(clusters, 1):
             best = cluster.best()
             lines.append(f"{idx}) [{cluster.score()}] {_short(best.item.title, 72)}")
-            lines.append(f"   요지: {_short(best.item.body, 118)}")
+            lines.append(f"   요지: {_issue_summary(cluster)}")
+            lines.append(f"   영향: {_issue_impact(cluster)}")
             lines.append(f"   판단: {_why(cluster)}")
             lines.append(f"   관련: {_links(cluster.symbols())}")
 
     lines.append("")
-    lines.append(f"검증: {rule} · 원문선별 후보 {stock_count} · 제외 {blocked} · 군집 후 선별 · LLM 미사용")
+    lines.append(_quality_note(rule, len(summaries), stock_count, blocked, clusters))
     report = "\n".join(lines)
     return report[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(report) > MAX_REPORT_CHARS else report
-
-
-def _cluster_payload(clusters: list[NewsCluster]) -> list[dict]:
-    payload: list[dict] = []
-    for idx, cluster in enumerate(clusters, 1):
-        best = cluster.best()
-        payload.append(
-            {
-                "rank": idx,
-                "cluster_score": cluster.score(),
-                "type": best.news_type,
-                "title": best.item.title,
-                "body": _short(best.item.body, 420),
-                "sectors": cluster.sectors(),
-                "reasons": best.reasons,
-                "channels": sorted({c for n in cluster.items for c in n.item.channels}),
-                "external_check": {
-                    "level": best.impact.impact_level,
-                    "result_count": best.impact.result_count,
-                    "latest_title": best.impact.latest_title,
-                },
-                "symbols": [
-                    {"name": s.name, "ticker": s.ticker, "url": _quote_url(s)}
-                    for s in cluster.symbols()
-                ],
-            }
-        )
-    return payload
-
-
-def _llm_report(
-    *,
-    now: datetime,
-    kind: str,
-    hours: int,
-    clusters: list[NewsCluster],
-    stock_count: int,
-    blocked: int,
-    threshold: int,
-    rule: str,
-    overview: str,
-) -> str | None:
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key or not clusters:
-        return None
-
-    try:
-        from openai import OpenAI
-
-        client = OpenAI(api_key=api_key)
-        model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
-        payload = {
-            "header": _header(kind),
-            "time_kst": now.strftime("%m/%d %H:%M KST"),
-            "hours": hours,
-            "market_overview": overview,
-            "market_view_hint": _market_view(clusters),
-            "major_sectors": _sectors(clusters),
-            "quality": {
-                "rule": rule,
-                "stock_candidate_count": stock_count,
-                "excluded_count": blocked,
-                "threshold": threshold,
-            },
-            "issues": _cluster_payload(clusters),
-        }
-        system = (
-            "너는 한국 주식시장 뉴스 데스크다. "
-            "입력된 텔레그램 이슈만 근거로 짧은 주식 뉴스 브리핑을 작성한다. "
-            "코인, 해외가상자산, 매매전략, 진입가, 손절가, 목표가, 추천 표현은 금지한다. "
-            "관련 종목은 입력 symbols에 있는 직접 언급 종목만 쓴다. "
-            "없는 사실, 관련주 확장, 추정 수혜주는 만들지 않는다. "
-            "출력은 2100자 이하의 한국어 plain text로 한다."
-        )
-        user = (
-            "아래 JSON을 바탕으로 텔레그램에 보낼 최종 브리핑을 작성해라.\n"
-            "형식:\n"
-            "제목\n"
-            "━━━━━━━━━━━━━━\n"
-            "시간 | 최근 n시간 | 이슈 n개\n"
-            "시장: ...\n"
-            "시황: 시장 전체 방향 1문장\n"
-            "주요 섹터: 섹터와 이유 1문장\n\n"
-            "📌 핵심 이슈\n"
-            "1) [점수] 이슈 제목\n"
-            "   요지: 왜 중요한지 1문장\n"
-            "   영향: 시장/섹터 영향 1문장\n"
-            "   관련: 종목명(티커) URL 또는 직접 언급 종목 없음\n\n"
-            "검증: ... · LLM 사용\n\n"
-            f"JSON:\n{json.dumps(payload, ensure_ascii=False)}"
-        )
-        response = client.chat.completions.create(
-            model=model,
-            temperature=0.1,
-            max_tokens=900,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        )
-        text = (response.choices[0].message.content or "").strip()
-        if not text:
-            return None
-        lower = text.lower()
-        if any(w in lower for w in BLOCK_WORDS):
-            return None
-        if any(w in text for w in ACTION_WORDS):
-            return None
-        if "검증:" not in text:
-            text += f"\n\n검증: {rule} · 원문선별 후보 {stock_count} · 제외 {blocked} · 군집 후 선별 · LLM 사용"
-        return text[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(text) > MAX_REPORT_CHARS else text
-    except Exception:
-        return None
-
-
-def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
-    now = datetime.now(ZoneInfo(timezone_name))
-    kind = os.getenv("BRIEFING_KIND", "regular")
-    clusters, stock_count, blocked, threshold, rule = _select(summaries)
-    overview = _overview()
-
-    llm = _llm_report(
-        now=now,
-        kind=kind,
-        hours=hours,
-        clusters=clusters,
-        stock_count=stock_count,
-        blocked=blocked,
-        threshold=threshold,
-        rule=rule,
-        overview=overview,
-    )
-    if llm:
-        return llm
-
-    return _fallback_report(
-        now=now,
-        kind=kind,
-        hours=hours,
-        clusters=clusters,
-        stock_count=stock_count,
-        blocked=blocked,
-        threshold=threshold,
-        rule=rule,
-        overview=overview,
-    )
