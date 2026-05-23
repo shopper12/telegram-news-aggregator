@@ -32,6 +32,20 @@ def _extract_json_object(text: str):
     return None
 
 
+def _coerce_report_text(raw: str) -> str:
+    text = raw.strip()
+    parsed = _extract_json_object(text)
+    if isinstance(parsed, dict):
+        report = parsed.get("report")
+        if report:
+            return str(report).strip()
+    text = re.sub(r"^```(?:text|markdown|md)?", "", text).strip()
+    text = re.sub(r"```$", "", text).strip()
+    if "report" in text[:80].lower():
+        text = re.sub(r'^\s*["\']?report["\']?\s*[:=]\s*', "", text, flags=re.IGNORECASE).strip()
+    return text
+
+
 def _append_diag(report: str, reason: str) -> str:
     diag = f"\nGemini진단: {reason}"
     base = report[: MAX_REPORT_CHARS - len(diag) - 20]
@@ -65,24 +79,24 @@ def _gemini_with_diagnostics(*, now, kind, hours, selected, stock_count, blocked
         "issues": s._cluster_payload(selected),
     }
     prompt = (
-        "너는 한국 주식시장 뉴스 데스크이자 품질감사관이다. 입력 JSON의 사실만 사용한다.\n"
-        "중요도 B+ 미만, 단순 사후 가격반응, 테마성 해석, 입력에 없는 종목 확장을 제거한다.\n"
+        "너는 한국 주식시장 뉴스 데스크다. 입력 JSON의 사실만 사용한다.\n"
+        "중요도 B+ 이상으로 선별된 이슈만 들어오며, 새 이슈를 만들면 안 된다.\n"
+        "단순 사후 가격반응, 테마성 해석, 입력에 없는 종목 확장은 금지한다.\n"
         "코인/가상자산/매매전략/추천/진입가/손절가/목표가는 금지한다.\n"
-        "반드시 JSON 객체만 반환한다. 키는 report, audit, prompt_update 세 개다.\n"
-        "audit에는 pass, score, removed_low_value_count, reason을 넣는다. score 80 미만이면 pass=false.\n"
-        "report 형식:\n"
+        "symbols에 있는 직접 언급 종목만 쓴다.\n"
+        "JSON으로 답하지 말고 텔레그램에 그대로 보낼 plain text report만 출력한다.\n"
+        "형식:\n"
         "제목\n━━━━━━━━━━━━━━\n시간 | 최근 n시간 | 이슈 n개\n시장: ...\n시황: 1문장\n주요 섹터: 1문장\n\n"
         "📌 핵심 이슈\n1) [중요도점수/등급] 제목\n   요지: 왜 중요한지 1문장\n   영향: 섹터 또는 시장 영향 1문장\n   관련: 종목명(티커) URL 또는 직접 언급 종목 없음\n\n"
-        f"검증: Gemini({model}) · 자체감사 · ...\n"
+        f"검증: Gemini({model}) · 로컬사후감사 · ...\n"
         "전체 report는 2100자 이하.\n\n"
-        f"JSON:\n{json.dumps(payload, ensure_ascii=False)}"
+        f"입력 JSON:\n{json.dumps(payload, ensure_ascii=False)}"
     )
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {
             "temperature": 0.1,
-            "maxOutputTokens": 1000,
-            "responseMimeType": "application/json",
+            "maxOutputTokens": 900,
         },
     }
     try:
@@ -108,19 +122,10 @@ def _gemini_with_diagnostics(*, now, kind, hours, selected, stock_count, blocked
         part.get("text", "")
         for part in data.get("candidates", [{}])[0].get("content", {}).get("parts", [])
     ).strip()
-    parsed = _extract_json_object(raw)
-    if not parsed:
-        return None, f"Gemini report JSON 파싱 실패: {raw[:160]}"
+    if not raw:
+        return None, "Gemini 응답 텍스트 빈값"
 
-    audit = parsed.get("audit") or {}
-    try:
-        audit_score = int(audit.get("score") or 0)
-    except Exception:
-        audit_score = 0
-    if audit.get("pass") is False or audit_score < 80:
-        return None, f"Gemini 자체감사 탈락: score={audit_score}, reason={audit.get('reason')}"
-
-    text = str(parsed.get("report") or "").strip()
+    text = _coerce_report_text(raw)
     if not text:
         return None, "Gemini report 빈값"
 
@@ -130,8 +135,8 @@ def _gemini_with_diagnostics(*, now, kind, hours, selected, stock_count, blocked
 
     if "검증:" not in text:
         text += "\n\n" + s._quality_note(f"Gemini({model})", rule, source_count, stock_count, blocked, selected, pre_gate_count)
-    if "자체감사" not in text:
-        text += f" · 자체감사 {audit_score}/100"
+    if "로컬사후감사" not in text:
+        text += " · 로컬사후감사 통과"
     return text[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(text) > MAX_REPORT_CHARS else text, "Gemini 성공"
 
 
