@@ -9,239 +9,185 @@ import os
 from .summarizer import SummaryItem
 from .symbol_resolver import resolve_symbols, ResolvedSymbol
 from .web_research import WebImpact, judge_web_impact
-from .market_data import build_strategy, fetch_market_overview
+from .market_data import fetch_market_overview
 
 
 DIVIDER = "━━━━━━━━━━━━━━"
-SUB_DIVIDER = "──────"
-CRYPTO_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
+BLOCK_CATEGORIES = {"crypto", "coin"}
+BLOCK_SECTORS = {"bitcoin", "ethereum", "solana", "xrp", "sui", "defi", "ai_coin", "rwa"}
+BLOCK_WORDS = ["btc", "eth", "비트코인", "이더리움", "코인", "업비트", "바이낸스", "온체인"]
 STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
-CRYPTO_CATEGORIES = {"crypto", "coin"}
-IMPORTANT_THRESHOLD = 7
-MAX_IMPORTANT_PER_ASSET = 2
-MAX_SYMBOLS_PER_ASSET = 3
-
-EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "어닝", "가이던스"]
-MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "실업률", "국채", "10년물", "달러", "dxy", "유가", "관세"]
-THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마"]
-PRICED_IN_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "이미 반영", "선반영"]
-RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", "상장폐지", "거래정지", "부도", "파산"]
-NOISE_WORDS = ["리딩", "무료방", "입장", "유료", "회원", "추천방", "수익인증", "이벤트 참여"]
+EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "가이던스"]
+MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가", "관세"]
+RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", "거래정지", "부도", "파산"]
+SOFT_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마"]
+MAX_NEWS = 5
+BASE_SCORE = 7
 
 
 @dataclass(frozen=True)
-class ScoredNews:
-    summary: SummaryItem
+class Pick:
+    item: SummaryItem
     score: int
     reasons: list[str]
     symbols: list[ResolvedSymbol]
     impact: WebImpact
 
 
-def _category_asset(summary: SummaryItem) -> str:
-    cats = {c.lower() for c in summary.categories}
-    if cats & CRYPTO_CATEGORIES:
-        return "crypto"
-    if cats & STOCK_CATEGORIES:
-        return "stock"
-    sectors = set(summary.sectors)
-    text = f"{summary.title} {summary.body}".lower()
-    if sectors & CRYPTO_SECTORS:
-        return "crypto"
-    if any(word in text for word in ["btc", "비트코인", "코인", "업비트", "바이낸스", "온체인"]):
-        return "crypto"
-    return "stock"
+def _txt(item: SummaryItem) -> str:
+    return f"{item.title} {item.body}"
 
 
-def _symbols_for_asset(summary: SummaryItem, asset_type: str) -> list[ResolvedSymbol]:
-    symbols = resolve_symbols(f"{summary.title} {summary.body}", summary.categories, summary.tickers)
-    if asset_type == "crypto":
-        return [s for s in symbols if s.asset_type == "crypto"]
-    return [s for s in symbols if s.asset_type != "crypto"]
+def _blocked(item: SummaryItem) -> bool:
+    cats = {c.lower() for c in item.categories}
+    if cats & BLOCK_CATEGORIES:
+        return True
+    if set(item.sectors) & BLOCK_SECTORS:
+        return True
+    low = _txt(item).lower()
+    return any(w in low for w in BLOCK_WORDS)
 
 
-def _impact_icon(level: str) -> str:
-    if level == "높음":
-        return "🔥"
-    if level == "중간":
-        return "🟠"
-    if level == "낮음":
-        return "⚪"
-    return "▫️"
+def _stock_candidate(item: SummaryItem) -> bool:
+    if _blocked(item):
+        return False
+    cats = {c.lower() for c in item.categories}
+    return bool(cats & STOCK_CATEGORIES) or not cats
 
 
-def _query_for_impact(summary: SummaryItem, symbols: list[ResolvedSymbol]) -> str:
-    if symbols:
-        first = symbols[0]
-        return f"{first.name} {first.ticker} {summary.title[:50]}"
-    return summary.title[:80]
-
-
-def _score_news(summary: SummaryItem, asset_type: str, impact_cache: dict[str, WebImpact]) -> ScoredNews:
-    text = f"{summary.title} {summary.body}".lower()
-    symbols = _symbols_for_asset(summary, asset_type)
-    query = _query_for_impact(summary, symbols)
-    if query not in impact_cache:
-        impact_cache[query] = judge_web_impact(query)
-    impact = impact_cache[query]
-
-    score = 4
-    reasons: list[str] = []
-    if any(word in text for word in EVENT_WORDS):
-        score += 3; reasons.append("이벤트")
-    if summary.repeat_count >= 2:
-        score += 1; reasons.append(f"반복{summary.repeat_count}")
-    if any(word in text for word in MACRO_WORDS):
-        score += 2; reasons.append("매크로")
-    if any(word in text for word in RISK_WORDS):
-        score += 2; reasons.append("리스크")
-    if symbols:
-        score += 1; reasons.append("종목명확")
-    if impact.impact_level == "높음":
-        score += 2; reasons.append("외부확인강")
-    elif impact.impact_level == "중간":
-        score += 1; reasons.append("외부확인중")
-    if any(word in text for word in THEME_WORDS):
-        score -= 1; reasons.append("테마감점")
-    if any(word in text for word in PRICED_IN_WORDS):
-        score -= 1; reasons.append("선반영감점")
-    if any(word in text for word in NOISE_WORDS):
-        score -= 3; reasons.append("홍보감점")
-    score = max(1, min(10, score))
-    if not reasons:
-        reasons.append("정보성")
-    return ScoredNews(summary=summary, score=score, reasons=reasons, symbols=symbols, impact=impact)
-
-
-def _score_asset_news(summaries: list[SummaryItem], asset_type: str, impact_cache: dict[str, WebImpact]) -> list[ScoredNews]:
-    scored = [_score_news(summary, asset_type, impact_cache) for summary in summaries]
-    important = [item for item in scored if item.score >= IMPORTANT_THRESHOLD]
-    return sorted(important, key=lambda x: (x.score, x.summary.repeat_count), reverse=True)[:MAX_IMPORTANT_PER_ASSET]
-
-
-def _split_by_asset(summaries: list[SummaryItem]) -> tuple[list[SummaryItem], list[SummaryItem]]:
-    stock, crypto = [], []
-    for summary in summaries:
-        (crypto if _category_asset(summary) == "crypto" else stock).append(summary)
-    return stock, crypto
-
-
-def _sector_summary(items: list[ScoredNews]) -> str:
-    sectors = Counter()
-    for item in items:
-        sectors.update(item.summary.sectors)
-    if not sectors:
-        return "불명확"
-    return ", ".join([f"{name}({count})" for name, count in sectors.most_common(4)])
-
-
-def _market_direction(items: list[ScoredNews]) -> str:
-    if not items:
-        return "중요 뉴스 부족, 관망"
-    reason_counter = Counter()
-    for item in items:
-        reason_counter.update(item.reasons)
-    sector = _sector_summary(items).split(",")[0]
-    reason = reason_counter.most_common(1)[0][0] if reason_counter else "정보성"
-    return f"{sector} 중심. 근거={reason}"
-
-
-def _unique_symbols(items: list[ScoredNews], limit: int = MAX_SYMBOLS_PER_ASSET) -> list[tuple[ResolvedSymbol, ScoredNews]]:
-    result: list[tuple[ResolvedSymbol, ScoredNews]] = []
-    seen: set[str] = set()
-    for item in items:
-        for symbol in item.symbols:
-            if symbol.ticker in seen:
-                continue
-            seen.add(symbol.ticker)
-            result.append((symbol, item))
-            if len(result) >= limit:
-                return result
-    return result
-
-
-def _asset_type_for_strategy(symbol: ResolvedSymbol) -> str:
-    return "crypto" if symbol.asset_type == "crypto" else "stock"
-
-
-def _quote_url(symbol: ResolvedSymbol) -> str:
-    ticker = symbol.ticker.upper()
-    if symbol.asset_type == "crypto":
-        return f"https://www.binance.com/en/trade/{ticker}_USDT"
+def _quote_url(sym: ResolvedSymbol) -> str:
+    ticker = sym.ticker.upper()
     if ticker.endswith(".KS") or ticker.endswith(".KQ"):
         return f"https://finance.naver.com/item/main.naver?code={ticker.split('.')[0]}"
     return f"https://finance.yahoo.com/quote/{ticker}"
 
 
-def _format_price(symbol: ResolvedSymbol, item: ScoredNews) -> tuple[str, str]:
-    strategy = build_strategy(symbol.ticker, _asset_type_for_strategy(symbol), item.score, item.summary.risk)
-    quote = strategy.quote
-    if quote and quote.price is not None:
-        change = f" {quote.change_pct:+.2f}%" if quote.change_pct is not None else ""
-        price = f"{quote.price:,.2f}{change}"
-    else:
-        price = "가격확인불가"
-    short_strategy = f"진입 {strategy.entry} / 손절 {strategy.stop} / 목표 {strategy.target}"
-    return price, short_strategy
+def _direct_symbols(item: SummaryItem) -> list[ResolvedSymbol]:
+    text = _txt(item)
+    low = text.lower()
+    out: list[ResolvedSymbol] = []
+    seen: set[str] = set()
+    for sym in resolve_symbols(text, item.categories, item.tickers):
+        if sym.asset_type == "crypto":
+            continue
+        base = sym.ticker.upper().replace(".KS", "").replace(".KQ", "")
+        direct = sym.name.lower() in low or sym.ticker.lower() in low or base in text
+        if direct and sym.ticker not in seen:
+            seen.add(sym.ticker)
+            out.append(sym)
+    return out[:3]
 
 
-def _render_asset_section(lines: list[str], title: str, items: list[ScoredNews]) -> None:
-    lines.append(title)
-    lines.append(f"시황: {_market_direction(items)}")
-    lines.append(f"섹터: {_sector_summary(items)}")
-    if items:
-        lines.append("뉴스: " + " / ".join([f"[{x.score}] {x.summary.title[:45]}" for x in items[:2]]))
-    else:
-        lines.append("뉴스: 중요도 통과 없음")
+def _score(item: SummaryItem, cache: dict[str, WebImpact]) -> Pick:
+    low = _txt(item).lower()
+    syms = _direct_symbols(item)
+    query = f"{syms[0].name} {syms[0].ticker} {item.title[:50]}" if syms else item.title[:80]
+    if query not in cache:
+        cache[query] = judge_web_impact(query)
+    impact = cache[query]
+    score = 4
+    reasons: list[str] = []
+    if any(w in low for w in EVENT_WORDS):
+        score += 3
+        reasons.append("이벤트")
+    if any(w in low for w in MACRO_WORDS):
+        score += 2
+        reasons.append("거시")
+    if any(w in low for w in RISK_WORDS):
+        score += 2
+        reasons.append("리스크")
+    if syms:
+        score += 1
+        reasons.append("직접종목")
+    if impact.impact_level == "높음":
+        score += 2
+        reasons.append("외부확인강")
+    elif impact.impact_level == "중간":
+        score += 1
+        reasons.append("외부확인중")
+    if item.repeat_count >= 2:
+        score += 1
+        reasons.append(f"반복{item.repeat_count}")
+    if any(w in low for w in SOFT_WORDS):
+        score -= 1
+        reasons.append("테마감점")
+    return Pick(item, max(1, min(10, score)), reasons or ["정보성"], syms, impact)
 
-    symbols = _unique_symbols(items)
-    if symbols:
-        lines.append("종목:")
-        for idx, (symbol, item) in enumerate(symbols, start=1):
-            price, strategy = _format_price(symbol, item)
-            lines.append(f"{idx}) {symbol.name}({symbol.ticker}) {price}")
-            lines.append(_quote_url(symbol))
-            lines.append(f"   {strategy}")
-    else:
-        lines.append("종목: 직접 언급 종목 없음")
-    lines.append("")
+
+def _select(items: list[SummaryItem]) -> tuple[list[Pick], int, int, int]:
+    stock = [x for x in items if _stock_candidate(x)]
+    blocked = len([x for x in items if _blocked(x)])
+    cache: dict[str, WebImpact] = {}
+    scored = [_score(x, cache) for x in stock]
+    strong = [x for x in scored if x.score >= BASE_SCORE]
+    threshold = 6 if not strong else (8 if len(strong) > MAX_NEWS else BASE_SCORE)
+    picks = sorted([x for x in scored if x.score >= threshold], key=lambda x: x.score, reverse=True)[:MAX_NEWS]
+    return picks, len(stock), blocked, threshold
 
 
-def _special_header(kind: str) -> str:
+def _sectors(picks: list[Pick]) -> str:
+    counter = Counter()
+    for pick in picks:
+        counter.update(pick.item.sectors)
+    return ", ".join(f"{k}({v})" for k, v in counter.most_common(4)) or "불명확"
+
+
+def _view(picks: list[Pick]) -> str:
+    if not picks:
+        return "선별 기준 통과 뉴스 없음."
+    counter = Counter()
+    for pick in picks:
+        counter.update(pick.reasons)
+    return f"{_sectors(picks).split(',')[0]} 중심. 핵심={counter.most_common(1)[0][0]}."
+
+
+def _links(symbols: list[ResolvedSymbol]) -> str:
+    if not symbols:
+        return "직접 언급 종목 없음"
+    return ", ".join(f"{s.name}({s.ticker}) {_quote_url(s)}" for s in symbols)
+
+
+def _short(text: str, limit: int) -> str:
+    one = " ".join(text.replace("\n", " ").split())
+    return one if len(one) <= limit else one[:limit - 1] + "…"
+
+
+def _header(kind: str) -> str:
     if kind == "preopen_0850":
-        return "🌅 08:50 개장 전 브리핑"
+        return "🌅 08:50 개장 전 주식 브리핑"
     if kind == "afterclose_1530":
-        return "🏁 15:30 장후 브리핑"
-    return "📰 뉴스 브리핑"
+        return "🏁 15:30 장후 주식 브리핑"
+    return "📰 주식 뉴스 브리핑"
 
 
-def _special_note(kind: str, stock_items: list[ScoredNews], crypto_items: list[ScoredNews]) -> list[str]:
-    if kind == "preopen_0850":
-        return ["관점: 개장 전은 뉴스보다 장초반 거래대금 확인 우선", f"주요 섹터: {_sector_summary(stock_items)}"]
-    if kind == "afterclose_1530":
-        return ["관점: 장후는 당일 강세 섹터 지속성·시간외 뉴스 확인", f"주요 섹터: {_sector_summary(stock_items)}"]
-    return []
+def _overview() -> str:
+    items = [x for x in fetch_market_overview() if not x.startswith(("BTC", "ETH"))]
+    return " / ".join(items[:5]) if items else "시장 데이터 확인 실패"
 
 
 def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_name: str = "Asia/Seoul") -> str:
     now = datetime.now(ZoneInfo(timezone_name))
     kind = os.getenv("BRIEFING_KIND", "regular")
-    impact_cache: dict[str, WebImpact] = {}
-    stock_raw, crypto_raw = _split_by_asset(summaries)
-    stock_items = _score_asset_news(stock_raw, "stock", impact_cache)
-    crypto_items = _score_asset_news(crypto_raw, "crypto", impact_cache)
-    total = len(stock_items) + len(crypto_items)
-
-    lines: list[str] = []
-    lines.append(_special_header(kind))
-    lines.append(DIVIDER)
-    lines.append(f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 중요뉴스 {total}")
-    overview = fetch_market_overview()
-    if overview:
-        lines.append("시장: " + " / ".join(overview[:5]))
-    lines.extend(_special_note(kind, stock_items, crypto_items))
+    picks, stock_count, blocked, threshold = _select(summaries)
+    lines: list[str] = [
+        _header(kind),
+        DIVIDER,
+        f"{now:%m/%d %H:%M KST} | 최근 {hours}h | 선별 {len(picks)}건 | 기준 {threshold}점",
+        f"시장: {_overview()}",
+        f"시황: {_view(picks)}",
+        f"주요 섹터: {_sectors(picks)}",
+        "",
+    ]
+    if not picks:
+        lines.append("주요 뉴스: 기준 통과 없음")
+    else:
+        lines.append("📌 주요 뉴스")
+        for i, pick in enumerate(picks, 1):
+            lines.append(f"{i}) [{pick.score}] {_short(pick.item.title, 70)}")
+            lines.append(f"   핵심: {_short(pick.item.body, 120)}")
+            lines.append(f"   영향: {', '.join(pick.reasons[:3])} / 섹터 {', '.join(pick.item.sectors[:3]) or '불명확'}")
+            lines.append(f"   관련: {_links(pick.symbols)}")
     lines.append("")
-    _render_asset_section(lines, "📈 주식", stock_items)
-    _render_asset_section(lines, "🪙 코인", crypto_items)
-    lines.append("기준: 이벤트·외부확인·종목명확성 우선. 홍보성/선반영 제외.")
-    return "\n".join(lines)
+    lines.append(f"품질체크: 제외 {blocked}건 · 후보 {stock_count}건 · 원문 직접 언급 종목만 표시")
+    report = "\n".join(lines)
+    return report[:2180] + "\n… 이하 생략" if len(report) > 2200 else report
