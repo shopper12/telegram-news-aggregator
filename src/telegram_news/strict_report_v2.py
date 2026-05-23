@@ -79,6 +79,24 @@ def _related_html(symbols) -> str:
     )
 
 
+def _source_url(cluster) -> str | None:
+    best = cluster.best()
+    urls = getattr(best.item, "source_urls", []) or []
+    for url in urls:
+        if isinstance(url, str) and url.startswith("https://t.me/"):
+            return url
+    return None
+
+
+def _news_title_html(cluster, idx: int) -> str:
+    best = cluster.best()
+    label = f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}][{best.news_type}] {s.base._short(best.item.title, 95)}"
+    url = _source_url(cluster)
+    if not url:
+        return _html_linkify_text(label, [cluster])
+    return f'<a href="{html.escape(url, quote=True)}">{html.escape(label, quote=False)}</a>'
+
+
 def _brief_market_view(selected) -> str:
     if not selected:
         return "뉴스 기준 주도 이슈 약함"
@@ -128,9 +146,7 @@ def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule
     else:
         lines.append("📌 뉴스 제목")
         for idx, cluster in enumerate(selected, 1):
-            best = cluster.best()
-            label = f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}][{best.news_type}] {s.base._short(best.item.title, 95)}"
-            lines.append(_html_linkify_text(label, [cluster]))
+            lines.append(_news_title_html(cluster, idx))
             symbols = cluster.symbols()
             if symbols:
                 lines.append("   종목: " + _related_html(symbols))
