@@ -9,7 +9,7 @@ from .settings import load_settings, load_channels
 from .telegram_client import collect_messages
 from .store import connect, init_db, insert_messages, fetch_recent
 from .normalizer import deduplicate_rows
-from .summarizer import openai_summarize_if_available
+from .summarizer import gemini_classify_if_available
 from .strict_report_v2 import build_markdown_report
 from .notifier import send_telegram_message_to_many
 
@@ -51,10 +51,10 @@ def _make_report(hours: int, limit: int) -> str:
     since = datetime.now(timezone.utc) - timedelta(hours=hours)
     rows = fetch_recent(conn, since)
     deduped = deduplicate_rows(rows)
-    summaries = openai_summarize_if_available(
+    summaries = gemini_classify_if_available(
         deduped,
-        api_key=settings.openai_api_key,
-        model=settings.openai_model,
+        api_key=settings.gemini_api_key,
+        model=settings.gemini_model,
         limit=limit,
     )
     return build_markdown_report(summaries, hours=hours, timezone_name=settings.timezone)
