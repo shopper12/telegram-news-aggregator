@@ -37,6 +37,7 @@ def _send_to_one_chat(bot_token: str, chat_id: str, text: str) -> None:
             raise RuntimeError(
                 f"Telegram bot send failed for chat_id={chat_id}: HTTP {resp.status_code}. "
                 "Check the chat id and make sure that recipient sent /start or any message to the bot first. "
+                "For a group chat, add the bot to the group first. "
                 f"Response: {resp.text}"
             )
         resp.raise_for_status()
@@ -53,11 +54,20 @@ def send_telegram_message_to_many(bot_token: str, chat_ids: list[str], text: str
         raise RuntimeError("No Telegram target chat IDs configured.")
 
     failures: list[str] = []
+    success_count = 0
     for chat_id in chat_ids:
         try:
             _send_to_one_chat(bot_token, chat_id, text)
+            success_count += 1
         except Exception as exc:
             failures.append(f"{chat_id}: {exc}")
 
     if failures:
-        raise RuntimeError("Telegram send failed for one or more recipients:\n" + "\n".join(failures))
+        print("Telegram send warning: failed recipients:")
+        for failure in failures:
+            print(f"- {failure}")
+
+    if success_count == 0:
+        raise RuntimeError("Telegram send failed for all recipients:\n" + "\n".join(failures))
+
+    print(f"Telegram send success: {success_count}/{len(chat_ids)} recipients")
