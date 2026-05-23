@@ -23,14 +23,24 @@ class DedupedItem:
     categories: list[str]
     count: int
     message_dates: list[str]
+    message_urls: list[str]
+
+
+def _row_message_url(row) -> str | None:
+    try:
+        value = row["message_url"]
+    except Exception:
+        return None
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text or None
 
 
 def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
     """거의 같은 뉴스만 병합한다.
 
-    기존 threshold=88은 제목 일부가 비슷한 뉴스까지 한 덩어리로 묶을 수 있었다.
-    이제 중복은 '동일/거의 동일 원문 제거' 용도만 수행하고,
-    중요도 판단은 반복 횟수가 아니라 뉴스 자체 내용에서 한다.
+    중복 병합 후에도 원문 Telegram 메시지 URL은 보존한다.
     """
     groups: list[dict] = []
 
@@ -45,6 +55,7 @@ def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
                 matched = group
                 break
 
+        url = _row_message_url(row)
         if matched is None:
             groups.append(
                 {
@@ -54,6 +65,7 @@ def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
                     "categories": {row["category"]},
                     "count": 1,
                     "message_dates": [row["message_date"]],
+                    "message_urls": [url] if url else [],
                 }
             )
         else:
@@ -61,6 +73,8 @@ def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
             matched["categories"].add(row["category"])
             matched["count"] += 1
             matched["message_dates"].append(row["message_date"])
+            if url and url not in matched["message_urls"]:
+                matched["message_urls"].append(url)
 
     result: list[DedupedItem] = []
     for g in groups:
@@ -71,8 +85,8 @@ def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
                 categories=sorted(g["categories"]),
                 count=g["count"],
                 message_dates=sorted(g["message_dates"], reverse=True),
+                message_urls=g["message_urls"],
             )
         )
 
-    # 반복 출현이 아니라 최신성 기준으로 정렬한다.
     return sorted(result, key=lambda x: x.message_dates[0], reverse=True)
