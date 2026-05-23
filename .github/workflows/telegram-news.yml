@@ -55,8 +55,8 @@ jobs:
       DATABASE_URL: sqlite:///data/news.db
       CHANNEL_CONFIG: config/channels.yaml
       TIMEZONE: Asia/Seoul
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENAI_MODEL: gpt-4.1-mini
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: gemini-3.5-flash
 
     steps:
       - name: Checkout
@@ -147,6 +147,10 @@ jobs:
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
               sys.exit(1)
+          if os.getenv("GEMINI_API_KEY"):
+              print("Gemini API key is present. Gemini synthesis will be attempted.")
+          else:
+              print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
           print("Required secrets are present.")
           PY
 
