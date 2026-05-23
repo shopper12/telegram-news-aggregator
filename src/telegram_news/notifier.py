@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import requests
 
 
@@ -11,36 +12,57 @@ def _validate_bot_token(bot_token: str) -> None:
         )
 
 
-def _send_to_one_chat(bot_token: str, chat_id: str, text: str) -> None:
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+def _uses_html(text: str) -> bool:
+    return '<a href=' in text.lower()
 
-    # Telegram 메시지 길이 제한 대응. parse_mode를 쓰지 않는다.
-    # 리포트 안의 _, [, ], -, # 등이 Markdown 파싱 오류를 만들 수 있기 때문이다.
+
+def _plain_text_from_html(text: str) -> str:
+    # Telegram HTML 파싱 실패 시 최종 재시도용. 링크 태그는 종목명만 남긴다.
+    text = re.sub(r'<a\s+href=["\'][^"\']+["\']\s*>', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'</a>', '', text, flags=re.IGNORECASE)
+    return text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+
+
+def _post_message(bot_token: str, chat_id: str, chunk: str, *, html: bool) -> requests.Response:
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": chunk,
+        "disable_web_page_preview": True,
+    }
+    if html:
+        payload["parse_mode"] = "HTML"
+    return requests.post(url, json=payload, timeout=20)
+
+
+def _raise_for_telegram_error(chat_id: str, resp: requests.Response) -> None:
+    if resp.status_code == 404:
+        raise RuntimeError(
+            "Telegram bot send failed: 404 Not Found. "
+            "Check TELEGRAM_BOT_TOKEN. It must be the full token from BotFather."
+        )
+    if resp.status_code in (400, 403):
+        raise RuntimeError(
+            f"Telegram bot send failed for chat_id={chat_id}: HTTP {resp.status_code}. "
+            "Check the chat id and make sure that recipient sent /start or any message to the bot first. "
+            "For a group chat, add the bot to the group first. "
+            f"Response: {resp.text}"
+        )
+    resp.raise_for_status()
+
+
+def _send_to_one_chat(bot_token: str, chat_id: str, text: str) -> None:
     chunks = [text[i:i + 3800] for i in range(0, len(text), 3800)]
 
     for chunk in chunks:
-        resp = requests.post(
-            url,
-            json={
-                "chat_id": chat_id,
-                "text": chunk,
-                "disable_web_page_preview": True,
-            },
-            timeout=20,
-        )
-        if resp.status_code == 404:
-            raise RuntimeError(
-                "Telegram bot send failed: 404 Not Found. "
-                "Check TELEGRAM_BOT_TOKEN. It must be the full token from BotFather."
-            )
-        if resp.status_code in (400, 403):
-            raise RuntimeError(
-                f"Telegram bot send failed for chat_id={chat_id}: HTTP {resp.status_code}. "
-                "Check the chat id and make sure that recipient sent /start or any message to the bot first. "
-                "For a group chat, add the bot to the group first. "
-                f"Response: {resp.text}"
-            )
-        resp.raise_for_status()
+        html = _uses_html(chunk)
+        resp = _post_message(bot_token, chat_id, chunk, html=html)
+
+        # HTML 링크 렌더링이 깨진 경우에만 종목명 plain text로 1회 재시도한다.
+        if html and resp.status_code == 400 and "can't parse entities" in resp.text.lower():
+            resp = _post_message(bot_token, chat_id, _plain_text_from_html(chunk), html=False)
+
+        _raise_for_telegram_error(chat_id, resp)
 
 
 def send_telegram_message(bot_token: str, chat_id: str, text: str) -> None:
