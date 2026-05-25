@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+import re
+
 from telethon import TelegramClient
 from telethon.errors import RPCError
 from telethon.sessions import StringSession
@@ -8,6 +10,64 @@ from telethon.sessions import StringSession
 from .settings import Settings, ChannelConfig
 from .store import NewsMessage
 from .normalizer import normalize_text
+
+
+AD_INVITE_PATTERNS = [
+    "t.me/joinchat",
+    "t.me/+",
+    "무료방",
+    "리딩방",
+    "유료방",
+    "추천방",
+    "선착순",
+    "수익인증",
+    "구독하기",
+    "입장하기",
+]
+
+INFORMATIVE_SIGNALS = [
+    "수주", "계약", "실적", "공시", "발표", "승인", "허가",
+    "금리", "환율", "억", "조", "매출", "영업이익",
+    "코스피", "코스닥", "나스닥", "연준", "한은",
+    "상장", "합병", "인수", "배당", "증자",
+    "n.news.naver.com", "news.naver.com", "hankyung.com",
+    "mk.co.kr", "yna.co.kr", "reuters.com", "bloomberg.com",
+]
+
+SOURCE_TELEGRAM_LINK_RE = re.compile(r"https?://t\.me/(?:c/\d+/\d+|[A-Za-z0-9_]{4,}/\d+)\b", re.IGNORECASE)
+
+
+def _is_obvious_junk(text: str) -> bool:
+    """명백한 광고/잡담만 차단한다.
+
+    불확실하면 통과시킨다. 뉴스 누락이 잡담 통과보다 손해가 크기 때문이다.
+    t.me/+ 초대 링크와 t.me/채널/글번호 원문 링크는 다르게 취급한다.
+    """
+    raw = text.strip()
+    lower = raw.lower()
+
+    if any(sig in lower for sig in INFORMATIVE_SIGNALS):
+        return False
+
+    # 다른 채널의 원문 링크는 정보성 신호로 본다. 초대 링크(t.me/+)는 여기에 해당하지 않는다.
+    if SOURCE_TELEGRAM_LINK_RE.search(lower):
+        return False
+
+    if any(pattern in lower for pattern in AD_INVITE_PATTERNS):
+        return True
+
+    compact = re.sub(r"[\s\W_]+", "", lower, flags=re.UNICODE)
+    greeting_words = ["좋은하루", "화이팅", "감사합니다", "수고", "굿모닝", "좋은아침"]
+    if len(raw) < 30 and any(word in compact for word in greeting_words):
+        return True
+
+    if len(raw) < 30 and not re.search(r"[0-9A-Za-z가-힣]{3,}", raw):
+        return True
+
+    if len(raw) < 18:
+        return True
+
+    return False
 
 
 async def _resolve_entity(client: TelegramClient, channel: ChannelConfig):
@@ -85,6 +145,8 @@ async def collect_messages(
                     text = msg.message.strip()
                     normalized = normalize_text(text)
                     if len(normalized) < 10:
+                        continue
+                    if _is_obvious_junk(text):
                         continue
 
                     messages.append(
