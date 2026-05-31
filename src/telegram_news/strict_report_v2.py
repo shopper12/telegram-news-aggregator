@@ -28,13 +28,16 @@ LOW_VALUE_DISPLAY_WORDS = LOW_VALUE_WORDS + [
 ]
 MARKET_WIDE_KEEP_WORDS = [
     "금리", "환율", "연준", "한은", "fomc", "cpi", "ppi", "고용", "관세", "수출규제",
-    "최저임금", "코스피", "코스닥", "나스닥", "유가", "국채", "달러", "재정", "예산", "관세",
+    "최저임금", "코스피", "코스닥", "나스닥", "유가", "국채", "달러", "재정", "예산",
 ]
 CONFIRMATION_WORDS = [
     "공시", "수주", "계약", "공급", "납품", "승인", "허가", "실적", "매출", "영업이익",
     "가이던스", "배당", "자사주", "증자", "품목허가", "임상", "fda",
 ]
 IMAGE_HINT_WORDS = ["[이미지뉴스]", "[이미지OCR]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
+VAGUE_TITLE_PATTERNS = [
+    "블룸버그에 따르면", "로이터에 따르면", "외신에 따르면", "속보", "단독", "긴급", "뉴스", "업데이트",
+]
 
 
 def _append_diag(report: str, reason: str) -> str:
@@ -53,6 +56,7 @@ def _clean_title_text(text: str) -> str:
 
 
 def _clean_title(title: str) -> str:
+    title = re.sub(r"https?://\S+", "", title)
     title = re.sub(r"\s*\(by\s+[@\w가-힣A-Za-z0-9_]+\)?", "", title, flags=re.IGNORECASE)
     title = re.sub(r"\s*@[\w가-힣]+$", "", title)
     title = re.sub(r"\s*(출처|via|source)[:\s]\S+$", "", title, flags=re.IGNORECASE)
@@ -60,7 +64,7 @@ def _clean_title(title: str) -> str:
         idx = title.rfind("(")
         if idx > 5:
             title = title[:idx]
-    return " ".join(title.split()).strip()
+    return " ".join(title.split()).strip(" -:|·")
 
 
 def _has_any(text: str, words: list[str]) -> bool:
@@ -80,6 +84,33 @@ def _is_image_news(cluster) -> bool:
 def _has_macro_or_confirmed_content(cluster) -> bool:
     text = _cluster_text(cluster)
     return _has_any(text, MARKET_WIDE_KEEP_WORDS) or _has_any(text, CONFIRMATION_WORDS)
+
+
+def _body_fallback_title(cluster, limit: int = 95) -> str:
+    best = cluster.best()
+    body = best.item.body or ""
+    body = re.sub(r"https?://\S+", "", body)
+    body = re.sub(r"\[[^\]]{1,20}\]", "", body)
+    lines = [line.strip() for line in body.splitlines() if line.strip()]
+    for line in lines:
+        cleaned = _clean_title(line)
+        if len(_clean_title_text(cleaned)) >= 8 and not _has_any(cleaned, LOW_VALUE_DISPLAY_WORDS):
+            return s.base._short(cleaned, limit)
+    cleaned = _clean_title(body)
+    return s.base._short(cleaned, limit) if len(_clean_title_text(cleaned)) >= 8 else ""
+
+
+def _display_title(cluster, limit: int = 95) -> str:
+    best = cluster.best()
+    raw_title = s.base._short(best.item.title or "", limit)
+    clean = _clean_title(raw_title)
+    title_key = _clean_title_text(clean)
+    vague = len(title_key) < 8 or _has_any(clean, VAGUE_TITLE_PATTERNS)
+    if vague:
+        fallback = _body_fallback_title(cluster, limit)
+        if fallback:
+            return fallback
+    return clean
 
 
 def _display_symbols(cluster) -> list:
@@ -165,10 +196,8 @@ def _action_emoji(cluster) -> str:
 
 
 def _news_title_html(cluster, idx: int) -> str | None:
-    best = cluster.best()
-    raw_title = s.base._short(best.item.title, 95)
-    clean = _clean_title(raw_title)
-    if not clean or len(clean.strip()) < 6:
+    clean = _display_title(cluster, 95)
+    if not clean or len(_clean_title_text(clean)) < 6:
         return None
     score_tag = f"[{materiality_score(cluster)}·{materiality_grade(cluster)}]"
     prefix = "원문 이미지 확인 필요: " if _is_image_news(cluster) and "이미지" not in clean else ""
@@ -182,7 +211,7 @@ def _news_title_html(cluster, idx: int) -> str | None:
 def _is_display_noise(cluster) -> bool:
     best = cluster.best()
     text = _cluster_text(cluster)
-    title_clean = _clean_title_text(best.item.title)
+    title_clean = _clean_title_text(_display_title(cluster) or best.item.title)
     symbols = _display_symbols(cluster)
     no_symbols = not symbols
     image_news = _is_image_news(cluster)
@@ -233,39 +262,47 @@ def _empty_report_lines(now, kind, overview, source_count: int) -> list[str]:
     ]
 
 
+def _render_issue(cluster, idx: int) -> list[str]:
+    title_html = _news_title_html(cluster, idx)
+    if title_html is None:
+        return []
+    lines = [title_html]
+    symbols = _display_symbols(cluster)
+    if symbols:
+        lines.append("📎 " + _related_html(symbols))
+    lines.append("")
+    return lines
+
+
 def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, engine: str) -> str:
     display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
-    if not display and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
-        return ""
+    rendered_items: list[list[str]] = []
+    rendered_clusters = []
+    for idx, cluster in enumerate(display, 1):
+        rendered = _render_issue(cluster, idx)
+        if rendered:
+            rendered_items.append(rendered)
+            rendered_clusters.append(cluster)
 
-    if not display:
+    if not rendered_items and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
+        return ""
+    if not rendered_items:
         lines = _empty_report_lines(now, kind, overview, source_count)
     else:
         lines = [
             html.escape(s.base._header(kind), quote=False),
-            html.escape(f"{now:%m/%d %H:%M KST}  ·  이슈 {len(display)}개", quote=False),
+            html.escape(f"{now:%m/%d %H:%M KST}  ·  이슈 {len(rendered_items)}개", quote=False),
             html.escape(f"📈 {overview}", quote=False),
-            html.escape(f"주도: {_brief_sector_line(display)}", quote=False),
+            html.escape(f"주도: {_brief_sector_line(rendered_clusters)}", quote=False),
             "",
         ]
-        rendered_count = 0
-        for idx, cluster in enumerate(display, 1):
-            title_html = _news_title_html(cluster, idx)
-            if title_html is None:
-                continue
-            rendered_count += 1
-            lines.append(title_html)
-            symbols = _display_symbols(cluster)
-            if symbols:
-                lines.append("📎 " + _related_html(symbols))
-            lines.append("")
-        if rendered_count == 0:
-            return "" if os.getenv("SEND_EMPTY_REPORT", "1") == "0" else "\n".join(_empty_report_lines(now, kind, overview, source_count))
+        for item_lines in rendered_items:
+            lines.extend(item_lines)
 
     if os.getenv("DEBUG_QUALITY", "0") == "1":
         lines.append(html.escape(s._quality_note(engine, rule, source_count, stock_count, blocked, selected, pre_gate_count), quote=False))
     else:
-        lines.append(html.escape(f"🤖 {engine} · 원문 {source_count}건 → {len(display)}개 선별", quote=False))
+        lines.append(html.escape(f"🤖 {engine} · 원문 {source_count}건 → {len(rendered_items)}개 선별", quote=False))
     report = "\n".join(lines).strip()
     return report[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(report) > MAX_REPORT_CHARS else report
 
@@ -286,7 +323,7 @@ def _gemini_title_order(*, now, kind, hours, selected, stock_count, blocked, rul
             "score": materiality_score(cluster),
             "grade": materiality_grade(cluster),
             "type": best.news_type,
-            "title": _clean_title(best.item.title),
+            "title": _display_title(cluster, 95),
             "body": best.item.body[:350],
             "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in _display_symbols(cluster)],
             "image_news": _is_image_news(cluster),
