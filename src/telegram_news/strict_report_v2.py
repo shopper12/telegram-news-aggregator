@@ -13,6 +13,7 @@ import requests
 from .summarizer import SummaryItem
 from . import strict_report as s
 from .strict_quality import materiality_score, materiality_grade
+from .noise_patterns import LOW_VALUE_WORDS
 
 MAX_REPORT_CHARS = 2300
 MAX_DISPLAY_NEWS = 5
@@ -21,8 +22,7 @@ DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 BAD_DISPLAY_TICKERS = {
     "IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX",
 }
-LOW_VALUE_DISPLAY_WORDS = [
-    "레딧", "reddit", "게시물 분석", "언급량", "검색량", "트렌드 분석",
+LOW_VALUE_DISPLAY_WORDS = LOW_VALUE_WORDS + [
     "아직 상장안한", "상장안한", "상장 안 한", "etf도 가능합니다", "도 가능합니다",
     "미리보기가 되지 않아", "다시 올립니다", "아까 올린", "무료방", "추천방", "리딩방",
 ]
@@ -34,7 +34,7 @@ CONFIRMATION_WORDS = [
     "공시", "수주", "계약", "공급", "납품", "승인", "허가", "실적", "매출", "영업이익",
     "가이던스", "배당", "자사주", "증자", "품목허가", "임상", "fda",
 ]
-IMAGE_HINT_WORDS = ["[이미지뉴스]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
+IMAGE_HINT_WORDS = ["[이미지뉴스]", "[이미지OCR]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
 
 
 def _append_diag(report: str, reason: str) -> str:
@@ -50,6 +50,17 @@ def _clean_title_text(text: str) -> str:
     text = re.sub(r"[#@][\w가-힣_]+", "", text)
     text = re.sub(r"[^0-9A-Za-z가-힣]+", "", text)
     return text.strip()
+
+
+def _clean_title(title: str) -> str:
+    title = re.sub(r"\s*\(by\s+[@\w가-힣A-Za-z0-9_]+\)?", "", title, flags=re.IGNORECASE)
+    title = re.sub(r"\s*@[\w가-힣]+$", "", title)
+    title = re.sub(r"\s*(출처|via|source)[:\s]\S+$", "", title, flags=re.IGNORECASE)
+    if title.count("(") > title.count(")"):
+        idx = title.rfind("(")
+        if idx > 5:
+            title = title[:idx]
+    return " ".join(title.split()).strip()
 
 
 def _has_any(text: str, words: list[str]) -> bool:
@@ -153,15 +164,19 @@ def _action_emoji(cluster) -> str:
     return "🟡"
 
 
-def _news_title_html(cluster) -> str:
+def _news_title_html(cluster, idx: int) -> str | None:
     best = cluster.best()
+    raw_title = s.base._short(best.item.title, 95)
+    clean = _clean_title(raw_title)
+    if not clean or len(clean.strip()) < 6:
+        return None
     score_tag = f"[{materiality_score(cluster)}·{materiality_grade(cluster)}]"
-    prefix = "원문 이미지 확인 필요: " if _is_image_news(cluster) and "이미지" not in best.item.title else ""
-    title_text = f"{_action_emoji(cluster)} {prefix}{s.base._short(best.item.title, 90)} {score_tag}"
+    prefix = "원문 이미지 확인 필요: " if _is_image_news(cluster) and "이미지" not in clean else ""
+    label = f"{_action_emoji(cluster)} {prefix}{clean} {score_tag}"
     url = _source_url(cluster)
     if url:
-        return f'<a href="{html.escape(url, quote=True)}">{html.escape(title_text, quote=False)}</a>'
-    return _html_linkify_text(title_text, [cluster])
+        return f'<a href="{html.escape(url, quote=True)}">{html.escape(label, quote=False)}</a>'
+    return _html_linkify_text(label, [cluster])
 
 
 def _is_display_noise(cluster) -> bool:
@@ -233,12 +248,19 @@ def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule
             html.escape(f"주도: {_brief_sector_line(display)}", quote=False),
             "",
         ]
-        for cluster in display:
-            lines.append(_news_title_html(cluster))
+        rendered_count = 0
+        for idx, cluster in enumerate(display, 1):
+            title_html = _news_title_html(cluster, idx)
+            if title_html is None:
+                continue
+            rendered_count += 1
+            lines.append(title_html)
             symbols = _display_symbols(cluster)
             if symbols:
                 lines.append("📎 " + _related_html(symbols))
             lines.append("")
+        if rendered_count == 0:
+            return "" if os.getenv("SEND_EMPTY_REPORT", "1") == "0" else "\n".join(_empty_report_lines(now, kind, overview, source_count))
 
     if os.getenv("DEBUG_QUALITY", "0") == "1":
         lines.append(html.escape(s._quality_note(engine, rule, source_count, stock_count, blocked, selected, pre_gate_count), quote=False))
@@ -264,7 +286,7 @@ def _gemini_title_order(*, now, kind, hours, selected, stock_count, blocked, rul
             "score": materiality_score(cluster),
             "grade": materiality_grade(cluster),
             "type": best.news_type,
-            "title": best.item.title,
+            "title": _clean_title(best.item.title),
             "body": best.item.body[:350],
             "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in _display_symbols(cluster)],
             "image_news": _is_image_news(cluster),
