@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from functools import lru_cache
 from zoneinfo import ZoneInfo
 import math
-import re
 
 import requests
 
@@ -40,7 +39,7 @@ def _safe_float(value: object) -> float | None:
         return None
     try:
         if isinstance(value, str):
-            value = value.replace(",", "").strip()
+            value = value.replace(",", "").replace("%", "").strip()
         if value == "":
             return None
         out = float(value)
@@ -63,8 +62,8 @@ def _fmt_price(price: float | None) -> str:
 
 def _fmt_pct(value: float | None) -> str:
     if value is None:
-        return "등락률확인불가"
-    return f"{value:+.2f}%"
+        return ""
+    return f" {value:+.2f}%"
 
 
 def _json_get(url: str, timeout: int = 8) -> object | None:
@@ -105,26 +104,27 @@ def _fetch_kr_stock_quote(ticker: str) -> Quote:
         return Quote(ticker, None, None, None, "Naver Finance", _now_kst(), str(exc))
 
 
-def _fetch_naver_index(code: str, label: str) -> Quote:
-    url = f"https://polling.finance.naver.com/api/realtime/domestic/index/{code}"
-    data = _json_get(url)
+def _fetch_pykrx_index(label: str, index_code: str, sanity_low: float, sanity_high: float) -> Quote:
     try:
-        result = data.get("result", {}) if isinstance(data, dict) else {}
-        item = result.get("price") or result.get("areas", [{}])[0].get("datas", [{}])[0]
-        price = _safe_float(item.get("closePrice") or item.get("nv") or item.get("price"))
-        change_pct = _safe_float(item.get("fluctuationsRatio") or item.get("cr") or item.get("changeRate"))
-        if price is not None:
-            return Quote(label, price, change_pct, None, "Naver Finance Index", _now_kst())
-    except Exception:
-        pass
+        from pykrx import stock  # type: ignore
 
-    # Naver index API shape changes occasionally. Fall back to Yahoo but apply sanity filters.
-    yahoo = _fetch_us_quote(label)
-    if label == "^KS11" and yahoo.price is not None and not 1800 <= yahoo.price <= 5000:
-        return Quote(label, None, None, None, "Naver/Yahoo", _now_kst(), "KOSPI sanity check failed")
-    if label == "^KQ11" and yahoo.price is not None and not 400 <= yahoo.price <= 1500:
-        return Quote(label, None, None, None, "Naver/Yahoo", _now_kst(), "KOSDAQ sanity check failed")
-    return yahoo
+        today = datetime.now(ZoneInfo("Asia/Seoul")).date()
+        start = (today - timedelta(days=14)).strftime("%Y%m%d")
+        end = today.strftime("%Y%m%d")
+        df = stock.get_index_ohlcv_by_date(start, end, index_code)
+        if df is None or df.empty:
+            return Quote(label, None, None, None, "pykrx", _now_kst(), "empty index frame")
+        closes = df["종가"].dropna()
+        if len(closes) < 2:
+            return Quote(label, None, None, None, "pykrx", _now_kst(), "not enough index closes")
+        price = float(closes.iloc[-1])
+        prev = float(closes.iloc[-2])
+        if not sanity_low <= price <= sanity_high:
+            return Quote(label, None, None, None, "pykrx", _now_kst(), "index sanity check failed")
+        change_pct = ((price - prev) / prev * 100) if prev else None
+        return Quote(label, price, change_pct, None, "pykrx", _now_kst())
+    except Exception as exc:
+        return Quote(label, None, None, None, "pykrx", _now_kst(), str(exc))
 
 
 def _fetch_us_quote(ticker: str) -> Quote:
@@ -175,17 +175,30 @@ INDEX_MAP = {
 }
 
 
+def _valid_quote(label: str, quote: Quote) -> Quote:
+    if quote.price is None:
+        return quote
+    ranges = {
+        "KOSPI": (1800, 5000),
+        "KOSDAQ": (400, 1500),
+        "S&P500": (3000, 9000),
+        "NASDAQ": (8000, 40000),
+        "USD/KRW": (900, 1800),
+    }
+    low, high = ranges.get(label, (float("-inf"), float("inf")))
+    if not low <= quote.price <= high:
+        return Quote(quote.ticker, None, None, None, quote.source, quote.timestamp, f"{label} sanity check failed")
+    if quote.change_pct is not None and abs(quote.change_pct) > 15:
+        return Quote(quote.ticker, None, None, None, quote.source, quote.timestamp, f"{label} change sanity check failed")
+    return quote
+
+
 def _fetch_index(label: str, ticker: str) -> Quote:
     if ticker == "KRX:KOSPI":
-        return _fetch_naver_index("KOSPI", "^KS11")
+        return _fetch_pykrx_index("KOSPI", "1001", 1800, 5000)
     if ticker == "KRX:KOSDAQ":
-        return _fetch_naver_index("KOSDAQ", "^KQ11")
-    quote = _fetch_us_quote(ticker)
-    if label == "S&P500" and quote.price is not None and not 3000 <= quote.price <= 9000:
-        return Quote(ticker, None, None, None, quote.source, quote.timestamp, "S&P500 sanity check failed")
-    if label == "NASDAQ" and quote.price is not None and not 8000 <= quote.price <= 40000:
-        return Quote(ticker, None, None, None, quote.source, quote.timestamp, "NASDAQ sanity check failed")
-    return quote
+        return _fetch_pykrx_index("KOSDAQ", "2001", 400, 1500)
+    return _valid_quote(label, _fetch_us_quote(ticker))
 
 
 @lru_cache(maxsize=1)
@@ -195,8 +208,10 @@ def fetch_market_overview() -> list[str]:
         quote = _fetch_index(label, ticker)
         if quote.price is None:
             continue
-        lines.append(f"{label} {_fmt_price(quote.price)} ({_fmt_pct(quote.change_pct)})")
-    return lines
+        lines.append(f"{label} {_fmt_price(quote.price)}{_fmt_pct(quote.change_pct)}")
+    if not lines:
+        return ["시장지표 확인불가"]
+    return lines[:5]
 
 
 def get_market_context() -> dict | None:
@@ -211,7 +226,9 @@ def get_market_context() -> dict | None:
             "kospi_change_pct": kospi.change_pct,
             "kosdaq_price": kosdaq.price,
             "kosdaq_change_pct": kosdaq.change_pct,
+            "sp500_price": sp500.price,
             "sp500_change_pct": sp500.change_pct,
+            "nasdaq_price": nasdaq.price,
             "nasdaq_change_pct": nasdaq.change_pct,
             "usd_krw": usdkrw.price,
         }
