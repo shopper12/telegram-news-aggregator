@@ -15,7 +15,25 @@ from . import strict_report as s
 from .strict_quality import materiality_score, materiality_grade
 
 MAX_REPORT_CHARS = 2300
+MAX_DISPLAY_NEWS = 5
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
+
+BAD_DISPLAY_TICKERS = {
+    "IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX",
+}
+LOW_VALUE_DISPLAY_WORDS = [
+    "레딧", "reddit", "게시물 분석", "언급량", "검색량", "트렌드 분석",
+    "아직 상장안한", "상장안한", "상장 안 한", "etf도 가능합니다", "도 가능합니다",
+    "미리보기가 되지 않아", "다시 올립니다", "아까 올린", "무료방", "추천방", "리딩방",
+]
+MARKET_WIDE_KEEP_WORDS = [
+    "금리", "환율", "연준", "한은", "fomc", "cpi", "ppi", "고용", "관세", "수출규제",
+    "최저임금", "코스피", "코스닥", "나스닥", "유가", "국채", "달러",
+]
+CONFIRMATION_WORDS = [
+    "공시", "수주", "계약", "공급", "납품", "승인", "허가", "실적", "매출", "영업이익",
+    "가이던스", "배당", "자사주", "증자", "품목허가", "임상", "fda",
+]
 
 
 def _append_diag(report: str, reason: str) -> str:
@@ -26,10 +44,48 @@ def _append_diag(report: str, reason: str) -> str:
     return base + diag
 
 
+def _clean_title_text(text: str) -> str:
+    text = re.sub(r"https?://\S+", "", text)
+    text = re.sub(r"[#@][\w가-힣_]+", "", text)
+    text = re.sub(r"[^0-9A-Za-z가-힣]+", "", text)
+    return text.strip()
+
+
+def _has_any(text: str, words: list[str]) -> bool:
+    lower = text.lower()
+    return any(word.lower() in lower for word in words)
+
+
+def _cluster_text(cluster) -> str:
+    best = cluster.best()
+    return f"{best.item.title} {best.item.body}"
+
+
+def _display_symbols(cluster) -> list:
+    text = _cluster_text(cluster)
+    lower = text.lower()
+    out = []
+    seen = set()
+    for sym in cluster.symbols():
+        ticker = sym.ticker.upper().replace(".KS", "").replace(".KQ", "")
+        if ticker in BAD_DISPLAY_TICKERS:
+            continue
+        name = str(sym.name or "")
+        name_hit = bool(name and name.lower() in lower)
+        kr_code_hit = ticker.isdigit() and re.search(rf"(?<!\d){re.escape(ticker)}(?!\d)", text)
+        explicit_us_hit = bool(re.search(rf"(?:\${re.escape(ticker)}|\({re.escape(ticker)}\)|NASDAQ:{re.escape(ticker)}|NYSE:{re.escape(ticker)}|AMEX:{re.escape(ticker)})\b", text, re.IGNORECASE))
+        common_korean_us = ticker in {"NVDA", "TSLA", "AAPL", "MSFT", "GOOGL", "AMZN", "META", "IBM", "AMD", "AVGO", "PLTR", "INTC", "ORCL", "NFLX", "MU", "SMCI"} and name_hit
+        if name_hit or kr_code_hit or explicit_us_hit or common_korean_us:
+            if sym.ticker not in seen:
+                seen.add(sym.ticker)
+                out.append(sym)
+    return out[:3]
+
+
 def _symbol_link_map(selected) -> dict[str, str]:
     mapping: dict[str, str] = {}
     for cluster in selected:
-        for sym in cluster.symbols():
+        for sym in _display_symbols(cluster):
             url = s.base._quote_url(sym)
             display = f"{sym.name}({sym.ticker})"
             mapping[display] = url
@@ -95,17 +151,34 @@ def _news_title_html(cluster) -> str:
     return _html_linkify_text(title_text, [cluster])
 
 
+def _is_display_noise(cluster) -> bool:
+    best = cluster.best()
+    text = _cluster_text(cluster)
+    title_clean = _clean_title_text(best.item.title)
+    symbols = _display_symbols(cluster)
+    no_symbols = not symbols
+
+    if len(title_clean) < 8:
+        return True
+    if _has_any(text, LOW_VALUE_DISPLAY_WORDS):
+        return True
+    if best.news_type == "가격반응" and no_symbols:
+        return True
+    if best.news_type == "테마" and materiality_grade(cluster) in {"B", "C"} and no_symbols:
+        return True
+    if no_symbols and best.news_type not in {"거시", "리스크"}:
+        has_confirmation = _has_any(text, CONFIRMATION_WORDS)
+        has_market_keep = _has_any(text, MARKET_WIDE_KEEP_WORDS)
+        if not has_confirmation and not has_market_keep:
+            return True
+    if no_symbols and "이스라엘군" in text and not _has_any(text, MARKET_WIDE_KEEP_WORDS):
+        return True
+    return False
+
+
 def _drop_noise(clusters: list) -> list:
-    filtered = []
-    for cluster in clusters:
-        best = cluster.best()
-        no_symbols = not cluster.symbols()
-        is_price_noise = best.news_type == "가격반응" and no_symbols
-        is_theme_noise = best.news_type == "테마" and materiality_grade(cluster) in {"B", "C"} and no_symbols
-        if is_price_noise or is_theme_noise:
-            continue
-        filtered.append(cluster)
-    return filtered if filtered else clusters
+    filtered = [cluster for cluster in clusters if not _is_display_noise(cluster)]
+    return filtered if filtered else clusters[:1]
 
 
 def _brief_sector_line(selected) -> str:
@@ -124,7 +197,7 @@ def _brief_sector_line(selected) -> str:
 def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, engine: str) -> str:
     if not selected and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
         return ""
-    display = _drop_noise(selected)
+    display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
     lines = [
         html.escape(s.base._header(kind), quote=False),
         html.escape(f"{now:%m/%d %H:%M KST}  ·  이슈 {len(display)}개", quote=False),
@@ -138,7 +211,7 @@ def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule
     else:
         for cluster in display:
             lines.append(_news_title_html(cluster))
-            symbols = cluster.symbols()
+            symbols = _display_symbols(cluster)
             if symbols:
                 lines.append("📎 " + _related_html(symbols))
             lines.append("")
@@ -167,7 +240,7 @@ def _gemini_title_order(*, now, kind, hours, selected, stock_count, blocked, rul
             "grade": materiality_grade(cluster),
             "type": best.news_type,
             "title": best.item.title,
-            "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in cluster.symbols()],
+            "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in _display_symbols(cluster)],
         })
     prompt = (
         "너는 뉴스 제목 선별 보조 엔진이다. 요약하지 말고 입력된 제목 id 순서만 중요도순으로 재정렬한다.\n"
