@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import re
 
+from .noise_patterns import LOW_VALUE_WORDS, ADVISORY_WORDS
+
 # 뉴스 제목 알림용 중요도 게이트.
 # Gemini 장애/쿼터 초과 시에도 아래 로컬 규칙이 1차 판단 엔진으로 동작한다.
 CORE_TYPES = {"공시/확정", "이벤트", "실적", "리스크", "거시"}
@@ -29,10 +31,6 @@ MARKET_WIDE_WORDS = [
     "fomc", "fed", "연준", "한은", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가",
     "관세", "수출규제", "반도체 수출", "itar", "코스피", "코스닥", "나스닥",
 ]
-LOW_VALUE_WORDS = [
-    "레딧 게시물 분석", "reddit 게시물", "게시물 분석", "언급량", "검색량", "트렌드 분석",
-    "종목 신규 상장", "etf 6종목 신규 상장", "etf 신규 상장", "채권 혼합부터 코스닥까지",
-]
 BROAD_FLOW_WORDS = ["외국인", "기관", "개인", "순매수", "순매도", "코스피 팔고", "코스닥 담았다", "수급"]
 THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마", "가능성"]
 PRICE_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "강세", "상승세"]
@@ -58,10 +56,16 @@ def _local_ai_delta(cluster) -> int:
     reddit_analysis = "레딧" in lower or "reddit" in lower or "게시물 분석" in lower
     broad_flow = _has_any(lower, BROAD_FLOW_WORDS) and ("코스피" in lower or "코스닥" in lower)
 
-    if best.news_type in CORE_TYPES and (has_confirmation or has_number):
-        delta += 12
-    elif best.news_type in CORE_TYPES and has_market_wide:
-        delta += 7
+    if best.news_type in CORE_TYPES:
+        if has_confirmation or has_number:
+            delta += 12
+        elif has_market_wide:
+            delta += 7
+    elif best.news_type in WATCH_TYPES:
+        if best.impact.impact_level == "높음" and has_confirmation:
+            delta += 4
+        if _has_any(text, ADVISORY_WORDS):
+            delta -= 30
 
     if getattr(item, "gemini_news_type", "") in CORE_TYPES:
         delta += 5
@@ -164,7 +168,9 @@ def strict_filter(clusters):
             continue
 
         if best.news_type in WATCH_TYPES:
-            has_support = bool(best.symbols) or cluster.channel_count() >= 2 or len(cluster.items) >= 2 or best.impact.impact_level in {"높음", "중간"}
+            if not best.symbols:
+                continue
+            has_support = cluster.channel_count() >= 2 or len(cluster.items) >= 2
             if has_support and score >= WATCH_THRESHOLD:
                 kept.append(cluster)
 
