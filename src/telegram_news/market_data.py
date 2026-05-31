@@ -105,6 +105,28 @@ def _fetch_kr_stock_quote(ticker: str) -> Quote:
         return Quote(ticker, None, None, None, "Naver Finance", _now_kst(), str(exc))
 
 
+def _fetch_naver_index(code: str, label: str) -> Quote:
+    url = f"https://polling.finance.naver.com/api/realtime/domestic/index/{code}"
+    data = _json_get(url)
+    try:
+        result = data.get("result", {}) if isinstance(data, dict) else {}
+        item = result.get("price") or result.get("areas", [{}])[0].get("datas", [{}])[0]
+        price = _safe_float(item.get("closePrice") or item.get("nv") or item.get("price"))
+        change_pct = _safe_float(item.get("fluctuationsRatio") or item.get("cr") or item.get("changeRate"))
+        if price is not None:
+            return Quote(label, price, change_pct, None, "Naver Finance Index", _now_kst())
+    except Exception:
+        pass
+
+    # Naver index API shape changes occasionally. Fall back to Yahoo but apply sanity filters.
+    yahoo = _fetch_us_quote(label)
+    if label == "^KS11" and yahoo.price is not None and not 1800 <= yahoo.price <= 5000:
+        return Quote(label, None, None, None, "Naver/Yahoo", _now_kst(), "KOSPI sanity check failed")
+    if label == "^KQ11" and yahoo.price is not None and not 400 <= yahoo.price <= 1500:
+        return Quote(label, None, None, None, "Naver/Yahoo", _now_kst(), "KOSDAQ sanity check failed")
+    return yahoo
+
+
 def _fetch_us_quote(ticker: str) -> Quote:
     yahoo_ticker = ticker.replace(".", "-")
     url = f"https://query1.finance.yahoo.com/v8/finance/chart/{yahoo_ticker}?range=5d&interval=5m"
@@ -145,32 +167,58 @@ def _fetch_crypto_quote(ticker: str) -> Quote:
 
 
 INDEX_MAP = {
-    "KOSPI": "^KS11",
-    "KOSDAQ": "^KQ11",
+    "KOSPI": "KRX:KOSPI",
+    "KOSDAQ": "KRX:KOSDAQ",
     "S&P500": "^GSPC",
     "NASDAQ": "^IXIC",
     "USD/KRW": "KRW=X",
 }
 
 
+def _fetch_index(label: str, ticker: str) -> Quote:
+    if ticker == "KRX:KOSPI":
+        return _fetch_naver_index("KOSPI", "^KS11")
+    if ticker == "KRX:KOSDAQ":
+        return _fetch_naver_index("KOSDAQ", "^KQ11")
+    quote = _fetch_us_quote(ticker)
+    if label == "S&P500" and quote.price is not None and not 3000 <= quote.price <= 9000:
+        return Quote(ticker, None, None, None, quote.source, quote.timestamp, "S&P500 sanity check failed")
+    if label == "NASDAQ" and quote.price is not None and not 8000 <= quote.price <= 40000:
+        return Quote(ticker, None, None, None, quote.source, quote.timestamp, "NASDAQ sanity check failed")
+    return quote
+
+
 @lru_cache(maxsize=1)
 def fetch_market_overview() -> list[str]:
     lines: list[str] = []
     for label, ticker in INDEX_MAP.items():
-        quote = _fetch_us_quote(ticker)
+        quote = _fetch_index(label, ticker)
         if quote.price is None:
             continue
         lines.append(f"{label} {_fmt_price(quote.price)} ({_fmt_pct(quote.change_pct)})")
-
-    btc = _fetch_crypto_quote("BTC")
-    if btc.price is not None:
-        lines.append(f"BTC {_fmt_price(btc.price)} ({_fmt_pct(btc.change_pct)})")
-
-    eth = _fetch_crypto_quote("ETH")
-    if eth.price is not None:
-        lines.append(f"ETH {_fmt_price(eth.price)} ({_fmt_pct(eth.change_pct)})")
-
     return lines
+
+
+def get_market_context() -> dict | None:
+    try:
+        kospi = _fetch_index("KOSPI", "KRX:KOSPI")
+        kosdaq = _fetch_index("KOSDAQ", "KRX:KOSDAQ")
+        sp500 = _fetch_index("S&P500", "^GSPC")
+        nasdaq = _fetch_index("NASDAQ", "^IXIC")
+        usdkrw = _fetch_index("USD/KRW", "KRW=X")
+        result = {
+            "kospi_price": kospi.price,
+            "kospi_change_pct": kospi.change_pct,
+            "kosdaq_price": kosdaq.price,
+            "kosdaq_change_pct": kosdaq.change_pct,
+            "sp500_change_pct": sp500.change_pct,
+            "nasdaq_change_pct": nasdaq.change_pct,
+            "usd_krw": usdkrw.price,
+        }
+        valid_count = sum(1 for value in result.values() if value is not None)
+        return result if valid_count >= 2 else None
+    except Exception:
+        return None
 
 
 def build_strategy(ticker: str, asset_type: str, news_score: int, risk_text: str) -> Strategy:
