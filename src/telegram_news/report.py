@@ -31,11 +31,12 @@ ACTION_WORDS = ["진입", "손절", "목표", "매매전략", "추천", "매수"
 
 EVENT_WORDS = ["단독", "속보", "수주", "계약", "공급", "납품", "승인", "허가", "공시", "상장", "인수", "합병", "실적", "가이던스", "증설", "투자", "MOU"]
 OFFICIAL_WORDS = ["공시", "잠정", "ir", "전자공시", "거래소", "금감원", "분기보고서", "사업보고서"]
-MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가", "관세", "수출", "수입"]
+MACRO_WORDS = ["fomc", "fed", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가", "관세", "수출", "수입", "itar", "반도체 수출"]
 RISK_WORDS = ["급락", "악재", "제재", "조사", "소송", "유상증자", "거래정지", "부도", "파산", "감사", "리콜"]
 THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마", "가능성"]
 PRICE_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "강세", "상승세"]
 NOISE_WORDS = ["리딩", "무료방", "입장", "유료", "회원", "추천방", "수익인증", "체험", "선착순"]
+LOW_VALUE_NEWS_WORDS = ["레딧 게시물 분석", "reddit 게시물", "게시물 분석", "언급량", "검색량", "트렌드 분석", "종목 신규 상장", "etf 6종목 신규 상장"]
 
 TYPE_WEIGHT = {
     "공시/확정": 24,
@@ -96,10 +97,10 @@ class NewsCluster:
         out: list[ResolvedSymbol] = []
         seen: set[str] = set()
         for n in sorted(self.items, key=lambda x: x.score, reverse=True):
-            for s in n.symbols:
-                if s.ticker not in seen:
-                    seen.add(s.ticker)
-                    out.append(s)
+            for sym in n.symbols:
+                if sym.ticker not in seen:
+                    seen.add(sym.ticker)
+                    out.append(sym)
         return out[:3]
 
     def channel_count(self) -> int:
@@ -143,8 +144,10 @@ def _direct_symbols(item: SummaryItem) -> list[ResolvedSymbol]:
         if sym.asset_type == "crypto":
             continue
         base = sym.ticker.upper().replace(".KS", "").replace(".KQ", "")
-        direct = sym.name.lower() in lower or sym.ticker.lower() in lower or base in text
-        if direct and sym.ticker not in seen:
+        name_hit = sym.name and sym.name.lower() in lower
+        ticker_hit = bool(re.search(rf"(?<![A-Za-z0-9]){re.escape(sym.ticker)}(?![A-Za-z0-9])", text, re.IGNORECASE))
+        base_hit = bool(re.search(rf"(?<![0-9]){re.escape(base)}(?![0-9])", text)) if base.isdigit() else bool(re.search(rf"(?:\${re.escape(base)}|\({re.escape(base)}\)|NASDAQ:{re.escape(base)}|NYSE:{re.escape(base)}|AMEX:{re.escape(base)})\b", text, re.IGNORECASE))
+        if (name_hit or ticker_hit or base_hit) and sym.ticker not in seen:
             seen.add(sym.ticker)
             out.append(sym)
     return out[:3]
@@ -160,6 +163,8 @@ def _classify(text: str) -> str:
         return "공시/확정"
     if any(w in lower for w in ["실적", "어닝", "가이던스", "매출", "영업이익"]):
         return "실적"
+    if any(w in lower for w in ["임상", "fda", "신약", "임상3상", "바이오시밀러", "셀트리온", "삼성바이오"]):
+        return "이벤트"
     if any(w in lower for w in ["수주", "계약", "공급", "납품", "승인", "허가", "인수", "합병", "상장"]):
         return "이벤트"
     if any(w in lower for w in MACRO_WORDS):
@@ -174,7 +179,9 @@ def _classify(text: str) -> str:
 def _score_item(item: SummaryItem, cache: dict[str, WebImpact]) -> AnalyzedNews:
     text = _text(item)
     lower = text.lower()
-    news_type = _classify(text)
+    local_type = _classify(text)
+    gemini_type = getattr(item, "gemini_news_type", "")
+    news_type = gemini_type if gemini_type in TYPE_WEIGHT else local_type
     symbols = _direct_symbols(item)
     query = f"{symbols[0].name} {symbols[0].ticker} {item.title[:50]}" if symbols else item.title[:80]
     if query not in cache:
@@ -183,6 +190,12 @@ def _score_item(item: SummaryItem, cache: dict[str, WebImpact]) -> AnalyzedNews:
 
     score = 40 + TYPE_WEIGHT[news_type]
     reasons: list[str] = [news_type]
+
+    if gemini_type in TYPE_WEIGHT:
+        reasons.append(f"Gemini분류:{gemini_type}")
+    if getattr(item, "gemini_impact", "") == "높음":
+        score += 2
+        reasons.append("Gemini영향높음")
 
     if symbols:
         score += 8
@@ -209,6 +222,12 @@ def _score_item(item: SummaryItem, cache: dict[str, WebImpact]) -> AnalyzedNews:
     if any(w in lower for w in NOISE_WORDS):
         score -= 40
         reasons.append("광고제거")
+    if any(w in lower for w in LOW_VALUE_NEWS_WORDS):
+        score -= 18
+        reasons.append("저가치분석/ETF상장감점")
+    if "etf" in lower and "신규 상장" in lower and not any(w in lower for w in ["단독", "대규모", "수급", "순매수", "자금유입"]):
+        score -= 12
+        reasons.append("ETF상장단순뉴스")
 
     return AnalyzedNews(item=item, score=max(1, min(100, score)), news_type=news_type, reasons=reasons, symbols=symbols, impact=impact)
 
@@ -352,10 +371,12 @@ def _why(cluster: NewsCluster) -> str:
 
 
 def _header(kind: str) -> str:
-    if kind == "preopen_0850":
-        return "🌅 08:50 개장 전 주식 브리핑"
-    if kind == "afterclose_1530":
-        return "🏁 15:30 장후 주식 브리핑"
+    if kind in {"preopen_0850", "premarket"}:
+        return "🌅 장전 주식 뉴스"
+    if kind in {"afterclose_1530", "aftermarket"}:
+        return "🏁 장후 주식 뉴스"
+    if kind == "intraday":
+        return "⚡ 장중 주식 뉴스"
     return "📰 주식 뉴스 브리핑"
 
 
@@ -389,8 +410,8 @@ def _cluster_payload(clusters: list[NewsCluster]) -> list[dict]:
                     "latest_title": best.impact.latest_title,
                 },
                 "symbols": [
-                    {"name": s.name, "ticker": s.ticker, "url": _quote_url(s)}
-                    for s in cluster.symbols()
+                    {"name": sym.name, "ticker": sym.ticker, "url": _quote_url(sym)}
+                    for sym in cluster.symbols()
                 ],
             }
         )
