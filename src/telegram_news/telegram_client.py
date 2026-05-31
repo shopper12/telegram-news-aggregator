@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import base64
 from datetime import datetime, timedelta, timezone
+import json
+import os
 import re
 
+import requests
 from telethon import TelegramClient
 from telethon.errors import RPCError
 from telethon.sessions import StringSession
@@ -35,6 +39,8 @@ INFORMATIVE_SIGNALS = [
 ]
 
 SOURCE_TELEGRAM_LINK_RE = re.compile(r"https?://t\.me/(?:c/\d+/\d+|[A-Za-z0-9_]{4,}/\d+)\b", re.IGNORECASE)
+STOCK_CATEGORIES = {"stock", "korea_stock", "us_stock", "kr_stock"}
+IMAGE_MAX_BYTES = int(os.getenv("IMAGE_OCR_MAX_BYTES", "4000000"))
 
 
 def _is_obvious_junk(text: str) -> bool:
@@ -49,7 +55,6 @@ def _is_obvious_junk(text: str) -> bool:
     if any(sig in lower for sig in INFORMATIVE_SIGNALS):
         return False
 
-    # 다른 채널의 원문 링크는 정보성 신호로 본다. 초대 링크(t.me/+)는 여기에 해당하지 않는다.
     if SOURCE_TELEGRAM_LINK_RE.search(lower):
         return False
 
@@ -99,7 +104,6 @@ def _source_url(entity, msg_id: int) -> str | None:
     entity_id = getattr(entity, "id", None)
     if entity_id is None:
         return None
-    # 비공개 채널/그룹은 t.me/c/<internal_id>/<message_id> 형식.
     internal_id = str(entity_id)
     if internal_id.startswith("-100"):
         internal_id = internal_id[4:]
@@ -107,12 +111,6 @@ def _source_url(entity, msg_id: int) -> str | None:
 
 
 def _media_hint(msg) -> str | None:
-    """Return a conservative marker for Telegram media posts.
-
-    Many stock/macro channels put the actual headline or ticker list inside an image.
-    We cannot reliably OCR it in this collector, so we preserve the source message and
-    make the downstream scorer judge it as an image-news candidate instead of dropping it.
-    """
     if getattr(msg, "photo", None) is not None:
         return "[첨부이미지]"
     document = getattr(msg, "document", None)
@@ -124,21 +122,141 @@ def _media_hint(msg) -> str | None:
     return None
 
 
-def _build_collect_text(raw_text: str, media_hint: str | None, channel: ChannelConfig) -> str | None:
+def _image_mime_type(msg) -> str | None:
+    if getattr(msg, "photo", None) is not None:
+        return "image/jpeg"
+    document = getattr(msg, "document", None)
+    mime = str(getattr(document, "mime_type", "") or "") if document is not None else ""
+    return mime if mime.startswith("image/") else None
+
+
+def _extract_json_object(text: str) -> dict | None:
+    cleaned = text.strip()
+    cleaned = re.sub(r"^```(?:json)?", "", cleaned).strip()
+    cleaned = re.sub(r"```$", "", cleaned).strip()
+    try:
+        data = json.loads(cleaned)
+        return data if isinstance(data, dict) else None
+    except Exception:
+        start = cleaned.find("{")
+        end = cleaned.rfind("}")
+        if start >= 0 and end > start:
+            try:
+                data = json.loads(cleaned[start:end + 1])
+                return data if isinstance(data, dict) else None
+            except Exception:
+                return None
+    return None
+
+
+def _format_list(values: object, limit: int = 6) -> str:
+    if not isinstance(values, list):
+        return ""
+    cleaned = [str(v).strip() for v in values if str(v).strip()]
+    return ", ".join(cleaned[:limit])
+
+
+def _gemini_extract_stock_image_text(image_bytes: bytes, mime_type: str, settings: Settings) -> str | None:
+    if not settings.gemini_api_key:
+        return None
+    if not image_bytes or len(image_bytes) > IMAGE_MAX_BYTES:
+        return None
+
+    model = settings.gemini_model or "gemini-2.5-flash"
+    prompt = (
+        "이 이미지는 텔레그램 주식/시장 뉴스 캡처일 수 있다. 이미지 안의 텍스트를 직접 읽고 판단한다.\n"
+        "종목명, 기업명, 티커, 한국 6자리 종목코드가 보이는 경우에만 relevant=true로 한다.\n"
+        "거시경제 문구만 있고 종목명/티커/종목코드가 없으면 relevant=false로 한다.\n"
+        "광고, 리딩방, 수익인증, 단순 차트 인증, 이모지만 있는 이미지는 relevant=false로 한다.\n"
+        "종목명이 불확실하면 추정하지 말고 제외한다.\n"
+        "반드시 JSON 객체만 반환한다. 형식:\n"
+        "{\"relevant\":true/false,\"headline\":\"이미지 핵심 제목\",\"companies\":[\"종목명\"],\"tickers\":[\"티커 또는 6자리 코드\"],\"summary\":\"왜 시장에 중요한지 1문장\"}"
+    )
+    body = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt},
+                    {
+                        "inline_data": {
+                            "mime_type": mime_type,
+                            "data": base64.b64encode(image_bytes).decode("ascii"),
+                        }
+                    },
+                ]
+            }
+        ],
+        "generationConfig": {
+            "temperature": 0.0,
+            "maxOutputTokens": 600,
+            "responseMimeType": "application/json",
+        },
+    }
+    try:
+        response = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+            headers={"x-goog-api-key": settings.gemini_api_key, "Content-Type": "application/json"},
+            json=body,
+            timeout=25,
+        )
+        response.raise_for_status()
+        data = response.json()
+        raw = "".join(
+            part.get("text", "")
+            for part in data.get("candidates", [{}])[0].get("content", {}).get("parts", [])
+        ).strip()
+        parsed = _extract_json_object(raw)
+        if not parsed or parsed.get("relevant") is not True:
+            return None
+        companies = _format_list(parsed.get("companies"))
+        tickers = _format_list(parsed.get("tickers"))
+        if not companies and not tickers:
+            return None
+        headline = str(parsed.get("headline") or "종목명 포함 이미지 뉴스").strip()
+        summary = str(parsed.get("summary") or "이미지 안에 종목명이 포함되어 원문 확인 필요").strip()
+        parts = [f"[이미지OCR] {headline}"]
+        if companies:
+            parts.append(f"이미지종목: {companies}")
+        if tickers:
+            parts.append(f"이미지티커: {tickers}")
+        parts.append(f"요약: {summary}")
+        parts.append("[첨부이미지]")
+        return "\n".join(parts)
+    except Exception:
+        return None
+
+
+async def _extract_stock_image_news(client: TelegramClient, msg, settings: Settings, media_hint: str | None, channel: ChannelConfig) -> str | None:
+    if media_hint != "[첨부이미지]":
+        return None
+    if channel.category.lower() not in STOCK_CATEGORIES:
+        return None
+    mime_type = _image_mime_type(msg)
+    if not mime_type:
+        return None
+    try:
+        image_bytes = await client.download_media(msg, file=bytes)
+    except Exception:
+        return None
+    if not isinstance(image_bytes, (bytes, bytearray)):
+        return None
+    return _gemini_extract_stock_image_text(bytes(image_bytes), mime_type, settings)
+
+
+def _build_collect_text(raw_text: str, image_news_text: str | None) -> str | None:
     raw_text = raw_text.strip()
+    if image_news_text:
+        return f"{raw_text}\n{image_news_text}".strip() if raw_text else image_news_text
     if raw_text:
-        if media_hint and media_hint not in raw_text:
-            return f"{raw_text}\n{media_hint}"
         return raw_text
+    return None
 
-    if not media_hint:
-        return None
 
-    # 이미지/미디어만 있는 코인 채널은 과도한 잡음이 되기 쉬워 우선 제외한다.
-    if channel.category.lower() not in {"stock", "korea_stock", "us_stock", "kr_stock"}:
-        return None
-
-    return f"[이미지뉴스] {channel.name} 채널 원문 이미지 확인 필요 {media_hint}"
+def _image_ocr_limit() -> int:
+    try:
+        return max(0, int(os.getenv("IMAGE_OCR_MAX_PER_RUN", "20")))
+    except Exception:
+        return 20
 
 
 async def collect_messages(
@@ -149,6 +267,8 @@ async def collect_messages(
 ) -> list[NewsMessage]:
     since = datetime.now(timezone.utc) - timedelta(hours=hours)
     messages: list[NewsMessage] = []
+    image_ocr_attempts = 0
+    max_image_ocr = _image_ocr_limit()
 
     client = _make_client(settings)
 
@@ -176,14 +296,19 @@ async def collect_messages(
 
                     raw_text = (msg.message or "").strip()
                     media_hint = _media_hint(msg)
-                    text = _build_collect_text(raw_text, media_hint, ch)
+                    image_news_text = None
+                    if media_hint == "[첨부이미지]" and image_ocr_attempts < max_image_ocr:
+                        image_ocr_attempts += 1
+                        image_news_text = await _extract_stock_image_news(client, msg, settings, media_hint, ch)
+
+                    text = _build_collect_text(raw_text, image_news_text)
                     if not text:
                         continue
 
                     normalized = normalize_text(text)
                     if len(normalized) < 10:
                         continue
-                    if _is_obvious_junk(text) and media_hint is None:
+                    if _is_obvious_junk(text) and image_news_text is None:
                         continue
 
                     messages.append(
