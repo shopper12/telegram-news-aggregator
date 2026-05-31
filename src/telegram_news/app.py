@@ -60,15 +60,26 @@ def _make_report(hours: int, limit: int) -> str:
     return build_markdown_report(summaries, hours=hours, timezone_name=settings.timezone)
 
 
-def cmd_report(args: argparse.Namespace) -> None:
-    report = _make_report(hours=args.hours, limit=args.limit)
+def _save_report(report: str) -> Path:
     reports_dir = Path("reports")
     reports_dir.mkdir(exist_ok=True)
-
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     path = reports_dir / f"telegram_news_{stamp}.md"
     path.write_text(report, encoding="utf-8")
+    return path
 
+
+def _is_empty_report(report: str) -> bool:
+    return not report or not report.strip()
+
+
+def cmd_report(args: argparse.Namespace) -> None:
+    report = _make_report(hours=args.hours, limit=args.limit)
+    if _is_empty_report(report):
+        print("Report skipped: empty report generated. SEND_EMPTY_REPORT=0 is active or no reportable issue exists.")
+        return
+
+    path = _save_report(report)
     print(report)
     print(f"\nSaved: {path}")
 
@@ -76,13 +87,11 @@ def cmd_report(args: argparse.Namespace) -> None:
 def cmd_run(args: argparse.Namespace) -> None:
     cmd_collect(args)
     report = _make_report(hours=args.hours, limit=args.limit)
+    if _is_empty_report(report):
+        print("Report skipped: empty report generated. Telegram send skipped.")
+        return
 
-    reports_dir = Path("reports")
-    reports_dir.mkdir(exist_ok=True)
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = reports_dir / f"telegram_news_{stamp}.md"
-    path.write_text(report, encoding="utf-8")
-
+    path = _save_report(report)
     print(report)
     print(f"\nSaved: {path}")
 
