@@ -177,8 +177,7 @@ def _is_display_noise(cluster) -> bool:
 
 
 def _drop_noise(clusters: list) -> list:
-    filtered = [cluster for cluster in clusters if not _is_display_noise(cluster)]
-    return filtered if filtered else clusters[:1]
+    return [cluster for cluster in clusters if not _is_display_noise(cluster)]
 
 
 def _brief_sector_line(selected) -> str:
@@ -194,27 +193,40 @@ def _brief_sector_line(selected) -> str:
     return " > ".join(sector for sector, _ in counter.most_common(4))
 
 
-def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, engine: str) -> str:
-    if not selected and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
-        return ""
-    display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
-    lines = [
+def _empty_report_lines(now, kind, overview, source_count: int) -> list[str]:
+    return [
         html.escape(s.base._header(kind), quote=False),
-        html.escape(f"{now:%m/%d %H:%M KST}  ·  이슈 {len(display)}개", quote=False),
+        html.escape(f"{now:%m/%d %H:%M KST}  ·  이슈 0개", quote=False),
         html.escape(f"📈 {overview}", quote=False),
-        html.escape(f"주도: {_brief_sector_line(display)}", quote=False),
+        "주도: 뚜렷한 주도 섹터 없음",
         "",
+        "🔇 이 시간대 주요 이슈 없음",
+        html.escape(f"(원문 {source_count}건 검토)", quote=False),
     ]
-    if not selected:
-        lines.append("🔇 이 시간대 주요 이슈 없음")
-        lines.append(html.escape(f"(원문 {source_count}건 검토)", quote=False))
+
+
+def _title_only_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, engine: str) -> str:
+    display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
+    if not display and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
+        return ""
+
+    if not display:
+        lines = _empty_report_lines(now, kind, overview, source_count)
     else:
+        lines = [
+            html.escape(s.base._header(kind), quote=False),
+            html.escape(f"{now:%m/%d %H:%M KST}  ·  이슈 {len(display)}개", quote=False),
+            html.escape(f"📈 {overview}", quote=False),
+            html.escape(f"주도: {_brief_sector_line(display)}", quote=False),
+            "",
+        ]
         for cluster in display:
             lines.append(_news_title_html(cluster))
             symbols = _display_symbols(cluster)
             if symbols:
                 lines.append("📎 " + _related_html(symbols))
             lines.append("")
+
     if os.getenv("DEBUG_QUALITY", "0") == "1":
         lines.append(html.escape(s._quality_note(engine, rule, source_count, stock_count, blocked, selected, pre_gate_count), quote=False))
     else:
@@ -278,8 +290,6 @@ def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_nam
     kind = os.getenv("BRIEFING_KIND", "regular")
     selected, stock_count, blocked, rule, pre_gate_count = s._select_strict(summaries)
     overview = s.base._overview()
-    if not selected and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
-        return ""
     reordered, reason = _gemini_title_order(
         now=now,
         kind=kind,
