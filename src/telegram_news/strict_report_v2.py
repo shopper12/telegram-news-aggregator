@@ -28,12 +28,13 @@ LOW_VALUE_DISPLAY_WORDS = [
 ]
 MARKET_WIDE_KEEP_WORDS = [
     "금리", "환율", "연준", "한은", "fomc", "cpi", "ppi", "고용", "관세", "수출규제",
-    "최저임금", "코스피", "코스닥", "나스닥", "유가", "국채", "달러",
+    "최저임금", "코스피", "코스닥", "나스닥", "유가", "국채", "달러", "재정", "예산", "관세",
 ]
 CONFIRMATION_WORDS = [
     "공시", "수주", "계약", "공급", "납품", "승인", "허가", "실적", "매출", "영업이익",
     "가이던스", "배당", "자사주", "증자", "품목허가", "임상", "fda",
 ]
+IMAGE_HINT_WORDS = ["[이미지뉴스]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
 
 
 def _append_diag(report: str, reason: str) -> str:
@@ -59,6 +60,15 @@ def _has_any(text: str, words: list[str]) -> bool:
 def _cluster_text(cluster) -> str:
     best = cluster.best()
     return f"{best.item.title} {best.item.body}"
+
+
+def _is_image_news(cluster) -> bool:
+    return _has_any(_cluster_text(cluster), IMAGE_HINT_WORDS)
+
+
+def _has_macro_or_confirmed_content(cluster) -> bool:
+    text = _cluster_text(cluster)
+    return _has_any(text, MARKET_WIDE_KEEP_WORDS) or _has_any(text, CONFIRMATION_WORDS)
 
 
 def _display_symbols(cluster) -> list:
@@ -138,13 +148,16 @@ def _action_emoji(cluster) -> str:
         return "🔴"
     if news_type in {"공시/확정", "이벤트", "실적"} and grade in {"A", "B+", "B"}:
         return "🟢"
+    if _is_image_news(cluster):
+        return "🖼️"
     return "🟡"
 
 
 def _news_title_html(cluster) -> str:
     best = cluster.best()
     score_tag = f"[{materiality_score(cluster)}·{materiality_grade(cluster)}]"
-    title_text = f"{_action_emoji(cluster)} {s.base._short(best.item.title, 90)} {score_tag}"
+    prefix = "원문 이미지 확인 필요: " if _is_image_news(cluster) and "이미지" not in best.item.title else ""
+    title_text = f"{_action_emoji(cluster)} {prefix}{s.base._short(best.item.title, 90)} {score_tag}"
     url = _source_url(cluster)
     if url:
         return f'<a href="{html.escape(url, quote=True)}">{html.escape(title_text, quote=False)}</a>'
@@ -157,21 +170,21 @@ def _is_display_noise(cluster) -> bool:
     title_clean = _clean_title_text(best.item.title)
     symbols = _display_symbols(cluster)
     no_symbols = not symbols
+    image_news = _is_image_news(cluster)
+    macro_or_confirmed = _has_macro_or_confirmed_content(cluster)
 
-    if len(title_clean) < 8:
+    if _has_any(text, LOW_VALUE_DISPLAY_WORDS) and not (image_news or macro_or_confirmed or symbols):
         return True
-    if _has_any(text, LOW_VALUE_DISPLAY_WORDS):
+    if len(title_clean) < 8 and not (image_news or macro_or_confirmed or symbols):
         return True
-    if best.news_type == "가격반응" and no_symbols:
+    if best.news_type == "가격반응" and no_symbols and not (macro_or_confirmed or image_news):
         return True
-    if best.news_type == "테마" and materiality_grade(cluster) in {"B", "C"} and no_symbols:
+    if best.news_type == "테마" and materiality_grade(cluster) in {"B", "C"} and no_symbols and not (macro_or_confirmed or image_news):
         return True
     if no_symbols and best.news_type not in {"거시", "리스크"}:
-        has_confirmation = _has_any(text, CONFIRMATION_WORDS)
-        has_market_keep = _has_any(text, MARKET_WIDE_KEEP_WORDS)
-        if not has_confirmation and not has_market_keep:
+        if not macro_or_confirmed and not image_news:
             return True
-    if no_symbols and "이스라엘군" in text and not _has_any(text, MARKET_WIDE_KEEP_WORDS):
+    if no_symbols and "이스라엘군" in text and not macro_or_confirmed and not image_news:
         return True
     return False
 
@@ -252,11 +265,15 @@ def _gemini_title_order(*, now, kind, hours, selected, stock_count, blocked, rul
             "grade": materiality_grade(cluster),
             "type": best.news_type,
             "title": best.item.title,
+            "body": best.item.body[:350],
             "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in _display_symbols(cluster)],
+            "image_news": _is_image_news(cluster),
         })
     prompt = (
         "너는 뉴스 제목 선별 보조 엔진이다. 요약하지 말고 입력된 제목 id 순서만 중요도순으로 재정렬한다.\n"
-        "가격반응·테마성·종목 없음 이슈는 뒤로 보낸다. 공시·계약·실적·리스크·거시 이슈를 앞에 둔다.\n"
+        "각 뉴스 자체를 일일이 판단한다. 이미지뉴스·첨부이미지는 본문이 짧아도 원문 확인 가치가 있으면 버리지 않는다.\n"
+        "거시경제·금리·환율·관세·지수·정책 뉴스는 종목이 없어도 앞쪽에 둘 수 있다.\n"
+        "가격반응·테마성·종목 없음 이슈는 확정 근거가 없을 때만 뒤로 보낸다.\n"
         "새 제목을 만들거나 문장을 바꾸지 않는다. 결과는 JSON 배열만 출력한다. 예: [2,1,3]\n"
         f"입력:{json.dumps(issues, ensure_ascii=False)}"
     )
