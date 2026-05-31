@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from functools import lru_cache
 from zoneinfo import ZoneInfo
 import math
+import re
 
 import requests
 
@@ -75,6 +76,15 @@ def _json_get(url: str, timeout: int = 8) -> object | None:
         return None
 
 
+def _text_get(url: str, timeout: int = 8) -> str | None:
+    try:
+        resp = requests.get(url, headers={"User-Agent": "telegram-news-aggregator/0.1"}, timeout=timeout)
+        resp.raise_for_status()
+        return resp.text
+    except Exception:
+        return None
+
+
 @lru_cache(maxsize=256)
 def fetch_quote(ticker: str, asset_type: str) -> Quote:
     ticker = ticker.strip().upper()
@@ -125,6 +135,35 @@ def _fetch_pykrx_index(label: str, index_code: str, sanity_low: float, sanity_hi
         return Quote(label, price, change_pct, None, "pykrx", _now_kst())
     except Exception as exc:
         return Quote(label, None, None, None, "pykrx", _now_kst(), str(exc))
+
+
+def _fetch_naver_index_json(label: str, code: str, sanity_low: float, sanity_high: float) -> Quote:
+    data = _json_get(f"https://polling.finance.naver.com/api/realtime/domestic/index/{code}")
+    try:
+        result = data.get("result", {}) if isinstance(data, dict) else {}
+        item = result.get("price") or result.get("areas", [{}])[0].get("datas", [{}])[0]
+        price = _safe_float(item.get("closePrice") or item.get("nv") or item.get("price"))
+        change_pct = _safe_float(item.get("fluctuationsRatio") or item.get("cr") or item.get("changeRate"))
+        quote = Quote(label, price, change_pct, None, "Naver Finance Index", _now_kst())
+        return _valid_quote(label, quote)
+    except Exception as exc:
+        return Quote(label, None, None, None, "Naver Finance Index", _now_kst(), str(exc))
+
+
+def _fetch_naver_index_html(label: str, code: str, sanity_low: float, sanity_high: float) -> Quote:
+    text = _text_get(f"https://finance.naver.com/sise/sise_index.naver?code={code}")
+    if not text:
+        return Quote(label, None, None, None, "Naver Finance HTML", _now_kst(), "html fetch failed")
+    compact = re.sub(r"\s+", " ", text)
+    price = None
+    for pattern in [r"<em[^>]*id=[\"']now_value[\"'][^>]*>([0-9,\.]+)</em>", r"now_value[^>]*>\s*([0-9,\.]+)"]:
+        m = re.search(pattern, compact, re.IGNORECASE)
+        if m:
+            price = _safe_float(m.group(1))
+            break
+    if price is None:
+        return Quote(label, None, None, None, "Naver Finance HTML", _now_kst(), "html parse failed")
+    return _valid_quote(label, Quote(label, price, None, None, "Naver Finance HTML", _now_kst()))
 
 
 def _fetch_us_quote(ticker: str) -> Quote:
@@ -193,11 +232,28 @@ def _valid_quote(label: str, quote: Quote) -> Quote:
     return quote
 
 
+def _first_valid(*quotes: Quote) -> Quote:
+    for quote in quotes:
+        if quote.price is not None:
+            return quote
+    return quotes[-1]
+
+
 def _fetch_index(label: str, ticker: str) -> Quote:
     if ticker == "KRX:KOSPI":
-        return _fetch_pykrx_index("KOSPI", "1001", 1800, 5000)
+        return _first_valid(
+            _fetch_pykrx_index("KOSPI", "1001", 1800, 5000),
+            _fetch_naver_index_json("KOSPI", "KOSPI", 1800, 5000),
+            _valid_quote("KOSPI", _fetch_us_quote("^KS11")),
+            _fetch_naver_index_html("KOSPI", "KOSPI", 1800, 5000),
+        )
     if ticker == "KRX:KOSDAQ":
-        return _fetch_pykrx_index("KOSDAQ", "2001", 400, 1500)
+        return _first_valid(
+            _fetch_pykrx_index("KOSDAQ", "2001", 400, 1500),
+            _fetch_naver_index_json("KOSDAQ", "KOSDAQ", 400, 1500),
+            _valid_quote("KOSDAQ", _fetch_us_quote("^KQ11")),
+            _fetch_naver_index_html("KOSDAQ", "KOSDAQ", 400, 1500),
+        )
     return _valid_quote(label, _fetch_us_quote(ticker))
 
 
@@ -209,9 +265,7 @@ def fetch_market_overview() -> list[str]:
         if quote.price is None:
             continue
         lines.append(f"{label} {_fmt_price(quote.price)}{_fmt_pct(quote.change_pct)}")
-    if not lines:
-        return ["시장지표 확인불가"]
-    return lines[:5]
+    return lines[:5] if lines else ["시장지표 확인불가"]
 
 
 def get_market_context() -> dict | None:
@@ -241,19 +295,11 @@ def get_market_context() -> dict | None:
 def build_strategy(ticker: str, asset_type: str, news_score: int, risk_text: str) -> Strategy:
     quote = fetch_quote(ticker, asset_type)
     if quote.price is None:
-        return Strategy(
-            quote=quote,
-            view="가격 데이터 확인 실패",
-            entry="진입 보류",
-            stop="손절가 산출 불가",
-            target="목표가 산출 불가",
-            risk=f"{risk_text} / 가격 소스 오류: {quote.error or 'unknown'}",
-        )
+        return Strategy(quote=quote, view="가격 데이터 확인 실패", entry="진입 보류", stop="손절가 산출 불가", target="목표가 산출 불가", risk=f"{risk_text} / 가격 소스 오류: {quote.error or 'unknown'}")
 
     price = quote.price
     change = quote.change_pct or 0.0
     is_crypto = asset_type == "crypto"
-
     if is_crypto:
         entry_price = price * 1.006
         stop_price = price * 0.982
