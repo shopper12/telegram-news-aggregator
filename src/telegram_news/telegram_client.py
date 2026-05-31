@@ -106,6 +106,41 @@ def _source_url(entity, msg_id: int) -> str | None:
     return f"https://t.me/c/{internal_id}/{msg_id}"
 
 
+def _media_hint(msg) -> str | None:
+    """Return a conservative marker for Telegram media posts.
+
+    Many stock/macro channels put the actual headline or ticker list inside an image.
+    We cannot reliably OCR it in this collector, so we preserve the source message and
+    make the downstream scorer judge it as an image-news candidate instead of dropping it.
+    """
+    if getattr(msg, "photo", None) is not None:
+        return "[첨부이미지]"
+    document = getattr(msg, "document", None)
+    mime = str(getattr(document, "mime_type", "") or "") if document is not None else ""
+    if mime.startswith("image/"):
+        return "[첨부이미지]"
+    if getattr(msg, "media", None) is not None:
+        return "[첨부미디어]"
+    return None
+
+
+def _build_collect_text(raw_text: str, media_hint: str | None, channel: ChannelConfig) -> str | None:
+    raw_text = raw_text.strip()
+    if raw_text:
+        if media_hint and media_hint not in raw_text:
+            return f"{raw_text}\n{media_hint}"
+        return raw_text
+
+    if not media_hint:
+        return None
+
+    # 이미지/미디어만 있는 코인 채널은 과도한 잡음이 되기 쉬워 우선 제외한다.
+    if channel.category.lower() not in {"stock", "korea_stock", "us_stock", "kr_stock"}:
+        return None
+
+    return f"[이미지뉴스] {channel.name} 채널 원문 이미지 확인 필요 {media_hint}"
+
+
 async def collect_messages(
     settings: Settings,
     channels: list[ChannelConfig],
@@ -132,9 +167,6 @@ async def collect_messages(
             try:
                 entity = await _resolve_entity(client, ch)
                 async for msg in client.iter_messages(entity, limit=limit_per_channel):
-                    if not msg.message:
-                        continue
-
                     msg_date = msg.date
                     if msg_date.tzinfo is None:
                         msg_date = msg_date.replace(tzinfo=timezone.utc)
@@ -142,11 +174,16 @@ async def collect_messages(
                     if msg_date < since:
                         break
 
-                    text = msg.message.strip()
+                    raw_text = (msg.message or "").strip()
+                    media_hint = _media_hint(msg)
+                    text = _build_collect_text(raw_text, media_hint, ch)
+                    if not text:
+                        continue
+
                     normalized = normalize_text(text)
                     if len(normalized) < 10:
                         continue
-                    if _is_obvious_junk(text):
+                    if _is_obvious_junk(text) and media_hint is None:
                         continue
 
                     messages.append(
