@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 import json
 import time
 
@@ -24,7 +24,9 @@ class SummaryItem:
     judgment: str
     trade_view: str
     risk: str
-    source_urls: list[str]
+    source_urls: list[str] = field(default_factory=list)
+    gemini_news_type: str = ""
+    gemini_impact: str = ""
 
 
 def _make_title(text: str, max_len: int = 72) -> str:
@@ -100,7 +102,7 @@ def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryIt
                 judgment=_build_judgment(item.text, item.count, sig.sectors, sig.tickers),
                 trade_view=_build_trade_view(item.text, sig.importance_score, item.count),
                 risk=_build_risk(item.text),
-                source_urls=item.message_urls,
+                source_urls=getattr(item, "message_urls", []),
             )
         )
     return summaries
@@ -189,7 +191,13 @@ def gemini_classify_if_available(
                 if 0 <= pos < len(updated):
                     prefix = f"[Gemini분류: {news_type}/{impact_level}] "
                     item = updated[pos]
-                    updated[pos] = replace(item, judgment=prefix + item.judgment, trade_view=prefix + item.trade_view)
+                    updated[pos] = replace(
+                        item,
+                        judgment=prefix + item.judgment,
+                        trade_view=prefix + item.trade_view,
+                        gemini_news_type=news_type,
+                        gemini_impact=impact_level,
+                    )
             if start + 20 < len(updated):
                 time.sleep(1.0)
     except Exception:
