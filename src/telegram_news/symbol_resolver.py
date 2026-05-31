@@ -14,12 +14,17 @@ BAD_TICKERS = {
     "KOSPI", "KOSDAQ", "KRX", "NYSE", "NASDAQ", "IPO", "MOU", "IR", "PR",
     "USA", "US", "EU", "UK", "CN", "JP", "KR", "USD", "KRW", "CEO", "CFO",
     "ADR", "ADS", "THE", "AND", "FOR", "INC", "LTD", "LLC", "PLC", "NEW", "OLD",
+    "EV", "DD", "DB", "ON", "IT", "BE", "OR", "TO", "IN", "AS", "AT", "BY", "IS",
 }
 
 UPPER_TICKER_RE = re.compile(r"\b[A-Z]{1,12}\b")
+STRICT_TICKER_RE = re.compile(r"(?:(?<=\$)|(?<=NASDAQ:)|(?<=NYSE:)|(?<=AMEX:)|(?<=Nasdaq:)|(?<=NYSE American:))([A-Z]{1,8})\b|\(([A-Z]{1,8})\)")
 KR_CODE_RE = re.compile(r"(?<!\d)(\d{6})(?!\d)")
+US_TICKER_CONTEXT_WORDS = {
+    "nyse", "nasdaq", "amex", "ticker", "티커", "미국주식", "미장", "reddit", "레딧",
+    "wallstreetbets", "wsb", "stock", "stocks", "shares", "equity",
+}
 
-# 전 종목 카탈로그가 실패하거나 한국어 별칭이 다른 경우 보완하는 핵심 별칭.
 COMMON_ALIASES = {
     "엔비디아": ("엔비디아", "NVDA", "stock_us"),
     "NVIDIA": ("엔비디아", "NVDA", "stock_us"),
@@ -67,7 +72,7 @@ COMMON_ALIASES = {
 class ResolvedSymbol:
     name: str
     ticker: str
-    asset_type: str  # stock_kr, stock_us, crypto, stock_or_us
+    asset_type: str
 
 
 @dataclass(frozen=True)
@@ -88,12 +93,12 @@ def _safe_get(url: str, timeout: int = 10) -> str | None:
 
 
 def _normalize_company_name(name: str) -> str:
-    name = re.sub(r"\s+", " ", name).strip()
-    name = re.sub(r"\b(Common Stock|Ordinary Shares|American Depositary Shares|American Depositary Receipt|ADS|ADR)\b", "", name, flags=re.IGNORECASE)
-    name = re.sub(r"\b(Class [A-Z]|Class A Common Stock|Class B Common Stock)\b", "", name, flags=re.IGNORECASE)
-    name = re.sub(r"\b(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.?|Ltd\.?|Limited|PLC|LLC|N\.V\.|S\.A\.)\b", "", name, flags=re.IGNORECASE)
-    name = re.sub(r"\s+", " ", name).strip(" -,")
-    return name or name
+    original = re.sub(r"\s+", " ", name).strip()
+    cleaned = re.sub(r"\b(Common Stock|Ordinary Shares|American Depositary Shares|American Depositary Receipt|ADS|ADR)\b", "", original, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\b(Class [A-Z]|Class A Common Stock|Class B Common Stock)\b", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\b(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.?|Ltd\.?|Limited|PLC|LLC|N\.V\.|S\.A\.)\b", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" -,")
+    return cleaned or original
 
 
 @lru_cache(maxsize=1)
@@ -195,7 +200,6 @@ def _load_crypto_catalog() -> list[SymbolEntry]:
         if asset_type == "crypto" and ticker not in seen:
             seen.add(ticker)
             entries.append(SymbolEntry(name=name, ticker=ticker, asset_type=asset_type, aliases=(alias, name, ticker)))
-
     return entries
 
 
@@ -226,15 +230,32 @@ def _find_entry_by_kr_code(code: str, krx_catalog: list[SymbolEntry]) -> SymbolE
     return None
 
 
+def _strict_us_tickers(text: str) -> set[str]:
+    out: set[str] = set()
+    for match in STRICT_TICKER_RE.finditer(text):
+        ticker = (match.group(1) or match.group(2) or "").upper().strip()
+        if ticker and ticker not in BAD_TICKERS:
+            out.add(ticker)
+    return out
+
+
+def _has_us_ticker_context(text: str) -> bool:
+    lower = text.lower()
+    return any(word in lower for word in US_TICKER_CONTEXT_WORDS)
+
+
 def resolve_symbols(text: str, categories: list[str] | None = None, raw_tickers: list[str] | None = None) -> list[ResolvedSymbol]:
     categories = categories or []
     raw_tickers = raw_tickers or []
     result: list[ResolvedSymbol] = []
     seen: set[str] = set()
 
+    lower = text.lower()
     is_crypto_context = "crypto" in categories or any(
-        word in text.lower() for word in ["btc", "비트코인", "코인", "온체인", "업비트", "바이낸스", "usdt"]
+        word in lower for word in ["btc", "비트코인", "코인", "온체인", "업비트", "바이낸스", "usdt"]
     )
+    strict_tickers = _strict_us_tickers(text)
+    us_context = _has_us_ticker_context(text)
 
     krx_catalog, us_catalog, crypto_catalog = _catalogs()
 
@@ -255,7 +276,6 @@ def resolve_symbols(text: str, categories: list[str] | None = None, raw_tickers:
         if any(_contains_alias(text, alias) for alias in entry.aliases):
             _append(result, seen, entry)
 
-    # 미국 종목: 티커 직접 언급은 전 종목 대응. 회사명 매칭은 짧은 일반명 오탐을 줄이기 위해 5자 이상만 허용.
     for entry in us_catalog:
         name_aliases = [a for a in entry.aliases if a != entry.ticker]
         if len(entry.name) >= 5 and any(_contains_alias(text, alias) for alias in name_aliases):
@@ -263,17 +283,22 @@ def resolve_symbols(text: str, categories: list[str] | None = None, raw_tickers:
 
     crypto_tickers = {entry.ticker for entry in crypto_catalog}
     us_by_ticker = {entry.ticker: entry for entry in us_catalog}
-    for ticker in sorted(set(raw_tickers + UPPER_TICKER_RE.findall(text))):
+    raw_candidates = sorted(set(raw_tickers + list(strict_tickers)))
+
+    # 일반 대문자 단어 전체를 무조건 티커로 보지 않는다. Reddit/미국주식 맥락에서도 3자 이상만 보조 허용한다.
+    if us_context:
+        raw_candidates.extend([ticker for ticker in UPPER_TICKER_RE.findall(text) if len(ticker) >= 3])
+
+    for ticker in sorted(set(raw_candidates)):
         ticker = ticker.upper().strip()
         if ticker in BAD_TICKERS or ticker in seen:
             continue
         if ticker in crypto_tickers or is_crypto_context:
-            asset_type = "crypto"
-            result.append(ResolvedSymbol(name=ticker, ticker=ticker, asset_type=asset_type))
+            result.append(ResolvedSymbol(name=ticker, ticker=ticker, asset_type="crypto"))
             seen.add(ticker)
         elif ticker in us_by_ticker:
             _append(result, seen, us_by_ticker[ticker])
-        elif len(ticker) >= 2:
+        elif ticker in strict_tickers and len(ticker) >= 2:
             result.append(ResolvedSymbol(name=ticker, ticker=ticker, asset_type="stock_or_us"))
             seen.add(ticker)
 
