@@ -15,23 +15,9 @@ on:
         description: "regular, premarket, intraday, aftermarket, overnight"
         required: false
         default: "regular"
-  push:
-    paths:
-      - ".github/workflows/telegram-news.yml"
-      - "config/channels.yaml"
-      - "src/**"
-      - "scripts/**"
-      - "requirements.txt"
-      - "pyproject.toml"
-  schedule:
-    # KRX regular session is KST Mon-Fri 09:00-15:30.
-    # Send every 5 minutes from one hour before open to one hour after close: KST Mon-Fri 08:00-16:30.
-    # GitHub Actions cron uses UTC. KST = UTC+9.
-    - cron: "*/5 23 * * 0-4"      # KST Mon-Fri 08:00-08:55
-    - cron: "*/5 0-6 * * 1-5"     # KST Mon-Fri 09:00-15:55
-    - cron: "0-30/5 7 * * 1-5"    # KST Mon-Fri 16:00-16:30
-    # Outside the KRX buffered window: hourly.
-    - cron: "5 * * * *"
+
+# Automatic push/scheduled runs are disabled while the Telegram bot is suspended.
+# Re-enable schedule/push triggers only after the bot/session issue is fixed.
 
 concurrency:
   group: telegram-news-briefing
@@ -86,31 +72,13 @@ jobs:
           krx_buffered = is_weekday and time(8, 0) <= now.time() <= time(16, 30)
 
           should_run = True
-          reason = "manual_or_push"
+          reason = "manual"
           hours = "6"
           briefing_kind = inputs.get("briefing_kind") or "regular"
 
           if event_name == "schedule":
-              if schedule == "5 * * * *" and krx_buffered:
-                  should_run = False
-                  reason = "skip_hourly_duplicate_during_krx_buffered_window"
-              else:
-                  if krx_buffered:
-                      reason = "krx_buffered_5min"
-                      hours = "1"
-                      if time(8, 0) <= now.time() < time(9, 0):
-                          briefing_kind = "premarket"
-                          hours = "3"
-                      elif time(9, 0) <= now.time() <= time(15, 30):
-                          briefing_kind = "intraday"
-                          hours = "1"
-                      else:
-                          briefing_kind = "aftermarket"
-                          hours = "2"
-                  else:
-                      reason = "off_hours_hourly"
-                      briefing_kind = "overnight"
-                      hours = "6"
+              should_run = False
+              reason = "scheduled_runs_disabled"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"should_run={str(should_run).lower()}\n")
