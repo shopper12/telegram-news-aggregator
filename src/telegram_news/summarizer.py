@@ -7,7 +7,7 @@ import time
 import requests
 
 from .normalizer import DedupedItem
-from .extractor import extract_signals
+from .extractor import extract_signals, market_type_from_categories
 
 
 @dataclass(frozen=True)
@@ -87,7 +87,8 @@ def _build_risk(text: str) -> str:
 def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryItem]:
     summaries: list[SummaryItem] = []
     for item in items:
-        sig = extract_signals(item.text, repeat_count=item.count)
+        market_type = market_type_from_categories(item.categories)
+        sig = extract_signals(item.text, repeat_count=item.count, market_type=market_type)
         summaries.append(
             SummaryItem(
                 title=_make_title(item.text),
@@ -126,26 +127,39 @@ def _extract_json_array(text: str) -> list[dict] | None:
 
 
 def _gemini_classify_batch(batch: list[SummaryItem], api_key: str, model: str) -> dict[int, tuple[str, str]]:
-    rows = [{"idx": i + 1, "title": s.title, "body": s.body[:220]} for i, s in enumerate(batch)]
+    rows = [
+        {
+            "idx": i + 1,
+            "title": s.title,
+            "body": s.body[:260],
+            "categories": s.categories,
+            "sectors": s.sectors,
+            "tickers": s.tickers,
+        }
+        for i, s in enumerate(batch)
+    ]
     prompt = (
-        "다음 뉴스 목록을 JSON 배열로 분류해라.\n"
-        "각 항목: {\"idx\": 번호, \"news_type\": 분류, \"impact_level\": 영향도}\n"
+        "다음 뉴스 목록을 JSON 배열로 분류해라. Gemini만 사용하는 분류 엔진이다.\n"
+        "각 항목은 반드시 {\"idx\": 번호, \"news_type\": 분류, \"impact_level\": 영향도} 형식이다.\n"
         "news_type 선택지: 공시/확정, 이벤트, 실적, 리스크, 거시, 테마, 가격반응, 정보, 광고/잡음\n"
         "impact_level 선택지: 높음, 중간, 낮음, 확인부족\n"
-        "분류 기준: 공시/확정=공시·잠정실적·IR·전자공시·금감원, 이벤트=수주·계약·공급·납품·승인·허가·인수·합병·상장·임상·FDA, 실적=매출·영업이익·EPS·가이던스·어닝, 리스크=급락·악재·제재·소송·유상증자·거래정지, 거시=금리·환율·FOMC·CPI·관세·미국 경제지표·반도체 수출규제, 가격반응=급등·상한가·신고가 등 이미 가격 반영, 테마=관련주·수혜·전망·기대, 정보=그 외.\n"
-        "광고/잡음 분류 추가 기준:\n"
-        "- 광고 초대 링크(t.me/+, t.me/joinchat, bit.ly)만 있고 뉴스 내용이 없는 메시지\n"
-        "- 순수 인사말·응원 문구(좋은 하루, 화이팅, 감사합니다 등)\n"
-        "- 이모지+감탄사(ㅋㅋ, ㅎㅎ)만으로 구성된 메시지\n"
-        "- 리딩방·추천방·무료방·유료방 광고\n"
-        "이모지(🔴, 📌, ▶ 등)나 특수문자가 있어도 경제·시황·종목 내용이 있으면 정상 뉴스로 분류한다.\n"
-        "뉴스 URL(naver.com, hankyung.com, mk.co.kr, yna.co.kr, reuters.com, bloomberg.com 등) 또는 t.me/채널/글번호 원문 링크가 있으면 정상 뉴스로 분류한다. 단 t.me/+ 초대 링크는 원문 링크가 아니다.\n"
+        "분류 기준:\n"
+        "- 공시/확정=공시·잠정실적·IR·전자공시·금감원·거래소 확인\n"
+        "- 이벤트=수주·계약·공급·납품·승인·허가·인수·합병·상장·임상·FDA\n"
+        "- 실적=매출·영업이익·EPS·가이던스·어닝\n"
+        "- 리스크=급락·악재·제재·소송·유상증자·거래정지\n"
+        "- 거시=금리·환율·FOMC·CPI·관세·미국 경제지표·반도체 수출규제\n"
+        "- 가격반응=급등·상한가·신고가 등 이미 가격 반영\n"
+        "- 테마=관련주·수혜·전망·기대 중심\n"
+        "- 정보=그 외\n"
+        "광고/잡음 분류 추가 기준: 광고 초대 링크만 있는 메시지, 순수 인사말, 이모지+감탄사, 리딩방·추천방·무료방·유료방 광고.\n"
+        "경제·시황·종목 내용이 있으면 특수문자나 이모지가 있어도 정상 뉴스로 분류한다.\n"
         "JSON 배열만 반환. 다른 텍스트 없음.\n"
         f"뉴스 목록:\n{json.dumps(rows, ensure_ascii=False)}"
     )
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.0, "maxOutputTokens": 600, "responseMimeType": "application/json"},
+        "generationConfig": {"temperature": 0.05, "maxOutputTokens": 700, "responseMimeType": "application/json"},
     }
     response = requests.post(
         f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
@@ -205,5 +219,5 @@ def gemini_classify_if_available(
     return updated
 
 
-# 구버전 import 호환. app.py는 gemini_classify_if_available를 직접 사용한다.
+# 구버전 import 호환. OpenAI는 사용하지 않고 Gemini 분류 엔진으로 라우팅한다.
 openai_summarize_if_available = gemini_classify_if_available
