@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 from datetime import datetime, timedelta, timezone
+import os
 from pathlib import Path
 
 from .settings import load_settings, load_channels
@@ -11,7 +12,7 @@ from .store import connect, init_db, insert_messages, fetch_recent
 from .normalizer import deduplicate_rows
 from .summarizer import gemini_classify_if_available
 from .strict_report_v2 import build_markdown_report
-from .notifier import send_telegram_message_to_many
+from .kakao_notifier import send_kakao_memo
 
 
 def cmd_init_db(args: argparse.Namespace) -> None:
@@ -73,6 +74,28 @@ def _is_empty_report(report: str) -> bool:
     return not report or not report.strip()
 
 
+def _send_report_to_kakao(report: str) -> None:
+    rest_api_key = os.getenv("KAKAO_REST_API_KEY")
+    refresh_token = os.getenv("KAKAO_REFRESH_TOKEN")
+    client_secret = os.getenv("KAKAO_CLIENT_SECRET") or None
+    web_url = os.getenv("KAKAO_WEB_URL", "https://github.com/shopper12/telegram-news-aggregator")
+
+    if not rest_api_key or not refresh_token:
+        raise RuntimeError("KAKAO_REST_API_KEY and KAKAO_REFRESH_TOKEN are required for --send.")
+
+    rotated_refresh_token = send_kakao_memo(
+        rest_api_key=rest_api_key,
+        refresh_token=refresh_token,
+        client_secret=client_secret,
+        text=report,
+        web_url=web_url,
+    )
+    print("Sent to KakaoTalk memo")
+    if rotated_refresh_token:
+        print("Kakao returned a rotated refresh token. Update the KAKAO_REFRESH_TOKEN GitHub secret with the new value shown below.")
+        print(rotated_refresh_token)
+
+
 def cmd_report(args: argparse.Namespace) -> None:
     report = _make_report(hours=args.hours, limit=args.limit)
     if _is_empty_report(report):
@@ -88,7 +111,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     cmd_collect(args)
     report = _make_report(hours=args.hours, limit=args.limit)
     if _is_empty_report(report):
-        print("Report skipped: empty report generated. Telegram send skipped.")
+        print("Report skipped: empty report generated. KakaoTalk send skipped.")
         return
 
     path = _save_report(report)
@@ -96,11 +119,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     print(f"\nSaved: {path}")
 
     if args.send:
-        settings = load_settings()
-        if not settings.telegram_bot_token or not settings.telegram_target_chat_ids:
-            raise RuntimeError("TELEGRAM_BOT_TOKEN and TELEGRAM_TARGET_CHAT_ID(S) are required for --send.")
-        send_telegram_message_to_many(settings.telegram_bot_token, settings.telegram_target_chat_ids, report)
-        print(f"Sent to Telegram recipients: {len(settings.telegram_target_chat_ids)}")
+        _send_report_to_kakao(report)
 
 
 def build_parser() -> argparse.ArgumentParser:
