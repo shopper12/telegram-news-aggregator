@@ -268,6 +268,46 @@ def fetch_market_overview() -> list[str]:
     return lines[:5] if lines else ["시장지표 확인불가"]
 
 
+def _fetch_kr_top_sectors_by_volume(limit: int = 5) -> list[str]:
+    try:
+        from pykrx import stock  # type: ignore
+
+        today = datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y%m%d")
+        df = stock.get_market_sector_ohlcv_by_ticker(today, market="KOSPI")
+        if df is None or df.empty or "거래대금" not in df.columns:
+            return []
+        top = df.sort_values("거래대금", ascending=False).head(limit)
+        return [str(idx) for idx in top.index]
+    except Exception:
+        return []
+
+
+def _fetch_market_cap_leaders(limit: int = 5) -> list[str]:
+    try:
+        from pykrx import stock  # type: ignore
+
+        today = datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y%m%d")
+        df = stock.get_market_cap(today, market="ALL")
+        if df is None or df.empty:
+            return []
+        candidates = df.copy()
+        if "등락률" in candidates.columns:
+            candidates = candidates[candidates["등락률"] > 0]
+            candidates = candidates.sort_values(["시가총액", "등락률"], ascending=[False, False])
+        else:
+            candidates = candidates.sort_values("시가총액", ascending=False)
+        out: list[str] = []
+        for code in list(candidates.head(limit).index):
+            try:
+                name = stock.get_market_ticker_name(code)
+            except Exception:
+                name = str(code)
+            out.append(name or str(code))
+        return out
+    except Exception:
+        return []
+
+
 def get_market_context() -> dict | None:
     try:
         kospi = _fetch_index("KOSPI", "KRX:KOSPI")
@@ -276,18 +316,18 @@ def get_market_context() -> dict | None:
         nasdaq = _fetch_index("NASDAQ", "^IXIC")
         usdkrw = _fetch_index("USD/KRW", "KRW=X")
         result = {
-            "kospi_price": kospi.price,
             "kospi_change_pct": kospi.change_pct,
-            "kosdaq_price": kosdaq.price,
             "kosdaq_change_pct": kosdaq.change_pct,
-            "sp500_price": sp500.price,
             "sp500_change_pct": sp500.change_pct,
-            "nasdaq_price": nasdaq.price,
             "nasdaq_change_pct": nasdaq.change_pct,
             "usd_krw": usdkrw.price,
+            "top_sectors_by_volume": _fetch_kr_top_sectors_by_volume(),
+            "market_cap_leaders": _fetch_market_cap_leaders(),
+            "source": "pykrx/Naver/Yahoo fallback",
+            "timestamp": _now_kst(),
         }
-        valid_count = sum(1 for value in result.values() if value is not None)
-        return result if valid_count >= 2 else None
+        valid_count = sum(1 for key, value in result.items() if key not in {"source", "timestamp"} and value not in (None, []))
+        return result if valid_count >= 1 else None
     except Exception:
         return None
 
