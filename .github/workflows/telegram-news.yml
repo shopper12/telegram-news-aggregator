@@ -43,15 +43,16 @@ jobs:
       TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
       TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
       TELEGRAM_STRING_SESSION: ${{ secrets.TELEGRAM_STRING_SESSION }}
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      TELEGRAM_TARGET_CHAT_ID: ${{ secrets.TELEGRAM_TARGET_CHAT_ID }}
-      TELEGRAM_TARGET_CHAT_IDS: ${{ secrets.TELEGRAM_TARGET_CHAT_IDS }}
       TELEGRAM_SESSION_NAME: telegram_news_session
       DATABASE_URL: sqlite:///data/news.db
       CHANNEL_CONFIG: config/channels.yaml
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: gemini-flash-latest
+      KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+      KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
+      KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
+      KAKAO_WEB_URL: ${{ secrets.KAKAO_WEB_URL }}
 
     steps:
       - name: Checkout
@@ -151,10 +152,8 @@ jobs:
           python - <<'PY'
           import os, sys
 
-          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION", "TELEGRAM_BOT_TOKEN"]
+          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION", "KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
           missing = [name for name in required if not os.getenv(name)]
-          if not os.getenv("TELEGRAM_TARGET_CHAT_ID") and not os.getenv("TELEGRAM_TARGET_CHAT_IDS"):
-              missing.append("TELEGRAM_TARGET_CHAT_ID or TELEGRAM_TARGET_CHAT_IDS")
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
               sys.exit(1)
@@ -163,25 +162,17 @@ jobs:
               print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
           else:
               print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
-          print("Required secrets are present.")
+          print("Required collection and Kakao secrets are present.")
           PY
 
-      - name: Show Telegram recipient count
+      - name: Show Kakao send mode
         if: steps.cadence.outputs.should_run == 'true'
         run: |
           python - <<'PY'
           import os
-          def split_ids(value):
-              return [x.strip() for x in (value or '').replace('\n', ',').split(',') if x.strip()]
-          ids = []
-          single = os.getenv('TELEGRAM_TARGET_CHAT_ID')
-          if single:
-              ids.append(single.strip())
-          for item in split_ids(os.getenv('TELEGRAM_TARGET_CHAT_IDS')):
-              if item not in ids:
-                  ids.append(item)
-          print(f"Telegram recipient count: {len(ids)}")
-          print("Telegram recipients masked: " + ", ".join(('***' + x[-4:]) if len(x) > 4 else '***' for x in ids))
+          print("Send channel: KakaoTalk memo")
+          print("Kakao REST API key: " + ("present" if os.getenv("KAKAO_REST_API_KEY") else "missing"))
+          print("Kakao refresh token: " + ("present" if os.getenv("KAKAO_REFRESH_TOKEN") else "missing"))
           PY
 
       - name: Run Telegram news briefing
