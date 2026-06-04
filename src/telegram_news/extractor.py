@@ -14,6 +14,18 @@ KOREAN_STOCK_KEYWORDS = {
     "2차전지": ["2차전지", "배터리", "양극재", "음극재", "전해액", "리튬"],
     "방산": ["방산", "무기", "수출계약", "k9", "천무", "드론"],
     "조선": ["조선", "lng선", "선박", "수주잔고", "해양플랜트"],
+    "바이오": ["임상", "fda 승인", "허가", "신약", "임상3상", "바이오시밀러", "셀트리온", "삼성바이오"],
+    "양자컴퓨터": ["양자컴", "양자암호", "ibm q", "구글 퀀텀", "양자컴퓨터"],
+    "방산_해외": ["nato", "우크라이나 수출", "방산 수출계약", "록히드", "레이시온"],
+}
+
+US_STOCK_KEYWORDS = {
+    "미국빅테크": ["엔비디아", "마이크로소프트", "애플", "알파벳", "메타", "아마존", "테슬라", "nvda", "msft", "aapl", "googl", "meta", "amzn", "tsla"],
+    "반도체": ["nvidia", "nvda", "amd", "broadcom", "avgo", "micron", "mu", "semiconductor", "gpu", "hbm"],
+    "AI인프라": ["ai", "artificial intelligence", "data center", "datacenter", "gpu", "server", "oracle", "orcl"],
+    "방산_해외": ["nato", "ukraine", "lockheed", "raytheon", "rtx", "defense contract"],
+    "양자컴퓨터": ["quantum", "quantum computing", "ibm q", "google quantum", "ionq", "rigetti"],
+    "바이오": ["fda", "clinical trial", "phase 3", "drug approval", "biotech", "eli lilly", "novo nordisk"],
 }
 
 CRYPTO_KEYWORDS = {
@@ -28,6 +40,7 @@ CRYPTO_KEYWORDS = {
     "rwa": ["rwa", "토큰화", "real world asset", "ondo"],
 }
 
+ACTION_WORDS = ["단독", "속보", "수주", "계약", "승인", "상장", "공급", "납품"]
 TICKER_RE = re.compile(r"\b[A-Z]{2,10}\b")
 BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ"}
 
@@ -40,12 +53,30 @@ class ExtractedSignal:
     importance_score: int
 
 
-def extract_signals(text: str, repeat_count: int = 1) -> ExtractedSignal:
+def _keyword_maps_for_market(market_type: str) -> dict[str, list[str]]:
+    normalized = (market_type or "KR").upper()
+    if normalized == "CRYPTO":
+        return CRYPTO_KEYWORDS
+    if normalized == "US":
+        return US_STOCK_KEYWORDS
+    return {**KOREAN_STOCK_KEYWORDS, **US_STOCK_KEYWORDS}
+
+
+def market_type_from_categories(categories: list[str] | tuple[str, ...] | set[str] | None) -> str:
+    cats = {str(c).lower() for c in (categories or [])}
+    if cats & {"crypto", "coin"}:
+        return "CRYPTO"
+    if "us_stock" in cats:
+        return "US"
+    return "KR"
+
+
+def extract_signals(text: str, repeat_count: int = 1, market_type: str = "KR") -> ExtractedSignal:
     lower = text.lower()
     sector_hits: list[str] = []
     keyword_hits: list[str] = []
 
-    for sector, words in {**KOREAN_STOCK_KEYWORDS, **CRYPTO_KEYWORDS}.items():
+    for sector, words in _keyword_maps_for_market(market_type).items():
         for word in words:
             if word.lower() in lower:
                 sector_hits.append(sector)
@@ -60,14 +91,16 @@ def extract_signals(text: str, repeat_count: int = 1) -> ExtractedSignal:
     score += repeat_count * 2
     score += len(sectors) * 2
     score += min(len(tickers), 5)
-    if any(w in lower for w in ["단독", "속보", "수주", "계약", "승인", "상장", "공급", "납품"]):
-        score += 3
+    if any(w.lower() in lower for w in ACTION_WORDS):
+        score += 8
+    if repeat_count >= 3:
+        score -= 3
 
     return ExtractedSignal(
         sectors=sectors,
         keywords=keywords,
         tickers=tickers,
-        importance_score=score,
+        importance_score=max(0, score),
     )
 
 
