@@ -12,12 +12,23 @@ on:
         required: false
         default: "15"
       briefing_kind:
-        description: "regular, premarket, intraday, aftermarket, overnight"
+        description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_premarket_after"
         required: false
         default: "regular"
+  schedule:
+    # GitHub Actions cron uses UTC.
+    # KRX premarket: KST Mon-Fri 08:30 = UTC Sun-Thu 23:30.
+    - cron: "30 23 * * 0-4"
+    # KRX after close: KST Mon-Fri 15:45 = UTC Mon-Fri 06:45.
+    - cron: "45 6 * * 1-5"
+    # US premarket open window: NY Mon-Fri 03:55. Both UTC slots are needed for DST/standard time.
+    - cron: "55 7 * * 1-5"
+    - cron: "55 8 * * 1-5"
+    # US premarket end / regular open check: NY Mon-Fri 09:25. Both UTC slots are needed for DST/standard time.
+    - cron: "25 13 * * 1-5"
+    - cron: "25 14 * * 1-5"
 
-# Automatic push/scheduled runs are disabled while the Telegram bot is suspended.
-# Re-enable schedule/push triggers only after the bot/session issue is fixed.
+# Automatic push-triggered runs remain disabled. Scheduled runs are limited to four market checkpoints.
 
 concurrency:
   group: telegram-news-briefing
@@ -47,13 +58,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Decide KRX cadence
+      - name: Decide market checkpoint
         id: cadence
         run: |
           python - <<'PY'
           import json
           import os
-          from datetime import time, datetime
+          from datetime import datetime, time, timezone
           from pathlib import Path
           from zoneinfo import ZoneInfo
 
@@ -67,30 +78,59 @@ jobs:
               schedule = payload.get("schedule", "")
               inputs = payload.get("inputs", {}) or {}
 
-          now = datetime.now(ZoneInfo("Asia/Seoul"))
-          is_weekday = now.weekday() < 5
-          krx_buffered = is_weekday and time(8, 0) <= now.time() <= time(16, 30)
+          now_utc = datetime.now(timezone.utc)
+          now_kst = now_utc.astimezone(ZoneInfo("Asia/Seoul"))
+          now_ny = now_utc.astimezone(ZoneInfo("America/New_York"))
 
           should_run = True
           reason = "manual"
-          hours = "6"
+          hours = inputs.get("hours") or "6"
           briefing_kind = inputs.get("briefing_kind") or "regular"
+
+          def in_window(dt, start_h, start_m, end_h, end_m):
+              current = dt.hour * 60 + dt.minute
+              start = start_h * 60 + start_m
+              end = end_h * 60 + end_m
+              return start <= current <= end
 
           if event_name == "schedule":
               should_run = False
-              reason = "scheduled_runs_disabled"
+              reason = "scheduled_checkpoint_not_matched"
+
+              if now_kst.weekday() < 5 and in_window(now_kst, 8, 20, 8, 55):
+                  should_run = True
+                  reason = "kr_premarket"
+                  hours = "12"
+                  briefing_kind = "kr_premarket"
+              elif now_kst.weekday() < 5 and in_window(now_kst, 15, 35, 16, 10):
+                  should_run = True
+                  reason = "kr_aftermarket"
+                  hours = "7"
+                  briefing_kind = "kr_aftermarket"
+              elif now_ny.weekday() < 5 and in_window(now_ny, 3, 45, 4, 15):
+                  should_run = True
+                  reason = "us_premarket_before"
+                  hours = "8"
+                  briefing_kind = "us_premarket_before"
+              elif now_ny.weekday() < 5 and in_window(now_ny, 9, 15, 9, 45):
+                  should_run = True
+                  reason = "us_premarket_after"
+                  hours = "6"
+                  briefing_kind = "us_premarket_after"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"should_run={str(should_run).lower()}\n")
               out.write(f"reason={reason}\n")
               out.write(f"hours={hours}\n")
               out.write(f"briefing_kind={briefing_kind}\n")
-              out.write(f"kst_now={now:%Y-%m-%d %H:%M:%S KST}\n")
+              out.write(f"kst_now={now_kst:%Y-%m-%d %H:%M:%S KST}\n")
+              out.write(f"ny_now={now_ny:%Y-%m-%d %H:%M:%S %Z}\n")
               out.write(f"schedule={schedule}\n")
 
-          print(f"KST now: {now:%Y-%m-%d %H:%M:%S}")
+          print(f"KST now: {now_kst:%Y-%m-%d %H:%M:%S KST}")
+          print(f"NY now: {now_ny:%Y-%m-%d %H:%M:%S %Z}")
           print(f"event={event_name} schedule={schedule}")
-          print(f"krx_buffered={krx_buffered} should_run={should_run} reason={reason} hours={hours} briefing_kind={briefing_kind}")
+          print(f"should_run={should_run} reason={reason} hours={hours} briefing_kind={briefing_kind}")
           PY
 
       - name: Set up Python
@@ -151,7 +191,7 @@ jobs:
           BRIEFING_KIND: ${{ steps.cadence.outputs.briefing_kind }}
         run: |
           mkdir -p data reports
-          HOURS="${{ github.event.inputs.hours || steps.cadence.outputs.hours || '6' }}"
+          HOURS="${{ steps.cadence.outputs.hours || '6' }}"
           LIMIT="${{ github.event.inputs.limit || '15' }}"
           python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT" --send
 
