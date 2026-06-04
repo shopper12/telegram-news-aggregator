@@ -20,9 +20,7 @@ MAX_REPORT_CHARS = 2300
 MAX_DISPLAY_NEWS = 5
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 
-BAD_DISPLAY_TICKERS = {
-    "IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX",
-}
+BAD_DISPLAY_TICKERS = {"IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX"}
 LOW_VALUE_DISPLAY_WORDS = LOW_VALUE_WORDS + [
     "아직 상장안한", "상장안한", "상장 안 한", "etf도 가능합니다", "도 가능합니다",
     "미리보기가 되지 않아", "다시 올립니다", "아까 올린", "무료방", "추천방", "리딩방",
@@ -36,9 +34,7 @@ CONFIRMATION_WORDS = [
     "가이던스", "배당", "자사주", "증자", "품목허가", "임상", "fda",
 ]
 IMAGE_HINT_WORDS = ["[이미지뉴스]", "[이미지OCR]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
-VAGUE_TITLE_PATTERNS = [
-    "블룸버그에 따르면", "로이터에 따르면", "외신에 따르면", "속보", "단독", "긴급", "뉴스", "업데이트",
-]
+VAGUE_TITLE_PATTERNS = ["블룸버그에 따르면", "로이터에 따르면", "외신에 따르면", "속보", "단독", "긴급", "뉴스", "업데이트"]
 PRICE_REACTION_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉"]
 ENTRY_ALLOWED_TYPES = {"공시/확정", "이벤트", "실적"}
 ENTRY_LABELS = {"관망", "눌림대기", "분할진입 후보"}
@@ -146,7 +142,6 @@ def _is_display_noise(cluster) -> bool:
     no_symbols = not symbols
     image_news = _is_image_news(cluster)
     macro_or_confirmed = _has_macro_or_confirmed_content(cluster)
-
     if _has_any(text, LOW_VALUE_DISPLAY_WORDS) and not (image_news or macro_or_confirmed or symbols):
         return True
     if len(title_clean) < 8 and not (image_news or macro_or_confirmed or symbols):
@@ -182,12 +177,7 @@ def _market_line(market_context: dict | None, overview: str) -> str:
     if not market_context:
         return f"시장 데이터 미확인. 보조지표: {overview}"
     parts = []
-    for key, label in [
-        ("kospi_change_pct", "KOSPI"),
-        ("kosdaq_change_pct", "KOSDAQ"),
-        ("sp500_change_pct", "S&P500"),
-        ("nasdaq_change_pct", "Nasdaq"),
-    ]:
+    for key, label in [("kospi_change_pct", "KOSPI"), ("kosdaq_change_pct", "KOSDAQ"), ("sp500_change_pct", "S&P500"), ("nasdaq_change_pct", "Nasdaq")]:
         val = market_context.get(key)
         if isinstance(val, (int, float)):
             parts.append(f"{label} {val:+.2f}%")
@@ -286,13 +276,7 @@ def _gemini_report(*, now, kind, hours, selected, stock_count, blocked, rule, ov
         "market_overview": overview,
         "market_context": market_context,
         "source_count": source_count,
-        "quality": {
-            "stock_candidate_count": stock_count,
-            "excluded_count": blocked,
-            "pre_gate_issue_count": pre_gate_count,
-            "selected_issue_count": len(selected),
-            "rule": rule,
-        },
+        "quality": {"stock_candidate_count": stock_count, "excluded_count": blocked, "pre_gate_issue_count": pre_gate_count, "selected_issue_count": len(selected), "rule": rule},
         "issues": _issue_payload(selected[:MAX_DISPLAY_NEWS]),
     }
     prompt = (
@@ -306,27 +290,17 @@ def _gemini_report(*, now, kind, hours, selected, stock_count, blocked, rule, ov
         "- 진입고려는 반드시 [관망 | 눌림대기 | 분할진입 후보] 중 하나만 사용한다.\n"
         "- market_context가 null이면 시황 1줄에 시장 데이터 미확인이라고 쓴다.\n\n"
         "[출력 형식]\n"
-        "📊 [{시장}] {BRIEFING_KIND별 제목}\n"
-        "━━━━━━━━━━━━━━\n"
-        "{시간} KST | 최근 {n}시간 | 이슈 {n}개\n"
-        "시황 1줄: {지수 방향 + 주요 섹터 흐름. 시장 데이터 없으면 시장 데이터 미확인}\n\n"
-        "📌 핵심 이슈\n"
-        "1) [{score}/{grade}] {이슈 제목 - 60자 이내}\n"
-        "  • 요지: 사실 기반 1문장\n"
-        "  • 섹터영향: 1문장\n"
-        "  • 진입고려: [관망 | 눌림대기 | 분할진입 후보] 중 1개 + 이유 1문장\n"
-        "  • 관련: {종목명(티커)} 또는 직접 언급 없음\n"
-        "  • 주의: 최대 리스크 1문장\n\n"
+        "📊 [{시장}] {BRIEFING_KIND별 제목}\n━━━━━━━━━━━━━━\n{시간} KST | 최근 {n}시간 | 이슈 {n}개\n"
+        "시황 1줄: {지수 방향 + 주요 섹터 흐름. 시장 데이터 없으면 시장 데이터 미확인}\n\n📌 핵심 이슈\n"
+        "1) [{score}/{grade}] {이슈 제목 - 60자 이내}\n  • 요지: 사실 기반 1문장\n  • 섹터영향: 1문장\n"
+        "  • 진입고려: [관망 | 눌림대기 | 분할진입 후보] 중 1개 + 이유 1문장\n  • 관련: {종목명(티커)} 또는 직접 언급 없음\n  • 주의: 최대 리스크 1문장\n\n"
         "⚡ 관심 섹터 순위: {섹터1} > {섹터2} > {섹터3}\n"
         f"검증: Gemini({model}) · 로컬사후감사 · 소스{{n}}개\n\n"
         "반드시 JSON 객체만 반환한다. 키는 report, audit 두 개다. audit은 {pass:boolean, score:number, reason:string}.\n"
         "전체 report는 2100자 이하.\n"
         f"입력 JSON:\n{json.dumps(payload, ensure_ascii=False)}"
     )
-    body = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.05, "maxOutputTokens": 1100, "responseMimeType": "application/json"},
-    }
+    body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"temperature": 0.05, "maxOutputTokens": 1100, "responseMimeType": "application/json"}}
     try:
         response = requests.post(url, headers={"x-goog-api-key": api_key, "Content-Type": "application/json"}, json=body, timeout=25)
     except Exception as exc:
@@ -369,18 +343,9 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
     display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
     if not display and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
         return ""
-    lines = [
-        html.escape(_header_for_kind(kind), quote=False),
-        "━━━━━━━━━━━━━━",
-        html.escape(f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 이슈 {len(display)}개", quote=False),
-        html.escape(f"시황 1줄: {_market_line(market_context, overview)}", quote=False),
-        "",
-    ]
+    lines = [html.escape(_header_for_kind(kind), quote=False), "━━━━━━━━━━━━━━", html.escape(f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 이슈 {len(display)}개", quote=False), html.escape(f"시황 1줄: {_market_line(market_context, overview)}", quote=False), ""]
     if not display:
-        lines.extend([
-            "🔇 이 시간대 주요 이슈 없음",
-            html.escape(f"원문 {source_count}건 검토", quote=False),
-        ])
+        lines.extend(["🔇 이 시간대 주요 이슈 없음", html.escape(f"원문 {source_count}건 검토", quote=False)])
     else:
         lines.append("📌 핵심 이슈")
         for idx, cluster in enumerate(display, 1):
@@ -390,7 +355,7 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
             related = ", ".join(f"{sym.name}({sym.ticker})" for sym in symbols) if symbols else "직접 언급 없음"
             sectors = ", ".join(cluster.sectors()[:3]) or "섹터 불명확"
             lines.append(html.escape(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {title}", quote=False))
-            lines.append(html.escape(f"  • 요지: {s.base.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}", quote=False))
+            lines.append(html.escape(f"  • 요지: {s.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}", quote=False))
             lines.append(html.escape(f"  • 섹터영향: {sectors} 관련 수급 확인 필요.", quote=False))
             lines.append(html.escape(f"  • 진입고려: {_entry_consideration(cluster)}", quote=False))
             lines.append(html.escape(f"  • 관련: {related}", quote=False))
@@ -408,33 +373,8 @@ def build_markdown_report(summaries: list[SummaryItem], hours: int, timezone_nam
     selected, stock_count, blocked, rule, pre_gate_count = s._select_strict(summaries)
     overview = s.base._overview()
     market_context = get_market_context()
-    gemini, reason = _gemini_report(
-        now=now,
-        kind=kind,
-        hours=hours,
-        selected=selected,
-        stock_count=stock_count,
-        blocked=blocked,
-        rule=rule,
-        overview=overview,
-        source_count=len(summaries),
-        pre_gate_count=pre_gate_count,
-        market_context=market_context,
-    )
+    gemini, reason = _gemini_report(now=now, kind=kind, hours=hours, selected=selected, stock_count=stock_count, blocked=blocked, rule=rule, overview=overview, source_count=len(summaries), pre_gate_count=pre_gate_count, market_context=market_context)
     if gemini:
         return gemini
-    local = _local_insight_report(
-        now=now,
-        kind=kind,
-        hours=hours,
-        selected=selected,
-        stock_count=stock_count,
-        blocked=blocked,
-        rule=rule,
-        overview=overview,
-        source_count=len(summaries),
-        pre_gate_count=pre_gate_count,
-        market_context=market_context,
-        engine="로컬인사이트엔진",
-    )
+    local = _local_insight_report(now=now, kind=kind, hours=hours, selected=selected, stock_count=stock_count, blocked=blocked, rule=rule, overview=overview, source_count=len(summaries), pre_gate_count=pre_gate_count, market_context=market_context, engine="로컬인사이트엔진")
     return _append_diag(local, reason)
