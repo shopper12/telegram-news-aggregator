@@ -151,13 +151,28 @@ jobs:
         run: |
           python - <<'PY'
           import os, sys
+          from telethon.sessions import StringSession
+
+          def clean_secret(value):
+              if not value:
+                  return ""
+              return "".join(str(value).strip().strip('"\'').split())
 
           required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION", "KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
-          missing = [name for name in required if not os.getenv(name)]
+          missing = [name for name in required if not clean_secret(os.getenv(name))]
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
               print("TELEGRAM_STRING_SESSION is required for non-interactive GitHub Actions runs. TELEGRAM_PHONE is not supported here because it needs a login code.")
               sys.exit(1)
+
+          try:
+              StringSession(clean_secret(os.getenv("TELEGRAM_STRING_SESSION")))
+          except Exception as exc:
+              print("Invalid TELEGRAM_STRING_SESSION secret.")
+              print("Reason: " + type(exc).__name__ + ": " + str(exc))
+              print("Fix: regenerate it with `python scripts/make_telegram_string_session.py`, then paste the single generated string into the GitHub secret without quotes, spaces, or extra lines.")
+              sys.exit(1)
+
           if os.getenv("GEMINI_API_KEY"):
               print("Gemini API key is present. Gemini synthesis will be attempted.")
               print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
