@@ -53,13 +53,27 @@ class ExtractedSignal:
     importance_score: int
 
 
+def _merge_keyword_maps(*maps: dict[str, list[str]]) -> dict[str, list[str]]:
+    merged: dict[str, list[str]] = {}
+    for keyword_map in maps:
+        for sector, words in keyword_map.items():
+            bucket = merged.setdefault(sector, [])
+            seen = {word.lower() for word in bucket}
+            for word in words:
+                key = word.lower()
+                if key not in seen:
+                    bucket.append(word)
+                    seen.add(key)
+    return merged
+
+
 def _keyword_maps_for_market(market_type: str) -> dict[str, list[str]]:
     normalized = (market_type or "KR").upper()
     if normalized == "CRYPTO":
         return CRYPTO_KEYWORDS
     if normalized == "US":
         return US_STOCK_KEYWORDS
-    return {**KOREAN_STOCK_KEYWORDS, **US_STOCK_KEYWORDS}
+    return _merge_keyword_maps(KOREAN_STOCK_KEYWORDS, US_STOCK_KEYWORDS)
 
 
 def market_type_from_categories(categories: list[str] | tuple[str, ...] | set[str] | None) -> str:
