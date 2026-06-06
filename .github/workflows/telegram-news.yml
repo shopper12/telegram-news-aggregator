@@ -52,6 +52,9 @@ jobs:
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: gemini-flash-latest
+      NOTIFIER: ${{ secrets.NOTIFIER || 'discord' }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      DISCORD_WEBHOOK_USERNAME: ${{ secrets.DISCORD_WEBHOOK_USERNAME || '뉴스봇' }}
       KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
       KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
       KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
@@ -163,11 +166,17 @@ jobs:
                   return ""
               return "".join(str(value).strip().strip('"\'').split())
 
-          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION", "KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
+          notifier = (os.getenv("NOTIFIER") or "discord").strip().lower()
+          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION"]
+          if notifier in {"kakao", "both"}:
+              required += ["KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
+          if notifier in {"discord", "both"}:
+              required += ["DISCORD_WEBHOOK_URL"]
           missing = [name for name in required if not clean_secret(os.getenv(name))]
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
               print("TELEGRAM_STRING_SESSION is required for non-interactive GitHub Actions runs. TELEGRAM_PHONE is not supported here because it needs a login code.")
+              print("NOTIFIER must be kakao, discord, or both. Current NOTIFIER=" + notifier)
               sys.exit(1)
 
           try:
@@ -183,15 +192,18 @@ jobs:
               print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
           else:
               print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
-          print("Required collection and Kakao secrets are present.")
+          print("Notifier: " + notifier)
+          print("Required collection and notification secrets are present.")
           PY
 
-      - name: Show Kakao send mode
+      - name: Show notification mode
         if: steps.cadence.outputs.should_run == 'true'
         run: |
           python - <<'PY'
           import os
-          print("Send channel: KakaoTalk memo")
+          notifier = (os.getenv("NOTIFIER") or "discord").strip().lower()
+          print("Notifier: " + notifier)
+          print("Discord webhook: " + ("present" if os.getenv("DISCORD_WEBHOOK_URL") else "missing"))
           print("Kakao REST API key: " + ("present" if os.getenv("KAKAO_REST_API_KEY") else "missing"))
           print("Kakao refresh token: " + ("present" if os.getenv("KAKAO_REFRESH_TOKEN") else "missing"))
           PY
