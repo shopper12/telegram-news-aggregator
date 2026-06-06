@@ -5,4 +5,6 @@ requests>=2.32.3
 rapidfuzz>=3.9.6
 tzdata>=2025.2
 pykrx>=1.0.48
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
 pytest>=8.3.2
