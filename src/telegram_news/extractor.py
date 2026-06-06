@@ -12,20 +12,18 @@ KOREAN_STOCK_KEYWORDS = {
     "전력기기": ["전력기기", "변압기", "전선", "송전", "배전", "hvdc", "전력망"],
     "로봇": ["로봇", "휴머노이드", "피지컬 ai", "감속기", "액추에이터"],
     "2차전지": ["2차전지", "배터리", "양극재", "음극재", "전해액", "리튬"],
-    "방산": ["방산", "무기", "수출계약", "k9", "천무", "드론"],
     "조선": ["조선", "lng선", "선박", "수주잔고", "해양플랜트"],
-    "바이오": ["임상", "fda 승인", "허가", "신약", "임상3상", "바이오시밀러", "셀트리온", "삼성바이오"],
-    "양자컴퓨터": ["양자컴", "양자암호", "ibm q", "구글 퀀텀", "양자컴퓨터"],
-    "방산_해외": ["nato", "우크라이나 수출", "방산 수출계약", "록히드", "레이시온"],
+    "바이오": ["임상", "fda", "신약", "임상3상", "바이오시밀러", "셀트리온", "삼성바이오", "허가", "cda", "nda", "anda", "품목허가"],
+    "양자": ["양자컴", "양자암호", "ibm q", "구글 퀀텀", "양자컴퓨터", "퀀텀"],
+    "미국빅테크": ["엔비디아", "마이크로소프트", "애플", "알파벳", "메타", "아마존", "테슬라", "nvda", "msft", "aapl", "googl", "amzn", "tsla"],
 }
 
 US_STOCK_KEYWORDS = {
     "미국빅테크": ["엔비디아", "마이크로소프트", "애플", "알파벳", "메타", "아마존", "테슬라", "nvda", "msft", "aapl", "googl", "meta", "amzn", "tsla"],
     "반도체": ["nvidia", "nvda", "amd", "broadcom", "avgo", "micron", "mu", "semiconductor", "gpu", "hbm"],
     "AI인프라": ["ai", "artificial intelligence", "data center", "datacenter", "gpu", "server", "oracle", "orcl"],
-    "방산_해외": ["nato", "ukraine", "lockheed", "raytheon", "rtx", "defense contract"],
-    "양자컴퓨터": ["quantum", "quantum computing", "ibm q", "google quantum", "ionq", "rigetti"],
-    "바이오": ["fda", "clinical trial", "phase 3", "drug approval", "biotech", "eli lilly", "novo nordisk"],
+    "양자": ["quantum", "quantum computing", "ibm q", "google quantum", "ionq", "rigetti"],
+    "바이오": ["fda", "clinical trial", "phase 3", "drug approval", "biotech", "eli lilly", "novo nordisk", "nda", "anda"],
 }
 
 CRYPTO_KEYWORDS = {
@@ -40,7 +38,9 @@ CRYPTO_KEYWORDS = {
     "rwa": ["rwa", "토큰화", "real world asset", "ondo"],
 }
 
-ACTION_WORDS = ["단독", "속보", "수주", "계약", "승인", "상장", "공급", "납품"]
+BREAKING_WORDS = ["단독", "속보"]
+CONTRACT_WORDS = ["수주", "계약"]
+ACTION_WORDS = ["승인", "상장", "공급", "납품"]
 TICKER_RE = re.compile(r"\b[A-Z]{2,10}\b")
 BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ"}
 
@@ -91,8 +91,14 @@ def extract_signals(text: str, repeat_count: int = 1, market_type: str = "KR") -
     score += repeat_count * 2
     score += len(sectors) * 2
     score += min(len(tickers), 5)
-    if any(w.lower() in lower for w in ACTION_WORDS):
+    if any(w.lower() in lower for w in BREAKING_WORDS):
         score += 8
+    if any(w.lower() in lower for w in CONTRACT_WORDS):
+        score += 7
+    if any(w.lower() in lower for w in ACTION_WORDS):
+        score += 5
+    if len(sectors) >= 3:
+        score -= 2
     if repeat_count >= 3:
         score -= 3
 
