@@ -31,6 +31,22 @@ def _report_text() -> str:
     return str(data.get("report") or "최신 뉴스 리포트가 없습니다.")
 
 
+@app.get("/")
+def root() -> dict:
+    return {
+        "ok": True,
+        "service": "telegram_news_bot_api",
+        "endpoints": [
+            "/health",
+            "/api/news",
+            "/api/news.txt",
+            "/api/refresh",
+            "/api/kakao-skill",
+            "/docs",
+        ],
+    }
+
+
 @app.get("/health")
 def health() -> dict:
     return {"ok": True, "service": "telegram_news_bot_api"}
