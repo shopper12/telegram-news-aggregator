@@ -3,11 +3,8 @@
  *
  * Stable mode:
  * - Reply with the latest news report when a user types "뉴스".
- * - No Java Thread scheduler. Some MessengerBotR/Rhino builds fail to compile Java Thread code.
- *
- * Auto-send:
- * - This file exposes checkAutoSendForRoom(room, replier).
- * - If your bot app has its own scheduler/timer feature, call that function there.
+ * - Supports both legacy response(room,msg,...,replier) and ResponseParameters-style response(params).
+ * - Fetches /api/news-message JSON and sends only the string message field.
  */
 
 var CONFIG = {
@@ -43,7 +40,7 @@ function isNewsCommand(msg) {
 }
 
 function addHeaders(conn) {
-  conn.header("Accept", "text/plain");
+  conn.header("Accept", "application/json");
   if (CONFIG.API_KEY && trimString(CONFIG.API_KEY).length > 0) {
     conn.header("x-api-key", trimString(CONFIG.API_KEY));
   }
@@ -60,7 +57,7 @@ function httpGetText(url) {
   var status = response.statusCode();
   var body = response.body();
   if (status < 200 || status >= 300) {
-    throw new Error("HTTP " + status + ": " + body.substring(0, 300));
+    throw new Error("HTTP " + status);
   }
   return body;
 }
@@ -75,11 +72,28 @@ function httpPostJson(url, jsonText) {
   addHeaders(conn);
   var response = conn.requestBody(jsonText).execute();
   var status = response.statusCode();
-  var body = response.body();
   if (status < 200 || status >= 300) {
-    throw new Error("HTTP " + status + ": " + body.substring(0, 300));
+    throw new Error("HTTP " + status);
   }
-  return body;
+  return response.body();
+}
+
+function parseJsonOrNull(text) {
+  try {
+    return JSON.parse(String(text || ""));
+  } catch (e) {
+    return null;
+  }
+}
+
+function extractMessageFromServerBody(body) {
+  var data = parseJsonOrNull(body);
+  if (!data || typeof data.message !== "string") {
+    return "뉴스 없음";
+  }
+  var message = trimString(data.message);
+  if (!message) return "뉴스 없음";
+  return message;
 }
 
 function refreshLatestReport() {
@@ -89,15 +103,16 @@ function refreshLatestReport() {
   );
 }
 
-function fetchLatestReportText() {
-  return httpGetText(CONFIG.API_BASE_URL + "/api/news.txt");
+function fetchLatestReportMessage() {
+  var body = httpGetText(CONFIG.API_BASE_URL + "/api/news-message");
+  return extractMessageFromServerBody(body);
 }
 
 function splitText(text, chunkSize) {
   var chunks = [];
   var remaining = trimString(text);
   var cut;
-  if (!remaining) return ["뉴스 리포트가 비어 있습니다."];
+  if (!remaining) return ["뉴스 없음"];
   while (remaining.length > chunkSize) {
     cut = remaining.lastIndexOf("\n", chunkSize);
     if (cut < Math.floor(chunkSize * 0.5)) cut = chunkSize;
@@ -108,13 +123,24 @@ function splitText(text, chunkSize) {
   return chunks;
 }
 
-function replyLong(replier, text) {
+function replyString(room, replier, text) {
+  var msg = String(text || "뉴스 없음");
+  if (replier && replier.reply) {
+    replier.reply(msg);
+    return;
+  }
+  if (typeof Api !== "undefined" && Api.replyRoom) {
+    Api.replyRoom(String(room), msg);
+  }
+}
+
+function replyLong(room, replier, text) {
   var chunks = splitText(text, CONFIG.CHUNK_SIZE);
   var i;
   var prefix;
   for (i = 0; i < chunks.length; i++) {
     prefix = chunks.length > 1 ? "(" + (i + 1) + "/" + chunks.length + ")\n" : "";
-    replier.reply(prefix + chunks[i]);
+    replyString(room, replier, prefix + chunks[i]);
     if (i < chunks.length - 1) java.lang.Thread.sleep(700);
   }
 }
@@ -127,11 +153,12 @@ function sendNews(room, replier, reason) {
     if (CONFIG.AUTO_REFRESH_BEFORE_SEND) {
       refreshLatestReport();
     }
-    report = fetchLatestReportText();
+    report = fetchLatestReportMessage();
     header = reason ? "[" + reason + "]\n" : "";
-    replyLong(replier, header + report);
+    replyLong(room, replier, header + report);
   } catch (e) {
-    replier.reply("뉴스 리포트 조회 실패: " + e.message);
+    // Do not send debug objects/server body to the chat room.
+    replyString(room, replier, "뉴스 없음");
   }
 }
 
@@ -178,7 +205,29 @@ function checkAutoSendForRoom(room, replier) {
   }
 }
 
+function getParamValue(params, names, fallback) {
+  var i;
+  var name;
+  if (!params) return fallback;
+  for (i = 0; i < names.length; i++) {
+    name = names[i];
+    try {
+      if (params[name] !== undefined && params[name] !== null) return params[name];
+    } catch (e1) {}
+    try {
+      if (typeof params[name] === "function") return params[name]();
+    } catch (e2) {}
+    try {
+      var getter = "get" + name.charAt(0).toUpperCase() + name.slice(1);
+      if (typeof params[getter] === "function") return params[getter]();
+    } catch (e3) {}
+  }
+  return fallback;
+}
+
 function handleMessage(room, msg, replier) {
+  room = String(room || "");
+  msg = String(msg || "");
   if (!isTargetRoom(room)) return;
 
   if (isNewsCommand(msg)) {
@@ -186,11 +235,25 @@ function handleMessage(room, msg, replier) {
     return;
   }
 
-  // This is not a real timer. It only checks schedule when any message arrives.
-  // For exact auto-send, use the bot app's own scheduler/timer to call checkAutoSendForRoom(room, replier).
   checkAutoSendForRoom(room, replier);
 }
 
-function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
-  handleMessage(room, msg, replier);
+function response(roomOrParams, msg, sender, isGroupChat, replier, imageDB, packageName) {
+  var params;
+  var room;
+  var text;
+  var replyObj;
+
+  // Newer MessengerBotR-style: response(params)
+  if (arguments.length === 1 && roomOrParams && typeof roomOrParams === "object") {
+    params = roomOrParams;
+    room = getParamValue(params, ["room", "roomName", "chatName"], "");
+    text = getParamValue(params, ["msg", "message", "content"], "");
+    replyObj = getParamValue(params, ["replier", "reply", "sessionCacheReplier"], params);
+    handleMessage(room, text, replyObj);
+    return;
+  }
+
+  // Legacy MessengerBotR-style: response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
+  handleMessage(roomOrParams, msg, replier);
 }
