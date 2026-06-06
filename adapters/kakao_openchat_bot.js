@@ -1,13 +1,13 @@
 /*
  * Kakao Open Chat adapter script for MessengerBotR / Android message-bot style apps.
  *
- * Features:
+ * Stable mode:
  * - Reply with the latest news report when a user types "뉴스".
- * - Auto-send the latest news report at configured KST times, if the bot app allows background JS threads.
+ * - No Java Thread scheduler. Some MessengerBotR/Rhino builds fail to compile Java Thread code.
  *
- * Compatibility:
- * - ES5-style JavaScript. Avoids const/let/arrow syntax for older Rhino-like JS engines.
- * - Common MessengerBotR wrapper: response(room, msg, sender, isGroupChat, replier, imageDB, packageName).
+ * Auto-send:
+ * - This file exposes checkAutoSendForRoom(room, replier).
+ * - If your bot app has its own scheduler/timer feature, call that function there.
  */
 
 var CONFIG = {
@@ -17,8 +17,7 @@ var CONFIG = {
   TARGET_ROOMS: [], // Empty = all rooms. Example: ["내 오픈채팅방 이름"]
   CHUNK_SIZE: 900,
   REQUEST_TIMEOUT_MS: 30000,
-  AUTO_SEND_ENABLED: true,
-  AUTO_REFRESH_BEFORE_SEND: false, // true이면 /api/refresh 먼저 호출. Render free plan에서는 느릴 수 있음.
+  AUTO_REFRESH_BEFORE_SEND: false,
   SCHEDULES_KST: [
     { time: "08:35", label: "한국 장전" },
     { time: "15:50", label: "한국 장마감" },
@@ -28,8 +27,6 @@ var CONFIG = {
 };
 
 var lastAutoSentKeys = {};
-var latestReplierByRoom = {};
-var schedulerStarted = false;
 
 function isTargetRoom(room) {
   if (!CONFIG.TARGET_ROOMS || CONFIG.TARGET_ROOMS.length === 0) return true;
@@ -138,15 +135,6 @@ function sendNews(room, replier, reason) {
   }
 }
 
-function handleMessage(room, msg, replier) {
-  if (!isTargetRoom(room)) return;
-  latestReplierByRoom[String(room)] = replier;
-  startSchedulerIfNeeded();
-  if (isNewsCommand(msg)) {
-    sendNews(room, replier, "수동 요청");
-  }
-}
-
 function getKstNowParts() {
   var tz = java.util.TimeZone.getTimeZone("Asia/Seoul");
   var cal = java.util.Calendar.getInstance(tz);
@@ -171,62 +159,38 @@ function isWeekdayKst(dayOfWeek) {
   return dayOfWeek >= 2 && dayOfWeek <= 6;
 }
 
-function eachLatestRoom(callback) {
-  var room;
-  for (room in latestReplierByRoom) {
-    if (latestReplierByRoom.hasOwnProperty(room)) {
-      callback(room, latestReplierByRoom[room]);
-    }
-  }
-}
-
-function checkAutoSend() {
+function checkAutoSendForRoom(room, replier) {
   var now;
   var i;
   var item;
   var key;
-  if (!CONFIG.AUTO_SEND_ENABLED) return;
+  if (!isTargetRoom(room)) return;
   now = getKstNowParts();
   if (!isWeekdayKst(now.dayOfWeek)) return;
 
   for (i = 0; i < CONFIG.SCHEDULES_KST.length; i++) {
     item = CONFIG.SCHEDULES_KST[i];
     if (now.time !== item.time) continue;
-    key = now.dateKey + "_" + item.time + "_" + item.label;
+    key = now.dateKey + "_" + String(room) + "_" + item.time + "_" + item.label;
     if (lastAutoSentKeys[key]) continue;
     lastAutoSentKeys[key] = true;
-
-    eachLatestRoom(function (room, replier) {
-      if (replier) sendNews(room, replier, "자동발송: " + item.label);
-    });
+    sendNews(room, replier, "자동발송: " + item.label);
   }
 }
 
-function startSchedulerIfNeeded() {
-  if (schedulerStarted) return;
-  schedulerStarted = true;
-  try {
-    var thread = new java.lang.Thread(function () {
-      while (true) {
-        try {
-          checkAutoSend();
-        } catch (innerError) {
-          // Ignore scheduler loop errors to keep the bot alive.
-        }
-        java.lang.Thread.sleep(30000);
-      }
-    });
-    thread.start();
-  } catch (schedulerError) {
-    schedulerStarted = false;
-    // Some bot apps block background threads. Command replies still work.
-    // If this happens, set AUTO_SEND_ENABLED to false and use the bot app's own scheduler if available.
+function handleMessage(room, msg, replier) {
+  if (!isTargetRoom(room)) return;
+
+  if (isNewsCommand(msg)) {
+    sendNews(room, replier, "수동 요청");
+    return;
   }
+
+  // This is not a real timer. It only checks schedule when any message arrives.
+  // For exact auto-send, use the bot app's own scheduler/timer to call checkAutoSendForRoom(room, replier).
+  checkAutoSendForRoom(room, replier);
 }
 
-/*
- * Common wrapper for MessengerBotR-style apps.
- */
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   handleMessage(room, msg, replier);
 }
