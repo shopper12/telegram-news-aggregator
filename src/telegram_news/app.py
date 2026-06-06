@@ -14,6 +14,7 @@ from .normalizer import deduplicate_rows
 from .summarizer import gemini_classify_if_available
 from .strict_report_v2 import build_markdown_report
 from .kakao_notifier import send_kakao_memo
+from .discord_notifier import send_discord_webhook
 from .report_cache import save_latest_report
 
 
@@ -112,7 +113,7 @@ def _send_report_to_kakao(report: str) -> None:
     web_url = os.getenv("KAKAO_WEB_URL") or DEFAULT_KAKAO_WEB_URL
 
     if not rest_api_key or not refresh_token:
-        raise RuntimeError("KAKAO_REST_API_KEY and KAKAO_REFRESH_TOKEN are required for --send.")
+        raise RuntimeError("KAKAO_REST_API_KEY and KAKAO_REFRESH_TOKEN are required for Kakao notification.")
 
     rotated_refresh_token = send_kakao_memo(
         rest_api_key=rest_api_key,
@@ -125,6 +126,26 @@ def _send_report_to_kakao(report: str) -> None:
     if rotated_refresh_token:
         print("Kakao returned a rotated refresh token. Update the KAKAO_REFRESH_TOKEN GitHub secret with the new value shown below.")
         print(rotated_refresh_token)
+
+
+def _send_report_to_discord(report: str) -> None:
+    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
+    username = os.getenv("DISCORD_WEBHOOK_USERNAME") or "뉴스봇"
+    if not webhook_url:
+        raise RuntimeError("DISCORD_WEBHOOK_URL is required for Discord notification.")
+    send_discord_webhook(webhook_url=webhook_url, text=report, username=username)
+    print("Sent to Discord webhook")
+
+
+def _send_report(report: str) -> None:
+    notifier = (os.getenv("NOTIFIER") or "kakao").strip().lower()
+    if notifier not in {"kakao", "discord", "both"}:
+        raise RuntimeError("NOTIFIER must be one of: kakao, discord, both")
+
+    if notifier in {"kakao", "both"}:
+        _send_report_to_kakao(report)
+    if notifier in {"discord", "both"}:
+        _send_report_to_discord(report)
 
 
 def cmd_report(args: argparse.Namespace) -> None:
@@ -148,7 +169,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     cmd_collect(args)
     report = _make_report(hours=hours, limit=limit)
     if _is_empty_report(report):
-        print("Report skipped: empty report generated. KakaoTalk send skipped.")
+        print("Report skipped: empty report generated. Notification skipped.")
         return
 
     path = _save_report(report)
@@ -158,7 +179,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     print(f"\nSaved: {path}")
 
     if args.send:
-        _send_report_to_kakao(report)
+        _send_report(report)
 
 
 def build_parser() -> argparse.ArgumentParser:
