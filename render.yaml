@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: telegram-news-bot-api
+    env: python
+    plan: free
+    buildCommand: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
+    startCommand: PYTHONPATH=src python scripts/run_api.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHONPATH
+        value: src
+      - key: DATABASE_URL
+        value: sqlite:///data/news.db
+      - key: CHANNEL_CONFIG
+        value: config/channels.yaml
+      - key: TIMEZONE
+        value: Asia/Seoul
+      - key: LATEST_REPORT_URL
+        value: https://raw.githubusercontent.com/shopper12/telegram-news-aggregator/main/reports/latest_report.json
+      - key: NEWS_BOT_API_KEY
+        sync: false
+      - key: TELEGRAM_API_ID
+        sync: false
+      - key: TELEGRAM_API_HASH
+        sync: false
+      - key: TELEGRAM_STRING_SESSION
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
