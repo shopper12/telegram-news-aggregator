@@ -110,7 +110,7 @@ def extract_signals(text: str, repeat_count: int = 1, market_type: str = "KR") -
     if any(w.lower() in lower for w in CONTRACT_WORDS):
         score += 7
     if any(w.lower() in lower for w in ACTION_WORDS):
-        score += 5
+        score += 6
     if len(sectors) >= 3:
         score -= 2
     if repeat_count >= 3:
