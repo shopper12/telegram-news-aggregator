@@ -12,7 +12,7 @@ on:
         required: false
         default: "15"
       briefing_kind:
-        description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_premarket_after"
+        description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_aftermarket"
         required: false
         default: "regular"
   schedule:
@@ -21,10 +21,10 @@ on:
     - cron: "30 23 * * 0-4"
     # KRX after close: KST Mon-Fri 15:45 = UTC Mon-Fri 06:45.
     - cron: "45 6 * * 1-5"
-    # US premarket before: NY Mon-Fri 03:55 = UTC 07:55 during US daylight saving time.
+    # US premarket: NY Mon-Fri 03:55 = UTC 07:55 during US daylight saving time.
     - cron: "55 7 * * 1-5"
-    # US premarket after / regular open check: NY Mon-Fri 09:25 = UTC 13:25 during US daylight saving time.
-    - cron: "25 13 * * 1-5"
+    # US after close: NY Mon-Fri 16:15 = UTC 20:15 during US daylight saving time.
+    - cron: "15 20 * * 1-5"
 
 # Automatic push-triggered runs remain disabled. Scheduled runs are limited to four market checkpoints.
 # US cron slots are set for daylight saving time. Recheck after the US switches back to standard time.
@@ -112,11 +112,11 @@ jobs:
                   reason = "us_premarket_before"
                   hours = "8"
                   briefing_kind = "us_premarket_before"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 9, 15, 9, 45):
+              elif now_ny.weekday() < 5 and in_window(now_ny, 16, 5, 16, 45):
                   should_run = True
-                  reason = "us_premarket_after"
-                  hours = "6"
-                  briefing_kind = "us_premarket_after"
+                  reason = "us_aftermarket"
+                  hours = "8"
+                  briefing_kind = "us_aftermarket"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"should_run={str(should_run).lower()}\n")
