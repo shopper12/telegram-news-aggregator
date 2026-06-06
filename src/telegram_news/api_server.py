@@ -26,9 +26,27 @@ def _require_api_key(x_api_key: str | None) -> None:
         raise HTTPException(status_code=401, detail="invalid_api_key")
 
 
+def _report_data() -> dict:
+    return load_latest_report()
+
+
 def _report_text() -> str:
-    data = load_latest_report()
+    data = _report_data()
     return str(data.get("report") or "최신 뉴스 리포트가 없습니다.")
+
+
+def _bot_message_payload() -> dict:
+    data = _report_data()
+    message = str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
+    return {
+        "ok": bool(data.get("ok", False)),
+        "message": message,
+        "kind": data.get("kind"),
+        "hours": data.get("hours"),
+        "source": data.get("source"),
+        "generated_at": data.get("generated_at"),
+        "fallback_reason": data.get("fallback_reason"),
+    }
 
 
 @app.get("/")
@@ -40,6 +58,7 @@ def root() -> dict:
             "/health",
             "/api/news",
             "/api/news.txt",
+            "/api/news-message",
             "/api/refresh",
             "/api/kakao-skill",
             "/docs",
@@ -55,7 +74,13 @@ def health() -> dict:
 @app.get("/api/news")
 def get_news(x_api_key: str | None = Header(default=None)) -> dict:
     _require_api_key(x_api_key)
-    return load_latest_report()
+    return _report_data()
+
+
+@app.get("/api/news-message")
+def get_news_message(x_api_key: str | None = Header(default=None)) -> dict:
+    _require_api_key(x_api_key)
+    return _bot_message_payload()
 
 
 @app.get("/api/news.txt", response_class=PlainTextResponse)
@@ -88,7 +113,7 @@ def refresh_news(req: RefreshRequest, x_api_key: str | None = Header(default=Non
                 "stderr": completed.stderr[-3000:],
             },
         )
-    return load_latest_report()
+    return _report_data()
 
 
 @app.post("/api/kakao-skill")
