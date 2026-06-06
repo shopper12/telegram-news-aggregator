@@ -14,6 +14,7 @@ from .normalizer import deduplicate_rows
 from .summarizer import gemini_classify_if_available
 from .strict_report_v2 import build_markdown_report
 from .kakao_notifier import send_kakao_memo
+from .report_cache import save_latest_report
 
 
 DEFAULT_KAKAO_WEB_URL = "https://github.com/shopper12/telegram-news-aggregator"
@@ -134,6 +135,8 @@ def cmd_report(args: argparse.Namespace) -> None:
         return
 
     path = _save_report(report)
+    kind = os.getenv("BRIEFING_KIND", "regular")
+    save_latest_report(report=report, kind=kind, hours=hours, source="cli_report")
     print(report)
     print(f"\nSaved: {path}")
 
@@ -149,6 +152,8 @@ def cmd_run(args: argparse.Namespace) -> None:
         return
 
     path = _save_report(report)
+    kind = os.getenv("BRIEFING_KIND", "regular")
+    save_latest_report(report=report, kind=kind, hours=hours, source="cli_run")
     print(report)
     print(f"\nSaved: {path}")
 
