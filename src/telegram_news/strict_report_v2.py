@@ -355,7 +355,7 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
             related = ", ".join(f"{sym.name}({sym.ticker})" for sym in symbols) if symbols else "직접 언급 없음"
             sectors = ", ".join(cluster.sectors()[:3]) or "섹터 불명확"
             lines.append(html.escape(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {title}", quote=False))
-            lines.append(html.escape(f"  • 요지: {s.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}", quote=False))
+            lines.append(html.escape(f"  • 요지: {s.base.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}", quote=False))
             lines.append(html.escape(f"  • 섹터영향: {sectors} 관련 수급 확인 필요.", quote=False))
             lines.append(html.escape(f"  • 진입고려: {_entry_consideration(cluster)}", quote=False))
             lines.append(html.escape(f"  • 관련: {related}", quote=False))
