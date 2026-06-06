@@ -16,6 +16,9 @@ from .strict_report_v2 import build_markdown_report
 from .kakao_notifier import send_kakao_memo
 
 
+DEFAULT_KAKAO_WEB_URL = "https://github.com/shopper12/telegram-news-aggregator"
+
+
 def _auto_briefing_kind() -> tuple[str, int, int]:
     """Return (briefing_kind, hours, limit) from current KST hour."""
     now_h = datetime.now(ZoneInfo("Asia/Seoul")).hour
@@ -105,7 +108,7 @@ def _send_report_to_kakao(report: str) -> None:
     rest_api_key = os.getenv("KAKAO_REST_API_KEY")
     refresh_token = os.getenv("KAKAO_REFRESH_TOKEN")
     client_secret = os.getenv("KAKAO_CLIENT_SECRET") or None
-    web_url = os.getenv("KAKAO_WEB_URL", "https://github.com/shopper12/telegram-news-aggregator")
+    web_url = os.getenv("KAKAO_WEB_URL") or DEFAULT_KAKAO_WEB_URL
 
     if not rest_api_key or not refresh_token:
         raise RuntimeError("KAKAO_REST_API_KEY and KAKAO_REFRESH_TOKEN are required for --send.")
