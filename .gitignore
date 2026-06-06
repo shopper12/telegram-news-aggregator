@@ -8,6 +8,8 @@ data/*.db
 data/*.db-shm
 data/*.db-wal
 reports/*.md
+!reports/latest_report.md
+!reports/latest_report.json
 .idea/
 .vscode/
 .DS_Store
