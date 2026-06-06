@@ -206,23 +206,21 @@ function startSchedulerIfNeeded() {
   if (schedulerStarted) return;
   schedulerStarted = true;
   try {
-    var runnable = new java.lang.Runnable({
-      run: function () {
-        while (true) {
-          try {
-            checkAutoSend();
-          } catch (e) {
-            // Ignore scheduler loop errors to keep the bot alive.
-          }
-          java.lang.Thread.sleep(30000);
+    var thread = new java.lang.Thread(function () {
+      while (true) {
+        try {
+          checkAutoSend();
+        } catch (innerError) {
+          // Ignore scheduler loop errors to keep the bot alive.
         }
+        java.lang.Thread.sleep(30000);
       }
     });
-    var thread = new java.lang.Thread(runnable);
     thread.start();
-  } catch (e) {
-    // Some bot apps block background threads. In that case command replies still work,
-    // and auto-send must be configured in the bot app's own scheduler if available.
+  } catch (schedulerError) {
+    schedulerStarted = false;
+    // Some bot apps block background threads. Command replies still work.
+    // If this happens, set AUTO_SEND_ENABLED to false and use the bot app's own scheduler if available.
   }
 }
 
