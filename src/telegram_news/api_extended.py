@@ -6,7 +6,7 @@ from fastapi import Header, HTTPException
 from pydantic import BaseModel
 
 from .api_server import app, _report_data, _report_text
-from .bot_services_v2 import handle_command
+from .bot_services_v3 import handle_command
 
 
 class BotCommandRequest(BaseModel):
