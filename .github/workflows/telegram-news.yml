@@ -19,15 +19,17 @@ on:
     # GitHub Actions cron uses UTC.
     # KRX premarket: KST Mon-Fri 08:30 = UTC Sun-Thu 23:30.
     - cron: "30 23 * * 0-4"
-    # KRX after close: KST Mon-Fri 15:45 = UTC Mon-Fri 06:45.
-    - cron: "45 6 * * 1-5"
-    # US premarket: NY Mon-Fri 03:55 = UTC 07:55 during US daylight saving time.
-    - cron: "55 7 * * 1-5"
-    # US after close: NY Mon-Fri 16:15 = UTC 20:15 during US daylight saving time.
-    - cron: "15 20 * * 1-5"
+    # KRX after close: KST Mon-Fri 15:40 = UTC Mon-Fri 06:40.
+    - cron: "40 6 * * 1-5"
+    # US premarket-before: NY Mon-Fri 03:30. EDT=UTC 07:30, EST=UTC 08:30.
+    - cron: "30 7 * * 1-5"
+    - cron: "30 8 * * 1-5"
+    # US after close: NY Mon-Fri 16:10. EDT=UTC 20:10, EST=UTC 21:10.
+    - cron: "10 20 * * 1-5"
+    - cron: "10 21 * * 1-5"
 
-# Automatic push-triggered runs remain disabled. Scheduled runs are limited to four market checkpoints.
-# US cron slots are set for daylight saving time. Recheck after the US switches back to standard time.
+# Automatic push-triggered runs remain disabled. Scheduled runs are market checkpoints only.
+# US cron slots include both daylight-saving and standard-time UTC equivalents; the runtime gate prevents duplicate sends.
 
 concurrency:
   group: telegram-news-briefing
@@ -72,7 +74,7 @@ jobs:
           python - <<'PY'
           import json
           import os
-          from datetime import datetime, time, timezone
+          from datetime import datetime, timezone
           from pathlib import Path
           from zoneinfo import ZoneInfo
 
@@ -105,22 +107,22 @@ jobs:
               should_run = False
               reason = "scheduled_checkpoint_not_matched"
 
-              if now_kst.weekday() < 5 and in_window(now_kst, 8, 20, 8, 55):
+              if now_kst.weekday() < 5 and in_window(now_kst, 8, 20, 8, 40):
                   should_run = True
                   reason = "kr_premarket"
                   hours = "12"
                   briefing_kind = "kr_premarket"
-              elif now_kst.weekday() < 5 and in_window(now_kst, 15, 35, 16, 10):
+              elif now_kst.weekday() < 5 and in_window(now_kst, 15, 35, 15, 50):
                   should_run = True
                   reason = "kr_aftermarket"
                   hours = "7"
                   briefing_kind = "kr_aftermarket"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 3, 45, 4, 15):
+              elif now_ny.weekday() < 5 and in_window(now_ny, 3, 20, 3, 40):
                   should_run = True
                   reason = "us_premarket_before"
                   hours = "8"
                   briefing_kind = "us_premarket_before"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 16, 5, 16, 45):
+              elif now_ny.weekday() < 5 and in_window(now_ny, 16, 5, 16, 20):
                   should_run = True
                   reason = "us_aftermarket"
                   hours = "8"
