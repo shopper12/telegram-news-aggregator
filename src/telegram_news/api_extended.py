@@ -6,7 +6,7 @@ from fastapi import Header, HTTPException
 from pydantic import BaseModel
 
 from .api_server import app, _report_data, _report_text
-from .bot_services_private import handle_command
+from .bot_services_v2 import handle_command
 
 
 class BotCommandRequest(BaseModel):
@@ -39,4 +39,4 @@ def post_bot_command(req: BotCommandRequest, x_api_key: str | None = Header(defa
 @app.get("/api/bot-help")
 def bot_help(x_api_key: str | None = Header(default=None)) -> dict:
     _require_api_key_ext(x_api_key)
-    return {"ok": True, "message": handle_command(user_id="help", message="도움말", latest_report=_report_text())}
+    return {"ok": True, "message": handle_command(user_id="help", message="봇 도움말", latest_report=_report_text())}
