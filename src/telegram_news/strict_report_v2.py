@@ -17,7 +17,7 @@ from .noise_patterns import LOW_VALUE_WORDS
 from .market_data import get_market_context
 
 MAX_REPORT_CHARS = 2300
-MAX_DISPLAY_NEWS = 5
+MAX_DISPLAY_NEWS = 3
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 
 BAD_DISPLAY_TICKERS = {"IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX"}
@@ -134,6 +134,24 @@ def _display_symbols(cluster) -> list:
     return out[:3]
 
 
+def _source_url(cluster) -> str:
+    candidates = []
+    try:
+        candidates.extend(getattr(cluster.best().item, "source_urls", []) or [])
+    except Exception:
+        pass
+    for news in getattr(cluster, "items", []) or []:
+        try:
+            candidates.extend(getattr(news.item, "source_urls", []) or [])
+        except Exception:
+            continue
+    for url in candidates:
+        text = str(url or "").strip()
+        if text.startswith("http://") or text.startswith("https://"):
+            return text
+    return ""
+
+
 def _is_display_noise(cluster) -> bool:
     best = cluster.best()
     text = _cluster_text(cluster)
@@ -209,6 +227,7 @@ def _issue_payload(selected: list) -> list[dict]:
             "grade": materiality_grade(cluster),
             "type": best.news_type,
             "title": _display_title(cluster, 95),
+            "source_url": _source_url(cluster),
             "body": best.item.body[:450],
             "sectors": cluster.sectors(),
             "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in _display_symbols(cluster)],
@@ -284,15 +303,17 @@ def _gemini_report(*, now, kind, hours, selected, stock_count, blocked, rule, ov
         "[규칙]\n"
         "- 입력 JSON에 있는 이슈만 사용한다. 없는 사실, 없는 종목, 없는 시장데이터를 만들지 않는다.\n"
         "- 코인/가상자산 언급 금지. 목표가/손절가/확정 매수 지시 금지.\n"
-        "- 종목명(티커) 형식만 사용한다. URL은 출력하지 않는다.\n"
+        "- 종목명(티커) 형식만 사용한다.\n"
+        "- source_url이 있으면 각 이슈 제목 바로 아래에 '  • 원문: {source_url}'을 반드시 출력한다.\n"
+        "- 카카오톡 plain text에서는 제목 자체 하이퍼링크가 불가하므로 원문 URL을 그대로 노출한다.\n"
         "- 급등/상한가/폭등/신고가 뉴스는 진입고려를 반드시 [관망]으로 분류한다.\n"
         "- 공시/수주/계약/실적/승인/허가 뉴스만 [분할진입 후보]로 분류할 수 있다.\n"
         "- 진입고려는 반드시 [관망 | 눌림대기 | 분할진입 후보] 중 하나만 사용한다.\n"
         "- market_context가 null이면 시황 1줄에 시장 데이터 미확인이라고 쓴다.\n\n"
         "[출력 형식]\n"
-        "📊 [{시장}] {BRIEFING_KIND별 제목}\n━━━━━━━━━━━━━━\n{시간} KST | 최근 {n}시간 | 이슈 {n}개\n"
+        "📊 [{시장}] {BRIEFING_KIND별 제목}\n----------------\n{시간} KST | 최근 {n}시간 | 이슈 {n}개\n"
         "시황 1줄: {지수 방향 + 주요 섹터 흐름. 시장 데이터 없으면 시장 데이터 미확인}\n\n📌 핵심 이슈\n"
-        "1) [{score}/{grade}] {이슈 제목 - 60자 이내}\n  • 요지: 사실 기반 1문장\n  • 섹터영향: 1문장\n"
+        "1) [{score}/{grade}] {이슈 제목 - 60자 이내}\n  • 원문: {source_url}\n  • 요지: 사실 기반 1문장\n  • 섹터영향: 1문장\n"
         "  • 진입고려: [관망 | 눌림대기 | 분할진입 후보] 중 1개 + 이유 1문장\n  • 관련: {종목명(티커)} 또는 직접 언급 없음\n  • 주의: 최대 리스크 1문장\n\n"
         "⚡ 관심 섹터 순위: {섹터1} > {섹터2} > {섹터3}\n"
         f"검증: Gemini({model}) · 로컬사후감사 · 소스{{n}}개\n\n"
@@ -343,9 +364,9 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
     display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
     if not display and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
         return ""
-    lines = [html.escape(_header_for_kind(kind), quote=False), "━━━━━━━━━━━━━━", html.escape(f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 이슈 {len(display)}개", quote=False), html.escape(f"시황 1줄: {_market_line(market_context, overview)}", quote=False), ""]
+    lines = [_header_for_kind(kind), "----------------", f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 이슈 {len(display)}개", f"시황 1줄: {_market_line(market_context, overview)}", ""]
     if not display:
-        lines.extend(["🔇 이 시간대 주요 이슈 없음", html.escape(f"원문 {source_count}건 검토", quote=False)])
+        lines.extend(["🔇 이 시간대 주요 이슈 없음", f"원문 {source_count}건 검토"])
     else:
         lines.append("📌 핵심 이슈")
         for idx, cluster in enumerate(display, 1):
@@ -354,15 +375,18 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
             symbols = _display_symbols(cluster)
             related = ", ".join(f"{sym.name}({sym.ticker})" for sym in symbols) if symbols else "직접 언급 없음"
             sectors = ", ".join(cluster.sectors()[:3]) or "섹터 불명확"
-            lines.append(html.escape(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {title}", quote=False))
-            lines.append(html.escape(f"  • 요지: {s.base.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}", quote=False))
-            lines.append(html.escape(f"  • 섹터영향: {sectors} 관련 수급 확인 필요.", quote=False))
-            lines.append(html.escape(f"  • 진입고려: {_entry_consideration(cluster)}", quote=False))
-            lines.append(html.escape(f"  • 관련: {related}", quote=False))
-            lines.append(html.escape(f"  • 주의: {best.item.risk}", quote=False))
+            source_url = _source_url(cluster)
+            lines.append(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {title}")
+            if source_url:
+                lines.append(f"  • 원문: {source_url}")
+            lines.append(f"  • 요지: {s.base.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}")
+            lines.append(f"  • 섹터영향: {sectors} 관련 수급 확인 필요.")
+            lines.append(f"  • 진입고려: {_entry_consideration(cluster)}")
+            lines.append(f"  • 관련: {related}")
+            lines.append(f"  • 주의: {best.item.risk}")
             lines.append("")
-        lines.append(html.escape(f"⚡ 관심 섹터 순위: {_brief_sector_line(display)}", quote=False))
-    lines.append(html.escape(f"검증: {engine} · {rule} · 원문 {source_count}건 → {len(display)}개 선별", quote=False))
+        lines.append(f"⚡ 관심 섹터 순위: {_brief_sector_line(display)}")
+    lines.append(f"검증: {engine} · {rule} · 원문 {source_count}건 → {len(display)}개 선별")
     report = "\n".join(lines).strip()
     return report[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(report) > MAX_REPORT_CHARS else report
 
