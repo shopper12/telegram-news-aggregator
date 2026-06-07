@@ -143,6 +143,45 @@ def _fmt(x):
     return f"{x:,.0f}" if abs(x) >= 1000 else f"{x:,.2f}"
 
 
+def _simple_yahoo_quote(q: str) -> str:
+    r = _get(
+        f"https://query1.finance.yahoo.com/v8/finance/chart/{q.strip().upper()}",
+        {"range": "1d", "interval": "1m"},
+    )
+    if not r or r.status_code != 200:
+        return f"시세를 찾지 못했습니다: {q}"
+    try:
+        result = r.json().get("chart", {}).get("result", [])
+        if not result:
+            return f"시세를 찾지 못했습니다: {q}"
+        meta = result[0].get("meta", {})
+        price = meta.get("regularMarketPrice") or meta.get("previousClose")
+        prev = meta.get("chartPreviousClose") or meta.get("previousClose")
+        pct = (float(price) - float(prev)) / float(prev) * 100 if price and prev else None
+        pct_text = "등락률 미확인" if pct is None else f"{pct:+.2f}%"
+        return f"시세 {q.strip().upper()}\n{_fmt(float(price))} {meta.get('currency') or ''} ({pct_text})\n출처: Yahoo Finance"
+    except Exception:
+        return f"시세를 찾지 못했습니다: {q}"
+
+
+def simple_quote(q: str) -> str:
+    q = q.strip()
+    if re.fullmatch(r"[A-Za-z.\-]{1,10}", q):
+        return _simple_yahoo_quote(q)
+    code = _search_code(q)
+    if not code:
+        return f"시세를 찾지 못했습니다: {q}"
+    item = _naver_rows(code)
+    if not item:
+        return f"시세를 찾지 못했습니다: {q}"
+    c = item["closes"]
+    price = c[-1]
+    prev = c[-2]
+    pct = (price - prev) / prev * 100 if prev else None
+    pct_text = "등락률 미확인" if pct is None else f"{pct:+.2f}%"
+    return f"시세 {item['name']}({code})\n{_fmt(price)} KRW ({pct_text})\n출처: Naver Finance 일봉"
+
+
 def fast_quote(q: str) -> str:
     if re.fullmatch(r"[A-Za-z.\-]{1,10}", q.strip()):
         return base.quote_text(q)
@@ -155,7 +194,6 @@ def fast_quote(q: str) -> str:
     c = item["closes"]
     h = item["highs"]
     l = item["lows"]
-    v = item["volumes"]
     price = c[-1]
     prev = c[-2]
     pct = (price - prev) / prev * 100 if prev else None
@@ -193,7 +231,7 @@ def fast_quote(q: str) -> str:
     pct_text = "미확인" if pct is None else f"{pct:+.2f}%"
     rsi_text = "미확인" if rsi is None else f"{rsi:.1f}"
     return (
-        f"금융퀀트 시세/판단: {q}\n"
+        f"금융퀀트 매매판단: {q}\n"
         f"{item['name']}({code}): {_fmt(price)} KRW ({pct_text})\n"
         f"기술점수: {score}/100 | RSI14 {rsi_text}\n"
         f"MA5/20: {_fmt(ma5)} / {_fmt(ma20)}\n"
@@ -206,8 +244,7 @@ def fast_quote(q: str) -> str:
 
 
 def _target_from_trade(text: str) -> str | None:
-    target = base._extract_trade_target(text)
-    return target
+    return base._extract_trade_target(text)
 
 
 def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
@@ -216,7 +253,7 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
         return "명령어는 '봇'으로 시작해야 합니다. 예: 봇 뉴스"
     if msg.startswith("시세") or msg.lower().startswith("quote"):
         target = re.sub(r"^(시세|quote)\s*", "", msg, flags=re.IGNORECASE).strip()
-        return fast_quote(target)
+        return simple_quote(target)
     target = _target_from_trade(msg)
     if target:
         return fast_quote(target)
