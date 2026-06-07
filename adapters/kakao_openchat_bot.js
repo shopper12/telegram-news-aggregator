@@ -1,27 +1,50 @@
 /*
  * MessengerBotR source.js for Kakao Open Chat.
- * Confirmed legacy signature: response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
- * Commands: 뉴스, /뉴스, !뉴스, news, /news
+ * Commands:
+ * - 뉴스 / 시황 / 브리핑
+ * - 시세 삼성전자 / 시세 005930 / 시세 NVDA
+ * - 생년월일 1987-12-28 08:30 여
+ * - 사주 질문 / 타로 질문
  */
 
-var API_URL = "https://telegram-news-bot-api.onrender.com/api/news-message";
+var API_URL = "https://telegram-news-bot-api.onrender.com/api/bot-command";
 var CHUNK_SIZE = 900;
 
 function trimText(value) {
   return String(value || "").replace(/^\s+|\s+$/g, "");
 }
 
-function isNewsCommand(msg) {
+function shouldHandle(msg) {
   var q = trimText(msg).toLowerCase();
-  return q === "뉴스" || q === "/뉴스" || q === "!뉴스" || q === "news" || q === "/news";
+  if (!q) return false;
+  if (q === "뉴스" || q === "/뉴스" || q === "!뉴스" || q === "news" || q === "/news") return true;
+  if (q === "시황" || q === "브리핑" || q === "도움" || q === "도움말" || q === "help" || q === "/help") return true;
+  if (q.indexOf("시세") === 0 || q.indexOf("quote") === 0) return true;
+  if (q.indexOf("생년월일") === 0 || q.indexOf("생일") === 0 || q.indexOf("출생") === 0 || q.indexOf("사주등록") === 0) return true;
+  if (q.indexOf("사주") === 0 || q.indexOf("운세") === 0 || q.indexOf("타로") === 0) return true;
+  return false;
 }
 
-function fetchNewsMessage() {
+function escapeJson(value) {
+  return String(value || "")
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, "\\\"")
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "\\r")
+    .replace(/\t/g, "\\t");
+}
+
+function fetchBotMessage(msg, sender, room) {
+  var userId = String(room || "") + ":" + String(sender || "");
+  var payload = "{\"message\":\"" + escapeJson(msg) + "\",\"user_id\":\"" + escapeJson(userId) + "\"}";
   var body = org.jsoup.Jsoup.connect(API_URL)
     .ignoreContentType(true)
     .ignoreHttpErrors(true)
     .timeout(30000)
     .header("Accept", "application/json")
+    .header("Content-Type", "application/json")
+    .requestBody(payload)
+    .method(org.jsoup.Connection.Method.POST)
     .execute()
     .body();
 
@@ -31,9 +54,10 @@ function fetchNewsMessage() {
       return trimText(data.message);
     }
   } catch (e) {
+    Api.showToast("bot json parse 실패: " + e);
   }
 
-  return "뉴스 없음";
+  return "응답 없음";
 }
 
 function splitText(text) {
@@ -41,7 +65,7 @@ function splitText(text) {
   var remaining = trimText(text);
   var cut;
 
-  if (!remaining) return ["뉴스 없음"];
+  if (!remaining) return ["응답 없음"];
 
   while (remaining.length > CHUNK_SIZE) {
     cut = remaining.lastIndexOf("\n", CHUNK_SIZE);
@@ -55,7 +79,7 @@ function splitText(text) {
 }
 
 function safeReply(room, replier, text) {
-  var out = String(text || "뉴스 없음");
+  var out = String(text || "응답 없음");
 
   try {
     if (replier && typeof replier.reply === "function") {
@@ -93,15 +117,13 @@ function sendLong(room, replier, text) {
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   var text;
 
-  Api.showToast("response 실행됨: " + msg);
-
-  if (!isNewsCommand(msg)) return;
+  if (!shouldHandle(msg)) return;
 
   try {
-    text = fetchNewsMessage();
+    text = fetchBotMessage(msg, sender, room);
   } catch (e) {
-    Api.showToast("뉴스 조회 실패: " + e);
-    text = "뉴스 없음";
+    Api.showToast("봇 API 실패: " + e);
+    text = "서버 응답 실패";
   }
 
   sendLong(room, replier, text);
