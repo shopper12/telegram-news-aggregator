@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from collections import Counter
-import html
 import json
 import os
 import re
@@ -43,7 +42,7 @@ ENTRY_LABELS = {"관망", "눌림대기", "분할진입 후보"}
 def _append_diag(report: str, reason: str) -> str:
     if not report or os.getenv("DEBUG_QUALITY", "0") != "1":
         return report
-    diag = f"\nGemini진단: {html.escape(reason, quote=False)}"
+    diag = f"\nGemini진단: {reason}"
     base = report[: MAX_REPORT_CHARS - len(diag) - 20]
     return base + diag
 
