@@ -149,6 +149,54 @@ def _yahoo_history(symbol: str) -> dict[str, Any] | None:
         return None
 
 
+def _code_from_symbol(symbol: str) -> str | None:
+    m = re.match(r"^(\d{6})(?:\.(?:KS|KQ))?$", symbol, re.IGNORECASE)
+    return m.group(1) if m else None
+
+
+def _pykrx_history(code: str) -> dict[str, Any] | None:
+    try:
+        from pykrx import stock
+        from datetime import datetime, timedelta
+
+        end = datetime.now()
+        start = end - timedelta(days=260)
+        df = stock.get_market_ohlcv_by_date(
+            start.strftime("%Y%m%d"),
+            end.strftime("%Y%m%d"),
+            code,
+        )
+        if df is None or df.empty:
+            return None
+
+        closes = [float(x) for x in df["종가"].dropna().tolist()]
+        highs = [float(x) for x in df["고가"].dropna().tolist()]
+        lows = [float(x) for x in df["저가"].dropna().tolist()]
+        volumes = [float(x) for x in df["거래량"].dropna().tolist()]
+
+        if len(closes) < 2:
+            return None
+
+        price = closes[-1]
+        prev = closes[-2]
+        name = stock.get_market_ticker_name(code) or code
+
+        return {
+            "symbol": f"{name}({code})",
+            "price": price,
+            "prev": prev,
+            "pct": (price - prev) / prev * 100 if prev else None,
+            "currency": "KRW",
+            "exchange": "KRX",
+            "source": "pykrx KRX daily OHLCV",
+            "closes": closes,
+            "highs": highs[-len(closes):],
+            "lows": lows[-len(closes):],
+            "volumes": volumes[-len(closes):],
+        }
+    except Exception:
+        return None
+
 def _quote_candidates(query: str) -> list[str]:
     q = query.strip()
     lower = q.lower()
