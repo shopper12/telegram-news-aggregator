@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 
+base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/var/data/bot_profiles.json"))
+
 from __future__ import annotations
 
 from datetime import datetime
