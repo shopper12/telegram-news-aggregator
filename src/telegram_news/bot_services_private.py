@@ -202,10 +202,10 @@ def _quote_candidates(query: str) -> list[str]:
     lower = q.lower()
     if lower in base.KR_NAME_TO_CODE:
         code = base.KR_NAME_TO_CODE[lower]
-        return [f"{code}.KS", f"{code}.KQ"]
+        return [f"{code}.KS", f"{code}.KQ", code]
     if q in base.KR_NAME_TO_CODE:
         code = base.KR_NAME_TO_CODE[q]
-        return [f"{code}.KS", f"{code}.KQ"]
+        return [f"{code}.KS", f"{code}.KQ", code]
     if re.fullmatch(r"\d{6}", q):
         return [f"{q}.KS", f"{q}.KQ"]
     if re.fullmatch(r"[A-Za-z.\-]{1,10}", q):
@@ -233,6 +233,10 @@ def quote_text(query: str) -> str:
             continue
         seen.add(symbol)
         item = _yahoo_history(symbol)
+        if not item:
+            code = _code_from_symbol(symbol)
+           if code:
+              item = _pykrx_history(code)
         if not item:
             continue
         closes = item["closes"]
