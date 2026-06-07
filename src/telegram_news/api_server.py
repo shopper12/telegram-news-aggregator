@@ -116,28 +116,63 @@ def refresh_news(req: RefreshRequest, x_api_key: str | None = Header(default=Non
     return _report_data()
 
 
-@app.post("/api/kakao-skill")
-async def kakao_skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
-    _require_api_key(x_api_key)
-    payload = await request.json()
-    utterance = str(
+def _extract_utterance(payload: dict) -> str:
+    return str(
         payload.get("userRequest", {}).get("utterance")
         or payload.get("utterance")
+        or payload.get("action", {}).get("params", {}).get("utterance")
         or ""
     ).strip()
-    if utterance and "뉴스" not in utterance:
-        text = "'뉴스'라고 입력하면 현재 기준 중요 뉴스 요약을 알려드립니다."
-    else:
-        text = _report_text()
+
+
+def _kakao_simple_text(text: str) -> dict:
+    value = str(text or "뉴스 없음").strip() or "뉴스 없음"
     return {
         "version": "2.0",
         "template": {
             "outputs": [
                 {
                     "simpleText": {
-                        "text": text[:990]
+                        "text": value[:990]
                     }
                 }
             ]
         },
     }
+
+
+def _skill_answer(utterance: str) -> str:
+    q = str(utterance or "").strip().lower()
+
+    if not q or "도움" in q or q in {"?", "help", "/help"}:
+        return (
+            "사용 가능한 명령어\n"
+            "뉴스 - 최신 투자 뉴스\n"
+            "시황 - 최신 시장 뉴스\n"
+            "도움말 - 명령어 안내"
+        )
+
+    if any(word in q for word in ["뉴스", "주식", "시황", "브리핑", "시장", "news"]):
+        return _report_text()
+
+    return "명령어를 인식하지 못했습니다. '뉴스' 또는 '도움말'을 입력하세요."
+
+
+async def _handle_kakao_skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
+    _require_api_key(x_api_key)
+    try:
+        payload = await request.json()
+    except Exception:
+        payload = {}
+    utterance = _extract_utterance(payload)
+    return _kakao_simple_text(_skill_answer(utterance))
+
+
+@app.post("/api/kakao-skill")
+async def kakao_skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
+    return await _handle_kakao_skill(request, x_api_key)
+
+
+@app.post("/skill")
+async def skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
+    return await _handle_kakao_skill(request, x_api_key)
