@@ -39,6 +39,19 @@ EXTRA_KR_NAME_TO_CODE = {
     "에코프로비엠": "247540",
 }
 
+TRADE_INTENT_WORDS = [
+    "살까", "사도", "사볼까", "매수", "살만", "팔까", "팔아", "매도", "손절",
+    "어때보여", "어때 보여", "어때", "어떰", "어떠냐", "어떻게봐", "어떻게 봐",
+    "좋아", "괜찮아", "나빠", "별로", "별로야", "추천", "분석", "봐줘",
+]
+
+STOP_WORD_PATTERN = re.compile(
+    r"(살까|사도\s*돼|사볼까|매수|살만해|살만|팔까|팔아야\s*해|팔아|매도|손절|"
+    r"어때보여|어때\s*보여|어때|어떰|어떠냐|어떻게\s*봐|좋아|괜찮아|나빠|별로야|별로|"
+    r"추천|분석|봐줘|봐|주가|시세|종목|주식|이거|지금|오늘|내일|좀|해줘|해라|할까|\?|\!|입니다|인가요|냐)$",
+    re.IGNORECASE,
+)
+
 
 def _normalize_name(value: str) -> str:
     return re.sub(r"[\s·().,㈜주식회사_-]+", "", str(value or "").strip().lower())
@@ -96,13 +109,15 @@ def _save_profile(user_id: str, birth_date: str, birth_time: str = "", gender: s
     _save_profiles(data)
 
 
+def _manual_name_map() -> dict[str, str]:
+    return {_normalize_name(k): v for k, v in {**base.KR_NAME_TO_CODE, **EXTRA_KR_NAME_TO_CODE}.items()}
+
+
 def _load_kr_names() -> dict[str, str]:
     global _KR_NAME_CACHE
     if _KR_NAME_CACHE is not None:
         return _KR_NAME_CACHE
-    names: dict[str, str] = {}
-    for name, code in {**base.KR_NAME_TO_CODE, **EXTRA_KR_NAME_TO_CODE}.items():
-        names[_normalize_name(name)] = code
+    names: dict[str, str] = dict(_manual_name_map())
     try:
         from pykrx import stock
         for market in ["KOSPI", "KOSDAQ", "KONEX"]:
@@ -238,10 +253,10 @@ def _yahoo_history(symbol: str) -> dict[str, Any] | None:
 
 def _quote_candidates(query: str) -> tuple[list[str], bool]:
     q = query.strip()
-    lower = q.lower()
-    if lower in { _normalize_name(k): v for k, v in {**base.KR_NAME_TO_CODE, **EXTRA_KR_NAME_TO_CODE}.items() }:
-        code = { _normalize_name(k): v for k, v in {**base.KR_NAME_TO_CODE, **EXTRA_KR_NAME_TO_CODE}.items() }[lower]
-        return [code], True
+    key = _normalize_name(q)
+    manual = _manual_name_map()
+    if key in manual:
+        return [manual[key]], True
     if re.fullmatch(r"\d{6}", q):
         return [q], True
     if re.fullmatch(r"[A-Za-z.\-]{1,10}", q):
@@ -256,7 +271,7 @@ def _fmt_price(value: float | None) -> str:
     return f"{value:,.0f}" if value >= 1000 else f"{value:,.2f}"
 
 
-def _score_item(item: dict[str, Any]) -> tuple[int, str, str, str]:
+def _score_item(item: dict[str, Any]) -> tuple[int, str, str, str, float | None, float | None]:
     closes = item["closes"]
     highs = item["highs"]
     lows = item["lows"]
@@ -266,6 +281,7 @@ def _score_item(item: dict[str, Any]) -> tuple[int, str, str, str]:
     ma60 = _simple_ma(closes, 60)
     ma120 = _simple_ma(closes, 120)
     rsi14 = _rsi(closes, 14)
+    atr14 = _atr(highs, lows, closes, 14)
     support = min(lows[-20:]) if len(lows) >= 20 else None
     resistance = max(highs[-20:]) if len(highs) >= 20 else None
     vol20 = _simple_ma(volumes, 20) if volumes else None
@@ -311,7 +327,9 @@ def _score_item(item: dict[str, Any]) -> tuple[int, str, str, str]:
     vol_text = "미확인" if vol_ratio is None else f"{vol_ratio:.1f}배"
     level_text = f"MA20/60/120: {_fmt_price(ma20)} / {_fmt_price(ma60)} / {_fmt_price(ma120)}\n20일 지지/저항: {_fmt_price(support)} / {_fmt_price(resistance)}"
     factor_text = f"기술점수: {score}/100 | RSI14 {rsi_text} | 거래량 {vol_text}"
-    return score, call, reason, factor_text + "\n" + level_text
+    stop = price - atr14 * 1.5 if atr14 else None
+    target = price + atr14 * 2.0 if atr14 else resistance
+    return score, call, reason, factor_text + "\n" + level_text, stop, target
 
 
 def quote_text(query: str) -> str:
@@ -328,11 +346,8 @@ def quote_text(query: str) -> str:
             item = _krx_history(symbol) if is_korean else _yahoo_history(symbol)
             if not item:
                 continue
-            score, call, reason, detail = _score_item(item)
+            score, call, reason, detail, stop, target = _score_item(item)
             pct_text = "등락률 미확인" if item["pct"] is None else f"{item['pct']:+.2f}%"
-            atr14 = _atr(item["highs"], item["lows"], item["closes"], 14)
-            stop = item["price"] - atr14 * 1.5 if atr14 else None
-            target = item["price"] + atr14 * 2.0 if atr14 else None
             return (
                 f"금융퀀트 시세/판단: {q}\n"
                 f"{item['symbol']}: {_fmt_price(item['price'])} {item['currency']} ({pct_text})\n"
@@ -347,6 +362,32 @@ def quote_text(query: str) -> str:
         return f"시세를 찾지 못했습니다: {q}"
     except Exception as exc:
         return f"시세 처리 중 오류: {type(exc).__name__}. 종목명 또는 6자리 코드를 다시 입력하세요."
+
+
+def _has_trade_intent(text: str) -> bool:
+    compact = re.sub(r"\s+", "", text.lower())
+    return any(re.sub(r"\s+", "", word.lower()) in compact for word in TRADE_INTENT_WORDS)
+
+
+def _extract_trade_target(text: str) -> str | None:
+    raw = str(text or "").strip()
+    if not raw or not _has_trade_intent(raw):
+        return None
+    cleaned = raw
+    cleaned = re.sub(r"^(이거|이 종목|종목|주식)\s*", "", cleaned)
+    for _ in range(6):
+        next_cleaned = STOP_WORD_PATTERN.sub("", cleaned).strip(" ,.;:!?~요나요은는이가을를")
+        if next_cleaned == cleaned:
+            break
+        cleaned = next_cleaned
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    if not cleaned or cleaned in {"시세", "주가", "종목", "주식"}:
+        return None
+    return cleaned
+
+
+def trade_recommendation_text(query: str) -> str:
+    return quote_text(query)
 
 
 def _profile_seed(profile: base.UserProfile, question: str) -> int:
@@ -404,6 +445,7 @@ def help_text() -> str:
         "명령어는 반드시 '봇'으로 시작\n"
         "봇 뉴스 - 최신 중요 뉴스/시황\n"
         "봇 시세 삼성전자 / 봇 시세 한미반도체 / 봇 시세 005930 / 봇 시세 NVDA\n"
+        "봇 삼성전자 살까 / 봇 알테오젠 팔까 / 봇 NVDA 어때\n"
         "봇 생년월일 YYYY-MM-DD HH:MM 성별 - 사주 프로필 비공개 저장\n"
         "봇 사주 [질문] - 비공개 프로필 기반 전문가식 리딩\n"
         "봇 타로 [질문] - 전문가식 3카드 리딩\n"
@@ -428,6 +470,9 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
         if msg.startswith("시세") or msg.lower().startswith("quote"):
             target = re.sub(r"^(시세|quote)\s*", "", msg, flags=re.IGNORECASE).strip()
             return quote_text(target)
+        trade_target = _extract_trade_target(msg)
+        if trade_target:
+            return trade_recommendation_text(trade_target)
         if msg.startswith("사주") or msg.startswith("운세"):
             return _private_saju(user_id or "default", msg)
         if msg.startswith("타로"):
