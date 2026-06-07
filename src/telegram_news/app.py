@@ -19,18 +19,21 @@ from .report_cache import save_latest_report
 
 
 DEFAULT_KAKAO_WEB_URL = "https://github.com/shopper12/telegram-news-aggregator"
+DEFAULT_NEWS_HOURS = int(os.getenv("NEWS_LOOKBACK_HOURS", "1"))
+DEFAULT_NEWS_LIMIT = int(os.getenv("NEWS_CLASSIFY_LIMIT", "999"))
+DEFAULT_COLLECT_LIMIT = int(os.getenv("NEWS_COLLECT_LIMIT_PER_CHANNEL", "200"))
 
 
 def _auto_briefing_kind() -> tuple[str, int, int]:
     """Return (briefing_kind, hours, limit) from current KST hour."""
     now_h = datetime.now(ZoneInfo("Asia/Seoul")).hour
     if 8 <= now_h < 9:
-        return "premarket", 12, 20
+        return "premarket", DEFAULT_NEWS_HOURS, DEFAULT_NEWS_LIMIT
     if 9 <= now_h < 15:
-        return "intraday", 1, 10
+        return "intraday", DEFAULT_NEWS_HOURS, DEFAULT_NEWS_LIMIT
     if 15 <= now_h < 17:
-        return "aftermarket", 7, 15
-    return "overnight", 3, 10
+        return "aftermarket", DEFAULT_NEWS_HOURS, DEFAULT_NEWS_LIMIT
+    return "overnight", DEFAULT_NEWS_HOURS, DEFAULT_NEWS_LIMIT
 
 
 def _resolve_window(args: argparse.Namespace, *, default_hours: int, default_limit: int, set_kind: bool) -> tuple[int, int]:
@@ -59,7 +62,7 @@ def cmd_collect(args: argparse.Namespace) -> None:
     if not channels:
         raise RuntimeError("No valid channels found. Edit config/channels.yaml first.")
 
-    hours, limit = _resolve_window(args, default_hours=6, default_limit=200, set_kind=False)
+    hours, limit = _resolve_window(args, default_hours=DEFAULT_NEWS_HOURS, default_limit=DEFAULT_COLLECT_LIMIT, set_kind=False)
 
     conn = connect(settings.database_path)
     init_db(conn)
@@ -149,7 +152,7 @@ def _send_report(report: str) -> None:
 
 
 def cmd_report(args: argparse.Namespace) -> None:
-    hours, limit = _resolve_window(args, default_hours=6, default_limit=15, set_kind=True)
+    hours, limit = _resolve_window(args, default_hours=DEFAULT_NEWS_HOURS, default_limit=DEFAULT_NEWS_LIMIT, set_kind=True)
     report = _make_report(hours=hours, limit=limit)
     if _is_empty_report(report):
         print("Report skipped: empty report generated. SEND_EMPTY_REPORT=0 is active or no reportable issue exists.")
@@ -163,9 +166,9 @@ def cmd_report(args: argparse.Namespace) -> None:
 
 
 def cmd_run(args: argparse.Namespace) -> None:
-    hours, limit = _resolve_window(args, default_hours=6, default_limit=15, set_kind=True)
+    hours, limit = _resolve_window(args, default_hours=DEFAULT_NEWS_HOURS, default_limit=DEFAULT_NEWS_LIMIT, set_kind=True)
     args.hours = hours
-    args.limit = limit
+    args.limit = DEFAULT_COLLECT_LIMIT if args.limit is None else args.limit
     cmd_collect(args)
     report = _make_report(hours=hours, limit=limit)
     if _is_empty_report(report):
