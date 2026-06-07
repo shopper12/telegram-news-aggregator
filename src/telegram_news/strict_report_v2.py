@@ -15,8 +15,8 @@ from .strict_quality import materiality_score, materiality_grade
 from .noise_patterns import LOW_VALUE_WORDS
 from .market_data import get_market_context
 
-MAX_REPORT_CHARS = 2300
-MAX_DISPLAY_NEWS = 3
+MAX_REPORT_CHARS = int(os.getenv("MAX_REPORT_CHARS", "12000"))
+MAX_DISPLAY_NEWS = int(os.getenv("MAX_DISPLAY_NEWS", "999"))
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 
 BAD_DISPLAY_TICKERS = {"IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX"}
@@ -34,9 +34,6 @@ CONFIRMATION_WORDS = [
 ]
 IMAGE_HINT_WORDS = ["[이미지뉴스]", "[이미지OCR]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
 VAGUE_TITLE_PATTERNS = ["블룸버그에 따르면", "로이터에 따르면", "외신에 따르면", "속보", "단독", "긴급", "뉴스", "업데이트"]
-PRICE_REACTION_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉"]
-ENTRY_ALLOWED_TYPES = {"공시/확정", "이벤트", "실적"}
-ENTRY_LABELS = {"관망", "눌림대기", "분할진입 후보"}
 
 
 def _append_diag(report: str, reason: str) -> str:
@@ -130,7 +127,7 @@ def _display_symbols(cluster) -> list:
             if sym.ticker not in seen:
                 seen.add(sym.ticker)
                 out.append(sym)
-    return out[:3]
+    return out[:5]
 
 
 def _source_url(cluster) -> str:
@@ -205,55 +202,15 @@ def _market_line(market_context: dict | None, overview: str) -> str:
 
 def _header_for_kind(kind: str) -> str:
     mapping = {
-        "kr_premarket": "📊 [국내주식] 장전 뉴스 브리핑",
-        "kr_aftermarket": "📊 [국내주식] 장후 뉴스 브리핑",
-        "us_premarket_before": "📊 [미국주식] 프리장전 뉴스 브리핑",
-        "us_premarket_after": "📊 [미국주식] 프리장후·정규장 직전 뉴스 브리핑",
-        "premarket": "📊 [국내주식] 장전 뉴스 브리핑",
-        "aftermarket": "📊 [국내주식] 장후 뉴스 브리핑",
-        "intraday": "📊 [국내주식] 장중 뉴스 브리핑",
+        "kr_premarket": "📊 [국내주식] 최근 1시간 뉴스",
+        "kr_aftermarket": "📊 [국내주식] 최근 1시간 뉴스",
+        "us_premarket_before": "📊 [미국주식] 최근 1시간 뉴스",
+        "us_premarket_after": "📊 [미국주식] 최근 1시간 뉴스",
+        "premarket": "📊 [국내주식] 최근 1시간 뉴스",
+        "aftermarket": "📊 [국내주식] 최근 1시간 뉴스",
+        "intraday": "📊 [국내주식] 최근 1시간 뉴스",
     }
-    return mapping.get(kind, "📊 [주식] 뉴스 브리핑")
-
-
-def _issue_payload(selected: list) -> list[dict]:
-    issues = []
-    for idx, cluster in enumerate(selected, 1):
-        best = cluster.best()
-        issues.append({
-            "id": idx,
-            "score": materiality_score(cluster),
-            "grade": materiality_grade(cluster),
-            "type": best.news_type,
-            "title": _display_title(cluster, 95),
-            "source_url": _source_url(cluster),
-            "body": best.item.body[:450],
-            "sectors": cluster.sectors(),
-            "symbols": [{"name": sym.name, "ticker": sym.ticker} for sym in _display_symbols(cluster)],
-            "reasons": best.reasons[:5],
-            "channel_count": cluster.channel_count(),
-            "image_news": _is_image_news(cluster),
-        })
-    return issues
-
-
-def _extract_json_object(text: str) -> dict | None:
-    cleaned = text.strip()
-    cleaned = re.sub(r"^```(?:json)?", "", cleaned).strip()
-    cleaned = re.sub(r"```$", "", cleaned).strip()
-    try:
-        data = json.loads(cleaned)
-        return data if isinstance(data, dict) else None
-    except Exception:
-        start = cleaned.find("{")
-        end = cleaned.rfind("}")
-        if start >= 0 and end > start:
-            try:
-                data = json.loads(cleaned[start:end + 1])
-                return data if isinstance(data, dict) else None
-            except Exception:
-                return None
-    return None
+    return mapping.get(kind, "📊 [주식] 최근 1시간 뉴스")
 
 
 def _audit_report_text(text: str, selected: list) -> tuple[bool, str]:
@@ -262,101 +219,11 @@ def _audit_report_text(text: str, selected: list) -> tuple[bool, str]:
     lowered = text.lower()
     if any(word in lowered for word in ["비트코인", "이더리움", "코인", "업비트", "바이낸스", "crypto"]):
         return False, "crypto_leak"
-    if any(word in text for word in ["목표가", "손절가", "확정 매수", "무조건 매수"]):
-        return False, "hard_trading_instruction"
-    if len(text) > 2200:
-        return False, "too_long"
-    if selected and "진입고려" not in text:
-        return False, "missing_entry_consideration"
-    for label in re.findall(r"진입고려:\s*\[?([^\]\n|]+)", text):
-        cleaned = label.strip()
-        if cleaned and cleaned not in ENTRY_LABELS:
-            return False, f"bad_entry_label:{cleaned}"
-    item_count = len(re.findall(r"\n\d+\)", "\n" + text))
-    if item_count > len(selected):
-        return False, "invented_extra_issue"
     return True, "pass"
 
 
-def _gemini_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, market_context):
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        return None, "GEMINI_API_KEY 없음"
-    if not selected:
-        return None, "기준 통과 이슈 0개라 Gemini 호출 생략"
-    model = os.getenv("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-    payload = {
-        "header": _header_for_kind(kind),
-        "briefing_kind": kind,
-        "time_kst": now.strftime("%m/%d %H:%M KST"),
-        "hours": hours,
-        "market_overview": overview,
-        "market_context": market_context,
-        "source_count": source_count,
-        "quality": {"stock_candidate_count": stock_count, "excluded_count": blocked, "pre_gate_issue_count": pre_gate_count, "selected_issue_count": len(selected), "rule": rule},
-        "issues": _issue_payload(selected[:MAX_DISPLAY_NEWS]),
-    }
-    prompt = (
-        "너는 한국/미국 주식시장 뉴스 데스크이자 단기 트레이더 어시스턴트다.\n\n"
-        "[규칙]\n"
-        "- 입력 JSON에 있는 이슈만 사용한다. 없는 사실, 없는 종목, 없는 시장데이터를 만들지 않는다.\n"
-        "- 코인/가상자산 언급 금지. 목표가/손절가/확정 매수 지시 금지.\n"
-        "- 종목명(티커) 형식만 사용한다.\n"
-        "- source_url이 있으면 각 이슈 제목 바로 아래에 '  • 원문: {source_url}'을 반드시 출력한다.\n"
-        "- 카카오톡 plain text에서는 제목 자체 하이퍼링크가 불가하므로 원문 URL을 그대로 노출한다.\n"
-        "- 급등/상한가/폭등/신고가 뉴스는 진입고려를 반드시 [관망]으로 분류한다.\n"
-        "- 공시/수주/계약/실적/승인/허가 뉴스만 [분할진입 후보]로 분류할 수 있다.\n"
-        "- 진입고려는 반드시 [관망 | 눌림대기 | 분할진입 후보] 중 하나만 사용한다.\n"
-        "- market_context가 null이면 시황 1줄에 시장 데이터 미확인이라고 쓴다.\n\n"
-        "[출력 형식]\n"
-        "📊 [{시장}] {BRIEFING_KIND별 제목}\n----------------\n{시간} KST | 최근 {n}시간 | 이슈 {n}개\n"
-        "시황 1줄: {지수 방향 + 주요 섹터 흐름. 시장 데이터 없으면 시장 데이터 미확인}\n\n📌 핵심 이슈\n"
-        "1) [{score}/{grade}] {이슈 제목 - 60자 이내}\n  • 원문: {source_url}\n  • 요지: 사실 기반 1문장\n  • 섹터영향: 1문장\n"
-        "  • 진입고려: [관망 | 눌림대기 | 분할진입 후보] 중 1개 + 이유 1문장\n  • 관련: {종목명(티커)} 또는 직접 언급 없음\n  • 주의: 최대 리스크 1문장\n\n"
-        "⚡ 관심 섹터 순위: {섹터1} > {섹터2} > {섹터3}\n"
-        f"검증: Gemini({model}) · 로컬사후감사 · 소스{{n}}개\n\n"
-        "반드시 JSON 객체만 반환한다. 키는 report, audit 두 개다. audit은 {pass:boolean, score:number, reason:string}.\n"
-        "전체 report는 2100자 이하.\n"
-        f"입력 JSON:\n{json.dumps(payload, ensure_ascii=False)}"
-    )
-    body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"temperature": 0.05, "maxOutputTokens": 1100, "responseMimeType": "application/json"}}
-    try:
-        response = requests.post(url, headers={"x-goog-api-key": api_key, "Content-Type": "application/json"}, json=body, timeout=25)
-    except Exception as exc:
-        return None, f"Gemini 요청 예외: {type(exc).__name__}: {exc}"
-    if response.status_code != 200:
-        return None, f"Gemini HTTP {response.status_code}: {' '.join(response.text.split())[:180]}"
-    try:
-        data = response.json()
-        raw = "".join(part.get("text", "") for part in data.get("candidates", [{}])[0].get("content", {}).get("parts", [])).strip()
-        parsed = _extract_json_object(raw)
-        if not parsed:
-            return None, "Gemini 리포트 JSON 파싱 실패"
-        audit = parsed.get("audit") or {}
-        if audit.get("pass") is False or int(audit.get("score") or 0) < 80:
-            return None, f"Gemini 자체감사 실패: {audit}"
-        text = str(parsed.get("report") or "").strip()
-        ok, reason = _audit_report_text(text, selected)
-        if not ok:
-            return None, f"로컬사후감사 실패: {reason}"
-        if "검증:" not in text:
-            text += f"\n검증: Gemini({model}) · 로컬사후감사 · 소스{source_count}개"
-        return text[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(text) > MAX_REPORT_CHARS else text, "Gemini 리포트 성공"
-    except Exception as exc:
-        return None, f"Gemini 리포트 처리 실패: {type(exc).__name__}"
-
-
-def _entry_consideration(cluster) -> str:
-    best = cluster.best()
-    text = _cluster_text(cluster)
-    if _has_any(text, PRICE_REACTION_WORDS):
-        return "[관망] 이미 가격 반응이 포함된 뉴스라 추격 판단은 제외."
-    if best.news_type in ENTRY_ALLOWED_TYPES and _has_any(text, CONFIRMATION_WORDS):
-        return "[분할진입 후보] 확정성 재료지만 가격·거래대금 확인 후 제한적으로 검토."
-    if best.news_type in {"테마", "정보", "가격반응"}:
-        return "[관망] 확정 근거가 약하거나 사후성 이슈."
-    return "[눌림대기] 이슈 강도는 있으나 선반영 여부 확인 필요."
+def _gemini_report(**kwargs):
+    return None, "simplified_local_report_for_kakao"
 
 
 def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, market_context, engine: str) -> str:
@@ -369,20 +236,14 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
     else:
         lines.append("📌 핵심 이슈")
         for idx, cluster in enumerate(display, 1):
-            best = cluster.best()
-            title = _display_title(cluster, 60)
+            title = _display_title(cluster, 80)
             symbols = _display_symbols(cluster)
             related = ", ".join(f"{sym.name}({sym.ticker})" for sym in symbols) if symbols else "직접 언급 없음"
-            sectors = ", ".join(cluster.sectors()[:3]) or "섹터 불명확"
             source_url = _source_url(cluster)
             lines.append(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {title}")
             if source_url:
                 lines.append(f"  • 원문: {source_url}")
-            lines.append(f"  • 요지: {s.base.TYPE_MEANING.get(best.news_type, '뉴스 흐름 확인용')} · 근거 {', '.join(best.reasons[:3])}")
-            lines.append(f"  • 섹터영향: {sectors} 관련 수급 확인 필요.")
-            lines.append(f"  • 진입고려: {_entry_consideration(cluster)}")
-            lines.append(f"  • 관련: {related}")
-            lines.append(f"  • 주의: {best.item.risk}")
+            lines.append(f"  • 관련종목: {related}")
             lines.append("")
         lines.append(f"⚡ 관심 섹터 순위: {_brief_sector_line(display)}")
     lines.append(f"검증: {engine} · {rule} · 원문 {source_count}건 → {len(display)}개 선별")
