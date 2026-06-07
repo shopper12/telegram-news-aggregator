@@ -10,6 +10,7 @@ import requests
 LATEST_REPORT_JSON = Path("reports/latest_report.json")
 LATEST_REPORT_MD = Path("reports/latest_report.md")
 DEFAULT_LATEST_REPORT_URL = "https://raw.githubusercontent.com/shopper12/telegram-news-aggregator/main/reports/latest_report.json"
+FALLBACK_TIMEOUT_SECONDS = float(os.getenv("LATEST_REPORT_FALLBACK_TIMEOUT_SECONDS", "2.0"))
 
 
 def save_latest_report(*, report: str, kind: str, hours: int, source: str = "scheduled") -> None:
@@ -42,7 +43,7 @@ def _load_github_fallback() -> dict | None:
     if token:
         headers["Authorization"] = f"Bearer {token}"
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, timeout=FALLBACK_TIMEOUT_SECONDS)
         if response.status_code != 200:
             return None
         data = response.json()
