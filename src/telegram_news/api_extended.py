@@ -5,7 +5,7 @@ import os
 from fastapi import Header, HTTPException
 from pydantic import BaseModel
 
-from .api_server import app, _report_data, _report_text, _is_refresh_command, _refreshed_message
+from .api_server import app, _report_data, _report_text, _is_refresh_command, _is_news_command, _refreshed_message
 from .bot_services_v7 import handle_command
 
 
@@ -25,7 +25,7 @@ def post_bot_command(req: BotCommandRequest, x_api_key: str | None = Header(defa
     _require_api_key_ext(x_api_key)
     data = _report_data()
     raw = req.message or ""
-    if _is_refresh_command(raw):
+    if _is_refresh_command(raw) or _is_news_command(raw):
         message = _refreshed_message()
         data = _report_data()
     else:
