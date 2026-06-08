@@ -89,6 +89,10 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
     if q in {"도움", "도움말", "help", "/help", "?"}:
         return help_text()
 
+    if msg.startswith("타로"):
+        question = re.sub(r"^타로\s*", "", msg).strip()
+        return saju_engine.tarot(user_id or "default", question)
+
     a = _named(msg, "점성술|별자리|서양점성술")
     if a:
         return _astro(a[0], a[1])
