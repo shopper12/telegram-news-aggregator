@@ -15,8 +15,8 @@ app = FastAPI(title="Telegram News Aggregator Bot API")
 
 
 class RefreshRequest(BaseModel):
-    hours: int = 6
-    limit: int = 15
+    hours: int = 1
+    limit: int = 999
     briefing_kind: str = "regular"
 
 
@@ -159,9 +159,9 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
     if not text.startswith("봇"):
         text = "봇 " + text
     try:
-        from .bot_services_v5 import handle_command
+        from .bot_services_v7 import handle_command
     except Exception:
-        from .bot_services_v4 import handle_command
+        from .bot_services_v5 import handle_command
     latest = _report_text()
     return handle_command(user_id=user_id, message=text, latest_report=latest)
 
