@@ -61,6 +61,7 @@ def root() -> dict:
             "/api/news-message",
             "/api/refresh",
             "/api/kakao-skill",
+            "/skill",
             "/docs",
         ],
     }
@@ -125,6 +126,16 @@ def _extract_utterance(payload: dict) -> str:
     ).strip()
 
 
+def _extract_user_id(payload: dict) -> str:
+    user = payload.get("userRequest", {}).get("user") or {}
+    props = user.get("properties") or {}
+    for key in ["plusfriendUserKey", "appUserId", "botUserKey"]:
+        value = props.get(key) or user.get(key)
+        if value:
+            return str(value)
+    return "kakao-default"
+
+
 def _kakao_simple_text(text: str) -> dict:
     value = str(text or "뉴스 없음").strip() or "뉴스 없음"
     return {
@@ -141,21 +152,18 @@ def _kakao_simple_text(text: str) -> dict:
     }
 
 
-def _skill_answer(utterance: str) -> str:
-    q = str(utterance or "").strip().lower()
-
-    if not q or "도움" in q or q in {"?", "help", "/help"}:
-        return (
-            "사용 가능한 명령어\n"
-            "뉴스 - 최신 투자 뉴스\n"
-            "시황 - 최신 시장 뉴스\n"
-            "도움말 - 명령어 안내"
-        )
-
-    if any(word in q for word in ["뉴스", "주식", "시황", "브리핑", "시장", "news"]):
-        return _report_text()
-
-    return "명령어를 인식하지 못했습니다. '뉴스' 또는 '도움말'을 입력하세요."
+def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
+    text = str(utterance or "").strip()
+    if not text:
+        text = "봇 도움말"
+    if not text.startswith("봇"):
+        text = "봇 " + text
+    try:
+        from .bot_services_v5 import handle_command
+    except Exception:
+        from .bot_services_v4 import handle_command
+    latest = _report_text()
+    return handle_command(user_id=user_id, message=text, latest_report=latest)
 
 
 async def _handle_kakao_skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
@@ -165,7 +173,8 @@ async def _handle_kakao_skill(request: Request, x_api_key: str | None = Header(d
     except Exception:
         payload = {}
     utterance = _extract_utterance(payload)
-    return _kakao_simple_text(_skill_answer(utterance))
+    user_id = _extract_user_id(payload)
+    return _kakao_simple_text(_skill_answer(utterance, user_id))
 
 
 @app.post("/api/kakao-skill")
