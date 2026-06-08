@@ -35,8 +35,7 @@ def _report_text() -> str:
     return str(data.get("report") or "최신 뉴스 리포트가 없습니다.")
 
 
-def _bot_message_payload() -> dict:
-    data = _report_data()
+def _payload_from_data(data: dict) -> dict:
     message = str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
     return {
         "ok": bool(data.get("ok", False)),
@@ -47,6 +46,10 @@ def _bot_message_payload() -> dict:
         "generated_at": data.get("generated_at"),
         "fallback_reason": data.get("fallback_reason"),
     }
+
+
+def _bot_message_payload() -> dict:
+    return _payload_from_data(_report_data())
 
 
 def _refresh_latest_report(*, hours: int = 1, limit: int = 999, briefing_kind: str = "regular") -> dict:
@@ -104,6 +107,7 @@ def root() -> dict:
     return {
         "ok": True,
         "service": "telegram_news_bot_api",
+        "version": "news-auto-refresh-v1",
         "endpoints": [
             "/health",
             "/api/news",
@@ -119,25 +123,26 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api"}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-auto-refresh-v1"}
 
 
 @app.get("/api/news")
 def get_news(x_api_key: str | None = Header(default=None)) -> dict:
     _require_api_key(x_api_key)
-    return _report_data()
+    return _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
 
 
 @app.get("/api/news-message")
 def get_news_message(x_api_key: str | None = Header(default=None)) -> dict:
     _require_api_key(x_api_key)
-    return _bot_message_payload()
+    return _payload_from_data(_refresh_latest_report(hours=1, limit=999, briefing_kind="regular"))
 
 
 @app.get("/api/news.txt", response_class=PlainTextResponse)
 def get_news_text(x_api_key: str | None = Header(default=None)) -> str:
     _require_api_key(x_api_key)
-    return _report_text()
+    data = _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
+    return str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
 
 
 @app.post("/api/refresh")
