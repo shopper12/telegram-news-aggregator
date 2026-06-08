@@ -29,6 +29,7 @@ EXTRA = {
     "에코프로": "086520",
     "에코프로비엠": "247540",
 }
+CODE_TO_NAME = {v: k for k, v in EXTRA.items()}
 
 
 def _norm(x: str) -> str:
@@ -45,6 +46,33 @@ def _num(x: str) -> float | None:
         return float(s) if s else None
     except Exception:
         return None
+
+
+def _decode_response(r, default: str = "euc-kr") -> str:
+    raw = r.content or b""
+    encodings = []
+    header = (r.headers.get("content-type") or "").lower()
+    match = re.search(r"charset=([\w-]+)", header)
+    if match:
+        encodings.append(match.group(1))
+    if getattr(r, "apparent_encoding", None):
+        encodings.append(str(r.apparent_encoding))
+    encodings.extend([default, "utf-8", "cp949", "euc-kr"])
+    seen = set()
+    best = ""
+    for enc in encodings:
+        if not enc or enc.lower() in seen:
+            continue
+        seen.add(enc.lower())
+        try:
+            text = raw.decode(enc, errors="replace")
+        except Exception:
+            continue
+        if not best or text.count("�") < best.count("�"):
+            best = text
+        if "�" not in text and not re.search(r"[ÃÂìíêë][\x80-\xff]", text):
+            return text
+    return best or r.text
 
 
 def _get(url: str, params: dict[str, str] | None = None):
@@ -65,15 +93,15 @@ def _search_code(q: str) -> str | None:
     code = _manual_code(q)
     if code:
         return code
-    for url, params in [
-        ("https://finance.naver.com/search/searchList.naver", {"query": q}),
-        ("https://search.naver.com/search.naver", {"query": q + " 주가"}),
+    for url, params, enc in [
+        ("https://finance.naver.com/search/searchList.naver", {"query": q}, "euc-kr"),
+        ("https://search.naver.com/search.naver", {"query": q + " 주가"}, "utf-8"),
     ]:
         r = _get(url, params)
         if not r or r.status_code != 200:
             continue
-        r.encoding = "euc-kr"
-        m = re.search(r"code=(\d{6})", r.text)
+        text = _decode_response(r, enc)
+        m = re.search(r"code=(\d{6})", text)
         if m:
             return m.group(1)
     return None
@@ -85,8 +113,8 @@ def _naver_rows(code: str) -> dict[str, Any] | None:
         r = _get("https://finance.naver.com/item/sise_day.naver", {"code": code, "page": str(page)})
         if not r or r.status_code != 200:
             continue
-        r.encoding = "euc-kr"
-        cells = [_clean(x) for x in re.findall(r"<span class=\"tah[^\"]*\">(.*?)</span>", r.text, re.S)]
+        text = _decode_response(r, "euc-kr")
+        cells = [_clean(x) for x in re.findall(r"<span class=\"tah[^\"]*\">(.*?)</span>", text, re.S)]
         cells = [x for x in cells if x]
         i = 0
         while i + 6 < len(cells):
@@ -105,13 +133,16 @@ def _naver_rows(code: str) -> dict[str, Any] | None:
     if len(rows) < 2:
         return None
     rows.reverse()
-    name = code
-    r = _get("https://finance.naver.com/item/main.naver", {"code": code})
-    if r and r.status_code == 200:
-        r.encoding = "euc-kr"
-        m = re.search(r"<title>\s*([^:<]+)", r.text)
-        if m:
-            name = _clean(m.group(1)) or code
+    name = CODE_TO_NAME.get(code) or code
+    if name == code:
+        r = _get("https://finance.naver.com/item/main.naver", {"code": code})
+        if r and r.status_code == 200:
+            text = _decode_response(r, "euc-kr")
+            m = re.search(r"<title>\s*([^:<]+)", text)
+            if m:
+                parsed = _clean(m.group(1))
+                if parsed and "�" not in parsed:
+                    name = parsed
     closes = [x[0] for x in rows]
     highs = [x[1] for x in rows]
     lows = [x[2] for x in rows]
@@ -141,6 +172,19 @@ def _fmt(x):
     if x is None:
         return "미확인"
     return f"{x:,.0f}" if abs(x) >= 1000 else f"{x:,.2f}"
+
+
+def _strip_notice(text: str) -> str:
+    lines = []
+    for line in str(text or "").splitlines():
+        if line.strip().startswith("주의"):
+            continue
+        if "실제 주문 전" in line:
+            continue
+        if "무료 저장은" in line:
+            continue
+        lines.append(line)
+    return "\n".join(lines).strip()
 
 
 def _simple_yahoo_quote(q: str) -> str:
@@ -184,7 +228,7 @@ def simple_quote(q: str) -> str:
 
 def fast_quote(q: str) -> str:
     if re.fullmatch(r"[A-Za-z.\-]{1,10}", q.strip()):
-        return base.quote_text(q)
+        return _strip_notice(base.quote_text(q))
     code = _search_code(q)
     if not code:
         return f"시세를 찾지 못했습니다: {q}"
@@ -239,7 +283,7 @@ def fast_quote(q: str) -> str:
         f"추천: {call}\n"
         f"전략: 손절 {_fmt(support)}, 1차목표 {_fmt(resistance)}\n"
         f"근거: {reason}\n"
-        f"출처: Naver Finance 일봉. 실제 주문 전 증권사 현재가 재확인."
+        f"출처: Naver Finance 일봉"
     )
 
 
@@ -247,14 +291,74 @@ def _target_from_trade(text: str) -> str | None:
     return base._extract_trade_target(text)
 
 
+def _name_key(name: str) -> str:
+    return "name:" + _norm(name)
+
+
+def _parse_named_birth(msg: str):
+    text = str(msg or "").strip()
+    patterns = [
+        r"^(?P<name>[가-힣A-Za-z0-9_]{1,20})\s*(?:생년월일|생일|출생|사주등록|프로필)\s*(?P<rest>.+)$",
+        r"^(?:생년월일|생일|출생|사주등록|프로필)\s*(?P<name>[가-힣A-Za-z0-9_]{1,20})\s*(?P<rest>.+)$",
+    ]
+    for pattern in patterns:
+        m = re.match(pattern, text)
+        if not m:
+            continue
+        name = m.group("name").strip()
+        rest = m.group("rest").strip()
+        birth = base.base.parse_birth_command("생년월일 " + rest)
+        if birth:
+            return name, birth
+    return None
+
+
+def _parse_named_saju(msg: str):
+    text = str(msg or "").strip()
+    patterns = [
+        r"^(?P<name>[가-힣A-Za-z0-9_]{1,20})\s*(?:사주|운세)(?P<question>.*)$",
+        r"^(?:사주|운세)\s*(?P<name>[가-힣A-Za-z0-9_]{1,20})(?P<question>.*)$",
+    ]
+    for pattern in patterns:
+        m = re.match(pattern, text)
+        if m:
+            name = m.group("name").strip()
+            question = (m.group("question") or "").strip()
+            return name, question
+    return None
+
+
+def _named_saju(name: str, question: str) -> str:
+    key = _name_key(name)
+    msg = "사주 " + (question or "")
+    text = base._private_saju(key, msg)
+    if "먼저 생년월일" in text:
+        return f"{name} 프로필이 없습니다. 예: 봇 {name} 생년월일 1987-12-28 08:30 여"
+    return _strip_notice(text)
+
+
 def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
     has_prefix, msg = base._strip_bot_prefix(message)
     if not has_prefix:
         return "명령어는 '봇'으로 시작해야 합니다. 예: 봇 뉴스"
+
+    named_birth = _parse_named_birth(msg)
+    if named_birth:
+        name, birth = named_birth
+        base._save_profile(_name_key(name), *birth)
+        return f"{name} 프로필 저장 완료\n다음부터 '봇 {name} 사주'로 조회하세요."
+
+    named_saju = _parse_named_saju(msg)
+    if named_saju:
+        name, question = named_saju
+        return _named_saju(name, question)
+
     if msg.startswith("시세") or msg.lower().startswith("quote"):
         target = re.sub(r"^(시세|quote)\s*", "", msg, flags=re.IGNORECASE).strip()
         return simple_quote(target)
+
     target = _target_from_trade(msg)
     if target:
         return fast_quote(target)
-    return base.handle_command(user_id=user_id, message=message, latest_report=latest_report)
+
+    return _strip_notice(base.handle_command(user_id=user_id, message=message, latest_report=latest_report))
