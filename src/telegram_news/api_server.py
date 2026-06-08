@@ -89,6 +89,11 @@ def _is_refresh_command(text: str) -> bool:
     return compact in {"뉴스갱신", "뉴스새로고침", "새로고침", "뉴스업데이트", "refresh", "뉴스refresh"}
 
 
+def _is_news_command(text: str) -> bool:
+    compact = _command_body(text).replace(" ", "").lower()
+    return compact in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}
+
+
 def _refreshed_message() -> str:
     data = _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
     return str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
@@ -182,7 +187,7 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         text = "봇 도움말"
     if not text.startswith("봇"):
         text = "봇 " + text
-    if _is_refresh_command(text):
+    if _is_refresh_command(text) or _is_news_command(text):
         return _refreshed_message()
     try:
         from .bot_services_v7 import handle_command
