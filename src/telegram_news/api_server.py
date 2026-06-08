@@ -49,6 +49,51 @@ def _bot_message_payload() -> dict:
     }
 
 
+def _refresh_latest_report(*, hours: int = 1, limit: int = 999, briefing_kind: str = "regular") -> dict:
+    env = os.environ.copy()
+    env["BRIEFING_KIND"] = briefing_kind
+    cmd = [
+        sys.executable,
+        "scripts/run_once.py",
+        "run",
+        "--hours",
+        str(hours),
+        "--limit",
+        str(limit),
+    ]
+    completed = subprocess.run(cmd, cwd=Path.cwd(), env=env, text=True, capture_output=True, timeout=900)
+    if completed.returncode != 0:
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error": "refresh_failed",
+                "stdout": completed.stdout[-3000:],
+                "stderr": completed.stderr[-3000:],
+            },
+        )
+    return _report_data()
+
+
+def _command_body(text: str) -> str:
+    value = str(text or "").strip()
+    if value == "봇":
+        return "도움말"
+    for prefix in ["봇 ", "봇:", "봇아 "]:
+        if value.startswith(prefix):
+            return value[len(prefix):].strip()
+    return value
+
+
+def _is_refresh_command(text: str) -> bool:
+    compact = _command_body(text).replace(" ", "").lower()
+    return compact in {"뉴스갱신", "뉴스새로고침", "새로고침", "뉴스업데이트", "refresh", "뉴스refresh"}
+
+
+def _refreshed_message() -> str:
+    data = _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
+    return str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
+
+
 @app.get("/")
 def root() -> dict:
     return {
@@ -93,28 +138,7 @@ def get_news_text(x_api_key: str | None = Header(default=None)) -> str:
 @app.post("/api/refresh")
 def refresh_news(req: RefreshRequest, x_api_key: str | None = Header(default=None)) -> dict:
     _require_api_key(x_api_key)
-    env = os.environ.copy()
-    env["BRIEFING_KIND"] = req.briefing_kind
-    cmd = [
-        sys.executable,
-        "scripts/run_once.py",
-        "run",
-        "--hours",
-        str(req.hours),
-        "--limit",
-        str(req.limit),
-    ]
-    completed = subprocess.run(cmd, cwd=Path.cwd(), env=env, text=True, capture_output=True, timeout=900)
-    if completed.returncode != 0:
-        raise HTTPException(
-            status_code=500,
-            detail={
-                "error": "refresh_failed",
-                "stdout": completed.stdout[-3000:],
-                "stderr": completed.stderr[-3000:],
-            },
-        )
-    return _report_data()
+    return _refresh_latest_report(hours=req.hours, limit=req.limit, briefing_kind=req.briefing_kind)
 
 
 def _extract_utterance(payload: dict) -> str:
@@ -158,6 +182,8 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         text = "봇 도움말"
     if not text.startswith("봇"):
         text = "봇 " + text
+    if _is_refresh_command(text):
+        return _refreshed_message()
     try:
         from .bot_services_v7 import handle_command
     except Exception:
