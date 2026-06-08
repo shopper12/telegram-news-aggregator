@@ -5,8 +5,8 @@ import os
 from fastapi import Header, HTTPException
 from pydantic import BaseModel
 
-from .api_server import app, _report_data, _report_text
-from .bot_services_v5 import handle_command
+from .api_server import app, _report_data, _report_text, _is_refresh_command, _refreshed_message
+from .bot_services_v7 import handle_command
 
 
 class BotCommandRequest(BaseModel):
@@ -24,8 +24,13 @@ def _require_api_key_ext(x_api_key: str | None) -> None:
 def post_bot_command(req: BotCommandRequest, x_api_key: str | None = Header(default=None)) -> dict:
     _require_api_key_ext(x_api_key)
     data = _report_data()
-    latest = str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
-    message = handle_command(user_id=req.user_id or "default", message=req.message or "", latest_report=latest)
+    raw = req.message or ""
+    if _is_refresh_command(raw):
+        message = _refreshed_message()
+        data = _report_data()
+    else:
+        latest = str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
+        message = handle_command(user_id=req.user_id or "default", message=raw, latest_report=latest)
     return {
         "ok": True,
         "message": message,
