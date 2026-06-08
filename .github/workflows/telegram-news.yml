@@ -6,11 +6,11 @@ on:
       hours:
         description: "Hours to scan"
         required: false
-        default: "6"
+        default: "1"
       limit:
-        description: "Max items in report"
+        description: "Max items to classify; 999 means effectively uncapped"
         required: false
-        default: "15"
+        default: "999"
       briefing_kind:
         description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_aftermarket"
         required: false
@@ -94,7 +94,8 @@ jobs:
 
           should_run = True
           reason = "manual"
-          hours = inputs.get("hours") or "6"
+          hours = inputs.get("hours") or "1"
+          limit = inputs.get("limit") or "999"
           briefing_kind = inputs.get("briefing_kind") or "regular"
 
           def in_window(dt, start_h, start_m, end_h, end_m):
@@ -106,32 +107,31 @@ jobs:
           if event_name == "schedule":
               should_run = False
               reason = "scheduled_checkpoint_not_matched"
+              hours = "1"
+              limit = "999"
 
               if now_kst.weekday() < 5 and in_window(now_kst, 8, 20, 8, 40):
                   should_run = True
                   reason = "kr_premarket"
-                  hours = "12"
                   briefing_kind = "kr_premarket"
               elif now_kst.weekday() < 5 and in_window(now_kst, 15, 35, 15, 50):
                   should_run = True
                   reason = "kr_aftermarket"
-                  hours = "7"
                   briefing_kind = "kr_aftermarket"
               elif now_ny.weekday() < 5 and in_window(now_ny, 3, 20, 3, 40):
                   should_run = True
                   reason = "us_premarket_before"
-                  hours = "8"
                   briefing_kind = "us_premarket_before"
               elif now_ny.weekday() < 5 and in_window(now_ny, 16, 5, 16, 20):
                   should_run = True
                   reason = "us_aftermarket"
-                  hours = "8"
                   briefing_kind = "us_aftermarket"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"should_run={str(should_run).lower()}\n")
               out.write(f"reason={reason}\n")
               out.write(f"hours={hours}\n")
+              out.write(f"limit={limit}\n")
               out.write(f"briefing_kind={briefing_kind}\n")
               out.write(f"kst_now={now_kst:%Y-%m-%d %H:%M:%S KST}\n")
               out.write(f"ny_now={now_ny:%Y-%m-%d %H:%M:%S %Z}\n")
@@ -140,7 +140,7 @@ jobs:
           print(f"KST now: {now_kst:%Y-%m-%d %H:%M:%S KST}")
           print(f"NY now: {now_ny:%Y-%m-%d %H:%M:%S %Z}")
           print(f"event={event_name} schedule={schedule}")
-          print(f"should_run={should_run} reason={reason} hours={hours} briefing_kind={briefing_kind}")
+          print(f"should_run={should_run} reason={reason} hours={hours} limit={limit} briefing_kind={briefing_kind}")
           PY
 
       - name: Set up Python
@@ -216,8 +216,8 @@ jobs:
           BRIEFING_KIND: ${{ steps.cadence.outputs.briefing_kind }}
         run: |
           mkdir -p data reports
-          HOURS="${{ steps.cadence.outputs.hours || '6' }}"
-          LIMIT="${{ github.event.inputs.limit || '15' }}"
+          HOURS="${{ steps.cadence.outputs.hours || '1' }}"
+          LIMIT="${{ steps.cadence.outputs.limit || '999' }}"
           python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT" --send
 
       - name: Commit latest report cache
