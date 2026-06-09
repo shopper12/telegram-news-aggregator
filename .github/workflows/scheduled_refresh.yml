@@ -1,0 +1,38 @@
+name: Scheduled News Refresh
+
+on:
+  schedule:
+    - cron: '25 23 * * 0-4'  # KST 08:25 월-금 (장전)
+    - cron: '55 23 * * 0-4'  # KST 08:55 월-금
+    - cron: '55  0 * * 1-5'  # KST 09:55 월-금 (장중)
+    - cron: '25  2 * * 1-5'  # KST 11:25
+    - cron: '55  2 * * 1-5'  # KST 11:55
+    - cron: '25  4 * * 1-5'  # KST 13:25
+    - cron: '55  4 * * 1-5'  # KST 13:55
+    - cron: '25  6 * * 1-5'  # KST 15:25 (장마감)
+    - cron: '55  6 * * 1-5'  # KST 15:55
+    - cron: '25 13 * * *'    # KST 22:25 매일 (야간)
+    - cron: '*/20 * * * *'   # 20분마다 keep-alive (Render 슬립 방지)
+  workflow_dispatch:          # 수동 실행 가능
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Refresh or Keep-Alive
+        run: |
+          echo "Calling /api/refresh ..."
+          STATUS=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-API-Key: ${{ secrets.NEWS_BOT_API_KEY }}" \
+            -d '{"hours":1,"limit":30,"briefing_kind":"regular"}' \
+            --max-time 120 \
+            https://telegram-news-bot-api.onrender.com/api/refresh || echo "000")
+          echo "HTTP Status: $STATUS"
+          cat /tmp/response.json || true
+          if [ "$STATUS" != "200" ]; then
+            echo "Refresh failed or no API key — sending keep-alive ping"
+            curl -s --max-time 10 https://telegram-news-bot-api.onrender.com/health || true
+          fi
