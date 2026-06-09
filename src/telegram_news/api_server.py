@@ -230,19 +230,22 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         text = "봇 도움말"
     if not text.startswith("봇"):
         text = "봇 " + text
-    if _is_refresh_command(text) or _is_news_command(text):
-        return _refreshed_message()
+latest = _report_text()
+
+    if _is_refresh_command(text):
+        return _refreshed_message()[:990]
+
+    if _is_news_command(text):
+        return latest[:990]
     try:
         from .bot_services_private import handle_command
     except Exception as e:
         logging.warning(f"bot_services_private import failed: {e}")
         from .bot_services_v5 import handle_command
-    latest = _report_text()
     return handle_command(user_id=user_id, message=text, latest_report=latest)
 
 
-async def _handle_kakao_skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
-    _require_api_key(x_api_key)
+async def _handle_kakao_skill(request: Request) -> dict:
     try:
         payload = await request.json()
     except Exception:
@@ -253,10 +256,10 @@ async def _handle_kakao_skill(request: Request, x_api_key: str | None = Header(d
 
 
 @app.post("/api/kakao-skill")
-async def kakao_skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
-    return await _handle_kakao_skill(request, x_api_key)
+async def kakao_skill(request: Request) -> dict:
+    return await _handle_kakao_skill(request)
 
 
 @app.post("/skill")
-async def skill(request: Request, x_api_key: str | None = Header(default=None)) -> dict:
-    return await _handle_kakao_skill(request, x_api_key)
+async def skill(request: Request) -> dict:
+    return await _handle_kakao_skill(request)
