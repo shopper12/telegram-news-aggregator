@@ -107,7 +107,7 @@ def root() -> dict:
     return {
         "ok": True,
         "service": "telegram_news_bot_api",
-        "version": "news-auto-refresh-v1",
+        "version": "news-public-message-v3",
         "endpoints": [
             "/health",
             "/api/news",
@@ -123,26 +123,22 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-auto-refresh-v1"}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v3"}
 
 
 @app.get("/api/news")
-def get_news(x_api_key: str | None = Header(default=None)) -> dict:
-    _require_api_key(x_api_key)
-    return _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
+def get_news() -> dict:
+    return _report_data()
 
 
 @app.get("/api/news-message")
-def get_news_message(x_api_key: str | None = Header(default=None)) -> dict:
-    _require_api_key(x_api_key)
-    return _payload_from_data(_refresh_latest_report(hours=1, limit=999, briefing_kind="regular"))
-
+def get_news_message() -> dict:
+    return _bot_message_payload()
+    
 
 @app.get("/api/news.txt", response_class=PlainTextResponse)
-def get_news_text(x_api_key: str | None = Header(default=None)) -> str:
-    _require_api_key(x_api_key)
-    data = _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
-    return str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
+def get_news_text() -> str:
+    return _report_text()
 
 
 @app.post("/api/refresh")
