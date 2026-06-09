@@ -1,27 +1,7 @@
 from __future__ import annotations
 
-from datetime import datetime
-from pathlib import Path
-import hashlib
-import os
-import re
-from typing import Any
-
-import requests
-
-from . import bot_services as base
-
-base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/var/data/bot_profiles.json"))
-
-QUOTE_TIMEOUT = base.QUOTE_TIMEOUT
-_KR_NAME_CACHE: dict[str, str] | None = None
-
 from pathlib import Path
 import os
-
-base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/var/data/bot_profiles.json"))
-
-from __future__ import annotations
 
 from datetime import datetime
 import hashlib
@@ -31,6 +11,8 @@ from typing import Any
 import requests
 
 from . import bot_services as base
+
+base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/var/data/bot_profiles.json"))
 
 QUOTE_TIMEOUT = base.QUOTE_TIMEOUT
 _KR_NAME_CACHE: dict[str, str] | None = None
@@ -214,6 +196,7 @@ def _pykrx_history(code: str) -> dict[str, Any] | None:
         }
     except Exception:
         return None
+
 
 def _quote_candidates(query: str) -> list[str]:
     q = query.strip()

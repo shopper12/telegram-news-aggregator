@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 import subprocess
 import sys
@@ -64,16 +65,30 @@ def _refresh_latest_report(*, hours: int = 1, limit: int = 999, briefing_kind: s
         "--limit",
         str(limit),
     ]
-    completed = subprocess.run(cmd, cwd=Path.cwd(), env=env, text=True, capture_output=True, timeout=900)
-    if completed.returncode != 0:
-        raise HTTPException(
-            status_code=500,
-            detail={
-                "error": "refresh_failed",
-                "stdout": completed.stdout[-3000:],
-                "stderr": completed.stderr[-3000:],
-            },
-        )
+    try:
+        completed = subprocess.run(cmd, cwd=Path.cwd(), env=env, text=True, capture_output=True, timeout=900)
+        if completed.returncode != 0:
+            logging.error(
+                f"[refresh_failed] returncode={completed.returncode}\n"
+                f"STDOUT: {completed.stdout[-2000:]}\n"
+                f"STDERR: {completed.stderr[-2000:]}"
+            )
+            existing = _report_data()
+            existing["refresh_error"] = completed.stderr[-500:]
+            existing["refresh_failed"] = True
+            return existing
+    except subprocess.TimeoutExpired:
+        logging.error("[refresh_failed] timeout after 900s")
+        existing = _report_data()
+        existing["refresh_error"] = "timeout"
+        existing["refresh_failed"] = True
+        return existing
+    except Exception as e:
+        logging.error(f"[refresh_failed] exception: {e}")
+        existing = _report_data()
+        existing["refresh_error"] = str(e)
+        existing["refresh_failed"] = True
+        return existing
     return _report_data()
 
 
@@ -107,13 +122,14 @@ def root() -> dict:
     return {
         "ok": True,
         "service": "telegram_news_bot_api",
-        "version": "news-public-message-v3",
+        "version": "news-public-message-v4",
         "endpoints": [
             "/health",
             "/api/news",
             "/api/news.txt",
             "/api/news-message",
             "/api/refresh",
+            "/api/status",
             "/api/kakao-skill",
             "/skill",
             "/docs",
@@ -123,7 +139,33 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v3"}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v4"}
+
+
+@app.get("/api/status")
+def get_status() -> dict:
+    """캐시 상태 확인 — 인증 없이 접근 가능"""
+    from datetime import datetime
+    data = _report_data()
+    generated_at = data.get("generated_at", "")
+    stale_seconds = None
+    if generated_at:
+        try:
+            stale_seconds = int(
+                (datetime.now() - datetime.fromisoformat(generated_at)).total_seconds()
+            )
+        except Exception:
+            pass
+    return {
+        "ok": data.get("ok", False),
+        "generated_at": generated_at,
+        "stale_seconds": stale_seconds,
+        "stale_hours": round(stale_seconds / 3600, 1) if stale_seconds else None,
+        "kind": data.get("kind"),
+        "source": data.get("source"),
+        "report_length": len(str(data.get("report", ""))),
+        "has_report": bool(str(data.get("report", "")).strip()),
+    }
 
 
 @app.get("/api/news")
@@ -134,7 +176,7 @@ def get_news() -> dict:
 @app.get("/api/news-message")
 def get_news_message() -> dict:
     return _bot_message_payload()
-    
+
 
 @app.get("/api/news.txt", response_class=PlainTextResponse)
 def get_news_text() -> str:
@@ -191,8 +233,9 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
     if _is_refresh_command(text) or _is_news_command(text):
         return _refreshed_message()
     try:
-        from .bot_services_v7 import handle_command
-    except Exception:
+        from .bot_services_private import handle_command
+    except Exception as e:
+        logging.warning(f"bot_services_private import failed: {e}")
         from .bot_services_v5 import handle_command
     latest = _report_text()
     return handle_command(user_id=user_id, message=text, latest_report=latest)
