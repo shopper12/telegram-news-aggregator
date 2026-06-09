@@ -230,7 +230,7 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         text = "봇 도움말"
     if not text.startswith("봇"):
         text = "봇 " + text
-latest = _report_text()
+    latest = _report_text()
 
     if _is_refresh_command(text):
         return _refreshed_message()[:990]
