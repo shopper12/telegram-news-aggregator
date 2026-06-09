@@ -1,3 +1,21 @@
+from __future__ import annotations
+
+from datetime import datetime
+from pathlib import Path
+import hashlib
+import os
+import re
+from typing import Any
+
+import requests
+
+from . import bot_services as base
+
+base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/var/data/bot_profiles.json"))
+
+QUOTE_TIMEOUT = base.QUOTE_TIMEOUT
+_KR_NAME_CACHE: dict[str, str] | None = None
+
 from pathlib import Path
 import os
 
@@ -235,8 +253,8 @@ def quote_text(query: str) -> str:
         item = _yahoo_history(symbol)
         if not item:
             code = _code_from_symbol(symbol)
-           if code:
-              item = _pykrx_history(code)
+            if code:
+                item = _pykrx_history(code)
         if not item:
             continue
         closes = item["closes"]
