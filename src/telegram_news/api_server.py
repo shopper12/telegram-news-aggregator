@@ -121,7 +121,7 @@ def _help_text() -> str:
     return (
         "명령어 안내\n"
         "봇 뉴스 - 저장된 최신 뉴스/시황\n"
-        "봇 뉴스갱신 - 새로 수집 시도\n"
+        "봇 뉴스갱신 - 스케줄/API에서 새로 수집, 카카오에서는 저장 리포트 즉시 표시\n"
         "봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA\n"
         "봇 도움말 - 명령어 안내"
     )
@@ -137,7 +137,7 @@ def root() -> dict:
     return {
         "ok": True,
         "service": "telegram_news_bot_api",
-        "version": "news-public-message-v5",
+        "version": "news-public-message-v6",
         "endpoints": [
             "/health",
             "/api/news",
@@ -154,7 +154,7 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v5"}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v6"}
 
 
 @app.get("/api/status")
@@ -251,7 +251,8 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         return _help_text()
 
     if _is_refresh_command(text):
-        return _refreshed_message()[:990]
+        cached = _report_text()
+        return ("카카오 5초 제한 때문에 즉시 갱신은 실행하지 않습니다. 저장된 최신 리포트를 표시합니다.\n\n" + cached)[:990]
 
     if _is_news_command(text):
         return _report_text()[:990]
