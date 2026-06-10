@@ -3,9 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 import hashlib
-import json
 import os
 import re
+import traceback
 
 import requests
 from fastapi import FastAPI, Request
@@ -15,8 +15,8 @@ from . import bot_services as base
 from .report_cache import load_latest_report
 
 app = FastAPI(title="Telegram News Messenger API")
-API_VERSION = "messenger-stable-v1"
-base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "data/bot_profiles.json"))
+API_VERSION = "messenger-stable-v2"
+base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/tmp/bot_profiles.json"))
 
 
 def _clean(value: Any) -> str:
@@ -53,19 +53,34 @@ def _help() -> str:
 
 
 def _news() -> str:
-    return str(load_latest_report().get("report") or "최신 뉴스 리포트가 없습니다.")[:1200]
+    try:
+        return str(load_latest_report().get("report") or "최신 뉴스 리포트가 없습니다.")[:1200]
+    except Exception as exc:
+        return f"뉴스 캐시 읽기 실패: {type(exc).__name__}. GitHub Actions 최신 리포트 생성 상태를 확인하세요."
 
 
 def _save_birth(user_id: str, body: str) -> str:
     birth = base.parse_birth_command(body)
     if not birth:
         return "생년월일 형식이 맞지 않습니다. 예: 봇 생년월일 1987-12-28 08:30 여"
-    base.save_profile(user_id, *birth)
-    return "프로필 저장 완료\n이후 '봇 사주 질문'으로 조회하세요."
+    try:
+        base.PROFILE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        base.save_profile(user_id, *birth)
+        return "프로필 저장 완료\n이후 '봇 사주 질문'으로 조회하세요."
+    except Exception as exc:
+        return (
+            "프로필 저장 실패\n"
+            f"원인: {type(exc).__name__}: {exc}\n"
+            f"저장경로: {base.PROFILE_PATH}\n"
+            "Render 환경변수 BOT_PROFILE_PATH를 /tmp/bot_profiles.json 으로 두면 임시 저장은 가능합니다."
+        )
 
 
 def _saju(user_id: str, body: str) -> str:
-    profile = base.get_profile(user_id)
+    try:
+        profile = base.get_profile(user_id)
+    except Exception as exc:
+        return f"프로필 읽기 실패: {type(exc).__name__}: {exc}"
     if not profile:
         return "먼저 생년월일을 등록하세요. 예: 봇 생년월일 1987-12-28 08:30 여"
     question = re.sub(r"^(사주|운세)\s*", "", body).strip()
@@ -193,21 +208,24 @@ def _quote(body: str) -> str:
 
 
 def answer(message: str, user_id: str) -> str:
-    body = _strip_bot(message)
-    low = body.replace(" ", "").lower()
-    if low in {"도움", "도움말", "help", "/help", "?"}:
-        return _help()
-    if low in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}:
-        return _news()
-    if low in {"뉴스갱신", "뉴스새로고침", "새로고침", "뉴스업데이트", "refresh", "뉴스refresh"}:
-        return "메신저R에서는 즉시 갱신을 실행하지 않습니다. 저장된 최신 리포트를 표시합니다.\n\n" + _news()
-    if any(k in body for k in ["생년월일", "생일", "출생", "사주등록", "프로필"]):
-        return _save_birth(user_id, body)
-    if body.startswith("사주") or body.startswith("운세"):
-        return _saju(user_id, body)
-    if body.startswith("시세") or body.lower().startswith("quote"):
-        return _quote(body)
-    return "명령어를 인식하지 못했습니다. '봇 도움말'을 입력하세요."
+    try:
+        body = _strip_bot(message)
+        low = body.replace(" ", "").lower()
+        if low in {"도움", "도움말", "help", "/help", "?"}:
+            return _help()
+        if low in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}:
+            return _news()
+        if low in {"뉴스갱신", "뉴스새로고침", "새로고침", "뉴스업데이트", "refresh", "뉴스refresh"}:
+            return "메신저R에서는 즉시 갱신을 실행하지 않습니다. 저장된 최신 리포트를 표시합니다.\n\n" + _news()
+        if any(k in body for k in ["생년월일", "생일", "출생", "사주등록", "프로필"]):
+            return _save_birth(user_id, body)
+        if body.startswith("사주") or body.startswith("운세"):
+            return _saju(user_id, body)
+        if body.startswith("시세") or body.lower().startswith("quote"):
+            return _quote(body)
+        return "명령어를 인식하지 못했습니다. '봇 도움말'을 입력하세요."
+    except Exception as exc:
+        return "처리 실패\n" + f"원인: {type(exc).__name__}: {exc}\n" + traceback.format_exc(limit=1)
 
 
 async def _payload(request: Request) -> dict:
@@ -242,28 +260,34 @@ def _kakao(text: str) -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api", "version": API_VERSION}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": API_VERSION, "profile_path": str(base.PROFILE_PATH)}
 
 
 @app.get("/")
 def root() -> dict:
-    return {"ok": True, "version": API_VERSION, "endpoints": ["/health", "/reply", "/api/reply", "/skill"]}
+    return {"ok": True, "version": API_VERSION, "profile_path": str(base.PROFILE_PATH), "endpoints": ["/health", "/reply", "/api/reply", "/skill"]}
 
 
 @app.get("/reply", response_class=PlainTextResponse)
 def reply_get(request: Request) -> str:
-    return answer(_query_message(request), _query_user(request))[:1400]
+    try:
+        return answer(_query_message(request), _query_user(request))[:1400]
+    except Exception as exc:
+        return f"처리 실패: {type(exc).__name__}: {exc}"
 
 
 @app.get("/api/reply", response_class=PlainTextResponse)
 def api_reply_get(request: Request) -> str:
-    return answer(_query_message(request), _query_user(request))[:1400]
+    return reply_get(request)
 
 
 @app.post("/reply", response_class=PlainTextResponse)
 async def reply_post(request: Request) -> str:
-    data = await _payload(request)
-    return answer(_clean(data.get("message") or data.get("msg") or data.get("text") or data.get("utterance")), _clean(data.get("sender") or data.get("user_id") or "default-user"))[:1400]
+    try:
+        data = await _payload(request)
+        return answer(_clean(data.get("message") or data.get("msg") or data.get("text") or data.get("utterance")), _clean(data.get("sender") or data.get("user_id") or "default-user"))[:1400]
+    except Exception as exc:
+        return f"처리 실패: {type(exc).__name__}: {exc}"
 
 
 @app.post("/api/reply", response_class=PlainTextResponse)
