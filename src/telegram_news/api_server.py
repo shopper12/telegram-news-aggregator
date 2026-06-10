@@ -112,6 +112,21 @@ def _is_news_command(text: str) -> bool:
     return compact in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}
 
 
+def _is_help_command(text: str) -> bool:
+    compact = _command_body(text).replace(" ", "").lower()
+    return compact in {"도움", "도움말", "help", "/help", "?"}
+
+
+def _help_text() -> str:
+    return (
+        "명령어 안내\n"
+        "봇 뉴스 - 저장된 최신 뉴스/시황\n"
+        "봇 뉴스갱신 - 새로 수집 시도\n"
+        "봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA\n"
+        "봇 도움말 - 명령어 안내"
+    )
+
+
 def _refreshed_message() -> str:
     data = _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
     return str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
@@ -122,7 +137,7 @@ def root() -> dict:
     return {
         "ok": True,
         "service": "telegram_news_bot_api",
-        "version": "news-public-message-v4",
+        "version": "news-public-message-v5",
         "endpoints": [
             "/health",
             "/api/news",
@@ -139,7 +154,7 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v4"}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v5"}
 
 
 @app.get("/api/status")
@@ -194,6 +209,7 @@ def _extract_utterance(payload: dict) -> str:
         payload.get("userRequest", {}).get("utterance")
         or payload.get("utterance")
         or payload.get("action", {}).get("params", {}).get("utterance")
+        or payload.get("message")
         or ""
     ).strip()
 
@@ -205,7 +221,7 @@ def _extract_user_id(payload: dict) -> str:
         value = props.get(key) or user.get(key)
         if value:
             return str(value)
-    return "kakao-default"
+    return str(payload.get("user_id") or "kakao-default")
 
 
 def _kakao_simple_text(text: str) -> dict:
@@ -230,19 +246,23 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         text = "봇 도움말"
     if not text.startswith("봇"):
         text = "봇 " + text
-    latest = _report_text()
+
+    if _is_help_command(text):
+        return _help_text()
 
     if _is_refresh_command(text):
         return _refreshed_message()[:990]
 
     if _is_news_command(text):
-        return latest[:990]
+        return _report_text()[:990]
+
     try:
         from .bot_services_private import handle_command
     except Exception as e:
         logging.warning(f"bot_services_private import failed: {e}")
         from .bot_services_v5 import handle_command
-    return handle_command(user_id=user_id, message=text, latest_report=latest)
+    latest = _report_text()
+    return str(handle_command(user_id=user_id, message=text, latest_report=latest))[:990]
 
 
 async def _handle_kakao_skill(request: Request) -> dict:
@@ -255,9 +275,19 @@ async def _handle_kakao_skill(request: Request) -> dict:
     return _kakao_simple_text(_skill_answer(utterance, user_id))
 
 
+@app.get("/api/kakao-skill")
+def kakao_skill_get() -> dict:
+    return _kakao_simple_text("카카오 스킬 서버 정상. 카카오 설정에는 POST 방식으로 /skill 또는 /api/kakao-skill URL을 넣으세요.")
+
+
 @app.post("/api/kakao-skill")
 async def kakao_skill(request: Request) -> dict:
     return await _handle_kakao_skill(request)
+
+
+@app.get("/skill")
+def skill_get() -> dict:
+    return _kakao_simple_text("카카오 스킬 서버 정상. 카카오 설정에는 POST 방식으로 /skill URL을 넣으세요.")
 
 
 @app.post("/skill")
