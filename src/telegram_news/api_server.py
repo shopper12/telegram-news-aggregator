@@ -359,7 +359,13 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
         return _report_text()[:990]
 
     if _is_quote_command(text):
-        return _fast_quote_text(_quote_target(text))[:990]
+        try:
+            from .bot_services_private import handle_command
+        except Exception as e:
+            logging.warning(f"bot_services_private import failed: {e}")
+            from .bot_services_v5 import handle_command
+        latest = _report_text()
+        return str(handle_command(user_id=user_id, message=text, latest_report=latest))[:990]
 
     try:
         from .bot_services_private import handle_command
