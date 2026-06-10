@@ -54,7 +54,7 @@ jobs:
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: gemini-2.5-flash
-      NOTIFIER: ${{ secrets.NOTIFIER || 'discord' }}
+      NOTIFIER: ${{ secrets.NOTIFIER || 'none' }}
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       DISCORD_WEBHOOK_USERNAME: ${{ secrets.DISCORD_WEBHOOK_USERNAME || '뉴스봇' }}
       KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
@@ -168,7 +168,7 @@ jobs:
                   return ""
               return "".join(str(value).strip().strip('"\'').split())
 
-          notifier = (os.getenv("NOTIFIER") or "discord").strip().lower()
+          notifier = (os.getenv("NOTIFIER") or "none").strip().lower()
           required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION"]
           if notifier in {"kakao", "both"}:
               required += ["KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
