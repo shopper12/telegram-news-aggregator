@@ -11,10 +11,10 @@ CORE_TYPES = {"공시/확정", "이벤트", "실적", "리스크", "거시"}
 TRADE_CORE_TYPES = {"공시/확정", "이벤트", "실적"}
 WATCH_TYPES = {"가격반응", "테마", "정보"}
 LOW_VALUE_TYPES = {"가격반응", "테마", "정보"}
-MATERIALITY_THRESHOLD = 72
-WATCH_THRESHOLD = 78
-MAX_NEWS = 8
-MAX_PER_SECTOR = 2
+MATERIALITY_THRESHOLD = 68
+WATCH_THRESHOLD = 72
+MAX_NEWS = 12
+MAX_PER_SECTOR = 3
 
 LOCAL_AI_RUBRIC_PROMPT = """
 로컬AI 중요도 기준:
@@ -33,7 +33,7 @@ CONFIRMATION_WORDS = [
 CONTRACT_WORDS = ["수주", "계약"]
 MARKET_WIDE_WORDS = [
     "fomc", "fed", "연준", "한은", "금리", "환율", "cpi", "ppi", "고용", "국채", "달러", "유가",
-    "관세", "수출규제", "반도체 수출", "itar", "코스피", "코스닥", "나스닥",
+    "관세", "수출규제", "반도체 수출", "itar", "코스피", "코스닥", "나스닥", "엔비디아",
 ]
 BROAD_FLOW_WORDS = ["외국인", "기관", "개인", "순매수", "순매도", "코스피 팔고", "코스닥 담았다", "수급"]
 THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "테마", "가능성"]
@@ -84,9 +84,11 @@ def _local_ai_delta(cluster) -> int:
             delta += 7
     elif best.news_type in {"리스크", "거시"}:
         if has_market_wide or has_number:
-            delta += 7
+            delta += 9
     elif best.news_type in WATCH_TYPES:
         if best.impact.impact_level == "높음" and has_confirmation:
+            delta += 6
+        if has_number or has_market_wide:
             delta += 4
         if _has_any(text, ADVISORY_WORDS):
             delta -= 30
@@ -109,7 +111,7 @@ def _local_ai_delta(cluster) -> int:
     if len(cluster.sectors()) >= 3:
         delta -= 4
     if not best.symbols and best.news_type not in {"거시", "리스크"}:
-        delta -= 6
+        delta -= 4
 
     return delta
 
@@ -125,6 +127,17 @@ def _is_low_value_cluster(cluster) -> bool:
     )
 
 
+def _has_watch_support(cluster, score: int) -> bool:
+    best = cluster.best()
+    text = f"{best.item.title} {best.item.body}".lower()
+    has_number = bool(NUMBER_EVIDENCE_RE.search(text))
+    has_market_wide = _has_any(text, MARKET_WIDE_WORDS)
+    has_confirmation = _has_any(text, CONFIRMATION_WORDS)
+    repeated = cluster.channel_count() >= 2 or len(cluster.items) >= 2
+    high_impact = best.impact.impact_level == "높음" or getattr(best.item, "gemini_impact", "") == "높음"
+    return bool(best.symbols or repeated or has_number or has_market_wide or has_confirmation or (high_impact and score >= WATCH_THRESHOLD + 4))
+
+
 def materiality_score(cluster) -> int:
     best = cluster.best()
     text = f"{best.item.title} {best.item.body}".lower()
@@ -133,16 +146,16 @@ def materiality_score(cluster) -> int:
     if best.news_type in TRADE_CORE_TYPES:
         score += 20
     elif best.news_type in {"리스크", "거시"}:
-        score += 10
+        score += 12
     elif best.news_type in WATCH_TYPES:
-        score -= 8
+        score -= 6
 
     if best.symbols:
         score += 8
         if _symbols_have_market_data(cluster):
             score += 10
     elif best.news_type not in {"거시", "리스크"}:
-        score -= 5
+        score -= 4
 
     if cluster.channel_count() >= 3:
         score += 8
@@ -158,7 +171,7 @@ def materiality_score(cluster) -> int:
         score += 8
     elif best.impact.impact_level == "중간":
         score += 4
-    elif best.impact.impact_level == "확인부족" and best.news_type not in {"공시/확정", "이벤트"}:
+    elif best.impact.impact_level == "확인부족" and best.news_type not in {"공시/확정", "이벤트", "거시", "리스크"}:
         score -= 4
 
     if any(word in text for word in STRONG_THEME_PENALTY_WORDS):
@@ -222,10 +235,7 @@ def strict_filter(clusters):
             continue
 
         if best.news_type in WATCH_TYPES:
-            if not best.symbols:
-                continue
-            has_support = cluster.channel_count() >= 2 or len(cluster.items) >= 2
-            if has_support and score >= WATCH_THRESHOLD:
+            if _has_watch_support(cluster, score) and score >= WATCH_THRESHOLD:
                 candidates.append(cluster)
 
     return _cap_by_sector(candidates)
