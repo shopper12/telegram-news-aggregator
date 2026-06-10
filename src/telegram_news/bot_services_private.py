@@ -293,7 +293,6 @@ def _private_saju(user_id: str, msg: str) -> str:
     useful = ["목", "화", "토", "금", "수"][seed % 5]
     pressure = patterns[(seed // 7) % 5]
     flow = ["초반 정리-중반 실행-후반 회수", "관계 조율 후 실행", "현금/체력 보존 후 재진입", "공식 절차와 문서화 우선", "작게 반복해 신뢰 회복"][(seed // 13) % 5]
-
     if any(w in question for w in ["돈", "재물", "투자", "주식", "매매"]):
         focus = "재물: 큰 베팅보다 손실 한도와 현금비중이 핵심이다. 추세가 확인된 자산만 분할 접근하고, 감정적 물타기는 금지."
     elif any(w in question for w in ["연애", "결혼", "관계", "상대"]):
@@ -310,7 +309,26 @@ def _private_saju(user_id: str, msg: str) -> str:
         f"보완 기운: {useful} 성향을 생활·일·관계에서 의식적으로 보강\n"
         f"운의 흐름: {flow}\n"
         f"{focus}\n"
-        "실행 조언: 오늘 할 일 1개, 이번 주 버릴 일 1개, 손실 제한선 1개를 숫자로 정하라.\n"
+            if any(w in question for w in ["돈", "재물", "투자", "주식", "매매"]):
+        category = "money"
+    elif any(w in question for w in ["연애", "결혼", "관계", "상대"]):
+        category = "relationship"
+    elif any(w in question for w in ["직장", "일", "시험", "공부", "이직"]):
+        category = "work"
+    else:
+        category = "general"
+
+    try:
+        from .advice_variants import pick_variant
+        action, caution = pick_variant(
+            f"{profile.birth_date}|{profile.birth_time}|{profile.gender}|{profile.calendar}|{question}",
+            category,
+        )
+    except Exception:
+        action = "오늘 할 일 1개를 정하고 완료 기준을 숫자로 적어라."
+        caution = "확신이 강할수록 반대 근거 1개를 먼저 확인해야 한다."
+        f"실행 조언: {action}\n"
+        f"이번 주 점검: {caution}\n"
         "주의: 채팅에는 생년월일을 재표시하지 않는다. 정확한 명식은 절기·출생지·음양력 검증 후 별도 계산 필요."
     )
 
