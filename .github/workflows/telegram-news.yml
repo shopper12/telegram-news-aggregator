@@ -53,7 +53,7 @@ jobs:
       CHANNEL_CONFIG: config/channels.yaml
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      GEMINI_MODEL: gemini-flash-latest
+      GEMINI_MODEL: gemini-2.5-flash
       NOTIFIER: ${{ secrets.NOTIFIER || 'discord' }}
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       DISCORD_WEBHOOK_USERNAME: ${{ secrets.DISCORD_WEBHOOK_USERNAME || '뉴스봇' }}
@@ -110,19 +110,19 @@ jobs:
               hours = "1"
               limit = "999"
 
-              if now_kst.weekday() < 5 and in_window(now_kst, 8, 20, 8, 40):
+              if now_kst.weekday() < 5 and in_window(now_kst, 8, 15, 9, 10):
                   should_run = True
                   reason = "kr_premarket"
                   briefing_kind = "kr_premarket"
-              elif now_kst.weekday() < 5 and in_window(now_kst, 15, 35, 15, 50):
+              elif now_kst.weekday() < 5 and in_window(now_kst, 15, 30, 16, 15):
                   should_run = True
                   reason = "kr_aftermarket"
                   briefing_kind = "kr_aftermarket"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 3, 20, 3, 40):
+              elif now_ny.weekday() < 5 and in_window(now_ny, 3, 10, 4, 10):
                   should_run = True
                   reason = "us_premarket_before"
                   briefing_kind = "us_premarket_before"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 16, 5, 16, 20):
+              elif now_ny.weekday() < 5 and in_window(now_ny, 16, 0, 16, 50):
                   should_run = True
                   reason = "us_aftermarket"
                   briefing_kind = "us_aftermarket"
@@ -191,7 +191,7 @@ jobs:
 
           if os.getenv("GEMINI_API_KEY"):
               print("Gemini API key is present. Gemini synthesis will be attempted.")
-              print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
+              print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
           else:
               print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
           print("Notifier: " + notifier)
