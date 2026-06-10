@@ -2,10 +2,13 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote_plus
 import hashlib
+import html
 import os
 import re
 import traceback
+import xml.etree.ElementTree as ET
 
 import requests
 from fastapi import FastAPI, Request
@@ -15,8 +18,9 @@ from . import bot_services as base
 from .report_cache import load_latest_report
 
 app = FastAPI(title="Telegram News Messenger API")
-API_VERSION = "messenger-stable-v2"
+API_VERSION = "messenger-stable-v3"
 base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/tmp/bot_profiles.json"))
+_KR_SYMBOL_CACHE: dict[str, tuple[str, str, str]] | None = None
 
 
 def _clean(value: Any) -> str:
@@ -44,19 +48,63 @@ def _pick(pool: list[str], seed: int, step: int) -> str:
 def _help() -> str:
     return (
         "명령어 안내\n"
-        "봇 뉴스 - 저장된 최신 뉴스/시황\n"
-        "봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA\n"
+        "봇 뉴스 - 실시간 주요 뉴스 헤드라인\n"
+        "봇 시세 삼성전자 / 봇 시세 한미반도체 / 봇 시세 005930 / 봇 시세 NVDA\n"
         "봇 생년월일 YYYY-MM-DD HH:MM 성별 - 사주 프로필 저장\n"
         "봇 사주 [질문] - 프로필 기반 리딩\n"
         "봇 도움말 - 명령어 안내"
     )
 
 
-def _news() -> str:
+def _live_news() -> str | None:
+    query = os.getenv(
+        "LIVE_NEWS_QUERY",
+        "한국 증시 OR 코스피 OR 코스닥 OR 반도체 OR 환율 OR 금리 OR 미국 증시 OR 엔비디아",
+    )
+    url = "https://news.google.com/rss/search"
+    params = {"q": query, "hl": "ko", "gl": "KR", "ceid": "KR:ko"}
     try:
-        return str(load_latest_report().get("report") or "최신 뉴스 리포트가 없습니다.")[:1200]
+        res = requests.get(url, params=params, timeout=3.0, headers={"User-Agent": "Mozilla/5.0"})
+        if res.status_code != 200 or not res.text:
+            return None
+        root = ET.fromstring(res.text)
+        items = []
+        seen = set()
+        for item in root.findall(".//item"):
+            title = html.unescape(_clean(item.findtext("title")))
+            pub = _clean(item.findtext("pubDate"))
+            if not title:
+                continue
+            key = re.sub(r"\s+", " ", title.lower())
+            if key in seen:
+                continue
+            seen.add(key)
+            items.append((title, pub))
+            if len(items) >= 10:
+                break
+        if not items:
+            return None
+        lines = ["📰 실시간 주요 뉴스", "소스: Google News RSS / 제목 기준"]
+        for idx, (title, pub) in enumerate(items, 1):
+            suffix = f" ({pub})" if pub else ""
+            lines.append(f"{idx}) {title}{suffix}")
+        lines.append("주의: 실시간 원문 요약이 아니라 헤드라인 감시입니다. 상세 판단은 원문/시세 확인 필요.")
+        return "\n".join(lines)
+    except Exception:
+        return None
+
+
+def _news() -> str:
+    live = _live_news()
+    if live:
+        return live[:1400]
+    try:
+        data = load_latest_report()
+        generated = data.get("generated_at") or "시간미상"
+        report = str(data.get("report") or "최신 뉴스 리포트가 없습니다.")
+        return (f"⚠️ 실시간 뉴스 호출 실패. 저장 리포트 표시: {generated}\n\n" + report)[:1400]
     except Exception as exc:
-        return f"뉴스 캐시 읽기 실패: {type(exc).__name__}. GitHub Actions 최신 리포트 생성 상태를 확인하세요."
+        return f"뉴스 읽기 실패: {type(exc).__name__}. GitHub Actions 최신 리포트 생성 상태를 확인하세요."
 
 
 def _save_birth(user_id: str, body: str) -> str:
@@ -156,37 +204,114 @@ def _saju(user_id: str, body: str) -> str:
     )
 
 
+def _norm_stock(value: str) -> str:
+    return re.sub(r"[\s·().,㈜주식회사_-]+", "", value.strip().lower())
+
+
 _SYMBOLS = {
     "삼성전자": "005930.KS", "삼성": "005930.KS", "005930": "005930.KS",
     "하이닉스": "000660.KS", "sk하이닉스": "000660.KS", "000660": "000660.KS",
     "현대차": "005380.KS", "기아": "000270.KS", "네이버": "035420.KS", "카카오": "035720.KS",
-    "한미반도체": "042700.KS", "두산에너빌리티": "034020.KS",
+    "한미반도체": "042700.KS", "두산에너빌리티": "034020.KS", "소룩스": "290690.KQ",
 }
 
 
-def _quote_symbol(target: str) -> str:
-    t = re.sub(r"[\s·().,㈜주식회사_-]+", "", target.strip().lower())
-    if t in _SYMBOLS:
-        return _SYMBOLS[t]
+def _load_kr_symbols() -> dict[str, tuple[str, str, str]]:
+    global _KR_SYMBOL_CACHE
+    if _KR_SYMBOL_CACHE is not None:
+        return _KR_SYMBOL_CACHE
+    names: dict[str, tuple[str, str, str]] = {}
+    try:
+        from pykrx import stock
+        for market, suffix in [("KOSPI", ".KS"), ("KOSDAQ", ".KQ"), ("KONEX", ".KQ")]:
+            for code in stock.get_market_ticker_list(market=market):
+                name = stock.get_market_ticker_name(code)
+                if name:
+                    names[_norm_stock(name)] = (code, market, suffix)
+    except Exception:
+        names = {}
+    _KR_SYMBOL_CACHE = names
+    return names
+
+
+def _resolve_kr_code(target: str) -> tuple[str, str, str] | None:
     digits = re.sub(r"\D", "", target)
     if len(digits) == 6:
-        return f"{digits}.KS"
+        return digits, "KRX", ".KS"
+    key = _norm_stock(target)
+    names = _load_kr_symbols()
+    if key in names:
+        return names[key]
+    for name, value in names.items():
+        if name.startswith(key):
+            return value
+    for name, value in names.items():
+        if key and key in name:
+            return value
+    return None
+
+
+def _quote_symbol(target: str) -> str:
+    key = _norm_stock(target)
+    if key in _SYMBOLS:
+        return _SYMBOLS[key]
+    kr = _resolve_kr_code(target)
+    if kr:
+        code, _market, suffix = kr
+        return f"{code}{suffix}"
     return target.strip().upper()
+
+
+def _quote_krx(target: str) -> str | None:
+    resolved = _resolve_kr_code(target)
+    if not resolved:
+        return None
+    code, market, _suffix = resolved
+    try:
+        from pykrx import stock
+        from datetime import datetime, timedelta
+        end_dt = datetime.now()
+        start_dt = end_dt - timedelta(days=45)
+        df = stock.get_market_ohlcv_by_date(start_dt.strftime("%Y%m%d"), end_dt.strftime("%Y%m%d"), code)
+        if df is None or df.empty:
+            return None
+        name = stock.get_market_ticker_name(code) or target
+        last = df.iloc[-1]
+        prev = df.iloc[-2] if len(df) >= 2 else last
+        price = float(last["종가"])
+        prev_close = float(prev["종가"])
+        pct = ((price / prev_close) - 1) * 100 if prev_close else 0.0
+        vol = int(last.get("거래량", 0)) if "거래량" in last else 0
+        return (
+            f"빠른 시세: {name}({code})\n"
+            f"현재/최근가: {price:,.0f} KRW ({pct:+.2f}%)\n"
+            f"전일종가: {prev_close:,.0f} KRW\n"
+            f"거래량: {vol:,}\n"
+            f"소스: pykrx/{market} 지연 데이터\n"
+            "주의: 주문 전 증권사 현재가를 재확인하세요."
+        )
+    except Exception:
+        return None
 
 
 def _quote(body: str) -> str:
     target = re.sub(r"^(시세|quote)\s*", "", body, flags=re.IGNORECASE).strip()
     if not target:
         return "시세 대상을 입력하세요. 예: 봇 시세 삼성전자"
+
+    krx = _quote_krx(target)
+    if krx:
+        return krx
+
     symbol = _quote_symbol(target)
     try:
         res = requests.get(
-            f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
+            f"https://query1.finance.yahoo.com/v8/finance/chart/{quote_plus(symbol)}",
             params={"range": "5d", "interval": "1d"},
             timeout=2.5,
         )
         if res.status_code != 200:
-            return f"시세 조회 실패: {target}\n종목코드 또는 영문 티커로 다시 시도하세요."
+            return f"시세 조회 실패: {target}\n한글명은 KRX/pykrx 검색 후 실패했습니다. 종목코드 또는 영문 티커로 다시 시도하세요."
         result = (res.json().get("chart", {}).get("result") or [None])[0]
         if not result:
             return f"시세를 찾지 못했습니다: {target}"
@@ -216,7 +341,7 @@ def answer(message: str, user_id: str) -> str:
         if low in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}:
             return _news()
         if low in {"뉴스갱신", "뉴스새로고침", "새로고침", "뉴스업데이트", "refresh", "뉴스refresh"}:
-            return "메신저R에서는 즉시 갱신을 실행하지 않습니다. 저장된 최신 리포트를 표시합니다.\n\n" + _news()
+            return _news()
         if any(k in body for k in ["생년월일", "생일", "출생", "사주등록", "프로필"]):
             return _save_birth(user_id, body)
         if body.startswith("사주") or body.startswith("운세"):
