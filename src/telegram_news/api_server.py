@@ -13,6 +13,7 @@ from pydantic import BaseModel
 from .report_cache import load_latest_report
 
 app = FastAPI(title="Telegram News Aggregator Bot API")
+API_VERSION = "news-public-message-v7"
 
 
 class RefreshRequest(BaseModel):
@@ -46,6 +47,7 @@ def _payload_from_data(data: dict) -> dict:
         "source": data.get("source"),
         "generated_at": data.get("generated_at"),
         "fallback_reason": data.get("fallback_reason"),
+        "version": API_VERSION,
     }
 
 
@@ -121,7 +123,7 @@ def _help_text() -> str:
     return (
         "명령어 안내\n"
         "봇 뉴스 - 저장된 최신 뉴스/시황\n"
-        "봇 뉴스갱신 - 스케줄/API에서 새로 수집, 카카오에서는 저장 리포트 즉시 표시\n"
+        "봇 뉴스갱신 - 스케줄/API에서 새로 수집, 카카오 앱에서는 저장 리포트 즉시 표시\n"
         "봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA\n"
         "봇 도움말 - 명령어 안내"
     )
@@ -137,7 +139,7 @@ def root() -> dict:
     return {
         "ok": True,
         "service": "telegram_news_bot_api",
-        "version": "news-public-message-v6",
+        "version": API_VERSION,
         "endpoints": [
             "/health",
             "/api/news",
@@ -147,6 +149,8 @@ def root() -> dict:
             "/api/status",
             "/api/kakao-skill",
             "/skill",
+            "/reply",
+            "/api/reply",
             "/docs",
         ],
     }
@@ -154,12 +158,11 @@ def root() -> dict:
 
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "service": "telegram_news_bot_api", "version": "news-public-message-v6"}
+    return {"ok": True, "service": "telegram_news_bot_api", "version": API_VERSION}
 
 
 @app.get("/api/status")
 def get_status() -> dict:
-    """캐시 상태 확인 — 인증 없이 접근 가능"""
     from datetime import datetime
     data = _report_data()
     generated_at = data.get("generated_at", "")
@@ -180,6 +183,7 @@ def get_status() -> dict:
         "source": data.get("source"),
         "report_length": len(str(data.get("report", ""))),
         "has_report": bool(str(data.get("report", "")).strip()),
+        "version": API_VERSION,
     }
 
 
@@ -210,6 +214,8 @@ def _extract_utterance(payload: dict) -> str:
         or payload.get("utterance")
         or payload.get("action", {}).get("params", {}).get("utterance")
         or payload.get("message")
+        or payload.get("msg")
+        or payload.get("text")
         or ""
     ).strip()
 
@@ -252,7 +258,7 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
 
     if _is_refresh_command(text):
         cached = _report_text()
-        return ("카카오 5초 제한 때문에 즉시 갱신은 실행하지 않습니다. 저장된 최신 리포트를 표시합니다.\n\n" + cached)[:990]
+        return ("카카오 앱 5초 제한 때문에 즉시 갱신은 실행하지 않습니다. 저장된 최신 리포트를 표시합니다.\n\n" + cached)[:990]
 
     if _is_news_command(text):
         return _report_text()[:990]
@@ -266,19 +272,47 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
     return str(handle_command(user_id=user_id, message=text, latest_report=latest))[:990]
 
 
-async def _handle_kakao_skill(request: Request) -> dict:
+async def _payload_from_request(request: Request) -> dict:
     try:
-        payload = await request.json()
+        return await request.json()
     except Exception:
-        payload = {}
+        pass
+    try:
+        form = await request.form()
+        return dict(form)
+    except Exception:
+        pass
+    try:
+        body = (await request.body()).decode("utf-8", errors="ignore").strip()
+        if body:
+            return {"message": body}
+    except Exception:
+        pass
+    return {}
+
+
+async def _handle_kakao_skill(request: Request) -> dict:
+    payload = await _payload_from_request(request)
     utterance = _extract_utterance(payload)
     user_id = _extract_user_id(payload)
     return _kakao_simple_text(_skill_answer(utterance, user_id))
 
 
+def _query_message(request: Request) -> str:
+    params = request.query_params
+    return str(
+        params.get("message")
+        or params.get("msg")
+        or params.get("text")
+        or params.get("utterance")
+        or params.get("q")
+        or "봇 도움말"
+    )
+
+
 @app.get("/api/kakao-skill")
 def kakao_skill_get() -> dict:
-    return _kakao_simple_text("카카오 스킬 서버 정상. 카카오 설정에는 POST 방식으로 /skill 또는 /api/kakao-skill URL을 넣으세요.")
+    return _kakao_simple_text("카카오 스킬 서버 정상. 공식 카카오 스킬은 POST /skill, 카카오 봇 앱은 GET /reply?message=봇%20뉴스 를 쓰세요.")
 
 
 @app.post("/api/kakao-skill")
@@ -288,9 +322,31 @@ async def kakao_skill(request: Request) -> dict:
 
 @app.get("/skill")
 def skill_get() -> dict:
-    return _kakao_simple_text("카카오 스킬 서버 정상. 카카오 설정에는 POST 방식으로 /skill URL을 넣으세요.")
+    return _kakao_simple_text("카카오 스킬 서버 정상. 공식 카카오 스킬은 POST /skill, 카카오 봇 앱은 GET /reply?message=봇%20뉴스 를 쓰세요.")
 
 
 @app.post("/skill")
 async def skill(request: Request) -> dict:
     return await _handle_kakao_skill(request)
+
+
+@app.get("/reply", response_class=PlainTextResponse)
+def reply_get(request: Request) -> str:
+    return _skill_answer(_query_message(request), "plain-get")
+
+
+@app.get("/api/reply", response_class=PlainTextResponse)
+def api_reply_get(request: Request) -> str:
+    return _skill_answer(_query_message(request), "plain-get")
+
+
+@app.post("/reply", response_class=PlainTextResponse)
+async def reply_post(request: Request) -> str:
+    payload = await _payload_from_request(request)
+    return _skill_answer(_extract_utterance(payload), _extract_user_id(payload))
+
+
+@app.post("/api/reply", response_class=PlainTextResponse)
+async def api_reply_post(request: Request) -> str:
+    payload = await _payload_from_request(request)
+    return _skill_answer(_extract_utterance(payload), _extract_user_id(payload))
