@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from telegram_news.strict_quality import materiality_score, strict_filter, MATERIALITY_THRESHOLD
+from telegram_news.strict_quality import materiality_score, strict_filter, MATERIALITY_THRESHOLD, MAX_PER_SECTOR
 
 
 class FakeCluster:
@@ -52,6 +52,6 @@ def test_materiality_score_penalizes_theme_language(monkeypatch):
 
 def test_strict_filter_caps_same_sector(monkeypatch):
     monkeypatch.setattr("telegram_news.strict_quality._symbols_have_market_data", lambda cluster: True)
-    clusters = [FakeCluster(sector="반도체", title=f"공급 계약 {i}", raw_score=60) for i in range(4)]
+    clusters = [FakeCluster(sector="반도체", title=f"공급 계약 {i}", raw_score=60) for i in range(MAX_PER_SECTOR + 1)]
     kept = strict_filter(clusters)
-    assert len(kept) == 2
+    assert len(kept) == MAX_PER_SECTOR
