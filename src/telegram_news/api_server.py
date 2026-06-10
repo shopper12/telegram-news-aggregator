@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
 
+import requests
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
@@ -13,7 +15,7 @@ from pydantic import BaseModel
 from .report_cache import load_latest_report
 
 app = FastAPI(title="Telegram News Aggregator Bot API")
-API_VERSION = "news-public-message-v7"
+API_VERSION = "news-public-message-v8"
 
 
 class RefreshRequest(BaseModel):
@@ -119,6 +121,16 @@ def _is_help_command(text: str) -> bool:
     return compact in {"도움", "도움말", "help", "/help", "?"}
 
 
+def _is_quote_command(text: str) -> bool:
+    body = _command_body(text).strip().lower()
+    return body.startswith("시세") or body.startswith("quote")
+
+
+def _quote_target(text: str) -> str:
+    body = _command_body(text).strip()
+    return re.sub(r"^(시세|quote)\s*", "", body, flags=re.IGNORECASE).strip()
+
+
 def _help_text() -> str:
     return (
         "명령어 안내\n"
@@ -132,6 +144,89 @@ def _help_text() -> str:
 def _refreshed_message() -> str:
     data = _refresh_latest_report(hours=1, limit=999, briefing_kind="regular")
     return str(data.get("report") or "뉴스 없음").strip() or "뉴스 없음"
+
+
+_QUOTE_SYMBOLS: dict[str, str] = {
+    "삼성전자": "005930.KS",
+    "삼성": "005930.KS",
+    "005930": "005930.KS",
+    "sk하이닉스": "000660.KS",
+    "하이닉스": "000660.KS",
+    "000660": "000660.KS",
+    "현대차": "005380.KS",
+    "기아": "000270.KS",
+    "네이버": "035420.KS",
+    "naver": "035420.KS",
+    "카카오": "035720.KS",
+    "lg전자": "066570.KS",
+    "한미반도체": "042700.KS",
+    "두산에너빌리티": "034020.KS",
+    "에코프로": "086520.KQ",
+    "에코프로비엠": "247540.KQ",
+}
+
+
+def _normalize_quote_key(value: str) -> str:
+    return re.sub(r"[\s·().,㈜주식회사_-]+", "", value.strip().lower())
+
+
+def _quote_symbol(target: str) -> str:
+    raw = target.strip()
+    key = _normalize_quote_key(raw)
+    if key in _QUOTE_SYMBOLS:
+        return _QUOTE_SYMBOLS[key]
+    digits = re.sub(r"\D", "", raw)
+    if len(digits) == 6:
+        return f"{digits}.KS"
+    return raw.upper()
+
+
+def _fmt_price(value: float | None) -> str:
+    if value is None:
+        return "미확인"
+    if abs(value) >= 1000:
+        return f"{value:,.0f}"
+    return f"{value:,.2f}"
+
+
+def _fast_quote_text(target: str) -> str:
+    q = target.strip()
+    if not q:
+        return "시세 대상을 입력하세요. 예: 봇 시세 삼성전자"
+
+    symbol = _quote_symbol(q)
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
+    params = {"range": "5d", "interval": "1d"}
+    try:
+        res = requests.get(url, params=params, timeout=2.2)
+        if res.status_code != 200:
+            return f"시세 조회 실패: {q}\nYahoo 응답 HTTP {res.status_code}. 한국 KOSDAQ 종목이면 종목코드로 다시 시도하세요."
+        result = (res.json().get("chart", {}).get("result") or [None])[0]
+        if not result:
+            return f"시세를 찾지 못했습니다: {q}\n예: 봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA"
+        meta = result.get("meta") or {}
+        price = meta.get("regularMarketPrice")
+        prev = meta.get("previousClose")
+        currency = meta.get("currency") or ""
+        exch = meta.get("exchangeName") or "Yahoo"
+        name = meta.get("shortName") or symbol
+        pct = None
+        if price is not None and prev:
+            pct = ((float(price) / float(prev)) - 1) * 100
+        pct_text = "미확인" if pct is None else f"{pct:+.2f}%"
+        return (
+            f"빠른 시세: {q}\n"
+            f"{name} ({symbol})\n"
+            f"현재/최근가: {_fmt_price(float(price) if price is not None else None)} {currency} ({pct_text})\n"
+            f"전일종가: {_fmt_price(float(prev) if prev is not None else None)} {currency}\n"
+            f"소스: {exch}/Yahoo 지연 데이터\n"
+            f"주의: 메신저R 5초 제한 때문에 빠른 조회만 제공합니다. 주문 전 증권사 현재가를 재확인하세요."
+        )
+    except requests.Timeout:
+        return f"시세 조회 지연: {q}\n외부 시세 서버가 2초 안에 응답하지 않았습니다. 잠시 뒤 다시 시도하세요."
+    except Exception as exc:
+        logging.warning("fast quote failed: %s", exc)
+        return f"시세 조회 실패: {q}\n원인: 외부 시세 서버 응답 오류. 예: 봇 시세 삼성전자 / 봇 시세 NVDA"
 
 
 @app.get("/")
@@ -262,6 +357,9 @@ def _skill_answer(utterance: str, user_id: str = "kakao-default") -> str:
 
     if _is_news_command(text):
         return _report_text()[:990]
+
+    if _is_quote_command(text):
+        return _fast_quote_text(_quote_target(text))[:990]
 
     try:
         from .bot_services_private import handle_command
