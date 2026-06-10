@@ -12,7 +12,7 @@ import requests
 
 from . import bot_services as base
 
-base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/var/data/bot_profiles.json"))
+base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "data/bot_profiles.json"))
 
 QUOTE_TIMEOUT = base.QUOTE_TIMEOUT
 _KR_NAME_CACHE: dict[str, str] | None = None
@@ -80,223 +80,187 @@ def _simple_ma(values: list[float], window: int) -> float | None:
     return sum(values[-window:]) / window
 
 
-def _rsi(values: list[float], window: int = 14) -> float | None:
-    if len(values) <= window:
+def _rsi(values: list[float], period: int = 14) -> float | None:
+    if len(values) <= period:
         return None
-    gains = []
-    losses = []
-    for i in range(-window, 0):
-        diff = values[i] - values[i - 1]
-        gains.append(max(diff, 0.0))
-        losses.append(max(-diff, 0.0))
-    avg_gain = sum(gains) / window
-    avg_loss = sum(losses) / window
+    gains: list[float] = []
+    losses: list[float] = []
+    for prev, cur in zip(values[-period - 1:-1], values[-period:]):
+        diff = cur - prev
+        if diff >= 0:
+            gains.append(diff)
+            losses.append(0.0)
+        else:
+            gains.append(0.0)
+            losses.append(abs(diff))
+    avg_gain = sum(gains) / period
+    avg_loss = sum(losses) / period
     if avg_loss == 0:
         return 100.0
     rs = avg_gain / avg_loss
-    return 100.0 - (100.0 / (1.0 + rs))
+    return 100 - (100 / (1 + rs))
 
 
-def _atr(highs: list[float], lows: list[float], closes: list[float], window: int = 14) -> float | None:
-    if len(closes) <= window or len(highs) != len(lows) or len(highs) != len(closes):
-        return None
-    trs = []
-    start = len(closes) - window
-    for i in range(start, len(closes)):
-        prev_close = closes[i - 1]
-        tr = max(highs[i] - lows[i], abs(highs[i] - prev_close), abs(lows[i] - prev_close))
-        trs.append(tr)
-    return sum(trs) / len(trs) if trs else None
+def _score_from_history(closes: list[float], volumes: list[float]) -> tuple[int, str, float | None, float | None, float | None, float | None, float | None]:
+    if not closes:
+        return 0, "가격 데이터 없음", None, None, None, None, None
+    price = closes[-1]
+    ma20 = _simple_ma(closes, 20)
+    ma60 = _simple_ma(closes, 60)
+    ma120 = _simple_ma(closes, 120)
+    rsi14 = _rsi(closes, 14)
+    support = min(closes[-20:]) if len(closes) >= 20 else min(closes)
+    resistance = max(closes[-20:]) if len(closes) >= 20 else max(closes)
+    score = 50
+    reasons: list[str] = []
+    if ma20 and price > ma20:
+        score += 10
+        reasons.append("20일선 상회")
+    if ma60 and price > ma60:
+        score += 10
+        reasons.append("60일선 상회")
+    if ma20 and ma60 and ma20 > ma60:
+        score += 10
+        reasons.append("단기 추세 우위")
+    if rsi14 is not None:
+        if 45 <= rsi14 <= 70:
+            score += 10
+            reasons.append("RSI 정상 모멘텀")
+        elif rsi14 > 78:
+            score -= 15
+            reasons.append("RSI 과열")
+        elif rsi14 < 35:
+            score -= 10
+            reasons.append("RSI 약세")
+    vol_ratio = None
+    if len(volumes) >= 21:
+        avg_vol = sum(volumes[-21:-1]) / 20
+        if avg_vol > 0:
+            vol_ratio = volumes[-1] / avg_vol
+            if vol_ratio >= 1.5:
+                score += 10
+                reasons.append("거래량 증가")
+    score = max(0, min(100, score))
+    return score, ", ".join(reasons) or "중립", ma20, ma60, ma120, rsi14, vol_ratio
 
 
-def _yahoo_history(symbol: str) -> dict[str, Any] | None:
-    try:
-        r = requests.get(
-            f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
-            params={"range": "6mo", "interval": "1d"},
-            timeout=QUOTE_TIMEOUT,
-        )
-        if r.status_code != 200:
-            return None
-        data = r.json()
-        result = data.get("chart", {}).get("result", [])
-        if not result:
-            return None
-        obj = result[0]
-        meta = obj.get("meta", {})
-        quote = (obj.get("indicators", {}).get("quote") or [{}])[0]
-        closes = [float(x) for x in quote.get("close", []) if x is not None]
-        highs = [float(x) for x in quote.get("high", []) if x is not None]
-        lows = [float(x) for x in quote.get("low", []) if x is not None]
-        volumes = [float(x) for x in quote.get("volume", []) if x is not None]
-        if not closes:
-            return None
-        price = float(meta.get("regularMarketPrice") or closes[-1])
-        prev = float(meta.get("chartPreviousClose") or closes[-2] if len(closes) > 1 else closes[-1])
-        return {
-            "symbol": symbol,
-            "price": price,
-            "prev": prev,
-            "pct": (price - prev) / prev * 100 if prev else None,
-            "currency": meta.get("currency") or "",
-            "exchange": meta.get("exchangeName") or meta.get("exchangeTimezoneName") or "",
-            "closes": closes,
-            "highs": highs[-len(closes):],
-            "lows": lows[-len(closes):],
-            "volumes": volumes[-len(closes):],
-        }
-    except Exception:
-        return None
-
-
-def _code_from_symbol(symbol: str) -> str | None:
-    m = re.match(r"^(\d{6})(?:\.(?:KS|KQ))?$", symbol, re.IGNORECASE)
-    return m.group(1) if m else None
+def _code_from_symbol(query: str) -> str | None:
+    q = query.strip().upper()
+    digits = re.sub(r"\D", "", q)
+    if len(digits) == 6:
+        return digits
+    matches = _kr_code_matches(query, limit=1)
+    return matches[0] if matches else None
 
 
 def _pykrx_history(code: str) -> dict[str, Any] | None:
     try:
         from pykrx import stock
-        from datetime import datetime, timedelta
-
-        end = datetime.now()
-        start = end - timedelta(days=260)
-        df = stock.get_market_ohlcv_by_date(
-            start.strftime("%Y%m%d"),
-            end.strftime("%Y%m%d"),
-            code,
-        )
+        end = datetime.now().strftime("%Y%m%d")
+        start = f"{datetime.now().year - 1}{datetime.now().month:02d}{datetime.now().day:02d}"
+        df = stock.get_market_ohlcv_by_date(start, end, code)
         if df is None or df.empty:
             return None
-
-        closes = [float(x) for x in df["종가"].dropna().tolist()]
-        highs = [float(x) for x in df["고가"].dropna().tolist()]
-        lows = [float(x) for x in df["저가"].dropna().tolist()]
-        volumes = [float(x) for x in df["거래량"].dropna().tolist()]
-
-        if len(closes) < 2:
-            return None
-
-        price = closes[-1]
-        prev = closes[-2]
+        closes = [float(x) for x in df["종가"].tail(130).tolist()]
+        volumes = [float(x) for x in df["거래량"].tail(130).tolist()]
         name = stock.get_market_ticker_name(code) or code
-
+        last = df.iloc[-1]
+        prev = df.iloc[-2] if len(df) >= 2 else last
+        price = float(last["종가"])
+        prev_close = float(prev["종가"])
+        pct = ((price / prev_close) - 1) * 100 if prev_close else 0.0
         return {
             "symbol": f"{name}({code})",
             "price": price,
-            "prev": prev,
-            "pct": (price - prev) / prev * 100 if prev else None,
+            "pct": pct,
             "currency": "KRW",
-            "exchange": "KRX",
-            "source": "pykrx KRX daily OHLCV",
+            "exchange": "KRX(pykrx)",
             "closes": closes,
-            "highs": highs[-len(closes):],
-            "lows": lows[-len(closes):],
-            "volumes": volumes[-len(closes):],
+            "volumes": volumes,
         }
     except Exception:
         return None
 
 
-def _quote_candidates(query: str) -> list[str]:
-    q = query.strip()
-    lower = q.lower()
-    if lower in base.KR_NAME_TO_CODE:
-        code = base.KR_NAME_TO_CODE[lower]
-        return [f"{code}.KS", f"{code}.KQ", code]
-    if q in base.KR_NAME_TO_CODE:
-        code = base.KR_NAME_TO_CODE[q]
-        return [f"{code}.KS", f"{code}.KQ", code]
-    if re.fullmatch(r"\d{6}", q):
-        return [f"{q}.KS", f"{q}.KQ"]
-    if re.fullmatch(r"[A-Za-z.\-]{1,10}", q):
-        return [q.upper()]
-    out: list[str] = []
-    for code in _kr_code_matches(q):
-        out.extend([f"{code}.KS", f"{code}.KQ"])
-    return out
+def _yahoo_symbol(query: str) -> str:
+    q = query.strip().upper()
+    digits = re.sub(r"\D", "", q)
+    if len(digits) == 6:
+        return f"{digits}.KS"
+    code = _code_from_symbol(query)
+    if code:
+        return f"{code}.KS"
+    return q
+
+
+def _yahoo_history(symbol: str) -> dict[str, Any] | None:
+    try:
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
+        params = {"range": "6mo", "interval": "1d"}
+        res = requests.get(url, params=params, timeout=min(3.0, float(QUOTE_TIMEOUT)))
+        if res.status_code != 200:
+            return None
+        data = res.json()["chart"]["result"][0]
+        meta = data.get("meta") or {}
+        quote = data.get("indicators", {}).get("quote", [{}])[0]
+        closes = [float(x) for x in quote.get("close", []) if x is not None]
+        volumes = [float(x) for x in quote.get("volume", []) if x is not None]
+        if not closes:
+            return None
+        price = float(meta.get("regularMarketPrice") or closes[-1])
+        prev = float(meta.get("previousClose") or closes[-2] if len(closes) >= 2 else price)
+        pct = ((price / prev) - 1) * 100 if prev else 0.0
+        return {
+            "symbol": symbol,
+            "price": price,
+            "pct": pct,
+            "currency": meta.get("currency") or "",
+            "exchange": meta.get("exchangeName") or "Yahoo",
+            "closes": closes,
+            "volumes": volumes,
+        }
+    except Exception:
+        return None
 
 
 def _fmt_price(value: float | None) -> str:
     if value is None:
         return "미확인"
-    return f"{value:,.0f}" if value >= 1000 else f"{value:,.2f}"
+    if value >= 1000:
+        return f"{value:,.0f}"
+    return f"{value:,.2f}"
 
 
 def quote_text(query: str) -> str:
     q = query.strip()
-    candidates = _quote_candidates(q)
-    if not candidates:
-        return "시세 형식: 봇 시세 삼성전자 / 봇 시세 한미반도체 / 봇 시세 005930 / 봇 시세 NVDA"
-    seen = set()
-    for symbol in candidates:
-        if symbol in seen:
-            continue
-        seen.add(symbol)
+    if not q:
+        return "시세 대상을 입력하세요. 예: 봇 시세 삼성전자"
+    code = _code_from_symbol(q)
+    item = _pykrx_history(code) if code else None
+    symbol = _yahoo_symbol(q)
+    if not item:
         item = _yahoo_history(symbol)
-        if not item:
-            code = _code_from_symbol(symbol)
-            if code:
-                item = _pykrx_history(code)
-        if not item:
-            continue
+    if not item:
+        code = _code_from_symbol(symbol)
+        if code:
+            item = _pykrx_history(code)
+    if item:
         closes = item["closes"]
-        highs = item["highs"]
-        lows = item["lows"]
         volumes = item["volumes"]
+        score, reason, ma20, ma60, ma120, rsi14, vol_ratio = _score_from_history(closes, volumes)
         price = item["price"]
-        ma20 = _simple_ma(closes, 20)
-        ma60 = _simple_ma(closes, 60)
-        ma120 = _simple_ma(closes, 120)
-        rsi14 = _rsi(closes, 14)
-        atr14 = _atr(highs, lows, closes, 14)
-        support = min(lows[-20:]) if len(lows) >= 20 else None
-        resistance = max(highs[-20:]) if len(highs) >= 20 else None
-        vol20 = _simple_ma(volumes, 20) if volumes else None
-        vol_ratio = volumes[-1] / vol20 if vol20 and volumes else None
-
-        score = 50
-        if ma20 and price > ma20:
-            score += 10
-        if ma60 and price > ma60:
-            score += 10
-        if ma20 and ma60 and ma20 > ma60:
-            score += 10
-        if ma120 and price > ma120:
-            score += 5
-        if rsi14 is not None:
-            if 45 <= rsi14 <= 65:
-                score += 10
-            elif 65 < rsi14 <= 75:
-                score += 3
-            elif rsi14 > 75:
-                score -= 15
-            elif rsi14 < 35:
-                score -= 8
-        if resistance and price >= resistance * 0.995:
-            score += 7
-        if support and price <= support * 1.03:
-            score += 5
-        if vol_ratio and vol_ratio >= 1.5:
-            score += 5
-        score = max(0, min(100, score))
-
+        pct = item["pct"]
+        support = min(closes[-20:]) if len(closes) >= 20 else min(closes)
+        resistance = max(closes[-20:]) if len(closes) >= 20 else max(closes)
+        stop = support * 0.98
+        target = resistance * 1.03
         if score >= 75:
-            call = "분할매수 후보"
-            reason = "추세와 수급 점수가 우세하다. 단, 한 번에 진입하지 말고 분할 접근."
-        elif score >= 60:
-            call = "눌림대기/소액관찰"
-            reason = "상승 조건은 일부 충족하지만 추격 매수는 제한한다."
-        elif score >= 45:
-            call = "관망"
-            reason = "방향성 우위가 약하다. 지지/저항 확인 전 신규 진입 보류."
+            call = "관심/분할 접근 가능"
+        elif score >= 55:
+            call = "관망 우위"
         else:
-            call = "매수 보류"
-            reason = "추세 또는 모멘텀 점수가 낮다. 손실 회피가 우선."
-
-        stop = price - atr14 * 1.5 if atr14 else None
-        target = price + atr14 * 2.0 if atr14 else resistance
-        pct_text = "등락률 미확인" if item["pct"] is None else f"{item['pct']:+.2f}%"
+            call = "비추천/리스크 우위"
+        pct_text = f"{pct:+.2f}%"
         rsi_text = "미확인" if rsi14 is None else f"{rsi14:.1f}"
         vol_text = "미확인" if vol_ratio is None else f"{vol_ratio:.1f}배"
         return (
