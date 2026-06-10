@@ -56,31 +56,43 @@ def _load_github_fallback() -> dict | None:
     return None
 
 
-def _is_stale(generated_at: str) -> bool:
-    """캐시가 MAX_CACHE_AGE_SECONDS 이상 지났으면 True"""
+def _age_seconds(generated_at: str) -> int | None:
     try:
-        age = (datetime.now() - datetime.fromisoformat(generated_at)).total_seconds()
-        return age > MAX_CACHE_AGE_SECONDS
+        return int((datetime.now() - datetime.fromisoformat(generated_at)).total_seconds())
     except Exception:
-        return False
+        return None
+
+
+def _is_stale(generated_at: str) -> bool:
+    age = _age_seconds(generated_at)
+    return bool(age is not None and age > MAX_CACHE_AGE_SECONDS)
+
+
+def _with_stale_notice(data: dict) -> dict:
+    generated_at = data.get("generated_at", "")
+    age_sec = _age_seconds(generated_at) if generated_at else None
+    if age_sec is None:
+        data["stale"] = True
+        return data
+    age_h = age_sec // 3600
+    age_m = (age_sec % 3600) // 60
+    stale_notice = f"⚠️ 마지막 업데이트로부터 {age_h}시간 {age_m}분 경과\n\n"
+    data["stale"] = True
+    data["report"] = stale_notice + str(data.get("report", ""))
+    return data
 
 
 def load_latest_report() -> dict:
     if LATEST_REPORT_JSON.exists():
         try:
             data = json.loads(LATEST_REPORT_JSON.read_text(encoding="utf-8"))
-            # 만료 체크: 오래된 캐시면 stale 표시 추가
             generated_at = data.get("generated_at", "")
             if generated_at and _is_stale(generated_at):
-                try:
-                    age_sec = int((datetime.now() - datetime.fromisoformat(generated_at)).total_seconds())
-                    age_h = age_sec // 3600
-                    age_m = (age_sec % 3600) // 60
-                    stale_notice = f"⚠️ 마지막 업데이트로부터 {age_h}시간 {age_m}분 경과\n\n"
-                    data["stale"] = True
-                    data["report"] = stale_notice + str(data.get("report", ""))
-                except Exception:
-                    data["stale"] = True
+                fallback = _load_github_fallback()
+                if fallback:
+                    fallback["fallback_reason"] = "local_cache_stale"
+                    return fallback
+                return _with_stale_notice(data)
             return data
         except Exception as exc:
             fallback = _load_github_fallback()
