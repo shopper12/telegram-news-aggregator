@@ -141,9 +141,12 @@ def _send_report_to_discord(report: str) -> None:
 
 
 def _send_report(report: str) -> None:
-    notifier = (os.getenv("NOTIFIER") or "kakao").strip().lower()
+    notifier = (os.getenv("NOTIFIER") or "none").strip().lower()
+    if notifier in {"", "none", "off", "false", "no"}:
+        print("Notifier disabled; report cache was still generated and saved.")
+        return
     if notifier not in {"kakao", "discord", "both"}:
-        raise RuntimeError("NOTIFIER must be one of: kakao, discord, both")
+        raise RuntimeError("NOTIFIER must be one of: none, kakao, discord, both")
 
     if notifier in {"kakao", "both"}:
         _send_report_to_kakao(report)
