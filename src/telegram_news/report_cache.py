@@ -10,8 +10,8 @@ import requests
 LATEST_REPORT_JSON = Path("reports/latest_report.json")
 LATEST_REPORT_MD = Path("reports/latest_report.md")
 DEFAULT_LATEST_REPORT_URL = "https://raw.githubusercontent.com/shopper12/telegram-news-aggregator/main/reports/latest_report.json"
-FALLBACK_TIMEOUT_SECONDS = float(os.getenv("LATEST_REPORT_FALLBACK_TIMEOUT_SECONDS", "2.0"))
-MAX_CACHE_AGE_SECONDS = int(os.getenv("REPORT_CACHE_MAX_AGE_SECONDS", "7200"))  # 기본 2시간
+FALLBACK_TIMEOUT_SECONDS = float(os.getenv("LATEST_REPORT_FALLBACK_TIMEOUT_SECONDS", "5.0"))
+MAX_CACHE_AGE_SECONDS = int(os.getenv("REPORT_CACHE_MAX_AGE_SECONDS", "3600"))  # 기본 1시간
 
 
 def save_latest_report(*, report: str, kind: str, hours: int, source: str = "scheduled") -> None:
@@ -39,6 +39,8 @@ def _load_github_fallback() -> dict | None:
     url = os.getenv("LATEST_REPORT_URL", DEFAULT_LATEST_REPORT_URL).strip()
     if not url:
         return None
+    separator = "&" if "?" in url else "?"
+    url = url.rstrip("?&") + f"{separator}t={int(datetime.now().timestamp())}"
     token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
     headers = {"Accept": "application/json"}
     if token:
