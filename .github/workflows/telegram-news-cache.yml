@@ -1,0 +1,115 @@
+name: Telegram news cache
+
+on:
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "Hours to scan"
+        required: false
+        default: "2"
+      limit:
+        description: "Max items to classify"
+        required: false
+        default: "999"
+      briefing_kind:
+        description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_aftermarket"
+        required: false
+        default: "regular"
+  schedule:
+    # KST 08:35, 15:45, 22:30 on weekdays.
+    - cron: "35 23 * * 0-4"
+    - cron: "45 6 * * 1-5"
+    - cron: "30 13 * * 1-5"
+
+concurrency:
+  group: telegram-news-cache
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONPATH: src
+      TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+      TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+      TELEGRAM_STRING_SESSION: ${{ secrets.TELEGRAM_STRING_SESSION }}
+      TELEGRAM_SESSION_NAME: telegram_news_session
+      DATABASE_URL: sqlite:///data/news.db
+      CHANNEL_CONFIG: config/channels.yaml
+      TIMEZONE: Asia/Seoul
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: gemini-2.5-flash
+      NOTIFIER: none
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Validate Telegram secrets
+        run: |
+          python - <<'PY'
+          import os, sys
+          from telethon.sessions import StringSession
+
+          def clean_secret(value):
+              if not value:
+                  return ""
+              return "".join(str(value).strip().strip('"\'').split())
+
+          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION"]
+          missing = [name for name in required if not clean_secret(os.getenv(name))]
+          if missing:
+              print("Missing GitHub Actions secrets: " + ", ".join(missing))
+              print("This cache workflow reads Telegram channels and commits reports/latest_report.json. It does not need Discord or Kakao secrets.")
+              sys.exit(1)
+          try:
+              StringSession(clean_secret(os.getenv("TELEGRAM_STRING_SESSION")))
+          except Exception as exc:
+              print("Invalid TELEGRAM_STRING_SESSION secret.")
+              print("Reason: " + type(exc).__name__ + ": " + str(exc))
+              sys.exit(1)
+          print("Telegram collection secrets are present.")
+          PY
+
+      - name: Run Telegram channel collection and report cache
+        env:
+          BRIEFING_KIND: ${{ github.event.inputs.briefing_kind || 'regular' }}
+        run: |
+          mkdir -p data reports
+          HOURS="${{ github.event.inputs.hours || '2' }}"
+          LIMIT="${{ github.event.inputs.limit || '999' }}"
+          python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT"
+
+      - name: Commit latest report cache
+        run: |
+          if [ ! -f reports/latest_report.json ]; then
+            echo "latest_report.json not found; fail cache workflow"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f reports/latest_report.json reports/latest_report.md
+          if git diff --cached --quiet; then
+            echo "No latest report changes to commit"
+            exit 0
+          fi
+          git commit -m "Update latest Telegram news cache [skip ci]"
+          git pull --rebase
+          git push
