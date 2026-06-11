@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
-    startCommand: PYTHONPATH=src python scripts/run_api.py
+    startCommand: PYTHONPATH=src python scripts/run_api_v7.py
     healthCheckPath: /health
     envVars:
       - key: PYTHONPATH
