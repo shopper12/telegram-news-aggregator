@@ -12,15 +12,61 @@ HOUR_BRANCHES = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", 
 ELEMENT = {"甲":"목","乙":"목","寅":"목","卯":"목","丙":"화","丁":"화","巳":"화","午":"화","戊":"토","己":"토","辰":"토","戌":"토","丑":"토","未":"토","庚":"금","辛":"금","申":"금","酉":"금","壬":"수","癸":"수","亥":"수","子":"수"}
 DAY_STEM_TRAITS = {"甲":"직진형 리더", "乙":"유연한 전략가", "丙":"에너지 발산형", "丁":"섬세한 집중형", "戊":"안정 추구형", "己":"실용적 관리형", "庚":"원칙주의자", "辛":"예민한 완벽주의", "壬":"흐름 타는 전략가", "癸":"깊이 있는 사색형"}
 CONTROLS = {"목":"금", "화":"수", "토":"목", "금":"화", "수":"토"}
-GENERATES = {"목":"수", "화":"목", "토":"화", "금":"토", "수":"금"}
+GENERATES = {"목":"화", "화":"토", "토":"금", "금":"수", "수":"목"}
+CONTROLLED_BY = {"금":"목", "수":"화", "목":"토", "화":"금", "토":"수"}
+GENERATED_BY = {"화":"목", "토":"화", "금":"토", "수":"금", "목":"수"}
 DAY_NAMES = ["일", "월", "화", "수", "목", "금", "토"]
+
+# 십신(十神) 매핑: (일간 오행, 상대 오행) -> 십신명
+# 십신은 음양 포함 정확 계산이 필요하지만 오행 수준으로 단순화
+SHISHEN_MAP: dict[tuple[str, str], str] = {
+    ("목","목"):"비겁", ("목","화"):"식상", ("목","토"):"재성", ("목","금"):"관성", ("목","수"):"인성",
+    ("화","화"):"비겁", ("화","토"):"식상", ("화","금"):"재성", ("화","수"):"관성", ("화","목"):"인성",
+    ("토","토"):"비겁", ("토","금"):"식상", ("토","수"):"재성", ("토","목"):"관성", ("토","화"):"인성",
+    ("금","금"):"비겁", ("금","수"):"식상", ("금","목"):"재성", ("금","화"):"관성", ("금","토"):"인성",
+    ("수","수"):"비겁", ("수","목"):"식상", ("수","화"):"재성", ("수","토"):"관성", ("수","금"):"인성",
+}
+
+SHISHEN_MEANING = {
+    "비겁": "자아·경쟁·독립심",
+    "식상": "표현·창의·실행력",
+    "재성": "재물·현실감각·여성(남명)",
+    "관성": "명예·규율·직업운",
+    "인성": "학습·후원·직관",
+}
+
 ZODIAC = [(120,"염소자리"),(219,"물병자리"),(321,"물고기자리"),(420,"양자리"),(521,"황소자리"),(621,"쌍둥이자리"),(723,"게자리"),(823,"사자자리"),(923,"처녀자리"),(1023,"천칭자리"),(1122,"전갈자리"),(1222,"사수자리"),(1232,"염소자리")]
 SIGN_META = {
-    "양자리": ("불", "시작", "빠른 결단과 선점"), "사자자리": ("불", "고정", "존재감과 주도권"), "사수자리": ("불", "변화", "확장과 이동"),
-    "황소자리": ("흙", "고정", "자산·감각·지속성"), "처녀자리": ("흙", "변화", "분석·정리·개선"), "염소자리": ("흙", "시작", "책임·성과·장기전"),
-    "쌍둥이자리": ("공기", "변화", "정보·소통·전환"), "천칭자리": ("공기", "시작", "관계·균형·협상"), "물병자리": ("공기", "고정", "독립성·네트워크·기획"),
-    "게자리": ("물", "시작", "보호·가족·정서"), "전갈자리": ("물", "고정", "집중·통제·심층 변화"), "물고기자리": ("물", "변화", "직관·공감·경계 흐림"),
+    "양자리": ("불", "시작", "빠른 결단과 선점"),
+    "사자자리": ("불", "고정", "존재감과 주도권"),
+    "사수자리": ("불", "변화", "확장과 이동"),
+    "황소자리": ("흙", "고정", "자산·감각·지속성"),
+    "처녀자리": ("흙", "변화", "분석·정리·개선"),
+    "염소자리": ("흙", "시작", "책임·성과·장기전"),
+    "쌍둥이자리": ("공기", "변화", "정보·소통·전환"),
+    "천칭자리": ("공기", "시작", "관계·균형·협상"),
+    "물병자리": ("공기", "고정", "독립성·네트워크·기획"),
+    "게자리": ("물", "시작", "보호·가족·정서"),
+    "전갈자리": ("물", "고정", "집중·통제·심층 변화"),
+    "물고기자리": ("물", "변화", "직관·공감·경계 흐림"),
 }
+
+# sign별 상세 실행조언 (질문 없을 때)
+SIGN_DEFAULT_ADVICE = {
+    "양자리": "결단은 빠르지만 지속이 약하다. 오늘은 시작보다 어제 시작한 것을 완결하는 데 에너지를 쓴다.",
+    "황소자리": "감각과 자산 감각이 발달했지만 변화를 늦게 받아들인다. 오늘은 고집이 판단을 막는 지점 1개를 확인한다.",
+    "쌍둥이자리": "정보 수집은 빠르지만 결론을 미루는 경향이 있다. 오늘은 수집한 정보로 선택 1개를 확정한다.",
+    "게자리": "보호 본능이 강해 감정이 판단에 섞인다. 오늘은 감정 반응과 사실 판단을 분리해서 쓴다.",
+    "사자자리": "주도권을 쥐고 싶은 욕구가 강하다. 오늘은 나서는 것보다 다른 사람의 에너지를 활용하는 방법을 찾는다.",
+    "처녀자리": "분석과 개선 욕구가 강해 완벽주의로 흐를 수 있다. 오늘은 80점짜리 결과물을 제출하는 것이 100점 기다리는 것보다 낫다.",
+    "천칭자리": "균형과 관계를 중시하다 결정을 미룬다. 오늘은 모두를 만족시키는 대신 우선순위 1개를 먼저 정한다.",
+    "전갈자리": "집중력과 통제 욕구가 강하다. 오늘은 통제할 수 없는 변수에 에너지를 낭비하지 않는다.",
+    "사수자리": "확장과 이동 욕구가 강해 마무리가 약하다. 오늘은 새 출발 전에 열린 루프 1개를 닫는다.",
+    "염소자리": "장기 목표에 집중하느라 현재를 소홀히 한다. 오늘 결과물이 장기 목표와 연결되는 고리를 명확히 한다.",
+    "물병자리": "독립성과 네트워크 기획이 강점이다. 오늘은 혼자 구상하는 것을 한 명에게 말로 설명해본다.",
+    "물고기자리": "직관과 공감이 강하지만 경계가 흐려질 수 있다. 오늘은 내 에너지를 어디에 쓸지 시작 전에 적어둔다.",
+}
+
 TAROT = [
     ("The Fool", "새 출발·모험·가벼움", "무계획·도피·위험 과소평가", "지금 무작정 뛰어드는 영역은 무엇인가?", "start"),
     ("The Magician", "자원 활용·기획·실행력", "말뿐인 계획·분산·기술 부족", "내 손에 이미 있는 도구는 무엇인가?", "start"),
@@ -90,7 +136,12 @@ def chart_from_ymdh(y: int, m: int, d: int, hour: int = 12) -> dict[str, str]:
     day_stem = day_idx % 10
     hb = _hour_branch(hour)
     hour_start = {0:0, 5:0, 1:2, 6:2, 2:4, 7:4, 3:6, 8:6, 4:8, 9:8}[day_stem]
-    return {"year": _gz(year_idx), "month": STEMS[month_stem] + MONTH_BRANCHES[moff], "day": _gz(day_idx), "hour": STEMS[(hour_start + hb) % 10] + HOUR_BRANCHES[hb]}
+    return {
+        "year": _gz(year_idx),
+        "month": STEMS[month_stem] + MONTH_BRANCHES[moff],
+        "day": _gz(day_idx),
+        "hour": STEMS[(hour_start + hb) % 10] + HOUR_BRANCHES[hb],
+    }
 
 
 def profile_parts(profile) -> tuple[int, int, int, int]:
@@ -110,32 +161,108 @@ def balance(chart: dict[str, str]) -> dict[str, int]:
 
 
 def _strength(day_el: str, bal: dict[str, int]) -> str:
-    return "신강" if bal.get(day_el, 0) >= 3 else "신약"
+    # 생조(인성+비겁)가 3개 이상이면 신강
+    support = bal.get(day_el, 0) + bal.get(GENERATED_BY.get(day_el, ""), 0)
+    return "신강" if support >= 3 else "신약"
 
 
 def _useful(day_el: str, strength: str) -> tuple[str, str]:
-    return (CONTROLS[day_el], GENERATES[day_el]) if strength == "신강" else (GENERATES[day_el], CONTROLS[day_el])
+    # 신강: 관성(극아)·재성(아극)이 용신, 인성·비겁이 기신
+    # 신약: 인성(생아)·비겁(조아)이 용신, 관성·재성이 기신
+    if strength == "신강":
+        return CONTROLS[day_el], GENERATED_BY.get(day_el, day_el)
+    else:
+        return GENERATED_BY.get(day_el, day_el), CONTROLS[day_el]
+
+
+def _shishen_profile(chart: dict[str, str], day_el: str) -> dict[str, int]:
+    """각 기둥의 십신 분포를 집계한다."""
+    counter: dict[str, int] = {}
+    for pillar_name, pillar in chart.items():
+        for ch in pillar:
+            el = ELEMENT.get(ch)
+            if el:
+                ss = SHISHEN_MAP.get((day_el, el), "기타")
+                counter[ss] = counter.get(ss, 0) + 1
+    return counter
+
+
+def _dominant_shishen(ss_count: dict[str, int]) -> list[str]:
+    sorted_ss = sorted(ss_count.items(), key=lambda x: -x[1])
+    return [ss for ss, cnt in sorted_ss if cnt >= 2]
 
 
 def _annual(day_stem: str) -> str:
-    if day_stem in "甲乙": return "재성 압박이 커져 기회와 지출이 같이 온다."
-    if day_stem in "丙丁": return "비겁이 강해져 경쟁·독립심·자기주장이 커진다."
-    if day_stem in "戊己": return "관성 자극으로 직장·규칙·공식관계 변화가 생긴다."
-    if day_stem in "庚辛": return "인성 운이 들어와 학습·계획·준비가 성과의 전제다."
-    return "식상 운이 강해져 표현·창업·새 시도가 활발해진다."
+    # 2026 병오년(丙午) — 화(火) 기운 강화
+    # 일간별 세운 작용 분석
+    if day_stem in "甲乙":  # 목 일간: 화가 식상 → 표현·창업 활발, 재성 부담 동반
+        return "2026 병오년: 식상 운 활성화. 표현력·창업·새 시도에 에너지 쏠림. 재성 부담이 동반되어 수입과 지출이 함께 늘어난다."
+    if day_stem in "丙丁":  # 화 일간: 비겁 강화 → 경쟁·자기주장·독립
+        return "2026 병오년: 비겁 운 강화. 경쟁·독립심·자기주장이 커진다. 협업보다 단독 판단이 잦아지므로 주요 결정에 외부 검증을 더해야 한다."
+    if day_stem in "戊己":  # 토 일간: 화가 인성 → 학습·준비·계획에 유리
+        return "2026 병오년: 인성 운 진입. 학습·계획·준비가 성과의 전제가 된다. 실행보다 설계에 투자하는 해다."
+    if day_stem in "庚辛":  # 금 일간: 화가 관성 → 직업·명예·규율 변화
+        return "2026 병오년: 관성 압박 강화. 직장·직업·공식관계에서 변화 요구가 커진다. 규칙 준수와 책임 이행이 평판을 결정한다."
+    # 수 일간(壬癸): 화가 재성 → 재물 기회와 지출 동반
+    return "2026 병오년: 재성 운 활성화. 재물 기회와 지출이 함께 온다. 수입 증가와 충동 지출이 공존하므로 현금 흐름 관리가 핵심이다."
 
 
-def _context(question: str, annual: str, useful: str, avoid: str) -> str:
+def _clash_analysis(chart: dict[str, str]) -> str:
+    """천간충·지지충 간단 감지."""
+    clashes = []
+    stems_in_chart = [p[0] for p in chart.values() if p]
+    branches_in_chart = [p[1] for p in chart.values() if len(p) > 1]
+    # 천간충: 甲庚, 乙辛, 丙壬, 丁癸, 戊甲(편), 기본 6충
+    STEM_CLASH = [("甲","庚"),("乙","辛"),("丙","壬"),("丁","癸"),("戊","壬"),("己","癸")]
+    BRANCH_CLASH = [("子","午"),("丑","未"),("寅","申"),("卯","酉"),("辰","戌"),("巳","亥")]
+    for a, b in STEM_CLASH:
+        if a in stems_in_chart and b in stems_in_chart:
+            clashes.append(f"천간충({a}-{b})")
+    for a, b in BRANCH_CLASH:
+        if a in branches_in_chart and b in branches_in_chart:
+            clashes.append(f"지지충({a}-{b})")
+    if not clashes:
+        return ""
+    return f"충: {' / '.join(clashes)} — 해당 오행 변동성 증가."
+
+
+def _context(question: str, annual: str, useful: str, avoid: str, ss_dominant: list[str], clash: str) -> str:
     q = question or ""
+    clash_note = f" {clash}" if clash else ""
+    dominant_note = ""
+    if ss_dominant:
+        meanings = "/".join(SHISHEN_MEANING.get(ss, ss) for ss in ss_dominant[:2])
+        dominant_note = f" 원국 지배 십신({'/'.join(ss_dominant[:2])})은 {meanings}에 에너지가 집중된 구조다."
+
     if any(w in q for w in ["돈", "재물", "투자", "주식", "매매"]):
-        return f"재물 초점: {annual} 다만 {avoid} 과잉이면 충동 지출·물타기 위험이 커진다.\n실행: 새 진입 전 손절가와 최대금액을 먼저 적는다."
+        return (
+            f"재물 초점: {annual}{dominant_note}\n"
+            f"{avoid} 과잉이면 충동 진입·물타기 위험이 커진다.{clash_note}\n"
+            f"실행: 새 진입 전 최대손실금액과 포지션 크기를 먼저 확정하고, {useful} 기운을 살리는 방향(분할·계획·검증)으로 접근한다."
+        )
     if any(w in q for w in ["연애", "관계", "결혼", "상대"]):
-        return f"관계 초점: 세운 작용이 감정표현과 책임 분담을 흔든다. {useful} 방식으로 말보다 반복 행동을 본다.\n실행: 이번 주 확인할 행동 기준 1개만 정한다."
+        return (
+            f"관계 초점: 세운의 {avoid} 기운이 감정 반응과 책임 분담 패턴을 흔든다.{dominant_note}\n"
+            f"{useful} 방식으로 말보다 반복 행동을 본다.{clash_note}\n"
+            f"실행: 이번 주 상대에게 확인할 행동 기준 1개를 문장으로 먼저 쓴다."
+        )
     if any(w in q for w in ["직장", "일", "시험", "공부", "이직", "업무"]):
-        return f"직장 초점: {annual} 평판보다 산출물과 절차가 중요하다. {avoid} 과잉 판단은 줄인다.\n실행: 오늘 완료할 문서·성과물 1개를 먼저 끝낸다."
+        return (
+            f"직장 초점: {annual}{dominant_note}\n"
+            f"{avoid} 과잉 판단은 줄이고, {useful} 기운(구체적 산출물·절차)에 집중한다.{clash_note}\n"
+            f"실행: 오늘 완료할 문서·성과물 1개를 먼저 끝내고 나머지를 시작한다."
+        )
     if any(w in q for w in ["오늘", "오늘의", "일진", "운세"]):
-        return f"오늘 초점: 큰 결정보다 {useful} 보완 행동이 유리하다. {avoid} 쪽으로 과열되면 말·소비·감정반응이 커진다.\n실행: 약속·매매·대화는 10분 지연 후 결정한다."
-    return f"종합 초점: {annual} 원국의 약한 {useful}을 보완하면 안정된다.\n실행: 오늘 할 일 1개와 버릴 일 1개를 동시에 정한다."
+        return (
+            f"오늘 초점: 큰 결정보다 {useful} 보완 행동이 유리하다.{dominant_note}\n"
+            f"{avoid} 쪽으로 과열되면 말·소비·감정반응이 커진다.{clash_note}\n"
+            f"실행: 약속·매매·대화는 10분 지연 후 결정한다."
+        )
+    return (
+        f"종합 초점: {annual}{dominant_note}\n"
+        f"원국의 약한 {useful}을 보완하면 안정된다. 기신 {avoid}이 강한 영역에서 과도한 확신을 경계한다.{clash_note}\n"
+        f"실행: 오늘 추진할 일 1개와 내려놓을 일 1개를 동시에 정한다."
+    )
 
 
 def reading(name: str, profile, question: str = "") -> str:
@@ -146,62 +273,37 @@ def reading(name: str, profile, question: str = "") -> str:
     day_el = ELEMENT[dm]
     strength = _strength(day_el, bal)
     useful, avoid = _useful(day_el, strength)
-    today = ""
+    ss_count = _shishen_profile(c, day_el)
+    ss_dominant = _dominant_shishen(ss_count)
+    clash = _clash_analysis(c)
+    today_line = ""
     if any(w in question for w in ["오늘", "오늘의", "일진", "운세"]):
         now = datetime.now(ZoneInfo("Asia/Seoul"))
         tc = chart_from_ymdh(now.year, now.month, now.day, now.hour)
-        today = f"오늘 만세력: {tc['year']}년 {tc['month']}월 {tc['day']}일 {tc['hour']}시\n"
+        today_line = f"오늘 만세력: {tc['year']}년 {tc['month']}월 {tc['day']}일 {tc['hour']}시\n"
     btxt = " ".join(f"{k}{v}" for k, v in bal.items())
+    ss_line = " ".join(f"{k}{v}" for k, v in sorted(ss_count.items(), key=lambda x: -x[1]) if v > 0)
     annual = _annual(dm)
-    body = _context(question, annual, useful, avoid)
-    return (f"사주 리딩 [{c['day']}]\n━━━━━━━━\n사주팔자: {c['year']} {c['month']} {c['day']} {c['hour']}\n{today}일간: {dm} — {DAY_STEM_TRAITS[dm]}\n오행: {btxt} | {strength}\n용신: {useful} / 기신: {avoid}\n2026 병오년: {annual}\n─────\n{body}")[:760]
+    body = _context(question, annual, useful, avoid, ss_dominant, clash)
+    clash_line = f"충: {clash}\n" if clash else ""
+    result = (
+        f"사주 리딩 [{c['day']}] — {DAY_STEM_TRAITS[dm]}\n"
+        f"━━━━━━━━\n"
+        f"사주팔자: {c['year']} {c['month']} {c['day']} {c['hour']}\n"
+        f"{today_line}"
+        f"일간: {dm}({day_el}) | 오행: {btxt} | {strength}\n"
+        f"십신 분포: {ss_line}\n"
+        f"용신: {useful} / 기신: {avoid}\n"
+        f"{clash_line}"
+        f"{annual}\n"
+        f"─────\n"
+        f"{body}"
+    )
+    return result[:900]
 
 
 def zodiac(month: int, day: int) -> str:
     md = month * 100 + day
     current = "염소자리"
     for cutoff, sign in ZODIAC:
-        if md < cutoff:
-            return current
-        current = sign
-    return "염소자리"
-
-
-def astrology(name: str, profile, question: str = "") -> str:
-    y, m, d, hour = profile_parts(profile)
-    sign = zodiac(m, d)
-    element, mode, theme = SIGN_META[sign]
-    day_name = DAY_NAMES[(date(y, m, d).weekday() + 1) % 7]
-    q = question or "종합"
-    if any(w in q for w in ["돈", "투자", "주식", "재물"]):
-        action = f"재물 실행: {theme} 성향을 수익보다 리스크 한도 설정에 쓴다. 즉흥 진입은 줄인다."
-    elif any(w in q for w in ["연애", "결혼", "관계"]):
-        action = f"관계 실행: {mode} 성향이 반복되는 반응을 만든다. 상대의 말보다 약속 이행을 본다."
-    elif any(w in q for w in ["직장", "일", "공부", "시험"]):
-        action = f"일 실행: {theme}를 성과물 1개로 좁힌다. 평가받을 형태로 제출해야 흐름이 열린다."
-    else:
-        action = f"실행 조언: {element}/{mode} 성향을 과하게 쓰지 말고, 오늘 선택 기준 1개만 고정한다."
-    return f"{name} 점성술\n━━━━━━━━\n태양궁: {sign} | 원소 {element} | 양식 {mode}\n출생요일: {day_name}요일 | 시간대: {hour:02d}시권\n핵심 성향: {theme}\n질문 초점: {q}\n─────\n{action}"
-
-
-def _tarot_context(question: str) -> str:
-    if any(w in question for w in ["돈", "투자", "매매", "주식"]): return "재물 흐름"
-    if any(w in question for w in ["연애", "관계", "결혼"]): return "감정·신뢰·연결"
-    if any(w in question for w in ["직장", "이직", "일", "시험"]): return "역할·책임·평가"
-    return "전반적 흐름"
-
-
-def tarot(user_id: str, question: str = "") -> str:
-    seed = f"{user_id}:{datetime.now(ZoneInfo('Asia/Seoul')).date()}:{question}"
-    rng = random.Random(hashlib.sha256(seed.encode("utf-8")).hexdigest())
-    cards = rng.sample(TAROT, 3)
-    dirs = [rng.choice([True, False]) for _ in cards]
-    def line(card, upright):
-        return card[1] if upright else card[2]
-    past_cat = cards[0][4]
-    if past_cat == "success": flow = "과거의 성공 패턴이 현재 정체를 만들 수 있다."
-    elif past_cat in {"change", "shadow"}: flow = "정리되지 않은 이전 충격이나 불안이 현재 판단에 남아 있다."
-    elif past_cat == "start": flow = "새 출발 에너지가 있었지만 아직 방향을 고정하지 못했다."
-    else: flow = "이전 선택의 기준이 현재 문제를 해석하는 틀이 되고 있다."
-    ctx = _tarot_context(question)
-    return (f"타로 3카드 리딩\n━━━━━━━━\n과거 에너지: {cards[0][0]} ({'정' if dirs[0] else '역'})\n→ {line(cards[0], dirs[0])}\n현재 막힌 지점: {cards[1][0]} ({'정' if dirs[1] else '역'})\n→ {line(cards[1], dirs[1])}\n실행 조언: {cards[2][0]} ({'정' if dirs[2] else '역'})\n→ {line(cards[2], dirs[2])}\n─────\n흐름 해석: {flow} 현재 막힘을 정리해야 미래 카드의 조언이 실행된다.\n질문 초점: {ctx} 관점으로 읽어야 한다.\n핵심 질문: {cards[2][3]}\n주의: 타로는 판단 보조 도구입니다. 투자·법률·건강은 사실 확인 우선.")[:800]
+        if md < cut
