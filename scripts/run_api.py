@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 
 import telegram_news.messenger_api
-from telegram_news.quote_patch import apply as apply_quote_patch
+from telegram_news.naver_quote_patch import apply as apply_quote_patch
 import uvicorn
 
 apply_quote_patch(telegram_news.messenger_api)
