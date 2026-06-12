@@ -308,6 +308,95 @@ def _fetch_market_cap_leaders(limit: int = 5) -> list[str]:
         return []
 
 
+def _fmt_flow_value(value: float | None) -> str:
+    if value is None:
+        return "확인불가"
+    # pykrx 투자자별 거래대금은 원 단위로 들어오는 경우가 일반적이다.
+    eok = value / 100_000_000
+    if abs(eok) >= 10000:
+        return f"{eok / 10000:+.1f}조"
+    return f"{eok:+,.0f}억"
+
+
+def _pick_row_value(df, names: list[str], column: str = "순매수") -> float | None:
+    if df is None or df.empty or column not in df.columns:
+        return None
+    index_map = {str(idx).replace(" ", ""): idx for idx in df.index}
+    for name in names:
+        key = name.replace(" ", "")
+        if key in index_map:
+            return _safe_float(df.loc[index_map[key], column])
+    for compact, idx in index_map.items():
+        if any(name.replace(" ", "") in compact for name in names):
+            return _safe_float(df.loc[idx, column])
+    return None
+
+
+def _fetch_investor_flow_for_market(market: str) -> dict | None:
+    try:
+        from pykrx import stock  # type: ignore
+
+        today = datetime.now(ZoneInfo("Asia/Seoul")).date()
+        for offset in range(0, 8):
+            date = (today - timedelta(days=offset)).strftime("%Y%m%d")
+            try:
+                df = stock.get_market_trading_value_by_investor(date, market=market)
+            except Exception:
+                continue
+            if df is None or df.empty:
+                continue
+            foreign = _pick_row_value(df, ["외국인합계", "외국인"])
+            institution = _pick_row_value(df, ["기관합계", "기관"])
+            retail = _pick_row_value(df, ["개인"])
+            if any(v is not None for v in [foreign, institution, retail]):
+                return {
+                    "market": market,
+                    "date": date,
+                    "foreign_net": foreign,
+                    "institution_net": institution,
+                    "retail_net": retail,
+                }
+    except Exception:
+        return None
+    return None
+
+
+def _fetch_investor_flow() -> list[dict]:
+    return [flow for flow in (_fetch_investor_flow_for_market("KOSPI"), _fetch_investor_flow_for_market("KOSDAQ")) if flow]
+
+
+def _flow_line(flows: list[dict]) -> str:
+    parts: list[str] = []
+    for flow in flows:
+        market = str(flow.get("market") or "시장")
+        parts.append(
+            f"{market} 외국인 {_fmt_flow_value(flow.get('foreign_net'))} / "
+            f"기관 {_fmt_flow_value(flow.get('institution_net'))} / "
+            f"개인 {_fmt_flow_value(flow.get('retail_net'))}"
+        )
+    return " | ".join(parts) if parts else "투자자별 수급 확인불가"
+
+
+def _market_bias(kospi: Quote, kosdaq: Quote, flows: list[dict]) -> str:
+    foreign_total = sum(float(flow.get("foreign_net") or 0.0) for flow in flows)
+    institution_total = sum(float(flow.get("institution_net") or 0.0) for flow in flows)
+    index_score = 0
+    for q in [kospi, kosdaq]:
+        if q.change_pct is not None:
+            index_score += 1 if q.change_pct > 0 else -1 if q.change_pct < 0 else 0
+    supply_score = (1 if foreign_total > 0 else -1 if foreign_total < 0 else 0) + (1 if institution_total > 0 else -1 if institution_total < 0 else 0)
+    score = index_score + supply_score
+    if score >= 3:
+        return "시장/수급 동반 우호"
+    if score >= 1:
+        return "시장 우호이나 선별 필요"
+    if score <= -3:
+        return "시장/수급 동반 약세"
+    if score <= -1:
+        return "시장 중립 이하, 뉴스 단독 추격 주의"
+    return "시장 중립"
+
+
 def get_market_context() -> dict | None:
     try:
         kospi = _fetch_index("KOSPI", "KRX:KOSPI")
@@ -315,6 +404,7 @@ def get_market_context() -> dict | None:
         sp500 = _fetch_index("S&P500", "^GSPC")
         nasdaq = _fetch_index("NASDAQ", "^IXIC")
         usdkrw = _fetch_index("USD/KRW", "KRW=X")
+        flows = _fetch_investor_flow()
         result = {
             "kospi_change_pct": kospi.change_pct,
             "kosdaq_change_pct": kosdaq.change_pct,
@@ -323,6 +413,9 @@ def get_market_context() -> dict | None:
             "usd_krw": usdkrw.price,
             "top_sectors_by_volume": _fetch_kr_top_sectors_by_volume(),
             "market_cap_leaders": _fetch_market_cap_leaders(),
+            "investor_flow": flows,
+            "supply_demand_line": _flow_line(flows),
+            "market_bias": _market_bias(kospi, kosdaq, flows),
             "source": "pykrx/Naver/Yahoo fallback",
             "timestamp": _now_kst(),
         }
