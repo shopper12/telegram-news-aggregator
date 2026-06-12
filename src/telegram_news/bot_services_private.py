@@ -289,6 +289,32 @@ def _private_saju(user_id: str, msg: str) -> str:
     )
 
 
+def _observation_reading(user_id: str, msg: str, kind: str) -> str:
+    profile = base.get_profile(user_id)
+    if not profile:
+        return "먼저 생년월일을 등록하세요. 예: 봇 생년월일 YYYY-MM-DD HH:MM 여"
+    raw = re.sub(r"^(관상|손금|얼굴)\s*", "", msg).strip()
+    if not raw:
+        if kind == "face":
+            return "얼굴 사진 자동 판독은 지원하지 않습니다. 대신 본인이 관찰한 특징을 글로 적어주세요. 예: 봇 관상 이마가 넓고 눈매가 또렷함, 요즘 일운"
+        return "손금 사진 자동 판독은 지원하지 않습니다. 대신 보이는 선을 글로 적어주세요. 예: 봇 손금 생명선 길고 두뇌선이 아래로 휘어짐, 재물운"
+    seed = _profile_seed(profile, kind + raw)
+    axis = ["일 처리 방식", "돈 관리 방식", "관계 반응", "집중과 분산", "생활 리듬"][(seed // 5) % 5]
+    risk = ["과신", "망설임", "감정적 반응", "과로", "손실회피"][(seed // 11) % 5]
+    support = ["루틴", "기록", "분할", "검증", "관계 조율"][(seed // 17) % 5]
+    label = "관상 관찰값+사주" if kind == "face" else "손금 관찰값+사주"
+    return (
+        f"전문가식 {label} 통합 리딩\n"
+        f"입력 관찰값: {raw[:160]}\n"
+        f"핵심 축: 저장 생년월일 기준으로는 {axis}을 먼저 봐야 합니다.\n"
+        f"전통 해석 연결: 입력한 특징은 단독 예언이 아니라 현재 선택 습관을 점검하는 보조 단서로 해석합니다.\n"
+        f"리스크: {risk}이 판단을 흐릴 수 있습니다.\n"
+        f"보완법: {support}을 생활 규칙으로 고정하세요.\n"
+        "실행 조언 3개: 1) 이번 주 결정 1개를 숫자로 기록 2) 감정이 강한 선택은 하루 유예 3) 돈·관계·일 중 하나만 우선순위로 잡기\n"
+        "주의: 사진 자동 판독이나 신체 특징 기반 단정은 하지 않습니다. 사용자가 적은 관찰값과 저장 사주를 결합한 참고 리딩입니다."
+    )
+
+
 def _private_tarot(user_id: str, question: str = "") -> str:
     seed = f"{user_id}:{datetime.now().date()}:{question.strip()}"
     import random
@@ -314,6 +340,8 @@ def help_text() -> str:
         "봇 생년월일 YYYY-MM-DD HH:MM 성별 - 최초 1회 프로필 저장\n"
         "봇 프로필확인 - 저장된 생년월일 확인\n"
         "봇 사주 [질문] - 저장 프로필 기반 전문가식 리딩\n"
+        "봇 관상 [직접 관찰한 특징+질문] - 관찰값과 사주 통합 리딩\n"
+        "봇 손금 [직접 관찰한 선+질문] - 관찰값과 사주 통합 리딩\n"
         "봇 타로 [질문] - 전문가식 3카드 리딩\n"
         "봇 도움말 - 명령어 안내"
     )
@@ -346,6 +374,10 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
         return quote_text(target)
     if msg.startswith("사주") or msg.startswith("운세"):
         return _private_saju(user_id, msg)
+    if msg.startswith("관상") or msg.startswith("얼굴"):
+        return _observation_reading(user_id, msg, "face")
+    if msg.startswith("손금"):
+        return _observation_reading(user_id, msg, "palm")
     if msg.startswith("타로"):
         question = re.sub(r"^타로\s*", "", msg).strip()
         return _private_tarot(user_id, question)
