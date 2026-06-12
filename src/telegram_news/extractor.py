@@ -4,15 +4,18 @@ import re
 from dataclasses import dataclass
 from collections import Counter
 
+from .symbol_resolver import resolve_symbols
+
 
 KOREAN_STOCK_KEYWORDS = {
-    "반도체": ["반도체", "hbm", "dram", "낸드", "파운드리", "삼성전자", "sk하이닉스", "메모리", "tsmc"],
+    "반도체": ["반도체", "hbm", "dram", "낸드", "파운드리", "삼성전자", "sk하이닉스", "메모리", "tsmc", "한미반도체"],
     "AI인프라": ["ai 추론", "ai 인프라", "데이터센터", "gpu", "npu", "hbm", "서버", "인공지능 반도체"],
-    "원전": ["원전", "smr", "체코", "웨스팅하우스", "한수원", "원자로", "원전수주"],
-    "전력기기": ["전력기기", "변압기", "전선", "송전", "배전", "hvdc", "전력망"],
-    "로봇": ["로봇", "휴머노이드", "피지컬 ai", "감속기", "액추에이터"],
-    "2차전지": ["2차전지", "배터리", "양극재", "음극재", "전해액", "리튬"],
-    "조선": ["조선", "lng선", "선박", "수주잔고", "해양플랜트"],
+    "원전": ["원전", "smr", "체코", "웨스팅하우스", "한수원", "원자로", "원전수주", "두산에너빌리티"],
+    "전력기기": ["전력기기", "변압기", "전선", "송전", "배전", "hvdc", "전력망", "대한전선", "효성중공업"],
+    "로봇": ["로봇", "휴머노이드", "피지컬 ai", "감속기", "액추에이터", "두산로보틱스"],
+    "2차전지": ["2차전지", "배터리", "양극재", "음극재", "전해액", "리튬", "에코프로", "에코프로비엠", "lg에너지솔루션"],
+    "조선": ["조선", "lng선", "선박", "수주잔고", "해양플랜트", "sk오션플랜트"],
+    "방산/항공": ["방산", "항공우주", "kai", "한국항공우주", "한화시스템", "수출허가"],
     "바이오": ["임상", "fda", "신약", "임상3상", "바이오시밀러", "셀트리온", "삼성바이오", "허가", "cda", "nda", "anda", "품목허가"],
     "양자": ["양자컴", "양자암호", "ibm q", "구글 퀀텀", "양자컴퓨터", "퀀텀"],
     "미국빅테크": ["엔비디아", "마이크로소프트", "애플", "알파벳", "메타", "아마존", "테슬라", "nvda", "msft", "aapl", "googl", "amzn", "tsla"],
@@ -42,7 +45,7 @@ BREAKING_WORDS = ["단독", "속보"]
 CONTRACT_WORDS = ["수주", "계약"]
 ACTION_WORDS = ["승인", "상장", "공급", "납품"]
 TICKER_RE = re.compile(r"\b[A-Z]{2,10}\b")
-BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ"}
+BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ", "ESS", "NIM", "GLP"}
 
 
 @dataclass(frozen=True)
@@ -97,7 +100,15 @@ def extract_signals(text: str, repeat_count: int = 1, market_type: str = "KR") -
                 keyword_hits.append(word)
 
     raw_tickers = sorted(set(TICKER_RE.findall(text)))
-    tickers = [ticker for ticker in raw_tickers if ticker not in BAD_TICKERS]
+    raw_tickers = [ticker for ticker in raw_tickers if ticker not in BAD_TICKERS]
+    categories = ["crypto"] if market_type.upper() == "CRYPTO" else ["us_stock"] if market_type.upper() == "US" else ["kr_stock"]
+    resolved = resolve_symbols(text, categories=categories, raw_tickers=raw_tickers)
+    tickers = [sym.ticker for sym in resolved if sym.asset_type != "crypto"]
+    if market_type.upper() == "CRYPTO":
+        tickers = [sym.ticker for sym in resolved if sym.asset_type == "crypto"]
+    if not tickers:
+        tickers = raw_tickers
+
     sectors = sorted(set(sector_hits))
     keywords = sorted(set(keyword_hits), key=lambda x: x.lower())
 
@@ -119,7 +130,7 @@ def extract_signals(text: str, repeat_count: int = 1, market_type: str = "KR") -
     return ExtractedSignal(
         sectors=sectors,
         keywords=keywords,
-        tickers=tickers,
+        tickers=sorted(set(tickers)),
         importance_score=max(0, score),
     )
 
