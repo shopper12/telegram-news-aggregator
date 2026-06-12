@@ -240,6 +240,17 @@ def _profile_seed(profile: base.UserProfile, question: str) -> int:
     return int(hashlib.sha256(key.encode("utf-8")).hexdigest(), 16)
 
 
+def _profile_summary(user_id: str) -> str:
+    profile = base.get_profile(user_id)
+    if not profile:
+        return "저장된 생년월일이 없습니다. 최초 1회만 입력하세요. 예: 봇 생년월일 1987-12-28 08:30 여"
+    return (
+        "프로필 저장됨\n"
+        f"생년월일: {profile.birth_date} {profile.birth_time or '시간미상'} {profile.gender or ''} ({'음력' if profile.calendar == 'lunar' else '양력'})\n"
+        "앞으로 같은 사용자 ID로 들어오면 사주 명령에서 자동 사용합니다."
+    )
+
+
 def _private_saju(user_id: str, msg: str) -> str:
     profile = base.get_profile(user_id)
     if not profile:
@@ -267,7 +278,7 @@ def _private_saju(user_id: str, msg: str) -> str:
         caution = "확신이 강할수록 반대 근거 1개를 먼저 확인해야 한다."
     return (
         "전문가식 사주 리딩\n"
-        "비공개 프로필 기준으로 해석함\n"
+        "저장된 비공개 프로필 기준으로 해석함\n"
         f"핵심 축: {pressure} 이슈가 강하게 작동하는 흐름\n"
         f"보완 기운: {useful} 성향을 생활·일·관계에서 의식적으로 보강\n"
         f"운의 흐름: {flow}\n"
@@ -300,8 +311,9 @@ def help_text() -> str:
         "명령어는 반드시 '봇'으로 시작\n"
         "봇 뉴스 - 최신 중요 뉴스/시황\n"
         "봇 시세 삼성전자 / 봇 시세 한미반도체 / 봇 시세 005930 / 봇 시세 NVDA\n"
-        "봇 생년월일 YYYY-MM-DD HH:MM 성별 - 사주 프로필 비공개 저장\n"
-        "봇 사주 [질문] - 비공개 프로필 기반 전문가식 리딩\n"
+        "봇 생년월일 YYYY-MM-DD HH:MM 성별 - 최초 1회 프로필 저장\n"
+        "봇 프로필확인 - 저장된 생년월일 확인\n"
+        "봇 사주 [질문] - 저장 프로필 기반 전문가식 리딩\n"
         "봇 타로 [질문] - 전문가식 3카드 리딩\n"
         "봇 도움말 - 명령어 안내"
     )
@@ -313,12 +325,20 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
         return "명령어는 '봇'으로 시작해야 합니다. 예: 봇 뉴스"
     birth = base.parse_birth_command(msg)
     if birth:
-        base.save_profile(user_id, *birth)
-        return "프로필 저장 완료\n생년월일은 채팅 답변에 다시 표시하지 않습니다. 이후 '봇 사주 질문'으로 조회하세요."
+        profile = base.save_profile(user_id, *birth)
+        return (
+            "프로필 저장 완료\n"
+            f"{profile.birth_date} {profile.birth_time or '시간미상'} {profile.gender or ''} ({'음력' if profile.calendar == 'lunar' else '양력'})\n"
+            "앞으로 같은 사용자 ID에서는 생년월일을 다시 입력하지 않아도 됩니다.\n"
+            "서버가 임시 파일시스템이면 BOT_PROFILE_PATH를 영구 저장 경로로 지정해야 재시작 후에도 유지됩니다."
+        )
 
     q = msg.lower().strip()
+    compact = q.replace(" ", "")
     if q in {"도움", "도움말", "help", "/help", "?"}:
         return help_text()
+    if compact in {"프로필", "프로필확인", "내프로필", "생년월일확인", "사주프로필"}:
+        return _profile_summary(user_id)
     if q in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}:
         return latest_report or "뉴스 없음"
     if msg.startswith("시세") or msg.lower().startswith("quote"):
