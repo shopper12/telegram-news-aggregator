@@ -25,6 +25,7 @@ class SummaryItem:
     trade_view: str
     risk: str
     source_urls: list[str] = field(default_factory=list)
+    message_dates: list[str] = field(default_factory=list)
     gemini_news_type: str = ""
     gemini_impact: str = ""
 
@@ -104,6 +105,7 @@ def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryIt
                 trade_view=_build_trade_view(item.text, sig.importance_score, item.count),
                 risk=_build_risk(item.text),
                 source_urls=getattr(item, "message_urls", []),
+                message_dates=getattr(item, "message_dates", []),
             )
         )
     return summaries
