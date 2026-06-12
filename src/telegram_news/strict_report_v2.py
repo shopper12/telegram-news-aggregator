@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from collections import Counter
+import hashlib
 import json
 import os
+from pathlib import Path
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import requests
@@ -18,6 +20,9 @@ from .market_data import get_market_context
 MAX_REPORT_CHARS = int(os.getenv("MAX_REPORT_CHARS", "12000"))
 MAX_DISPLAY_NEWS = int(os.getenv("MAX_DISPLAY_NEWS", "999"))
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
+DISPLAY_HISTORY_PATH = Path(os.getenv("DISPLAYED_NEWS_HISTORY_PATH", "reports/displayed_news_history.json"))
+LATEST_REPORT_PATH = Path(os.getenv("LATEST_REPORT_JSON_PATH", "reports/latest_report.json"))
+NEWS_REPEAT_SUPPRESS_HOURS = int(os.getenv("NEWS_REPEAT_SUPPRESS_HOURS", "6"))
 
 BAD_DISPLAY_TICKERS = {"IDF", "ESS", "NIM", "GLP", "MSTR", "STRC", "DRAM", "KORU", "SPCX"}
 LOW_VALUE_DISPLAY_WORDS = LOW_VALUE_WORDS + [
@@ -34,6 +39,7 @@ CONFIRMATION_WORDS = [
 ]
 IMAGE_HINT_WORDS = ["[이미지뉴스]", "[이미지OCR]", "[첨부이미지]", "[첨부미디어]", "원문 이미지 확인 필요"]
 VAGUE_TITLE_PATTERNS = ["블룸버그에 따르면", "로이터에 따르면", "외신에 따르면", "속보", "단독", "긴급", "뉴스", "업데이트"]
+MATERIAL_UPDATE_WORDS = ["정정", "추가", "재공시", "확정", "공시", "잠정", "체결", "해지", "승인", "불허", "소송", "제재"]
 
 
 def _append_diag(report: str, reason: str) -> str:
@@ -49,6 +55,10 @@ def _clean_title_text(text: str) -> str:
     text = re.sub(r"[#@][\w가-힣_]+", "", text)
     text = re.sub(r"[^0-9A-Za-z가-힣]+", "", text)
     return text.strip()
+
+
+def _signature_text(text: str) -> str:
+    return _clean_title_text(text).lower()
 
 
 def _clean_title(title: str) -> str:
@@ -195,9 +205,20 @@ def _market_line(market_context: dict | None, overview: str) -> str:
         val = market_context.get(key)
         if isinstance(val, (int, float)):
             parts.append(f"{label} {val:+.2f}%")
+    usd = market_context.get("usd_krw")
+    if isinstance(usd, (int, float)):
+        parts.append(f"USD/KRW {usd:,.1f}")
     sectors = market_context.get("top_sectors_by_volume") or []
     suffix = f" / 거래대금 섹터: {' > '.join(sectors[:3])}" if sectors else ""
     return (" / ".join(parts) if parts else "시장 등락률 미확인") + suffix
+
+
+def _supply_line(market_context: dict | None) -> str:
+    if not market_context:
+        return "수급 데이터 미확인"
+    bias = str(market_context.get("market_bias") or "시장 판단 미확인")
+    flow = str(market_context.get("supply_demand_line") or "투자자별 수급 확인불가")
+    return f"{bias} / {flow}"
 
 
 def _header_for_kind(kind: str) -> str:
@@ -211,6 +232,120 @@ def _header_for_kind(kind: str) -> str:
         "intraday": "📊 [국내주식] 최근 1시간 뉴스",
     }
     return mapping.get(kind, "📊 [주식] 최근 1시간 뉴스")
+
+
+def _parse_message_dt(value: str) -> datetime | None:
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=ZoneInfo("Asia/Seoul"))
+        return dt.astimezone(ZoneInfo("Asia/Seoul"))
+    except Exception:
+        return None
+
+
+def _cluster_datetimes(cluster) -> list[datetime]:
+    dates: list[datetime] = []
+    for news in getattr(cluster, "items", []) or []:
+        for value in getattr(news.item, "message_dates", []) or []:
+            dt = _parse_message_dt(value)
+            if dt:
+                dates.append(dt)
+    return dates
+
+
+def _relative_time(dt: datetime, now: datetime) -> str:
+    seconds = max(0, int((now - dt).total_seconds()))
+    minutes = seconds // 60
+    if minutes < 1:
+        return "방금"
+    if minutes < 60:
+        return f"{minutes}분 전"
+    hours = minutes // 60
+    if hours < 24:
+        return f"{hours}시간 {minutes % 60}분 전"
+    return f"{hours // 24}일 전"
+
+
+def _age_line(cluster, now: datetime) -> str:
+    dts = _cluster_datetimes(cluster)
+    if not dts:
+        return "시각 미확인"
+    latest = max(dts)
+    first = min(dts)
+    count = sum(getattr(news.item, "repeat_count", 1) for news in getattr(cluster, "items", []) or [])
+    if first == latest:
+        return f"최신 {_relative_time(latest, now)} / 반복 {count}건"
+    return f"최신 {_relative_time(latest, now)} / 최초 {_relative_time(first, now)} / 반복 {count}건"
+
+
+def _issue_signature(cluster) -> str:
+    title = _signature_text(_display_title(cluster, 120))[:120]
+    symbols = ",".join(sym.ticker for sym in _display_symbols(cluster))
+    sectors = ",".join(cluster.sectors()[:3])
+    key = f"{symbols}|{sectors}|{title}"
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()
+
+
+def _load_display_history(now: datetime) -> dict[str, str]:
+    cutoff = now - timedelta(hours=NEWS_REPEAT_SUPPRESS_HOURS)
+    if not DISPLAY_HISTORY_PATH.exists():
+        return {}
+    try:
+        raw = json.loads(DISPLAY_HISTORY_PATH.read_text(encoding="utf-8"))
+        items = raw.get("items", {}) if isinstance(raw, dict) else {}
+        out: dict[str, str] = {}
+        for sig, ts in items.items():
+            dt = _parse_message_dt(str(ts))
+            if dt and dt >= cutoff:
+                out[str(sig)] = str(ts)
+        return out
+    except Exception:
+        return {}
+
+
+def _save_display_history(history: dict[str, str], displayed: list, now: datetime) -> None:
+    try:
+        DISPLAY_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+        for cluster in displayed:
+            history[_issue_signature(cluster)] = now.isoformat()
+        cutoff = now - timedelta(hours=NEWS_REPEAT_SUPPRESS_HOURS)
+        trimmed = {sig: ts for sig, ts in history.items() if (_parse_message_dt(ts) or now) >= cutoff}
+        DISPLAY_HISTORY_PATH.write_text(json.dumps({"updated_at": now.isoformat(), "items": trimmed}, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        return
+
+
+def _previous_report_text() -> str:
+    if not LATEST_REPORT_PATH.exists():
+        return ""
+    try:
+        data = json.loads(LATEST_REPORT_PATH.read_text(encoding="utf-8"))
+        return _signature_text(str(data.get("report") or ""))
+    except Exception:
+        return ""
+
+
+def _is_material_update(cluster) -> bool:
+    text = _cluster_text(cluster)
+    return materiality_score(cluster) >= 90 and _has_any(text, MATERIAL_UPDATE_WORDS)
+
+
+def _suppress_recent_duplicates(clusters: list, now: datetime) -> tuple[list, int]:
+    history = _load_display_history(now)
+    previous = _previous_report_text()
+    kept: list = []
+    suppressed = 0
+    for cluster in clusters:
+        sig = _issue_signature(cluster)
+        title_key = _signature_text(_display_title(cluster, 120))[:120]
+        in_previous = bool(title_key and len(title_key) >= 12 and title_key in previous)
+        if (sig in history or in_previous) and not _is_material_update(cluster):
+            suppressed += 1
+            continue
+        kept.append(cluster)
+    _save_display_history(history, kept, now)
+    return kept, suppressed
 
 
 def _audit_report_text(text: str, selected: list) -> tuple[bool, str]:
@@ -227,12 +362,22 @@ def _gemini_report(**kwargs):
 
 
 def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, rule, overview, source_count, pre_gate_count, market_context, engine: str) -> str:
-    display = _drop_noise(selected)[:MAX_DISPLAY_NEWS]
+    raw_display = _drop_noise(selected)
+    display, suppressed = _suppress_recent_duplicates(raw_display, now)
+    display = display[:MAX_DISPLAY_NEWS]
     if not display and os.getenv("SEND_EMPTY_REPORT", "1") == "0":
         return ""
-    lines = [_header_for_kind(kind), "----------------", f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 이슈 {len(display)}개", f"시황 1줄: {_market_line(market_context, overview)}", ""]
+    lines = [
+        _header_for_kind(kind),
+        "----------------",
+        f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 신규 이슈 {len(display)}개",
+        f"시황 1줄: {_market_line(market_context, overview)}",
+        f"수급/시장: {_supply_line(market_context)}",
+        "선별방식: 매매전략 없이 뉴스 중요도·신선도·수급 배경만 표시",
+        "",
+    ]
     if not display:
-        lines.extend(["🔇 이 시간대 주요 이슈 없음", f"원문 {source_count}건 검토"])
+        lines.extend(["🔇 이 시간대 새 주요 이슈 없음", f"원문 {source_count}건 검토 · 반복/기출 뉴스 {suppressed}건 억제"])
     else:
         lines.append("📌 핵심 이슈")
         for idx, cluster in enumerate(display, 1):
@@ -241,12 +386,15 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
             related = ", ".join(f"{sym.name}({sym.ticker})" for sym in symbols) if symbols else "직접 언급 없음"
             source_url = _source_url(cluster)
             lines.append(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {title}")
+            lines.append(f"  • 시각: {_age_line(cluster, now)}")
             if source_url:
                 lines.append(f"  • 원문: {source_url}")
             lines.append(f"  • 관련종목: {related}")
             lines.append("")
         lines.append(f"⚡ 관심 섹터 순위: {_brief_sector_line(display)}")
-    lines.append(f"검증: {engine} · {rule} · 원문 {source_count}건 → {len(display)}개 선별")
+        if suppressed:
+            lines.append(f"♻️ 반복/기출 뉴스 억제: {suppressed}건")
+    lines.append(f"검증: {engine} · {rule} · 원문 {source_count}건 → 신규 {len(display)}개 선별 · 중복억제 {suppressed}건")
     report = "\n".join(lines).strip()
     return report[:MAX_REPORT_CHARS - 20] + "\n… 이하 생략" if len(report) > MAX_REPORT_CHARS else report
 
