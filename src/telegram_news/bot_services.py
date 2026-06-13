@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 from datetime import datetime
 from pathlib import Path
+import base64
 import hashlib
 import json
 import os
@@ -15,22 +16,15 @@ import requests
 PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "data/bot_profiles.json"))
 QUOTE_TIMEOUT = float(os.getenv("QUOTE_TIMEOUT_SECONDS", "4"))
 
+PROFILE_GITHUB_REPO = os.getenv("PROFILE_GITHUB_REPO", "shopper12/telegram-news-aggregator")
+PROFILE_GITHUB_PATH = os.getenv("PROFILE_GITHUB_PATH", "data/bot_profiles.json")
+
 KR_NAME_TO_CODE = {
-    "삼성전자": "005930",
-    "sk하이닉스": "000660",
-    "하이닉스": "000660",
-    "현대차": "005380",
-    "기아": "000270",
-    "네이버": "035420",
-    "naver": "035420",
-    "카카오": "035720",
-    "lg전자": "066570",
-    "lg에너지솔루션": "373220",
-    "셀트리온": "068270",
-    "두산에너빌리티": "034020",
-    "한미반도체": "042700",
-    "에코프로": "086520",
-    "에코프로비엠": "247540",
+    "삼성전자": "005930", "sk하이닉스": "000660", "하이닉스": "000660",
+    "현대차": "005380", "기아": "000270", "네이버": "035420",
+    "naver": "035420", "카카오": "035720", "lg전자": "066570",
+    "lg에너지솔루션": "373220", "셀트리온": "068270", "두산에너빌리티": "034020",
+    "한미반도체": "042700", "에코프로": "086520", "에코프로비엠": "247540",
 }
 
 TAROT_MAJOR = [
@@ -73,7 +67,8 @@ def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
 
-def _load_profiles() -> dict[str, dict[str, Any]]:
+# ── 로컬 파일 fallback ────────────────────────────────────────────
+def _load_profiles_local() -> dict[str, dict[str, Any]]:
     if not PROFILE_PATH.exists():
         return {}
     try:
@@ -83,22 +78,83 @@ def _load_profiles() -> dict[str, dict[str, Any]]:
         return {}
 
 
-def _save_profiles(data: dict[str, dict[str, Any]]) -> None:
+def _save_profiles_local(data: dict[str, dict[str, Any]]) -> None:
     PROFILE_PATH.parent.mkdir(parents=True, exist_ok=True)
     PROFILE_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+# ── GitHub 영구 저장 (메인) ──────────────────────────────────────
+def _gh_token() -> str | None:
+    return os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
+
+
+def _load_profiles() -> dict[str, dict[str, Any]]:
+    token = _gh_token()
+    if not token:
+        return _load_profiles_local()
+    url = f"https://api.github.com/repos/{PROFILE_GITHUB_REPO}/contents/{PROFILE_GITHUB_PATH}"
+    headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github.v3+json"}
+    try:
+        r = requests.get(url, headers=headers, timeout=5)
+        if r.status_code == 404:
+            return {}
+        r.raise_for_status()
+        content = base64.b64decode(r.json()["content"]).decode("utf-8")
+        data = json.loads(content)
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return _load_profiles_local()
+
+
+def _save_profiles(data: dict[str, dict[str, Any]]) -> None:
+    token = _gh_token()
+    if not token:
+        _save_profiles_local(data)
+        return
+    url = f"https://api.github.com/repos/{PROFILE_GITHUB_REPO}/contents/{PROFILE_GITHUB_PATH}"
+    headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github.v3+json"}
+    encoded = base64.b64encode(
+        json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
+    ).decode("utf-8")
+    sha = None
+    try:
+        r = requests.get(url, headers=headers, timeout=5)
+        if r.status_code == 200:
+            sha = r.json().get("sha")
+    except Exception:
+        pass
+    payload: dict[str, Any] = {
+        "message": "chore: update bot profiles",
+        "content": encoded,
+        "branch": "main",
+    }
+    if sha:
+        payload["sha"] = sha
+    try:
+        requests.put(url, json=payload, headers=headers, timeout=10)
+    except Exception:
+        _save_profiles_local(data)
+
+
+# ── 프로필 공개 API ──────────────────────────────────────────────
 def get_profile(user_id: str) -> UserProfile | None:
     raw = _load_profiles().get(user_id)
     if not isinstance(raw, dict):
         return None
     try:
-        return UserProfile(**raw)
+        fields = {k: v for k, v in raw.items() if k in UserProfile.__dataclass_fields__}
+        return UserProfile(**fields)
     except Exception:
         return None
 
 
-def save_profile(user_id: str, birth_date: str, birth_time: str = "", gender: str = "", calendar: str = "solar") -> UserProfile:
+def save_profile(
+    user_id: str,
+    birth_date: str,
+    birth_time: str = "",
+    gender: str = "",
+    calendar: str = "solar",
+) -> UserProfile:
     data = _load_profiles()
     old = data.get(user_id, {}) if isinstance(data.get(user_id), dict) else {}
     now = _now()
@@ -143,10 +199,15 @@ def _stem_index(profile: UserProfile) -> int:
 
 
 def saju_reading(profile: UserProfile, question: str = "") -> str:
+    # 1순위: saju_engine 실제 계산
+    try:
+        from .saju_engine import reading as engine_reading
+        return engine_reading(name=profile.user_id, profile=profile, question=question)
+    except Exception:
+        pass
+    # 2순위: 간이 fallback
     stems = ["목", "화", "토", "금", "수", "목화", "화토", "토금", "금수", "수목"]
-    idx = _stem_index(profile)
-    tone = stems[idx]
-    focus = ""
+    tone = stems[_stem_index(profile)]
     if any(w in question for w in ["연애", "결혼", "관계"]):
         focus = "관계운: 상대의 말보다 반복 행동을 기준으로 봐야 한다. 감정 확인보다 생활 구조 합의가 먼저다."
     elif any(w in question for w in ["돈", "재물", "투자", "주식"]):
@@ -156,11 +217,12 @@ def saju_reading(profile: UserProfile, question: str = "") -> str:
     else:
         focus = "종합운: 지금 질문은 선택 기준을 명확히 잡는 것이 먼저다. 감정적 확신보다 검증 가능한 조건을 봐야 한다."
     return (
-        f"사주 분석 기준\n"
-        f"생년월일: {profile.birth_date} {profile.birth_time or '시간미상'} {profile.gender or ''} ({'음력' if profile.calendar == 'lunar' else '양력'})\n"
-        f"핵심 기운 판단: {tone} 기운 중심으로 해석\n"
+        f"사주 분석\n"
+        f"생년월일: {profile.birth_date} {profile.birth_time or '시간미상'} {profile.gender or ''} "
+        f"({'음력' if profile.calendar == 'lunar' else '양력'})\n"
+        f"핵심 기운: {tone} 기운 중심\n"
         f"{focus}\n"
-        f"주의: 자동 간이 해석이다. 정확한 명식 산출에는 출생지, 양/음력, 절기 기준 확인이 필요하다."
+        f"주의: 자동 간이 해석입니다. 정밀 명식은 출생지·절기 기준 확인 필요."
     )
 
 
@@ -173,7 +235,7 @@ def tarot_reading(user_id: str, question: str = "") -> str:
     for label, (name, meaning) in zip(labels, cards):
         lines.append(f"{label}: {name} - {meaning}")
     if question:
-        lines.append(f"질문 해석: {question.strip()[:80]}")
+        lines.append(f"질문: {question.strip()[:80]}")
     lines.append("판단: 타로는 의사결정 보조용이다. 돈·법률·건강 문제는 사실 확인을 우선한다.")
     return "\n".join(lines)
 
@@ -198,7 +260,10 @@ def _yahoo_chart(symbol: str) -> dict[str, Any] | None:
         change_pct = None
         if prev:
             change_pct = (float(price) - float(prev)) / float(prev) * 100
-        return {"symbol": symbol, "price": float(price), "prev": prev, "change_pct": change_pct, "currency": currency, "exchange": exchange}
+        return {
+            "symbol": symbol, "price": float(price), "prev": prev,
+            "change_pct": change_pct, "currency": currency, "exchange": exchange,
+        }
     except Exception:
         return None
 
@@ -230,28 +295,42 @@ def quote_text(query: str) -> str:
             pct_text = "등락률 미확인" if pct is None else f"{pct:+.2f}%"
             price = item["price"]
             price_text = f"{price:,.0f}" if price >= 1000 else f"{price:,.2f}"
-            return f"시세 {query}\n{item['symbol']}: {price_text} {item['currency']} ({pct_text})\n거래소: {item['exchange']}\n출처: Yahoo Finance chart API"
+            return (
+                f"시세 {query}\n"
+                f"{item['symbol']}: {price_text} {item['currency']} ({pct_text})\n"
+                f"거래소: {item['exchange']}\n"
+                f"출처: Yahoo Finance (지연 데이터, 주문 전 증권사 재확인)"
+            )
     return f"시세를 찾지 못했습니다: {query}"
 
 
 def help_text() -> str:
     return (
-        "명령어\n"
-        "뉴스 - 최신 중요 뉴스/시황\n"
-        "시세 삼성전자 / 시세 005930 / 시세 NVDA\n"
-        "생년월일 1987-12-28 08:30 여 - 사주 프로필 저장\n"
-        "사주 [질문] - 저장된 생년월일 기반 간이 분석\n"
-        "타로 [질문] - 3카드 리딩\n"
-        "도움말 - 명령어 안내"
+        "📋 명령어 안내\n"
+        "봇 뉴스 — 최신 수집 뉴스/시황\n"
+        "봇 뉴스갱신 — 새로 수집 후 표시\n"
+        "봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA\n"
+        "봇 생년월일 1987-12-28 08:30 여 — 사주 프로필 저장 (재시작 후에도 유지)\n"
+        "봇 사주 [질문] — 저장된 생년월일 기반 분석\n"
+        "봇 타로 [질문] — 3카드 리딩\n"
+        "봇 도움말 — 이 안내"
     )
 
 
 def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
     msg = message.strip()
+
     birth = parse_birth_command(msg)
     if birth:
         profile = save_profile(user_id, *birth)
-        return f"프로필 저장 완료\n{profile.birth_date} {profile.birth_time or '시간미상'} {profile.gender or ''} ({'음력' if profile.calendar == 'lunar' else '양력'})"
+        cal = "음력" if profile.calendar == "lunar" else "양력"
+        return (
+            f"프로필 저장 완료 ✅\n"
+            f"{profile.birth_date} {profile.birth_time or '시간미상'} "
+            f"{profile.gender or ''} ({cal})\n"
+            f"이후 서버 재시작해도 사주 정보가 유지됩니다.\n"
+            f"'봇 사주'로 바로 조회하세요."
+        )
 
     q = msg.lower()
     if q in {"도움", "도움말", "help", "/help", "?"}:
@@ -264,10 +343,10 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
     if msg.startswith("사주") or msg.startswith("운세"):
         profile = get_profile(user_id)
         if not profile:
-            return "먼저 생년월일을 등록하세요. 예: 생년월일 1987-12-28 08:30 여"
+            return "먼저 생년월일을 등록하세요.\n예: 봇 생년월일 1987-12-28 08:30 여"
         question = re.sub(r"^(사주|운세)\s*", "", msg).strip()
         return saju_reading(profile, question)
     if msg.startswith("타로"):
         question = re.sub(r"^타로\s*", "", msg).strip()
         return tarot_reading(user_id, question)
-    return "명령어를 인식하지 못했습니다. '도움말'을 입력하세요."
+    return "명령어를 인식하지 못했습니다. '봇 도움말'을 입력하세요."
