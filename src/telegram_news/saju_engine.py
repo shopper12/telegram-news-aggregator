@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 from datetime import date, datetime
-import hashlib
-import random
 from zoneinfo import ZoneInfo
 
 STEMS = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
@@ -51,7 +49,6 @@ SIGN_META = {
     "물고기자리": ("물", "변화", "직관·공감·경계 흐림"),
 }
 
-# sign별 상세 실행조언 (질문 없을 때)
 SIGN_DEFAULT_ADVICE = {
     "양자리": "결단은 빠르지만 지속이 약하다. 오늘은 시작보다 어제 시작한 것을 완결하는 데 에너지를 쓴다.",
     "황소자리": "감각과 자산 감각이 발달했지만 변화를 늦게 받아들인다. 오늘은 고집이 판단을 막는 지점 1개를 확인한다.",
@@ -126,6 +123,17 @@ def _hour_branch(hour: int) -> int:
     return 0 if hour == 23 else ((hour + 1) // 2) % 12
 
 
+def _solar_from_lunar(y: int, m: int, d: int) -> tuple[int, int, int]:
+    try:
+        from korean_lunar_calendar import KoreanLunarCalendar
+        cal = KoreanLunarCalendar()
+        cal.setLunarDate(y, m, d, False)
+        solar = cal.getSolarDate()
+        return int(solar.year), int(solar.month), int(solar.day)
+    except Exception:
+        return y, m, d
+
+
 def chart_from_ymdh(y: int, m: int, d: int, hour: int = 12) -> dict[str, str]:
     year_idx = _year_index(y, m, d)
     year_stem = year_idx % 10
@@ -146,6 +154,8 @@ def chart_from_ymdh(y: int, m: int, d: int, hour: int = 12) -> dict[str, str]:
 
 def profile_parts(profile) -> tuple[int, int, int, int]:
     y, m, d = [int(x) for x in profile.birth_date.split("-")]
+    if getattr(profile, "calendar", "solar") == "lunar":
+        y, m, d = _solar_from_lunar(y, m, d)
     hour = int(profile.birth_time.split(":")[0]) if getattr(profile, "birth_time", "") else 12
     return y, m, d, hour
 
@@ -161,24 +171,20 @@ def balance(chart: dict[str, str]) -> dict[str, int]:
 
 
 def _strength(day_el: str, bal: dict[str, int]) -> str:
-    # 생조(인성+비겁)가 3개 이상이면 신강
     support = bal.get(day_el, 0) + bal.get(GENERATED_BY.get(day_el, ""), 0)
     return "신강" if support >= 3 else "신약"
 
 
 def _useful(day_el: str, strength: str) -> tuple[str, str]:
-    # 신강: 관성(극아)·재성(아극)이 용신, 인성·비겁이 기신
-    # 신약: 인성(생아)·비겁(조아)이 용신, 관성·재성이 기신
     if strength == "신강":
         return CONTROLS[day_el], GENERATED_BY.get(day_el, day_el)
-    else:
-        return GENERATED_BY.get(day_el, day_el), CONTROLS[day_el]
+    return GENERATED_BY.get(day_el, day_el), CONTROLS[day_el]
 
 
 def _shishen_profile(chart: dict[str, str], day_el: str) -> dict[str, int]:
     """각 기둥의 십신 분포를 집계한다."""
     counter: dict[str, int] = {}
-    for pillar_name, pillar in chart.items():
+    for pillar in chart.values():
         for ch in pillar:
             el = ELEMENT.get(ch)
             if el:
@@ -193,27 +199,24 @@ def _dominant_shishen(ss_count: dict[str, int]) -> list[str]:
 
 
 def _annual(day_stem: str) -> str:
-    # 2026 병오년(丙午) — 화(火) 기운 강화
-    # 일간별 세운 작용 분석
-    if day_stem in "甲乙":  # 목 일간: 화가 식상 → 표현·창업 활발, 재성 부담 동반
+    if day_stem in "甲乙":
         return "2026 병오년: 식상 운 활성화. 표현력·창업·새 시도에 에너지 쏠림. 재성 부담이 동반되어 수입과 지출이 함께 늘어난다."
-    if day_stem in "丙丁":  # 화 일간: 비겁 강화 → 경쟁·자기주장·독립
+    if day_stem in "丙丁":
         return "2026 병오년: 비겁 운 강화. 경쟁·독립심·자기주장이 커진다. 협업보다 단독 판단이 잦아지므로 주요 결정에 외부 검증을 더해야 한다."
-    if day_stem in "戊己":  # 토 일간: 화가 인성 → 학습·준비·계획에 유리
+    if day_stem in "戊己":
         return "2026 병오년: 인성 운 진입. 학습·계획·준비가 성과의 전제가 된다. 실행보다 설계에 투자하는 해다."
-    if day_stem in "庚辛":  # 금 일간: 화가 관성 → 직업·명예·규율 변화
+    if day_stem in "庚辛":
         return "2026 병오년: 관성 압박 강화. 직장·직업·공식관계에서 변화 요구가 커진다. 규칙 준수와 책임 이행이 평판을 결정한다."
-    # 수 일간(壬癸): 화가 재성 → 재물 기회와 지출 동반
     return "2026 병오년: 재성 운 활성화. 재물 기회와 지출이 함께 온다. 수입 증가와 충동 지출이 공존하므로 현금 흐름 관리가 핵심이다."
 
 
 def _clash_analysis(chart: dict[str, str]) -> str:
     """천간충·지지충 간단 감지."""
-    clashes = []
+    clashes: list[str] = []
     stems_in_chart = [p[0] for p in chart.values() if p]
     branches_in_chart = [p[1] for p in chart.values() if len(p) > 1]
-    # 천간충: 甲庚, 乙辛, 丙壬, 丁癸, 戊甲(편), 기본 6충
-    STEM_CLASH = [("甲","庚"),("乙","辛"),("丙","壬"),("丁","癸"),("戊","壬"),("己","癸")]
+    # 천간충: 甲庚, 乙辛, 丙壬, 丁癸. 戊壬·己癸는 충으로 보지 않는다.
+    STEM_CLASH = [("甲", "庚"), ("乙", "辛"), ("丙", "壬"), ("丁", "癸")]
     BRANCH_CLASH = [("子","午"),("丑","未"),("寅","申"),("卯","酉"),("辰","戌"),("巳","亥")]
     for a, b in STEM_CLASH:
         if a in stems_in_chart and b in stems_in_chart:
@@ -265,6 +268,26 @@ def _context(question: str, annual: str, useful: str, avoid: str, ss_dominant: l
     )
 
 
+def zodiac(month: int, day: int) -> str:
+    md = month * 100 + day
+    current = "염소자리"
+    for cutoff, sign in ZODIAC:
+        if md < cutoff:
+            return current
+        current = sign
+    return current
+
+
+def _zodiac_line(m: int, d: int, question: str) -> str:
+    sign = zodiac(m, d)
+    element, mode, theme = SIGN_META.get(sign, ("", "", ""))
+    advice = SIGN_DEFAULT_ADVICE.get(sign, "") if not question.strip() else ""
+    line = f"서양 별자리: {sign}({element}/{mode}) — {theme}"
+    if advice:
+        line += f"\n별자리 보조 조언: {advice}"
+    return line
+
+
 def reading(name: str, profile, question: str = "") -> str:
     y, m, d, hour = profile_parts(profile)
     c = chart_from_ymdh(y, m, d, hour)
@@ -286,24 +309,21 @@ def reading(name: str, profile, question: str = "") -> str:
     annual = _annual(dm)
     body = _context(question, annual, useful, avoid, ss_dominant, clash)
     clash_line = f"충: {clash}\n" if clash else ""
+    calendar_line = "음력→양력 변환 반영\n" if getattr(profile, "calendar", "solar") == "lunar" else ""
+    sign_line = _zodiac_line(m, d, question)
     result = (
         f"사주 리딩 [{c['day']}] — {DAY_STEM_TRAITS[dm]}\n"
         f"━━━━━━━━\n"
+        f"{calendar_line}"
         f"사주팔자: {c['year']} {c['month']} {c['day']} {c['hour']}\n"
         f"{today_line}"
         f"일간: {dm}({day_el}) | 오행: {btxt} | {strength}\n"
         f"십신 분포: {ss_line}\n"
         f"용신: {useful} / 기신: {avoid}\n"
         f"{clash_line}"
+        f"{sign_line}\n"
         f"{annual}\n"
         f"─────\n"
         f"{body}"
     )
-    return result[:900]
-
-
-def zodiac(month: int, day: int) -> str:
-    md = month * 100 + day
-    current = "염소자리"
-    for cutoff, sign in ZODIAC:
-        if md < cut
+    return result[:2000]
