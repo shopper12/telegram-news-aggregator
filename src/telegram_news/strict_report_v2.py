@@ -270,53 +270,52 @@ def _relative_time(dt: datetime, now: datetime) -> str:
 
 
 def _age_line(cluster, now: datetime) -> str:
-    dates = _cluster_datetimes(cluster)
-    if not dates:
+    dts = _cluster_datetimes(cluster)
+    if not dts:
         return "시각 미확인"
-    latest = max(dates)
-    first = min(dates)
-    repeat = len(dates)
-    return f"최신 {_relative_time(latest, now)} / 최초 {_relative_time(first, now)} / 반복 {repeat}건"
+    latest = max(dts)
+    first = min(dts)
+    count = sum(getattr(news.item, "repeat_count", 1) for news in getattr(cluster, "items", []) or [])
+    if first == latest:
+        return f"최신 {_relative_time(latest, now)} / 반복 {count}건"
+    return f"최신 {_relative_time(latest, now)} / 최초 {_relative_time(first, now)} / 반복 {count}건"
 
 
-def _cluster_raw_key(cluster) -> str:
-    texts = []
-    for news in getattr(cluster, "items", []) or []:
-        try:
-            texts.append(f"{news.item.title} {news.item.body}")
-        except Exception:
-            continue
-    base_text = " ".join(texts)[:2000]
-    return hashlib.sha1(_signature_text(base_text).encode("utf-8")).hexdigest()
+def _issue_signature(cluster) -> str:
+    title = _signature_text(_display_title(cluster, 120))[:120]
+    symbols = ",".join(sym.ticker for sym in _display_symbols(cluster))
+    sectors = ",".join(cluster.sectors()[:3])
+    key = f"{symbols}|{sectors}|{title}"
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()
 
 
 def _load_display_history(now: datetime) -> dict[str, str]:
+    cutoff = now - timedelta(hours=NEWS_REPEAT_SUPPRESS_HOURS)
     if not DISPLAY_HISTORY_PATH.exists():
         return {}
     try:
         raw = json.loads(DISPLAY_HISTORY_PATH.read_text(encoding="utf-8"))
-        if not isinstance(raw, dict):
-            return {}
+        items = raw.get("items", {}) if isinstance(raw, dict) else {}
+        out: dict[str, str] = {}
+        for sig, ts in items.items():
+            dt = _parse_message_dt(str(ts))
+            if dt and dt >= cutoff:
+                out[str(sig)] = str(ts)
+        return out
     except Exception:
         return {}
-    cutoff = now - timedelta(hours=NEWS_REPEAT_SUPPRESS_HOURS)
-    cleaned: dict[str, str] = {}
-    for key, value in raw.items():
-        dt = _parse_message_dt(value)
-        if dt and dt >= cutoff:
-            cleaned[str(key)] = str(value)
-    return cleaned
 
 
-def _save_display_history(history: dict[str, str], clusters: list, now: datetime) -> None:
-    DISPLAY_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
-    for cluster in clusters:
-        history[_issue_signature(cluster)] = now.isoformat()
-    DISPLAY_HISTORY_PATH.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
-
-
-def _issue_signature(cluster) -> str:
-    return _cluster_raw_key(cluster)
+def _save_display_history(history: dict[str, str], displayed: list, now: datetime) -> None:
+    try:
+        DISPLAY_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+        for cluster in displayed:
+            history[_issue_signature(cluster)] = now.isoformat()
+        cutoff = now - timedelta(hours=NEWS_REPEAT_SUPPRESS_HOURS)
+        trimmed = {sig: ts for sig, ts in history.items() if (_parse_message_dt(ts) or now) >= cutoff}
+        DISPLAY_HISTORY_PATH.write_text(json.dumps({"updated_at": now.isoformat(), "items": trimmed}, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        return
 
 
 def _previous_report_text() -> str:
