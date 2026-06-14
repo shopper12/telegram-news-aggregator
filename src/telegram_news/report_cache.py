@@ -16,12 +16,30 @@ MIN_REPORT_OK_LENGTH = int(os.getenv("MIN_REPORT_OK_LENGTH", "100"))
 
 
 def _normalize_report_payload(data: dict) -> dict:
-    """ok=False라도 충분한 report 본문이 있으면 메신저 출력용으로 유효 처리한다."""
     report_str = str(data.get("report", "")).strip()
     if len(report_str) >= MIN_REPORT_OK_LENGTH:
         data["ok"] = True
         data.setdefault("recovered_ok_reason", "report_body_present")
     return data
+
+
+def _parse_generated_at(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00")).replace(tzinfo=None)
+    except Exception:
+        return None
+
+
+def _is_newer_report(candidate: dict | None, current: dict | None) -> bool:
+    if not candidate:
+        return False
+    candidate_dt = _parse_generated_at(str(candidate.get("generated_at") or ""))
+    current_dt = _parse_generated_at(str((current or {}).get("generated_at") or ""))
+    if candidate_dt and current_dt:
+        return candidate_dt > current_dt
+    return bool(candidate_dt and not current_dt)
 
 
 def save_latest_report(*, report: str, kind: str, hours: int, source: str = "scheduled") -> None:
@@ -60,7 +78,7 @@ def _load_github_fallback() -> dict | None:
         if response.status_code != 200:
             return None
         data = response.json()
-        if isinstance(data, dict) and data.get("report"):
+        if isinstance(data, dict) and str(data.get("report") or "").strip():
             data.setdefault("source", "github_fallback")
             return _normalize_report_payload(data)
     except Exception:
@@ -69,8 +87,11 @@ def _load_github_fallback() -> dict | None:
 
 
 def _age_seconds(generated_at: str) -> int | None:
+    dt = _parse_generated_at(generated_at)
+    if not dt:
+        return None
     try:
-        return int((datetime.now() - datetime.fromisoformat(generated_at)).total_seconds())
+        return int((datetime.now() - dt).total_seconds())
     except Exception:
         return None
 
@@ -83,6 +104,10 @@ def _is_stale(generated_at: str) -> bool:
 def _with_stale_notice(data: dict) -> dict:
     generated_at = data.get("generated_at", "")
     age_sec = _age_seconds(generated_at) if generated_at else None
+    report = str(data.get("report", ""))
+    if report.startswith("⚠️ 마지막 업데이트"):
+        data["stale"] = True
+        return _normalize_report_payload(data)
     if age_sec is None:
         data["stale"] = True
         return _normalize_report_payload(data)
@@ -90,7 +115,7 @@ def _with_stale_notice(data: dict) -> dict:
     age_m = (age_sec % 3600) // 60
     stale_notice = f"⚠️ 마지막 업데이트로부터 {age_h}시간 {age_m}분 경과\n\n"
     data["stale"] = True
-    data["report"] = stale_notice + str(data.get("report", ""))
+    data["report"] = stale_notice + report
     return _normalize_report_payload(data)
 
 
@@ -98,13 +123,21 @@ def load_latest_report() -> dict:
     if LATEST_REPORT_JSON.exists():
         try:
             data = _normalize_report_payload(json.loads(LATEST_REPORT_JSON.read_text(encoding="utf-8")))
-            generated_at = data.get("generated_at", "")
+            generated_at = str(data.get("generated_at") or "")
+            report = str(data.get("report") or "").strip()
+
             if generated_at and _is_stale(generated_at):
                 fallback = _load_github_fallback()
-                if fallback:
-                    fallback["fallback_reason"] = "local_cache_stale"
+                if fallback and _is_newer_report(fallback, data):
+                    fallback["fallback_reason"] = "local_cache_stale_github_newer"
                     return fallback
                 return _with_stale_notice(data)
+
+            if len(report) < MIN_REPORT_OK_LENGTH:
+                fallback = _load_github_fallback()
+                if fallback:
+                    fallback["fallback_reason"] = "local_report_too_short"
+                    return fallback
             return data
         except Exception as exc:
             fallback = _load_github_fallback()
