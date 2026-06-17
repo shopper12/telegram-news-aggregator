@@ -10,6 +10,7 @@
 - 중요도 점수화
 - OpenAI 요약 옵션 적용
 - 결과를 콘솔, Markdown 파일, 텔레그램 봇 메시지로 출력
+- 카카오/메신저 명령어 `봇 추천`으로 ChatGPT 브리핑 추천종목 표시
 
 ## 구조
 
@@ -25,10 +26,12 @@ telegram_news_aggregator/
     summarizer.py       # OpenAI 요약 또는 로컬 요약
     report.py           # Markdown 리포트 생성
     notifier.py         # 텔레그램 봇 발송
+    chat_bridge.py      # ChatGPT 브리핑 추천종목 조회/저장 브리지
   config/
     channels.example.yaml
   scripts/
     run_once.py
+    run_api_v7.py
     init_db.py
   tests/
 ```
@@ -138,7 +141,36 @@ TELEGRAM_TARGET_CHAT_ID=123456789
 python -m telegram_news.app run --hours 6 --send
 ```
 
-## 7. OpenAI 요약 사용
+## 7. 카카오/메신저 `봇 추천`
+
+API 서버 모드에서 `봇 추천`, `봇 추천종목`, `오늘추천`을 입력하면 저장된 ChatGPT 브리핑 추천종목을 카카오 simpleText로 반환합니다.
+
+추천 데이터 입력:
+
+```bash
+curl -X POST "$RENDER_API_BASE_URL/api/recommendations" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $CHAT_PICKS_API_KEY" \
+  --data @app_recommendations.json
+```
+
+stock_scanner 앱과 연결하려면 아래처럼 설정합니다.
+
+```env
+CHAT_PICKS_SOURCE_URL=https://<stock-scanner-url>/api/recommendations
+# 또는
+STOCK_SCANNER_RECOMMENDATIONS_URL=https://<stock-scanner-url>/api/recommendations
+```
+
+로컬/Render 임시 저장 방식은 다음 변수를 사용합니다.
+
+```env
+CHAT_PICKS_API_KEY=
+CHAT_PICKS_JSON=
+CHAT_PICKS_PATH=/tmp/chat_picks.json
+```
+
+## 8. OpenAI 요약 사용
 
 `.env`에 아래 값을 넣습니다.
 
@@ -149,13 +181,13 @@ OPENAI_MODEL=gpt-4.1-mini
 
 API 키가 없으면 로컬 규칙 기반 요약으로 동작합니다.
 
-## 8. 보안 주의
+## 9. 보안 주의
 
 `.env`, `*.session`, `data/*.db`는 Git에 올리면 안 됩니다.
 
 이미 `.gitignore`에 포함되어 있습니다.
 
-## 9. 출력 예시
+## 10. 출력 예시
 
 ```text
 [텔레그램 뉴스 종합] 2026-05-16 17:30 KST / 최근 6시간
@@ -177,6 +209,6 @@ API 키가 없으면 로컬 규칙 기반 요약으로 동작합니다.
 - 장대양봉 추격 금지, 눌림/재돌파 확인
 ```
 
-## 10. 한계
+## 11. 한계
 
 이 프로젝트는 뉴스 수집·정리 도구입니다. 매수/매도 자동 실행 기능은 포함하지 않습니다. 가격·거래량·수급 검증은 별도 시세 API를 붙여 확장해야 합니다.
