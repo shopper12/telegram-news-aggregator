@@ -1,0 +1,35 @@
+name: Publish Chat Cards
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - reports/app_recommendations.json
+      - scripts/publish_chat_cards.py
+      - .github/workflows/publish-chat-cards.yml
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependency
+        run: python -m pip install requests
+
+      - name: Publish latest chat cards
+        env:
+          APP_RECOMMENDATIONS_FILE: reports/app_recommendations.json
+          CHAT_PICKS_POST_URL: ${{ secrets.CHAT_PICKS_POST_URL }}
+          RENDER_API_BASE_URL: ${{ secrets.RENDER_API_BASE_URL }}
+          CHAT_PICKS_API_KEY: ${{ secrets.CHAT_PICKS_API_KEY }}
+          NEWS_BOT_API_KEY: ${{ secrets.NEWS_BOT_API_KEY }}
+        run: python scripts/publish_chat_cards.py
