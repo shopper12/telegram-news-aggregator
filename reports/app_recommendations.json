@@ -1,6 +1,64 @@
 {
-  "briefing_datetime_kst": "",
-  "mode": "manual",
+  "briefing_datetime_kst": "2026-06-18 16:05",
+  "mode": "post_close",
   "source": "chatgpt_market_briefing",
-  "recommendations": []
+  "recommendations": [
+    {
+      "asset_name": "현금성 대기",
+      "ticker": "CASH",
+      "market": "CASH",
+      "direction": "defensive",
+      "basis_price": null,
+      "basis_price_currency": "KRW",
+      "basis_timestamp_kst": "2026-06-18 16:05",
+      "basis_source": "N/A",
+      "entry": "즉시",
+      "stop": "없음",
+      "target1": "변동성 회피",
+      "target2": "기회 확보",
+      "invalidation": "시장 과열 지속",
+      "holding_period": "1~3일",
+      "reason": "매파 연준 이후 변동성",
+      "risk": "기회비용",
+      "strategy_rule_applied": "변동성 우선"
+    },
+    {
+      "asset_name": "AI 반도체 추세 추종",
+      "ticker": "NO_TRADE_UNVERIFIED",
+      "market": "CASH",
+      "direction": "no_trade",
+      "basis_price": null,
+      "basis_price_currency": "USD",
+      "basis_timestamp_kst": "",
+      "basis_source": "",
+      "entry": "보류",
+      "stop": "보류",
+      "target1": "보류",
+      "target2": "보류",
+      "invalidation": "추세 훼손",
+      "holding_period": "관찰",
+      "reason": "기준가격 미검증",
+      "risk": "데이터 부족",
+      "strategy_rule_applied": "검증 없는 추천 금지"
+    },
+    {
+      "asset_name": "에너지 섹터 회피",
+      "ticker": "NO_TRADE_ENERGY",
+      "market": "CASH",
+      "direction": "no_trade",
+      "basis_price": 74.7,
+      "basis_price_currency": "USD",
+      "basis_timestamp_kst": "2026-06-18 16:05",
+      "basis_source": "Reuters",
+      "entry": "미진입",
+      "stop": "해당없음",
+      "target1": "회피",
+      "target2": "회피",
+      "invalidation": "유가 반등",
+      "holding_period": "단기",
+      "reason": "WTI 하락 추세",
+      "risk": "지정학 변수",
+      "strategy_rule_applied": "원유 약세 반영"
+    }
+  ]
 }
