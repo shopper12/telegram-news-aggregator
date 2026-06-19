@@ -13,6 +13,7 @@ DEFAULT_LATEST_REPORT_URL = "https://raw.githubusercontent.com/shopper12/telegra
 FALLBACK_TIMEOUT_SECONDS = float(os.getenv("LATEST_REPORT_FALLBACK_TIMEOUT_SECONDS", "5.0"))
 MAX_CACHE_AGE_SECONDS = int(os.getenv("REPORT_CACHE_MAX_AGE_SECONDS", "3600"))  # 기본 1시간
 MIN_REPORT_OK_LENGTH = int(os.getenv("MIN_REPORT_OK_LENGTH", "100"))
+ALLOW_STALE_GITHUB_FALLBACK = os.getenv("ALLOW_STALE_GITHUB_FALLBACK", "0") == "1"
 
 
 def _normalize_report_payload(data: dict) -> dict:
@@ -79,6 +80,9 @@ def _load_github_fallback() -> dict | None:
             return None
         data = response.json()
         if isinstance(data, dict) and str(data.get("report") or "").strip():
+            generated_at = str(data.get("generated_at") or "")
+            if generated_at and _is_stale(generated_at) and not ALLOW_STALE_GITHUB_FALLBACK:
+                return None
             data.setdefault("source", "github_fallback")
             return _normalize_report_payload(data)
     except Exception:
