@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
 import json
+import re
 import time
 
 import requests
@@ -30,6 +31,12 @@ class SummaryItem:
     gemini_impact: str = ""
 
 
+SENTENCE_RE = re.compile(r"(?<=[.!?。！？다요음임함됨됨다])\s+|\n+")
+NUMBER_RE = re.compile(r"\d+(?:\.\d+)?\s*(조|억|만|%|달러|원|억원|조원|bp|톤|건|명)?", re.IGNORECASE)
+PROPER_RE = re.compile(r"[A-Z]{2,10}|[가-힣A-Za-z0-9]+(?:전자|화학|증권|금융|중공업|바이오|에너지|테크|그룹|은행|공사|제약|반도체)")
+CAUSE_WORDS = ["때문", "영향", "따라", "전망", "기대", "우려", "확대", "감소", "증가", "급등", "하락", "상승", "수혜", "리스크"]
+
+
 def _make_title(text: str, max_len: int = 72) -> str:
     cleaned = " ".join(text.replace("\n", " ").split())
     for splitter in [" - ", " | ", " / ", "[", "("]:
@@ -42,6 +49,57 @@ def _make_title(text: str, max_len: int = 72) -> str:
 def _contains_any(text: str, words: list[str]) -> bool:
     lower = text.lower()
     return any(word.lower() in lower for word in words)
+
+
+def _split_sentences(text: str) -> list[str]:
+    compact = re.sub(r"https?://\S+", "", str(text or ""))
+    compact = re.sub(r"\s+", " ", compact).strip()
+    if not compact:
+        return []
+    pieces = [p.strip(" -•·") for p in SENTENCE_RE.split(compact) if p.strip(" -•·")]
+    if len(pieces) <= 1 and len(compact) > 120:
+        pieces = [compact[i:i + 90].strip() for i in range(0, min(len(compact), 270), 90)]
+    return pieces
+
+
+def _sentence_score(sentence: str) -> int:
+    score = 0
+    if NUMBER_RE.search(sentence):
+        score += 4
+    if PROPER_RE.search(sentence):
+        score += 3
+    if _contains_any(sentence, CAUSE_WORDS):
+        score += 3
+    if _contains_any(sentence, ["공시", "수주", "계약", "실적", "승인", "허가", "금리", "환율", "연준", "fda"]):
+        score += 4
+    score += max(0, 3 - abs(len(sentence) - 70) // 40)
+    return score
+
+
+def summarize(article: dict) -> str:
+    """Compress title and lead/body into <=3 evidence-focused sentences."""
+    title = str(article.get("title") or "").strip()
+    body = str(article.get("lead") or article.get("body") or article.get("text") or "").strip()
+    source = article.get("source") or article.get("channel") or article.get("channels") or "출처미상"
+    published = article.get("published_at") or article.get("message_date") or article.get("date") or "시각미상"
+
+    candidates = _split_sentences(f"{title}. {body}")
+    ranked = sorted(enumerate(candidates), key=lambda x: (_sentence_score(x[1]), -x[0]), reverse=True)
+    selected: list[str] = []
+    seen: set[str] = set()
+    for _idx, sentence in ranked:
+        normalized = re.sub(r"[^0-9A-Za-z가-힣]+", "", sentence.lower())[:80]
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        selected.append(sentence if len(sentence) <= 150 else sentence[:149] + "…")
+        if len(selected) >= 3:
+            break
+
+    if not selected and title:
+        selected = [title]
+    summary = " ".join(selected).strip()
+    return f"{summary} (출처: {source}, 시각: {published})" if summary else f"요약 불가 (출처: {source}, 시각: {published})"
 
 
 def _build_judgment(text: str, repeat_count: int, sectors: list[str], tickers: list[str]) -> str:
@@ -71,7 +129,7 @@ def _build_trade_view(text: str, importance_score: int, repeat_count: int) -> st
     if _contains_any(text, ["수주", "계약", "공급", "승인", "허가", "공시", "실적"]):
         return "실제 이벤트 뉴스. 가격·거래대금 확인 필요."
     if importance_score >= 8:
-        return "뉴스 강도 높음. 실시간 가격·거래량 확인 필요."
+        return "뉴스 강도 높음. 실시간 가격·거량 확인 필요."
     return "단독 근거 부족. 섹터 동시 반응 확인 필요."
 
 
@@ -90,10 +148,19 @@ def local_summarize(items: list[DedupedItem], limit: int = 15) -> list[SummaryIt
     for item in items:
         market_type = market_type_from_categories(item.categories)
         sig = extract_signals(item.text, repeat_count=item.count, market_type=market_type)
+        title = _make_title(item.text)
+        body = summarize(
+            {
+                "title": title,
+                "body": item.text,
+                "channels": ", ".join(item.channel_names),
+                "published_at": item.message_dates[0] if item.message_dates else "시각미상",
+            }
+        )
         summaries.append(
             SummaryItem(
-                title=_make_title(item.text),
-                body=item.text,
+                title=title,
+                body=body,
                 channels=item.channel_names,
                 categories=item.categories,
                 repeat_count=item.count,
@@ -130,14 +197,7 @@ def _extract_json_array(text: str) -> list[dict] | None:
 
 def _gemini_classify_batch(batch: list[SummaryItem], api_key: str, model: str) -> dict[int, tuple[str, str]]:
     rows = [
-        {
-            "idx": i + 1,
-            "title": s.title,
-            "body": s.body[:260],
-            "categories": s.categories,
-            "sectors": s.sectors,
-            "tickers": s.tickers,
-        }
+        {"idx": i + 1, "title": s.title, "body": s.body[:260], "categories": s.categories, "sectors": s.sectors, "tickers": s.tickers}
         for i, s in enumerate(batch)
     ]
     prompt = (
@@ -187,12 +247,7 @@ def _gemini_classify_batch(batch: list[SummaryItem], api_key: str, model: str) -
     return out
 
 
-def gemini_classify_if_available(
-    items: list[DedupedItem],
-    api_key: str | None,
-    model: str,
-    limit: int = 15,
-) -> list[SummaryItem]:
+def gemini_classify_if_available(items: list[DedupedItem], api_key: str | None, model: str, limit: int = 15) -> list[SummaryItem]:
     summaries = local_summarize(items, limit=limit)
     if not api_key or not summaries:
         return summaries
