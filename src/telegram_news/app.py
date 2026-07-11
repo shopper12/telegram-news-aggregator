@@ -15,6 +15,7 @@ from .summarizer import gemini_classify_if_available
 from .strict_report_v2 import build_markdown_report
 from .kakao_notifier import send_kakao_memo
 from .discord_notifier import send_discord_webhook
+from .notifier import send_telegram_message_to_many
 from .report_cache import save_latest_report
 
 
@@ -109,6 +110,15 @@ def _is_empty_report(report: str) -> bool:
     return not report or not report.strip()
 
 
+def _send_report_to_telegram(report: str) -> None:
+    settings = load_settings()
+    bot_token = settings.telegram_bot_token
+    chat_ids = settings.telegram_target_chat_ids
+    if not bot_token or not chat_ids:
+        raise RuntimeError("TELEGRAM_BOT_TOKEN and TELEGRAM_TARGET_CHAT_ID(S) are required for Telegram notification.")
+    send_telegram_message_to_many(bot_token=bot_token, chat_ids=chat_ids, text=report)
+
+
 def _send_report_to_kakao(report: str) -> None:
     rest_api_key = os.getenv("KAKAO_REST_API_KEY")
     refresh_token = os.getenv("KAKAO_REFRESH_TOKEN")
@@ -145,13 +155,52 @@ def _send_report(report: str) -> None:
     if notifier in {"", "none", "off", "false", "no"}:
         print("Notifier disabled; report cache was still generated and saved.")
         return
-    if notifier not in {"kakao", "discord", "both"}:
-        raise RuntimeError("NOTIFIER must be one of: none, kakao, discord, both")
+    if notifier not in {"telegram", "kakao", "discord", "both", "all"}:
+        raise RuntimeError("NOTIFIER must be one of: none, telegram, kakao, discord, both, all")
 
-    if notifier in {"kakao", "both"}:
+    if notifier in {"telegram", "all"}:
+        _send_report_to_telegram(report)
+    if notifier in {"kakao", "both", "all"}:
         _send_report_to_kakao(report)
-    if notifier in {"discord", "both"}:
+    if notifier in {"discord", "both", "all"}:
         _send_report_to_discord(report)
+
+
+def _finalize_report(*, report: str, kind: str, hours: int, source: str, send: bool) -> Path:
+    path = _save_report(report)
+    save_latest_report(report=report, kind=kind, hours=hours, source=source)
+    print(report)
+    print(f"\nSaved: {path}")
+    if send:
+        _send_report(report)
+    return path
+
+
+def generate_report(
+    *,
+    hours: int = 1,
+    limit: int = DEFAULT_NEWS_LIMIT,
+    briefing_kind: str = "manual",
+    collect: bool = True,
+    send: bool = False,
+    source: str = "telegram_manual",
+) -> str:
+    previous_kind = os.environ.get("BRIEFING_KIND")
+    os.environ["BRIEFING_KIND"] = briefing_kind
+    try:
+        if collect:
+            collect_args = argparse.Namespace(hours=hours, limit=DEFAULT_COLLECT_LIMIT)
+            cmd_collect(collect_args)
+        report = _make_report(hours=hours, limit=limit)
+        if _is_empty_report(report):
+            return "리포트 생성 결과가 비어 있습니다. 수집 채널, 시간 범위, 필터 조건을 확인하세요."
+        _finalize_report(report=report, kind=briefing_kind, hours=hours, source=source, send=send)
+        return report
+    finally:
+        if previous_kind is None:
+            os.environ.pop("BRIEFING_KIND", None)
+        else:
+            os.environ["BRIEFING_KIND"] = previous_kind
 
 
 def cmd_report(args: argparse.Namespace) -> None:
@@ -161,11 +210,8 @@ def cmd_report(args: argparse.Namespace) -> None:
         print("Report skipped: empty report generated. SEND_EMPTY_REPORT=0 is active or no reportable issue exists.")
         return
 
-    path = _save_report(report)
     kind = os.getenv("BRIEFING_KIND", "regular")
-    save_latest_report(report=report, kind=kind, hours=hours, source="cli_report")
-    print(report)
-    print(f"\nSaved: {path}")
+    _finalize_report(report=report, kind=kind, hours=hours, source="cli_report", send=getattr(args, "send", False))
 
 
 def cmd_run(args: argparse.Namespace) -> None:
@@ -178,14 +224,8 @@ def cmd_run(args: argparse.Namespace) -> None:
         print("Report skipped: empty report generated. Notification skipped.")
         return
 
-    path = _save_report(report)
     kind = os.getenv("BRIEFING_KIND", "regular")
-    save_latest_report(report=report, kind=kind, hours=hours, source="cli_run")
-    print(report)
-    print(f"\nSaved: {path}")
-
-    if args.send:
-        _send_report(report)
+    _finalize_report(report=report, kind=kind, hours=hours, source="cli_run", send=args.send)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -203,6 +243,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("report")
     p.add_argument("--hours", type=int, default=None)
     p.add_argument("--limit", type=int, default=None)
+    p.add_argument("--send", action="store_true")
     p.set_defaults(func=cmd_report)
 
     p = sub.add_parser("run")
