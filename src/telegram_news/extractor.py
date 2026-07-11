@@ -9,7 +9,7 @@ from .symbol_resolver import resolve_symbols
 
 KOREAN_STOCK_KEYWORDS = {
     "반도체": ["반도체", "hbm", "dram", "낸드", "파운드리", "삼성전자", "sk하이닉스", "메모리", "tsmc", "한미반도체"],
-    "AI인프라": ["ai 추론", "ai 인프라", "데이터센터", "gpu", "npu", "hbm", "서버", "인공지능 반도체"],
+    "AI인프라": ["ai 추론", "ai 인프라", "데이터센터", "gpu", "npu", "hbm", "서버", "인공지능 반도체", "광 네트워킹", "cpo"],
     "원전": ["원전", "smr", "체코", "웨스팅하우스", "한수원", "원자로", "원전수주", "두산에너빌리티"],
     "전력기기": ["전력기기", "변압기", "전선", "송전", "배전", "hvdc", "전력망", "대한전선", "효성중공업"],
     "로봇": ["로봇", "휴머노이드", "피지컬 ai", "감속기", "액추에이터", "두산로보틱스"],
@@ -19,14 +19,16 @@ KOREAN_STOCK_KEYWORDS = {
     "바이오": ["임상", "fda", "신약", "임상3상", "바이오시밀러", "셀트리온", "삼성바이오", "허가", "cda", "nda", "anda", "품목허가"],
     "양자": ["양자컴", "양자암호", "ibm q", "구글 퀀텀", "양자컴퓨터", "퀀텀"],
     "미국빅테크": ["엔비디아", "마이크로소프트", "애플", "알파벳", "메타", "아마존", "테슬라", "nvda", "msft", "aapl", "googl", "amzn", "tsla"],
+    "거시/정책": ["금리", "환율", "연준", "한은", "fomc", "cpi", "ppi", "최저임금", "관세", "수출규제", "정책", "규제"],
 }
 
 US_STOCK_KEYWORDS = {
     "미국빅테크": ["엔비디아", "마이크로소프트", "애플", "알파벳", "메타", "아마존", "테슬라", "nvda", "msft", "aapl", "googl", "meta", "amzn", "tsla"],
     "반도체": ["nvidia", "nvda", "amd", "broadcom", "avgo", "micron", "mu", "semiconductor", "gpu", "hbm"],
-    "AI인프라": ["ai", "artificial intelligence", "data center", "datacenter", "gpu", "server", "oracle", "orcl"],
+    "AI인프라": ["ai", "artificial intelligence", "data center", "datacenter", "gpu", "server", "oracle", "orcl", "optical networking", "cpo"],
     "양자": ["quantum", "quantum computing", "ibm q", "google quantum", "ionq", "rigetti"],
     "바이오": ["fda", "clinical trial", "phase 3", "drug approval", "biotech", "eli lilly", "novo nordisk", "nda", "anda"],
+    "거시/정책": ["fed", "fomc", "cpi", "ppi", "jobs", "tariff", "yield", "dollar", "rate cut", "rate hike"],
 }
 
 CRYPTO_KEYWORDS = {
@@ -43,9 +45,12 @@ CRYPTO_KEYWORDS = {
 
 BREAKING_WORDS = ["단독", "속보"]
 CONTRACT_WORDS = ["수주", "계약"]
-ACTION_WORDS = ["승인", "상장", "공급", "납품"]
+ACTION_WORDS = ["승인", "상장", "공급", "납품", "허가", "공시", "실적"]
 TICKER_RE = re.compile(r"\b[A-Z]{2,10}\b")
-BAD_TICKERS = {"AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ", "ESS", "NIM", "GLP"}
+BAD_TICKERS = {
+    "AI", "SK", "KV", "ETF", "CEO", "SEC", "FED", "FOMC", "GDP", "CPI", "KOSPI", "KOSDAQ",
+    "ESS", "NIM", "GLP", "JV", "IR", "PR", "IPO", "USA", "USD", "KRW", "NEWS", "NWS", "NWSA",
+}
 
 
 @dataclass(frozen=True)
@@ -122,6 +127,8 @@ def extract_signals(text: str, repeat_count: int = 1, market_type: str = "KR") -
         score += 7
     if any(w.lower() in lower for w in ACTION_WORDS):
         score += 6
+    if "거시/정책" in sectors:
+        score += 4
     if len(sectors) >= 3:
         score -= 2
     if repeat_count >= 3:
