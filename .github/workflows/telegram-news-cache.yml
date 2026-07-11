@@ -15,15 +15,10 @@ on:
         description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_aftermarket"
         required: false
         default: "regular"
-  schedule:
-    # KST 08:35, 15:45, 22:30 on weekdays.
-    - cron: "35 23 * * 0-4"
-    - cron: "45 6 * * 1-5"
-    - cron: "30 13 * * 1-5"
 
 concurrency:
   group: telegram-news-cache
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -77,7 +72,6 @@ jobs:
           missing = [name for name in required if not clean_secret(os.getenv(name))]
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
-              print("This cache workflow reads Telegram channels and commits reports/latest_report.json. It does not need Discord or Kakao secrets.")
               sys.exit(1)
           try:
               StringSession(clean_secret(os.getenv("TELEGRAM_STRING_SESSION")))
