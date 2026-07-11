@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass
-from rapidfuzz import fuzz
-
+from difflib import SequenceMatcher
+import re
 
 URL_RE = re.compile(r"https?://\S+")
 SPACE_RE = re.compile(r"\s+")
+PUNCT_RE = re.compile(r"[^0-9a-z가-힣 ]", re.IGNORECASE)
 
 
 def normalize_text(text: str) -> str:
@@ -14,6 +14,21 @@ def normalize_text(text: str) -> str:
     text = text.replace("\u200b", "")
     text = SPACE_RE.sub(" ", text)
     return text.strip().lower()
+
+
+def _title_key(text: str) -> str:
+    head = " ".join(str(text or "").replace("\n", " ").split())[:160]
+    head = URL_RE.sub("", head).lower()
+    head = PUNCT_RE.sub(" ", head)
+    return SPACE_RE.sub(" ", head).strip()
+
+
+def _similarity(a: str, b: str) -> float:
+    if not a or not b:
+        return 0.0
+    if a == b:
+        return 1.0
+    return SequenceMatcher(None, a, b).ratio()
 
 
 @dataclass(frozen=True)
@@ -37,10 +52,11 @@ def _row_message_url(row) -> str | None:
     return text or None
 
 
-def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
-    """거의 같은 뉴스만 병합한다.
+def deduplicate_rows(rows: list, threshold: float = 0.85) -> list[DedupedItem]:
+    """Merge near-duplicate Telegram messages by title-level similarity.
 
-    중복 병합 후에도 원문 Telegram 메시지 URL은 보존한다.
+    SequenceMatcher ratio > 0.85 catches repeated headlines from different
+    Telegram channels while preserving source URLs and timestamps.
     """
     groups: list[dict] = []
 
@@ -49,9 +65,10 @@ def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
         if not norm:
             continue
 
+        key = _title_key(norm)
         matched = None
         for group in groups:
-            if fuzz.token_set_ratio(norm, group["normalized"]) >= threshold:
+            if _similarity(key, group["title_key"]) > threshold:
                 matched = group
                 break
 
@@ -60,6 +77,7 @@ def deduplicate_rows(rows: list, threshold: int = 96) -> list[DedupedItem]:
             groups.append(
                 {
                     "normalized": norm,
+                    "title_key": key,
                     "text": row["text"],
                     "channel_names": {row["channel_name"]},
                     "categories": {row["category"]},
