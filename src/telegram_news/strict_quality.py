@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from collections import Counter, defaultdict
+from difflib import SequenceMatcher
+import math
 import re
-from collections import defaultdict
 
 from .noise_patterns import LOW_VALUE_WORDS, ADVISORY_WORDS
 
@@ -15,6 +17,7 @@ MATERIALITY_THRESHOLD = 68
 WATCH_THRESHOLD = 72
 MAX_NEWS = 12
 MAX_PER_SECTOR = 3
+MAX_CATEGORY_SHARE = 0.40
 
 LOCAL_AI_RUBRIC_PROMPT = """
 로컬AI 중요도 기준:
@@ -40,11 +43,110 @@ THEME_WORDS = ["관련주", "수혜", "기대", "전망", "관심", "부각", "�
 STRONG_THEME_PENALTY_WORDS = ["관련주", "수혜", "전망"]
 PRICE_WORDS = ["급등", "상한가", "폭등", "신고가", "장대양봉", "강세", "상승세"]
 NUMBER_EVIDENCE_RE = re.compile(r"\d+(?:\.\d+)?\s*(조|억|만|%|달러|원|억원|조원|bp|톤)", re.IGNORECASE)
+SOURCE_RELIABILITY = {
+    "공시": 35, "전자공시": 35, "거래소": 32, "금감원": 32, "연합뉴스": 24,
+    "로이터": 24, "reuters": 24, "bloomberg": 24, "블룸버그": 24, "wsj": 22,
+    "한국경제": 18, "매일경제": 18, "머니투데이": 16, "텔레그램": 8,
+}
+KEYWORD_WEIGHTS = {
+    "공시": 20, "수주": 20, "계약": 18, "실적": 18, "승인": 16, "허가": 16,
+    "금리": 14, "환율": 14, "fomc": 14, "cpi": 12, "소송": 12, "제재": 12,
+    "관련주": -10, "수혜": -8, "급등": -8, "상한가": -10, "추천": -25, "리딩방": -40,
+}
 
 
 def _has_any(text: str, words: list[str]) -> bool:
     lower = text.lower()
     return any(word.lower() in lower for word in words)
+
+
+def _article_text(article: dict) -> str:
+    return " ".join(str(article.get(k) or "") for k in ("title", "summary", "body", "text", "source"))
+
+
+def _article_title(article: dict) -> str:
+    return re.sub(r"\s+", " ", str(article.get("title") or article.get("headline") or "")).strip()
+
+
+def _article_category(article: dict) -> str:
+    value = article.get("category") or article.get("sector") or article.get("news_type") or "uncategorized"
+    if isinstance(value, list):
+        return str(value[0] if value else "uncategorized")
+    return str(value or "uncategorized")
+
+
+def _article_recency_score(article: dict) -> int:
+    raw = article.get("age_minutes")
+    try:
+        age = float(raw)
+    except Exception:
+        return 8
+    if age <= 30:
+        return 20
+    if age <= 90:
+        return 15
+    if age <= 240:
+        return 8
+    return 2
+
+
+def _article_importance(article: dict) -> int:
+    text = _article_text(article).lower()
+    score = _article_recency_score(article)
+    for source, weight in SOURCE_RELIABILITY.items():
+        if source.lower() in text:
+            score += weight
+            break
+    for keyword, weight in KEYWORD_WEIGHTS.items():
+        if keyword.lower() in text:
+            score += weight
+    if NUMBER_EVIDENCE_RE.search(text):
+        score += 12
+    return score
+
+
+def select_articles(articles: list[dict], max_count: int = 10) -> list[dict]:
+    """Select diversified, high-signal articles.
+
+    1) Remove near-duplicate titles when SequenceMatcher ratio > 0.85.
+    2) Score by source reliability, keyword materiality and recency.
+    3) Prevent one category from exceeding 40% of the final set.
+    4) Return top max_count articles.
+    """
+    unique: list[dict] = []
+    for article in articles:
+        title = _article_title(article)
+        if not title:
+            continue
+        duplicate = False
+        for kept in unique:
+            if SequenceMatcher(None, title.lower(), _article_title(kept).lower()).ratio() > 0.85:
+                duplicate = True
+                if _article_importance(article) > _article_importance(kept):
+                    kept.update(article)
+                break
+        if not duplicate:
+            unique.append(dict(article))
+
+    ranked = sorted(unique, key=_article_importance, reverse=True)
+    cap = max(1, math.ceil(max_count * MAX_CATEGORY_SHARE))
+    counts: Counter[str] = Counter()
+    selected: list[dict] = []
+    overflow: list[dict] = []
+    for article in ranked:
+        category = _article_category(article)
+        if counts[category] < cap:
+            selected.append(article)
+            counts[category] += 1
+        else:
+            overflow.append(article)
+        if len(selected) >= max_count:
+            return selected
+    for article in overflow:
+        selected.append(article)
+        if len(selected) >= max_count:
+            break
+    return selected
 
 
 def _symbols_have_market_data(cluster) -> bool:
@@ -119,12 +221,7 @@ def _local_ai_delta(cluster) -> int:
 def _is_low_value_cluster(cluster) -> bool:
     best = cluster.best()
     text = f"{best.item.title} {best.item.body}".lower()
-    return (
-        _has_any(text, LOW_VALUE_WORDS)
-        or "레딧" in text
-        or "reddit" in text
-        or ("etf" in text and "신규 상장" in text)
-    )
+    return _has_any(text, LOW_VALUE_WORDS) or "레딧" in text or "reddit" in text or ("etf" in text and "신규 상장" in text)
 
 
 def _has_watch_support(cluster, score: int) -> bool:
@@ -208,9 +305,10 @@ def _primary_sector(cluster) -> str:
 def _cap_by_sector(clusters: list) -> list:
     kept: list = []
     counts: dict[str, int] = defaultdict(int)
+    max_per_category = max(1, math.ceil(MAX_NEWS * MAX_CATEGORY_SHARE))
     for cluster in sorted(clusters, key=lambda c: (materiality_score(c), c.score()), reverse=True):
         sector = _primary_sector(cluster)
-        if sector != "__none__" and counts[sector] >= MAX_PER_SECTOR:
+        if sector != "__none__" and counts[sector] >= min(MAX_PER_SECTOR, max_per_category):
             continue
         kept.append(cluster)
         counts[sector] += 1
