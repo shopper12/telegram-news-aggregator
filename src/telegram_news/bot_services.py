@@ -67,7 +67,6 @@ def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
 
-# ── 로컬 파일 fallback ────────────────────────────────────────────
 def _load_profiles_local() -> dict[str, dict[str, Any]]:
     if not PROFILE_PATH.exists():
         return {}
@@ -83,7 +82,6 @@ def _save_profiles_local(data: dict[str, dict[str, Any]]) -> None:
     PROFILE_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-# ── GitHub 영구 저장 (메인) ──────────────────────────────────────
 def _gh_token() -> str | None:
     return os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
 
@@ -113,9 +111,7 @@ def _save_profiles(data: dict[str, dict[str, Any]]) -> None:
         return
     url = f"https://api.github.com/repos/{PROFILE_GITHUB_REPO}/contents/{PROFILE_GITHUB_PATH}"
     headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github.v3+json"}
-    encoded = base64.b64encode(
-        json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
-    ).decode("utf-8")
+    encoded = base64.b64encode(json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")).decode("utf-8")
     sha = None
     try:
         r = requests.get(url, headers=headers, timeout=5)
@@ -123,11 +119,7 @@ def _save_profiles(data: dict[str, dict[str, Any]]) -> None:
             sha = r.json().get("sha")
     except Exception:
         pass
-    payload: dict[str, Any] = {
-        "message": "chore: update bot profiles",
-        "content": encoded,
-        "branch": "main",
-    }
+    payload: dict[str, Any] = {"message": "chore: update bot profiles", "content": encoded, "branch": "main"}
     if sha:
         payload["sha"] = sha
     try:
@@ -136,7 +128,6 @@ def _save_profiles(data: dict[str, dict[str, Any]]) -> None:
         _save_profiles_local(data)
 
 
-# ── 프로필 공개 API ──────────────────────────────────────────────
 def get_profile(user_id: str) -> UserProfile | None:
     raw = _load_profiles().get(user_id)
     if not isinstance(raw, dict):
@@ -148,13 +139,7 @@ def get_profile(user_id: str) -> UserProfile | None:
         return None
 
 
-def save_profile(
-    user_id: str,
-    birth_date: str,
-    birth_time: str = "",
-    gender: str = "",
-    calendar: str = "solar",
-) -> UserProfile:
+def save_profile(user_id: str, birth_date: str, birth_time: str = "", gender: str = "", calendar: str = "solar") -> UserProfile:
     data = _load_profiles()
     old = data.get(user_id, {}) if isinstance(data.get(user_id), dict) else {}
     now = _now()
@@ -199,13 +184,11 @@ def _stem_index(profile: UserProfile) -> int:
 
 
 def saju_reading(profile: UserProfile, question: str = "") -> str:
-    # 1순위: saju_engine 실제 계산
     try:
         from .saju_engine import reading as engine_reading
         return engine_reading(name=profile.user_id, profile=profile, question=question)
     except Exception:
         pass
-    # 2순위: 간이 fallback
     stems = ["목", "화", "토", "금", "수", "목화", "화토", "토금", "금수", "수목"]
     tone = stems[_stem_index(profile)]
     if any(w in question for w in ["연애", "결혼", "관계"]):
@@ -260,10 +243,7 @@ def _yahoo_chart(symbol: str) -> dict[str, Any] | None:
         change_pct = None
         if prev:
             change_pct = (float(price) - float(prev)) / float(prev) * 100
-        return {
-            "symbol": symbol, "price": float(price), "prev": prev,
-            "change_pct": change_pct, "currency": currency, "exchange": exchange,
-        }
+        return {"symbol": symbol, "price": float(price), "prev": prev, "change_pct": change_pct, "currency": currency, "exchange": exchange}
     except Exception:
         return None
 
@@ -317,8 +297,26 @@ def help_text() -> str:
     )
 
 
-def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
+def _command_body(message: str) -> str:
     msg = message.strip()
+    if msg == "봇":
+        return "도움말"
+    for prefix in ["봇 ", "봇:", "봇아 "]:
+        if msg.startswith(prefix):
+            return msg[len(prefix):].strip()
+    return msg
+
+
+def _manual_news_refresh() -> str:
+    try:
+        from .app import generate_report
+        return generate_report(hours=1, limit=999, briefing_kind="manual", collect=True, send=False, source="telegram_manual")
+    except Exception as exc:
+        return f"뉴스갱신 실패: {type(exc).__name__}: {exc}"
+
+
+def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
+    msg = _command_body(message)
 
     birth = parse_birth_command(msg)
     if birth:
@@ -332,9 +330,11 @@ def handle_command(*, user_id: str, message: str, latest_report: str) -> str:
             f"'봇 사주'로 바로 조회하세요."
         )
 
-    q = msg.lower()
+    q = msg.replace(" ", "").lower()
     if q in {"도움", "도움말", "help", "/help", "?"}:
         return help_text()
+    if q in {"뉴스갱신", "/뉴스갱신", "새뉴스", "refresh"}:
+        return _manual_news_refresh()
     if q in {"뉴스", "/뉴스", "!뉴스", "news", "/news", "시황", "브리핑"}:
         return latest_report or "뉴스 없음"
     if msg.startswith("시세") or msg.lower().startswith("quote"):
