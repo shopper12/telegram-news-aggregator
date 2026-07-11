@@ -4,19 +4,11 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '25 23 * * 0-4'  # KST 08:25 월-금 (장전)
-    - cron: '55 23 * * 0-4'  # KST 08:55 월-금
-    - cron: '55  0 * * 1-5'  # KST 09:55 월-금 (장중)
-    - cron: '25  2 * * 1-5'  # KST 11:25
-    - cron: '55  2 * * 1-5'  # KST 11:55
-    - cron: '25  4 * * 1-5'  # KST 13:25
-    - cron: '55  4 * * 1-5'  # KST 13:55
-    - cron: '25  6 * * 1-5'  # KST 15:25 (장마감)
-    - cron: '55  6 * * 1-5'  # KST 15:55
-    - cron: '25 13 * * *'    # KST 22:25 매일 (야간)
-    - cron: '*/20 * * * *'   # 20분마다 keep-alive + 성공 시 최신 리포트 동기화
   workflow_dispatch:
+
+concurrency:
+  group: scheduled-news-refresh
+  cancel-in-progress: true
 
 jobs:
   refresh:
