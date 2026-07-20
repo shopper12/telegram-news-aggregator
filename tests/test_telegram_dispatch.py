@@ -34,6 +34,21 @@ def test_dispatch_reads_cache_and_blocks_duplicate(monkeypatch, tmp_path):
     report_hash = saved["telegram_dispatch"]["report_hash"]
     assert report_hash
 
+    # Simulate save_latest_report() overwriting dispatch metadata while producing
+    # exactly the same report text on the next scheduled/manual run.
+    regenerated = dict(payload)
+    regenerated["generated_at"] = "2026-07-20T12:05:00"
+    latest_path.write_text(json.dumps(regenerated, ensure_ascii=False), encoding="utf-8")
+
+    assert dispatch.dispatch_latest_report_to_telegram(previous_hash=report_hash) is False
+    assert len(calls) == 1
+
+    regenerated_state = json.loads(latest_path.read_text(encoding="utf-8"))["telegram_dispatch"]
+    assert regenerated_state["report_hash"] == report_hash
+    assert regenerated_state["status"] == "duplicate_skipped"
+
+    # The copied hash must also protect the following invocation without an
+    # explicitly supplied previous_hash.
     assert dispatch.dispatch_latest_report_to_telegram() is False
     assert len(calls) == 1
 
