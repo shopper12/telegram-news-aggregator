@@ -24,6 +24,7 @@ for apply_patch in [
     _optional_apply("telegram_news.saju_news_patch.apply"),
     _optional_apply("telegram_news.unified_patch_v7.apply"),
     _optional_apply("telegram_news.chat_bridge.apply"),
+    _optional_apply("telegram_news.telegram_webhook.apply"),
 ]:
     apply_patch(telegram_news.messenger_api)
 
