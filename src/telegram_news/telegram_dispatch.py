@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from hashlib import sha256
 import json
@@ -146,16 +147,24 @@ def generate_and_send_latest_report(
     apply_unified_pipeline()
     previous_hash = _last_dispatched_hash()
 
-    from .app import generate_report
+    def _generate() -> str:
+        from .app import generate_report
 
-    report = generate_report(
-        hours=hours,
-        limit=limit,
-        briefing_kind=briefing_kind,
-        collect=collect,
-        send=False,
-        source=source,
-    )
+        return generate_report(
+            hours=hours,
+            limit=limit,
+            briefing_kind=briefing_kind,
+            collect=collect,
+            send=False,
+            source=source,
+        )
+
+    # Messenger POST handlers run inside FastAPI's event loop, while app.py uses
+    # asyncio.run() for Telethon collection. A dedicated thread prevents nested
+    # event-loop failures for "봇 뉴스갱신" without changing the collector API.
+    with ThreadPoolExecutor(max_workers=1, thread_name_prefix="telegram-news-refresh") as executor:
+        report = executor.submit(_generate).result()
+
     if report.startswith("리포트 생성 결과가 비어"):
         print("[telegram-dispatch] generation returned an empty-report notice; send skipped")
         return report
