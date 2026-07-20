@@ -11,10 +11,11 @@ TITLE_RE = re.compile(r"[^0-9A-Za-z가-힣 ]+")
 SENTENCE_RE = re.compile(r"(?<=[.!?。！？])\s+|\n+")
 NUMBER_RE = re.compile(r"\d+(?:\.\d+)?\s*(?:조|억|만|%|달러|원|억원|조원|bp|톤|건|명|배)?", re.IGNORECASE)
 PROPER_RE = re.compile(r"(?:[A-Z]{2,10}|[가-힣A-Za-z0-9]+(?:전자|화학|증권|금융|중공업|바이오|에너지|테크|그룹|은행|공사|제약|반도체|정부|위원회|시스템))")
-FACT_WORDS = ["공시", "수주", "계약", "실적", "매출", "영업이익", "승인", "허가", "금리", "환율", "연준", "한은", "fda", "소송", "제재"]
-DIRECTION_WORDS = ["증가", "감소", "확대", "축소", "개선", "악화", "상승", "하락"]
-BACKGROUND_WORDS = ["때문", "영향", "따라", "으로 인해", "배경", "원인", "정책"]
-VAGUE_WORDS = ["주목된다", "관심이 쏠린다", "귀추가 주목", "기대감이 커진다", "전망이다"]
+TICKER_RE = re.compile(r"(?:\$[A-Z]{1,8}\b|\b\d{6}(?:\.K[QS])?\b|\b[A-Z]{2,8}\b)")
+FACT_WORDS = ["공시", "수주", "계약", "실적", "매출", "영업이익", "승인", "허가", "금리", "환율", "연준", "한은", "fda", "소송", "제재", "배당", "자사주", "증자"]
+STOCK_WORDS = ["종목", "주가", "증시", "코스피", "코스닥", "나스닥", "상장", "외국인", "기관", "순매수", "순매도", "거래대금", "수급"]
+DIRECTION_WORDS = ["증가", "감소", "확대", "축소", "개선", "악화", "상승", "하락", "급등", "급락"]
+BACKGROUND_WORDS = ["때문", "영향", "따라", "으로 인해", "배경", "원인", "정책", "규제", "관세"]
 
 
 def _text(value: Any) -> str:
@@ -41,21 +42,22 @@ def _split(text: str) -> list[str]:
 
 
 def _score(sentence: str, index: int) -> float:
+    """Rank sentences only by information value and market/stock relevance."""
     score = max(0.0, 5.0 - index * 0.25)
     if NUMBER_RE.search(sentence):
-        score += 5.0
+        score += 6.0
     if PROPER_RE.search(sentence):
-        score += 4.0
+        score += 5.0
+    if TICKER_RE.search(sentence):
+        score += 5.0
     if _contains_any(sentence, FACT_WORDS):
+        score += 6.0
+    if _contains_any(sentence, STOCK_WORDS):
         score += 5.0
     if _contains_any(sentence, DIRECTION_WORDS):
-        score += 3.0
+        score += 4.0
     if _contains_any(sentence, BACKGROUND_WORDS):
-        score += 5.0
-    if _contains_any(sentence, VAGUE_WORDS):
-        score -= 7.0
-    if len(sentence) < 18:
-        score -= 4.0
+        score += 4.0
     if len(sentence) > 190:
         score -= 2.0
     return score
@@ -70,7 +72,7 @@ def _unique(chosen: list[tuple[int, str, float]], sentence: str) -> bool:
 
 
 def summarize_article(article: dict) -> str:
-    """Return a grounded 2-3 sentence summary with facts and causal context."""
+    """Return 2-3 sentences selected by importance and stock relevance only."""
     title = _text(article.get("title"))
     body = _text(article.get("lead") or article.get("body") or article.get("text"))
     source = article.get("source") or article.get("channel") or article.get("channels") or "출처미상"
@@ -87,8 +89,6 @@ def summarize_article(article: dict) -> str:
     )
     chosen: list[tuple[int, str, float]] = []
     for index, sentence, score in ranked:
-        if _contains_any(sentence, VAGUE_WORDS) and score < 5:
-            continue
         if not _unique(chosen, sentence):
             continue
         clipped = sentence[:180].rstrip() + ("…" if len(sentence) > 180 else "")
@@ -96,10 +96,7 @@ def summarize_article(article: dict) -> str:
         if len(chosen) >= 3:
             break
 
-    background = [
-        row for row in ranked
-        if _contains_any(row[1], BACKGROUND_WORDS) and not _contains_any(row[1], VAGUE_WORDS)
-    ]
+    background = [row for row in ranked if _contains_any(row[1], BACKGROUND_WORDS)]
     if background and not any(_contains_any(sentence, BACKGROUND_WORDS) for _, sentence, _ in chosen):
         candidate = background[0]
         clipped = candidate[1][:180].rstrip() + ("…" if len(candidate[1]) > 180 else "")
@@ -109,10 +106,9 @@ def summarize_article(article: dict) -> str:
         else:
             chosen[-1] = replacement
 
-    # The format requires 2-3 sentences when the source actually contains them.
     if len(chosen) < 2:
         for index, sentence, score in sorted(ranked, key=lambda row: row[0]):
-            if _unique(chosen, sentence) and not _contains_any(sentence, VAGUE_WORDS):
+            if _unique(chosen, sentence):
                 clipped = sentence[:180].rstrip() + ("…" if len(sentence) > 180 else "")
                 chosen.append((index, clipped, score))
             if len(chosen) >= 2:
@@ -121,7 +117,7 @@ def summarize_article(article: dict) -> str:
     chosen = sorted(chosen[:3], key=lambda row: row[0])
     sentences = [sentence for _, sentence, _ in chosen]
     if not sentences:
-        sentences = [title[:150]] if title else ["원문에서 요약 가능한 사실 문장을 찾지 못했습니다."]
+        sentences = [title[:150]] if title else ["원문에서 요약 가능한 문장을 찾지 못했습니다."]
 
     if isinstance(source, (list, tuple, set)):
         source = ", ".join(_text(value) for value in source if _text(value)) or "출처미상"
@@ -131,5 +127,8 @@ def summarize_article(article: dict) -> str:
 
 def install() -> None:
     from . import summarizer
+    from .importance_selector import install as install_importance_selector
 
+    install_importance_selector()
     summarizer.summarize = summarize_article
+    print("[importance-summarizer] sentences ranked by message importance and stock relevance; no phrase exclusion")
