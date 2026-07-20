@@ -33,5 +33,11 @@ services:
         sync: false
       - key: TELEGRAM_SEND_ENABLED
         value: "1"
+      - key: TELEGRAM_WEBHOOK_AUTO_REGISTER
+        value: "1"
+      - key: TELEGRAM_WEBHOOK_BASE_URL
+        value: https://telegram-news-bot-api.onrender.com
+      - key: TELEGRAM_WEBHOOK_SECRET
+        sync: false
       - key: GEMINI_API_KEY
         sync: false
