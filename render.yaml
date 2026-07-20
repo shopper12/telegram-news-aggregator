@@ -25,5 +25,13 @@ services:
         sync: false
       - key: TELEGRAM_STRING_SESSION
         sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_TARGET_CHAT_ID
+        sync: false
+      - key: TELEGRAM_TARGET_CHAT_IDS
+        sync: false
+      - key: TELEGRAM_SEND_ENABLED
+        value: "1"
       - key: GEMINI_API_KEY
         sync: false
