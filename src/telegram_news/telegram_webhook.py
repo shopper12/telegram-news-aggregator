@@ -12,6 +12,7 @@ from .telegram_dispatch import generate_and_send_latest_report
 
 DEFAULT_PUBLIC_BASE_URL = "https://telegram-news-bot-api.onrender.com"
 WEBHOOK_PATH = "/telegram/webhook"
+WEBHOOK_STATUS_PATH = "/telegram/webhook/status"
 REFRESH_COMMANDS = {
     "뉴스갱신",
     "/뉴스갱신",
@@ -81,13 +82,28 @@ def _extract_message(update: dict[str, Any]) -> tuple[str, str, str] | None:
     return chat_id, user_id, text
 
 
+def _telegram_api(method: str, *, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+    token = _bot_token()
+    if not token:
+        raise RuntimeError("TELEGRAM_BOT_TOKEN missing")
+
+    url = f"https://api.telegram.org/bot{token}/{method}"
+    if payload is None:
+        response = requests.get(url, timeout=20)
+    else:
+        response = requests.post(url, json=payload, timeout=20)
+    data = response.json() if response.content else {}
+    if response.status_code != 200 or not data.get("ok"):
+        raise RuntimeError(f"Telegram {method} failed: HTTP {response.status_code}: {response.text}")
+    return data
+
+
 def _register_webhook() -> None:
     if _clean(os.getenv("TELEGRAM_WEBHOOK_AUTO_REGISTER", "1")).lower() in {"0", "false", "off", "no"}:
         print("[telegram-webhook] auto registration disabled")
         return
 
-    token = _bot_token()
-    if not token:
+    if not _bot_token():
         print("[telegram-webhook] registration skipped: TELEGRAM_BOT_TOKEN missing")
         return
 
@@ -102,17 +118,36 @@ def _register_webhook() -> None:
         payload["secret_token"] = secret
 
     try:
-        response = requests.post(
-            f"https://api.telegram.org/bot{token}/setWebhook",
-            json=payload,
-            timeout=20,
+        _telegram_api("setWebhook", payload=payload)
+        info = _telegram_api("getWebhookInfo").get("result") or {}
+        print(
+            "[telegram-webhook] registered: "
+            f"url={info.get('url') or url} pending={info.get('pending_update_count', 0)} "
+            f"last_error={info.get('last_error_message') or 'none'}"
         )
-        data = response.json() if response.content else {}
-        if response.status_code != 200 or not data.get("ok"):
-            raise RuntimeError(f"HTTP {response.status_code}: {response.text}")
-        print(f"[telegram-webhook] registered: {url}")
     except Exception as exc:
         print(f"[telegram-webhook] registration failed: {type(exc).__name__}: {exc}")
+
+
+def _safe_webhook_info() -> dict[str, Any]:
+    try:
+        result = _telegram_api("getWebhookInfo").get("result") or {}
+        return {
+            "ok": True,
+            "expected_url": _webhook_url(),
+            "url": result.get("url") or "",
+            "pending_update_count": int(result.get("pending_update_count") or 0),
+            "last_error_date": result.get("last_error_date"),
+            "last_error_message": result.get("last_error_message") or "",
+            "max_connections": result.get("max_connections"),
+            "allowed_updates": result.get("allowed_updates") or [],
+        }
+    except Exception as exc:
+        return {
+            "ok": False,
+            "expected_url": _webhook_url(),
+            "error": f"{type(exc).__name__}: {exc}",
+        }
 
 
 def _run_refresh(chat_id: str) -> None:
@@ -147,6 +182,10 @@ def apply(api_module: Any) -> Any:
 
     if getattr(app.state, "telegram_webhook_installed", False):
         return api_module
+
+    @app.get(WEBHOOK_STATUS_PATH)
+    def telegram_webhook_status() -> dict[str, Any]:
+        return _safe_webhook_info()
 
     @app.post(WEBHOOK_PATH)
     async def telegram_webhook(request: Request, background_tasks: BackgroundTasks) -> dict[str, Any]:
@@ -188,6 +227,6 @@ def apply(api_module: Any) -> Any:
 
     app.add_event_handler("startup", _register_webhook)
     app.state.telegram_webhook_installed = True
-    api_module.API_VERSION = "messenger-telegram-webhook-v1"
-    print(f"[telegram-webhook] route installed: {WEBHOOK_PATH}")
+    api_module.API_VERSION = "messenger-telegram-webhook-v2"
+    print(f"[telegram-webhook] routes installed: {WEBHOOK_PATH}, {WEBHOOK_STATUS_PATH}")
     return api_module
