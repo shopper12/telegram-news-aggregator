@@ -42,33 +42,50 @@ def test_register_webhook_uses_render_public_url(monkeypatch, capsys):
         content = b"{}"
         text = '{"ok":true}'
 
-        @staticmethod
-        def json():
-            return {"ok": True, "result": True}
+        def __init__(self, result):
+            self.result = result
+
+        def json(self):
+            return {"ok": True, "result": self.result}
 
     def fake_post(url, json, timeout):
-        calls.append((url, json, timeout))
-        return FakeResponse()
+        calls.append(("post", url, json, timeout))
+        return FakeResponse(True)
+
+    def fake_get(url, timeout):
+        calls.append(("get", url, None, timeout))
+        return FakeResponse({
+            "url": "https://example.onrender.com/telegram/webhook",
+            "pending_update_count": 0,
+        })
 
     monkeypatch.setattr(webhook.requests, "post", fake_post)
+    monkeypatch.setattr(webhook.requests, "get", fake_get)
     webhook._register_webhook()
 
-    assert calls[0][0].endswith("/setWebhook")
-    assert calls[0][1]["url"] == "https://example.onrender.com/telegram/webhook"
-    assert calls[0][1]["allowed_updates"] == ["message", "edited_message"]
+    assert calls[0][1].endswith("/setWebhook")
+    assert calls[0][2]["url"] == "https://example.onrender.com/telegram/webhook"
+    assert calls[0][2]["allowed_updates"] == ["message", "edited_message"]
+    assert calls[1][1].endswith("/getWebhookInfo")
     assert "registered" in capsys.readouterr().out
 
 
-def test_apply_installs_route_and_startup_handler(monkeypatch):
+def test_apply_installs_routes_and_startup_handler():
     routes = []
     handlers = []
 
     class FakeApp:
         state = SimpleNamespace()
 
+        def get(self, path):
+            def decorator(func):
+                routes.append(("get", path, func))
+                return func
+            return decorator
+
         def post(self, path):
             def decorator(func):
-                routes.append((path, func))
+                routes.append(("post", path, func))
                 return func
             return decorator
 
@@ -79,6 +96,7 @@ def test_apply_installs_route_and_startup_handler(monkeypatch):
     result = webhook.apply(fake_api)
 
     assert result is fake_api
-    assert routes[0][0] == "/telegram/webhook"
+    assert ("get", "/telegram/webhook/status") in [(method, path) for method, path, _ in routes]
+    assert ("post", "/telegram/webhook") in [(method, path) for method, path, _ in routes]
     assert handlers[0][0] == "startup"
-    assert fake_api.API_VERSION == "messenger-telegram-webhook-v1"
+    assert fake_api.API_VERSION == "messenger-telegram-webhook-v2"
