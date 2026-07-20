@@ -132,6 +132,14 @@ def dispatch_latest_report_to_telegram(
         return False
 
 
+def _install_generation_pipeline() -> None:
+    from .evidence_summarizer import install as install_evidence_summarizer
+    from .unified_pipeline import apply_unified_pipeline
+
+    apply_unified_pipeline()
+    install_evidence_summarizer()
+
+
 def generate_and_send_latest_report(
     *,
     hours: int = 1,
@@ -142,9 +150,7 @@ def generate_and_send_latest_report(
     force_send: bool = False,
 ) -> str:
     """Collect, generate, cache, dispatch, and return one Telegram report."""
-    from .unified_pipeline import apply_unified_pipeline
-
-    apply_unified_pipeline()
+    _install_generation_pipeline()
     previous_hash = _last_dispatched_hash()
 
     def _generate() -> str:
@@ -201,9 +207,7 @@ def _install_cli_dispatch_hook(previous_hash: str) -> None:
 
 def main() -> None:
     """CLI entry point used by GitHub Actions and local commands."""
-    from .unified_pipeline import apply_unified_pipeline
-
-    apply_unified_pipeline()
+    _install_generation_pipeline()
     previous_hash = _last_dispatched_hash()
     _install_cli_dispatch_hook(previous_hash)
 
