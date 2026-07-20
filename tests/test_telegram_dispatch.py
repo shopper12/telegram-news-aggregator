@@ -53,6 +53,32 @@ def test_dispatch_reads_cache_and_blocks_duplicate(monkeypatch, tmp_path):
     assert len(calls) == 1
 
 
+def test_dispatch_uses_webhook_origin_chat_only(monkeypatch, tmp_path):
+    latest_path = tmp_path / "latest_report.json"
+    latest_path.write_text(
+        json.dumps({"ok": True, "report": "웹훅 채팅 대상 테스트"}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(dispatch, "LATEST_REPORT_JSON", latest_path)
+    monkeypatch.setattr(dispatch, "load_latest_report", lambda: json.loads(latest_path.read_text(encoding="utf-8")))
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "123456:ABCDEF")
+    monkeypatch.setenv("TELEGRAM_TARGET_CHAT_IDS", "100,200")
+    monkeypatch.setenv("TELEGRAM_SEND_ENABLED", "1")
+
+    calls = []
+    monkeypatch.setattr(
+        dispatch,
+        "send_telegram_message_to_many",
+        lambda **kwargs: calls.append(kwargs),
+    )
+
+    assert dispatch.dispatch_latest_report_to_telegram(
+        force=True,
+        target_chat_ids=["999", "999"],
+    ) is True
+    assert calls[0]["chat_ids"] == ["999"]
+
+
 def test_dispatch_logs_missing_configuration(monkeypatch, tmp_path, capsys):
     latest_path = tmp_path / "latest_report.json"
     latest_path.write_text(
