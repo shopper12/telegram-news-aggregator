@@ -4,13 +4,10 @@ from datetime import datetime
 from hashlib import sha256
 import json
 import os
-from pathlib import Path
-import sys
 from typing import Any
 
 from .notifier import send_telegram_message_to_many
 from .report_cache import LATEST_REPORT_JSON, load_latest_report
-from .settings import load_settings
 
 
 FALSE_VALUES = {"0", "false", "off", "no", "disabled"}
@@ -18,6 +15,21 @@ FALSE_VALUES = {"0", "false", "off", "no", "disabled"}
 
 def _telegram_enabled() -> bool:
     return str(os.getenv("TELEGRAM_SEND_ENABLED", "1")).strip().lower() not in FALSE_VALUES
+
+
+def _split_chat_ids(value: str | None) -> list[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.replace("\n", ",").split(",") if item.strip()]
+
+
+def _telegram_credentials() -> tuple[str, list[str]]:
+    token = str(os.getenv("TELEGRAM_BOT_TOKEN") or "").strip().strip('"\'')
+    chat_ids = _split_chat_ids(os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
+    single = str(os.getenv("TELEGRAM_TARGET_CHAT_ID") or "").strip().strip('"\'')
+    if single and single not in chat_ids:
+        chat_ids.insert(0, single)
+    return token, chat_ids
 
 
 def _report_hash(report_text: str) -> str:
@@ -90,9 +102,7 @@ def dispatch_latest_report_to_telegram(
             print(f"[telegram-dispatch] duplicate skipped: sha256={current_hash}")
             return False
 
-        settings = load_settings()
-        token = str(settings.telegram_bot_token or "").strip()
-        chat_ids = [str(value).strip() for value in settings.telegram_target_chat_ids if str(value).strip()]
+        token, chat_ids = _telegram_credentials()
         missing: list[str] = []
         if not token:
             missing.append("TELEGRAM_BOT_TOKEN")
