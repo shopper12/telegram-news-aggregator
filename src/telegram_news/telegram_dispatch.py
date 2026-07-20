@@ -56,15 +56,23 @@ def _last_dispatched_hash() -> str:
     return str(state.get("report_hash") or "").strip()
 
 
-def _mark_dispatched(report_hash: str, chat_count: int) -> None:
+def _mark_dispatch_state(report_hash: str, chat_count: int, status: str) -> None:
     payload = _read_raw_latest_payload()
     if not payload:
         payload = load_latest_report()
+
+    previous = payload.get("telegram_dispatch")
+    previous = previous if isinstance(previous, dict) else {}
+    sent_at = previous.get("sent_at")
+    if status == "sent" or not sent_at:
+        sent_at = datetime.now().isoformat(timespec="seconds")
+
     payload["telegram_dispatch"] = {
         "report_hash": report_hash,
-        "sent_at": datetime.now().isoformat(timespec="seconds"),
-        "chat_count": chat_count,
-        "status": "sent",
+        "sent_at": sent_at,
+        "checked_at": datetime.now().isoformat(timespec="seconds"),
+        "chat_count": chat_count or int(previous.get("chat_count") or 0),
+        "status": status,
     }
     LATEST_REPORT_JSON.parent.mkdir(parents=True, exist_ok=True)
     LATEST_REPORT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -99,6 +107,7 @@ def dispatch_latest_report_to_telegram(
         current_hash = _report_hash(cached_report)
         last_hash = (previous_hash or _last_dispatched_hash()).strip()
         if not force and last_hash and current_hash == last_hash:
+            _mark_dispatch_state(current_hash, 0, "duplicate_skipped")
             print(f"[telegram-dispatch] duplicate skipped: sha256={current_hash}")
             return False
 
@@ -112,7 +121,7 @@ def dispatch_latest_report_to_telegram(
             raise RuntimeError("missing Telegram configuration: " + ", ".join(missing))
 
         send_telegram_message_to_many(bot_token=token, chat_ids=chat_ids, text=cached_report)
-        _mark_dispatched(current_hash, len(chat_ids))
+        _mark_dispatch_state(current_hash, len(chat_ids), "sent")
         print(f"[telegram-dispatch] sent: chats={len(chat_ids)} sha256={current_hash}")
         return True
     except Exception as exc:
