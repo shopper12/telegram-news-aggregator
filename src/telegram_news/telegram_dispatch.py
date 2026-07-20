@@ -24,13 +24,25 @@ def _split_chat_ids(value: str | None) -> list[str]:
     return [item.strip() for item in value.replace("\n", ",").split(",") if item.strip()]
 
 
-def _telegram_credentials() -> tuple[str, list[str]]:
+def _unique_chat_ids(values: list[str] | tuple[str, ...] | None) -> list[str]:
+    result: list[str] = []
+    for value in values or []:
+        chat_id = str(value or "").strip()
+        if chat_id and chat_id not in result:
+            result.append(chat_id)
+    return result
+
+
+def _telegram_credentials(target_chat_ids: list[str] | tuple[str, ...] | None = None) -> tuple[str, list[str]]:
     token = str(os.getenv("TELEGRAM_BOT_TOKEN") or "").strip().strip('"\'')
+    if target_chat_ids is not None:
+        return token, _unique_chat_ids(target_chat_ids)
+
     chat_ids = _split_chat_ids(os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
     single = str(os.getenv("TELEGRAM_TARGET_CHAT_ID") or "").strip().strip('"\'')
     if single and single not in chat_ids:
         chat_ids.insert(0, single)
-    return token, chat_ids
+    return token, _unique_chat_ids(chat_ids)
 
 
 def _report_hash(report_text: str) -> str:
@@ -85,12 +97,17 @@ def dispatch_latest_report_to_telegram(
     previous_hash: str | None = None,
     force: bool = False,
     raise_on_error: bool = False,
+    target_chat_ids: list[str] | tuple[str, ...] | None = None,
 ) -> bool:
     """Send the report currently stored by report_cache to Telegram.
 
     The cache is the source of truth. ``report_text`` is accepted only for
     consistency checking; the actual outbound body is reloaded from
     ``load_latest_report()`` after generation and cache persistence.
+
+    ``target_chat_ids`` is used by Telegram webhook commands so the response is
+    sent to the chat that issued the command. Scheduled runs omit it and use the
+    configured TELEGRAM_TARGET_CHAT_ID(S).
     """
     if not _telegram_enabled():
         print("[telegram-dispatch] disabled by TELEGRAM_SEND_ENABLED=0")
@@ -112,12 +129,12 @@ def dispatch_latest_report_to_telegram(
             print(f"[telegram-dispatch] duplicate skipped: sha256={current_hash}")
             return False
 
-        token, chat_ids = _telegram_credentials()
+        token, chat_ids = _telegram_credentials(target_chat_ids)
         missing: list[str] = []
         if not token:
             missing.append("TELEGRAM_BOT_TOKEN")
         if not chat_ids:
-            missing.append("TELEGRAM_TARGET_CHAT_ID or TELEGRAM_TARGET_CHAT_IDS")
+            missing.append("Telegram target chat id")
         if missing:
             raise RuntimeError("missing Telegram configuration: " + ", ".join(missing))
 
@@ -148,6 +165,7 @@ def generate_and_send_latest_report(
     collect: bool = True,
     source: str = "telegram_manual",
     force_send: bool = False,
+    target_chat_ids: list[str] | tuple[str, ...] | None = None,
 ) -> str:
     """Collect, generate, cache, dispatch, and return one Telegram report."""
     _install_generation_pipeline()
@@ -165,9 +183,9 @@ def generate_and_send_latest_report(
             source=source,
         )
 
-    # Messenger POST handlers run inside FastAPI's event loop, while app.py uses
-    # asyncio.run() for Telethon collection. A dedicated thread prevents nested
-    # event-loop failures for "봇 뉴스갱신" without changing the collector API.
+    # Messenger/webhook handlers run inside FastAPI's event loop, while app.py
+    # uses asyncio.run() for Telethon collection. A dedicated thread prevents a
+    # nested event-loop failure without changing the collector API.
     with ThreadPoolExecutor(max_workers=1, thread_name_prefix="telegram-news-refresh") as executor:
         report = executor.submit(_generate).result()
 
@@ -180,6 +198,7 @@ def generate_and_send_latest_report(
         previous_hash=previous_hash,
         force=force_send,
         raise_on_error=False,
+        target_chat_ids=target_chat_ids,
     )
     return report
 
