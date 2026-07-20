@@ -24,8 +24,15 @@ def apply(api_module) -> None:
 
     def _manual_refresh() -> str:
         try:
-            from .app import generate_report
-            return generate_report(hours=1, limit=999, briefing_kind="manual", collect=True, send=False, source="telegram_manual")[:1400]
+            from .telegram_dispatch import generate_and_send_latest_report
+
+            return generate_and_send_latest_report(
+                hours=1,
+                limit=999,
+                briefing_kind="manual",
+                collect=True,
+                source="telegram_manual",
+            )[:1400]
         except Exception as exc:
             return f"뉴스갱신 실패: {type(exc).__name__}: {exc}"
 
@@ -39,4 +46,4 @@ def apply(api_module) -> None:
     api_module._live_news = lambda: None
     api_module._news = _telegram_news_only
     api_module.answer = _patched_answer
-    api_module.API_VERSION = "messenger-telegram-source-v5"
+    api_module.API_VERSION = "messenger-telegram-source-v6"
