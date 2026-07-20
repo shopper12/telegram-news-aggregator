@@ -12,7 +12,8 @@ SENTENCE_RE = re.compile(r"(?<=[.!?。！？])\s+|\n+")
 NUMBER_RE = re.compile(r"\d+(?:\.\d+)?\s*(?:조|억|만|%|달러|원|억원|조원|bp|톤|건|명|배)?", re.IGNORECASE)
 PROPER_RE = re.compile(r"(?:[A-Z]{2,10}|[가-힣A-Za-z0-9]+(?:전자|화학|증권|금융|중공업|바이오|에너지|테크|그룹|은행|공사|제약|반도체|정부|위원회|시스템))")
 FACT_WORDS = ["공시", "수주", "계약", "실적", "매출", "영업이익", "승인", "허가", "금리", "환율", "연준", "한은", "fda", "소송", "제재"]
-CAUSE_WORDS = ["때문", "영향", "따라", "으로 인해", "배경", "원인", "증가", "감소", "확대", "축소", "개선", "악화", "정책"]
+DIRECTION_WORDS = ["증가", "감소", "확대", "축소", "개선", "악화", "상승", "하락"]
+BACKGROUND_WORDS = ["때문", "영향", "따라", "으로 인해", "배경", "원인", "정책"]
 VAGUE_WORDS = ["주목된다", "관심이 쏠린다", "귀추가 주목", "기대감이 커진다", "전망이다"]
 
 
@@ -47,8 +48,10 @@ def _score(sentence: str, index: int) -> float:
         score += 4.0
     if _contains_any(sentence, FACT_WORDS):
         score += 5.0
-    if _contains_any(sentence, CAUSE_WORDS):
-        score += 4.0
+    if _contains_any(sentence, DIRECTION_WORDS):
+        score += 3.0
+    if _contains_any(sentence, BACKGROUND_WORDS):
+        score += 5.0
     if _contains_any(sentence, VAGUE_WORDS):
         score -= 7.0
     if len(sentence) < 18:
@@ -93,9 +96,12 @@ def summarize_article(article: dict) -> str:
         if len(chosen) >= 3:
             break
 
-    causal = [row for row in ranked if _contains_any(row[1], CAUSE_WORDS) and not _contains_any(row[1], VAGUE_WORDS)]
-    if causal and not any(_contains_any(sentence, CAUSE_WORDS) for _, sentence, _ in chosen):
-        candidate = causal[0]
+    background = [
+        row for row in ranked
+        if _contains_any(row[1], BACKGROUND_WORDS) and not _contains_any(row[1], VAGUE_WORDS)
+    ]
+    if background and not any(_contains_any(sentence, BACKGROUND_WORDS) for _, sentence, _ in chosen):
+        candidate = background[0]
         clipped = candidate[1][:180].rstrip() + ("…" if len(candidate[1]) > 180 else "")
         replacement = (candidate[0], clipped, candidate[2])
         if len(chosen) < 3:
