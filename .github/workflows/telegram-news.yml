@@ -52,6 +52,7 @@ jobs:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_TARGET_CHAT_ID: ${{ secrets.TELEGRAM_TARGET_CHAT_ID }}
       TELEGRAM_TARGET_CHAT_IDS: ${{ secrets.TELEGRAM_TARGET_CHAT_IDS }}
+      TELEGRAM_SEND_ENABLED: "1"
       DATABASE_URL: sqlite:///data/news.db
       CHANNEL_CONFIG: config/channels.yaml
       TIMEZONE: Asia/Seoul
@@ -172,12 +173,15 @@ jobs:
               return "".join(str(value).strip().strip('"\'').split())
 
           notifier = (os.getenv("NOTIFIER") or "none").strip().lower()
-          required = ["TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_STRING_SESSION"]
-          if notifier in {"telegram", "all"}:
-              required += ["TELEGRAM_BOT_TOKEN"]
-              if not clean_secret(os.getenv("TELEGRAM_TARGET_CHAT_ID")) and not clean_secret(os.getenv("TELEGRAM_TARGET_CHAT_IDS")):
-                  print("Missing Telegram target: set TELEGRAM_TARGET_CHAT_ID or TELEGRAM_TARGET_CHAT_IDS.")
-                  sys.exit(1)
+          required = [
+              "TELEGRAM_API_ID",
+              "TELEGRAM_API_HASH",
+              "TELEGRAM_STRING_SESSION",
+              "TELEGRAM_BOT_TOKEN",
+          ]
+          if not clean_secret(os.getenv("TELEGRAM_TARGET_CHAT_ID")) and not clean_secret(os.getenv("TELEGRAM_TARGET_CHAT_IDS")):
+              print("Missing Telegram target: set TELEGRAM_TARGET_CHAT_ID or TELEGRAM_TARGET_CHAT_IDS.")
+              sys.exit(1)
           if notifier in {"kakao", "both", "all"}:
               required += ["KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
           if notifier in {"discord", "both", "all"}:
@@ -185,8 +189,8 @@ jobs:
           missing = [name for name in required if not clean_secret(os.getenv(name))]
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
-              print("TELEGRAM_STRING_SESSION is required for non-interactive GitHub Actions runs. TELEGRAM_PHONE is not supported here because it needs a login code.")
-              print("NOTIFIER must be none, telegram, kakao, discord, both, or all. Current NOTIFIER=" + notifier)
+              print("TELEGRAM_STRING_SESSION is required for non-interactive collection. TELEGRAM_BOT_TOKEN and target chat ID are required for restored delivery.")
+              print("NOTIFIER controls optional Kakao/Discord delivery only. Current NOTIFIER=" + notifier)
               sys.exit(1)
 
           try:
@@ -198,12 +202,12 @@ jobs:
               sys.exit(1)
 
           if os.getenv("GEMINI_API_KEY"):
-              print("Gemini API key is present. Gemini synthesis will be attempted.")
+              print("Gemini API key is present. Gemini classification will be attempted.")
               print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
           else:
               print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
-          print("Notifier: " + notifier)
-          print("Required collection and notification secrets are present.")
+          print("Telegram collection and delivery secrets are present.")
+          print("Optional notifier: " + notifier)
           PY
 
       - name: Show notification mode
@@ -213,9 +217,10 @@ jobs:
           import os
           notifier = (os.getenv("NOTIFIER") or "none").strip().lower()
           target_present = bool(os.getenv("TELEGRAM_TARGET_CHAT_ID") or os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
-          print("Notifier: " + notifier)
+          print("Telegram delivery: enabled")
           print("Telegram bot token: " + ("present" if os.getenv("TELEGRAM_BOT_TOKEN") else "missing"))
           print("Telegram target chat id(s): " + ("present" if target_present else "missing"))
+          print("Optional notifier: " + notifier)
           print("Discord webhook: " + ("present" if os.getenv("DISCORD_WEBHOOK_URL") else "missing"))
           print("Kakao REST API key: " + ("present" if os.getenv("KAKAO_REST_API_KEY") else "missing"))
           print("Kakao refresh token: " + ("present" if os.getenv("KAKAO_REFRESH_TOKEN") else "missing"))
