@@ -29,6 +29,13 @@ MACRO_WORDS = ["금리", "환율", "연준", "한은", "fomc", "cpi", "ppi", "�
 POLICY_WORDS = ["정부", "국회", "대통령", "장관", "정책", "규제", "법안", "위원회", "선거", "관세"]
 MATERIAL_WORDS = ["공시", "수주", "계약", "실적", "매출", "영업이익", "승인", "허가", "소송", "제재", "배당", "증자"]
 
+# "입장", "회원" 같은 일반어는 정상 기사에도 자주 등장한다. 통합 게이트에서는
+# 리딩방·가입 유도처럼 문맥 없이도 확정 가능한 잡음만 즉시 차단한다.
+AMBIGUOUS_NOISE_WORDS = {
+    "입장", "회원", "구독하기", "도 가능합니다", "도 가능하고", "도 됩니다", "매수 가능",
+}
+HARD_NOISE_WORDS = [word for word in NOISE_WORDS if word not in AMBIGUOUS_NOISE_WORDS]
+
 SOURCE_WEIGHTS = {
     "전자공시": 24.0,
     "거래소": 22.0,
@@ -184,7 +191,7 @@ def _is_low_quality(article: dict) -> bool:
     compact = _normalize_title(title)
     market_impact = float(article.get("market_impact_score") or 0)
 
-    if _contains_any(body, NOISE_WORDS + REPOST_WORDS):
+    if _contains_any(body, HARD_NOISE_WORDS + REPOST_WORDS):
         return True
     if _contains_any(body, ADVISORY_WORDS + CLICKBAIT_WORDS) and not _contains_any(body, MATERIAL_WORDS + MACRO_WORDS):
         return True
@@ -238,6 +245,34 @@ def score_article(article: dict) -> float:
     return score
 
 
+def _merge_metadata(primary: dict, secondary: dict) -> dict:
+    merged = dict(primary)
+    merged["duplicate_count"] = int(primary.get("duplicate_count") or 1) + int(secondary.get("duplicate_count") or 1)
+
+    sources = set(primary.get("duplicate_sources") or []) | set(secondary.get("duplicate_sources") or [])
+    sources.update({_text(primary.get("source")), _text(secondary.get("source"))})
+    merged["duplicate_sources"] = sorted(sources - {""})
+
+    for key in ("source_urls", "message_urls", "message_dates", "categories", "_rows"):
+        values: list[Any] = []
+        for article in (primary, secondary):
+            raw = article.get(key)
+            if isinstance(raw, (list, tuple, set)):
+                values.extend(raw)
+            elif raw:
+                values.append(raw)
+        deduped: list[Any] = []
+        seen: set[str] = set()
+        for value in values:
+            marker = str(value)
+            if marker not in seen:
+                seen.add(marker)
+                deduped.append(value)
+        if deduped:
+            merged[key] = deduped
+    return merged
+
+
 def dedupe_articles(articles: list[dict], title_threshold: float = 0.85) -> list[dict]:
     """Keep one representative for the same URL, near-identical title, or event."""
     representatives: list[dict] = []
@@ -267,21 +302,9 @@ def dedupe_articles(articles: list[dict], title_threshold: float = 0.85) -> list
 
         current = representatives[matched_index]
         if score_article(article) > score_article(current):
-            merged = article
-            merged["duplicate_count"] = int(current.get("duplicate_count") or 1) + int(article.get("duplicate_count") or 1)
-            merged["duplicate_sources"] = sorted(set(
-                [_text(current.get("source")), _text(article.get("source"))]
-                + list(current.get("duplicate_sources") or [])
-                + list(article.get("duplicate_sources") or [])
-            ) - {""})
-            representatives[matched_index] = merged
+            representatives[matched_index] = _merge_metadata(article, current)
         else:
-            current["duplicate_count"] = int(current.get("duplicate_count") or 1) + int(article.get("duplicate_count") or 1)
-            current["duplicate_sources"] = sorted(set(
-                [_text(current.get("source")), _text(article.get("source"))]
-                + list(current.get("duplicate_sources") or [])
-                + list(article.get("duplicate_sources") or [])
-            ) - {""})
+            representatives[matched_index] = _merge_metadata(current, article)
 
     return representatives
 
@@ -443,33 +466,49 @@ def dedupe_rows(rows: list, threshold: float = 0.85):
             "normalized_text": normalized,
             "source": _text(row["channel_name"]),
             "category": _text(row["category"]),
+            "categories": [_text(row["category"])],
             "message_date": _text(row["message_date"]),
+            "message_dates": [_text(row["message_date"])],
             "message_url": message_url,
             "source_urls": [message_url] if message_url else [],
             "_row": row,
+            "_rows": [row],
         })
 
     groups = dedupe_articles(articles, title_threshold=threshold)
     result: list[DedupedItem] = []
     for article in groups:
-        row = article["_row"]
-        duplicate_sources = list(article.get("duplicate_sources") or [])
-        channel_names = sorted(set([_text(row["channel_name"])] + duplicate_sources) - {""})
+        rows_in_group = list(article.get("_rows") or [article["_row"]])
+        channel_names = sorted({_text(row["channel_name"]) for row in rows_in_group if _text(row["channel_name"])})
+        categories = sorted({_text(row["category"]) for row in rows_in_group if _text(row["category"])})
+        dates = sorted({_text(row["message_date"]) for row in rows_in_group if _text(row["message_date"])}, reverse=True)
         urls = sorted(_article_urls(article))
         result.append(DedupedItem(
             text=_text(article.get("text") or article.get("body")),
             channel_names=channel_names,
-            categories=[_text(row["category"])],
-            count=max(1, int(article.get("duplicate_count") or 1)),
-            message_dates=[_text(row["message_date"])],
+            categories=categories,
+            count=max(1, int(article.get("duplicate_count") or len(rows_in_group))),
+            message_dates=dates,
             message_urls=urls,
         ))
     return sorted(result, key=lambda item: item.message_dates[0] if item.message_dates else "", reverse=True)
 
 
+def _manual_news_refresh() -> str:
+    from .telegram_dispatch import generate_and_send_latest_report
+
+    return generate_and_send_latest_report(
+        hours=1,
+        limit=999,
+        briefing_kind="manual",
+        collect=True,
+        source="telegram_manual",
+    )
+
+
 def apply_unified_pipeline() -> None:
     """Patch all production entry points to the same selector and summarizer."""
-    from . import app, normalizer, strict_quality, strict_report, summarizer
+    from . import app, bot_services, normalizer, strict_quality, strict_report, summarizer
 
     if getattr(app, "_unified_news_pipeline_applied", False):
         return
@@ -483,6 +522,11 @@ def apply_unified_pipeline() -> None:
     strict_quality.select_top_articles = select_top_articles
     strict_quality.strict_filter = select_top_clusters
     strict_report.strict_filter = select_top_clusters
+
+    # bot_services.handle_command already routes refresh commands through this helper.
+    # Replacing the helper keeps help_text and the command branch aligned while making
+    # direct bot_services usage send the newly cached report as well.
+    bot_services._manual_news_refresh = _manual_news_refresh
 
     app._unified_news_pipeline_applied = True
     print("[unified-pipeline] selector=dedupe+score+diversify summarizer=evidence-2to3-sentences")
