@@ -48,7 +48,8 @@ def _pick(pool: list[str], seed: int, step: int) -> str:
 def _help() -> str:
     return (
         "명령어 안내\n"
-        "봇 뉴스 - 실시간 주요 뉴스 헤드라인\n"
+        "봇 뉴스 - 최신 저장 뉴스 리포트\n"
+        "봇 뉴스갱신 - 텔레그램 채널을 다시 수집하고 새 리포트 생성\n"
         "봇 시세 삼성전자 / 봇 시세 한미반도체 / 봇 시세 005930 / 봇 시세 NVDA\n"
         "봇 생년월일 YYYY-MM-DD HH:MM 성별 - 사주 프로필 저장\n"
         "봇 사주 [질문] - 프로필 기반 리딩\n"
@@ -227,107 +228,62 @@ def _load_kr_symbols() -> dict[str, tuple[str, str, str]]:
             for code in stock.get_market_ticker_list(market=market):
                 name = stock.get_market_ticker_name(code)
                 if name:
-                    names[_norm_stock(name)] = (code, market, suffix)
+                    names[_norm_stock(name)] = (name, code, suffix)
     except Exception:
         names = {}
     _KR_SYMBOL_CACHE = names
     return names
 
 
-def _resolve_kr_code(target: str) -> tuple[str, str, str] | None:
-    digits = re.sub(r"\D", "", target)
-    if len(digits) == 6:
-        return digits, "KRX", ".KS"
-    key = _norm_stock(target)
+def _resolve_symbol(target: str) -> tuple[str, str]:
+    clean = _clean(target)
+    norm = _norm_stock(clean)
+    if norm in _SYMBOLS:
+        return clean, _SYMBOLS[norm]
+    if re.fullmatch(r"\d{6}", clean):
+        suffix = ".KQ" if clean.startswith(("0", "1", "2", "3", "4")) else ".KS"
+        return clean, clean + suffix
+    if re.fullmatch(r"[A-Za-z][A-Za-z0-9.\-]{0,9}", clean):
+        return clean.upper(), clean.upper()
     names = _load_kr_symbols()
-    if key in names:
-        return names[key]
-    for name, value in names.items():
-        if name.startswith(key):
-            return value
-    for name, value in names.items():
-        if key and key in name:
-            return value
-    return None
-
-
-def _quote_symbol(target: str) -> str:
-    key = _norm_stock(target)
-    if key in _SYMBOLS:
-        return _SYMBOLS[key]
-    kr = _resolve_kr_code(target)
-    if kr:
-        code, _market, suffix = kr
-        return f"{code}{suffix}"
-    return target.strip().upper()
-
-
-def _quote_krx(target: str) -> str | None:
-    resolved = _resolve_kr_code(target)
-    if not resolved:
-        return None
-    code, market, _suffix = resolved
-    try:
-        from pykrx import stock
-        from datetime import datetime, timedelta
-        end_dt = datetime.now()
-        start_dt = end_dt - timedelta(days=45)
-        df = stock.get_market_ohlcv_by_date(start_dt.strftime("%Y%m%d"), end_dt.strftime("%Y%m%d"), code)
-        if df is None or df.empty:
-            return None
-        name = stock.get_market_ticker_name(code) or target
-        last = df.iloc[-1]
-        prev = df.iloc[-2] if len(df) >= 2 else last
-        price = float(last["종가"])
-        prev_close = float(prev["종가"])
-        pct = ((price / prev_close) - 1) * 100 if prev_close else 0.0
-        vol = int(last.get("거래량", 0)) if "거래량" in last else 0
-        return (
-            f"빠른 시세: {name}({code})\n"
-            f"현재/최근가: {price:,.0f} KRW ({pct:+.2f}%)\n"
-            f"전일종가: {prev_close:,.0f} KRW\n"
-            f"거래량: {vol:,}\n"
-            f"소스: pykrx/{market} 지연 데이터\n"
-            "주의: 주문 전 증권사 현재가를 재확인하세요."
-        )
-    except Exception:
-        return None
+    if norm in names:
+        name, code, suffix = names[norm]
+        return name, code + suffix
+    candidates = [(key, val) for key, val in names.items() if norm and norm in key]
+    if len(candidates) == 1:
+        _, (name, code, suffix) = candidates[0]
+        return name, code + suffix
+    return clean, ""
 
 
 def _quote(body: str) -> str:
     target = re.sub(r"^(시세|quote)\s*", "", body, flags=re.IGNORECASE).strip()
     if not target:
-        return "시세 대상을 입력하세요. 예: 봇 시세 삼성전자"
-
-    krx = _quote_krx(target)
-    if krx:
-        return krx
-
-    symbol = _quote_symbol(target)
+        return "조회할 종목을 입력하세요. 예: 봇 시세 삼성전자 / 봇 시세 005930 / 봇 시세 NVDA"
+    name, symbol = _resolve_symbol(target)
+    if not symbol:
+        return f"종목을 찾지 못했습니다: {target}\n정확한 종목명, 6자리 종목코드 또는 미국 티커를 입력하세요."
     try:
-        res = requests.get(
-            f"https://query1.finance.yahoo.com/v8/finance/chart/{quote_plus(symbol)}",
-            params={"range": "5d", "interval": "1d"},
-            timeout=2.5,
-        )
-        if res.status_code != 200:
-            return f"시세 조회 실패: {target}\n한글명은 KRX/pykrx 검색 후 실패했습니다. 종목코드 또는 영문 티커로 다시 시도하세요."
-        result = (res.json().get("chart", {}).get("result") or [None])[0]
-        if not result:
-            return f"시세를 찾지 못했습니다: {target}"
-        meta = result.get("meta") or {}
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{quote_plus(symbol)}"
+        response = requests.get(url, params={"range": "5d", "interval": "1d"}, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
+        response.raise_for_status()
+        result = response.json()["chart"]["result"][0]
+        meta = result.get("meta", {})
         price = meta.get("regularMarketPrice")
-        prev = meta.get("previousClose")
-        pct = "미확인"
-        if price is not None and prev:
-            pct = f"{((float(price) / float(prev)) - 1) * 100:+.2f}%"
-        return (
-            f"빠른 시세: {target}\n"
-            f"{meta.get('shortName') or symbol} ({symbol})\n"
-            f"현재/최근가: {price if price is not None else '미확인'} {meta.get('currency') or ''} ({pct})\n"
-            f"전일종가: {prev if prev is not None else '미확인'}\n"
-            "주의: Yahoo 지연 데이터입니다. 주문 전 증권사 현재가를 재확인하세요."
-        )
+        previous = meta.get("chartPreviousClose") or meta.get("previousClose")
+        currency = meta.get("currency") or ""
+        market_time = meta.get("regularMarketTime")
+        if price is None:
+            return f"현재가 없음: {name} ({symbol})"
+        change = price - previous if previous not in (None, 0) else None
+        pct = change / previous * 100 if change is not None else None
+        lines = [f"{name} ({symbol})", f"현재가: {price:,.2f} {currency}"]
+        if change is not None and pct is not None:
+            lines.append(f"등락: {change:+,.2f} ({pct:+.2f}%)")
+        if market_time:
+            lines.append(f"시세기준 Unix: {market_time}")
+        lines.append("지연 또는 장외 시세일 수 있으므로 주문 전 거래소/증권사 호가를 확인하세요.")
+        return "\n".join(lines)
     except Exception:
         return f"시세 조회 지연: {target}\n외부 시세 서버가 응답하지 않습니다. 잠시 뒤 다시 시도하세요."
 
