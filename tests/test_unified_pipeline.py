@@ -1,4 +1,5 @@
-from telegram_news.unified_pipeline import dedupe_articles, select_top_articles, summarize_article
+from telegram_news.evidence_summarizer import summarize_article
+from telegram_news.unified_pipeline import dedupe_articles, select_top_articles
 
 
 def test_dedupe_articles_merges_tracking_url_variants():
