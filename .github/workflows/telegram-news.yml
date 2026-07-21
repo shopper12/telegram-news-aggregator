@@ -177,6 +177,7 @@ jobs:
         run: |
           python - <<'PY'
           import os, sys
+          import requests
           from telethon.sessions import StringSession
 
           def clean_secret(value):
@@ -212,6 +213,28 @@ jobs:
               print("Reason: " + type(exc).__name__ + ": " + str(exc))
               print("Fix: regenerate it with `python scripts/make_telegram_string_session.py`, then paste the single generated string into the GitHub secret without quotes, spaces, or extra lines.")
               sys.exit(1)
+
+          bot_token = clean_secret(os.getenv("TELEGRAM_BOT_TOKEN"))
+          try:
+              response = requests.get(
+                  f"https://api.telegram.org/bot{bot_token}/getMe",
+                  timeout=20,
+              )
+              payload = response.json() if response.content else {}
+          except Exception as exc:
+              print("Telegram Bot API authorization check failed before the briefing.")
+              print("Reason: " + type(exc).__name__ + ": " + str(exc))
+              sys.exit(1)
+
+          if response.status_code != 200 or not payload.get("ok"):
+              description = str(payload.get("description") or response.text or "unknown Telegram API error")
+              print("Invalid or revoked GitHub Actions secret: TELEGRAM_BOT_TOKEN.")
+              print(f"Telegram getMe returned HTTP {response.status_code}: {description}")
+              print("Fix: generate a fresh token in BotFather and replace TELEGRAM_BOT_TOKEN in both GitHub Actions and Render. Never paste the token into logs or source code.")
+              sys.exit(1)
+
+          bot = payload.get("result") or {}
+          print("Telegram bot token verified for @" + str(bot.get("username") or "unknown"))
 
           if os.getenv("GEMINI_API_KEY"):
               print("Gemini API key is present. Gemini classification will be attempted.")
