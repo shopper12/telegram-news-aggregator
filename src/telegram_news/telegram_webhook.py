@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import hashlib
 import os
+import re
 from typing import Any
 
 import requests
@@ -31,6 +33,33 @@ def _clean(value: Any) -> str:
 
 def _bot_token() -> str:
     return _clean(os.getenv("TELEGRAM_BOT_TOKEN")).strip('"\'')
+
+
+def _token_diagnostics() -> dict[str, Any]:
+    """Return non-secret diagnostics for the configured BotFather token."""
+    token = _bot_token()
+    if not token:
+        return {
+            "configured": False,
+            "format_valid": False,
+            "token_length": 0,
+            "token_fingerprint": "",
+            "environment_key": "TELEGRAM_BOT_TOKEN",
+        }
+
+    bot_id, separator, secret = token.partition(":")
+    format_valid = bool(
+        separator
+        and re.fullmatch(r"\d{5,15}", bot_id)
+        and re.fullmatch(r"[A-Za-z0-9_-]{20,}", secret)
+    )
+    return {
+        "configured": True,
+        "format_valid": format_valid,
+        "token_length": len(token),
+        "token_fingerprint": hashlib.sha256(token.encode("utf-8")).hexdigest()[:12],
+        "environment_key": "TELEGRAM_BOT_TOKEN",
+    }
 
 
 def _webhook_secret() -> str:
@@ -103,8 +132,15 @@ def _register_webhook() -> None:
         print("[telegram-webhook] auto registration disabled")
         return
 
-    if not _bot_token():
+    diagnostics = _token_diagnostics()
+    if not diagnostics["configured"]:
         print("[telegram-webhook] registration skipped: TELEGRAM_BOT_TOKEN missing")
+        return
+    if not diagnostics["format_valid"]:
+        print(
+            "[telegram-webhook] registration skipped: TELEGRAM_BOT_TOKEN format invalid "
+            f"length={diagnostics['token_length']} fingerprint={diagnostics['token_fingerprint']}"
+        )
         return
 
     url = _webhook_url()
@@ -118,6 +154,11 @@ def _register_webhook() -> None:
         payload["secret_token"] = secret
 
     try:
+        bot = _telegram_api("getMe").get("result") or {}
+        print(
+            "[telegram-webhook] token verified: "
+            f"bot=@{bot.get('username') or 'unknown'} fingerprint={diagnostics['token_fingerprint']}"
+        )
         _telegram_api("setWebhook", payload=payload)
         info = _telegram_api("getWebhookInfo").get("result") or {}
         print(
@@ -126,15 +167,47 @@ def _register_webhook() -> None:
             f"last_error={info.get('last_error_message') or 'none'}"
         )
     except Exception as exc:
-        print(f"[telegram-webhook] registration failed: {type(exc).__name__}: {exc}")
+        print(
+            "[telegram-webhook] registration failed: "
+            f"{type(exc).__name__}: {exc} fingerprint={diagnostics['token_fingerprint']}"
+        )
 
 
 def _safe_webhook_info() -> dict[str, Any]:
+    diagnostics = _token_diagnostics()
+    base: dict[str, Any] = {
+        "expected_url": _webhook_url(),
+        "token": diagnostics,
+    }
+
+    if not diagnostics["configured"]:
+        return {
+            **base,
+            "ok": False,
+            "token_status": "missing",
+            "error": "TELEGRAM_BOT_TOKEN is not configured",
+            "required_action": "Set the full BotFather token in Render as TELEGRAM_BOT_TOKEN.",
+        }
+    if not diagnostics["format_valid"]:
+        return {
+            **base,
+            "ok": False,
+            "token_status": "invalid_format",
+            "error": "TELEGRAM_BOT_TOKEN does not match the BotFather token format",
+            "required_action": "Replace it with the full token, including the numeric prefix and colon.",
+        }
+
     try:
+        bot = _telegram_api("getMe").get("result") or {}
         result = _telegram_api("getWebhookInfo").get("result") or {}
         return {
+            **base,
             "ok": True,
-            "expected_url": _webhook_url(),
+            "token_status": "verified",
+            "bot": {
+                "id": bot.get("id"),
+                "username": bot.get("username") or "",
+            },
             "url": result.get("url") or "",
             "pending_update_count": int(result.get("pending_update_count") or 0),
             "last_error_date": result.get("last_error_date"),
@@ -143,10 +216,19 @@ def _safe_webhook_info() -> dict[str, Any]:
             "allowed_updates": result.get("allowed_updates") or [],
         }
     except Exception as exc:
+        error = f"{type(exc).__name__}: {exc}"
+        unauthorized = "HTTP 401" in error or "Unauthorized" in error
         return {
+            **base,
             "ok": False,
-            "expected_url": _webhook_url(),
-            "error": f"{type(exc).__name__}: {exc}",
+            "token_status": "unauthorized_or_revoked" if unauthorized else "telegram_api_error",
+            "error": error,
+            "required_action": (
+                "Generate or copy a fresh API token from BotFather, replace TELEGRAM_BOT_TOKEN in Render, "
+                "save changes, and redeploy."
+                if unauthorized
+                else "Check Render outbound network access and Telegram API availability."
+            ),
         }
 
 
@@ -248,6 +330,6 @@ def apply(api_module: Any) -> Any:
 
     _install_startup_handler(app)
     app.state.telegram_webhook_installed = True
-    api_module.API_VERSION = "messenger-telegram-webhook-v2"
+    api_module.API_VERSION = "messenger-telegram-webhook-v3"
     print(f"[telegram-webhook] routes installed: {WEBHOOK_PATH}, {WEBHOOK_STATUS_PATH}")
     return api_module
