@@ -177,6 +177,27 @@ def _run_refresh(chat_id: str) -> None:
             print(f"[telegram-webhook] failure reply failed: {type(send_exc).__name__}: {send_exc}")
 
 
+def _install_startup_handler(app: Any) -> None:
+    """Register startup across FastAPI/Starlette API variants."""
+    router = getattr(app, "router", None)
+    router_add = getattr(router, "add_event_handler", None)
+    if callable(router_add):
+        router_add("startup", _register_webhook)
+        return
+
+    app_add = getattr(app, "add_event_handler", None)
+    if callable(app_add):
+        app_add("startup", _register_webhook)
+        return
+
+    on_startup = getattr(router, "on_startup", None)
+    if hasattr(on_startup, "append"):
+        on_startup.append(_register_webhook)
+        return
+
+    raise RuntimeError("FastAPI/Starlette startup handler registration is unavailable")
+
+
 def apply(api_module: Any) -> Any:
     app = api_module.app
 
@@ -225,7 +246,7 @@ def apply(api_module: Any) -> Any:
         send_telegram_message(token, chat_id, response_text)
         return {"ok": True, "replied": True}
 
-    app.add_event_handler("startup", _register_webhook)
+    _install_startup_handler(app)
     app.state.telegram_webhook_installed = True
     api_module.API_VERSION = "messenger-telegram-webhook-v2"
     print(f"[telegram-webhook] routes installed: {WEBHOOK_PATH}, {WEBHOOK_STATUS_PATH}")
