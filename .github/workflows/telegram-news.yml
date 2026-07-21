@@ -89,12 +89,13 @@ jobs:
           if event_path and Path(event_path).exists():
               with open(event_path, "r", encoding="utf-8") as f:
                   payload = json.load(f)
-              schedule = payload.get("schedule", "")
+              schedule = str(payload.get("schedule") or "").strip()
               inputs = payload.get("inputs", {}) or {}
 
           now_utc = datetime.now(timezone.utc)
           now_kst = now_utc.astimezone(ZoneInfo("Asia/Seoul"))
           now_ny = now_utc.astimezone(ZoneInfo("America/New_York"))
+          ny_utc_offset = int(now_ny.utcoffset().total_seconds() // 3600)
 
           should_run = True
           reason = "manual"
@@ -102,11 +103,8 @@ jobs:
           limit = inputs.get("limit") or "999"
           briefing_kind = inputs.get("briefing_kind") or "regular"
 
-          def in_window(dt, start_h, start_m, end_h, end_m):
-              current = dt.hour * 60 + dt.minute
-              start = start_h * 60 + start_m
-              end = end_h * 60 + end_m
-              return start <= current <= end
+          def activate(kind):
+              return True, kind, kind
 
           if event_name == "schedule":
               should_run = False
@@ -114,22 +112,36 @@ jobs:
               hours = "1"
               limit = "999"
 
-              if now_kst.weekday() < 5 and in_window(now_kst, 8, 15, 9, 10):
-                  should_run = True
-                  reason = "kr_premarket"
-                  briefing_kind = "kr_premarket"
-              elif now_kst.weekday() < 5 and in_window(now_kst, 15, 30, 16, 15):
-                  should_run = True
-                  reason = "kr_aftermarket"
-                  briefing_kind = "kr_aftermarket"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 3, 10, 4, 10):
-                  should_run = True
-                  reason = "us_premarket_before"
-                  briefing_kind = "us_premarket_before"
-              elif now_ny.weekday() < 5 and in_window(now_ny, 16, 0, 16, 50):
-                  should_run = True
-                  reason = "us_aftermarket"
-                  briefing_kind = "us_aftermarket"
+              # Use the scheduled cron identity rather than the runner's actual
+              # start time. GitHub-hosted scheduled jobs can start much later
+              # than their cron slot, so a wall-clock window can incorrectly
+              # skip the entire briefing and Telegram delivery pipeline.
+              if schedule == "30 23 * * 0-4":
+                  should_run, reason, briefing_kind = activate("kr_premarket")
+              elif schedule == "40 6 * * 1-5":
+                  should_run, reason, briefing_kind = activate("kr_aftermarket")
+              elif schedule == "30 7 * * 1-5":
+                  if ny_utc_offset == -4:
+                      should_run, reason, briefing_kind = activate("us_premarket_before")
+                  else:
+                      reason = "inactive_us_dst_cron_slot"
+              elif schedule == "30 8 * * 1-5":
+                  if ny_utc_offset == -5:
+                      should_run, reason, briefing_kind = activate("us_premarket_before")
+                  else:
+                      reason = "inactive_us_standard_cron_slot"
+              elif schedule == "10 20 * * 1-5":
+                  if ny_utc_offset == -4:
+                      should_run, reason, briefing_kind = activate("us_aftermarket")
+                  else:
+                      reason = "inactive_us_dst_cron_slot"
+              elif schedule == "10 21 * * 1-5":
+                  if ny_utc_offset == -5:
+                      should_run, reason, briefing_kind = activate("us_aftermarket")
+                  else:
+                      reason = "inactive_us_standard_cron_slot"
+              elif not schedule:
+                  reason = "scheduled_event_missing_cron_identity"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"should_run={str(should_run).lower()}\n")
@@ -142,7 +154,7 @@ jobs:
               out.write(f"schedule={schedule}\n")
 
           print(f"KST now: {now_kst:%Y-%m-%d %H:%M:%S KST}")
-          print(f"NY now: {now_ny:%Y-%m-%d %H:%M:%S %Z}")
+          print(f"NY now: {now_ny:%Y-%m-%d %H:%M:%S %Z} UTC offset={ny_utc_offset}")
           print(f"event={event_name} schedule={schedule}")
           print(f"should_run={should_run} reason={reason} hours={hours} limit={limit} briefing_kind={briefing_kind}")
           PY
