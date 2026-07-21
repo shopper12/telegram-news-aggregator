@@ -1,5 +1,7 @@
 from types import SimpleNamespace
 
+from fastapi import FastAPI
+
 from telegram_news import telegram_webhook as webhook
 
 
@@ -70,33 +72,15 @@ def test_register_webhook_uses_render_public_url(monkeypatch, capsys):
     assert "registered" in capsys.readouterr().out
 
 
-def test_apply_installs_routes_and_startup_handler():
-    routes = []
-    handlers = []
+def test_apply_installs_routes_and_startup_handler_on_fastapi():
+    app = FastAPI()
+    fake_api = SimpleNamespace(app=app, API_VERSION="old")
 
-    class FakeApp:
-        state = SimpleNamespace()
-
-        def get(self, path):
-            def decorator(func):
-                routes.append(("get", path, func))
-                return func
-            return decorator
-
-        def post(self, path):
-            def decorator(func):
-                routes.append(("post", path, func))
-                return func
-            return decorator
-
-        def add_event_handler(self, event, handler):
-            handlers.append((event, handler))
-
-    fake_api = SimpleNamespace(app=FakeApp(), API_VERSION="old")
     result = webhook.apply(fake_api)
 
+    route_paths = {route.path for route in app.routes}
     assert result is fake_api
-    assert ("get", "/telegram/webhook/status") in [(method, path) for method, path, _ in routes]
-    assert ("post", "/telegram/webhook") in [(method, path) for method, path, _ in routes]
-    assert handlers[0][0] == "startup"
+    assert "/telegram/webhook/status" in route_paths
+    assert "/telegram/webhook" in route_paths
+    assert webhook._register_webhook in app.router.on_startup
     assert fake_api.API_VERSION == "messenger-telegram-webhook-v2"
