@@ -1,4 +1,4 @@
-name: Telegram news briefing
+name: Telegram and Kakao news briefing
 
 on:
   workflow_dispatch:
@@ -12,25 +12,20 @@ on:
         required: false
         default: "999"
       briefing_kind:
-        description: "regular, kr_premarket, kr_aftermarket, us_premarket_before, us_aftermarket"
+        description: "Briefing kind"
         required: false
         default: "regular"
   schedule:
-    # GitHub Actions cron uses UTC.
-    # KRX premarket: KST Mon-Fri 08:30 = UTC Sun-Thu 23:30.
-    - cron: "30 23 * * 0-4"
-    # KRX after close: KST Mon-Fri 15:40 = UTC Mon-Fri 06:40.
-    - cron: "40 6 * * 1-5"
-    # US premarket-before: NY Mon-Fri 03:30. EDT=UTC 07:30, EST=UTC 08:30.
-    - cron: "30 7 * * 1-5"
-    - cron: "30 8 * * 1-5"
-    # US after close: NY Mon-Fri 16:10. EDT=UTC 20:10, EST=UTC 21:10.
-    - cron: "10 20 * * 1-5"
-    - cron: "10 21 * * 1-5"
+    # GitHub Actions cron uses UTC. KST is UTC+9.
+    # KST 07:00, 07:30, 08:00, 08:30.
+    - cron: "0,30 22-23 * * *"
+    # KST 09:00 through 22:30, every 30 minutes.
+    - cron: "0,30 0-13 * * *"
+    # KST 23:00.
+    - cron: "0 14 * * *"
 
-# Automatic push-triggered runs remain disabled. Scheduled runs are market checkpoints only.
-# US cron slots include both daylight-saving and standard-time UTC equivalents; the runtime gate prevents duplicate sends.
-
+# Scheduled runs execute every day, including weekends and holidays.
+# GitHub-hosted scheduled jobs may start several minutes later than the nominal cron time.
 concurrency:
   group: telegram-news-briefing
   cancel-in-progress: false
@@ -58,9 +53,9 @@ jobs:
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: gemini-2.5-flash
-      NOTIFIER: ${{ secrets.NOTIFIER || 'none' }}
-      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      DISCORD_WEBHOOK_USERNAME: ${{ secrets.DISCORD_WEBHOOK_USERNAME || '뉴스봇' }}
+      # Telegram delivery is always performed by telegram_dispatch.
+      # Setting kakao here additionally sends the same report to KakaoTalk memo.
+      NOTIFIER: kakao
       KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
       KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
       KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
@@ -72,7 +67,7 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Decide market checkpoint
+      - name: Resolve briefing parameters
         id: cadence
         run: |
           python - <<'PY'
@@ -94,89 +89,46 @@ jobs:
 
           now_utc = datetime.now(timezone.utc)
           now_kst = now_utc.astimezone(ZoneInfo("Asia/Seoul"))
-          now_ny = now_utc.astimezone(ZoneInfo("America/New_York"))
-          ny_utc_offset = int(now_ny.utcoffset().total_seconds() // 3600)
 
-          should_run = True
-          reason = "manual"
           hours = inputs.get("hours") or "1"
           limit = inputs.get("limit") or "999"
           briefing_kind = inputs.get("briefing_kind") or "regular"
-
-          def activate(kind):
-              return True, kind, kind
+          reason = "manual"
 
           if event_name == "schedule":
-              should_run = False
-              reason = "scheduled_checkpoint_not_matched"
               hours = "1"
               limit = "999"
-
-              # Use the scheduled cron identity rather than the runner's actual
-              # start time. GitHub-hosted scheduled jobs can start much later
-              # than their cron slot, so a wall-clock window can incorrectly
-              # skip the entire briefing and Telegram delivery pipeline.
-              if schedule == "30 23 * * 0-4":
-                  should_run, reason, briefing_kind = activate("kr_premarket")
-              elif schedule == "40 6 * * 1-5":
-                  should_run, reason, briefing_kind = activate("kr_aftermarket")
-              elif schedule == "30 7 * * 1-5":
-                  if ny_utc_offset == -4:
-                      should_run, reason, briefing_kind = activate("us_premarket_before")
-                  else:
-                      reason = "inactive_us_dst_cron_slot"
-              elif schedule == "30 8 * * 1-5":
-                  if ny_utc_offset == -5:
-                      should_run, reason, briefing_kind = activate("us_premarket_before")
-                  else:
-                      reason = "inactive_us_standard_cron_slot"
-              elif schedule == "10 20 * * 1-5":
-                  if ny_utc_offset == -4:
-                      should_run, reason, briefing_kind = activate("us_aftermarket")
-                  else:
-                      reason = "inactive_us_dst_cron_slot"
-              elif schedule == "10 21 * * 1-5":
-                  if ny_utc_offset == -5:
-                      should_run, reason, briefing_kind = activate("us_aftermarket")
-                  else:
-                      reason = "inactive_us_standard_cron_slot"
-              elif not schedule:
-                  reason = "scheduled_event_missing_cron_identity"
+              briefing_kind = "regular"
+              reason = "kst_0700_to_2300_every_30_minutes"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
-              out.write(f"should_run={str(should_run).lower()}\n")
-              out.write(f"reason={reason}\n")
               out.write(f"hours={hours}\n")
               out.write(f"limit={limit}\n")
               out.write(f"briefing_kind={briefing_kind}\n")
               out.write(f"kst_now={now_kst:%Y-%m-%d %H:%M:%S KST}\n")
-              out.write(f"ny_now={now_ny:%Y-%m-%d %H:%M:%S %Z}\n")
               out.write(f"schedule={schedule}\n")
 
           print(f"KST now: {now_kst:%Y-%m-%d %H:%M:%S KST}")
-          print(f"NY now: {now_ny:%Y-%m-%d %H:%M:%S %Z} UTC offset={ny_utc_offset}")
           print(f"event={event_name} schedule={schedule}")
-          print(f"should_run={should_run} reason={reason} hours={hours} limit={limit} briefing_kind={briefing_kind}")
+          print(f"reason={reason} hours={hours} limit={limit} briefing_kind={briefing_kind}")
           PY
 
       - name: Set up Python
-        if: steps.cadence.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
       - name: Install dependencies
-        if: steps.cadence.outputs.should_run == 'true'
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Validate required secrets
-        if: steps.cadence.outputs.should_run == 'true'
+      - name: Validate Telegram and Kakao secrets
         run: |
           python - <<'PY'
-          import os, sys
+          import os
+          import sys
           import requests
           from telethon.sessions import StringSession
 
@@ -185,25 +137,21 @@ jobs:
                   return ""
               return "".join(str(value).strip().strip('"\'').split())
 
-          notifier = (os.getenv("NOTIFIER") or "none").strip().lower()
           required = [
               "TELEGRAM_API_ID",
               "TELEGRAM_API_HASH",
               "TELEGRAM_STRING_SESSION",
               "TELEGRAM_BOT_TOKEN",
+              "KAKAO_REST_API_KEY",
+              "KAKAO_REFRESH_TOKEN",
           ]
           if not clean_secret(os.getenv("TELEGRAM_TARGET_CHAT_ID")) and not clean_secret(os.getenv("TELEGRAM_TARGET_CHAT_IDS")):
               print("Missing Telegram target: set TELEGRAM_TARGET_CHAT_ID or TELEGRAM_TARGET_CHAT_IDS.")
               sys.exit(1)
-          if notifier in {"kakao", "both", "all"}:
-              required += ["KAKAO_REST_API_KEY", "KAKAO_REFRESH_TOKEN"]
-          if notifier in {"discord", "both", "all"}:
-              required += ["DISCORD_WEBHOOK_URL"]
+
           missing = [name for name in required if not clean_secret(os.getenv(name))]
           if missing:
               print("Missing GitHub Actions secrets: " + ", ".join(missing))
-              print("TELEGRAM_STRING_SESSION is required for non-interactive collection. TELEGRAM_BOT_TOKEN and target chat ID are required for restored delivery.")
-              print("NOTIFIER controls optional Kakao/Discord delivery only. Current NOTIFIER=" + notifier)
               sys.exit(1)
 
           try:
@@ -211,7 +159,6 @@ jobs:
           except Exception as exc:
               print("Invalid TELEGRAM_STRING_SESSION secret.")
               print("Reason: " + type(exc).__name__ + ": " + str(exc))
-              print("Fix: regenerate it with `python scripts/make_telegram_string_session.py`, then paste the single generated string into the GitHub secret without quotes, spaces, or extra lines.")
               sys.exit(1)
 
           bot_token = clean_secret(os.getenv("TELEGRAM_BOT_TOKEN"))
@@ -230,39 +177,27 @@ jobs:
               description = str(payload.get("description") or response.text or "unknown Telegram API error")
               print("Invalid or revoked GitHub Actions secret: TELEGRAM_BOT_TOKEN.")
               print(f"Telegram getMe returned HTTP {response.status_code}: {description}")
-              print("Fix: generate a fresh token in BotFather and replace TELEGRAM_BOT_TOKEN in both GitHub Actions and Render. Never paste the token into logs or source code.")
+              print("Replace TELEGRAM_BOT_TOKEN in both GitHub Actions and Render with the same fresh BotFather token.")
               sys.exit(1)
 
           bot = payload.get("result") or {}
           print("Telegram bot token verified for @" + str(bot.get("username") or "unknown"))
-
-          if os.getenv("GEMINI_API_KEY"):
-              print("Gemini API key is present. Gemini classification will be attempted.")
-              print("Gemini model: " + os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
-          else:
-              print("GEMINI_API_KEY is not set. Local synthesis fallback will be used.")
-          print("Telegram collection and delivery secrets are present.")
-          print("Optional notifier: " + notifier)
+          print("KakaoTalk delivery secrets are present.")
           PY
 
-      - name: Show notification mode
-        if: steps.cadence.outputs.should_run == 'true'
+      - name: Show delivery mode
         run: |
           python - <<'PY'
           import os
-          notifier = (os.getenv("NOTIFIER") or "none").strip().lower()
           target_present = bool(os.getenv("TELEGRAM_TARGET_CHAT_ID") or os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
           print("Telegram delivery: enabled")
-          print("Telegram bot token: " + ("present" if os.getenv("TELEGRAM_BOT_TOKEN") else "missing"))
           print("Telegram target chat id(s): " + ("present" if target_present else "missing"))
-          print("Optional notifier: " + notifier)
-          print("Discord webhook: " + ("present" if os.getenv("DISCORD_WEBHOOK_URL") else "missing"))
+          print("KakaoTalk memo delivery: enabled")
           print("Kakao REST API key: " + ("present" if os.getenv("KAKAO_REST_API_KEY") else "missing"))
           print("Kakao refresh token: " + ("present" if os.getenv("KAKAO_REFRESH_TOKEN") else "missing"))
           PY
 
-      - name: Run Telegram news briefing
-        if: steps.cadence.outputs.should_run == 'true'
+      - name: Run news briefing and send notifications
         env:
           BRIEFING_KIND: ${{ steps.cadence.outputs.briefing_kind }}
         run: |
@@ -272,7 +207,6 @@ jobs:
           python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT" --send
 
       - name: Commit latest report cache
-        if: steps.cadence.outputs.should_run == 'true'
         run: |
           if [ ! -f reports/latest_report.json ]; then
             echo "latest_report.json not found; skip commit"
@@ -290,7 +224,7 @@ jobs:
           git push
 
       - name: Upload report artifact
-        if: always() && steps.cadence.outputs.should_run == 'true'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: telegram-news-reports
