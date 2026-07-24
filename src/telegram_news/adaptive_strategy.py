@@ -49,6 +49,53 @@ def _selected_news(selected: list[Any], now: datetime) -> list[dict[str, Any]]:
     return events
 
 
+def _summary_news(summaries: list[Any], now: datetime) -> list[dict[str, Any]]:
+    """Convert every summarized incoming item into persistent learning memory.
+
+    This intentionally runs before strict display filtering. Low-ranked news may
+    still become useful when the same theme repeats across later 30-minute runs.
+    """
+    events: list[dict[str, Any]] = []
+    timestamp = now.isoformat(timespec="seconds")
+    for item in summaries[:200]:
+        try:
+            title = str(getattr(item, "title", "") or "").strip()
+            body = str(getattr(item, "body", "") or "").strip()
+            judgment = str(getattr(item, "judgment", "") or "").strip()
+            risk = str(getattr(item, "risk", "") or "").strip()
+            sectors = [str(value) for value in (getattr(item, "sectors", None) or []) if str(value).strip()]
+            keywords = [str(value) for value in (getattr(item, "keywords", None) or []) if str(value).strip()]
+            tickers = [str(value) for value in (getattr(item, "tickers", None) or []) if str(value).strip()]
+            score = int(getattr(item, "importance_score", 0) or 0)
+            repeat_count = max(1, int(getattr(item, "repeat_count", 1) or 1))
+            dates = list(getattr(item, "message_dates", None) or [])
+        except Exception:
+            continue
+        if not title and not body:
+            continue
+        text = " ".join(part for part in (title, body, judgment, risk) if part)
+        sentiment = max(-3, min(3, _hits(text, POSITIVE_WORDS) - _hits(text, NEGATIVE_WORDS)))
+        signature_source = f"{title}|{','.join(sectors[:4])}|{','.join(tickers[:4])}"
+        signature = sha1(signature_source.encode("utf-8")).hexdigest()
+        first_seen = str(min(dates) if dates else timestamp)
+        last_seen = str(max(dates) if dates else timestamp)
+        events.append(
+            {
+                "signature": signature,
+                "title": title or body[:120],
+                "sectors": sectors[:6],
+                "keywords": keywords[:10],
+                "tickers": tickers[:8],
+                "materiality": max(0, min(100, score)),
+                "sentiment": sentiment,
+                "first_seen": first_seen,
+                "last_seen": last_seen,
+                "count": repeat_count,
+            }
+        )
+    return events
+
+
 def _safe(value: Any) -> float | None:
     try:
         return None if value is None else float(value)
@@ -71,11 +118,19 @@ def _news_score(meta: dict[str, Any], memory: dict[str, Any], now: datetime) -> 
             continue
         if seen < cutoff:
             continue
-        haystack = f"{event.get('title') or ''} {' '.join(event.get('sectors') or [])}".lower()
+        haystack = " ".join(
+            [
+                str(event.get("title") or ""),
+                " ".join(event.get("sectors") or []),
+                " ".join(event.get("keywords") or []),
+                " ".join(event.get("tickers") or []),
+            ]
+        ).lower()
         if not any(keyword in haystack for keyword in keywords if keyword):
             continue
         recency = max(0.2, 1.0 - (now - seen).total_seconds() / 86400)
-        contribution = float(event.get("sentiment") or 0) * float(event.get("materiality") or 0) / 100.0 * recency
+        repeat_weight = min(2.0, 1.0 + max(0, int(event.get("count") or 1) - 1) * 0.1)
+        contribution = float(event.get("sentiment") or 0) * float(event.get("materiality") or 0) / 100.0 * recency * repeat_weight
         total += contribution
         reasons.append((abs(contribution), str(event.get("title") or "")))
     reasons.sort(reverse=True)
@@ -234,10 +289,11 @@ def build_strategy_section(snapshot: dict[str, Any], memory: dict[str, Any], sta
     return "\n".join(lines)
 
 
-def run_adaptive_cycle(selected: list[Any], kind: str, now: datetime | None = None, snapshot: dict[str, Any] | None = None) -> str:
+def run_adaptive_cycle(selected: list[Any], kind: str, now: datetime | None = None, snapshot: dict[str, Any] | None = None, all_summaries: list[Any] | None = None) -> str:
     now = now or now_kst()
     state, ledger, memory = load_runtime_state()
-    memory = update_news_memory(memory, _selected_news(selected, now), now)
+    incoming = _summary_news(all_summaries, now) if all_summaries is not None else _selected_news(selected, now)
+    memory = update_news_memory(memory, incoming, now)
     snapshot = snapshot or collect_global_snapshot()
     evaluations = evaluate_open_recommendations(ledger, snapshot, now)
     learned = adapt_model_from_results(state, ledger, now)
@@ -277,7 +333,11 @@ def install() -> None:
         except Exception:
             selected = []
         try:
-            section = run_adaptive_cycle(selected, os.getenv("BRIEFING_KIND", "regular"))
+            section = run_adaptive_cycle(
+                selected,
+                os.getenv("BRIEFING_KIND", "regular"),
+                all_summaries=list(summaries),
+            )
         except Exception as exc:
             section = f"🌐 글로벌 적응형 전략 엔진\n  • 상태: 실행 실패 {type(exc).__name__}: {exc}\n  • 기존 뉴스 리포트 발송은 계속 진행"
             print(f"[adaptive-strategy] cycle failed: {type(exc).__name__}: {exc}")
@@ -289,4 +349,4 @@ def install() -> None:
     app_module = sys.modules.get("telegram_news.app")
     if app_module is not None:
         setattr(app_module, "build_markdown_report", wrapped)
-    print("[adaptive-strategy] global tracking, strategy ledger, evaluation, and online calibration installed")
+    print("[adaptive-strategy] all-news memory, global tracking, strategy ledger, evaluation, and online calibration installed")
