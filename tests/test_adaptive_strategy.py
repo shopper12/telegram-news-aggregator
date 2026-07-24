@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
+from types import SimpleNamespace
 from zoneinfo import ZoneInfo
 
-from telegram_news.adaptive_strategy import _insert_strategy, generate_recommendations
+from telegram_news.adaptive_strategy import _insert_strategy, _summary_news, generate_recommendations
 from telegram_news.strategy_learning import (
     adapt_model_from_results,
     default_state,
@@ -27,8 +28,31 @@ def test_news_memory_deduplicates_and_counts_repeated_issue():
     assert memory["events"][0]["count"] == 2
 
 
+def test_all_summaries_are_converted_before_strict_display_filtering():
+    summaries = [
+        SimpleNamespace(
+            title="아직 화면 선별 전인 반도체 공급 뉴스",
+            body="HBM 공급 계약 확대와 실적 개선 기대",
+            judgment="정보성",
+            risk="과장 가능성 확인",
+            sectors=["반도체"],
+            keywords=["HBM", "공급"],
+            tickers=["SOXX"],
+            importance_score=35,
+            repeat_count=2,
+            message_dates=[NOW.isoformat()],
+        )
+    ]
+    events = _summary_news(summaries, NOW)
+    assert len(events) == 1
+    assert events[0]["title"].startswith("아직 화면 선별 전")
+    assert events[0]["count"] == 2
+    assert "HBM" in events[0]["keywords"]
+    assert events[0]["materiality"] == 35
+
+
 def test_generate_recommendations_combines_regime_momentum_and_news():
-    memory = {"events": [{"signature": "semi", "title": "HBM 공급 계약과 실적 개선", "sectors": ["반도체", "AI인프라"], "materiality": 100, "sentiment": 3, "last_seen": NOW.isoformat()}]}
+    memory = {"events": [{"signature": "semi", "title": "HBM 공급 계약과 실적 개선", "sectors": ["반도체", "AI인프라"], "keywords": ["HBM"], "tickers": ["SOXX"], "materiality": 100, "sentiment": 3, "last_seen": NOW.isoformat(), "count": 2}]}
     snapshot = {
         "regime": "risk_on",
         "assets": {
