@@ -150,6 +150,7 @@ def dispatch_latest_report_to_telegram(
 
 
 def _install_generation_pipeline() -> None:
+    from .adaptive_strategy import install as install_adaptive_strategy
     from .evidence_summarizer import install as install_evidence_summarizer
     from .market_outlook import install as install_market_outlook
     from .unified_pipeline import apply_unified_pipeline
@@ -157,6 +158,7 @@ def _install_generation_pipeline() -> None:
     apply_unified_pipeline()
     install_evidence_summarizer()
     install_market_outlook()
+    install_adaptive_strategy()
 
 
 def generate_and_send_latest_report(
