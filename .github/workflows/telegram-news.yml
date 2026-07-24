@@ -1,4 +1,4 @@
-name: Telegram and Kakao news briefing
+name: Telegram and Kakao adaptive market briefing
 
 on:
   workflow_dispatch:
@@ -12,20 +12,20 @@ on:
         required: false
         default: "999"
       briefing_kind:
-        description: "Briefing kind"
+        description: "regular, strategy_morning, or strategy_evening"
         required: false
         default: "regular"
   schedule:
-    # GitHub Actions cron uses UTC. KST is UTC+9.
-    # KST 07:00, 07:30, 08:00, 08:30.
-    - cron: "0,30 22-23 * * *"
-    # KST 09:00 through 22:30, every 30 minutes.
-    - cron: "0,30 0-13 * * *"
-    # KST 23:00.
-    - cron: "0 14 * * *"
+    # GitHub cron is UTC; KST is UTC+9.
+    - cron: "0 22 * * *"       # 07:00 KST: morning strategy
+    - cron: "30 22 * * *"      # 07:30 KST
+    - cron: "0,30 23 * * *"    # 08:00, 08:30 KST
+    - cron: "0,30 0-12 * * *"  # 09:00-21:30 KST
+    - cron: "0 13 * * *"       # 22:00 KST
+    - cron: "30 13 * * *"      # 22:30 KST: evening strategy
+    - cron: "0 14 * * *"       # 23:00 KST
 
-# Scheduled runs execute every day, including weekends and holidays.
-# GitHub-hosted scheduled jobs may start several minutes later than the nominal cron time.
+# Runs every day, including weekends and holidays. Scheduled jobs can start a few minutes late.
 concurrency:
   group: telegram-news-briefing
   cancel-in-progress: false
@@ -36,7 +36,7 @@ permissions:
 jobs:
   send-briefing:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
 
     env:
       PYTHONPATH: src
@@ -53,13 +53,15 @@ jobs:
       TIMEZONE: Asia/Seoul
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: gemini-2.5-flash
-      # Telegram delivery is always performed by telegram_dispatch.
-      # Setting kakao here additionally sends the same report to KakaoTalk memo.
       NOTIFIER: kakao
       KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
       KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
       KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
       KAKAO_WEB_URL: ${{ secrets.KAKAO_WEB_URL }}
+      NEWS_MEMORY_RETENTION_HOURS: "168"
+      NEWS_MEMORY_MAX_EVENTS: "500"
+      STRATEGY_LEDGER_MAX_ITEMS: "500"
+      STRATEGY_MIN_SCORE: "1.5"
 
     steps:
       - name: Checkout
@@ -87,9 +89,7 @@ jobs:
               schedule = str(payload.get("schedule") or "").strip()
               inputs = payload.get("inputs", {}) or {}
 
-          now_utc = datetime.now(timezone.utc)
-          now_kst = now_utc.astimezone(ZoneInfo("Asia/Seoul"))
-
+          now_kst = datetime.now(timezone.utc).astimezone(ZoneInfo("Asia/Seoul"))
           hours = inputs.get("hours") or "1"
           limit = inputs.get("limit") or "999"
           briefing_kind = inputs.get("briefing_kind") or "regular"
@@ -98,8 +98,15 @@ jobs:
           if event_name == "schedule":
               hours = "1"
               limit = "999"
-              briefing_kind = "regular"
-              reason = "kst_0700_to_2300_every_30_minutes"
+              if schedule == "0 22 * * *":
+                  briefing_kind = "strategy_morning"
+                  reason = "kst_0700_morning_strategy"
+              elif schedule == "30 13 * * *":
+                  briefing_kind = "strategy_evening"
+                  reason = "kst_2230_evening_strategy"
+              else:
+                  briefing_kind = "regular"
+                  reason = "half_hour_tracking_and_evaluation"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
               out.write(f"hours={hours}\n")
@@ -163,10 +170,7 @@ jobs:
 
           bot_token = clean_secret(os.getenv("TELEGRAM_BOT_TOKEN"))
           try:
-              response = requests.get(
-                  f"https://api.telegram.org/bot{bot_token}/getMe",
-                  timeout=20,
-              )
+              response = requests.get(f"https://api.telegram.org/bot{bot_token}/getMe", timeout=20)
               payload = response.json() if response.content else {}
           except Exception as exc:
               print("Telegram Bot API authorization check failed before the briefing.")
@@ -185,7 +189,7 @@ jobs:
           print("KakaoTalk delivery secrets are present.")
           PY
 
-      - name: Show delivery mode
+      - name: Show delivery and learning mode
         run: |
           python - <<'PY'
           import os
@@ -193,11 +197,12 @@ jobs:
           print("Telegram delivery: enabled")
           print("Telegram target chat id(s): " + ("present" if target_present else "missing"))
           print("KakaoTalk memo delivery: enabled")
-          print("Kakao REST API key: " + ("present" if os.getenv("KAKAO_REST_API_KEY") else "missing"))
-          print("Kakao refresh token: " + ("present" if os.getenv("KAKAO_REFRESH_TOKEN") else "missing"))
+          print("Adaptive strategy state: reports/adaptive_strategy_state.json")
+          print("Strategy ledger: reports/strategy_ledger.json")
+          print("News memory: reports/news_memory.json")
           PY
 
-      - name: Run news briefing and send notifications
+      - name: Run news tracking, evaluation, and notifications
         env:
           BRIEFING_KIND: ${{ steps.cadence.outputs.briefing_kind }}
         run: |
@@ -206,7 +211,7 @@ jobs:
           LIMIT="${{ steps.cadence.outputs.limit || '999' }}"
           python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT" --send
 
-      - name: Commit latest report cache
+      - name: Commit report and adaptive learning state
         run: |
           if [ ! -f reports/latest_report.json ]; then
             echo "latest_report.json not found; skip commit"
@@ -214,19 +219,32 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f reports/latest_report.json reports/latest_report.md
+          for file in \
+            reports/latest_report.json \
+            reports/latest_report.md \
+            reports/adaptive_strategy_state.json \
+            reports/strategy_ledger.json \
+            reports/news_memory.json; do
+            if [ -f "$file" ]; then
+              git add -f "$file"
+            fi
+          done
           if git diff --cached --quiet; then
-            echo "No latest report changes to commit"
+            echo "No report or adaptive state changes to commit"
             exit 0
           fi
-          git commit -m "Update latest news report cache [skip ci]"
+          git commit -m "Update news and adaptive strategy state [skip ci]"
           git pull --rebase
           git push
 
-      - name: Upload report artifact
+      - name: Upload report and strategy artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: telegram-news-reports
-          path: reports/*.md
+          name: telegram-news-and-strategy
+          path: |
+            reports/*.md
+            reports/adaptive_strategy_state.json
+            reports/strategy_ledger.json
+            reports/news_memory.json
           if-no-files-found: ignore
