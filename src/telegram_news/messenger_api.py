@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote_plus
+from urllib.parse import parse_qs, quote_plus
 import hashlib
 import html
 import os
@@ -18,7 +18,7 @@ from . import bot_services as base
 from .report_cache import load_latest_report
 
 app = FastAPI(title="Telegram News Messenger API")
-API_VERSION = "messenger-stable-v3"
+API_VERSION = "messenger-stable-v4"
 base.PROFILE_PATH = Path(os.getenv("BOT_PROFILE_PATH", "/tmp/bot_profiles.json"))
 _KR_SYMBOL_CACHE: dict[str, tuple[str, str, str]] | None = None
 
@@ -354,6 +354,19 @@ def answer(message: str, user_id: str) -> str:
         return "처리 실패\n" + f"원인: {type(exc).__name__}: {exc}\n" + traceback.format_exc(limit=1)
 
 
+def _parse_urlencoded_payload(raw: str) -> dict[str, str]:
+    """Decode MessengerBotR/HTML form bodies without python-multipart."""
+    if not raw:
+        return {}
+    try:
+        parsed = parse_qs(raw, keep_blank_values=True, strict_parsing=False)
+    except Exception:
+        return {}
+    payload = {key: values[-1] if values else "" for key, values in parsed.items()}
+    recognized = {"message", "msg", "text", "utterance", "sender", "user_id", "room"}
+    return payload if recognized.intersection(payload) else {}
+
+
 async def _payload(request: Request) -> dict:
     try:
         return await request.json()
@@ -365,7 +378,12 @@ async def _payload(request: Request) -> dict:
         pass
     try:
         raw = (await request.body()).decode("utf-8", errors="ignore").strip()
-        return {"message": raw} if raw else {}
+        if not raw:
+            return {}
+        decoded = _parse_urlencoded_payload(raw)
+        if decoded:
+            return decoded
+        return {"message": raw}
     except Exception:
         return {}
 
