@@ -43,6 +43,10 @@ def _snapshot():
             "^GSPC": {"price": 6900, "change_pct": 0.70},
             "^RUT": {"price": 2400, "change_pct": -0.50},
             "^SOX": {"price": 6500, "change_pct": 0.07},
+            "^TNX": {"price": 4.73, "change_pct": 0.50},
+            "^TYX": {"price": 5.27, "change_pct": 0.40},
+            "^VIX": {"price": 18.20, "change_pct": -2.00},
+            "CL=F": {"price": 82.40, "change_pct": 1.10},
             "QQQ": {"price": 600, "change_pct": 1.10},
             "EEM": {"price": 50, "change_pct": 0.30},
             "HYG": {"price": 80, "change_pct": 0.10},
@@ -112,6 +116,8 @@ def test_market_note_uses_requested_closing_note_structure(monkeypatch):
     assert "📊 마감 지수" in note
     assert "다우 ▲ +0.53%" in note
     assert "러셀2000 ▼ -0.50%" in note
+    assert "미30년물 5.27%" in note
+    assert "WTI $82.40" in note
     assert "■ 장세 요약" in note
     assert "■ 변화 요인 ①" in note
     assert "■ 미국빅테크" in note or "■ AI인프라" in note
