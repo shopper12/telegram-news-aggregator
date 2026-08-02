@@ -193,7 +193,7 @@ def test_messenger_bridge_expands_reply_route_limit(monkeypatch):
             self.dependant = SimpleNamespace(call=None)
 
     route = Route()
-    long_note = "가" * 3000
+    long_note = "가" * 6000
     api = SimpleNamespace(
         _news=lambda: "기존",
         _market_note_bridge_installed=False,
@@ -211,5 +211,5 @@ def test_messenger_bridge_expands_reply_route_limit(monkeypatch):
     formatter.install_messenger_bridge(api)
     response = route.dependant.call(SimpleNamespace(query_params={}))
 
-    assert len(response) == 3000
+    assert len(response) == 6000
     assert response == long_note
