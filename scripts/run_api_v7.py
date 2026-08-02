@@ -7,6 +7,7 @@ import telegram_news.messenger_api
 import uvicorn
 
 from telegram_news.consistency_rules import install as install_consistency_rules
+from telegram_news.market_note_formatter import install_dispatch_hook, install_messenger_bridge
 
 
 def _optional_apply(import_path: str) -> Callable[[Any], Any]:
@@ -22,6 +23,8 @@ def _optional_apply(import_path: str) -> Callable[[Any], Any]:
 
 
 install_consistency_rules()
+install_dispatch_hook()
+install_messenger_bridge(telegram_news.messenger_api)
 
 for apply_patch in [
     _optional_apply("telegram_news.naver_quote_patch.apply"),
