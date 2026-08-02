@@ -176,3 +176,34 @@ def test_messenger_bridge_prefers_cached_formatted_note(monkeypatch):
     formatter.install_messenger_bridge(api)
 
     assert api._news() == cached
+
+
+def test_messenger_bridge_expands_reply_route_limit(monkeypatch):
+    class Route:
+        def __init__(self):
+            self.path = "/reply"
+            self.methods = {"GET"}
+            self.endpoint = None
+            self.dependant = SimpleNamespace(call=None)
+
+    route = Route()
+    long_note = "가" * 3000
+    api = SimpleNamespace(
+        _news=lambda: "기존",
+        _market_note_bridge_installed=False,
+        app=SimpleNamespace(routes=[route]),
+        _query_message=lambda request: "봇 뉴스",
+        _query_user=lambda request: "tester",
+        answer=lambda message, user_id: long_note,
+    )
+
+    monkeypatch.setattr(
+        "telegram_news.report_cache.load_latest_report",
+        lambda: {"report": long_note},
+    )
+
+    formatter.install_messenger_bridge(api)
+    response = route.dependant.call(SimpleNamespace(query_params={}))
+
+    assert len(response) == 3000
+    assert response == long_note
