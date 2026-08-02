@@ -15,7 +15,7 @@ from . import strict_report_v2 as base_report
 KST = ZoneInfo("Asia/Seoul")
 MAX_NOTE_SECTORS = int(os.getenv("MARKET_NOTE_MAX_SECTORS", "3"))
 MAX_NOTE_CHARS = int(os.getenv("MAX_REPORT_CHARS", "12000"))
-MESSENGER_NOTE_MAX_CHARS = int(os.getenv("MESSENGER_NOTE_MAX_CHARS", "3500"))
+MESSENGER_NOTE_MAX_CHARS = int(os.getenv("MESSENGER_NOTE_MAX_CHARS", "8000"))
 NOTE_ASSETS = {
     "^DJI": "다우",
     "^GSPC": "S&P500",
