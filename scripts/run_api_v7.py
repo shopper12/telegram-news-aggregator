@@ -6,6 +6,8 @@ from typing import Any, Callable
 import telegram_news.messenger_api
 import uvicorn
 
+from telegram_news.consistency_rules import install as install_consistency_rules
+
 
 def _optional_apply(import_path: str) -> Callable[[Any], Any]:
     module_name, _, attr = import_path.rpartition(".")
@@ -18,6 +20,8 @@ def _optional_apply(import_path: str) -> Callable[[Any], Any]:
         print(f"[run_api_v7] optional patch skipped: {import_path} ({type(exc).__name__}: {exc})")
     return lambda api_module: api_module
 
+
+install_consistency_rules()
 
 for apply_patch in [
     _optional_apply("telegram_news.naver_quote_patch.apply"),
