@@ -24,7 +24,6 @@ def _optional_apply(import_path: str) -> Callable[[Any], Any]:
 
 install_consistency_rules()
 install_dispatch_hook()
-install_messenger_bridge(telegram_news.messenger_api)
 
 for apply_patch in [
     _optional_apply("telegram_news.naver_quote_patch.apply"),
@@ -34,6 +33,8 @@ for apply_patch in [
     _optional_apply("telegram_news.telegram_webhook.apply"),
 ]:
     apply_patch(telegram_news.messenger_api)
+
+install_messenger_bridge(telegram_news.messenger_api)
 
 
 if __name__ == "__main__":
