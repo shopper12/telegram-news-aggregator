@@ -270,6 +270,23 @@ def _flow_summary(snapshot: dict[str, Any]) -> str:
     return " / ".join(values) if values else "자금 흐름 프록시 확인불가"
 
 
+def _macro_snapshot(snapshot: dict[str, Any]) -> str:
+    parts: list[str] = []
+    ten_year = _asset_price(snapshot, "^TNX")
+    thirty_year = _asset_price(snapshot, "^TYX")
+    vix = _asset_price(snapshot, "^VIX")
+    oil = _asset_price(snapshot, "CL=F")
+    if ten_year is not None:
+        parts.append(f"미10년물 {ten_year:.2f}%")
+    if thirty_year is not None:
+        parts.append(f"미30년물 {thirty_year:.2f}%")
+    if vix is not None:
+        parts.append(f"VIX {vix:.2f}")
+    if oil is not None:
+        parts.append(f"WTI ${oil:.2f}")
+    return " / ".join(parts) if parts else "금리·변동성·유가 확인불가"
+
+
 def _market_summary(
     note_name: str,
     payloads: list[dict[str, Any]],
@@ -283,8 +300,9 @@ def _market_summary(
     ]
     if payloads:
         bullets.append(f"　- 핵심 뉴스: {payloads[0]['title']}")
+    bullets.append(f"　- 매크로: {_macro_snapshot(snapshot)}")
     bullets.append(f"　- 자금 흐름: {_flow_summary(snapshot)}")
-    return bullets[:4]
+    return bullets[:5]
 
 
 def _change_factor_lines(index: int, payload: dict[str, Any]) -> list[str]:
