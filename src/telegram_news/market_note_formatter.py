@@ -15,6 +15,7 @@ from . import strict_report_v2 as base_report
 KST = ZoneInfo("Asia/Seoul")
 MAX_NOTE_SECTORS = int(os.getenv("MARKET_NOTE_MAX_SECTORS", "3"))
 MAX_NOTE_CHARS = int(os.getenv("MAX_REPORT_CHARS", "12000"))
+MESSENGER_NOTE_MAX_CHARS = int(os.getenv("MESSENGER_NOTE_MAX_CHARS", "3500"))
 NOTE_ASSETS = {
     "^DJI": "다우",
     "^GSPC": "S&P500",
@@ -586,6 +587,39 @@ def install_dispatch_hook() -> None:
     _DISPATCH_HOOKED = True
 
 
+def _patch_messenger_reply_routes(api_module: Any) -> None:
+    app = getattr(api_module, "app", None)
+    routes = list(getattr(app, "routes", []) or [])
+    for route in routes:
+        path = str(getattr(route, "path", "") or "")
+        methods = set(getattr(route, "methods", set()) or set())
+        dependant = getattr(route, "dependant", None)
+        if path not in {"/reply", "/api/reply"} or dependant is None:
+            continue
+        if "GET" in methods:
+            def full_reply_get(request, _api=api_module):
+                message = _api._query_message(request)
+                user_id = _api._query_user(request)
+                return _api.answer(message, user_id)[:MESSENGER_NOTE_MAX_CHARS]
+
+            route.endpoint = full_reply_get
+            dependant.call = full_reply_get
+        elif "POST" in methods:
+            async def full_reply_post(request, _api=api_module):
+                data = await _api._payload(request)
+                message = _api._clean(
+                    data.get("message")
+                    or data.get("msg")
+                    or data.get("text")
+                    or data.get("utterance")
+                )
+                user_id = _api._clean(data.get("sender") or data.get("user_id") or "default-user")
+                return _api.answer(message, user_id)[:MESSENGER_NOTE_MAX_CHARS]
+
+            route.endpoint = full_reply_post
+            dependant.call = full_reply_post
+
+
 def install_messenger_bridge(api_module: Any) -> Any:
     if getattr(api_module, "_market_note_bridge_installed", False):
         return api_module
@@ -604,5 +638,6 @@ def install_messenger_bridge(api_module: Any) -> Any:
         return original_news()
 
     api_module._news = cached_note_first
+    _patch_messenger_reply_routes(api_module)
     api_module._market_note_bridge_installed = True
     return api_module
