@@ -91,6 +91,16 @@ def _mark_dispatch_state(report_hash: str, chat_count: int, status: str) -> None
     LATEST_REPORT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def _cached_report_text(report_text: str | None = None, *, channel: str = "dispatch") -> str:
+    payload = load_latest_report()
+    cached_report = str(payload.get("report") or "").strip()
+    if not cached_report:
+        raise RuntimeError("reports/latest_report.json has no report text")
+    if report_text and report_text.strip() != cached_report:
+        print(f"[{channel}] generated text differs from cache; cached report will be sent")
+    return cached_report
+
+
 def dispatch_latest_report_to_telegram(
     report_text: str | None = None,
     *,
@@ -114,14 +124,7 @@ def dispatch_latest_report_to_telegram(
         return False
 
     try:
-        payload = load_latest_report()
-        cached_report = str(payload.get("report") or "").strip()
-        if not cached_report:
-            raise RuntimeError("reports/latest_report.json has no report text")
-
-        if report_text and report_text.strip() != cached_report:
-            print("[telegram-dispatch] generated text differs from cache; cached report will be sent")
-
+        cached_report = _cached_report_text(report_text, channel="telegram-dispatch")
         current_hash = _report_hash(cached_report)
         last_hash = (previous_hash or _last_dispatched_hash()).strip()
         if not force and last_hash and current_hash == last_hash:
@@ -144,6 +147,26 @@ def dispatch_latest_report_to_telegram(
         return True
     except Exception as exc:
         print(f"[telegram-dispatch] failed: {type(exc).__name__}: {exc}")
+        if raise_on_error:
+            raise
+        return False
+
+
+def dispatch_latest_report_to_kakao(
+    report_text: str | None = None,
+    *,
+    raise_on_error: bool = False,
+) -> bool:
+    """Send exactly the same cached report body used by Telegram to KakaoTalk."""
+    try:
+        cached_report = _cached_report_text(report_text, channel="kakao-dispatch")
+        from . import app
+
+        app._send_report_to_kakao(cached_report)
+        print(f"[kakao-dispatch] sent cached report: sha256={_report_hash(cached_report)}")
+        return True
+    except Exception as exc:
+        print(f"[kakao-dispatch] failed: {type(exc).__name__}: {exc}")
         if raise_on_error:
             raise
         return False
@@ -221,7 +244,7 @@ def _install_cli_dispatch_hook(previous_hash: str) -> None:
         if notifier not in {"none", "", "off", "false", "no", "telegram", "kakao", "discord", "both", "all"}:
             raise RuntimeError("NOTIFIER must be one of: none, telegram, kakao, discord, both, all")
         if notifier in {"kakao", "both", "all"}:
-            app._send_report_to_kakao(report)
+            dispatch_latest_report_to_kakao(report, raise_on_error=True)
         if notifier in {"discord", "both", "all"}:
             app._send_report_to_discord(report)
 
