@@ -3,6 +3,10 @@ from __future__ import annotations
 import os
 from typing import Any, Callable
 
+# Kakao MessengerBotR must be able to return the same full report body that
+# Telegram receives. Keep its response limit aligned with the report limit.
+os.environ["MESSENGER_NOTE_MAX_CHARS"] = os.getenv("MAX_REPORT_CHARS", "12000")
+
 import telegram_news.messenger_api
 import uvicorn
 
