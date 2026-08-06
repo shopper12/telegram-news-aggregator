@@ -50,28 +50,31 @@ def _chunk_size() -> int:
 
 
 def split_for_kakao(text: str, chunk_chars: int | None = None) -> list[str]:
-    text = (text or "").strip()
-    if not text:
+    """Split Kakao messages without adding, deleting, or reordering report text.
+
+    Kakao's text template is much shorter than Telegram's message limit, so a long
+    report must be delivered as multiple Kakao messages. The chunks are exact
+    substrings of the normalized report: ``''.join(chunks)`` is always identical
+    to ``text.strip()``. Newline boundaries are preferred when possible, but the
+    newline itself is kept in one chunk so no report content is lost.
+    """
+    normalized = (text or "").strip()
+    if not normalized:
         return []
+
     limit = chunk_chars or _chunk_size()
     chunks: list[str] = []
-    current = ""
-
-    for block in text.split("\n"):
-        candidate = block if not current else current + "\n" + block
-        if len(candidate) <= limit:
-            current = candidate
-            continue
-        if current:
-            chunks.append(current)
-            current = ""
-        while len(block) > limit:
-            chunks.append(block[:limit])
-            block = block[limit:]
-        current = block
-
-    if current:
-        chunks.append(current)
+    remaining = normalized
+    while len(remaining) > limit:
+        split_at = remaining.rfind("\n", 0, limit + 1)
+        if split_at < max(1, limit // 2):
+            split_at = limit
+        else:
+            split_at += 1  # preserve the newline in the emitted chunk
+        chunks.append(remaining[:split_at])
+        remaining = remaining[split_at:]
+    if remaining:
+        chunks.append(remaining)
     return chunks
 
 
@@ -113,10 +116,9 @@ def send_kakao_memo(
     chunks = split_for_kakao(text)
     total = len(chunks)
     for idx, chunk in enumerate(chunks, 1):
-        prefix = f"({idx}/{total})\n" if total > 1 else ""
         _send_text_template(
             access_token=access_token,
-            text=prefix + chunk,
+            text=chunk,
             web_url=web_url,
             button_title="리포트 확인" if total == 1 else f"리포트 {idx}/{total}",
         )
