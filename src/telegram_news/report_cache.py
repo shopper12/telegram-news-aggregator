@@ -17,6 +17,7 @@ MIN_REPORT_OK_LENGTH = int(os.getenv("MIN_REPORT_OK_LENGTH", "100"))
 # Enable the GitHub source by default, but accept it only when it is newer and not stale.
 ENABLE_GITHUB_REPORT_FALLBACK = os.getenv("ENABLE_GITHUB_REPORT_FALLBACK", "1") == "1"
 ALLOW_STALE_GITHUB_FALLBACK = os.getenv("ALLOW_STALE_GITHUB_FALLBACK", "0") == "1"
+ALLOW_STALE_LOCAL_REPORT = os.getenv("ALLOW_STALE_LOCAL_REPORT", "0") == "1"
 
 
 def _normalize_report_payload(data: dict) -> dict:
@@ -113,22 +114,33 @@ def _is_stale(generated_at: str) -> bool:
     return bool(age is not None and age > MAX_CACHE_AGE_SECONDS)
 
 
-def _with_stale_notice(data: dict) -> dict:
-    generated_at = data.get("generated_at", "")
-    age_sec = _age_seconds(generated_at) if generated_at else None
-    report = str(data.get("report", ""))
-    if report.startswith("⚠️ 마지막 업데이트"):
+def _stale_result(data: dict) -> dict:
+    generated_at = str(data.get("generated_at") or "시간미상")
+    age_sec = _age_seconds(generated_at) if generated_at != "시간미상" else None
+    if ALLOW_STALE_LOCAL_REPORT:
+        report = str(data.get("report") or "")
+        if not report.startswith("⚠️ 마지막 업데이트"):
+            if age_sec is None:
+                notice = "⚠️ 오래된 저장 리포트입니다.\n\n"
+            else:
+                age_h = age_sec // 3600
+                age_m = (age_sec % 3600) // 60
+                notice = f"⚠️ 마지막 업데이트로부터 {age_h}시간 {age_m}분 경과\n\n"
+            data["report"] = notice + report
         data["stale"] = True
         return _normalize_report_payload(data)
-    if age_sec is None:
-        data["stale"] = True
-        return _normalize_report_payload(data)
-    age_h = age_sec // 3600
-    age_m = (age_sec % 3600) // 60
-    stale_notice = f"⚠️ 마지막 업데이트로부터 {age_h}시간 {age_m}분 경과\n\n"
-    data["stale"] = True
-    data["report"] = stale_notice + report
-    return _normalize_report_payload(data)
+
+    return {
+        "ok": False,
+        "stale": True,
+        "error": "latest_report_stale",
+        "generated_at": generated_at,
+        "report": (
+            "⚠️ 최신 뉴스 리포트가 아직 갱신되지 않았습니다.\n"
+            f"마지막 저장 시각: {generated_at}\n"
+            "오래된 뉴스 본문은 표시하지 않습니다. GitHub Actions 최신 수집 결과를 확인하세요."
+        ),
+    }
 
 
 def load_latest_report() -> dict:
@@ -143,7 +155,7 @@ def load_latest_report() -> dict:
                 if fallback and _is_newer_report(fallback, data):
                     fallback["fallback_reason"] = "local_cache_stale_github_newer"
                     return fallback
-                return _with_stale_notice(data)
+                return _stale_result(data)
 
             if len(report) < MIN_REPORT_OK_LENGTH:
                 fallback = _load_github_fallback()
@@ -170,5 +182,5 @@ def load_latest_report() -> dict:
     return {
         "ok": False,
         "error": "latest_report_not_found",
-        "report": "아직 생성된 텔레그램 뉴스 리포트가 없습니다. /api/refresh 또는 정시 수집이 먼저 필요합니다.",
+        "report": "아직 생성된 최신 뉴스 리포트가 없습니다. /api/refresh 또는 정시 수집이 먼저 필요합니다.",
     }
