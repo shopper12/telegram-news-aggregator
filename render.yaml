@@ -17,6 +17,10 @@ services:
         value: Asia/Seoul
       - key: LATEST_REPORT_URL
         value: https://raw.githubusercontent.com/shopper12/telegram-news-aggregator/main/reports/latest_report.json
+      - key: ENABLE_GITHUB_REPORT_FALLBACK
+        value: "1"
+      - key: REPORT_CACHE_MAX_AGE_SECONDS
+        value: "3600"
       - key: NEWS_BOT_API_KEY
         sync: false
       - key: TELEGRAM_API_ID
