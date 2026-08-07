@@ -1,7 +1,68 @@
 {
   "version": 1,
-  "updated_at": "2026-08-08T08:09:37+09:00",
+  "updated_at": "2026-08-08T08:29:03+09:00",
   "events": [
+    {
+      "signature": "a21eea351f0212d7e99c3927096808d70954ae15",
+      "title": "제본스 역설 작동 중 :",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 4,
+      "sentiment": 3,
+      "first_seen": "2026-08-07T23:23:35+00:00",
+      "last_seen": "2026-08-07T23:23:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "66c3bb683c9bfd2b35f4f6e93fa1a4c960f4c86a",
+      "title": "✍️ BrinK 크리에이터 콘텐츠 지원 프로그램 1회차 정식 오픈 전, 먼저 함께하실 크리에이터를 모집합니다. 4주간 글을 쓰시…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T23:19:36+00:00",
+      "last_seen": "2026-08-07T23:19:36+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2421c2c4597e22c10cdea963e0178340210bfce7",
+      "title": "🔔 트럼프 '4조원대 광업 프로젝트' 가동…고려아연 美 제련소 콕 찍었다 📈 #고려아연 #LS전선아시아 #대한전선 #풍산 #한국…",
+      "sectors": [
+        "전력기기"
+      ],
+      "keywords": [
+        "대한전선",
+        "전선"
+      ],
+      "tickers": [
+        "001440.KS"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T23:13:53+00:00",
+      "last_seen": "2026-08-07T23:13:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "18942112ef078bc15c9f18bbc0947b26fa35e4ca",
+      "title": "미국 상원이 ‘2026년 린지 O. 그레이엄 러시아 제재법’으로 불리는 상원 법안 5025호를 찬성 86표, 반대 11표로 통과…",
+      "sectors": [
+        "거시/정책",
+        "조선"
+      ],
+      "keywords": [
+        "관세",
+        "선박"
+      ],
+      "tickers": [],
+      "materiality": 10,
+      "sentiment": -1,
+      "first_seen": "2026-08-07T23:13:36+00:00",
+      "last_seen": "2026-08-07T23:13:36+00:00",
+      "count": 1
+    },
     {
       "signature": "15e4ded25bf014c93fb2766fe39ed626fb491cbb",
       "title": "[2026년 8월 8일 모닝 시황] 고용 쇼크발 금리 안도 랠리, S&P500 첫 7,700 돌파·메모리는 차별화 ───────…",
@@ -32,7 +93,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-07T23:04:29+00:00",
       "last_seen": "2026-08-07T23:04:29+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6a63809f4839f69bff268c617934fa835acafe2c",
@@ -47,7 +108,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-07T23:04:13+00:00",
       "last_seen": "2026-08-07T23:04:13+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "bc115616acdbd75279ee7d658f057840faeab8cd",
@@ -71,7 +132,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-07T23:03:53+00:00",
       "last_seen": "2026-08-07T23:03:53+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "f0cc6fb345fbc8f8a1b7d69ed08a0410006ff6e0",
@@ -97,11 +158,29 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T23:03:51+00:00",
       "last_seen": "2026-08-07T23:03:51+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "40a35c57b6e0dc715c4b0ceef495d96f2362ea31",
       "title": "주말 칼럼 “인시 발령” 허사비스는 최근까지 FINRA",
+      "sectors": [
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "ai",
+        "규제"
+      ],
+      "tickers": [],
+      "materiality": 12,
+      "sentiment": -1,
+      "first_seen": "2026-08-07T23:03:41+00:00",
+      "last_seen": "2026-08-07T23:03:41+00:00",
+      "count": 1
+    },
+    {
+      "signature": "35bf84db1db00838393aecd58a0cc4309688b986",
+      "title": "주말 칼럼 “인사 발령” 허사비스는 최근까지 FINRA",
       "sectors": [
         "AI인프라",
         "거시/정책"
@@ -131,7 +210,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T22:57:31+00:00",
       "last_seen": "2026-08-07T22:57:31+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "5f108c28dcf6310e7976bec272f46cb4d1fc8f98",
@@ -145,6 +224,28 @@
       ],
       "tickers": [],
       "materiality": 11,
+      "sentiment": -1,
+      "first_seen": "2026-08-07T22:54:33+00:00",
+      "last_seen": "2026-08-07T22:54:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "22f334b5c9a5e595169efa852f3f8a1d706776f0",
+      "title": "씨티가 마이크론의 목표주가를 기존 1,400달러에서 1,150달러로 하향 조정하고 매수 의견 유지. 씨티의 아티프 말릭 애널리스…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "dram",
+        "micron",
+        "mu",
+        "메모리"
+      ],
+      "tickers": [
+        "MU",
+        "TGT"
+      ],
+      "materiality": 12,
       "sentiment": -1,
       "first_seen": "2026-08-07T22:54:33+00:00",
       "last_seen": "2026-08-07T22:54:33+00:00",
@@ -168,7 +269,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-07T22:52:06+00:00",
       "last_seen": "2026-08-07T22:52:06+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "eeb20489627f1583db93eafccf1c593f2ba6d15b",
@@ -180,7 +281,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T22:42:30+00:00",
       "last_seen": "2026-08-07T22:50:40+00:00",
-      "count": 3
+      "count": 4
     },
     {
       "signature": "26ee3631149379b4bd004c0d1dad4d31cefe08ab",
@@ -205,7 +306,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T22:48:14+00:00",
       "last_seen": "2026-08-07T22:48:14+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c5f905228fb167702bee0efa017e26be7a383e9a",
@@ -221,7 +322,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T22:35:54+00:00",
       "last_seen": "2026-08-07T22:35:54+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "3041886e766cae3b7f0e0b7f5014c8d1680aa0cc",
@@ -238,7 +339,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T22:30:25+00:00",
       "last_seen": "2026-08-07T22:30:25+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "089c63f34d8fffb503f0ad4aa5352b2b7f0186c7",
@@ -273,7 +374,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-07T22:18:34+00:00",
       "last_seen": "2026-08-07T22:28:57+00:00",
-      "count": 3
+      "count": 4
     },
     {
       "signature": "f658a247b472955ecb99d636d7cdef67b5a26683",
