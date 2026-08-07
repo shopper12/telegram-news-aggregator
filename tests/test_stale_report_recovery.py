@@ -36,6 +36,7 @@ def test_stale_local_report_prefers_newer_github_report(tmp_path, monkeypatch):
 
     monkeypatch.setattr(report_cache, "LATEST_REPORT_JSON", local_path)
     monkeypatch.setattr(report_cache, "ENABLE_GITHUB_REPORT_FALLBACK", True)
+    monkeypatch.setattr(report_cache, "ALLOW_STALE_LOCAL_REPORT", False)
     monkeypatch.setattr(
         report_cache.requests,
         "get",
@@ -53,6 +54,38 @@ def test_stale_local_report_prefers_newer_github_report(tmp_path, monkeypatch):
 
     assert result["report"] == remote_report
     assert result["fallback_reason"] == "local_cache_stale_github_newer"
+
+
+def test_stale_local_report_hides_old_body_when_no_fresh_remote(tmp_path, monkeypatch):
+    local_path = tmp_path / "latest_report.json"
+    old_body = "절대 다시 보여주면 안 되는 7월 뉴스 " + ("x" * 120)
+    local_path.write_text(
+        json.dumps(
+            {
+                "ok": True,
+                "generated_at": "2026-07-22T03:59:21",
+                "report": old_body,
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(report_cache, "LATEST_REPORT_JSON", local_path)
+    monkeypatch.setattr(report_cache, "ENABLE_GITHUB_REPORT_FALLBACK", True)
+    monkeypatch.setattr(report_cache, "ALLOW_STALE_LOCAL_REPORT", False)
+    monkeypatch.setattr(
+        report_cache.requests,
+        "get",
+        lambda *args, **kwargs: FakeResponse(404, text="not found"),
+    )
+
+    result = report_cache.load_latest_report()
+
+    assert result["stale"] is True
+    assert result["error"] == "latest_report_stale"
+    assert "오래된 뉴스 본문은 표시하지 않습니다" in result["report"]
+    assert old_body not in result["report"]
 
 
 def test_kakao_oauth_400_exposes_error_without_secret(monkeypatch):
