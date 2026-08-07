@@ -11,6 +11,21 @@ KAKAO_MEMO_URL = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
 DEFAULT_KAKAO_TEXT_CHARS = 900
 
 
+def _response_detail(response: requests.Response) -> str:
+    try:
+        payload = response.json()
+        if isinstance(payload, dict):
+            error = str(payload.get("error") or "").strip()
+            description = str(payload.get("error_description") or payload.get("msg") or "").strip()
+            code = payload.get("code")
+            parts = [part for part in [error, description, f"code={code}" if code is not None else ""] if part]
+            if parts:
+                return " | ".join(parts)
+    except Exception:
+        pass
+    return str(response.text or "").strip()[:500] or "no response body"
+
+
 def refresh_kakao_access_token(rest_api_key: str, refresh_token: str, client_secret: str | None = None) -> tuple[str, str | None]:
     """Return a short-lived Kakao access token and an optional rotated refresh token.
 
@@ -31,7 +46,10 @@ def refresh_kakao_access_token(rest_api_key: str, refresh_token: str, client_sec
         headers={"Content-Type": "application/x-www-form-urlencoded;charset=utf-8"},
         timeout=20,
     )
-    response.raise_for_status()
+    if response.status_code >= 400:
+        raise RuntimeError(
+            f"Kakao token refresh failed: HTTP {response.status_code}: {_response_detail(response)}"
+        )
     payload = response.json()
     access_token = payload.get("access_token")
     if not access_token:
@@ -97,7 +115,10 @@ def _send_text_template(access_token: str, text: str, web_url: str, button_title
         data={"template_object": json.dumps(template_object, ensure_ascii=False)},
         timeout=20,
     )
-    response.raise_for_status()
+    if response.status_code >= 400:
+        raise RuntimeError(
+            f"Kakao memo send failed: HTTP {response.status_code}: {_response_detail(response)}"
+        )
 
 
 def send_kakao_memo(
