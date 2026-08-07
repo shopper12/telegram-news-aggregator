@@ -212,6 +212,7 @@ jobs:
           python scripts/run_once.py run --hours "$HOURS" --limit "$LIMIT" --send
 
       - name: Commit report and adaptive learning state
+        if: always()
         run: |
           if [ ! -f reports/latest_report.json ]; then
             echo "latest_report.json not found; skip commit"
