@@ -1,7 +1,411 @@
 {
   "version": 1,
-  "updated_at": "2026-08-08T00:00:54+09:00",
+  "updated_at": "2026-08-08T07:49:04+09:00",
   "events": [
+    {
+      "signature": "eeb20489627f1583db93eafccf1c593f2ba6d15b",
+      "title": "매수, 매도 추천이 아니며, 해당 게시물의 내용은 법적 증거로 사용될 수 없습니다. 매매에 따른 손실은 거래 당사자의 책임입니다",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:42:30+00:00",
+      "last_seen": "2026-08-07T22:44:27+00:00",
+      "count": 2
+    },
+    {
+      "signature": "c5f905228fb167702bee0efa017e26be7a383e9a",
+      "title": "한미약품그룹, 중국 자회사 매출채권 점검 위한 CEO·CFO 동반 출장 https://m.stock.naver.com/inves…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:35:54+00:00",
+      "last_seen": "2026-08-07T22:35:54+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3041886e766cae3b7f0e0b7f5014c8d1680aa0cc",
+      "title": "🔔 코스닥 상폐 '정상기업 예외' 요구에도…금융위, 신중론 유지 📈 #에스에이티 #다믈멀티미디어 #오픈엣지테크놀로지 #코리아센터…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 12,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:30:25+00:00",
+      "last_seen": "2026-08-07T22:30:25+00:00",
+      "count": 1
+    },
+    {
+      "signature": "089c63f34d8fffb503f0ad4aa5352b2b7f0186c7",
+      "title": "서학개미 순매수 미국 주식 TOP 50 기간: 2026/08/03 ~ 2026/08/07 1위: AMAZON.COM INC",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "양자"
+      ],
+      "keywords": [
+        "ai",
+        "ionq",
+        "meta",
+        "micron",
+        "oracle",
+        "semiconductor",
+        "환율"
+      ],
+      "tickers": [
+        "AAOI",
+        "AAPL",
+        "ALTO",
+        "AMAT",
+        "AMD",
+        "AMZN",
+        "ATI",
+        "BOND"
+      ],
+      "materiality": 21,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T22:18:34+00:00",
+      "last_seen": "2026-08-07T22:28:57+00:00",
+      "count": 2
+    },
+    {
+      "signature": "f658a247b472955ecb99d636d7cdef67b5a26683",
+      "title": "🔔 밸류업 747곳 발표…코스닥 상장사는 33% 그쳐 📈 #한미반도체 #하나금융지주 #미래에셋증권 #비츠로셀 #대상 📝 #밸류업…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "한미반도체"
+      ],
+      "tickers": [
+        "035420.KS",
+        "042700.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 15,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T22:15:53+00:00",
+      "last_seen": "2026-08-07T22:15:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "be98258e52f876e989c6c9003f3dde86a5d3dc49",
+      "title": "일본 오키나와 현에 태풍 13호가 상륙",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:15:33+00:00",
+      "last_seen": "2026-08-07T22:15:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2d538f2f20529f5f7c45fd7ebf0a10fd02dbac98",
+      "title": "미 국방부가 미확인비행물체",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "UFO"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:14:37+00:00",
+      "last_seen": "2026-08-07T22:14:37+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0733c994180fe89255006e9ab4cffb3bf83ba35c",
+      "title": "폭스뉴스에 따르면 트럼프 대통령이 첨단 무기부터 자동차까지 핵심 산업에 필요한 중요 광물에 대한 미국의 통제권을 되찾고 있다고 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:13:52+00:00",
+      "last_seen": "2026-08-07T22:13:52+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4a354d195a9fe6c140a80a67d1a74d867cfd79ac",
+      "title": "🔔 라스베가스 안 부러운 ‘여수판 스피어’…세계 섬박람회 반전 근황",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:11:36+00:00",
+      "last_seen": "2026-08-07T22:11:36+00:00",
+      "count": 1
+    },
+    {
+      "signature": "32b2caf2ef903cbc9f5c850261890238c9fbdc10",
+      "title": "예멘군 성명: 2026년 8월 7일, 다수의 미사일과 드론으로 ‘사흔 알진’ 군사기지에 집결한 사우디 적군 병력과 무기고, 군용…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:10:57+00:00",
+      "last_seen": "2026-08-07T22:10:57+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d6b47fe9833ef15352bd79f7f15c00ff16a7d622",
+      "title": "사우디아라비아 왕세자, 파키스탄 총리, 그리고 튀르키예 대통령은 \"메카 협정\"에 서명한 후, 3개국 간의 안보 동맹을 상징하는 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:09:29+00:00",
+      "last_seen": "2026-08-07T22:09:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "9e2749e6dc0d4844c8cc1073747c86f079ef941f",
+      "title": "가능하면 빨리 끝내 주시면 감사하겠습니다. 왜냐하면 저희는 전쟁을 수행해야 하기 때문입니다. 제가 조금 일찍 자리를 뜨는 이유는…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": -1,
+      "first_seen": "2026-08-07T22:07:56+00:00",
+      "last_seen": "2026-08-07T22:07:56+00:00",
+      "count": 1
+    },
+    {
+      "signature": "38a02665a60c5e0042c58ff1cbac72a38a8bdba4",
+      "title": "미 공군은 호르무즈 해협 주변 순찰 강화중",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:07:10+00:00",
+      "last_seen": "2026-08-07T22:07:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "29274655a035d95440df39e940d3154247616add",
+      "title": "🔔 자큐보 인도 허가에 온코닉 급등…큐리언트·보로노이도 강세",
+      "sectors": [
+        "AI인프라",
+        "바이오"
+      ],
+      "keywords": [
+        "ai",
+        "신약",
+        "품목허가",
+        "허가"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 14,
+      "sentiment": 3,
+      "first_seen": "2026-08-07T22:04:22+00:00",
+      "last_seen": "2026-08-07T22:04:22+00:00",
+      "count": 1
+    },
+    {
+      "signature": "253a70395fb2f5ac598cf553d1f053645b3271e7",
+      "title": "차주 실적 발표 리스트",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T22:02:33+00:00",
+      "last_seen": "2026-08-07T22:02:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e4a246869ebe617d98f4b0d87c66f5effc30b9da",
+      "title": "테이크투 인터랙티브",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "TTWO",
+        "UA"
+      ],
+      "materiality": 10,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T22:00:51+00:00",
+      "last_seen": "2026-08-07T22:00:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6d8bc0fbad29ff02c336c6db958ee889583b60cf",
+      "title": "구글, 2분기 말 기준 주식 포트폴리오 업데이트. • 스페이스X: 551,189,500주 • 플래닛 랩스: 35,248,893주…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T21:58:55+00:00",
+      "last_seen": "2026-08-07T21:58:55+00:00",
+      "count": 1
+    },
+    {
+      "signature": "76dd306ffeca12d358f71f23ae00f4d8f6a76594",
+      "title": "모건스탠리가 SK하이닉스와 삼성전자에 대한 비중확대 의견 유지. 목표주가는 각각 260만원과 38만1,000원으로 제시. 보고서…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "dram",
+        "sk하이닉스",
+        "메모리",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "materiality": 15,
+      "sentiment": 3,
+      "first_seen": "2026-08-07T21:57:29+00:00",
+      "last_seen": "2026-08-07T21:57:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ae9d0f0ee1ef5cb3231a4cc6d27f20e797efa6e0",
+      "title": "베선트 미국 재무장관이 7월 고용보고서가 미국 실물경제의 잠재력을 과소평가하고 있다고 주장. 미국 내 기업들이 시설을 건설하고 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 2,
+      "first_seen": "2026-08-07T21:57:08+00:00",
+      "last_seen": "2026-08-07T21:57:08+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b8d939dc34c0e87228d9a37c13d6765096746f0c",
+      "title": "케빈 워시 연준 의장 취임 후 첫 번째 온전한 한 달인 6월 일정표에 의원, 백악관 관계자, 민간 경제학자와의 통화 및 회의는 …",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "연준"
+      ],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T21:56:49+00:00",
+      "last_seen": "2026-08-07T21:56:49+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1087022f76d8e53541c61fc337dd9dfab670ff25",
+      "title": "미국 상원이 직업 경제학자 브렛 마쓰모토를 노동통계국",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "BLS"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T21:56:35+00:00",
+      "last_seen": "2026-08-07T21:56:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "455097d2785ea349cd0f5d0088c37eb26a83f1c8",
+      "title": "미국 상원이 러시아 에너지 부문을 대상으로 한 광범위한 제재 법안을 찬성 86표, 반대 11표로 통과시켜 하원으로 송부.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": -1,
+      "first_seen": "2026-08-07T21:56:20+00:00",
+      "last_seen": "2026-08-07T21:56:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a44ce8bd5e99915dab5bc605444ac344e69825b7",
+      "title": "미 국방부가 올해 말까지 차세대 우주 기반 미사일 방어 프로젝트의 첫 시험을 진행하고 2027년에는 아직 검증되지 않은 해당 기…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T21:55:53+00:00",
+      "last_seen": "2026-08-07T21:55:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c7fc2161aad47856dfb4fadc1313c440c3f175b9",
+      "title": "뉴욕 연은 조사에서 미국 소비자들의 노동시장 전망이 7월 개선되고 향후 인플레이션 기대도 하락한 것으로 나타남. 실직할 경우 새…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T21:55:36+00:00",
+      "last_seen": "2026-08-07T21:55:36+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4c5f0bb4eb64a64702e0adbc0b74397a039b6b65",
+      "title": "2026년 8월 8일 미국 증시 브리핑 미국 증시는 7월 고용 쇼크에 따른 통화정책 부담 완화와 기술주 강세가 결합되며 상승 마…",
+      "sectors": [
+        "2차전지",
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "전력기기"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "dram",
+        "gpu",
+        "hbm",
+        "sk하이닉스",
+        "규제",
+        "금리",
+        "데이터센터",
+        "메모리"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "ADT",
+        "YI"
+      ],
+      "materiality": 37,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T21:49:21+00:00",
+      "last_seen": "2026-08-07T21:52:12+00:00",
+      "count": 2
+    },
     {
       "signature": "e4225017676c1d9eb46d299ace902c6da33215c5",
       "title": "🔔 전문경영인 체제 안착한 한미약품, 2Q 영업익 117%'쑥'···한미사이언... 📈 #한미약품 #한미사이언스 📝 #제약바이오…",
