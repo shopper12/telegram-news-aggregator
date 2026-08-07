@@ -13,7 +13,9 @@ DEFAULT_LATEST_REPORT_URL = "https://raw.githubusercontent.com/shopper12/telegra
 FALLBACK_TIMEOUT_SECONDS = float(os.getenv("LATEST_REPORT_FALLBACK_TIMEOUT_SECONDS", "5.0"))
 MAX_CACHE_AGE_SECONDS = int(os.getenv("REPORT_CACHE_MAX_AGE_SECONDS", "3600"))  # 기본 1시간
 MIN_REPORT_OK_LENGTH = int(os.getenv("MIN_REPORT_OK_LENGTH", "100"))
-ENABLE_GITHUB_REPORT_FALLBACK = os.getenv("ENABLE_GITHUB_REPORT_FALLBACK", "0") == "1"
+# Render is long-lived while GitHub Actions keeps reports/latest_report.json fresh.
+# Enable the GitHub source by default, but accept it only when it is newer and not stale.
+ENABLE_GITHUB_REPORT_FALLBACK = os.getenv("ENABLE_GITHUB_REPORT_FALLBACK", "1") == "1"
 ALLOW_STALE_GITHUB_FALLBACK = os.getenv("ALLOW_STALE_GITHUB_FALLBACK", "0") == "1"
 
 
@@ -66,9 +68,8 @@ def save_latest_report(*, report: str, kind: str, hours: int, source: str = "sch
 
 
 def _load_github_fallback() -> dict | None:
-    # 기본값은 GitHub fallback 비활성화다.
-    # 목적은 텔레그램 수집이 실패했을 때 오래된 GitHub raw 리포트나 과거 Google 뉴스 리포트가
-    # 다시 사용자에게 표시되는 것을 막는 것이다. 필요할 때만 env로 명시적으로 켠다.
+    # GitHub raw is the cross-runtime source of truth for Render when its checked-out
+    # local report is old. Stale GitHub data is still rejected unless explicitly allowed.
     if not ENABLE_GITHUB_REPORT_FALLBACK:
         return None
 
@@ -169,5 +170,5 @@ def load_latest_report() -> dict:
     return {
         "ok": False,
         "error": "latest_report_not_found",
-        "report": "아직 생성된 텔레그램 뉴스 리포트가 없습니다. /api/refresh 또는 정시 수집이 먼저 필요합니다. 오래된 GitHub fallback은 기본 차단했습니다.",
+        "report": "아직 생성된 텔레그램 뉴스 리포트가 없습니다. /api/refresh 또는 정시 수집이 먼저 필요합니다.",
     }
