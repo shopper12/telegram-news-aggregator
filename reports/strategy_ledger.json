@@ -1,5 +1,105 @@
 {
   "version": 1,
-  "updated_at": "2026-08-07T23:08:19+09:00",
-  "recommendations": []
+  "updated_at": "2026-08-07T23:34:06+09:00",
+  "recommendations": [
+    {
+      "id": "8674e232bc849df1",
+      "created_at": "2026-08-07T23:34:06+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 720.53,
+      "entry_zone": [
+        716.92735,
+        724.13265
+      ],
+      "stop_price": 701.609528,
+      "target_price": 758.370943,
+      "score": 4.932,
+      "components": {
+        "momentum": 1.269358542368939,
+        "regime": 2.0,
+        "news": 2.162331006063773,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.27, regime +2.00, news +2.16, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.27, 뉴스 +2.16 / 연결 뉴스: SK하이닉스, 엔비디아 HBM 반값 공급설에 \"전혀 사실무근\" 2026.08.07; 제목 :",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "bfb84f6374def34f",
+      "created_at": "2026-08-07T23:34:06+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 537.78,
+      "entry_zone": [
+        535.0911,
+        540.4689
+      ],
+      "stop_price": 504.418041,
+      "target_price": 604.503919,
+      "score": 4.222,
+      "components": {
+        "momentum": 0.2751775436048711,
+        "regime": 2.0,
+        "news": 2.4468255166574076,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.28, regime +2.00, news +2.45, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.28, 뉴스 +2.45 / 연결 뉴스: SK하이닉스, 엔비디아 HBM 반값 공급설에 \"전혀 사실무근\" 2026.08.07; 제목 :",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "843c6996c025db1b",
+      "created_at": "2026-08-07T23:34:06+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 398.71,
+      "entry_zone": [
+        396.71645,
+        400.70355
+      ],
+      "stop_price": 388.19023,
+      "target_price": 419.749539,
+      "score": 2.953,
+      "components": {
+        "momentum": 3.20469603024498,
+        "regime": -0.7,
+        "news": 0.4478889451736111,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.20, regime -0.70, news +0.45, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +3.20, 뉴스 +0.45 / 연결 뉴스: 제목 : 보잉, 수주잔고와 현금흐름 매력적 티그레스 *연합인포맥스* 티그레스 파이낸셜의 애널리스트는 보잉; 🔔 석유화학 4사 실적 반등...LG화학·롯데케미칼·한화솔루션 흑자전환, 금... 📈 #엘지화학 #롯데케미칼 #한화솔루션 #금호…",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    }
+  ]
 }
