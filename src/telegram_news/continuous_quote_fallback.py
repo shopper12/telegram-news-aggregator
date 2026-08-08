@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import math
@@ -18,7 +19,8 @@ YAHOO_TIMEOUT = float(os.getenv("CONTINUOUS_QUOTE_YAHOO_TIMEOUT", "5.0"))
 HYPERLIQUID_TIMEOUT = float(os.getenv("HYPERLIQUID_INFO_TIMEOUT", "5.0"))
 FRESH_MAX_AGE_MINUTES = float(os.getenv("CONTINUOUS_QUOTE_MAX_AGE_MINUTES", "120"))
 MAX_PROXY_DIVERGENCE_PCT = float(os.getenv("HYPERLIQUID_PROXY_MAX_DIVERGENCE_PCT", "30"))
-HYPERLIQUID_MAX_DEXS = int(os.getenv("HYPERLIQUID_PROXY_MAX_DEXS", "48"))
+HYPERLIQUID_MAX_DEXS = int(os.getenv("HYPERLIQUID_PROXY_MAX_DEXS", "32"))
+HYPERLIQUID_WORKERS = int(os.getenv("HYPERLIQUID_PROXY_WORKERS", "8"))
 HYPERLIQUID_CACHE_SECONDS = float(os.getenv("HYPERLIQUID_PROXY_CACHE_SECONDS", "90"))
 HYPERLIQUID_INFO_URL = os.getenv("HYPERLIQUID_INFO_URL", "https://api.hyperliquid.xyz/info")
 
@@ -112,10 +114,27 @@ def _refresh_hyperliquid_markets() -> dict[str, ProxyPrice]:
     if _HL_MARKETS and now - _HL_CACHE_AT < HYPERLIQUID_CACHE_SECONDS:
         return _HL_MARKETS
 
+    dex_names = _configured_dex_names()
+    mids_by_dex: dict[str, Any] = {}
+    if dex_names:
+        workers = max(1, min(HYPERLIQUID_WORKERS, len(dex_names)))
+        with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="hyperliquid-proxy") as pool:
+            futures = {
+                pool.submit(_post_hyperliquid, {"type": "allMids", "dex": dex}): dex
+                for dex in dex_names
+            }
+            for future in as_completed(futures):
+                dex = futures[future]
+                try:
+                    mids_by_dex[dex] = future.result()
+                except Exception:
+                    mids_by_dex[dex] = None
+
     markets: dict[str, ProxyPrice] = {}
     fetched_at = _now_kst()
-    for dex in _configured_dex_names():
-        mids = _post_hyperliquid({"type": "allMids", "dex": dex})
+    # Iterate in priority order even though HTTP requests completed concurrently.
+    for dex in dex_names:
+        mids = mids_by_dex.get(dex)
         if not isinstance(mids, dict):
             continue
         for coin, raw_price in mids.items():
@@ -401,9 +420,9 @@ def install_messenger_quote_fallback(api_module: Any) -> None:
         try:
             symbol = api_module._quote_symbol(target)
             if _eligible_equity_ticker(symbol):
-                from .market_data import fetch_quote
+                from . import market_data
 
-                quote = fetch_quote(symbol, "stock")
+                quote = market_data._fetch_us_quote(symbol)
                 source = str(getattr(quote, "source", "") or "")
                 if quote.price is not None and ("extended-hours" in source or "Hyperliquid HIP-3" in source):
                     proxy_notice = "\n주의: 파생상품 프록시이며 실제 주식 현물 체결가가 아닙니다." if "Hyperliquid HIP-3" in source else ""
