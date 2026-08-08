@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-08T23:39:01+09:00",
+  "updated_at": "2026-08-09T07:38:11+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -284,7 +284,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +2.08 / 연결 뉴스: 메모리 반도체 업황 조정 마무리 국면, AI 수요·LTA·자본환원이 주가 재상승의 핵심 동력; ※ 미중간 전방위적인 상호 제재 조치와 미국의 탈중국 공급망 구축 / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-09T07:38:11+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
       "price_warning": "24h derivative proxy; not official equity spot"
@@ -319,7 +325,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +2.27 / 연결 뉴스: 메모리 반도체 업황 조정 마무리 국면, AI 수요·LTA·자본환원이 주가 재상승의 핵심 동력; ※ 미중간 전방위적인 상호 제재 조치와 미국의 탈중국 공급망 구축",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-09T07:38:11+09:00",
+          "price": 723.03,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -352,6 +364,115 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +0.98 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; ✅ 美증시, 금리인상 기대론 후퇴에 상승…S&P500 사상최고치 마감",
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-09T07:38:11+09:00",
+          "price": 398.47,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "d7af4410776f632f",
+      "created_at": "2026-08-09T07:38:11+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 199.56,
+      "entry_zone": [
+        198.5622,
+        200.5578
+      ],
+      "stop_price": 183.5952,
+      "target_price": 231.4896,
+      "score": 7.585,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 1.598907825550232,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +1.60, defensive -0.50",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +1.60 / 연결 뉴스: 🔔 \"반등하면 다 던진다\" SK하닉 개미들 뿔났다…애널 '출입금지설'까지 📈 #에스케이하이닉스 #삼성전자 📝 #HMB메모리 #메…; 🔔 개인 투자자, 올해 국내 주식시장 순매수 200조원 넘었다 📈 #삼성전자 #SK하이닉스 #현대차 #포스코홀딩스 #셀트리온 📝… / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
+      "price_warning": "24h derivative proxy; not official equity spot"
+    },
+    {
+      "id": "3839f9e875357411",
+      "created_at": "2026-08-09T07:38:11+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 723.03,
+      "entry_zone": [
+        719.41485,
+        726.64515
+      ],
+      "stop_price": 703.913164,
+      "target_price": 761.263671,
+      "score": 4.332,
+      "components": {
+        "momentum": 1.4472461986096028,
+        "regime": 2.0,
+        "news": 1.082667758115139,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.45, regime +2.00, news +1.08, defensive -0.50",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +1.08 / 연결 뉴스: 🔔 \"반등하면 다 던진다\" SK하닉 개미들 뿔났다…애널 '출입금지설'까지 📈 #에스케이하이닉스 #삼성전자 📝 #HMB메모리 #메…; 🔔 금리 가늠자 7월 美물가지수 발표…소외주 온기, 반도체 방향성 탐색 📈 #삼성전자 #SK하이닉스 #LG에너지솔루션 #셀트리온…",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "b4ec98c56ad7108e",
+      "created_at": "2026-08-09T07:38:11+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 398.47,
+      "entry_zone": [
+        396.47765,
+        400.46235
+      ],
+      "stop_price": 387.981627,
+      "target_price": 419.446747,
+      "score": 3.534,
+      "components": {
+        "momentum": 3.1726707784229764,
+        "regime": -0.7,
+        "news": 0.8616334604946758,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.17, regime -0.70, news +0.86, defensive +0.00",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +0.86 / 연결 뉴스: 🔔 \"반등하면 다 던진다\" SK하닉 개미들 뿔났다…애널 '출입금지설'까지 📈 #에스케이하이닉스 #삼성전자 📝 #HMB메모리 #메…; 🔔 금리 가늠자 7월 美물가지수 발표…소외주 온기, 반도체 방향성 탐색 📈 #삼성전자 #SK하이닉스 #LG에너지솔루션 #셀트리온…",
       "status": "open",
       "evaluations": {},
       "learned_24h": false,
