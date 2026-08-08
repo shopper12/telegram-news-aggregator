@@ -1,7 +1,149 @@
 {
   "version": 1,
-  "updated_at": "2026-08-08T15:45:12+09:00",
+  "updated_at": "2026-08-08T16:46:30+09:00",
   "events": [
+    {
+      "signature": "0033e317926795a2f6527e40fef7ebd7b64544ae",
+      "title": ">>글로벌 메모리주, 실적은 역대 최고인데 주가는 급락",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "dram",
+        "gpu",
+        "hbm",
+        "nvidia",
+        "메모리",
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS",
+        "AAPL",
+        "DRAM",
+        "HBM",
+        "SKHY",
+        "TRON"
+      ],
+      "materiality": 17,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T07:41:13+00:00",
+      "last_seen": "2026-08-08T07:41:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 11,
+      "sentiment": -1,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-08-08T07:41:00+00:00",
+      "count": 5
+    },
+    {
+      "signature": "ba533b6f9294e75e2ed8a80c71c2a400dd76713d",
+      "title": "제목 :",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "데이터센터"
+      ],
+      "tickers": [],
+      "materiality": 14,
+      "sentiment": 2,
+      "first_seen": "2026-08-08T07:38:45+00:00",
+      "last_seen": "2026-08-08T07:38:45+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 17,
+      "sentiment": -2,
+      "first_seen": "2026-08-07T08:51:28+00:00",
+      "last_seen": "2026-08-08T07:29:56+00:00",
+      "count": 11
+    },
+    {
+      "signature": "e26de903308526b429e2568434b8b7e63fb53a44",
+      "title": "이스라엘군: 조금 전 오파림 지역에서 테러범 침투가 의심돼 경보가 발령됐습니다. 현재 구체적인 내용은 확인 중입니다. 이스라엘군…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T07:24:13+00:00",
+      "last_seen": "2026-08-08T07:24:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "63154128e4e08a0ac1027b538e6a525cdf3c54a7",
+      "title": "판타지오 회장, 자본시장법 위반 혐의 피소 및 경찰 수사 https://m.stock.naver.com/investment/ne…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T07:23:13+00:00",
+      "last_seen": "2026-08-08T07:23:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "65b76ad5ab98e1dca1fc7be8f0003c8abfd2ab7b",
+      "title": "🔔 LG전자, 9월 IFA서 '공감지능' 앞세운 AI 홈 공개 📈 #엘지전자 #엘지디스플레이 📝 #AI가전 #스마트홈 #디스플레…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "066570.KS",
+        "NOV",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T07:17:04+00:00",
+      "last_seen": "2026-08-08T07:17:04+00:00",
+      "count": 1
+    },
+    {
+      "signature": "074c585457f842b49d8da9234086514fbee2db56",
+      "title": "중동 전역에서 전반적으로 매우 조용한 밤이 이어졌으며, 새롭게 보고할 만한 상황은 없는 상태. 밤사이 레바논 상공에서 이스라엘 …",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "선박"
+      ],
+      "tickers": [
+        "UKMTO"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T07:00:56+00:00",
+      "last_seen": "2026-08-08T07:00:56+00:00",
+      "count": 1
+    },
     {
       "signature": "ecdf5d819393e4b7241942c31b972d8bd2003ec9",
       "title": "🔔",
@@ -70,18 +212,6 @@
       "first_seen": "2026-08-08T06:29:32+00:00",
       "last_seen": "2026-08-08T06:29:32+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 11,
-      "sentiment": -1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-08-08T06:22:43+00:00",
-      "count": 4
     },
     {
       "signature": "e6bfddaed3d69bc4d115fb5e6589873146047e36",
@@ -916,21 +1046,6 @@
       "first_seen": "2026-08-07T23:19:36+00:00",
       "last_seen": "2026-08-08T00:33:41+00:00",
       "count": 3
-    },
-    {
-      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 17,
-      "sentiment": -2,
-      "first_seen": "2026-08-07T08:51:28+00:00",
-      "last_seen": "2026-08-08T00:27:30+00:00",
-      "count": 10
     },
     {
       "signature": "65b5bf94552ed20ad20b67f26b7a90f800147295",
