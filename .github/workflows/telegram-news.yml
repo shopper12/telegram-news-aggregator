@@ -234,7 +234,7 @@ jobs:
             echo "No report or adaptive state changes to commit"
             exit 0
           fi
-          git commit -m "Update news and adaptive strategy state [skip ci]"
+          git commit -m "Update news and adaptive strategy state [skip ci] [skip render]"
           git pull --rebase
           git push
 
