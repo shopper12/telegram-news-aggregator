@@ -1,7 +1,122 @@
 {
   "version": 1,
-  "updated_at": "2026-08-08T18:34:20+09:00",
+  "updated_at": "2026-08-08T19:29:19+09:00",
   "events": [
+    {
+      "signature": "81caff93bfb5f8b0d181d4ce67e9813178410c5b",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "RES"
+      ],
+      "materiality": 12,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T10:12:34+00:00",
+      "last_seen": "2026-08-08T10:12:34+00:00",
+      "count": 1
+    },
+    {
+      "signature": "eb2fa85301e095341ccf9a9f586d20b7b2a61e4b",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T09:07:39+00:00",
+      "last_seen": "2026-08-08T10:06:17+00:00",
+      "count": 3
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 11,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-08-08T10:00:15+00:00",
+      "count": 9
+    },
+    {
+      "signature": "7156f76f4daf8f178c259543f834b47c4e62e420",
+      "title": "🌎 글로벌 뉴스 브리핑",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "바이오",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "fda",
+        "sk하이닉스",
+        "관세",
+        "규제",
+        "금리",
+        "데이터센터",
+        "메모리",
+        "반도체",
+        "선박"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "materiality": 23,
+      "sentiment": 1,
+      "first_seen": "2026-08-08T09:47:51+00:00",
+      "last_seen": "2026-08-08T09:47:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4688f38204a1e290574843ff6a84321aadb113a3",
+      "title": "애플 공식 홈페이지, Apple Intelligence–알리바바 Qwen 연동 명시 • Apple 중국 공식 지원 페이지에 ‘A…",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "애플"
+      ],
+      "tickers": [
+        "AAPL"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T09:46:02+00:00",
+      "last_seen": "2026-08-08T09:46:02+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c5f34b761e1c7d9c59615fd85cdba4af4d30072b",
+      "title": "미국 상원이 연방정부 셧다운을 피하기 위한 임시 예산안을 통과시킴. 해당 법안은 연방기관에 12월 11일까지 필요한 자금을 지원…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T09:40:59+00:00",
+      "last_seen": "2026-08-08T09:40:59+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4188246f2fcb00c609a5fe770bd15f9cddf31fcd",
+      "title": "제미나이에 물어보니 한국에서 흔히 회자되는 \"아이폰은 중국인들이 좋아하는 디자인과 감성을 지녔다\" 또는 \"중국 시장에서 아이폰의…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-08T09:37:26+00:00",
+      "last_seen": "2026-08-08T09:37:26+00:00",
+      "count": 1
+    },
     {
       "signature": "4a95091343706fa0280e5ddbc780c69a27108551",
       "title": "#핵심광물 #미국에너지부 #PROSPECT #공급망 #인력양성 <미 에너지부, 핵심광물 인력 양성·국내 공급망 강화를 위한 1억…",
@@ -125,18 +240,6 @@
       "first_seen": "2026-08-08T07:41:13+00:00",
       "last_seen": "2026-08-08T07:41:13+00:00",
       "count": 2
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 11,
-      "sentiment": -1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-08-08T07:41:00+00:00",
-      "count": 6
     },
     {
       "signature": "ba533b6f9294e75e2ed8a80c71c2a400dd76713d",
@@ -717,20 +820,6 @@
       "first_seen": "2026-08-08T02:38:34+00:00",
       "last_seen": "2026-08-08T02:38:34+00:00",
       "count": 1
-    },
-    {
-      "signature": "eb2fa85301e095341ccf9a9f586d20b7b2a61e4b",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-07T09:07:39+00:00",
-      "last_seen": "2026-08-08T02:36:42+00:00",
-      "count": 2
     },
     {
       "signature": "d29253ebdeb662e1eb13bd8c217ea733fe0dadde",
