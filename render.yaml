@@ -3,6 +3,8 @@ services:
     name: telegram-news-bot-api
     env: python
     plan: free
+    branch: main
+    autoDeployTrigger: commit
     buildCommand: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
     startCommand: PYTHONPATH=src python scripts/run_api_v7.py
     healthCheckPath: /health
