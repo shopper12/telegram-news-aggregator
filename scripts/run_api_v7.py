@@ -45,8 +45,11 @@ def _install_runtime_patches(api_module: Any) -> None:
     """Install non-critical patches after the HTTP server can already answer."""
     try:
         from telegram_news.consistency_rules import install as install_consistency_rules
+        from telegram_news.continuous_quote_fallback import install as install_continuous_quotes
+        from telegram_news.continuous_quote_fallback import install_messenger_quote_fallback
         from telegram_news.market_note_formatter import install_dispatch_hook, install_messenger_bridge
 
+        install_continuous_quotes()
         install_consistency_rules()
         install_dispatch_hook()
 
@@ -59,6 +62,7 @@ def _install_runtime_patches(api_module: Any) -> None:
         ]:
             apply_patch(api_module)
 
+        install_messenger_quote_fallback(api_module)
         install_messenger_bridge(api_module)
         api_module.RUNTIME_PATCH_STATUS = "ready"
         print("[run_api_v7] runtime patches ready")
