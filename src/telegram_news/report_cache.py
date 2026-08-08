@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pathlib import Path
+import base64
 import json
 import os
 
@@ -10,6 +11,7 @@ import requests
 LATEST_REPORT_JSON = Path("reports/latest_report.json")
 LATEST_REPORT_MD = Path("reports/latest_report.md")
 DEFAULT_LATEST_REPORT_URL = "https://raw.githubusercontent.com/shopper12/telegram-news-aggregator/main/reports/latest_report.json"
+DEFAULT_LATEST_REPORT_API_URL = "https://api.github.com/repos/shopper12/telegram-news-aggregator/contents/reports/latest_report.json?ref=main"
 FALLBACK_TIMEOUT_SECONDS = float(os.getenv("LATEST_REPORT_FALLBACK_TIMEOUT_SECONDS", "5.0"))
 MAX_CACHE_AGE_SECONDS = int(os.getenv("REPORT_CACHE_MAX_AGE_SECONDS", "3600"))  # 기본 1시간
 MIN_REPORT_OK_LENGTH = int(os.getenv("MIN_REPORT_OK_LENGTH", "100"))
@@ -68,37 +70,6 @@ def save_latest_report(*, report: str, kind: str, hours: int, source: str = "sch
     )
 
 
-def _load_github_fallback() -> dict | None:
-    # GitHub raw is the cross-runtime source of truth for Render when its checked-out
-    # local report is old. Stale GitHub data is still rejected unless explicitly allowed.
-    if not ENABLE_GITHUB_REPORT_FALLBACK:
-        return None
-
-    url = os.getenv("LATEST_REPORT_URL", DEFAULT_LATEST_REPORT_URL).strip()
-    if not url:
-        return None
-    separator = "&" if "?" in url else "?"
-    url = url.rstrip("?&") + f"{separator}t={int(datetime.now().timestamp())}"
-    token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
-    headers = {"Accept": "application/json"}
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    try:
-        response = requests.get(url, headers=headers, timeout=FALLBACK_TIMEOUT_SECONDS)
-        if response.status_code != 200:
-            return None
-        data = response.json()
-        if isinstance(data, dict) and str(data.get("report") or "").strip():
-            generated_at = str(data.get("generated_at") or "")
-            if generated_at and _is_stale(generated_at) and not ALLOW_STALE_GITHUB_FALLBACK:
-                return None
-            data.setdefault("source", "github_fallback")
-            return _normalize_report_payload(data)
-    except Exception:
-        return None
-    return None
-
-
 def _age_seconds(generated_at: str) -> int | None:
     dt = _parse_generated_at(generated_at)
     if not dt:
@@ -112,6 +83,79 @@ def _age_seconds(generated_at: str) -> int | None:
 def _is_stale(generated_at: str) -> bool:
     age = _age_seconds(generated_at)
     return bool(age is not None and age > MAX_CACHE_AGE_SECONDS)
+
+
+def _validated_remote_payload(data: dict | None, source: str) -> dict | None:
+    if not isinstance(data, dict) or not str(data.get("report") or "").strip():
+        return None
+    generated_at = str(data.get("generated_at") or "")
+    if generated_at and _is_stale(generated_at) and not ALLOW_STALE_GITHUB_FALLBACK:
+        return None
+    data = dict(data)
+    data.setdefault("source", source)
+    return _normalize_report_payload(data)
+
+
+def _decode_contents_api_payload(payload: dict) -> dict | None:
+    encoded = str(payload.get("content") or "").replace("\n", "").strip()
+    if not encoded:
+        return None
+    try:
+        raw = base64.b64decode(encoded).decode("utf-8")
+        data = json.loads(raw)
+        return data if isinstance(data, dict) else None
+    except Exception:
+        return None
+
+
+def _load_github_fallback() -> dict | None:
+    """Load the newest persisted report through two independent GitHub paths.
+
+    Render occasionally fails a raw.githubusercontent.com request. A single raw
+    failure must not make Kakao fall back to a stale local checkout, so the
+    GitHub Contents API is used as a second source before stale data is returned.
+    """
+    if not ENABLE_GITHUB_REPORT_FALLBACK:
+        return None
+
+    token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
+    auth_headers = {"Accept": "application/json", "User-Agent": "telegram-news-report-cache/2.0"}
+    if token:
+        auth_headers["Authorization"] = f"Bearer {token}"
+
+    raw_url = os.getenv("LATEST_REPORT_URL", DEFAULT_LATEST_REPORT_URL).strip()
+    if raw_url:
+        separator = "&" if "?" in raw_url else "?"
+        raw_url = raw_url.rstrip("?&") + f"{separator}t={int(datetime.now().timestamp())}"
+        try:
+            response = requests.get(raw_url, headers=auth_headers, timeout=FALLBACK_TIMEOUT_SECONDS)
+            if response.status_code == 200:
+                candidate = _validated_remote_payload(response.json(), "github_raw")
+                if candidate:
+                    candidate["remote_path"] = "raw"
+                    return candidate
+        except Exception:
+            pass
+
+    api_url = os.getenv("LATEST_REPORT_API_URL", DEFAULT_LATEST_REPORT_API_URL).strip()
+    if api_url:
+        separator = "&" if "?" in api_url else "?"
+        api_url = api_url.rstrip("?&") + f"{separator}t={int(datetime.now().timestamp())}"
+        api_headers = dict(auth_headers)
+        api_headers["Accept"] = "application/vnd.github+json"
+        try:
+            response = requests.get(api_url, headers=api_headers, timeout=FALLBACK_TIMEOUT_SECONDS)
+            if response.status_code == 200:
+                payload = response.json()
+                decoded = _decode_contents_api_payload(payload) if isinstance(payload, dict) else None
+                candidate = _validated_remote_payload(decoded, "github_contents_api")
+                if candidate:
+                    candidate["remote_path"] = "contents_api"
+                    return candidate
+        except Exception:
+            pass
+
+    return None
 
 
 def _stale_result(data: dict) -> dict:
