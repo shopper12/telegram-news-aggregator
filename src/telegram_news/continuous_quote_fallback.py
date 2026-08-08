@@ -270,8 +270,94 @@ def _resolve_quote(ticker: str, official_quote: Any, quote_type: Any) -> Any:
     )
 
 
+def _resolve_snapshot_item(ticker: str, item: dict[str, Any], quote_type: Any) -> dict[str, Any]:
+    if not isinstance(item, dict) or not _eligible_equity_ticker(ticker):
+        return item
+    official = quote_type(
+        ticker,
+        _safe_float(item.get("price")),
+        _safe_float(item.get("change_pct")),
+        None,
+        "Yahoo Finance regular-session snapshot",
+        str(item.get("timestamp") or _now_kst()),
+        str(item.get("error")) if item.get("error") else None,
+    )
+    resolved = _resolve_quote(ticker, official, quote_type)
+    out = dict(item)
+    out["price_source"] = str(getattr(resolved, "source", "") or official.source)
+    out["price_timestamp"] = str(getattr(resolved, "timestamp", "") or official.timestamp)
+    warning = str(getattr(resolved, "error", "") or "")
+    if warning:
+        out["price_warning"] = warning
+    if getattr(resolved, "price", None) is not None:
+        out["price"] = float(resolved.price)
+    if getattr(resolved, "change_pct", None) is not None:
+        out["change_pct"] = float(resolved.change_pct)
+    out["price_is_derivative_proxy"] = "Hyperliquid HIP-3" in out["price_source"]
+    return out
+
+
+def _install_global_snapshot_fallback(market_data: Any) -> None:
+    from . import global_market_tracker
+
+    current = global_market_tracker.fetch_asset_snapshot
+    if getattr(current, "_continuous_quote_fallback_installed", False):
+        return
+    original = current
+
+    def wrapped(ticker: str):
+        return _resolve_snapshot_item(ticker, original(ticker), market_data.Quote)
+
+    wrapped._continuous_quote_fallback_installed = True
+    wrapped._continuous_quote_fallback_original = original
+    global_market_tracker.fetch_asset_snapshot = wrapped
+
+
+def _install_adaptive_price_provenance() -> None:
+    from . import adaptive_strategy
+
+    current_candidates = adaptive_strategy._candidates
+    if not getattr(current_candidates, "_continuous_quote_source_installed", False):
+        original_candidates = current_candidates
+
+        def wrapped_candidates(snapshot, memory, state, now):
+            candidates = original_candidates(snapshot, memory, state, now)
+            assets = snapshot.get("assets") or {}
+            for candidate in candidates:
+                item = assets.get(candidate.get("ticker")) or {}
+                candidate["price_source"] = str(item.get("price_source") or "Yahoo Finance regular-session snapshot")
+                candidate["price_warning"] = str(item.get("price_warning") or "")
+            return candidates
+
+        wrapped_candidates._continuous_quote_source_installed = True
+        wrapped_candidates._continuous_quote_source_original = original_candidates
+        adaptive_strategy._candidates = wrapped_candidates
+
+    current_recommendation = adaptive_strategy._recommendation
+    if not getattr(current_recommendation, "_continuous_quote_source_installed", False):
+        original_recommendation = current_recommendation
+
+        def wrapped_recommendation(candidate, slot, state, now):
+            recommendation = original_recommendation(candidate, slot, state, now)
+            source = str(candidate.get("price_source") or "")
+            warning = str(candidate.get("price_warning") or "")
+            if source:
+                recommendation["price_source"] = source
+                if "Hyperliquid HIP-3" in source:
+                    recommendation["reason"] += f" / 가격소스: {source} (24h 파생 프록시·현물 아님)"
+                elif "extended-hours" in source:
+                    recommendation["reason"] += f" / 가격소스: {source}"
+            if warning:
+                recommendation["price_warning"] = warning
+            return recommendation
+
+        wrapped_recommendation._continuous_quote_source_installed = True
+        wrapped_recommendation._continuous_quote_source_original = original_recommendation
+        adaptive_strategy._recommendation = wrapped_recommendation
+
+
 def install() -> None:
-    """Install the fallback into the canonical market_data quote path."""
+    """Install the fallback into canonical single-stock and adaptive strategy paths."""
     global _INSTALLED
     if _INSTALLED:
         return
@@ -279,23 +365,23 @@ def install() -> None:
     from . import market_data
 
     current = market_data._fetch_us_quote
-    if getattr(current, "_continuous_quote_fallback_installed", False):
-        _INSTALLED = True
-        return
+    if not getattr(current, "_continuous_quote_fallback_installed", False):
+        original = current
 
-    original = current
+        def wrapped(ticker: str):
+            official = original(ticker)
+            return _resolve_quote(ticker, official, market_data.Quote)
 
-    def wrapped(ticker: str):
-        official = original(ticker)
-        return _resolve_quote(ticker, official, market_data.Quote)
+        wrapped._continuous_quote_fallback_installed = True
+        wrapped._continuous_quote_fallback_original = original
+        market_data._fetch_us_quote = wrapped
+        try:
+            market_data.fetch_quote.cache_clear()
+        except Exception:
+            pass
 
-    wrapped._continuous_quote_fallback_installed = True
-    wrapped._continuous_quote_fallback_original = original
-    market_data._fetch_us_quote = wrapped
-    try:
-        market_data.fetch_quote.cache_clear()
-    except Exception:
-        pass
+    _install_global_snapshot_fallback(market_data)
+    _install_adaptive_price_provenance()
     _INSTALLED = True
     print("[continuous-quotes] Yahoo extended-hours + Hyperliquid HIP-3 fallback installed")
 
