@@ -130,3 +130,46 @@ def test_hyperliquid_market_discovery_scans_builder_dexes(monkeypatch):
     assert markets["NVDA"].dex == "xyz"
     assert {"type": "perpDexs"} in calls
     assert {"type": "allMids", "dex": "xyz"} in calls
+
+
+def test_adaptive_snapshot_marks_derivative_proxy_source(monkeypatch):
+    monkeypatch.setattr(
+        cq,
+        "_yahoo_extended_snapshot",
+        lambda ticker: {
+            "latest_price": 500.0,
+            "latest_epoch": _epoch(900),
+            "regular_price": 500.0,
+            "regular_epoch": _epoch(900),
+            "previous": 495.0,
+        },
+    )
+    monkeypatch.setattr(
+        cq,
+        "fetch_hyperliquid_proxy",
+        lambda ticker, reference_price: cq.ProxyPrice(
+            ticker=ticker,
+            price=505.0,
+            dex="xyz",
+            coin=ticker,
+            source=f"Hyperliquid HIP-3 xyz:{ticker} 24h perp proxy",
+            timestamp="2026-08-08 12:40 KST",
+        ),
+    )
+    item = {
+        "ticker": "QQQ",
+        "price": 500.0,
+        "change_pct": 1.0,
+        "return_5d": 2.0,
+        "return_20d": 4.0,
+        "volatility_20d": 1.2,
+        "timestamp": "old",
+        "error": None,
+    }
+
+    resolved = cq._resolve_snapshot_item("QQQ", item, Quote)
+
+    assert resolved["price"] == 505.0
+    assert resolved["price_is_derivative_proxy"] is True
+    assert "Hyperliquid HIP-3" in resolved["price_source"]
+    assert resolved["price_warning"] == "24h derivative proxy; not official equity spot"
