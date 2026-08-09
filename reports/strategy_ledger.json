@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-09T22:43:07+09:00",
+  "updated_at": "2026-08-09T23:08:33+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -511,6 +511,109 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "c6f3f3f2314db86f",
+      "created_at": "2026-08-09T23:08:33+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 199.56,
+      "entry_zone": [
+        198.5622,
+        200.5578
+      ],
+      "stop_price": 183.5952,
+      "target_price": 231.4896,
+      "score": 8.163,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 2.144402608379329,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +2.14, defensive -0.50",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +2.14 / 연결 뉴스: 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00; BofA, 샌디스크 / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
+      "price_warning": "24h derivative proxy; not official equity spot"
+    },
+    {
+      "id": "20c1c8f63b62345d",
+      "created_at": "2026-08-09T23:08:33+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 723.03,
+      "entry_zone": [
+        719.41485,
+        726.64515
+      ],
+      "stop_price": 703.913164,
+      "target_price": 761.263671,
+      "score": 5.33,
+      "components": {
+        "momentum": 1.4472461986096028,
+        "regime": 2.0,
+        "news": 2.0242989592284495,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.45, regime +2.00, news +2.02, defensive -0.50",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +2.02 / 연결 뉴스: 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00; BofA, 샌디스크",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "8d5d6b8abb24d411",
+      "created_at": "2026-08-09T23:08:33+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 398.47,
+      "entry_zone": [
+        396.47765,
+        400.46235
+      ],
+      "stop_price": 387.981627,
+      "target_price": 419.446747,
+      "score": 4.203,
+      "components": {
+        "momentum": 3.1726707784229764,
+        "regime": -0.7,
+        "news": 1.4928211015515742,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.17, regime -0.70, news +1.49, defensive +0.00",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +1.49 / 연결 뉴스: 🔔 \"롤러코스피에 질렸어요\" 3%대 이자 등장에 35조 예금으로 📈 #은행주 #저축은행 #증권주 #반도체주 #자산운용주 📝 #예…; #삼성전자 #HBM4 ‘황금 수율’ 달성…공급 늘린다 4개월 앞당겨 수율 80% 도달 연내 HBM 점유율 38% 목표 삼성전자가…",
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     }
