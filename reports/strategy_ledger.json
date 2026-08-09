@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-09T23:42:48+09:00",
+  "updated_at": "2026-08-10T07:43:05+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -446,11 +446,17 @@
           "evaluated_at": "2026-08-09T13:46:44+09:00",
           "price": 199.56,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-10T07:43:05+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
+      "learned_24h": true,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
-      "price_warning": "24h derivative proxy; not official equity spot"
+      "price_warning": "24h derivative proxy; not official equity spot",
+      "learned_at": "2026-08-10T07:43:05+09:00"
     },
     {
       "id": "3839f9e875357411",
@@ -487,10 +493,16 @@
           "evaluated_at": "2026-08-09T13:46:44+09:00",
           "price": 723.03,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-10T07:43:05+09:00",
+          "price": 723.03,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-10T07:43:05+09:00"
     },
     {
       "id": "b4ec98c56ad7108e",
@@ -527,10 +539,16 @@
           "evaluated_at": "2026-08-09T13:46:44+09:00",
           "price": 398.47,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-10T07:43:05+09:00",
+          "price": 398.47,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-10T07:43:05+09:00"
     },
     {
       "id": "c6f3f3f2314db86f",
@@ -562,7 +580,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +2.14 / 연결 뉴스: 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00; BofA, 샌디스크 / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-10T07:43:05+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
       "price_warning": "24h derivative proxy; not official equity spot"
@@ -597,7 +621,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +2.02 / 연결 뉴스: 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00; BofA, 샌디스크",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-10T07:43:05+09:00",
+          "price": 723.03,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -630,6 +660,115 @@
         "defensive": 0.94
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +1.49 / 연결 뉴스: 🔔 \"롤러코스피에 질렸어요\" 3%대 이자 등장에 35조 예금으로 📈 #은행주 #저축은행 #증권주 #반도체주 #자산운용주 📝 #예…; #삼성전자 #HBM4 ‘황금 수율’ 달성…공급 늘린다 4개월 앞당겨 수율 80% 도달 연내 HBM 점유율 38% 목표 삼성전자가…",
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-10T07:43:05+09:00",
+          "price": 398.47,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "f10bbf2ce2adc91f",
+      "created_at": "2026-08-10T07:43:05+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 199.56,
+      "entry_zone": [
+        198.5622,
+        200.5578
+      ],
+      "stop_price": 183.5952,
+      "target_price": 231.4896,
+      "score": 7.738,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 1.7435296337457873,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +1.74, defensive -0.50",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +1.74 / 연결 뉴스: 08/10~08/14 주간 이슈: 소비자물가지수와 금리, 그리고 테마주 최근 리사 쿡 연준 이사는 연설을 통해 인플레이션 안정세…; 방산 Weekly / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
+      "price_warning": "24h derivative proxy; not official equity spot"
+    },
+    {
+      "id": "f743988141039722",
+      "created_at": "2026-08-10T07:43:05+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 723.03,
+      "entry_zone": [
+        719.41485,
+        726.64515
+      ],
+      "stop_price": 703.913164,
+      "target_price": 761.263671,
+      "score": 4.044,
+      "components": {
+        "momentum": 1.4472461986096028,
+        "regime": 2.0,
+        "news": 0.8108696245733218,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.45, regime +2.00, news +0.81, defensive -0.50",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +0.81 / 연결 뉴스: 08/10~08/14 주간 이슈: 소비자물가지수와 금리, 그리고 테마주 최근 리사 쿡 연준 이사는 연설을 통해 인플레이션 안정세…; 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "a6913e066c5e8533",
+      "created_at": "2026-08-10T07:43:05+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 398.47,
+      "entry_zone": [
+        396.47765,
+        400.46235
+      ],
+      "stop_price": 387.981627,
+      "target_price": 419.446747,
+      "score": 4.029,
+      "components": {
+        "momentum": 3.1726707784229764,
+        "regime": -0.7,
+        "news": 1.3279472148688427,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.17, regime -0.70, news +1.33, defensive +0.00",
+      "weights": {
+        "momentum": 1.06,
+        "regime": 1.06,
+        "news": 1.06,
+        "defensive": 0.94
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +1.33 / 연결 뉴스: 08/10~08/14 주간 이슈: 소비자물가지수와 금리, 그리고 테마주 최근 리사 쿡 연준 이사는 연설을 통해 인플레이션 안정세…; 美증시, 금리인상 기대론 후퇴에 상승…S&P500 사상최고치 마감 https://n.news.naver.com/mnews/art…",
       "status": "open",
       "evaluations": {},
       "learned_24h": false,
