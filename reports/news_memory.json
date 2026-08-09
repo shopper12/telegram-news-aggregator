@@ -1,7 +1,132 @@
 {
   "version": 1,
-  "updated_at": "2026-08-09T19:30:36+09:00",
+  "updated_at": "2026-08-09T20:04:46+09:00",
   "events": [
+    {
+      "signature": "573f71eafc4323b096d1c9b788e5114e0931e0fd",
+      "title": "🔔",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "조선"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 14,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T11:01:44+00:00",
+      "last_seen": "2026-08-09T11:01:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0894e070f1c8cf1561c107d68e1df8207333f6e2",
+      "title": "ㄴ미국의 대표적인 방산업체 RTX",
+      "sectors": [
+        "방산/항공"
+      ],
+      "keywords": [
+        "방산"
+      ],
+      "tickers": [],
+      "materiality": 15,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T10:57:35+00:00",
+      "last_seen": "2026-08-09T10:57:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4c1cbb118bddd0aa4307d5295f269c2bddf752e6",
+      "title": "🔔 태풍 돌핀, 중 저장성 타이저우시 해안에 상륙",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T10:55:44+00:00",
+      "last_seen": "2026-08-09T10:55:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f8100bf78b9337f9ef1f6a6fedbcf4cfb977b278",
+      "title": "🔔 휴가철 종료·극한 폭염에 전력수요 비상…예비율 10% 밑으로 📈 #한전기술 #두산에너빌리티 #HD현대일렉트릭 #금양 #LG에…",
+      "sectors": [
+        "2차전지",
+        "원전",
+        "전력기기"
+      ],
+      "keywords": [
+        "lg에너지솔루션",
+        "두산에너빌리티",
+        "원전",
+        "전력기기"
+      ],
+      "tickers": [
+        "034020.KS",
+        "035420.KS",
+        "267260.KS",
+        "373220.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 11,
+      "sentiment": -1,
+      "first_seen": "2026-08-09T10:55:29+00:00",
+      "last_seen": "2026-08-09T10:55:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "37075391553dca904cc7133922838348511fd72e",
+      "title": "🔔 \"폭락했다고 한방에 만회하려다간 큰일\"…전문가가 강조한 '투자 원칙' 【 겁나빠른 #드리고봇 뉴스 】 https://n.ne…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T10:35:28+00:00",
+      "last_seen": "2026-08-09T10:35:28+00:00",
+      "count": 1
+    },
+    {
+      "signature": "7a7c439e88b32ddafb6077c8c10b46acc6ac404c",
+      "title": "🔔 가뭄도 더위도 못 잡고 비껴간 태풍…\"효자 태풍은 언제쯤\" 애타는 농심 📈 #농업기계주 #비료주 #사료주 #곡물유통주 #제과…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T10:31:53+00:00",
+      "last_seen": "2026-08-09T10:31:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2e17c22f472d5fb0f8d4dcd9c238837d8e07b83c",
+      "title": "미국 중간선거 리스크가 크긴 크죠 이번주 미국 CPI PPI는 조심",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "cpi",
+        "ppi"
+      ],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T10:31:13+00:00",
+      "last_seen": "2026-08-09T10:31:13+00:00",
+      "count": 1
+    },
     {
       "signature": "fd0eae21204477c39606194b1665c23a0767db7a",
       "title": "KPMG 데이터에 따르면 경영진의 49%가 비용이 기대 효익을 초과한다는 이유로 AI 에이전트 도입 규모를 축소한 것으로 나타남.",
