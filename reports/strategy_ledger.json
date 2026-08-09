@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-09T23:08:33+09:00",
+  "updated_at": "2026-08-09T23:42:48+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -307,11 +307,17 @@
           "evaluated_at": "2026-08-09T07:38:11+09:00",
           "price": 199.56,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-09T23:42:48+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
+      "learned_24h": true,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
-      "price_warning": "24h derivative proxy; not official equity spot"
+      "price_warning": "24h derivative proxy; not official equity spot",
+      "learned_at": "2026-08-09T23:42:48+09:00"
     },
     {
       "id": "843470bab720a2c6",
@@ -348,10 +354,16 @@
           "evaluated_at": "2026-08-09T07:38:11+09:00",
           "price": 723.03,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-09T23:42:48+09:00",
+          "price": 723.03,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-09T23:42:48+09:00"
     },
     {
       "id": "d0cec4bb1b8ef9a1",
@@ -388,10 +400,16 @@
           "evaluated_at": "2026-08-09T07:38:11+09:00",
           "price": 398.47,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-09T23:42:48+09:00",
+          "price": 398.47,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-09T23:42:48+09:00"
     },
     {
       "id": "d7af4410776f632f",

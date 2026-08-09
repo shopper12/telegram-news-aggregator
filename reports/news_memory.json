@@ -1,7 +1,95 @@
 {
   "version": 1,
-  "updated_at": "2026-08-09T23:08:33+09:00",
+  "updated_at": "2026-08-09T23:42:48+09:00",
   "events": [
+    {
+      "signature": "7d321bc8a9d06b4640038c0aae26cef47412313b",
+      "title": "🚨WSJ: 미국 관리들은 트럼프 대통령이 이란과의 교착 상태에 대해 인내심을 갖고 접근하며 호르무즈 해협의 해상 수송을 최우선 …",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "선박"
+      ],
+      "tickers": [
+        "WSJ"
+      ],
+      "materiality": 11,
+      "sentiment": 1,
+      "first_seen": "2026-08-09T14:32:46+00:00",
+      "last_seen": "2026-08-09T14:32:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "048358126042a8713de532484aa801c862bd4dca",
+      "title": "🚨7월 소비자물가지수",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "cpi",
+        "금리",
+        "연준"
+      ],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-08-09T14:32:36+00:00",
+      "last_seen": "2026-08-09T14:32:36+00:00",
+      "count": 1
+    },
+    {
+      "signature": "73599de987e27712cc8619495505cc18ccf4e34b",
+      "title": "블룸버그: 터키, 지연 끝에 흑해로 향하는 해협 선박 통행 재개 허용",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "선박"
+      ],
+      "tickers": [],
+      "materiality": 4,
+      "sentiment": 1,
+      "first_seen": "2026-08-09T14:32:30+00:00",
+      "last_seen": "2026-08-09T14:32:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0694cfe5e94ae79678c7f9b328d96d597cdfebcd",
+      "title": "📡 사브린 뉴스 모니터링 최근 중동 지역 군사 기지 간 미군 VIP 수송기의 활동이 활발해졌습니다.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 3,
+      "sentiment": 1,
+      "first_seen": "2026-08-09T14:31:12+00:00",
+      "last_seen": "2026-08-09T14:31:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "53a0c6875e0f00c04526b8d17e341ce23d80dc9c",
+      "title": "❗️🛢🇪🇺 유럽은 3년 만에 최고치를 기록한 가스 가격 급등으로 어려움을 겪고 있습니다. 운영사 데이터에 따르면 7월 가스 저장…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 9,
+      "sentiment": 2,
+      "first_seen": "2026-08-09T14:30:58+00:00",
+      "last_seen": "2026-08-09T14:30:58+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a0c1f7e14e05be5598d377cf8796aee2534a4c3a",
+      "title": "뉴욕타임즈에 따르면 대만이 중국의 침공 가능성에 대비해 수십만 대의 드론을 동원하는 이른바 ‘지옥도’ 구축을 준비 중. 대만은 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-09T14:25:47+00:00",
+      "last_seen": "2026-08-09T14:25:47+00:00",
+      "count": 1
+    },
     {
       "signature": "fed90f3645635f34a977c8b2386855259248a344",
       "title": "애플, 아이폰·맥북용 중국 메모리칩 CXMT 테스트 중 (WSJ) 애플이 중국 반도체 업체 CXMT의 메모리칩을 아이폰과 맥북 …",
@@ -27,7 +115,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-09T14:02:21+00:00",
       "last_seen": "2026-08-09T14:02:21+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "b24ec7e19df649b036df84c47ba5b07fb38e81d1",
@@ -63,7 +151,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-09T14:02:02+00:00",
       "last_seen": "2026-08-09T14:02:02+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6db87dd7d36fa236b8e4112e9d41c64b1a8664d4",
@@ -81,7 +169,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-09T14:01:28+00:00",
       "last_seen": "2026-08-09T14:01:28+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "aef8fad8c2057cc40426f093d923c14c4c5a118b",
@@ -106,7 +194,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-09T13:43:25+00:00",
       "last_seen": "2026-08-09T13:43:25+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "253a70395fb2f5ac598cf553d1f053645b3271e7",
