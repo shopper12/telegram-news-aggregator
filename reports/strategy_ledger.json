@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-10T12:29:54+09:00",
+  "updated_at": "2026-08-10T14:11:15+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -701,7 +701,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +1.74 / 연결 뉴스: 08/10~08/14 주간 이슈: 소비자물가지수와 금리, 그리고 테마주 최근 리사 쿡 연준 이사는 연설을 통해 인플레이션 안정세…; 방산 Weekly / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-10T14:11:15+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
       "price_warning": "24h derivative proxy; not official equity spot"
@@ -736,7 +742,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +0.81 / 연결 뉴스: 08/10~08/14 주간 이슈: 소비자물가지수와 금리, 그리고 테마주 최근 리사 쿡 연준 이사는 연설을 통해 인플레이션 안정세…; 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-10T14:11:15+09:00",
+          "price": 723.03,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -770,7 +782,13 @@
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +1.33 / 연결 뉴스: 08/10~08/14 주간 이슈: 소비자물가지수와 금리, 그리고 테마주 최근 리사 쿡 연준 이사는 연설을 통해 인플레이션 안정세…; 美증시, 금리인상 기대론 후퇴에 상승…S&P500 사상최고치 마감 https://n.news.naver.com/mnews/art…",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-10T14:11:15+09:00",
+          "price": 398.47,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     }
