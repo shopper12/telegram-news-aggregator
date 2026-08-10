@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-11T00:06:43+09:00",
+  "updated_at": "2026-08-11T07:51:10+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -190,7 +190,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +2.67 / 연결 뉴스: 모건스탠리가 SK하이닉스와 삼성전자에 대한 비중확대 의견 유지. 목표주가는 각각 260만원과 38만1,000원으로 제시. 보고서…; 🔔 자큐보 인도 허가에 온코닉 급등…큐리언트·보로노이도 강세",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-08T14:40:43+09:00",
@@ -201,10 +201,18 @@
           "evaluated_at": "2026-08-09T07:59:39+09:00",
           "price": 723.03,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 720.5148,
+          "return_pct": -0.3479
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-09T07:59:39+09:00"
+      "learned_at": "2026-08-09T07:59:39+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-11T07:51:10+09:00",
+      "final_return_pct": -0.3479
     },
     {
       "id": "729ef054be15acfa",
@@ -235,7 +243,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +0.79, 뉴스 +3.00 / 연결 뉴스: 모건스탠리가 SK하이닉스와 삼성전자에 대한 비중확대 의견 유지. 목표주가는 각각 260만원과 38만1,000원으로 제시. 보고서…; 🔔 자큐보 인도 허가에 온코닉 급등…큐리언트·보로노이도 강세",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-08T14:40:43+09:00",
@@ -246,10 +254,18 @@
           "evaluated_at": "2026-08-09T07:59:39+09:00",
           "price": 543.27,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 530.85,
+          "return_pct": -2.2862
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-09T07:59:39+09:00"
+      "learned_at": "2026-08-09T07:59:39+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-11T07:51:10+09:00",
+      "final_return_pct": -2.2862
     },
     {
       "id": "7ef68760d3d9c530",
@@ -280,7 +296,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +0.78 / 연결 뉴스: 2026년 8월 8일 미국 증시 브리핑 미국 증시는 7월 고용 쇼크에 따른 통화정책 부담 완화와 기술주 강세가 결합되며 상승 마…; 제목 : 보잉, 수주잔고와 현금흐름 매력적 티그레스 *연합인포맥스* 티그레스 파이낸셜의 애널리스트는 보잉",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-08T14:40:43+09:00",
@@ -291,10 +307,18 @@
           "evaluated_at": "2026-08-09T07:59:39+09:00",
           "price": 398.47,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 403.4744,
+          "return_pct": 1.2559
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-09T07:59:39+09:00"
+      "learned_at": "2026-08-09T07:59:39+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-11T07:51:10+09:00",
+      "final_return_pct": 1.2559
     },
     {
       "id": "d79fdbb74442d3e0",
@@ -795,10 +819,16 @@
           "evaluated_at": "2026-08-10T14:11:15+09:00",
           "price": 723.03,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 720.5148,
+          "return_pct": -0.3479
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-11T07:51:10+09:00"
     },
     {
       "id": "a6913e066c5e8533",
@@ -835,10 +865,16 @@
           "evaluated_at": "2026-08-10T14:11:15+09:00",
           "price": 398.47,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 403.4744,
+          "return_pct": 1.2559
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-11T07:51:10+09:00"
     },
     {
       "id": "816a964ea9ab6508",
@@ -870,7 +906,13 @@
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +3.51, 뉴스 +2.44 / 연결 뉴스: 📌 특징 업종; 🔔 '배고픈 코스닥' 19% 급등했지만…\"그래도 대형주 사라\"는 전문가들 📈 #엔켐 #리노공업 #알테오젠 #에코프로비엠 #원익I…",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 403.4744,
+          "return_pct": 1.1848
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -904,7 +946,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.90, 뉴스 +4.00 / 연결 뉴스: 📌 특징 업종; 위 뉴스 중 스페이스X와 우주데이터 센터 관련 내용 발췌",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 720.5148,
+          "return_pct": -0.4786
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -938,9 +986,117 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 -0.10, 뉴스 +4.00 / 연결 뉴스: 📌 특징 업종; 위 뉴스 중 스페이스X와 우주데이터 센터 관련 내용 발췌",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-11T07:51:10+09:00",
+          "price": 530.85,
+          "return_pct": -1.6143
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "b8eb5116201b82b3",
+      "created_at": "2026-08-11T07:51:10+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 403.4744,
+      "entry_zone": [
+        401.457028,
+        405.491772
+      ],
+      "stop_price": 393.782985,
+      "target_price": 422.857229,
+      "score": 7.471,
+      "components": {
+        "momentum": 4.0,
+        "regime": -0.7,
+        "news": 3.0119471409429623,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +4.00, regime -0.70, news +3.01, defensive +1.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.03,
+        "news": 1.03,
+        "defensive": 0.97
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +4.00, 뉴스 +3.01 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 📌 특징 업종 / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "15fe8fdfbc29b74a",
+      "created_at": "2026-08-11T07:51:10+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 530.85,
+      "entry_zone": [
+        528.19575,
+        533.50425
+      ],
+      "stop_price": 498.592816,
+      "target_price": 595.364368,
+      "score": 7.058,
+      "components": {
+        "momentum": 1.3233627014022644,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.32, regime +2.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.03,
+        "news": 1.03,
+        "defensive": 0.97
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.32, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 삼성전기(009150) / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "a523ae31900612c2",
+      "created_at": "2026-08-11T07:51:10+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 720.5148,
+      "entry_zone": [
+        716.912226,
+        724.117374
+      ],
+      "stop_price": 702.142468,
+      "target_price": 757.259464,
+      "score": 7.042,
+      "components": {
+        "momentum": 1.3078503221337,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.31, regime +2.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.03,
+        "news": 1.03,
+        "defensive": 0.97
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.31, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 삼성전기(009150) / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
     }
   ]
 }
