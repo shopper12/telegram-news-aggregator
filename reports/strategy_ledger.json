@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-11T23:16:04+09:00",
+  "updated_at": "2026-08-11T23:37:28+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1131,6 +1131,108 @@
       },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "8bdff111ad0f6ae2",
+      "created_at": "2026-08-11T23:37:28+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 402.745,
+      "entry_zone": [
+        400.731275,
+        404.758725
+      ],
+      "stop_price": 393.151731,
+      "target_price": 421.931539,
+      "score": 8.55,
+      "components": {
+        "momentum": 3.7356285079740146,
+        "regime": 0.2,
+        "news": 3.4236397815536574,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +3.74, regime +0.20, news +3.42, defensive +1.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.03,
+        "news": 1.03,
+        "defensive": 0.97
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +3.74, 뉴스 +3.42 / 연결 뉴스: Pre-Market Summary; 중동정세 불투명 영향으로 홍콩 증시 반락 마감 실적 기대감 및 기술주 매수로 대망 증시 상승 GS칼텍스 2분기 영업이익 흑자전환 및 큰 폭 상승\n출처: TNB | 시각: 2026-08-11T14:17:54+00:00",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "bbd8f639d8523959",
+      "created_at": "2026-08-11T23:37:28+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 125.74,
+      "entry_zone": [
+        125.1113,
+        126.3687
+      ],
+      "stop_price": 117.349483,
+      "target_price": 142.521034,
+      "score": 5.267,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.9140690664270833,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.91, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.03,
+        "news": 1.03,
+        "defensive": 0.97
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.91 / 연결 뉴스: 중동정세 불투명 영향으로 홍콩 증시 반락 마감 실적 기대감 및 기술주 매수로 대망 증시 상승 GS칼텍스 2분기 영업이익 흑자전환 및 큰 폭 상승\n출처: TNB | 시각: 2026-08-11T14:17:54+00:00; ✅ 호르무즈 해협 교착 상태가 공급 차질을 초래할 우려가 제기되면서 알루미늄 가격이 7주 만에 최고치를 기록했다",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "c45fd0c77b40205f",
+      "created_at": "2026-08-11T23:37:28+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 721.67,
+      "entry_zone": [
+        718.06165,
+        725.27835
+      ],
+      "stop_price": 703.485633,
+      "target_price": 758.038735,
+      "score": 3.498,
+      "components": {
+        "momentum": -0.13287535735850392,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum -0.13, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.03,
+        "news": 1.03,
+        "defensive": 0.97
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.13, 뉴스 +4.00 / 연결 뉴스: Pre-Market Summary; 중동정세 불투명 영향으로 홍콩 증시 반락 마감 실적 기대감 및 기술주 매수로 대망 증시 상승 GS칼텍스 2분기 영업이익 흑자전환 및 큰 폭 상승\n출처: TNB | 시각: 2026-08-11T14:17:54+00:00",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
     }
   ]
 }
