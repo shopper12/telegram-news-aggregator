@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-11T12:21:22+09:00",
+  "updated_at": "2026-08-11T13:54:36+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1026,7 +1026,13 @@
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +4.00, 뉴스 +3.01 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 📌 특징 업종 / 가격소스: Yahoo Finance extended-hours",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-11T13:54:36+09:00",
+          "price": 402.54,
+          "return_pct": -0.2316
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     },
@@ -1060,7 +1066,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.32, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 삼성전기(009150) / 가격소스: Yahoo Finance extended-hours",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-11T13:54:36+09:00",
+          "price": 529.39,
+          "return_pct": -0.275
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     },
@@ -1094,7 +1106,13 @@
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.31, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 삼성전기(009150) / 가격소스: Yahoo Finance extended-hours",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-11T13:54:36+09:00",
+          "price": 720.87,
+          "return_pct": 0.0493
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     }
