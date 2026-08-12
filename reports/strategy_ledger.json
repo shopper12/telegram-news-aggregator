@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-13T07:56:27+09:00",
+  "updated_at": "2026-08-13T08:16:45+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1389,10 +1389,16 @@
           "evaluated_at": "2026-08-12T14:34:55+09:00",
           "price": 400.96,
           "return_pct": -0.01
+        },
+        "24h": {
+          "evaluated_at": "2026-08-13T08:16:45+09:00",
+          "price": 404.03,
+          "return_pct": 0.7556
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-13T08:16:45+09:00"
     },
     {
       "id": "57171cce4a0ea2f2",
@@ -1429,10 +1435,16 @@
           "evaluated_at": "2026-08-12T14:34:55+09:00",
           "price": 127.61,
           "return_pct": -0.0705
+        },
+        "24h": {
+          "evaluated_at": "2026-08-13T08:16:45+09:00",
+          "price": 126.815,
+          "return_pct": -0.693
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-13T08:16:45+09:00"
     },
     {
       "id": "3183a3a181cc22d4",
@@ -1469,10 +1481,16 @@
           "evaluated_at": "2026-08-12T14:34:55+09:00",
           "price": 718.45,
           "return_pct": -0.0362
+        },
+        "24h": {
+          "evaluated_at": "2026-08-13T08:16:45+09:00",
+          "price": 722.65,
+          "return_pct": 0.5482
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-13T08:16:45+09:00"
     },
     {
       "id": "427482087c59cc0d",
