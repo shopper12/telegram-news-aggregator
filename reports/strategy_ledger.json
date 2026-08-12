@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-12T22:01:57+09:00",
+  "updated_at": "2026-08-12T23:27:13+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -709,7 +709,7 @@
         "defensive": 0.94
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.45, 뉴스 +2.02 / 연결 뉴스: 도쿄증시, 반도체주 매도세 영향 속 혼조세 마감 닛케이, 주요 종목 실적 우려로 이틀째 하락 엔비디아, AI 인프라 위해 전력업체 4조원 투자\n출처: TNB | 시각: 2026-08-09T14:02:02+00:00; BofA, 샌디스크",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-10T07:43:05+09:00",
@@ -720,11 +720,19 @@
           "evaluated_at": "2026-08-10T23:16:08+09:00",
           "price": 724.14,
           "return_pct": 0.1535
+        },
+        "72h": {
+          "evaluated_at": "2026-08-12T23:27:13+09:00",
+          "price": 725.85,
+          "return_pct": 0.39
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-10T23:16:08+09:00"
+      "learned_at": "2026-08-10T23:16:08+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-12T23:27:13+09:00",
+      "final_return_pct": 0.39
     },
     {
       "id": "8d5d6b8abb24d411",
@@ -755,7 +763,7 @@
         "defensive": 0.94
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +3.17, 뉴스 +1.49 / 연결 뉴스: 🔔 \"롤러코스피에 질렸어요\" 3%대 이자 등장에 35조 예금으로 📈 #은행주 #저축은행 #증권주 #반도체주 #자산운용주 📝 #예…; #삼성전자 #HBM4 ‘황금 수율’ 달성…공급 늘린다 4개월 앞당겨 수율 80% 도달 연내 HBM 점유율 38% 목표 삼성전자가…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-10T07:43:05+09:00",
@@ -766,11 +774,19 @@
           "evaluated_at": "2026-08-10T23:16:08+09:00",
           "price": 397.08,
           "return_pct": -0.3488
+        },
+        "72h": {
+          "evaluated_at": "2026-08-12T23:27:13+09:00",
+          "price": 406.735,
+          "return_pct": 2.0742
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-10T23:16:08+09:00"
+      "learned_at": "2026-08-10T23:16:08+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-12T23:27:13+09:00",
+      "final_return_pct": 2.0742
     },
     {
       "id": "f10bbf2ce2adc91f",
