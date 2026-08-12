@@ -1,7 +1,917 @@
 {
   "version": 1,
-  "updated_at": "2026-08-12T10:36:10+09:00",
+  "updated_at": "2026-08-12T12:44:51+09:00",
   "events": [
+    {
+      "signature": "30b994c2e1e200b917f8c25d8c2ca7e8f26e320f",
+      "title": "미장 2배 레버 종목들 3000만원 예탁금 제한이나 풀어주세요. 진짜 정신병 걸리겠음",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:33:29+00:00",
+      "last_seen": "2026-08-12T03:33:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "97ee83f26941fab2689aa039a9a471bde898235a",
+      "title": "[리포트 브리핑]SK하이닉스, 'HBM 성장에 기대어' 목표가 2,100,000원",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "hbm",
+        "sk하이닉스"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:32:16+00:00",
+      "last_seen": "2026-08-12T03:32:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a539b1698fcd31f719869a37d7295b0876743aa2",
+      "title": "[리포트 브리핑]삼성전자, 'HBM 실적 업계 1위 탈환 예상' 목표가 350,000원",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "hbm",
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:31:20+00:00",
+      "last_seen": "2026-08-12T03:31:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bc40fb5dcc6f8678394455edbb16a644cf403820",
+      "title": "한국거래소가 단일 종목 레버리지 ETF의 최소 거래 단위를 현행 1주에서 20주로, ETN은 1증권에서 20증권으로 상향하는 내…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T03:31:00+00:00",
+      "last_seen": "2026-08-12T03:31:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "21360095a3619045075cb83ceaef5d98c8f47e49",
+      "title": "🚀 [KRX 상승률 TOP10] 2026-08-12 12:30 (KST)",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "파운드리"
+      ],
+      "tickers": [
+        "KST"
+      ],
+      "materiality": 5,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T03:30:05+00:00",
+      "last_seen": "2026-08-12T03:30:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bcc7211297906645076c20b13722e428e6811cbe",
+      "title": "* 매우 중요한 내용이 많이 나온 Cantor의 FMS 리뷰",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "amd",
+        "hbm",
+        "sk하이닉스",
+        "낸드",
+        "메모리",
+        "엔비디아"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "materiality": 22,
+      "sentiment": 2,
+      "first_seen": "2026-08-12T03:26:30+00:00",
+      "last_seen": "2026-08-12T03:26:30+00:00",
+      "count": 2
+    },
+    {
+      "signature": "7a4124323e7ae3527947fe5a6ab91de7004dcd9b",
+      "title": "🔔 AI 데이터센터가 불러온 전력 대란… 전선주 일진전기 KBI메탈 대원전선... 📈 #대원전선 #대한전선 #가온전선 #일진전기…",
+      "sectors": [
+        "AI인프라",
+        "원전",
+        "전력기기"
+      ],
+      "keywords": [
+        "ai",
+        "대한전선",
+        "데이터센터",
+        "원전",
+        "전선"
+      ],
+      "tickers": [
+        "001440.KS",
+        "006260.KS",
+        "103590.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 11,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T03:25:46+00:00",
+      "last_seen": "2026-08-12T03:25:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "33755af2a1404df52cbee9276e1f38e200f2c7ad",
+      "title": "🔔 삼성전자, 1나노급 공정서 하이 NA EUV 상용화 추진 📈 #삼성전자 #에스케이하이닉스 #원익IPS #피에스케이홀딩스 #한…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "삼성전자",
+        "파운드리",
+        "한미반도체"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "042700.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:22:10+00:00",
+      "last_seen": "2026-08-12T03:22:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "96b6ef1000e0e45301df0de89aaf84781c816990",
+      "title": "🔔",
+      "sectors": [
+        "방산/항공"
+      ],
+      "keywords": [
+        "방산",
+        "한화시스템"
+      ],
+      "tickers": [
+        "272210.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 13,
+      "sentiment": 2,
+      "first_seen": "2026-08-12T03:21:55+00:00",
+      "last_seen": "2026-08-12T03:21:55+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a2be07a3c3f73d93e8c3334f5816248790632a66",
+      "title": "싱가포르 테마섹이 삼성전자와 SK하이닉스에 신규 투자를 단행한다. 테마섹이 한국 증시 투자에 나서는 건 이번이 처음이다.",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:20:21+00:00",
+      "last_seen": "2026-08-12T03:20:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6feff759655e72e2a25518d84ce3b0e217a6ebac",
+      "title": "🔔",
+      "sectors": [
+        "반도체",
+        "원전",
+        "전력기기"
+      ],
+      "keywords": [
+        "반도체",
+        "삼성전자",
+        "원전",
+        "전선"
+      ],
+      "tickers": [
+        "005930.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:19:13+00:00",
+      "last_seen": "2026-08-12T03:19:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4c71a5230e919f27ff61e7109952ec8de031e809",
+      "title": "🔔 행복한 SK하닉… 우울한 삼성전자 【 겁나빠른 #드리고봇 뉴스 】 https://www.munhwa.com/article/1…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "mu",
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS",
+        "035420.KS"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:16:33+00:00",
+      "last_seen": "2026-08-12T03:16:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "90f642a166da2a80256a10130daccab19f4a3aa5",
+      "title": "🔔",
+      "sectors": [
+        "바이오"
+      ],
+      "keywords": [
+        "nda",
+        "임상",
+        "품목허가",
+        "허가"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 14,
+      "sentiment": 1,
+      "first_seen": "2026-08-11T00:46:25+00:00",
+      "last_seen": "2026-08-12T03:16:16+00:00",
+      "count": 6
+    },
+    {
+      "signature": "c1b1f4c3db190b4c3104c397f648397a96410c7f",
+      "title": "제목 :",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "AUV"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:16:05+00:00",
+      "last_seen": "2026-08-12T03:16:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6fc2ccf3b8d80c92bb29b18de57b26881a89915d",
+      "title": "제목 : 앱러빈, 30% 성장 지속 근거 부족",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [],
+      "materiality": 12,
+      "sentiment": -1,
+      "first_seen": "2026-08-12T03:14:12+00:00",
+      "last_seen": "2026-08-12T03:14:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "03eda33050a4e960aa2cea3ea030828bffc351be",
+      "title": "숙박보다 대실을 많이 돌려야 돈번다고 하든데... 대실 돌리는 호텔은 몇개 안되는거 같음. 근데..집놔두고 호텔에서 하룻밤 자는…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:12:39+00:00",
+      "last_seen": "2026-08-12T03:12:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b614281ef1d4b40778f392a5d316ccb87feb9cf7",
+      "title": "금투협 구내식당 메뉴가 좋아 졌음.. https://n.news.naver.com/mnews/article/648/0000049…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:10:18+00:00",
+      "last_seen": "2026-08-12T03:10:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e9e99afdd4d24de3695af9f3a892b529cf5a5297",
+      "title": "🔔 카카오뱅크 노조, 야근·연장근무 거부…오늘부터 준법투쟁 📈 #카카오뱅크 📝 #노조리스크 노조 준법투쟁으로 단기 운영 차질 우…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035720.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:08:03+00:00",
+      "last_seen": "2026-08-12T03:08:03+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8b44af8f189c5b959967a6829c83272ea6e6c381",
+      "title": "제목 : 시스코 CEO \"레스토랑 디포 인수 승인 자신\" *연합인포맥스* CNBC는 “시스코",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "규제"
+      ],
+      "tickers": [],
+      "materiality": 16,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:07:11+00:00",
+      "last_seen": "2026-08-12T03:07:11+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1e5fe4613def5ca9fd0ce86af8f03d66066798fc",
+      "title": "✅",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "로봇",
+        "휴머노이드"
+      ],
+      "tickers": [],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T03:06:52+00:00",
+      "last_seen": "2026-08-12T03:06:52+00:00",
+      "count": 1
+    },
+    {
+      "signature": "69216c4f9a062ae766f13b3508acfaa7aecfc5f7",
+      "title": "네오위즈 2분기 영업익 57% 급감, 박성준 공동대표 취임 https://m.stock.naver.com/investment/n…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:06:27+00:00",
+      "last_seen": "2026-08-12T03:06:27+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3417828163e78a63145f180d2814e3e313c98ccf",
+      "title": "추세돌파일지 박스권 상단에 머무를지 갈림길에 있는 가운데 CPI발표대기중 변곡점이라는 소리",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "cpi"
+      ],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T03:06:08+00:00",
+      "last_seen": "2026-08-12T03:06:08+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a613f8a18d896476d56f41f452ebb8d1b44860ba",
+      "title": "코스피 거의 다왔다",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:05:46+00:00",
+      "last_seen": "2026-08-12T03:05:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "76603b0219f9011ab343080155f912a5891d3f12",
+      "title": "🔔 LG전자 대리점장, 사기 혐의로 실형..회사 선제적 피해보상 📈 #엘지전자 📝 #가전유통 LG전자 대리점의 고객금 편취 실형…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "066570.KS"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:05:03+00:00",
+      "last_seen": "2026-08-12T03:05:03+00:00",
+      "count": 1
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-08-12T03:03:53+00:00",
+      "count": 56
+    },
+    {
+      "signature": "af061c02d22076cf4518b48a4f108d8d85097db8",
+      "title": "✅ 우크라, 러 흑해 봉쇄에 곡물·철강 수출 차질…경제위기 직면 우려 https://www.newsis.com/view/NISX…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T03:03:40+00:00",
+      "last_seen": "2026-08-12T03:03:40+00:00",
+      "count": 1
+    },
+    {
+      "signature": "09cc2bf2184dd8be9daa91ef3e752ea4064cbd39",
+      "title": "내가 딱 어제부터 해서 삼전닉스 코스피 날아간다해따잉",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "005930.KS"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:03:14+00:00",
+      "last_seen": "2026-08-12T03:03:14+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a646445506a66b05fd9fdaa129ddf2db88612a4a",
+      "title": "40 밑으로 내려가면 단기 고점일 듯",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:03:10+00:00",
+      "last_seen": "2026-08-12T03:03:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2484a3b221256c8dba67753c8b6b642c0d4aead2",
+      "title": "VKOSPI 55.78 -5.90p",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:02:38+00:00",
+      "last_seen": "2026-08-12T03:02:38+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2ab132924216fd925a83b326df7efb24008f62db",
+      "title": "🔔 4만대 멈추고 임금 192만원 줄었다…현대차 파업 손실 공개 📈 #현대자동차 #현대모비스 #현대위아 📝 #자동차파업 #완성차…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "005380.KS",
+        "012330.KS",
+        "035420.KS"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T03:02:34+00:00",
+      "last_seen": "2026-08-12T03:02:34+00:00",
+      "count": 1
+    },
+    {
+      "signature": "adc9e7dc1c37be7354fb8b4bdf953efc4f6b7837",
+      "title": "📮한국콜마 26년 2분기 실적 컨콜 주요 내용 요약해보면 아래와 같습니다. ① 한국콜마의 이번 실적에서 가장 중요한 변화는 ‘인…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:59:15+00:00",
+      "last_seen": "2026-08-12T02:59:15+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4a3180b8d7acafad064dde7723f10f38f5768f40",
+      "title": "✅ “호남·용인 반도체, 20GW 전력망부터 깐다” https://biz.heraldcorp.com/article/1083872…",
+      "sectors": [
+        "반도체",
+        "전력기기"
+      ],
+      "keywords": [
+        "반도체",
+        "전력망"
+      ],
+      "tickers": [
+        "035420.KS",
+        "RES"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T02:59:11+00:00",
+      "last_seen": "2026-08-12T02:59:11+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c5ced99e23442a1a869d704997fa475072c01214",
+      "title": "🔔 여기어때, 노홍철과 싱가포르 F1 직관…10번째 '버킷팩' 【 겁나빠른 #드리고봇 뉴스 】 https://www.asiati…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "ATI"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:58:23+00:00",
+      "last_seen": "2026-08-12T02:58:23+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6779ea00037de13fbad2ee3d5c45572b73960c0c",
+      "title": "'반도체주' 뜻밖의 악재…한국 개미들 '초긴장' 하는 이유 https://www.hankyung.com/article/20260…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [],
+      "materiality": 4,
+      "sentiment": -1,
+      "first_seen": "2026-08-12T02:56:58+00:00",
+      "last_seen": "2026-08-12T02:56:58+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c387d3aded8b1e81cd7937fab3d0f69fb9c8b847",
+      "title": "[단독]싱가포르 테마섹, 삼전닉스 담는다…'K증시 첫 투자'\n출처: 여의도랩, 여의도스토리 | 시각: 2026-08-12T02:56:35+00:00",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "005930.KS"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:49:16+00:00",
+      "last_seen": "2026-08-12T02:56:35+00:00",
+      "count": 2
+    },
+    {
+      "signature": "bb3b102774f22b472473937324e24bcdff9bc081",
+      "title": "🔔 \"완벽한 오해\"…美GM과 배터리 청산에 실망했는데 '반전 전망' 나왔다 📈 #삼성SDI 📝 #ESS배터리 #전고체LFP전환 …",
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "배터리"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 16,
+      "sentiment": -1,
+      "first_seen": "2026-08-12T02:55:30+00:00",
+      "last_seen": "2026-08-12T02:55:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a4045d917f8d0036df531bf9b55d3108a7939a7b",
+      "title": "제목 : 오픈AI, 알트먼 최측근 라이트캡 퇴사 *연합인포맥스* CNBC는 “오픈AI의 브래드 라이트캡 최고운영책임자",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "COO"
+      ],
+      "materiality": 5,
+      "sentiment": 2,
+      "first_seen": "2026-08-12T02:55:13+00:00",
+      "last_seen": "2026-08-12T02:55:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4f55a5935cbbfb2da6b2021706a12af8ebe1ce88",
+      "title": "🔔 삼성전자 목표가 43만→35만원…그래도 '매수' 유지한 이유 📈 #삼성전자 #SK하이닉스 📝 #반도체메모리 #D램 #HBM …",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "hbm",
+        "sk하이닉스",
+        "메모리",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 10,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:53:17+00:00",
+      "last_seen": "2026-08-12T02:53:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c65f37b2cb1ae26c89e9b4f26e2ca9e9cde4ae5b",
+      "title": "[주요주주 지분공시]이문기 부사장, 조이웍스앤코의 지분율 0.25% 확대\n출처: 씽크풀 | 시각: 2026-08-07T08:38:21+00:00",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 18,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T08:33:33+00:00",
+      "last_seen": "2026-08-12T02:52:18+00:00",
+      "count": 115
+    },
+    {
+      "signature": "6ce4002f432f0f460ce5b21abfe11d874a04806f",
+      "title": "받) 오라클의 추가 감원은 이번 달에 진행될 예정",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:50:26+00:00",
+      "last_seen": "2026-08-12T02:50:26+00:00",
+      "count": 1
+    },
+    {
+      "signature": "045e6779442f7f1e2d2a36b17af6d0d1df4b06e1",
+      "title": "모건스탠리 ‘톱픽’ 삼성전기...목표가 ‘상단 300만원’ 제시https://biz.heraldcorp.com/article/1…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "RES"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:50:06+00:00",
+      "last_seen": "2026-08-12T02:50:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b6ff6a38f2ba5c7e323c7d330188539614bbe654",
+      "title": "🔔 두산퓨얼셀, 연료전지 관련 3건 계약 체결 공시…894억원 규모 📈 #두산퓨얼셀 📝 #연료전지 두산퓨얼셀 연료전지 시스템·유…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T02:49:45+00:00",
+      "last_seen": "2026-08-12T02:49:45+00:00",
+      "count": 1
+    },
+    {
+      "signature": "71e9e82a9f2eb95729a96da64450080ecdb6ec38",
+      "title": "강력한 대체제인 단일종목 레버리지 출시로 인해 수급이탈이 컸던 ETF",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": -1,
+      "first_seen": "2026-08-12T02:49:44+00:00",
+      "last_seen": "2026-08-12T02:49:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d053eb34e06294d4db77ddd22a10811a23b8d6c3",
+      "title": "🔔 LG전자 주가 장중 13%대 올라, '젠슨황 회동' 기대감 반영 📈 #엘지전자 📝 #에이아이서버 #엔비디아협력 엔비디아 CE…",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "서버",
+        "엔비디아"
+      ],
+      "tickers": [
+        "066570.KS"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:48:06+00:00",
+      "last_seen": "2026-08-12T02:48:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a4bb8018dae29370f97ac370656103f0174f30f8",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책",
+        "전력기기"
+      ],
+      "keywords": [
+        "대한전선",
+        "전선",
+        "정책"
+      ],
+      "tickers": [
+        "001440.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 22,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:46:53+00:00",
+      "last_seen": "2026-08-12T02:46:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a65b9342813496eb9b2582370c0df3ba2af19e3c",
+      "title": "전자닉스 비중이 가장 높은 레버리지ETF",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:46:04+00:00",
+      "last_seen": "2026-08-12T02:46:04+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6c48135832e62a20ccfac4cd9b6f592145021e06",
+      "title": "계룡건설 수주공시",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 15,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T02:45:26+00:00",
+      "last_seen": "2026-08-12T02:45:26+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a492387d7dfd8b5b42ff9f33d757a317776e60d8",
+      "title": "제목 :",
+      "sectors": [
+        "AI인프라",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "ai 추론",
+        "수주잔고"
+      ],
+      "tickers": [],
+      "materiality": 24,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T02:43:23+00:00",
+      "last_seen": "2026-08-12T02:43:23+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ef89849545a3aab28c355814f735c222811daf83",
+      "title": "🔔 수산물 요리도 AI로 간편하게…수과원, LG전자와 맞손 📈 #엘지전자 #비에이치에이치 #키친에이드관련주 📝 #홈AI서비스 #…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035420.KS",
+        "066570.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T02:42:32+00:00",
+      "last_seen": "2026-08-12T02:42:32+00:00",
+      "count": 1
+    },
+    {
+      "signature": "050013e53d00d004a506a6089bc149579f4e3654",
+      "title": "🔔",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "로봇"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 27,
+      "sentiment": 2,
+      "first_seen": "2026-08-11T07:38:23+00:00",
+      "last_seen": "2026-08-12T02:41:55+00:00",
+      "count": 2
+    },
+    {
+      "signature": "db20d0fcd59cc2596adeb340e9c113ad7f0b3157",
+      "title": "#테마섹 #삼성전자 #SK하이닉스 #한국 12일 관계부처 등에 따르면 싱가포르 테마섹은 최근 삼성전자 와 SK하이닉스 에 대한 …",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "materiality": 12,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T02:41:37+00:00",
+      "last_seen": "2026-08-12T02:41:37+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 25,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T08:51:28+00:00",
+      "last_seen": "2026-08-12T02:41:27+00:00",
+      "count": 79
+    },
+    {
+      "signature": "0f3795a3635ebb5e1c52af01dd4be083821e23fb",
+      "title": "✅ 삼성전자, ‘인간·로봇 상호작용’ 차세대 핵심기술로 낙점...‘휴머노이드 로봇’ 특허 확보 속도 https://www.joo…",
+      "sectors": [
+        "로봇",
+        "반도체"
+      ],
+      "keywords": [
+        "로봇",
+        "삼성전자",
+        "휴머노이드"
+      ],
+      "tickers": [
+        "005930.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T02:41:22+00:00",
+      "last_seen": "2026-08-12T02:41:22+00:00",
+      "count": 1
+    },
     {
       "signature": "9d32d491bc6f9b7376d7ee2b36c1d4cd214a5edd",
       "title": "미국의 데이터센터 건설 투자액은 2021년 이후 거의 9배 증가했습니다.",
@@ -1227,18 +2137,6 @@
       "count": 1
     },
     {
-      "signature": "c65f37b2cb1ae26c89e9b4f26e2ca9e9cde4ae5b",
-      "title": "[주요주주 지분공시]이문기 부사장, 조이웍스앤코의 지분율 0.25% 확대\n출처: 씽크풀 | 시각: 2026-08-07T08:38:21+00:00",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 18,
-      "sentiment": -1,
-      "first_seen": "2026-08-07T08:33:33+00:00",
-      "last_seen": "2026-08-12T00:36:01+00:00",
-      "count": 112
-    },
-    {
       "signature": "30dfe1747c689ae678205a878cfb05bc8b3ec9ef",
       "title": "🔔 국민대, 현대차와 자율주행 3D AI 경량화 기술 개발 【 겁나빠른 #드리고봇 뉴스 】 https://www.newsis.c…",
       "sectors": [
@@ -1580,21 +2478,6 @@
       "first_seen": "2026-08-11T23:29:47+00:00",
       "last_seen": "2026-08-11T23:29:47+00:00",
       "count": 1
-    },
-    {
-      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 25,
-      "sentiment": 1,
-      "first_seen": "2026-08-07T08:51:28+00:00",
-      "last_seen": "2026-08-11T23:29:46+00:00",
-      "count": 77
     },
     {
       "signature": "70c146373e9d777ea1b880f1b39ffc07f205448f",
@@ -4053,18 +4936,6 @@
       "count": 1
     },
     {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 17,
-      "sentiment": 1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-08-11T13:14:40+00:00",
-      "count": 54
-    },
-    {
       "signature": "baff6aee631466eefcbfdb592d560ca437706c9b",
       "title": "🔔 현대차노조 또 부분파업 📈 #현대자동차 #현대모비스 #현대위아 #케이비오토텍 #모베이스 📝 #자동차생산차질 #노사분쟁 #부품…",
       "sectors": [],
@@ -5854,28 +6725,6 @@
       "count": 1
     },
     {
-      "signature": "90f642a166da2a80256a10130daccab19f4a3aa5",
-      "title": "🔔",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "nda",
-        "임상",
-        "품목허가",
-        "허가"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 14,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T00:46:25+00:00",
-      "last_seen": "2026-08-11T08:46:03+00:00",
-      "count": 4
-    },
-    {
       "signature": "42f577171efb620e7d283408e4ca09c13b45c330",
       "title": "🔔 美 판매 신기록 쓴 현대차그룹…기아 구매 고려도 상승·현대차 전동화... 📈 #현대차 #기아 #현대모비스 #현대위아 #모트렉…",
       "sectors": [],
@@ -6606,25 +7455,6 @@
       "sentiment": 1,
       "first_seen": "2026-08-11T07:39:25+00:00",
       "last_seen": "2026-08-11T07:39:25+00:00",
-      "count": 1
-    },
-    {
-      "signature": "050013e53d00d004a506a6089bc149579f4e3654",
-      "title": "🔔",
-      "sectors": [
-        "로봇"
-      ],
-      "keywords": [
-        "로봇"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 27,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T07:38:23+00:00",
-      "last_seen": "2026-08-11T07:38:23+00:00",
       "count": 1
     },
     {
@@ -8293,904 +9123,6 @@
       "sentiment": 1,
       "first_seen": "2026-08-11T05:30:12+00:00",
       "last_seen": "2026-08-11T05:30:12+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c142d01c8c66c3f88e2cab94b48a91485d9bccb8",
-      "title": "🚀 [KRX 상승률 TOP10] 2026-08-11 14:30 (KST)",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "KST",
-        "YI"
-      ],
-      "materiality": 4,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:30:04+00:00",
-      "last_seen": "2026-08-11T05:30:04+00:00",
-      "count": 1
-    },
-    {
-      "signature": "a0144c18443666dfb0e2f880f694b7cede48c210",
-      "title": "🔔 NHN KCP, 2Q 매출 3834억·거래액 17조…역대 최대 📈 #NHN케이씨피 #한국정보통신 #다날 #KG이니시스 #모빌…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "HPQ",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:29:48+00:00",
-      "last_seen": "2026-08-11T05:29:48+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e2e7192be7ba636d49bee0f05666ebc1ac0a6b73",
-      "title": "🔔 삼성전자, 게임스컴 2026서 '오디세이 G8' 등 신제품 공개…플레이갤럭... 📈 #삼성전자 📝 #게이밍모니터 #전자제품전…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:28:55+00:00",
-      "last_seen": "2026-08-11T05:28:55+00:00",
-      "count": 1
-    },
-    {
-      "signature": "3e24094ec2cfb7d0046b43aa68bd46407296e65e",
-      "title": "🔔 수능 100일 앞, 광주신세계 홍삼 마케팅 【 겁나빠른 #드리고봇 뉴스 】 http://www.gjdream.com/news…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:27:34+00:00",
-      "last_seen": "2026-08-11T05:27:34+00:00",
-      "count": 1
-    },
-    {
-      "signature": "91087302a930c79c1a577d1cd14d7baf732683a4",
-      "title": "🔔 BYD, 중국 빼고도 현대차 추월…'내수용 중국차' 공식 깨졌다 📈 #현대차 #기아 #현대모비스 #만도 #모트렉스 📝 #전기…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "000270.KS",
-        "005380.KS",
-        "012330.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 13,
-      "sentiment": -1,
-      "first_seen": "2026-08-11T05:27:19+00:00",
-      "last_seen": "2026-08-11T05:27:19+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e31323258733fb44a8cbd0df27560feea0218567",
-      "title": "#기가비스",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "반도체"
-      ],
-      "tickers": [
-        "YI"
-      ],
-      "materiality": 20,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:27:01+00:00",
-      "last_seen": "2026-08-11T05:27:01+00:00",
-      "count": 1
-    },
-    {
-      "signature": "69e2642e411861f38ebc2495a5f38071e708040b",
-      "title": "🔔",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS",
-        "066570.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 18,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:27:01+00:00",
-      "last_seen": "2026-08-11T05:27:01+00:00",
-      "count": 1
-    },
-    {
-      "signature": "ead937158ac2a5df09dfbe099e338b187900ad7c",
-      "title": "🔔 LG전자 주가 3%대 하락…18만2800원, 장중 저점 부근 약세 📈 #엘지전자 📝 #중대재해공시 #전자부품인프라 전일 반등…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "066570.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 11,
-      "sentiment": -1,
-      "first_seen": "2026-08-11T05:27:01+00:00",
-      "last_seen": "2026-08-11T05:27:01+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6150d5b0b10c43ba6501108d6c31db316da10289",
-      "title": "#LG에너지솔루션 #LFP용 음극재 #롱판테크 .. 엘쥐가 중국롱판테크 LFP음극재를 구매 https://www.autodail…",
-      "sectors": [
-        "2차전지",
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "lg에너지솔루션",
-        "음극재"
-      ],
-      "tickers": [
-        "373220.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:25:44+00:00",
-      "last_seen": "2026-08-11T05:25:44+00:00",
-      "count": 1
-    },
-    {
-      "signature": "dabcdbba5360e424ce175212b1c7a96a03d0b0ee",
-      "title": "🔔 “반도체株 사라더니 목표가는 30% 뚝”…증권가 ‘고무줄 목표가’ 논란 📈 #에스케이하이닉스 #삼성전자 📝 #반도체주가변동성…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "메모리",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:25:16+00:00",
-      "last_seen": "2026-08-11T05:25:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0997b44c3ca5c4bad34fa5baa61d91abbf57f69e",
-      "title": "✅ 모나미 광복 에디션 품절",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS"
-      ],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:24:59+00:00",
-      "last_seen": "2026-08-11T05:24:59+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8028afe9fc22d13b95ca0d45d0d2964cd0b5f1b5",
-      "title": "- 2분기 리니지클래식 매출액 1,855억원. 일매출 20억원 이상",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:23:18+00:00",
-      "last_seen": "2026-08-11T05:23:18+00:00",
-      "count": 1
-    },
-    {
-      "signature": "76c49901841733a84dbd9c8fa3fed609c9ecae17",
-      "title": "🔔 \"부르는 게 값…MLCC·FCBGA 숏티지에 삼성전기 웃는다\" 📈 #삼성전기 #삼성전자 📝 #반도체후공정 #패키징부품 #FC…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:22:06+00:00",
-      "last_seen": "2026-08-11T05:22:06+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8ac0e08301f6529213f45bd9cf2c7a0398ddae70",
-      "title": "🔔 양극재 3사 희비…엘앤에프 웃고 에코프로·포스코퓨처엠 주춤 📈 #엘앤에프 #에코프로 #포스코퓨처엠 📝 #배터리소재 #이차전지…",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "배터리",
-        "양극재",
-        "에코프로"
-      ],
-      "tickers": [
-        "086520.KQ",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:21:41+00:00",
-      "last_seen": "2026-08-11T05:21:41+00:00",
-      "count": 1
-    },
-    {
-      "signature": "b404455f3820153edf3a131bb23730d915664fa7",
-      "title": "🔔 한화오션 주가 5% 가까이 하락…전날 급등 뒤 8만원대로 후퇴 📈 #한화오션 📝 #조선업종 전날 급등 이후 차익실현 매물이 …",
-      "sectors": [
-        "조선"
-      ],
-      "keywords": [
-        "조선"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 6,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T05:21:16+00:00",
-      "last_seen": "2026-08-11T05:21:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "81b0b35dc0f573b160ca85834f34a9acf92897d3",
-      "title": "🔔 “환원에 너무 짜다” 개미 울린 SK하이닉스 📈 #에스케이하이닉스 #엘엔에프 #원익머트리얼즈 #피에스케이 #이오테크닉스 📝 …",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "sk하이닉스",
-        "메모리",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:20:32+00:00",
-      "last_seen": "2026-08-11T05:20:32+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6e2c728d4c0f6c45ca1cd83704612eea68c7cbc7",
-      "title": "[출처:미래에셋] 단일종목레버리지ETF거대대금및 비중추이",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:19:32+00:00",
-      "last_seen": "2026-08-11T05:19:32+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c1b437691c2a0fa72ed50d7e5ad23fd308fe4245",
-      "title": "외국인투자자 수급도 중요한데, 오늘 삼성전자 경우에 많은 매수세가 모이긴한데 하루 순매수로 많이 들어온것보다 꾸준히 순매수 즉 …",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:18:55+00:00",
-      "last_seen": "2026-08-11T05:18:55+00:00",
-      "count": 1
-    },
-    {
-      "signature": "b432b8b4e724952095a0843c2ab85bf31bdd7fcd",
-      "title": "이게 지금 반도체주가를 누르는 이유라곤 합니다만",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:18:50+00:00",
-      "last_seen": "2026-08-11T05:18:50+00:00",
-      "count": 1
-    },
-    {
-      "signature": "74dd5f3792a8423534702182120e0457434232ed",
-      "title": "“한국 가서 예뻐지고 싶어요” 피부과·성형외과 몰리는 외국인들 카드 결제가 무려 -국내 가맹점 해외카드 매출, 2023년 1월의…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:18:40+00:00",
-      "last_seen": "2026-08-11T05:18:40+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8dedb3fbaaba3614d6603c9ee6deffc7132f8af1",
-      "title": "🔔 LG전자, 유럽 사이버보안 지정시험기관 자격 획득…제품 개발 속도 높인... 📈 #엘지전자 📝 #사이버보안 #인증시험 #유럽…",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "규제"
-      ],
-      "tickers": [
-        "066570.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 11,
-      "sentiment": -1,
-      "first_seen": "2026-08-11T05:16:29+00:00",
-      "last_seen": "2026-08-11T05:16:29+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c10770250eedddacaaedcbc868cb73a3cd1da79e",
-      "title": "#바텍",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:16:14+00:00",
-      "last_seen": "2026-08-11T05:16:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "04ed590793797570e80435f4421f91209a075161",
-      "title": "🔔 셀트리온 주가 5% 가까이 상승…21만원선 안착 시도 📈 #셀트리온 📝 #바이오의약품 장중 5%대 강세로 21만원대 재진입 …",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "셀트리온"
-      ],
-      "tickers": [
-        "068270.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 7,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T05:16:09+00:00",
-      "last_seen": "2026-08-11T05:16:09+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d11e0a05870987094ce2b49d43ab5a38943048c4",
-      "title": "🔔 현대차 주가 40만원선서 약세…전날 상승 뒤 숨 고르기 📈 #현대차 📝 #자동차부품 #완성차 전날 상승에 따른 차익실현 영향…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "005380.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:15:49+00:00",
-      "last_seen": "2026-08-11T05:15:49+00:00",
-      "count": 1
-    },
-    {
-      "signature": "37b600cbfeef78d1eab184f362e40a844378eb07",
-      "title": "🔔 한국주강, 삼성중공업과 대형 주강품 계약…수주잔고 30% 증가 📈 #한국주강 📝 #조선수주증가 #주강 #방산부품 #해양플랜트…",
-      "sectors": [
-        "방산/항공",
-        "조선"
-      ],
-      "keywords": [
-        "방산",
-        "수주잔고",
-        "조선",
-        "해양플랜트"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 23,
-      "sentiment": 3,
-      "first_seen": "2026-08-11T05:15:34+00:00",
-      "last_seen": "2026-08-11T05:15:34+00:00",
-      "count": 1
-    },
-    {
-      "signature": "339ab3cd3ea5360caa24e0ee5f16fdb32d81606a",
-      "title": "🔔 \"40만전자 간다며\"…돌변한 증권가, 무슨 일 📈 #삼성전자 #SK하이닉스 📝 #반도체메모리 #HBM #중국메모리경쟁 키움증…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "hbm",
-        "sk하이닉스",
-        "메모리",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 17,
-      "sentiment": -1,
-      "first_seen": "2026-08-11T05:15:33+00:00",
-      "last_seen": "2026-08-11T05:15:33+00:00",
-      "count": 1
-    },
-    {
-      "signature": "b908a0db8e7d949fab6e9cba4e23c74880d63888",
-      "title": "🔔 삼성전기 주가 128만원대 강세…장중 129만7000원 터치 📈 #삼성전기 📝 #전기전자부품 장중 119만원대에서 129만7…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 4,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T05:15:32+00:00",
-      "last_seen": "2026-08-11T05:15:32+00:00",
-      "count": 1
-    },
-    {
-      "signature": "176365c6397fc3766576d0dfdda12555b7b9f858",
-      "title": "제이엔케이글로벌 수주공시",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 15,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T05:15:13+00:00",
-      "last_seen": "2026-08-11T05:15:13+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d9d7089afacb954da3f9351a478d5c2227ef0e31",
-      "title": "🔔 한화오션 주가 다시 '8만오션'으로…전일 상승분 반납 📈 #한화오션 📝 #조선해양 전일 급등 후 차익실현성 매물로 조정 흐름…",
-      "sectors": [
-        "조선"
-      ],
-      "keywords": [
-        "조선"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 6,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T05:15:06+00:00",
-      "last_seen": "2026-08-11T05:15:06+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6a211a44cd802f503404efa71d1a83a96277ad4c",
-      "title": "#NC",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:15:05+00:00",
-      "last_seen": "2026-08-11T05:15:05+00:00",
-      "count": 1
-    },
-    {
-      "signature": "516be1665c5fb2c3db5caf8928b53dd66fb2f34b",
-      "title": "#애플..애플폴더블폰 430만원?...https://n.news.naver.com/mnews/article/052/0002391…",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "애플"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 8,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:13:29+00:00",
-      "last_seen": "2026-08-11T05:13:29+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0446b0cfe538103f795ac611044960df0993fc72",
-      "title": "🚀🥇바텍(043150) 잠정실적(연결) 📌 실적 [매출] 1,214 억원 QoQ : 15.4 % YoY : 9.7 % 컨센대비 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "YI"
-      ],
-      "materiality": 9,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:13:27+00:00",
-      "last_seen": "2026-08-11T05:13:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1ec571385e14194a378240c8ad1c95cf77c2fd7f",
-      "title": "🔔 웹보드·일본 시장 흥행 NHN, 2분기 게임사업 두 자릿수 성장 📈 #엔에이치엔 #네오위즈 #크래프톤 #컴투스 📝 #웹보드게…",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "규제"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:13:02+00:00",
-      "last_seen": "2026-08-11T05:13:02+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f340c55f01431bf45a35b573eaa93347dcb0e4d5",
-      "title": "🌎 글로벌 뉴스 브리핑",
-      "sectors": [
-        "2차전지",
-        "AI인프라",
-        "거시/정책",
-        "반도체",
-        "원전",
-        "조선"
-      ],
-      "keywords": [
-        "ai",
-        "smr",
-        "관세",
-        "금리",
-        "반도체",
-        "배터리",
-        "원자로",
-        "정책",
-        "조선",
-        "한은"
-      ],
-      "tickers": [
-        "RBA",
-        "RBNZ",
-        "SMR",
-        "YI"
-      ],
-      "materiality": 33,
-      "sentiment": 2,
-      "first_seen": "2026-08-11T05:12:54+00:00",
-      "last_seen": "2026-08-11T05:12:54+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c9d28ceb57eeff2b033e9432a9ece6343494eb1c",
-      "title": "🔔 SK하이닉스 투자사, 日 키옥시아 최대주주 등극…낸드 경쟁 새 국면 📈 #에스케이하이닉스 #티피씨 #에스케스케이 #에스케이텔…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "낸드",
-        "메모리",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 14,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T04:58:51+00:00",
-      "last_seen": "2026-08-11T05:12:03+00:00",
-      "count": 3
-    },
-    {
-      "signature": "a95a888b96a9865428531e423d9a4f306a654371",
-      "title": "Pre-Market Summary",
-      "sectors": [
-        "2차전지",
-        "AI인프라",
-        "거시/정책",
-        "바이오",
-        "반도체",
-        "조선"
-      ],
-      "keywords": [
-        "ai",
-        "cpi",
-        "fda",
-        "nvidia",
-        "server",
-        "tsmc",
-        "금리",
-        "반도체",
-        "배터리",
-        "연준"
-      ],
-      "tickers": [
-        "AAPL",
-        "BX",
-        "CPRT",
-        "HIMS",
-        "INTC",
-        "NVDA",
-        "RIOT",
-        "YI"
-      ],
-      "materiality": 34,
-      "sentiment": 3,
-      "first_seen": "2026-08-11T05:11:51+00:00",
-      "last_seen": "2026-08-11T05:11:51+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8939b043a94f3b0fefc3892cbbcae0720fdc6d30",
-      "title": "이스라엘 예비역 소장 우지 다얀은 이란이 핵보유국이 되는 상황을 막기 위해 필요할 경우 이스라엘이 단독으로 선제 대응에 나설 수…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:09:56+00:00",
-      "last_seen": "2026-08-11T05:09:56+00:00",
-      "count": 1
-    },
-    {
-      "signature": "990ec7de9a19ad38ba999cdea24ad3b246b099a1",
-      "title": "🔔 현대차, 車 팔기 전 '게이머'부터 잡는다… N 10만대 키울 '가상 서킷' 📈 #현대차 #현대위아 #현대모비스 #모트렉스 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "005380.KS",
-        "012330.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 6,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:09:39+00:00",
-      "last_seen": "2026-08-11T05:09:39+00:00",
-      "count": 1
-    },
-    {
-      "signature": "9ee2611560470a493de7511085b4477bffb53b7a",
-      "title": "🔔 우편에서 메신저까지…기업 메시지, 카카오 비즈니스가 이끈다 【 겁나빠른 #드리고봇 뉴스 】 http://www.fnnews.…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS",
-        "NNBR",
-        "NWS",
-        "NWSA",
-        "YI"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:08:25+00:00",
-      "last_seen": "2026-08-11T05:08:25+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8265d0d33b9b9d6a84e666c03af9ac1666b302c9",
-      "title": "🔔 동양, AIDC 신사업 속도…수도권 5개 프로젝트 추진 소식에 4%대↑",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 6,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:06:31+00:00",
-      "last_seen": "2026-08-11T05:06:31+00:00",
-      "count": 1
-    },
-    {
-      "signature": "ae9b6db216968b47388fd35ba62cf92ffb624532",
-      "title": "삼성전자를 물론 7만원밑에서 사놓고 지금도 엄청 수익에서 내리던오르던 신경도 안쓸만큼 기다릴수도있지만 저희 멤버쉽처럼 19만원에…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:06:28+00:00",
-      "last_seen": "2026-08-11T05:06:28+00:00",
-      "count": 1
-    },
-    {
-      "signature": "da8226d7c0a0460698e5d99a3d0cacb4c452f318",
-      "title": "🔔 \"광복절마다 주목\"…빙그레·GS리테일·모나미, 소비로도 이어져 📈 #빙그레 #GS리테일 #모나미 📝 #브랜드마케팅 #소비증가…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "YI"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T04:56:32+00:00",
-      "last_seen": "2026-08-11T05:05:09+00:00",
-      "count": 2
-    },
-    {
-      "signature": "4bd022b103a0c9e4f8f86d1fa4a6959944050849",
-      "title": "전자가 잘못되었다 후자가 잘못되었다 그딴건 없음~ 사람마다 기준도 있고, 비중도 다를것이며 투자환경도 다를것이며, 취향차이임.",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:03:41+00:00",
-      "last_seen": "2026-08-11T05:03:41+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d9e7106015554c844a4edbb49917b3afb8995e8f",
-      "title": "수급을 보면 코스피강세 v코스닥약세일수밖에없는수급",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:02:58+00:00",
-      "last_seen": "2026-08-11T05:02:58+00:00",
-      "count": 1
-    },
-    {
-      "signature": "46d322cd65ec7d26960190cc1d9427a82343390c",
-      "title": "비싸게 사더라도 확인된 자리에서 샀을때 빠른시간내에 추세타고 상승할 확률을 놓고보면 26만원대 넘고나서 분할매수가 아니라 시장가…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-08-11T05:01:45+00:00",
-      "last_seen": "2026-08-11T05:01:45+00:00",
-      "count": 1
-    },
-    {
-      "signature": "61d44c9ddc46dd86534518c1e26f4654be963eb7",
-      "title": "싸게 사는게 중요한 입장에선 지금 사고 분할매수하는게 맞고",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:01:09+00:00",
-      "last_seen": "2026-08-11T05:01:09+00:00",
-      "count": 1
-    },
-    {
-      "signature": "db1afd8859a8495a282bd4608720ec185c028f79",
-      "title": "삼성전자나 SK하이닉스가 추세전환이 나왔다고 생각하진않습니다 아직까진.. 그러나 외국인 입장에서 생각해보면 내일 올라갈거 기다해…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "materiality": 6,
-      "sentiment": 0,
-      "first_seen": "2026-08-11T05:00:45+00:00",
-      "last_seen": "2026-08-11T05:00:45+00:00",
-      "count": 1
-    },
-    {
-      "signature": "75b90991a0caf7009c69e8421f839bfd210e6cbf",
-      "title": "🔔 삼전 39만→35만원, 하이닉스 220만→210만원…키움도 눈높이 낮췄다 📈 #삼성전자 #SK하이닉스 📝 #HBM #메모리업…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "sk하이닉스",
-        "메모리",
-        "반도체",
-        "삼성전자",
-        "파운드리"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 11,
-      "sentiment": -1,
-      "first_seen": "2026-08-11T05:00:14+00:00",
-      "last_seen": "2026-08-11T05:00:14+00:00",
       "count": 1
     }
   ]
