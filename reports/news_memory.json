@@ -1,7 +1,430 @@
 {
   "version": 1,
-  "updated_at": "2026-08-13T08:16:45+09:00",
+  "updated_at": "2026-08-13T08:38:55+09:00",
   "events": [
+    {
+      "signature": "c58dbc0a793bfa35a0e9034ca220007dcbab46c3",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "000270.KS",
+        "005380.KS",
+        "018880.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 13,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T23:33:35+00:00",
+      "last_seen": "2026-08-12T23:33:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d9eb653082c60e1681779ce7cf603ea497188dc1",
+      "title": "🔔 이노테크, '반도체 핵심' 챔버 수주 폭증…\"글로벌 MLCC 확대 수혜에 본... 📈 #이노테크 #대주전자재료 #삼성전기 #…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 21,
+      "sentiment": 3,
+      "first_seen": "2026-08-12T23:08:41+00:00",
+      "last_seen": "2026-08-12T23:32:12+00:00",
+      "count": 2
+    },
+    {
+      "signature": "b3324988e713faf7bcda07d6515a83ac8a0dc626",
+      "title": "네이버, 자회사 크림에 1300억 투자로 C2C 사업 강화 https://m.stock.naver.com/investment/n…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:30:20+00:00",
+      "last_seen": "2026-08-12T23:30:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "eb54563a4de442c67ca607c6e5862fba1d896f58",
+      "title": "🔔 '벼랑 끝' 동전주 27곳 관리종목행…23곳은 액면병합 '꼼수' 📈 #온타이드 #우리엔터프라이즈 #에스에너지 #형지글로벌 #…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 12,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T23:30:16+00:00",
+      "last_seen": "2026-08-12T23:30:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "72f004cc2c8aab2832828b2798ee0135d3aadfa3",
+      "title": "“삼전닉스. 극단적 저평가 구간…주주환원이 재평가 촉매” 삼성전자",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "sk하이닉스",
+        "tsmc",
+        "메모리",
+        "삼성전자",
+        "정책"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "ADIA",
+        "NWS",
+        "NWSA",
+        "PER"
+      ],
+      "materiality": 30,
+      "sentiment": 2,
+      "first_seen": "2026-08-12T23:15:12+00:00",
+      "last_seen": "2026-08-12T23:30:15+00:00",
+      "count": 2
+    },
+    {
+      "signature": "43a495ef137b7534c93b9b0d42441f1780743022",
+      "title": "2026년 2분기 실적 특징주",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:29:46+00:00",
+      "last_seen": "2026-08-12T23:29:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "11649ceae866f7e19f4bb94e32b56c8c58c9875c",
+      "title": "🔔 '옥문아' 김종국 \"삼성전자 주식 평단가 5만원에 보유 중…팔 생각 없어... 【 겁나빠른 #드리고봇 뉴스 】 https:/…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:28:30+00:00",
+      "last_seen": "2026-08-12T23:28:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "95e1fe288ace1e170d34d2a86f8ed8b7600ead49",
+      "title": "JP모건자산운용의 데이비드 켈리 수석 글로벌 전략가는 인플레이션이 점진적으로 둔화될 것으로 예상되며, 연준이 금리를 인상할 필요…",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "관세",
+        "금리",
+        "연준"
+      ],
+      "tickers": [],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T23:25:44+00:00",
+      "last_seen": "2026-08-12T23:25:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "94b7253a6f6cbeabd74c55f59aad5d23babc892e",
+      "title": "🔔 NHN클라우드, GPU 수익화 2막…\"영업익 확보 후 상장 검토\" 📈 #엔에이치엔클라우드 #엔에이치엔 📝 #클라우드컴퓨팅 #…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "gpu"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 14,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:25:17+00:00",
+      "last_seen": "2026-08-12T23:25:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8834044a52dabf202550c8e8d5cdb619194c61a6",
+      "title": "#Tencent 2Q26 컨퍼런스콜 주요 Q&A 요약 _다올 고영민 Q1. AI CapEx 급증 및 수익성 영향?",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "dram",
+        "gpu",
+        "meta",
+        "메모리"
+      ],
+      "tickers": [
+        "SOTA"
+      ],
+      "materiality": 13,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T23:24:28+00:00",
+      "last_seen": "2026-08-12T23:24:28+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8b790a7a22d415cdc436bb7f7662e8349f7635d4",
+      "title": "🔔 '135만→300만원' 대장주 바뀌나…'삼성전기' 톱픽 이유는 📈 #삼성전기 #삼성전자 #LG이노텍 #대한전선 #삼성SDI …",
+      "sectors": [
+        "AI인프라",
+        "반도체",
+        "전력기기"
+      ],
+      "keywords": [
+        "ai",
+        "대한전선",
+        "반도체",
+        "삼성전자",
+        "전선"
+      ],
+      "tickers": [
+        "001440.KS",
+        "005930.KS"
+      ],
+      "materiality": 8,
+      "sentiment": 2,
+      "first_seen": "2026-08-12T23:22:18+00:00",
+      "last_seen": "2026-08-12T23:22:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6f058133a2118d80236b83ad00e227b52b77c9c6",
+      "title": "🔔",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "amd"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 27,
+      "sentiment": -2,
+      "first_seen": "2026-08-10T01:11:26+00:00",
+      "last_seen": "2026-08-12T23:22:00+00:00",
+      "count": 12
+    },
+    {
+      "signature": "31af568a0fac08195bb311aefb6ed632927e2e51",
+      "title": "🔔",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "엔비디아"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:22:00+00:00",
+      "last_seen": "2026-08-12T23:22:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ae5b0ad1a4ca63d76a5373bb83584ee85d0095ef",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "금리",
+        "엔비디아"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 12,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:22:00+00:00",
+      "last_seen": "2026-08-12T23:22:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f208fc4e88481881cf7b31e3ccb853fb885513f7",
+      "title": "🔔 오킨스전자, 대만 지사 설립… \"글로벌 AI 반도체 공략 가속\" 📈 #오킨스전자 📝 #반도체테스트 #AI반도체 #비메모리반도…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "메모리",
+        "반도체"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 23,
+      "sentiment": 3,
+      "first_seen": "2026-08-12T23:20:13+00:00",
+      "last_seen": "2026-08-12T23:20:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "27e358070ef0ed4c6d457dc271b4be50ea0e8e3f",
+      "title": "🔔 ‘덕혜옹주를 도와줘’ 카카오 독점 연재 【 겁나빠른 #드리고봇 뉴스 】 https://www.bntnews.co.kr/art…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035720.KS"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:19:20+00:00",
+      "last_seen": "2026-08-12T23:19:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a2a89f5ed6b3c1e245e697d161a49a2fd597f7e9",
+      "title": "음양오행에 따르면 다음 주부터 대풀롱 시작 가능성",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:18:11+00:00",
+      "last_seen": "2026-08-12T23:18:11+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b8313e8b69606ed95fc4f55962c8a0ee835fab46",
+      "title": "🔔 모건스탠리, '최선호주' 삼성전자서 삼성전기로 변경 📈 #삼성전기 #삼성전자 📝 #MLCC #적층세라믹커패시터 #전장부품 모…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:16:48+00:00",
+      "last_seen": "2026-08-12T23:16:48+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2e7f98e603816e299bdb39d638fcb85d8af1e30f",
+      "title": "✅ 정기선·빌게이츠 ‘SMR 깐부’…7개월 만에 다시 만난다 https://n.news.naver.com/mnews/articl…",
+      "sectors": [
+        "원전"
+      ],
+      "keywords": [
+        "smr"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-08-12T23:15:51+00:00",
+      "last_seen": "2026-08-12T23:15:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 25,
+      "sentiment": -2,
+      "first_seen": "2026-08-07T08:51:28+00:00",
+      "last_seen": "2026-08-12T23:15:48+00:00",
+      "count": 97
+    },
+    {
+      "signature": "77606f5e5e491a0197a41d7598971f7eddb37f0d",
+      "title": "🔔 이달 초순 개인은 코스피 상승, 외국인은 하락에 베팅했다 📈 #삼성전자 #SK하이닉스 📝 #커버드콜ETF #인버스ETF #레…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:15:12+00:00",
+      "last_seen": "2026-08-12T23:15:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "45938f14896c5b6db3b518e73520e23d1c3148fb",
+      "title": "로버트 길먼 씨, 귀국을 환영합니다! 러시아에서 4년 넘게 구금됐던 미국 시민 로버트 길먼 씨가 마침내 미국 땅으로 돌아왔습니다…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-12T23:15:10+00:00",
+      "last_seen": "2026-08-12T23:15:10+00:00",
+      "count": 1
+    },
     {
       "signature": "09dd9f7e492f7bac4e5beb89a5c1108cb795e3db",
       "title": "성현동 KB증권 연구원은 \"동사의 반도체용 테스트 챔버 매출 비중 확대가 예상돼 긍정적\"이라며 \"동사의 또 다른 주요 고객사는 …",
@@ -18,7 +441,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-12T23:11:31+00:00",
       "last_seen": "2026-08-12T23:11:31+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "98215bbc628f58e598844c1fe933277af0f951da",
@@ -38,7 +461,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:11:05+00:00",
       "last_seen": "2026-08-12T23:11:05+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "9bf6901e3e10dc2c0a0a28400881186d511e4f89",
@@ -59,7 +482,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T23:10:42+00:00",
       "last_seen": "2026-08-12T23:10:42+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c822954b040d3e351717b0fc745f8ebf5e2d4e1d",
@@ -82,7 +505,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:10:17+00:00",
       "last_seen": "2026-08-12T23:10:17+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "24b81ae73ced770a80df97a3cac88902d380d8e9",
@@ -102,7 +525,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T23:10:12+00:00",
       "last_seen": "2026-08-12T23:10:12+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "728549bf5cf96e45a12701b1c7416242862be729",
@@ -118,7 +541,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:08:53+00:00",
       "last_seen": "2026-08-12T23:08:53+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c44b3832f007c9a9c856430d8c337fc0e0e945a0",
@@ -139,7 +562,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:08:52+00:00",
       "last_seen": "2026-08-12T23:08:52+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "ea3ee228e0ab5b6e0dc9257c7211390c68cc5a93",
@@ -154,7 +577,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:08:50+00:00",
       "last_seen": "2026-08-12T23:08:50+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "e67fa4370710721cf3a6b2de9ca80557f3e61c04",
@@ -198,7 +621,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-12T23:08:02+00:00",
       "last_seen": "2026-08-12T23:08:02+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "471c540807896eabb92525650326fa972fa06a1a",
@@ -227,7 +650,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:06:08+00:00",
       "last_seen": "2026-08-12T23:06:08+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "b53c3130333cf8bd9ede0615498e02d9a053d8fa",
@@ -249,7 +672,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T23:06:07+00:00",
       "last_seen": "2026-08-12T23:06:07+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c03a9f2b51d7d4c0ccd3ef3c50acddac3627d80b",
@@ -267,7 +690,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T23:05:32+00:00",
       "last_seen": "2026-08-12T23:05:32+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "715085d4544809a4cd95d891374036c839817cdb",
@@ -286,7 +709,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T23:04:43+00:00",
       "last_seen": "2026-08-12T23:04:43+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d5f67430973a577a91b6f2703db7addc59b62c44",
@@ -306,7 +729,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:04:26+00:00",
       "last_seen": "2026-08-12T23:04:26+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "cfc8faf6ad7469ab8898034a18fcbb17946f9fa9",
@@ -325,7 +748,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T23:04:18+00:00",
       "last_seen": "2026-08-12T23:04:18+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "f36cec52f0901ba8e6925f8de0335e70728649df",
@@ -341,7 +764,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T23:04:10+00:00",
       "last_seen": "2026-08-12T23:04:10+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "51af4cff130c17042b2ab995cd77958a508ad24f",
@@ -357,7 +780,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-12T23:03:36+00:00",
       "last_seen": "2026-08-12T23:03:36+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8ffb515fb8b12b5931e0d160df2de62da8b309ac",
@@ -376,7 +799,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T23:02:55+00:00",
       "last_seen": "2026-08-12T23:02:55+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "9ea82af5f889ca9590263081e30b97cc2090f533",
@@ -390,7 +813,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-07T08:20:32+00:00",
       "last_seen": "2026-08-12T23:02:39+00:00",
-      "count": 32
+      "count": 35
     },
     {
       "signature": "c9c66b688be1c260cbfb3352cf9a28876f708ddc",
@@ -407,7 +830,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-12T23:00:15+00:00",
       "last_seen": "2026-08-12T23:00:15+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "3d9f46abf2e7a37ae1318d23f1732ca4213ee6f0",
@@ -425,7 +848,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T23:00:15+00:00",
       "last_seen": "2026-08-12T23:00:15+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "40c905b66aa3b338446ccd8276420e5ea7b4a422",
@@ -442,7 +865,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T23:00:15+00:00",
       "last_seen": "2026-08-12T23:00:15+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "e1ede4d85334ac1de3c3a12f32c31eb1268a6589",
@@ -459,7 +882,7 @@
       "sentiment": -2,
       "first_seen": "2026-08-12T22:59:38+00:00",
       "last_seen": "2026-08-12T22:59:38+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c665695e5ef1c69e379b5dbce3c674a1c92dfbb1",
@@ -471,7 +894,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:59:08+00:00",
       "last_seen": "2026-08-12T22:59:08+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "4cabba2f4c464cf55e7288e759edc0b49ca4eee4",
@@ -483,7 +906,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:58:49+00:00",
       "last_seen": "2026-08-12T22:58:49+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "1bde320ba7ceba47c40f761752b7812591418ece",
@@ -497,7 +920,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-12T22:58:24+00:00",
       "last_seen": "2026-08-12T22:58:24+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6225298bc726cff50496f0405d19719cb9965b26",
@@ -509,7 +932,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:58:24+00:00",
       "last_seen": "2026-08-12T22:58:24+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d6a49b82a4d472755da970a01017997e2c4ad728",
@@ -528,7 +951,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:58:24+00:00",
       "last_seen": "2026-08-12T22:58:24+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "76945a5038483f6c7208ea7e8d17622e2013f058",
@@ -540,7 +963,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:58:09+00:00",
       "last_seen": "2026-08-12T22:58:09+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "210bdfe0263b60f18f0b081e580ff8c1f092d014",
@@ -570,7 +993,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:57:26+00:00",
       "last_seen": "2026-08-12T22:57:26+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "02596dd641d234829cc682c7730a344722e6f0d0",
@@ -582,7 +1005,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:56:53+00:00",
       "last_seen": "2026-08-12T22:56:53+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "0c8cd034ec6760471ebca452a5ca4ad0be354ca3",
@@ -598,7 +1021,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:56:53+00:00",
       "last_seen": "2026-08-12T22:56:53+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c6ab7a535a14303437855ff78dfa7dd4fa06cd0d",
@@ -636,7 +1059,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:56:51+00:00",
       "last_seen": "2026-08-12T22:56:51+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6accf85442003861d786c8116d64048309c5a7eb",
@@ -653,7 +1076,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:56:49+00:00",
       "last_seen": "2026-08-12T22:56:49+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "5eb9beaa4a7a610836eb14105bdb69274ea7ffd7",
@@ -677,7 +1100,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:56:15+00:00",
       "last_seen": "2026-08-12T22:56:33+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "9e8844bd6dfeb64003324d440434291f320f9ff2",
@@ -702,7 +1125,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T22:55:17+00:00",
       "last_seen": "2026-08-12T22:55:17+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "734107291e5d5649f2b7c3dbe171c1324d086a71",
@@ -720,7 +1143,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:13:29+00:00",
       "last_seen": "2026-08-12T22:55:01+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "01e2bec51ac8fc8c6a34dfa5d3ae277f6d780744",
@@ -745,7 +1168,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:54:01+00:00",
       "last_seen": "2026-08-12T22:54:01+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6bda2fa666ef6690fa6dde6b66bb21e28ecad26f",
@@ -772,7 +1195,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:53:15+00:00",
       "last_seen": "2026-08-12T22:53:15+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "7d2d98cc585fb53fa2d6d121106e2952add5bba4",
@@ -784,7 +1207,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:51:20+00:00",
       "last_seen": "2026-08-12T22:51:20+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "786ca694c6f5b54bb403cbf874fc98a9013bafde",
@@ -822,7 +1245,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:48:18+00:00",
       "last_seen": "2026-08-12T22:48:18+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "c98cea6f5e37e4b53bb9ef3e7508cf9789ec4cb4",
@@ -843,7 +1266,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-12T22:48:07+00:00",
       "last_seen": "2026-08-12T22:48:07+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "4e07dfb4796764a87c26d3102450f29e7226666f",
@@ -855,7 +1278,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:47:52+00:00",
       "last_seen": "2026-08-12T22:47:52+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "326ddd85b56b565e957fa757e9d41ee22d8feedb",
@@ -874,7 +1297,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:46:49+00:00",
       "last_seen": "2026-08-12T22:46:49+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "255a9db282fbfc50bd6193ac7a66c3dde75cffbc",
@@ -904,7 +1327,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:46:31+00:00",
       "last_seen": "2026-08-12T22:46:31+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "9670eaa479b6985763fc81c755de2439f1f12987",
@@ -923,7 +1346,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:45:57+00:00",
       "last_seen": "2026-08-12T22:45:57+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "876a074c81de0396fbb1b4788f6a0bfdb1688e22",
@@ -945,7 +1368,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:45:10+00:00",
       "last_seen": "2026-08-12T22:45:10+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "e24155e6fe9eb21c5e40ac1e6d303137dd21bd46",
@@ -961,7 +1384,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:44:19+00:00",
       "last_seen": "2026-08-12T22:44:19+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "c2f6a892b57cb93db1d6c6c3c6b4dee070cd7ebd",
@@ -982,7 +1405,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T13:56:31+00:00",
       "last_seen": "2026-08-12T22:43:51+00:00",
-      "count": 4
+      "count": 5
     },
     {
       "signature": "dec2ffe8305b3ee5bc15093b5eabed59c43e90ab",
@@ -994,7 +1417,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:42:30+00:00",
       "last_seen": "2026-08-12T22:42:30+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "9e068f1643bb8043de1ef1838cbbc02f14c5b660",
@@ -1012,7 +1435,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:40:35+00:00",
       "last_seen": "2026-08-12T22:40:35+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "707209e6fd8513c8e3ff9008306a5ed5e73fde42",
@@ -1033,7 +1456,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T22:09:31+00:00",
       "last_seen": "2026-08-12T22:39:15+00:00",
-      "count": 3
+      "count": 4
     },
     {
       "signature": "5297e0bebeb81f62c54364beb76ef26ce2d1a1b2",
@@ -1051,7 +1474,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-12T22:38:55+00:00",
       "last_seen": "2026-08-12T22:38:55+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "6b329e35ead06a6841d7a72e793e90debe4b0944",
@@ -1079,7 +1502,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:38:12+00:00",
       "last_seen": "2026-08-12T22:38:12+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "c65f37b2cb1ae26c89e9b4f26e2ca9e9cde4ae5b",
@@ -1091,7 +1514,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-07T08:33:33+00:00",
       "last_seen": "2026-08-12T22:36:09+00:00",
-      "count": 164
+      "count": 165
     },
     {
       "signature": "93b887eef04837bb72e08fec909605097ebc9121",
@@ -1110,7 +1533,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T22:35:45+00:00",
       "last_seen": "2026-08-12T22:35:45+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "291c6b83493e33d1b9379c1d5d1a9433521649ec",
@@ -1131,7 +1554,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-12T22:35:25+00:00",
       "last_seen": "2026-08-12T22:35:25+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "b79921b557c74b58fb99c96e9d0b2ecf5b529a62",
@@ -3186,21 +3609,6 @@
       "first_seen": "2026-08-12T10:14:49+00:00",
       "last_seen": "2026-08-12T10:14:49+00:00",
       "count": 1
-    },
-    {
-      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 25,
-      "sentiment": -2,
-      "first_seen": "2026-08-07T08:51:28+00:00",
-      "last_seen": "2026-08-12T10:13:16+00:00",
-      "count": 95
     },
     {
       "signature": "acaabe0ceaab30c9a47aa2976c245fa8792a31e1",
@@ -7036,25 +7444,6 @@
       "count": 1
     },
     {
-      "signature": "6f058133a2118d80236b83ad00e227b52b77c9c6",
-      "title": "🔔",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "amd"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 27,
-      "sentiment": 2,
-      "first_seen": "2026-08-10T01:11:26+00:00",
-      "last_seen": "2026-08-12T06:01:29+00:00",
-      "count": 11
-    },
-    {
       "signature": "4b5c74d0086306366d128e53ac6918a30cd998cc",
       "title": "세미티에스 수주공시",
       "sectors": [
@@ -9112,270 +9501,6 @@
       "sentiment": 1,
       "first_seen": "2026-08-12T02:41:37+00:00",
       "last_seen": "2026-08-12T02:41:37+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0f3795a3635ebb5e1c52af01dd4be083821e23fb",
-      "title": "✅ 삼성전자, ‘인간·로봇 상호작용’ 차세대 핵심기술로 낙점...‘휴머노이드 로봇’ 특허 확보 속도 https://www.joo…",
-      "sectors": [
-        "로봇",
-        "반도체"
-      ],
-      "keywords": [
-        "로봇",
-        "삼성전자",
-        "휴머노이드"
-      ],
-      "tickers": [
-        "005930.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 9,
-      "sentiment": 1,
-      "first_seen": "2026-08-12T02:41:22+00:00",
-      "last_seen": "2026-08-12T02:41:22+00:00",
-      "count": 1
-    },
-    {
-      "signature": "9d32d491bc6f9b7376d7ee2b36c1d4cd214a5edd",
-      "title": "미국의 데이터센터 건설 투자액은 2021년 이후 거의 9배 증가했습니다.",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "데이터센터"
-      ],
-      "tickers": [],
-      "materiality": 4,
-      "sentiment": 2,
-      "first_seen": "2026-08-12T01:29:08+00:00",
-      "last_seen": "2026-08-12T01:29:08+00:00",
-      "count": 1
-    },
-    {
-      "signature": "08b48d83491d53120d63b1089568d61d5b5008f1",
-      "title": "[리포트 브리핑]코스맥스, '실적 경신은 계속된다' 목표가 273,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 8,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:28:15+00:00",
-      "last_seen": "2026-08-12T01:28:15+00:00",
-      "count": 1
-    },
-    {
-      "signature": "17c041e6bd3f6793be268959291e37d304634575",
-      "title": "[리포트 브리핑]한국타이어앤테크놀로지, '목전에 둔 상방 변곡점' 목표가 92,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:27:31+00:00",
-      "last_seen": "2026-08-12T01:27:31+00:00",
-      "count": 1
-    },
-    {
-      "signature": "fa90ac1eea0d36c7d80c4ea3c0760753fd7eaa8c",
-      "title": "[리포트 브리핑]한국타이어앤테크놀로지, '2Q26 Review: 가장 잘 벌지만 가장 싼 타이어주' 목표가 95,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:27+00:00",
-      "last_seen": "2026-08-12T01:26:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "2cdf8f67e253d61cc9fe65da32d3e0721933c52a",
-      "title": "[리포트 브리핑]NHN, '호쾌한 성장과 함께 다음 스테이지 계획도 발표' 목표가 64,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:27+00:00",
-      "last_seen": "2026-08-12T01:26:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1243872689451087896337d7e0df19af78516d00",
-      "title": "[리포트 브리핑]NHN, 'AI 팩토리로 고성장 진입' 목표가 63,000원",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:27+00:00",
-      "last_seen": "2026-08-12T01:26:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8a28c51afad124ae4ba057e0fb7015db7541d057",
-      "title": "[리포트 브리핑]NHN, '국내 첫 네오클라우드 수익성 평가' 목표가 64,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:27+00:00",
-      "last_seen": "2026-08-12T01:26:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d6d0cfd1506fa90661907a82697cd417f8937042",
-      "title": "[리포트 브리핑]NHN, '2Q26 Review: 숫자로 보여준 GPUaaS의 가능성' 목표가 63,000원",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "gpu"
-      ],
-      "tickers": [],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:27+00:00",
-      "last_seen": "2026-08-12T01:26:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "93344eadd4455810a49fec9d8eb028b9a201f946",
-      "title": "[리포트 브리핑]신세계, '2Q26 Review: 업황 대비 주가 하락은 과도' 목표가 750,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 5,
-      "sentiment": -1,
-      "first_seen": "2026-08-12T00:48:18+00:00",
-      "last_seen": "2026-08-12T01:26:21+00:00",
-      "count": 4
-    },
-    {
-      "signature": "f201a1e1c744529e3e13b7e5411be79658b298cb",
-      "title": "[리포트 브리핑]GS, '늘어나는 배당 수익과 구체화되는 신사업' 목표가 120,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-08-12T01:26:21+00:00",
-      "last_seen": "2026-08-12T01:26:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0b37b95b091e8d787959f4aff5963f0ecb9bde36",
-      "title": "[리포트 브리핑]GS, '실적 호조와 재평가' 목표가 140,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:21+00:00",
-      "last_seen": "2026-08-12T01:26:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1f4c3aac0ea0101c1ea88852412516a11d7ad4fd",
-      "title": "[리포트 브리핑]한국타이어앤테크놀로지, '원가 상승 영향은 가격과 믹스 개선으로 상쇄' 목표가 96,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-08-12T01:26:21+00:00",
-      "last_seen": "2026-08-12T01:26:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "42b16f6644c20dec7ad671975fbfec141b7fbea6",
-      "title": "[리포트 브리핑]한국타이어앤테크놀로지, '원가 부담 완화, 다시 성장에 주목' 목표가 88,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-08-12T01:26:21+00:00",
-      "last_seen": "2026-08-12T01:26:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c5396fffb4d3075a6b86ee042907f32c5b41ef37",
-      "title": "[리포트 브리핑]성광벤드, '실적보다 수주, 나쁘지 않은 업황' 목표가 37,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 15,
-      "sentiment": 1,
-      "first_seen": "2026-08-12T01:26:17+00:00",
-      "last_seen": "2026-08-12T01:26:17+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c9ef3c01b907f5755fa6c98c7113c08c1b769ffc",
-      "title": "🔔 \"펄어비스, 단기 반전 어려워…의견 '중립'·목표가 59%↓\"-노무라 📈 #펄어비스 📝 #게임주 노무라의 투자의견 하향과 목…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": -2,
-      "first_seen": "2026-08-12T01:26:16+00:00",
-      "last_seen": "2026-08-12T01:26:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "3baecb1cd8b5ede30abdf1ac464d3671a2e14511",
-      "title": "[리포트 브리핑]대신증권, '2Q26 Review: 평가이익이 견인한 어닝 서프라이즈' 목표가 40,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:14+00:00",
-      "last_seen": "2026-08-12T01:26:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "35d61e26d7daf789b884281e79b192b9055127c4",
-      "title": "[리포트 브리핑]신세계, '2Q26 Review: 지속되는 성장, 확대되는 수익성' 목표가 645,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-08-12T01:26:14+00:00",
-      "last_seen": "2026-08-12T01:26:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "641e18fb7f8443c2248f59f11258c77b13504cf1",
-      "title": "[리포트 브리핑]신세계, '지나친 우려가 제공한 좋은 매수 기회' 목표가 660,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:26:14+00:00",
-      "last_seen": "2026-08-12T01:26:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "a787cf9f177747ca2991e2cb7ebca51b40596134",
-      "title": "이란 상황은 잘 돌아가고 있다. 정말이지 아주 잘 돌아가고 있다. 우리는 호르무즈 해협을 완전히 통제하고 있다. 우리가 통제권을…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-12T01:22:21+00:00",
-      "last_seen": "2026-08-12T01:22:21+00:00",
       "count": 1
     }
   ]
