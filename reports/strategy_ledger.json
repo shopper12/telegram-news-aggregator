@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-13T23:19:00+09:00",
+  "updated_at": "2026-08-14T00:05:12+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -969,7 +969,7 @@
         "defensive": 0.94
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +3.51, 뉴스 +2.44 / 연결 뉴스: 📌 특징 업종; 🔔 '배고픈 코스닥' 19% 급등했지만…\"그래도 대형주 사라\"는 전문가들 📈 #엔켐 #리노공업 #알테오젠 #에코프로비엠 #원익I…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-11T07:51:10+09:00",
@@ -980,11 +980,19 @@
           "evaluated_at": "2026-08-12T00:06:31+09:00",
           "price": 403.19,
           "return_pct": 1.1135
+        },
+        "72h": {
+          "evaluated_at": "2026-08-14T00:05:12+09:00",
+          "price": 401.47,
+          "return_pct": 0.6821
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-12T00:06:31+09:00"
+      "learned_at": "2026-08-12T00:06:31+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-14T00:05:12+09:00",
+      "final_return_pct": 0.6821
     },
     {
       "id": "794edaa9baeb5f87",
@@ -1015,7 +1023,7 @@
         "defensive": 0.94
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.90, 뉴스 +4.00 / 연결 뉴스: 📌 특징 업종; 위 뉴스 중 스페이스X와 우주데이터 센터 관련 내용 발췌",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-11T07:51:10+09:00",
@@ -1026,11 +1034,19 @@
           "evaluated_at": "2026-08-12T00:06:31+09:00",
           "price": 721.17,
           "return_pct": -0.3881
+        },
+        "72h": {
+          "evaluated_at": "2026-08-14T00:05:12+09:00",
+          "price": 732.19,
+          "return_pct": 1.134
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-12T00:06:31+09:00"
+      "learned_at": "2026-08-12T00:06:31+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-14T00:05:12+09:00",
+      "final_return_pct": 1.134
     },
     {
       "id": "04b4b9df0bbda1ba",
@@ -1061,7 +1077,7 @@
         "defensive": 0.94
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 -0.10, 뉴스 +4.00 / 연결 뉴스: 📌 특징 업종; 위 뉴스 중 스페이스X와 우주데이터 센터 관련 내용 발췌",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-11T07:51:10+09:00",
@@ -1072,11 +1088,19 @@
           "evaluated_at": "2026-08-12T00:06:31+09:00",
           "price": 536.475,
           "return_pct": -0.5718
+        },
+        "72h": {
+          "evaluated_at": "2026-08-14T00:05:12+09:00",
+          "price": 559.24,
+          "return_pct": 3.6474
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-12T00:06:31+09:00"
+      "learned_at": "2026-08-12T00:06:31+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-14T00:05:12+09:00",
+      "final_return_pct": 3.6474
     },
     {
       "id": "b8eb5116201b82b3",
@@ -1527,10 +1551,16 @@
           "evaluated_at": "2026-08-13T07:56:27+09:00",
           "price": 403.48,
           "return_pct": -0.5031
+        },
+        "24h": {
+          "evaluated_at": "2026-08-14T00:05:12+09:00",
+          "price": 401.47,
+          "return_pct": -0.9987
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-14T00:05:12+09:00"
     },
     {
       "id": "15d28c5272007728",
@@ -1567,10 +1597,16 @@
           "evaluated_at": "2026-08-13T07:56:27+09:00",
           "price": 126.85,
           "return_pct": 0.1619
+        },
+        "24h": {
+          "evaluated_at": "2026-08-14T00:05:12+09:00",
+          "price": 125.13,
+          "return_pct": -1.1963
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-14T00:05:12+09:00"
     },
     {
       "id": "0d860cc7be375424",
@@ -1607,10 +1643,16 @@
           "evaluated_at": "2026-08-13T07:56:27+09:00",
           "price": 722.3928,
           "return_pct": -0.3878
+        },
+        "24h": {
+          "evaluated_at": "2026-08-14T00:05:12+09:00",
+          "price": 732.19,
+          "return_pct": 0.9632
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-14T00:05:12+09:00"
     },
     {
       "id": "ec80062b2da99364",
