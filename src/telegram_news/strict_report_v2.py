@@ -219,8 +219,8 @@ def _supply_line(market_context: dict | None) -> str:
 def _header_for_kind(kind: str) -> str:
     mapping = {
         "us_close": "🇺🇸 미국증시 마감 → 🇰🇷 한국장 프리뷰",
-        "kr_premarket": "📊 국내증시 장전 브리핑",
-        "premarket": "📊 국내증시 장전 브리핑",
+        "kr_premarket": "📊 국내증시 장전 뉴스 브리핑",
+        "premarket": "📊 국내증시 장전 뉴스 브리핑",
         "kr_aftermarket": "📊 국내증시 마감 브리핑",
         "aftermarket": "📊 국내증시 마감 브리핑",
         "intraday": "📊 국내증시 장중 뉴스",
@@ -620,7 +620,7 @@ def _local_insight_report(*, now, kind, hours, selected, stock_count, blocked, r
         f"{now:%m/%d %H:%M KST} | 최근 {hours}시간 | 신규 이슈 {len(display)}개",
         f"시황 1줄: {_market_line(market_context, overview)}",
         f"수급/시장: {_supply_line(market_context)}",
-        "선별방식: 매매전략 없이 뉴스 중요도·신선도·수급 배경만 표시",
+        "선별방식: 매매전략 없이 뉴스 중요도·신선도·수급 배경만 표시 (진입고려 미제공)",
         "",
     ]
     if not display:
