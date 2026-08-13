@@ -106,6 +106,7 @@ jobs:
                   reason = "kst_0700_morning_strategy"
               elif schedule == "30 22 * * *":
                   hours = "12"
+                  limit = "300"
                   briefing_kind = "us_close"
                   notifier = "telegram"
                   reason = "kst_0730_us_close_to_korea_dashboard"
