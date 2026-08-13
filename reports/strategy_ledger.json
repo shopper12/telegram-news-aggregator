@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-14T00:05:12+09:00",
+  "updated_at": "2026-08-14T07:58:41+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1131,7 +1131,7 @@
         "defensive": 0.97
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +4.00, 뉴스 +3.01 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 📌 특징 업종 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-11T13:54:36+09:00",
@@ -1142,11 +1142,19 @@
           "evaluated_at": "2026-08-12T07:56:49+09:00",
           "price": 401.0,
           "return_pct": -0.6133
+        },
+        "72h": {
+          "evaluated_at": "2026-08-14T07:58:41+09:00",
+          "price": 399.49,
+          "return_pct": -0.9875
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-12T07:56:49+09:00"
+      "learned_at": "2026-08-12T07:56:49+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-14T07:58:41+09:00",
+      "final_return_pct": -0.9875
     },
     {
       "id": "15fe8fdfbc29b74a",
@@ -1177,7 +1185,7 @@
         "defensive": 0.97
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.32, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 삼성전기(009150) / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-11T13:54:36+09:00",
@@ -1188,11 +1196,19 @@
           "evaluated_at": "2026-08-12T07:56:49+09:00",
           "price": 534.81,
           "return_pct": 0.746
+        },
+        "72h": {
+          "evaluated_at": "2026-08-14T07:58:41+09:00",
+          "price": 551.9997,
+          "return_pct": 3.9841
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-12T07:56:49+09:00"
+      "learned_at": "2026-08-12T07:56:49+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-14T07:58:41+09:00",
+      "final_return_pct": 3.9841
     },
     {
       "id": "a523ae31900612c2",
@@ -1223,7 +1239,7 @@
         "defensive": 0.97
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.31, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 11일 모닝 시황] 유가 급등·반도체 부진에 3대 지수 소폭 하락, CPI 대기 ────────── <요약> …; 삼성전기(009150) / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-11T13:54:36+09:00",
@@ -1234,11 +1250,19 @@
           "evaluated_at": "2026-08-12T07:56:49+09:00",
           "price": 718.71,
           "return_pct": -0.2505
+        },
+        "72h": {
+          "evaluated_at": "2026-08-14T07:58:41+09:00",
+          "price": 732.2812,
+          "return_pct": 1.6331
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-12T07:56:49+09:00"
+      "learned_at": "2026-08-12T07:56:49+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-14T07:58:41+09:00",
+      "final_return_pct": 1.6331
     },
     {
       "id": "8bdff111ad0f6ae2",
@@ -1689,10 +1713,16 @@
           "evaluated_at": "2026-08-13T15:03:03+09:00",
           "price": 199.56,
           "return_pct": 13.3886
+        },
+        "24h": {
+          "evaluated_at": "2026-08-14T07:58:41+09:00",
+          "price": 180.49,
+          "return_pct": 2.5531
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-14T07:58:41+09:00"
     },
     {
       "id": "6f0b074f48ca5329",
@@ -1729,10 +1759,16 @@
           "evaluated_at": "2026-08-13T15:03:03+09:00",
           "price": 546.61,
           "return_pct": -0.0329
+        },
+        "24h": {
+          "evaluated_at": "2026-08-14T07:58:41+09:00",
+          "price": 551.9997,
+          "return_pct": 0.9528
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-14T07:58:41+09:00"
     },
     {
       "id": "feb0c4731d8d14ee",
@@ -1769,8 +1805,116 @@
           "evaluated_at": "2026-08-13T15:03:03+09:00",
           "price": 127.3,
           "return_pct": 0.3547
+        },
+        "24h": {
+          "evaluated_at": "2026-08-14T07:58:41+09:00",
+          "price": 124.63,
+          "return_pct": -1.7501
         }
       },
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-14T07:58:41+09:00"
+    },
+    {
+      "id": "d3228ee7697adb03",
+      "created_at": "2026-08-14T07:58:41+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.49,
+      "entry_zone": [
+        179.58755,
+        181.39245
+      ],
+      "stop_price": 167.50019,
+      "target_price": 206.46962,
+      "score": 10.6,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: 🔔; 美 CPI 호재에 상승 닛케이 68000 회복 AI 데이터센터에 월가 돈줄 풀린다 SEC 규제 완화에 5000억달러 자금 몰린다 태광 18조 캐나다 LNG 프로젝트 수주 순이익 신기록 달성 눈앞\n출처: TNB | 시 / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "8c770cd0d9f192c3",
+      "created_at": "2026-08-14T07:58:41+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 551.9997,
+      "entry_zone": [
+        549.239701,
+        554.759698
+      ],
+      "stop_price": 520.055921,
+      "target_price": 615.887258,
+      "score": 8.325,
+      "components": {
+        "momentum": 1.7915095433347543,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.79, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.79, 뉴스 +4.00 / 연결 뉴스: 美 CPI 호재에 상승 닛케이 68000 회복 AI 데이터센터에 월가 돈줄 풀린다 SEC 규제 완화에 5000억달러 자금 몰린다 태광 18조 캐나다 LNG 프로젝트 수주 순이익 신기록 달성 눈앞\n출처: TNB | 시; [US Conference Call] 어플라이드 머티리얼즈(AMAT) / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "7fb898e4a867dbb1",
+      "created_at": "2026-08-14T07:58:41+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 399.49,
+      "entry_zone": [
+        397.49255,
+        401.48745
+      ],
+      "stop_price": 390.146892,
+      "target_price": 418.176216,
+      "score": 5.003,
+      "components": {
+        "momentum": 1.9090372979815133,
+        "regime": -0.7,
+        "news": 3.4668686214431363,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.91, regime -0.70, news +3.47, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +1.91, 뉴스 +3.47 / 연결 뉴스: 美 CPI 호재에 상승 닛케이 68000 회복 AI 데이터센터에 월가 돈줄 풀린다 SEC 규제 완화에 5000억달러 자금 몰린다 태광 18조 캐나다 LNG 프로젝트 수주 순이익 신기록 달성 눈앞\n출처: TNB | 시; [반도체 대기업들이 코스피를 강세장으로 이끌었지만, 지정학적 교착 상태는 여전히 시장의 우려 요소로 남아 있다] 진시데이터는 8월 13일, 한국 증시의 급등세에 힘입어 신흥 시장 증시가 상승했으며, 인공지능(AI)  / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     }
