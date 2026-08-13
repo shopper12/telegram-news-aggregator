@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-13T13:11:06+09:00",
+  "updated_at": "2026-08-13T15:03:03+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1642,7 +1642,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.85, 뉴스 +4.00 / 연결 뉴스: 한국콜마(161890); 미국 기업 섹터별 소식 정리 / 가격소스: Yahoo Finance extended-hours",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-13T15:03:03+09:00",
+          "price": 199.56,
+          "return_pct": 13.3886
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     },
@@ -1676,7 +1682,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.05, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 도우인시스 / 가격소스: Yahoo Finance extended-hours",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-13T15:03:03+09:00",
+          "price": 546.61,
+          "return_pct": -0.0329
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     },
@@ -1710,7 +1722,13 @@
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.15 / 연결 뉴스: ✅ 인니 구리 제련소 가동 중단…공급 차질에 구리값 또 ’들썩’ https://kr.investing.com/news/stock…; 호르무즈 불안에 국제유가 상승, 국내 정유주 동반 강세 https://m.stock.naver.com/investment/new… / 가격소스: Yahoo Finance extended-hours",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-13T15:03:03+09:00",
+          "price": 127.3,
+          "return_pct": 0.3547
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
     }
