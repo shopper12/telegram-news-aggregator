@@ -311,7 +311,6 @@ def _fetch_market_cap_leaders(limit: int = 5) -> list[str]:
 def _fmt_flow_value(value: float | None) -> str:
     if value is None:
         return "확인불가"
-    # pykrx 투자자별 거래대금은 원 단위로 들어오는 경우가 일반적이다.
     eok = value / 100_000_000
     if abs(eok) >= 10000:
         return f"{eok / 10000:+.1f}조"
@@ -405,22 +404,40 @@ def get_market_context() -> dict | None:
         nasdaq = _fetch_index("NASDAQ", "^IXIC")
         usdkrw = _fetch_index("USD/KRW", "KRW=X")
         flows = _fetch_investor_flow()
-        result = {
+        top_sectors = _fetch_kr_top_sectors_by_volume()
+        market_cap_leaders = _fetch_market_cap_leaders()
+
+        has_observed_data = any(
+            value is not None
+            for value in (
+                kospi.price,
+                kospi.change_pct,
+                kosdaq.price,
+                kosdaq.change_pct,
+                sp500.price,
+                sp500.change_pct,
+                nasdaq.price,
+                nasdaq.change_pct,
+                usdkrw.price,
+            )
+        ) or bool(flows or top_sectors or market_cap_leaders)
+        if not has_observed_data:
+            return None
+
+        return {
             "kospi_change_pct": kospi.change_pct,
             "kosdaq_change_pct": kosdaq.change_pct,
             "sp500_change_pct": sp500.change_pct,
             "nasdaq_change_pct": nasdaq.change_pct,
             "usd_krw": usdkrw.price,
-            "top_sectors_by_volume": _fetch_kr_top_sectors_by_volume(),
-            "market_cap_leaders": _fetch_market_cap_leaders(),
+            "top_sectors_by_volume": top_sectors,
+            "market_cap_leaders": market_cap_leaders,
             "investor_flow": flows,
             "supply_demand_line": _flow_line(flows),
             "market_bias": _market_bias(kospi, kosdaq, flows),
             "source": "pykrx/Naver/Yahoo fallback",
             "timestamp": _now_kst(),
         }
-        valid_count = sum(1 for key, value in result.items() if key not in {"source", "timestamp"} and value not in (None, []))
-        return result if valid_count >= 1 else None
     except Exception:
         return None
 
