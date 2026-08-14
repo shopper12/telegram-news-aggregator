@@ -71,6 +71,9 @@ jobs:
             exit 1
           fi
           curl -fsS http://127.0.0.1:8000/
-          curl -fsS http://127.0.0.1:8000/api/news.txt
+          curl -fsS --get \
+            --data-urlencode 'message=봇 도움말' \
+            --data-urlencode 'sender=ci' \
+            http://127.0.0.1:8000/reply
           kill "$API_PID"
           wait "$API_PID" || true
