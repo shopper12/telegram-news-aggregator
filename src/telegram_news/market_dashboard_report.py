@@ -17,6 +17,7 @@ from .summarizer import SummaryItem
 
 DEFAULT_MODEL = "gemini-2.5-flash"
 MAX_REPORT_CHARS = int(os.getenv("US_CLOSE_MAX_REPORT_CHARS", "9000"))
+GROUNDING_TIMEOUT = int(os.getenv("US_CLOSE_GROUNDING_TIMEOUT", "35"))
 FORBIDDEN = ["비트코인", "이더리움", "업비트", "바이낸스", "목표가", "손절가", "무조건 매수", "확정 상승"]
 
 
@@ -42,50 +43,6 @@ def _issue_payload(clusters: list, now: datetime) -> list[dict]:
     return rows
 
 
-def _prompt(payload: dict) -> str:
-    return (
-        "너는 한국 투자자를 위한 글로벌 크로스애셋 시장 데스크 + 뉴스 편집장 + 데이터 검증 담당자다.\n"
-        "목표는 미국장 마감 후 시장을 움직인 원인을 찾아 한국장에 연결하는 것이다.\n\n"
-        "절대 규칙:\n"
-        "1. INPUT_JSON에 존재하는 사실과 숫자만 사용한다. 숫자·실적·가이던스·경제일정을 추정하지 않는다.\n"
-        "2. 값이 없거나 충돌하면 '확인불가'라고 쓴다.\n"
-        "3. 급등·급락 자체를 원인으로 쓰지 않는다. 촉매가 없으면 '가격반응 중심, 촉매 확인 필요'라고 쓴다.\n"
-        "4. 사실과 해석을 구분한다.\n"
-        "5. 한국장 영향은 SOX, EWY/KORU, USD/KRW, 한국 수급, 미국 관련 업종 중 실제 입력 근거가 있을 때만 판단한다.\n"
-        "6. sector_baskets에서 여러 종목이 함께 움직이면 '섹터 확산', 한 종목만 움직이면 '개별주'라고 구분한다.\n"
-        "7. CPI/PPI/FOMC/고용 등 일정은 news_issues에 일정·시각이 실제로 있는 경우에만 적는다.\n"
-        "8. 가상자산, 매수·매도 지시, 목표가·손절가 표현은 금지한다.\n"
-        "9. Telegram에서 읽기 쉽게 짧은 문장과 숫자 중심으로 작성한다.\n"
-        "10. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
-        "audit는 {\"pass\":true|false,\"score\":0~100,\"reason\":\"...\"}. 85점 미만이면 pass=false.\n\n"
-        "report 형식:\n"
-        "🇺🇸 MM/DD 미국증시 마감 → 🇰🇷 한국장 프리뷰\n"
-        "🔥 오늘의 한줄: [핵심 촉매] → [미국시장 반응] → [한국장 영향]\n\n"
-        "📊 주요 지수\n"
-        "- 다우 / S&P500 / 나스닥 / 러셀2000 / SOX: 값과 등락률\n\n"
-        "🌡️ 주요 시장 지표\n"
-        "- DXY / 미국10년물 / VIX / WTI / USDKRW\n"
-        "- 시장 레짐: RISK-ON | NEUTRAL | RISK-OFF\n\n"
-        "🧭 시장이 움직인 핵심 원인\n"
-        "1) 사실 / 시장반응 / 의미\n"
-        "2) 필요시 추가\n\n"
-        "🚀 주도 섹터\n"
-        "- AI인프라 / 반도체·메모리 / 광통신·네트워크 / 전력·데이터센터 / 양자컴퓨팅 / 원자력 / 배터리·리튬 / 우주 중 실제 확인된 것만\n"
-        "- 대표 종목 등락률, 촉매, 확산도\n\n"
-        "🇰🇷 한국장 영향\n"
-        "- EWY / KORU / USDKRW / 외국인·기관 수급\n"
-        "- 유리한 섹터 / 부담 섹터\n"
-        "- 판정: 강세 우위 | 선별 강세 | 중립 | 방어 우위 + 이유\n\n"
-        "⚠️ 오늘의 리스크\n"
-        "- 선반영, 갭상승 차익실현, 금리·달러 반전, 이벤트 변동성 등 입력 근거가 있는 것만\n\n"
-        "🗓 주요 일정\n"
-        "- 수집 뉴스에서 확인되는 일정만 KST로 표시. 없으면 '확인 가능한 일정 데이터 없음'\n\n"
-        "✅ 3줄 요약\n"
-        "1. 거시환경과 레짐\n2. 가장 강한 섹터와 이유\n3. 한국장 핵심 체크포인트\n\n"
-        f"INPUT_JSON:\n{json.dumps(payload, ensure_ascii=False)}"
-    )
-
-
 def _extract_json(text: str) -> dict | None:
     cleaned = text.strip()
     cleaned = re.sub(r"^```(?:json)?", "", cleaned).strip()
@@ -102,6 +59,147 @@ def _extract_json(text: str) -> dict | None:
             except Exception:
                 return None
     return None
+
+
+def _grounding_sources(candidate: dict) -> list[dict]:
+    metadata = candidate.get("groundingMetadata") or {}
+    sources = []
+    seen = set()
+    for chunk in metadata.get("groundingChunks") or []:
+        web = chunk.get("web") or {}
+        uri = str(web.get("uri") or "").strip()
+        title = str(web.get("title") or "").strip()
+        if not uri or uri in seen:
+            continue
+        seen.add(uri)
+        sources.append({"title": title, "uri": uri})
+    return sources[:12]
+
+
+def _grounded_market_research(now: datetime) -> tuple[dict, str]:
+    """Fetch time-sensitive macro/calendar/catalyst facts via Gemini Google Search grounding.
+
+    This is only used by the 07:30 KST US-close dashboard. Failure is non-fatal: the
+    caller receives an empty fact set and continues with Telegram + market-price data.
+    """
+    api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
+    if not api_key:
+        return {}, "grounding_api_key_missing"
+    if os.getenv("US_CLOSE_GOOGLE_GROUNDING", "1") == "0":
+        return {}, "grounding_disabled"
+
+    model = os.getenv("GEMINI_GROUNDING_MODEL", os.getenv("GEMINI_MODEL", DEFAULT_MODEL))
+    date_text = now.strftime("%Y-%m-%d")
+    prompt = f"""
+You are the fact-checking research stage for a Korean investor's US-close briefing.
+Current Seoul date/time: {now:%Y-%m-%d %H:%M KST}.
+Use Google Search for CURRENT, verifiable information only. Return one JSON object and no prose.
+
+Research window:
+- US market-moving developments from the latest US session through now.
+- US macro releases published in the last 36 hours and major scheduled releases/events for the next 36 hours.
+- Priority: CPI, core CPI, PPI, core PPI, PCE/core PCE, payrolls, unemployment, jobless claims, ISM/PMI, retail sales, GDP, FOMC/Fed speakers, Treasury auctions when material.
+- Major US earnings/guidance that can materially affect AI, semiconductors, memory, optical networking, data-center power, nuclear, quantum, batteries/lithium, or Korea-linked equities.
+
+Rules:
+1. Never invent actual/consensus/previous values or event times. If not verified, use null.
+2. Times must be converted to Asia/Seoul and formatted YYYY-MM-DD HH:MM KST where possible.
+3. Prefer primary/official sources (BLS, BEA, Federal Reserve, Treasury, company IR) and major financial media for market reaction.
+4. For each macro release, keep actual, consensus, previous in separate fields.
+5. Do not include crypto.
+6. Do not give trading instructions, targets, or stop losses.
+7. Keep only high-impact items relevant to {date_text}.
+
+JSON schema:
+{{
+  "macro_releases": [
+    {{"name":"", "released_at_kst":"", "actual":null, "consensus":null, "previous":null, "unit":"", "surprise":"higher|lower|inline|unknown", "market_relevance":""}}
+  ],
+  "upcoming_events": [
+    {{"name":"", "scheduled_at_kst":"", "consensus":null, "previous":null, "unit":"", "why_it_matters":""}}
+  ],
+  "earnings_and_guidance": [
+    {{"company":"", "ticker":"", "event_time_kst":"", "fact":"", "market_relevance":""}}
+  ],
+  "market_catalysts": [
+    {{"fact":"", "observed_market_reaction":"", "korea_link":""}}
+  ]
+}}
+""".strip()
+
+    try:
+        response = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+            headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "tools": [{"google_search": {}}],
+                "generationConfig": {"temperature": 0.0, "maxOutputTokens": 2600},
+            },
+            timeout=GROUNDING_TIMEOUT,
+        )
+        response.raise_for_status()
+        body = response.json()
+        candidate = (body.get("candidates") or [{}])[0]
+        raw = "".join(part.get("text", "") for part in (candidate.get("content") or {}).get("parts", []))
+        parsed = _extract_json(raw)
+        if not parsed:
+            return {}, "grounding_json_parse_failed"
+        parsed["sources"] = _grounding_sources(candidate)
+        metadata = candidate.get("groundingMetadata") or {}
+        parsed["search_queries"] = (metadata.get("webSearchQueries") or [])[:10]
+        return parsed, f"google_search_grounding:{model}"
+    except Exception as exc:
+        return {}, f"grounding_request_failed:{type(exc).__name__}"
+
+
+def _prompt(payload: dict) -> str:
+    return (
+        "너는 한국 투자자를 위한 글로벌 크로스애셋 시장 데스크 + 뉴스 편집장 + 데이터 검증 담당자다.\n"
+        "목표는 미국장 마감 후 시장을 움직인 원인을 찾아 한국장에 연결하는 것이다.\n\n"
+        "절대 규칙:\n"
+        "1. INPUT_JSON에 존재하는 사실과 숫자만 사용한다. 숫자·실적·가이던스·경제일정을 추정하지 않는다.\n"
+        "2. 값이 없거나 충돌하면 '확인불가'라고 쓴다.\n"
+        "3. 급등·급락 자체를 원인으로 쓰지 않는다. 촉매가 없으면 '가격반응 중심, 촉매 확인 필요'라고 쓴다.\n"
+        "4. 사실과 해석을 구분한다.\n"
+        "5. 한국장 영향은 SOX, EWY/KORU, USD/KRW, 한국 수급, 미국 관련 업종 중 실제 입력 근거가 있을 때만 판단한다.\n"
+        "6. sector_baskets에서 여러 종목이 함께 움직이면 '섹터 확산', 한 종목만 움직이면 '개별주'라고 구분한다.\n"
+        "7. CPI/PPI/FOMC/고용/실적 일정은 grounded_research 또는 news_issues에 검증된 값이 있을 때만 적는다.\n"
+        "8. macro_releases는 실제치/예상치/이전치를 구분해서 표시하고, null 값은 확인불가로 쓴다.\n"
+        "9. 가상자산, 매수·매도 지시, 목표가·손절가 표현은 금지한다.\n"
+        "10. Telegram에서 읽기 쉽게 짧은 문장과 숫자 중심으로 작성한다.\n"
+        "11. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
+        "audit는 {\"pass\":true|false,\"score\":0~100,\"reason\":\"...\"}. 85점 미만이면 pass=false.\n\n"
+        "report 형식:\n"
+        "🇺🇸 MM/DD 미국증시 마감 → 🇰🇷 한국장 프리뷰\n"
+        "🔥 오늘의 한줄: [핵심 촉매] → [미국시장 반응] → [한국장 영향]\n\n"
+        "📊 주요 지수\n"
+        "- 다우 / S&P500 / 나스닥 / 러셀2000 / SOX: 값과 등락률\n\n"
+        "🌡️ 주요 시장 지표\n"
+        "- DXY / 미국10년물 / VIX / WTI / USDKRW\n"
+        "- 시장 레짐: RISK-ON | NEUTRAL | RISK-OFF\n\n"
+        "📈 핵심 경제지표\n"
+        "- 발표된 주요 지표: 실제 / 예상 / 이전 / 서프라이즈와 시장 의미\n"
+        "- 검증된 발표가 없으면 생략\n\n"
+        "🧭 시장이 움직인 핵심 원인\n"
+        "1) 사실 / 시장반응 / 의미\n"
+        "2) 필요시 추가\n\n"
+        "🚀 주도 섹터\n"
+        "- AI인프라 / 반도체·메모리 / 광통신·네트워크 / 전력·데이터센터 / 양자컴퓨팅 / 원자력 / 배터리·리튬 / 우주 중 실제 확인된 것만\n"
+        "- 대표 종목 등락률, 촉매, 확산도\n\n"
+        "🇰🇷 한국장 영향\n"
+        "- EWY / KORU / USDKRW / 외국인·기관 수급\n"
+        "- 유리한 섹터 / 부담 섹터\n"
+        "- 판정: 강세 우위 | 선별 강세 | 중립 | 방어 우위 + 이유\n\n"
+        "⚠️ 오늘의 리스크\n"
+        "- 선반영, 갭상승 차익실현, 금리·달러 반전, 이벤트 변동성 등 입력 근거가 있는 것만\n\n"
+        "🗓 주요 일정\n"
+        "- grounded_research.upcoming_events와 earnings_and_guidance를 KST로 표시\n"
+        "- 검증된 일정이 없으면 '확인 가능한 일정 데이터 없음'\n\n"
+        "✅ 3줄 요약\n"
+        "1. 거시환경과 레짐\n2. 가장 강한 섹터와 이유\n3. 한국장 핵심 체크포인트\n\n"
+        f"INPUT_JSON:\n{json.dumps(payload, ensure_ascii=False)}"
+    )
 
 
 def _audit(report: str) -> tuple[bool, str]:
@@ -166,9 +264,16 @@ def _fmt(item: dict) -> str:
     return f"{label} {price_text}{change_text}"
 
 
+def _macro_value(value, unit: str = "") -> str:
+    if value is None or value == "":
+        return "확인불가"
+    return f"{value}{unit or ''}"
+
+
 def _local(payload: dict, clusters: list, rule: str) -> str:
     now = datetime.fromisoformat(payload["generated_at_iso"])
     market = payload["market"]
+    research = payload.get("grounded_research") or {}
     global_quotes = market.get("global_market_quotes") or []
     proxies = market.get("korea_proxies") or []
     baskets = market.get("sector_baskets") or {}
@@ -188,12 +293,31 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
     usd = market.get("usd_krw")
     lines.append(f"- USD/KRW {usd:,.1f}" if isinstance(usd, (int, float)) else "- USD/KRW 확인불가")
     lines.append(f"- 시장 레짐: {regime.get('regime', '확인불가')}")
+
+    macro = research.get("macro_releases") or []
+    if macro:
+        lines.extend(["", "📈 핵심 경제지표"])
+        for item in macro[:6]:
+            unit = str(item.get("unit") or "")
+            lines.append(
+                f"- {item.get('name') or '지표'}: 실제 {_macro_value(item.get('actual'), unit)} / "
+                f"예상 {_macro_value(item.get('consensus'), unit)} / 이전 {_macro_value(item.get('previous'), unit)}"
+            )
+            if item.get("market_relevance"):
+                lines.append(f"  · {item['market_relevance']}")
+
     lines.extend(["", "🧭 시장이 움직인 핵심 원인"])
-    if clusters:
+    catalysts = research.get("market_catalysts") or []
+    if catalysts:
+        for idx, item in enumerate(catalysts[:4], 1):
+            reaction = str(item.get("observed_market_reaction") or "시장반응 확인불가")
+            lines.append(f"{idx}) {item.get('fact') or '사실 확인불가'} → {reaction}")
+    elif clusters:
         for idx, cluster in enumerate(clusters[:5], 1):
             lines.append(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {display._display_title(cluster, 90)}")
     else:
         lines.append("- 중요도 게이트 통과 뉴스 없음")
+
     lines.extend(["", "🚀 주도 섹터"])
     shown = False
     for sector, members in baskets.items():
@@ -203,24 +327,36 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
             lines.append(f"- {sector}: " + ", ".join(_fmt(m) for m in valid[:3]))
     if not shown:
         lines.append("- 섹터 시세 확인불가")
+
     lines.extend(["", "🇰🇷 한국장 영향"])
     lines.append("- " + " / ".join(_fmt(x) for x in proxies) if proxies else "- EWY/KORU 확인불가")
     lines.append(f"- {market.get('supply_demand_line') or '투자자별 수급 확인불가'}")
     lines.append(f"- 판정 참고: {market.get('market_bias') or '시장 판단 미확인'}")
+    lines.extend(["", "⚠️ 오늘의 리스크", "- Gemini 최종 인과분석 실패 시 임의 해석하지 않음. 검증된 시세·뉴스·grounding 사실만 표시."])
+
+    lines.extend(["", "🗓 주요 일정"])
+    events = research.get("upcoming_events") or []
+    earnings = research.get("earnings_and_guidance") or []
+    if events or earnings:
+        for item in events[:6]:
+            when = item.get("scheduled_at_kst") or "시각 확인불가"
+            consensus = _macro_value(item.get("consensus"), str(item.get("unit") or ""))
+            lines.append(f"- {when} · {item.get('name') or '경제일정'} · 예상 {consensus}")
+        for item in earnings[:4]:
+            when = item.get("event_time_kst") or "시각 확인불가"
+            ticker = f"({item.get('ticker')})" if item.get("ticker") else ""
+            lines.append(f"- {when} · {item.get('company') or '기업'}{ticker} · {item.get('fact') or '실적/가이던스 일정'}")
+    else:
+        lines.append("- 확인 가능한 일정 데이터 없음")
+
     lines.extend([
-        "",
-        "⚠️ 오늘의 리스크",
-        "- Gemini 인과분석 실패 시 임의 해석하지 않음. 검증된 시세와 뉴스만 표시.",
-        "",
-        "🗓 주요 일정",
-        "- 확인 가능한 일정 데이터 없음",
         "",
         "✅ 3줄 요약",
         f"1. 거시환경: {regime.get('regime', '확인불가')}",
         f"2. 섹터 확산: {'확인' if shown else '확인불가'}",
         f"3. 한국장: {market.get('market_bias') or '판단 데이터 부족'}",
         "",
-        f"검증: 로컬 fallback · {rule}",
+        f"검증: 로컬 fallback · {rule} · Google grounding {'사용' if research else '미사용'}",
     ])
     return "\n".join(lines)[:MAX_REPORT_CHARS]
 
@@ -234,11 +370,13 @@ def build_us_close_dashboard(
     selected, stock_count, blocked, rule, pre_gate_count = strict._select_strict(summaries)
     clusters = display._drop_noise(selected)[:20]
     market = get_market_dashboard_context()
+    grounded_research, grounding_engine = _grounded_market_research(now)
     payload = {
         "generated_at_kst": now.strftime("%Y-%m-%d %H:%M KST"),
         "generated_at_iso": now.isoformat(),
         "lookback_hours": hours,
         "market": market,
+        "grounded_research": grounded_research,
         "news_issues": _issue_payload(clusters, now),
         "quality": {
             "source_count": len(summaries),
@@ -247,12 +385,15 @@ def build_us_close_dashboard(
             "pre_gate_count": pre_gate_count,
             "selected_count": len(clusters),
             "rule": rule,
+            "grounding_engine": grounding_engine,
+            "grounding_source_count": len(grounded_research.get("sources") or []),
         },
     }
     report, engine = _gemini(payload)
     if report:
-        return report + f"\n\n검증: {engine} · 입력 수치 외 생성 금지"
+        source_count = len(grounded_research.get("sources") or [])
+        return report + f"\n\n검증: {engine} · {grounding_engine} · 웹근거 {source_count}개 · 입력 수치 외 생성 금지"
     local = _local(payload, clusters, rule)
     if os.getenv("DEBUG_QUALITY", "0") == "1":
-        local += f"\nGemini진단: {engine}"
+        local += f"\nGemini진단: {engine} / Grounding진단: {grounding_engine}"
     return local
