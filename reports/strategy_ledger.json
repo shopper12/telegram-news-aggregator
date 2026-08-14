@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-14T23:59:19+09:00",
+  "updated_at": "2026-08-15T07:32:39+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1990,7 +1990,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +3.59, 뉴스 +4.00 / 연결 뉴스: 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source; 미국 기업 섹터별 소식 정리",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-15T07:32:39+09:00",
+          "price": 179.64,
+          "return_pct": -0.8226
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -2024,7 +2030,13 @@
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +2.60, 뉴스 +2.83 / 연결 뉴스: 8월 14일 (금) 14:00 거래대금 상위 분석 · 반도체·자동차 중심 강세 지속 · 코스닥도 로봇·반도체 소부장 중심 순환매…; AI Capex 확대의 경제적 파급효과",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-15T07:32:39+09:00",
+          "price": 401.94,
+          "return_pct": -0.1714
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -2058,9 +2070,117 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.02, 뉴스 +4.00 / 연결 뉴스: 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source; 미국 기업 섹터별 소식 정리",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-15T07:32:39+09:00",
+          "price": 730.95,
+          "return_pct": 0.0151
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "8bd923211be611e4",
+      "created_at": "2026-08-15T07:32:39+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 179.64,
+      "entry_zone": [
+        178.7418,
+        180.5382
+      ],
+      "stop_price": 166.730638,
+      "target_price": 205.458725,
+      "score": 8.04,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "63fbb2e706963fe7",
+      "created_at": "2026-08-15T07:32:39+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 550.492,
+      "entry_zone": [
+        547.73954,
+        553.24446
+      ],
+      "stop_price": 518.866389,
+      "target_price": 613.743221,
+      "score": 5.029,
+      "components": {
+        "momentum": 1.0770430738338468,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.08, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.08, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "db98ed7dda196e23",
+      "created_at": "2026-08-15T07:32:39+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 401.94,
+      "entry_zone": [
+        399.9303,
+        403.9497
+      ],
+      "stop_price": 392.564312,
+      "target_price": 420.691376,
+      "score": 4.303,
+      "components": {
+        "momentum": 1.2199999751633164,
+        "regime": 0.2,
+        "news": 2.600611047222223,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.22, regime +0.20, news +2.60, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.22, 뉴스 +2.60 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 8월 14일 (금) 14:00 거래대금 상위 분석 · 반도체·자동차 중심 강세 지속 · 코스닥도 로봇·반도체 소부장 중심 순환매… / 가격소스: Yahoo Finance extended-hours",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance extended-hours"
     }
   ]
 }
