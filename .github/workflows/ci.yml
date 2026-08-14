@@ -51,14 +51,26 @@ jobs:
 
       - name: API smoke test
         run: |
-          python scripts/run_api.py > /tmp/news-api.log 2>&1 &
+          python scripts/run_api_v7.py > /tmp/news-api.log 2>&1 &
           API_PID=$!
+          READY=0
           for i in {1..20}; do
             if curl -fsS http://127.0.0.1:8000/health; then
+              READY=1
+              break
+            fi
+            if ! kill -0 "$API_PID" 2>/dev/null; then
               break
             fi
             sleep 1
           done
+          if [ "$READY" -ne 1 ]; then
+            echo "Production API entrypoint failed to become ready"
+            cat /tmp/news-api.log || true
+            wait "$API_PID" || true
+            exit 1
+          fi
           curl -fsS http://127.0.0.1:8000/
           curl -fsS http://127.0.0.1:8000/api/news.txt
-          kill $API_PID
+          kill "$API_PID"
+          wait "$API_PID" || true
