@@ -16,8 +16,10 @@ def test_send_kakao_memo_posts_all_chunks(monkeypatch):
     calls = []
 
     class Resp:
-        def __init__(self, payload=None):
+        def __init__(self, payload=None, status_code=200):
             self._payload = payload or {}
+            self.status_code = status_code
+            self.text = ""
         def raise_for_status(self):
             return None
         def json(self):

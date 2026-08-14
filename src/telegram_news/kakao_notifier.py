@@ -8,7 +8,8 @@ import requests
 
 KAKAO_TOKEN_URL = "https://kauth.kakao.com/oauth/token"
 KAKAO_MEMO_URL = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
-DEFAULT_KAKAO_TEXT_CHARS = 900
+# Kakao default Text Template accepts at most 200 characters.
+DEFAULT_KAKAO_TEXT_CHARS = 200
 
 
 def _response_detail(response: requests.Response) -> str:
@@ -62,7 +63,8 @@ def _chunk_size() -> int:
     if not raw:
         return DEFAULT_KAKAO_TEXT_CHARS
     try:
-        return max(180, min(950, int(raw)))
+        # Do not exceed Kakao's documented 200-character Text Template limit.
+        return max(50, min(DEFAULT_KAKAO_TEXT_CHARS, int(raw)))
     except ValueError:
         return DEFAULT_KAKAO_TEXT_CHARS
 
@@ -80,7 +82,8 @@ def split_for_kakao(text: str, chunk_chars: int | None = None) -> list[str]:
     if not normalized:
         return []
 
-    limit = chunk_chars or _chunk_size()
+    requested = chunk_chars if chunk_chars is not None else _chunk_size()
+    limit = max(1, min(DEFAULT_KAKAO_TEXT_CHARS, int(requested)))
     chunks: list[str] = []
     remaining = normalized
     while len(remaining) > limit:

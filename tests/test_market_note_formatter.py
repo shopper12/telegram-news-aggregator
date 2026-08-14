@@ -71,7 +71,7 @@ def test_market_note_uses_requested_closing_note_structure(monkeypatch):
         ),
         FakeCluster(
             "메모리 가격 전망과 반도체 차별화",
-            "메모리 가격 상승 전망은 유지됐지만 일부 낸드 종목은 실적 우려로 조정받았다.",
+            "SK하이닉스와 마이크론의 메모리 가격 상승 전망은 유지됐지만 일부 낸드 종목은 실적 우려로 조정받았다.",
             "이벤트",
             ["반도체"],
             [_symbol("SK하이닉스", "000660.KS"), _symbol("마이크론", "MU")],
