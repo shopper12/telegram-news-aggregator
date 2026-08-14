@@ -311,6 +311,7 @@ def _fetch_market_cap_leaders(limit: int = 5) -> list[str]:
 def _fmt_flow_value(value: float | None) -> str:
     if value is None:
         return "확인불가"
+    # pykrx 투자자별 거래대금은 원 단위로 들어오는 경우가 일반적이다.
     eok = value / 100_000_000
     if abs(eok) >= 10000:
         return f"{eok / 10000:+.1f}조"
