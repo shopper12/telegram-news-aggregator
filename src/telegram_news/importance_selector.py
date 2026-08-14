@@ -37,6 +37,15 @@ def _safe_int(value: Any, default: int = 0) -> int:
         return default
 
 
+def _symbol_set(article: dict) -> set[str]:
+    raw = article.get("symbols") or article.get("tickers") or []
+    if isinstance(raw, str):
+        raw = [raw]
+    if not isinstance(raw, (list, tuple, set)):
+        return set()
+    return {str(value).strip().upper() for value in raw if str(value).strip()}
+
+
 def score_article(article: dict) -> float:
     """Score only content importance, Telegram repetition, recency, and stock relevance."""
     text = base._article_body(article).lower()
@@ -92,8 +101,29 @@ def score_article(article: dict) -> float:
 
 
 def dedupe_articles(articles: list[dict], title_threshold: float = 0.85) -> list[dict]:
-    """Merge the same event while preserving repetition as an importance signal."""
-    return _BASE_DEDUPE_ARTICLES(articles, title_threshold=title_threshold)
+    """Merge the same event while preserving distinct explicitly tagged securities.
+
+    The base deduper is intentionally aggressive on near-identical headlines. That
+    is useful for reposts, but headlines such as "기업A 공급 계약" and "기업B 공급
+    계약" must not collapse when their explicit ticker sets are disjoint.
+    """
+    representatives: list[dict] = []
+    for raw in articles:
+        article = dict(raw)
+        article_symbols = _symbol_set(article)
+        matched = False
+        for index, kept in enumerate(representatives):
+            kept_symbols = _symbol_set(kept)
+            if article_symbols and kept_symbols and article_symbols.isdisjoint(kept_symbols):
+                continue
+            pair = _BASE_DEDUPE_ARTICLES([kept, article], title_threshold=title_threshold)
+            if len(pair) == 1:
+                representatives[index] = pair[0]
+                matched = True
+                break
+        if not matched:
+            representatives.append(article)
+    return representatives
 
 
 def select_top_articles(articles: list[dict], limit: int = 10) -> list[dict]:
