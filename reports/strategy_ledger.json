@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-15T07:32:39+09:00",
+  "updated_at": "2026-08-15T08:01:56+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1455,7 +1455,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +3.64, 뉴스 +1.92 / 연결 뉴스: CPI 관망 속 소폭 하락, 엔비디아 5000억달러 파이낸싱에 빅테크·메모리 엇갈림 엔비디아의 5000억달러 AI 인프라 파이낸싱 발표를 둘러싼 순환금융 논란에 알파벳·아마존 등 빅테크 하락 2분기 매출 26억달러로; [키움증권 미국 전략/주식 김승혁] 미국은 지금 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-12T14:34:55+09:00",
@@ -1466,11 +1466,19 @@
           "evaluated_at": "2026-08-13T08:16:45+09:00",
           "price": 404.03,
           "return_pct": 0.7556
+        },
+        "72h": {
+          "evaluated_at": "2026-08-15T08:01:56+09:00",
+          "price": 401.9,
+          "return_pct": 0.2244
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-13T08:16:45+09:00"
+      "learned_at": "2026-08-13T08:16:45+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-15T08:01:56+09:00",
+      "final_return_pct": 0.2244
     },
     {
       "id": "57171cce4a0ea2f2",
@@ -1501,7 +1509,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.63 / 연결 뉴스: 중동정세 불투명 영향으로 홍콩 증시 반락 마감 실적 기대감 및 기술주 매수로 대망 증시 상승 GS칼텍스 2분기 영업이익 흑자전환 및 큰 폭 상승\n출처: TNB | 시각: 2026-08-11T14:17:54+00:00; ✅ 호르무즈 해협 교착 상태가 공급 차질을 초래할 우려가 제기되면서 알루미늄 가격이 7주 만에 최고치를 기록했다 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-12T14:34:55+09:00",
@@ -1512,11 +1520,19 @@
           "evaluated_at": "2026-08-13T08:16:45+09:00",
           "price": 126.815,
           "return_pct": -0.693
+        },
+        "72h": {
+          "evaluated_at": "2026-08-15T08:01:56+09:00",
+          "price": 126.79,
+          "return_pct": -0.7126
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-13T08:16:45+09:00"
+      "learned_at": "2026-08-13T08:16:45+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-15T08:01:56+09:00",
+      "final_return_pct": -0.7126
     },
     {
       "id": "3183a3a181cc22d4",
@@ -1547,7 +1563,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 -0.31, 뉴스 +4.00 / 연결 뉴스: CPI 관망 속 소폭 하락, 엔비디아 5000억달러 파이낸싱에 빅테크·메모리 엇갈림 엔비디아의 5000억달러 AI 인프라 파이낸싱 발표를 둘러싼 순환금융 논란에 알파벳·아마존 등 빅테크 하락 2분기 매출 26억달러로; [키움증권 미국 전략/주식 김승혁] 미국은 지금 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-12T14:34:55+09:00",
@@ -1558,11 +1574,19 @@
           "evaluated_at": "2026-08-13T08:16:45+09:00",
           "price": 722.65,
           "return_pct": 0.5482
+        },
+        "72h": {
+          "evaluated_at": "2026-08-15T08:01:56+09:00",
+          "price": 731.05,
+          "return_pct": 1.717
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-13T08:16:45+09:00"
+      "learned_at": "2026-08-13T08:16:45+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-15T08:01:56+09:00",
+      "final_return_pct": 1.717
     },
     {
       "id": "427482087c59cc0d",
@@ -1875,10 +1899,16 @@
           "evaluated_at": "2026-08-14T14:35:09+09:00",
           "price": 199.56,
           "return_pct": 10.5657
+        },
+        "24h": {
+          "evaluated_at": "2026-08-15T08:01:56+09:00",
+          "price": 180.381,
+          "return_pct": -0.0604
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-15T08:01:56+09:00"
     },
     {
       "id": "8c770cd0d9f192c3",
@@ -1915,10 +1945,16 @@
           "evaluated_at": "2026-08-14T14:35:09+09:00",
           "price": 550.74,
           "return_pct": -0.2282
+        },
+        "24h": {
+          "evaluated_at": "2026-08-15T08:01:56+09:00",
+          "price": 550.2,
+          "return_pct": -0.326
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-15T08:01:56+09:00"
     },
     {
       "id": "7fb898e4a867dbb1",
@@ -1955,10 +1991,16 @@
           "evaluated_at": "2026-08-14T14:35:09+09:00",
           "price": 398.96,
           "return_pct": -0.1327
+        },
+        "24h": {
+          "evaluated_at": "2026-08-15T08:01:56+09:00",
+          "price": 401.9,
+          "return_pct": 0.6033
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance extended-hours"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance extended-hours",
+      "learned_at": "2026-08-15T08:01:56+09:00"
     },
     {
       "id": "63eba727242c5a17",
