@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-14T23:12:35+09:00",
+  "updated_at": "2026-08-14T23:32:59+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1935,6 +1935,108 @@
       },
       "learned_24h": false,
       "price_source": "Yahoo Finance extended-hours"
+    },
+    {
+      "id": "63eba727242c5a17",
+      "created_at": "2026-08-14T23:32:59+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 181.13,
+      "entry_zone": [
+        180.22435,
+        182.03565
+      ],
+      "stop_price": 168.10303,
+      "target_price": 207.18394,
+      "score": 7.619,
+      "components": {
+        "momentum": 3.5915271105305466,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +3.59, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.59, 뉴스 +4.00 / 연결 뉴스: 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source; 미국 기업 섹터별 소식 정리",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "65613e63d2630cb6",
+      "created_at": "2026-08-14T23:32:59+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 402.63,
+      "entry_zone": [
+        400.61685,
+        404.64315
+      ],
+      "stop_price": 393.216269,
+      "target_price": 421.457462,
+      "score": 5.974,
+      "components": {
+        "momentum": 2.5970405261124507,
+        "regime": 0.2,
+        "news": 2.8324227447002084,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.60, regime +0.20, news +2.83, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.60, 뉴스 +2.83 / 연결 뉴스: 8월 14일 (금) 14:00 거래대금 상위 분석 · 반도체·자동차 중심 강세 지속 · 코스닥도 로봇·반도체 소부장 중심 순환매…; AI Capex 확대의 경제적 파급효과",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "1654e236142b17ef",
+      "created_at": "2026-08-14T23:32:59+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 730.84,
+      "entry_zone": [
+        727.1858,
+        734.4942
+      ],
+      "stop_price": 713.299949,
+      "target_price": 765.920101,
+      "score": 4.976,
+      "components": {
+        "momentum": 1.0248506385202674,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.02, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 1.06,
+        "news": 1.09,
+        "defensive": 0.88
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.02, 뉴스 +4.00 / 연결 뉴스: 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source; 미국 기업 섹터별 소식 정리",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
     }
   ]
 }
