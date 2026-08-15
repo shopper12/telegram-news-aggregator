@@ -1,7 +1,49 @@
 {
   "version": 1,
-  "updated_at": "2026-08-15T19:19:37+09:00",
+  "updated_at": "2026-08-15T19:48:14+09:00",
   "events": [
+    {
+      "signature": "ecdf5d819393e4b7241942c31b972d8bd2003ec9",
+      "title": "🔔",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 15,
+      "sentiment": 0,
+      "first_seen": "2026-08-15T10:40:44+00:00",
+      "last_seen": "2026-08-15T10:40:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3bbef83ea6a84bb9ca93a18a7ec969ee3788ec5f",
+      "title": "✅ SK하이닉스, HBF 상용화 눈앞…샌디스크와 내년 고객사 샘플 공급 https://n.news.naver.com/articl…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스"
+      ],
+      "tickers": [
+        "000660.KS",
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 15,
+      "sentiment": 2,
+      "first_seen": "2026-08-15T10:32:54+00:00",
+      "last_seen": "2026-08-15T10:32:54+00:00",
+      "count": 1
+    },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
       "title": "🔔",
@@ -9,10 +51,10 @@
       "keywords": [],
       "tickers": [],
       "materiality": 17,
-      "sentiment": -1,
+      "sentiment": 1,
       "first_seen": "2026-08-07T11:24:21+00:00",
       "last_seen": "2026-08-15T10:18:09+00:00",
-      "count": 102
+      "count": 105
     },
     {
       "signature": "88bbd84d88245d646b14ffe2cfec4de18c2b8f9f",
@@ -30,7 +72,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-15T10:18:09+00:00",
       "last_seen": "2026-08-15T10:18:09+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "fa62107d36a8b64878e263169f524dc889b16e39",
@@ -45,7 +87,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-15T10:15:53+00:00",
       "last_seen": "2026-08-15T10:15:53+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "84d85132e6c3e5244159ecdd1d6dd20555cb9dbc",
@@ -70,7 +112,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-15T10:05:23+00:00",
       "last_seen": "2026-08-15T10:05:23+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "5f4632a43786228343ce1f78324568732ece25b7",
@@ -105,7 +147,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-15T10:00:16+00:00",
       "last_seen": "2026-08-15T10:00:16+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "a25b6b0527226a28355e25b70c65065235103e28",
@@ -9138,49 +9180,6 @@
       "sentiment": 1,
       "first_seen": "2026-08-14T03:11:54+00:00",
       "last_seen": "2026-08-14T03:11:54+00:00",
-      "count": 1
-    },
-    {
-      "signature": "29431c43a016e2827e4c5133dcce5d43f31c0f4d",
-      "title": "🔔 반도체 주춤한 사이 '질주'…대박 난 ETF 봤더니 📈 #한화에어로스페이스 #TIGER코스닥150레버리지 #KODEX코스닥1…",
-      "sectors": [
-        "반도체",
-        "방산/항공"
-      ],
-      "keywords": [
-        "반도체",
-        "방산"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 10,
-      "sentiment": 3,
-      "first_seen": "2026-08-14T03:10:09+00:00",
-      "last_seen": "2026-08-14T03:10:09+00:00",
-      "count": 1
-    },
-    {
-      "signature": "5d06e341e7eefc76b1633054ad4ee4805e1e9499",
-      "title": "🔔 장중...코스닥 '하락 전환', 원익IPS ·제주반도체 '급락' 📈 #원익IPS #제주반도체 #코미코 #테스 #레이저쎌 📝 …",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [
-        "080220.KQ",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 7,
-      "sentiment": -2,
-      "first_seen": "2026-08-14T03:07:09+00:00",
-      "last_seen": "2026-08-14T03:07:09+00:00",
       "count": 1
     }
   ]
