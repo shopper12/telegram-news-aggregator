@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-15T23:30:20+09:00",
+  "updated_at": "2026-08-16T07:31:56+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1617,7 +1617,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +3.13, 뉴스 +1.51 / 연결 뉴스: Pre-Market Summary; 🔔 코스피 반등 불씨 살릴까…美 7월 CPI에 쏠린 눈 📈 #삼성전자 #SK하이닉스 #현대차 #LG에너지솔루션 #기아 📝 #미국…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-13T07:56:27+09:00",
@@ -1628,11 +1628,19 @@
           "evaluated_at": "2026-08-14T00:05:12+09:00",
           "price": 401.47,
           "return_pct": -0.9987
+        },
+        "72h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 401.48,
+          "return_pct": -0.9963
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-14T00:05:12+09:00"
+      "learned_at": "2026-08-14T00:05:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-16T07:31:56+09:00",
+      "final_return_pct": -0.9963
     },
     {
       "id": "15d28c5272007728",
@@ -1663,7 +1671,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.31 / 연결 뉴스: ✅ 인니 구리 제련소 가동 중단…공급 차질에 구리값 또 ’들썩’ https://kr.investing.com/news/stock…; 호르무즈 불안에 국제유가 상승, 국내 정유주 동반 강세 https://m.stock.naver.com/investment/new…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-13T07:56:27+09:00",
@@ -1674,11 +1682,19 @@
           "evaluated_at": "2026-08-14T00:05:12+09:00",
           "price": 125.13,
           "return_pct": -1.1963
+        },
+        "72h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 126.6,
+          "return_pct": -0.0355
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-14T00:05:12+09:00"
+      "learned_at": "2026-08-14T00:05:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-16T07:31:56+09:00",
+      "final_return_pct": -0.0355
     },
     {
       "id": "0d860cc7be375424",
@@ -1709,7 +1725,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.34, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🌎 글로벌 뉴스 브리핑",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-13T07:56:27+09:00",
@@ -1720,11 +1736,19 @@
           "evaluated_at": "2026-08-14T00:05:12+09:00",
           "price": 732.19,
           "return_pct": 0.9632
+        },
+        "72h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 731.07,
+          "return_pct": 0.8087
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-14T00:05:12+09:00"
+      "learned_at": "2026-08-14T00:05:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-16T07:31:56+09:00",
+      "final_return_pct": 0.8087
     },
     {
       "id": "ec80062b2da99364",
@@ -2037,10 +2061,16 @@
           "evaluated_at": "2026-08-15T07:32:39+09:00",
           "price": 179.64,
           "return_pct": -0.8226
+        },
+        "24h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 199.56,
+          "return_pct": 10.175
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-16T07:31:56+09:00"
     },
     {
       "id": "65613e63d2630cb6",
@@ -2077,10 +2107,16 @@
           "evaluated_at": "2026-08-15T07:32:39+09:00",
           "price": 401.94,
           "return_pct": -0.1714
+        },
+        "24h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 401.48,
+          "return_pct": -0.2856
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-16T07:31:56+09:00"
     },
     {
       "id": "1654e236142b17ef",
@@ -2117,10 +2153,16 @@
           "evaluated_at": "2026-08-15T07:32:39+09:00",
           "price": 730.95,
           "return_pct": 0.0151
+        },
+        "24h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 731.07,
+          "return_pct": 0.0315
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-16T07:31:56+09:00"
     },
     {
       "id": "8bd923211be611e4",
@@ -2272,7 +2314,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; ✅ SK하이닉스, HBF 상용화 눈앞…샌디스크와 내년 고객사 샘플 공급 https://n.news.naver.com/articl… / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
       "price_warning": "24h derivative proxy; not official equity spot"
@@ -2307,7 +2355,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.04, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 메모리 매출 놀랍다… 실적 발표 후 EPS 420까지 보는 종목 2026.08.15",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 731.07,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -2340,6 +2394,115 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +2.45, 뉴스 +0.89 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; AI 전쟁, 이번에도 강세론자가 약세론자를 이길 수 있는 이유 월가에서 AI 버블 논쟁이 다시 거세지는 가운데, Barron's…",
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-16T07:31:56+09:00",
+          "price": 401.48,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "4a5f9de01729c132",
+      "created_at": "2026-08-16T07:31:56+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 199.56,
+      "entry_zone": [
+        198.5622,
+        200.5578
+      ],
+      "stop_price": 185.219138,
+      "target_price": 228.241723,
+      "score": 6.863,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 2.906554906350254,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +2.91, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 0.97,
+        "news": 1.09,
+        "defensive": 0.85
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +2.91 / 연결 뉴스: 🔔 코스피 껑충, 삼성전자·SK하이닉스·현대차 등 주가↑…美 CPI·PPI 물가... 📈 #현대차 #SK하이닉스 #삼성전자 #삼…; 🔔 '안 팔길 잘했네'…삼전닉스 '300조' 관측에 반도체 개미 '들썩' 📈 #삼성전자 #SK하이닉스 📝 #반도체주주환원 #반도… / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
+      "price_warning": "24h derivative proxy; not official equity spot"
+    },
+    {
+      "id": "cb164c0b3ed05bc2",
+      "created_at": "2026-08-16T07:31:56+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 550.42,
+      "entry_zone": [
+        547.6679,
+        553.1721
+      ],
+      "stop_price": 518.798526,
+      "target_price": 613.662949,
+      "score": 4.164,
+      "components": {
+        "momentum": 0.30515704142373745,
+        "regime": 0.0,
+        "news": 3.9217613697242366,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.31, regime +0.00, news +3.92, defensive -0.50",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 0.97,
+        "news": 1.09,
+        "defensive": 0.85
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.31, 뉴스 +3.92 / 연결 뉴스: 🔔 코스피 껑충, 삼성전자·SK하이닉스·현대차 등 주가↑…美 CPI·PPI 물가... 📈 #현대차 #SK하이닉스 #삼성전자 #삼…; 🔔 '안 팔길 잘했네'…삼전닉스 '300조' 관측에 반도체 개미 '들썩' 📈 #삼성전자 #SK하이닉스 📝 #반도체주주환원 #반도…",
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false,
+      "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "bce8fec9e8fa1880",
+      "created_at": "2026-08-16T07:31:56+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 401.48,
+      "entry_zone": [
+        399.4726,
+        403.4874
+      ],
+      "stop_price": 392.115042,
+      "target_price": 420.209916,
+      "score": 3.433,
+      "components": {
+        "momentum": 2.4468199328571343,
+        "regime": 0.2,
+        "news": 0.6591261808097454,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.45, regime +0.20, news +0.66, defensive +0.00",
+      "weights": {
+        "momentum": 1.03,
+        "regime": 0.97,
+        "news": 1.09,
+        "defensive": 0.85
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.45, 뉴스 +0.66 / 연결 뉴스: 🔔 고점서 물린 삼전·SK하닉 레버리지 ETF 최대 77% 손실…원금 회복까진 ... 📈 #삼성전자 #SK하이닉스 📝 #반도체레…; [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…",
       "status": "open",
       "evaluations": {},
       "learned_24h": false,
