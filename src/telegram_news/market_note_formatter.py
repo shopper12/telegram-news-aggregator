@@ -103,6 +103,8 @@ def _ensure_note_assets(snapshot: dict[str, Any] | None) -> dict[str, Any]:
 
 def _note_name(kind: str, now: datetime) -> str:
     normalized = str(kind or "").strip().lower()
+    if normalized == "us_close":
+        return "미 증시 마감 → 한국장 프리뷰"
     if normalized == "strategy_morning":
         return "미 증시 클로징 노트"
     if normalized == "strategy_evening":
@@ -313,7 +315,7 @@ def _change_factor_lines(index: int, payload: dict[str, Any]) -> list[str]:
     for detail in details:
         lines.append(f"　- {detail}")
     symbols = _symbol_text(payload["symbols"])
-    meta = f"[{payload['score']}/{payload['grade']}]"
+    meta = f"[중요도 {payload['score']} · 출처 {payload['grade']}]"
     if symbols:
         lines.append(f"　→ {meta} 직접 언급: {symbols}")
     else:
@@ -344,7 +346,7 @@ def _sector_lines(sector: str, payloads: list[dict[str, Any]]) -> list[str]:
     for payload in payloads[:4]:
         symbols = _symbol_text(payload["symbols"])
         suffix = f" / {symbols}" if symbols else ""
-        lines.append(f"　- [{payload['score']}/{payload['grade']}] {payload['title']}{suffix}")
+        lines.append(f"　- [중요도 {payload['score']} · 출처 {payload['grade']}] {payload['title']}{suffix}")
         detail = next(iter(_sentences(payload["body"], 1)), "")
         if detail and detail != payload["title"]:
             lines.append(f"　　{detail}")
@@ -358,7 +360,7 @@ def _feature_lines(payloads: list[dict[str, Any]], used: set[int]) -> list[str]:
     lines = ["■ 기타 특징주"]
     for payload in featured[:8]:
         lines.append(
-            f"　- {_symbol_text(payload['symbols'])}: {payload['title']} [{payload['score']}/{payload['grade']}]"
+            f"　- {_symbol_text(payload['symbols'])}: {payload['title']} [중요도 {payload['score']} · 출처 {payload['grade']}]"
         )
     return lines
 
@@ -556,6 +558,14 @@ def install() -> None:
             base_report.get_market_context = original_get_market_context
         if not report:
             return report
+
+        kind = os.getenv("BRIEFING_KIND", "regular")
+        # us_close already comes from market_dashboard_report.build_us_close_dashboard().
+        # Re-formatting it here used a second, narrower market context and appended
+        # duplicated blocks. Preserve the dedicated dashboard byte-for-byte.
+        if str(kind).lower() == "us_close":
+            return report
+
         try:
             from . import consistency_rules
 
@@ -565,7 +575,7 @@ def install() -> None:
                 summaries=list(summaries),
                 hours=hours,
                 timezone_name=timezone_name,
-                kind=os.getenv("BRIEFING_KIND", "regular"),
+                kind=kind,
                 now=now,
                 market_context=captured.get("market_context"),
                 snapshot=consistency_rules._cached_global_snapshot(),
