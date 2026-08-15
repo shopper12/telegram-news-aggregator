@@ -1,5 +1,6 @@
 from datetime import datetime
 from types import SimpleNamespace
+from zoneinfo import ZoneInfo
 
 from telegram_news import adaptive_strategy
 from telegram_news import global_market_tracker
@@ -57,6 +58,26 @@ def test_dashboard_quote_uses_adjacent_daily_bars_not_chart_range_previous(monke
 
     assert round(result["change_pct"], 6) == 10.0
     assert result["change_pct"] != 120.0
+    market_dashboard_data._yahoo_quote.cache_clear()
+
+
+def test_dashboard_quote_records_latest_exchange_session_date(monkeypatch):
+    market_dashboard_data._yahoo_quote.cache_clear()
+    epoch = int(datetime(2026, 8, 14, 16, 0, tzinfo=ZoneInfo("America/New_York")).timestamp())
+    payload = _chart_payload(
+        raw_closes=[100.0, 101.0],
+        adjusted_closes=[100.0, 101.0],
+        regular_price=101.0,
+        previous=100.0,
+    )
+    result = payload["chart"]["result"][0]
+    result["timestamp"] = [epoch - 86400, epoch]
+    result["meta"]["exchangeTimezoneName"] = "America/New_York"
+    monkeypatch.setattr(market_dashboard_data.requests, "get", lambda *args, **kwargs: FakeResponse(payload))
+
+    quote = market_dashboard_data._yahoo_quote("^GSPC")
+
+    assert quote["session_date"] == "2026-08-14"
     market_dashboard_data._yahoo_quote.cache_clear()
 
 
@@ -139,6 +160,92 @@ def test_explicit_symbol_recovery_prevents_false_no_symbol(monkeypatch):
     symbols = market_dashboard_report._explicit_symbols(cluster)
 
     assert [symbol.ticker for symbol in symbols] == ["NVDA", "META"]
+
+
+def test_source_grade_d_cannot_be_primary_catalyst(monkeypatch):
+    cluster = object()
+    monkeypatch.setattr(market_dashboard_report, "materiality_grade", lambda value: "D")
+
+    assert market_dashboard_report._primary_catalyst_eligible(cluster) is False
+
+
+def test_source_grade_a_can_be_primary_catalyst(monkeypatch):
+    cluster = object()
+    monkeypatch.setattr(market_dashboard_report, "materiality_grade", lambda value: "A")
+
+    assert market_dashboard_report._primary_catalyst_eligible(cluster) is True
+
+
+def test_local_fallback_demotes_weak_source_from_core_cause(monkeypatch):
+    cluster = object()
+    monkeypatch.setattr(market_dashboard_report, "materiality_score", lambda value: 99)
+    monkeypatch.setattr(market_dashboard_report, "materiality_grade", lambda value: "D")
+    monkeypatch.setattr(market_dashboard_report.display, "_display_title", lambda value, limit: "미국 기업 섹터별 소식 정리")
+    payload = {
+        "generated_at_iso": "2026-08-14T07:30:00+09:00",
+        "market": {
+            "global_market_quotes": [],
+            "korea_proxies": [],
+            "sector_baskets": {},
+            "risk_regime": {"regime": "NEUTRAL"},
+            "supply_demand_line": "수급 확인불가",
+            "market_bias": "중립",
+        },
+        "grounded_research": {},
+        "quality": {"grounding_engine": "test"},
+    }
+
+    text = market_dashboard_report._local(payload, [cluster], rule="test")
+
+    assert "출처 A/B로 검증된 핵심 촉매 없음" in text
+    assert "보조 관찰 [중요도 99 · 출처 D]" in text
+    assert "1) [중요도 99 · 출처 D]" not in text
+
+
+def test_stale_us_session_is_blocked_before_grounding_or_gemini(monkeypatch):
+    fixed = datetime(2026, 8, 18, 7, 30, tzinfo=ZoneInfo("Asia/Seoul"))  # Tuesday KST -> expected Monday US
+
+    class FixedDateTime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return fixed.astimezone(tz) if tz else fixed.replace(tzinfo=None)
+
+    monkeypatch.setattr(market_dashboard_report, "datetime", FixedDateTime)
+    monkeypatch.setattr(market_dashboard_report.strict, "_select_strict", lambda summaries: ([], 0, 0, "test", 0))
+    monkeypatch.setattr(market_dashboard_report.display, "_drop_noise", lambda selected: selected)
+    monkeypatch.setattr(
+        market_dashboard_report,
+        "get_market_dashboard_context",
+        lambda: {"us_session_date": "2026-08-14"},
+    )
+    monkeypatch.setattr(
+        market_dashboard_report,
+        "_grounded_market_research",
+        lambda now: (_ for _ in ()).throw(AssertionError("grounding must not run for stale session")),
+    )
+    monkeypatch.setattr(
+        market_dashboard_report,
+        "_gemini",
+        lambda payload: (_ for _ in ()).throw(AssertionError("Gemini must not run for stale session")),
+    )
+
+    report = market_dashboard_report.build_us_close_dashboard([], hours=12)
+
+    assert "휴장·데이터 미갱신" in report
+    assert "2026-08-17" in report
+    assert "2026-08-14" in report
+    assert "이전 거래일 마감 데이터를 오늘 마감처럼 재전송하지 않습니다" in report
+
+
+def test_session_freshness_accepts_expected_prior_us_date():
+    now = datetime(2026, 8, 18, 7, 30, tzinfo=ZoneInfo("Asia/Seoul"))
+
+    fresh, expected, actual = market_dashboard_report._session_freshness(
+        {"us_session_date": "2026-08-17"}, now
+    )
+
+    assert fresh is True
+    assert expected == actual == "2026-08-17"
 
 
 def test_adaptive_us_close_runs_learning_without_inserting_visible_section(monkeypatch):
