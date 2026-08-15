@@ -72,6 +72,16 @@ def _daily_change_pct(result: dict) -> float | None:
     return (series[-1] - series[-2]) / series[-2] * 100.0
 
 
+def _session_date(result: dict, meta: dict) -> str | None:
+    timestamps = [int(value) for value in (result.get("timestamp") or []) if value]
+    epoch = timestamps[-1] if timestamps else meta.get("regularMarketTime")
+    try:
+        timezone_name = str(meta.get("exchangeTimezoneName") or "America/New_York")
+        return datetime.fromtimestamp(int(epoch), ZoneInfo(timezone_name)).date().isoformat()
+    except Exception:
+        return None
+
+
 @lru_cache(maxsize=128)
 def _yahoo_quote(ticker: str) -> dict:
     # Daily bars are intentional. Yahoo's chartPreviousClose can refer to the
@@ -102,6 +112,7 @@ def _yahoo_quote(ticker: str) -> dict:
             "price": price,
             "change_pct": change_pct,
             "volume": _safe_float(meta.get("regularMarketVolume")),
+            "session_date": _session_date(result, meta),
             "source": "Yahoo Finance daily bars",
             "timestamp": _now_kst(),
             "error": None if price is not None else "price_missing",
@@ -112,6 +123,7 @@ def _yahoo_quote(ticker: str) -> dict:
             "price": None,
             "change_pct": None,
             "volume": None,
+            "session_date": None,
             "source": "Yahoo Finance daily bars",
             "timestamp": _now_kst(),
             "error": f"{type(exc).__name__}: {exc}",
@@ -207,9 +219,11 @@ def get_market_dashboard_context() -> dict:
     korea_proxies = _fetch_named_quotes(KOREA_PROXIES)
     sector_baskets = _fetch_sector_baskets()
     base_context = _safe_base_context()
+    sp500 = _find(global_quotes, "S&P500")
 
     return {
         "global_market_quotes": global_quotes,
+        "us_session_date": sp500.get("session_date"),
         "risk_regime": _risk_regime(global_quotes),
         "korea_proxies": korea_proxies,
         "sector_baskets": sector_baskets,
