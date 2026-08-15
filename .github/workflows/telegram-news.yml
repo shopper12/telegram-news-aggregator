@@ -17,15 +17,16 @@ on:
         default: "regular"
   schedule:
     # GitHub cron is UTC; KST is UTC+9.
-    - cron: "0 22 * * *"       # 07:00 KST: morning strategy
-    - cron: "30 22 * * *"      # 07:30 KST: US close -> Korea dashboard
-    - cron: "0,30 23 * * *"    # 08:00, 08:30 KST
-    - cron: "0,30 0-12 * * *"  # 09:00-21:30 KST
-    - cron: "0 13 * * *"       # 22:00 KST
-    - cron: "30 13 * * *"      # 22:30 KST: evening strategy
-    - cron: "0 14 * * *"       # 23:00 KST
+    - cron: "0 22 * * *"        # 07:00 KST: morning strategy
+    - cron: "30 22 * * 1-5"     # Tue-Sat 07:30 KST: Mon-Fri US close -> Korea dashboard
+    - cron: "0,30 23 * * *"     # 08:00, 08:30 KST
+    - cron: "0,30 0-12 * * *"   # 09:00-21:30 KST
+    - cron: "0 13 * * *"        # 22:00 KST
+    - cron: "30 13 * * *"       # 22:30 KST: evening strategy
+    - cron: "0 14 * * *"        # 23:00 KST
 
-# Runs every day, including weekends and holidays. Scheduled jobs can start a few minutes late.
+# Tracking/learning runs still operate daily. The dedicated US-close dashboard runs
+# Tue-Sat KST so Sunday/Monday cannot present a stale US session as a fresh close.
 concurrency:
   group: telegram-news-briefing
   cancel-in-progress: false
@@ -104,7 +105,7 @@ jobs:
               if schedule == "0 22 * * *":
                   briefing_kind = "strategy_morning"
                   reason = "kst_0700_morning_strategy"
-              elif schedule == "30 22 * * *":
+              elif schedule == "30 22 * * 1-5":
                   hours = "12"
                   limit = "300"
                   briefing_kind = "us_close"
@@ -213,7 +214,7 @@ jobs:
           import os
           target_present = bool(os.getenv("TELEGRAM_TARGET_CHAT_ID") or os.getenv("TELEGRAM_TARGET_CHAT_IDS"))
           print("Telegram target chat id(s): " + ("present" if target_present else "missing"))
-          print("07:30 KST: Telegram US-close dashboard")
+          print("07:30 KST Tue-Sat: Telegram US-close dashboard")
           print("Other scheduled runs: KakaoTalk news tracking")
           print("Adaptive strategy state: reports/adaptive_strategy_state.json")
           print("Strategy ledger: reports/strategy_ledger.json")
