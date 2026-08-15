@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import json
 import os
@@ -20,6 +20,7 @@ DEFAULT_MODEL = "gemini-2.5-flash"
 MAX_REPORT_CHARS = int(os.getenv("US_CLOSE_MAX_REPORT_CHARS", "9000"))
 GROUNDING_TIMEOUT = int(os.getenv("US_CLOSE_GROUNDING_TIMEOUT", "35"))
 FORBIDDEN = ["비트코인", "이더리움", "업비트", "바이낸스", "목표가", "손절가", "무조건 매수", "확정 상승"]
+PRIMARY_SOURCE_GRADES = {"A", "B"}
 
 
 def _explicit_symbols(cluster) -> list:
@@ -49,16 +50,29 @@ def _explicit_symbols(cluster) -> list:
         return []
 
 
+def _source_grade(cluster) -> str:
+    try:
+        return str(materiality_grade(cluster) or "D").upper()
+    except Exception:
+        return "D"
+
+
+def _primary_catalyst_eligible(cluster) -> bool:
+    return _source_grade(cluster) in PRIMARY_SOURCE_GRADES
+
+
 def _issue_payload(clusters: list, now: datetime) -> list[dict]:
     rows = []
     for idx, cluster in enumerate(clusters[:20], 1):
         best = cluster.best()
         symbols = _explicit_symbols(cluster)
+        grade = _source_grade(cluster)
         rows.append(
             {
                 "rank": idx,
                 "importance": materiality_score(cluster),
-                "source_grade": materiality_grade(cluster),
+                "source_grade": grade,
+                "primary_catalyst_eligible": grade in PRIMARY_SOURCE_GRADES,
                 "type": best.news_type,
                 "title": display._display_title(cluster, 120),
                 "body": strict.base._short(best.item.body or "", 420),
@@ -239,7 +253,8 @@ def _prompt(payload: dict) -> str:
         "9. 가상자산, 매수·매도 지시, 목표가·손절가 표현은 금지한다.\n"
         "10. Telegram에서 읽기 쉽게 짧은 문장과 숫자 중심으로 작성한다.\n"
         "11. news_issues의 source_grade는 출처 검증 등급이고 importance와 다른 축이다. 혼동하지 않는다.\n"
-        "12. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
+        "12. news_issues에서 primary_catalyst_eligible=false인 C/D 출처는 보조 관찰 정보일 뿐이다. grounded_research로 독립 검증되지 않은 한 오늘의 한줄이나 '시장이 움직인 핵심 원인'의 주원인으로 쓰지 않는다.\n"
+        "13. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
         "audit는 {\"pass\":true|false,\"score\":0~100,\"reason\":\"...\"}. 85점 미만이면 pass=false.\n\n"
         "report 형식:\n"
         "🇺🇸 MM/DD 미국증시 마감 → 🇰🇷 한국장 프리뷰\n"
@@ -358,6 +373,48 @@ def _risk_line(global_quotes: list[dict], research: dict) -> str:
     return "- 시장 리스크 인과분석 확인불가 · 변동성·달러·금리 데이터 재확인 필요"
 
 
+def _fallback_one_line(research: dict, regime: dict) -> str:
+    catalysts = research.get("market_catalysts") or []
+    if catalysts:
+        item = catalysts[0]
+        fact = str(item.get("fact") or "핵심 촉매 확인불가").strip()
+        reaction = str(item.get("observed_market_reaction") or "미국시장 반응 확인불가").strip()
+        korea = str(item.get("korea_link") or "한국장 연계 확인 필요").strip()
+        return f"{fact} → {reaction} → {korea}"
+    return f"검증된 단일 촉매 확인불가 · 시세 기준 시장 레짐 {regime.get('regime', '확인불가')}"
+
+
+def _primary_clusters(clusters: list) -> list:
+    return [cluster for cluster in clusters if _primary_catalyst_eligible(cluster)]
+
+
+def _session_freshness(market: dict, now: datetime) -> tuple[bool | None, str, str]:
+    """Validate that a Tue-Sat KST 07:30 brief represents the prior US date."""
+    actual = str(market.get("us_session_date") or "").strip()
+    expected = (now.date() - timedelta(days=1)).isoformat()
+    # Tue-Sat KST corresponds to Mon-Fri US regular sessions. Other weekdays are
+    # manual/non-scheduled invocations, so freshness is informational only.
+    if now.weekday() not in {1, 2, 3, 4, 5}:
+        return None, expected, actual
+    if not actual:
+        return None, expected, actual
+    return actual == expected, expected, actual
+
+
+def _stale_session_notice(now: datetime, expected: str, actual: str) -> str:
+    observed = actual or "확인불가"
+    return "\n".join(
+        [
+            f"🇺🇸 {now:%m/%d} 미국 정규장 휴장·데이터 미갱신 확인",
+            "━━━━━━━━━━━━━━",
+            f"- 이번 브리핑이 요구하는 미국 세션: {expected}",
+            f"- 시장 데이터의 최근 확인 세션: {observed}",
+            "- 이전 거래일 마감 데이터를 오늘 마감처럼 재전송하지 않습니다.",
+            "- 뉴스 수집과 전략 학습은 별도 정기 작업에서 계속됩니다.",
+        ]
+    )
+
+
 def _local(payload: dict, clusters: list, rule: str) -> str:
     now = datetime.fromisoformat(payload["generated_at_iso"])
     market = payload["market"]
@@ -370,7 +427,7 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
     lines = [
         f"🇺🇸 {now:%m/%d} 미국증시 마감 → 🇰🇷 한국장 프리뷰",
         "━━━━━━━━━━━━━━",
-        f"🔥 오늘의 한줄: 상세 인과분석 확인불가 · 검증 시세 기준 시장 레짐 {regime.get('regime', '확인불가')}",
+        f"🔥 오늘의 한줄: {_fallback_one_line(research, regime)}",
         "",
         "📊 주요 지수",
     ]
@@ -397,15 +454,24 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
 
     lines.extend(["", "🧭 시장이 움직인 핵심 원인"])
     catalysts = research.get("market_catalysts") or []
+    primary_clusters = _primary_clusters(clusters)
     if catalysts:
         for idx, item in enumerate(catalysts[:4], 1):
             reaction = str(item.get("observed_market_reaction") or "시장반응 확인불가")
             lines.append(f"{idx}) {item.get('fact') or '사실 확인불가'} → {reaction}")
-    elif clusters:
-        for idx, cluster in enumerate(clusters[:5], 1):
+    elif primary_clusters:
+        for idx, cluster in enumerate(primary_clusters[:5], 1):
             lines.append(
-                f"{idx}) [중요도 {materiality_score(cluster)} · 출처 {materiality_grade(cluster)}] "
+                f"{idx}) [중요도 {materiality_score(cluster)} · 출처 {_source_grade(cluster)}] "
                 f"{display._display_title(cluster, 90)}"
+            )
+    elif clusters:
+        lines.append("- 출처 A/B로 검증된 핵심 촉매 없음")
+        weak = sorted(clusters, key=materiality_score, reverse=True)[:3]
+        for cluster in weak:
+            lines.append(
+                f"  · 보조 관찰 [중요도 {materiality_score(cluster)} · 출처 {_source_grade(cluster)}] "
+                f"{display._display_title(cluster, 80)}"
             )
     else:
         lines.append("- 중요도 게이트 통과 뉴스 없음")
@@ -464,6 +530,15 @@ def build_us_close_dashboard(
     selected, stock_count, blocked, rule, pre_gate_count = strict._select_strict(summaries)
     clusters = display._drop_noise(selected)[:20]
     market = get_market_dashboard_context()
+
+    fresh, expected_session, actual_session = _session_freshness(market, now)
+    if fresh is False:
+        print(
+            "[market-dashboard] stale_session_blocked "
+            f"expected={expected_session} actual={actual_session or 'missing'}"
+        )
+        return _stale_session_notice(now, expected_session, actual_session)
+
     grounded_research, grounding_engine = _grounded_market_research(now)
     payload = {
         "generated_at_kst": now.strftime("%Y-%m-%d %H:%M KST"),
@@ -478,16 +553,20 @@ def build_us_close_dashboard(
             "excluded_count": blocked,
             "pre_gate_count": pre_gate_count,
             "selected_count": len(clusters),
+            "primary_catalyst_count": sum(_primary_catalyst_eligible(cluster) for cluster in clusters),
             "rule": rule,
             "grounding_engine": grounding_engine,
             "grounding_source_count": len(grounded_research.get("sources") or []),
+            "expected_us_session_date": expected_session,
+            "actual_us_session_date": actual_session,
         },
     }
     report, engine = _gemini(payload)
     print(
         "[market-dashboard] "
         f"grounding={grounding_engine} sources={len(grounded_research.get('sources') or [])} "
-        f"final={engine} selected={len(clusters)}"
+        f"final={engine} selected={len(clusters)} primary={payload['quality']['primary_catalyst_count']} "
+        f"session={actual_session or 'unknown'}"
     )
     if report:
         source_count = len(grounded_research.get("sources") or [])
