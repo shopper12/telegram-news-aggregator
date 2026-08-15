@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-16T07:54:40+09:00",
+  "updated_at": "2026-08-16T08:14:55+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1779,7 +1779,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.85, 뉴스 +4.00 / 연결 뉴스: 한국콜마(161890); 미국 기업 섹터별 소식 정리 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-13T15:03:03+09:00",
@@ -1790,11 +1790,19 @@
           "evaluated_at": "2026-08-14T07:58:41+09:00",
           "price": 180.49,
           "return_pct": 2.5531
+        },
+        "72h": {
+          "evaluated_at": "2026-08-16T08:14:55+09:00",
+          "price": 199.56,
+          "return_pct": 13.3886
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-14T07:58:41+09:00"
+      "learned_at": "2026-08-14T07:58:41+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-16T08:14:55+09:00",
+      "final_return_pct": 13.3886
     },
     {
       "id": "6f0b074f48ca5329",
@@ -1825,7 +1833,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.05, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 도우인시스 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-13T15:03:03+09:00",
@@ -1836,11 +1844,19 @@
           "evaluated_at": "2026-08-14T07:58:41+09:00",
           "price": 551.9997,
           "return_pct": 0.9528
+        },
+        "72h": {
+          "evaluated_at": "2026-08-16T08:14:55+09:00",
+          "price": 550.42,
+          "return_pct": 0.6639
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-14T07:58:41+09:00"
+      "learned_at": "2026-08-14T07:58:41+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-16T08:14:55+09:00",
+      "final_return_pct": 0.6639
     },
     {
       "id": "feb0c4731d8d14ee",
@@ -1871,7 +1887,7 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.15 / 연결 뉴스: ✅ 인니 구리 제련소 가동 중단…공급 차질에 구리값 또 ’들썩’ https://kr.investing.com/news/stock…; 호르무즈 불안에 국제유가 상승, 국내 정유주 동반 강세 https://m.stock.naver.com/investment/new… / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-13T15:03:03+09:00",
@@ -1882,11 +1898,19 @@
           "evaluated_at": "2026-08-14T07:58:41+09:00",
           "price": 124.63,
           "return_pct": -1.7501
+        },
+        "72h": {
+          "evaluated_at": "2026-08-16T08:14:55+09:00",
+          "price": 126.6,
+          "return_pct": -0.1971
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-14T07:58:41+09:00"
+      "learned_at": "2026-08-14T07:58:41+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-16T08:14:55+09:00",
+      "final_return_pct": -0.1971
     },
     {
       "id": "d3228ee7697adb03",
