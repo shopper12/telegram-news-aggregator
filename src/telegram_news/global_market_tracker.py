@@ -54,6 +54,10 @@ def _pct(new: float | None, old: float | None) -> float | None:
     return None if new is None or old in (None, 0) else (new - old) / old * 100.0
 
 
+def _series(values: Any) -> list[float]:
+    return [number for value in (values or []) if (number := _safe_float(value)) is not None]
+
+
 def _volatility(closes: list[float]) -> float | None:
     returns = [(b - a) / a * 100.0 for a, b in zip(closes[:-1], closes[1:]) if a]
     if len(returns) < 2:
@@ -64,7 +68,7 @@ def _volatility(closes: list[float]) -> float | None:
 
 def fetch_asset_snapshot(ticker: str) -> dict[str, Any]:
     now = datetime.now(KST).isoformat(timespec="seconds")
-    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?range=1mo&interval=1d"
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?range=1mo&interval=1d&events=div%2Csplits"
     try:
         response = requests.get(url, headers={"User-Agent": "telegram-news-aggregator/1.0"}, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
@@ -72,14 +76,24 @@ def fetch_asset_snapshot(ticker: str) -> dict[str, Any]:
         if not isinstance(result, dict):
             raise RuntimeError("empty Yahoo chart result")
         meta = result.get("meta") or {}
-        quote = ((result.get("indicators") or {}).get("quote") or [{}])[0]
-        closes = [float(value) for value in (quote.get("close") or []) if _safe_float(value) is not None]
-        price = _safe_float(meta.get("regularMarketPrice")) or (closes[-1] if closes else None)
-        previous = _safe_float(meta.get("chartPreviousClose") or meta.get("previousClose"))
+        indicators = result.get("indicators") or {}
+        quote = (indicators.get("quote") or [{}])[0]
+        raw_closes = _series(quote.get("close") or [])
+        adjusted = _series(((indicators.get("adjclose") or [{}])[0]).get("adjclose") or [])
+        closes = adjusted or raw_closes
+        price = _safe_float(meta.get("regularMarketPrice")) or (raw_closes[-1] if raw_closes else None)
+
+        # chartPreviousClose describes the close before the requested chart range
+        # on some Yahoo responses. Session returns must therefore use adjacent
+        # daily bars rather than chartPreviousClose.
+        daily_change = _pct(closes[-1], closes[-2]) if len(closes) >= 2 else None
+        if daily_change is None:
+            daily_change = _pct(price, _safe_float(meta.get("previousClose")))
+
         return {
             "ticker": ticker,
             "price": price,
-            "change_pct": _pct(price, previous),
+            "change_pct": daily_change,
             "return_5d": _pct(closes[-1], closes[-6]) if len(closes) >= 6 else None,
             "return_20d": _pct(closes[-1], closes[-21]) if len(closes) >= 21 else None,
             "volatility_20d": _volatility(closes[-21:]),

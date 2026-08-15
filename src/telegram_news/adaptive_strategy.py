@@ -242,7 +242,7 @@ def _fmt(value: Any) -> str:
     number = _safe(value)
     if number is None:
         return "확인불가"
-    return f"{number:,.0f}" if number >= 1000 else f"{number:,.2f}" if number >= 10 else f"{number:,.4f}"
+    return f"{number:,.0f}" if number >= 1000 else f"{number:,.2f}" if number >= 10 else f"{number:.4f}"
 
 
 def _performance(state: dict[str, Any]) -> str:
@@ -332,15 +332,24 @@ def install() -> None:
             selected = base_report._drop_noise(selected)
         except Exception:
             selected = []
+        kind = os.getenv("BRIEFING_KIND", "regular")
         try:
             section = run_adaptive_cycle(
                 selected,
-                os.getenv("BRIEFING_KIND", "regular"),
+                kind,
                 all_summaries=list(summaries),
             )
         except Exception as exc:
             section = f"🌐 글로벌 적응형 전략 엔진\n  • 상태: 실행 실패 {type(exc).__name__}: {exc}\n  • 기존 뉴스 리포트 발송은 계속 진행"
             print(f"[adaptive-strategy] cycle failed: {type(exc).__name__}: {exc}")
+
+        # The 07:30 US-close dashboard has its own compact market structure.
+        # Run memory/evaluation/calibration above, but do not splice the internal
+        # learning ledger into the user-facing dashboard. The generic formatter
+        # used to treat the inserted block as part of the dashboard and duplicate
+        # almost the entire report.
+        if str(kind).lower() == "us_close":
+            return report
         return _insert_strategy(report, section)
 
     wrapped._adaptive_strategy_installed = True

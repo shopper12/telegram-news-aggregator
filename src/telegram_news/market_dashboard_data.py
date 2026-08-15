@@ -58,11 +58,28 @@ def _safe_float(value) -> float | None:
         return None
 
 
+def _series(values) -> list[float]:
+    return [number for value in (values or []) if (number := _safe_float(value)) is not None]
+
+
+def _daily_change_pct(result: dict) -> float | None:
+    indicators = result.get("indicators") or {}
+    adjusted = ((indicators.get("adjclose") or [{}])[0]).get("adjclose") or []
+    closes = ((indicators.get("quote") or [{}])[0]).get("close") or []
+    series = _series(adjusted) or _series(closes)
+    if len(series) < 2 or series[-2] == 0:
+        return None
+    return (series[-1] - series[-2]) / series[-2] * 100.0
+
+
 @lru_cache(maxsize=128)
 def _yahoo_quote(ticker: str) -> dict:
+    # Daily bars are intentional. Yahoo's chartPreviousClose can refer to the
+    # close before the whole requested range, so using it with range=5d/1mo can
+    # silently turn a one-session change into a multi-day return.
     url = (
         "https://query1.finance.yahoo.com/v8/finance/chart/"
-        f"{urlquote(ticker, safe='^=.-')}?range=5d&interval=5m"
+        f"{urlquote(ticker, safe='^=.-')}?range=1mo&interval=1d&events=div%2Csplits"
     )
     try:
         response = requests.get(
@@ -74,15 +91,18 @@ def _yahoo_quote(ticker: str) -> dict:
         data = response.json()
         result = data.get("chart", {}).get("result", [])[0]
         meta = result.get("meta", {})
-        price = _safe_float(meta.get("regularMarketPrice"))
-        previous = _safe_float(meta.get("chartPreviousClose") or meta.get("previousClose"))
-        change_pct = ((price - previous) / previous * 100) if price is not None and previous else None
+        raw_closes = _series((((result.get("indicators") or {}).get("quote") or [{}])[0]).get("close") or [])
+        price = _safe_float(meta.get("regularMarketPrice")) or (raw_closes[-1] if raw_closes else None)
+        change_pct = _daily_change_pct(result)
+        if change_pct is None:
+            previous = _safe_float(meta.get("previousClose"))
+            change_pct = ((price - previous) / previous * 100) if price is not None and previous else None
         return {
             "ticker": ticker,
             "price": price,
             "change_pct": change_pct,
             "volume": _safe_float(meta.get("regularMarketVolume")),
-            "source": "Yahoo Finance",
+            "source": "Yahoo Finance daily bars",
             "timestamp": _now_kst(),
             "error": None if price is not None else "price_missing",
         }
@@ -92,7 +112,7 @@ def _yahoo_quote(ticker: str) -> dict:
             "price": None,
             "change_pct": None,
             "volume": None,
-            "source": "Yahoo Finance",
+            "source": "Yahoo Finance daily bars",
             "timestamp": _now_kst(),
             "error": f"{type(exc).__name__}: {exc}",
         }
@@ -203,6 +223,6 @@ def get_market_dashboard_context() -> dict:
         "market_bias": base_context.get("market_bias") or "시장 판단 미확인",
         "top_sectors_by_volume": base_context.get("top_sectors_by_volume") or [],
         "market_cap_leaders": base_context.get("market_cap_leaders") or [],
-        "source": "Yahoo Finance + existing pykrx/Naver/Yahoo market context",
+        "source": "Yahoo Finance daily bars + existing pykrx/Naver/Yahoo market context",
         "timestamp": _now_kst(),
     }

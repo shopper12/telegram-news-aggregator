@@ -13,6 +13,7 @@ from . import strict_report_v2 as display
 from .market_dashboard_data import get_market_dashboard_context
 from .strict_quality import materiality_grade, materiality_score
 from .summarizer import SummaryItem
+from .symbol_resolver import resolve_symbols
 
 
 DEFAULT_MODEL = "gemini-2.5-flash"
@@ -21,16 +22,43 @@ GROUNDING_TIMEOUT = int(os.getenv("US_CLOSE_GROUNDING_TIMEOUT", "35"))
 FORBIDDEN = ["비트코인", "이더리움", "업비트", "바이낸스", "목표가", "손절가", "무조건 매수", "확정 상승"]
 
 
+def _explicit_symbols(cluster) -> list:
+    """Return only securities explicitly recoverable from the news text.
+
+    The strict pipeline normally carries resolved symbols on the cluster. If an
+    upstream catalog/network lookup produced an empty list, retry against the raw
+    title/body so explicit forms such as '엔비디아 (NVDA)' are not displayed as
+    '직접 언급 종목 없음'.
+    """
+    try:
+        symbols = list(display._display_symbols(cluster))
+    except Exception:
+        symbols = []
+    if symbols:
+        return symbols[:3]
+
+    try:
+        best = cluster.best()
+        item = best.item
+        text = f"{getattr(item, 'title', '')} {getattr(item, 'body', '')}"
+        categories = list(getattr(item, "categories", None) or [])
+        raw_tickers = list(getattr(item, "tickers", None) or [])
+        resolved = resolve_symbols(text, categories=categories, raw_tickers=raw_tickers)
+        return [symbol for symbol in resolved if getattr(symbol, "asset_type", "") != "crypto"][:3]
+    except Exception:
+        return []
+
+
 def _issue_payload(clusters: list, now: datetime) -> list[dict]:
     rows = []
     for idx, cluster in enumerate(clusters[:20], 1):
         best = cluster.best()
-        symbols = display._display_symbols(cluster)
+        symbols = _explicit_symbols(cluster)
         rows.append(
             {
                 "rank": idx,
                 "importance": materiality_score(cluster),
-                "grade": materiality_grade(cluster),
+                "source_grade": materiality_grade(cluster),
                 "type": best.news_type,
                 "title": display._display_title(cluster, 120),
                 "body": strict.base._short(best.item.body or "", 420),
@@ -76,41 +104,11 @@ def _grounding_sources(candidate: dict) -> list[dict]:
     return sources[:12]
 
 
-def _grounded_market_research(now: datetime) -> tuple[dict, str]:
-    """Fetch time-sensitive macro/calendar/catalyst facts via Gemini Google Search grounding.
+def _normalization_prompt(raw: str, now: datetime) -> str:
+    return f"""
+Convert the grounded research memo below into ONE JSON object. Do not add facts that are absent from the memo. If a value is not explicitly verified, use null. Do not infer dates, consensus values, or market reactions. Times should remain in KST when present.
 
-    This is only used by the 07:30 KST US-close dashboard. Failure is non-fatal: the
-    caller receives an empty fact set and continues with Telegram + market-price data.
-    """
-    api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
-    if not api_key:
-        return {}, "grounding_api_key_missing"
-    if os.getenv("US_CLOSE_GOOGLE_GROUNDING", "1") == "0":
-        return {}, "grounding_disabled"
-
-    model = os.getenv("GEMINI_GROUNDING_MODEL", os.getenv("GEMINI_MODEL", DEFAULT_MODEL))
-    date_text = now.strftime("%Y-%m-%d")
-    prompt = f"""
-You are the fact-checking research stage for a Korean investor's US-close briefing.
-Current Seoul date/time: {now:%Y-%m-%d %H:%M KST}.
-Use Google Search for CURRENT, verifiable information only. Return one JSON object and no prose.
-
-Research window:
-- US market-moving developments from the latest US session through now.
-- US macro releases published in the last 36 hours and major scheduled releases/events for the next 36 hours.
-- Priority: CPI, core CPI, PPI, core PPI, PCE/core PCE, payrolls, unemployment, jobless claims, ISM/PMI, retail sales, GDP, FOMC/Fed speakers, Treasury auctions when material.
-- Major US earnings/guidance that can materially affect AI, semiconductors, memory, optical networking, data-center power, nuclear, quantum, batteries/lithium, or Korea-linked equities.
-
-Rules:
-1. Never invent actual/consensus/previous values or event times. If not verified, use null.
-2. Times must be converted to Asia/Seoul and formatted YYYY-MM-DD HH:MM KST where possible.
-3. Prefer primary/official sources (BLS, BEA, Federal Reserve, Treasury, company IR) and major financial media for market reaction.
-4. For each macro release, keep actual, consensus, previous in separate fields.
-5. Do not include crypto.
-6. Do not give trading instructions, targets, or stop losses.
-7. Keep only high-impact items relevant to {date_text}.
-
-JSON schema:
+Required schema:
 {{
   "macro_releases": [
     {{"name":"", "released_at_kst":"", "actual":null, "consensus":null, "previous":null, "unit":"", "surprise":"higher|lower|inline|unknown", "market_relevance":""}}
@@ -125,6 +123,76 @@ JSON schema:
     {{"fact":"", "observed_market_reaction":"", "korea_link":""}}
   ]
 }}
+
+Seoul timestamp: {now:%Y-%m-%d %H:%M KST}
+GROUNDED_MEMO:
+{raw[:12000]}
+""".strip()
+
+
+def _normalize_grounded_research(raw: str, *, api_key: str, model: str, now: datetime) -> tuple[dict | None, str]:
+    parsed = _extract_json(raw)
+    if parsed:
+        return parsed, "direct_json"
+    try:
+        response = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+            headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": _normalization_prompt(raw, now)}]}],
+                "generationConfig": {
+                    "temperature": 0.0,
+                    "maxOutputTokens": 2600,
+                    "responseMimeType": "application/json",
+                },
+            },
+            timeout=GROUNDING_TIMEOUT,
+        )
+        response.raise_for_status()
+        body = response.json()
+        text = "".join(
+            part.get("text", "")
+            for part in (body.get("candidates") or [{}])[0].get("content", {}).get("parts", [])
+        )
+        return _extract_json(text), "normalized_json"
+    except Exception as exc:
+        return None, f"normalization_request_failed:{type(exc).__name__}"
+
+
+def _grounded_market_research(now: datetime) -> tuple[dict, str]:
+    """Fetch current macro/calendar/catalyst facts using Google Search grounding.
+
+    Search-grounded generation and strict JSON formatting are deliberately split.
+    This avoids making the search stage fail merely because its grounded prose is
+    not valid JSON. Failure remains non-fatal to the market-price dashboard.
+    """
+    api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
+    if not api_key:
+        return {}, "grounding_api_key_missing"
+    if os.getenv("US_CLOSE_GOOGLE_GROUNDING", "1") == "0":
+        return {}, "grounding_disabled"
+
+    model = os.getenv("GEMINI_GROUNDING_MODEL", os.getenv("GEMINI_MODEL", DEFAULT_MODEL))
+    date_text = now.strftime("%Y-%m-%d")
+    prompt = f"""
+You are the fact-checking research stage for a Korean investor's US-close briefing.
+Current Seoul date/time: {now:%Y-%m-%d %H:%M KST}.
+Use Google Search for CURRENT, verifiable information only. Produce a concise fact memo. Do not invent missing values.
+
+Research window:
+- US market-moving developments from the latest US session through now.
+- US macro releases published in the last 36 hours and major scheduled releases/events for the next 36 hours.
+- Priority: CPI, core CPI, PPI, core PPI, PCE/core PCE, payrolls, unemployment, jobless claims, ISM/PMI, retail sales, GDP, FOMC/Fed speakers, Treasury auctions when material.
+- Major US earnings/guidance materially affecting AI, semiconductors, memory, optical networking, data-center power, nuclear, quantum, batteries/lithium, or Korea-linked equities.
+
+Rules:
+1. Never invent actual/consensus/previous values or event times. Mark unverified values as unavailable.
+2. Convert event times to Asia/Seoul where the source makes conversion possible.
+3. Prefer primary/official sources (BLS, BEA, Federal Reserve, Treasury, company IR) and major financial media for market reaction.
+4. Keep actual, consensus, and previous values distinct.
+5. Do not include crypto.
+6. Do not give trading instructions, targets, or stop losses.
+7. Keep only high-impact items relevant to {date_text}.
 """.strip()
 
     try:
@@ -134,7 +202,7 @@ JSON schema:
             json={
                 "contents": [{"parts": [{"text": prompt}]}],
                 "tools": [{"google_search": {}}],
-                "generationConfig": {"temperature": 0.0, "maxOutputTokens": 2600},
+                "generationConfig": {"temperature": 0.0, "maxOutputTokens": 3200},
             },
             timeout=GROUNDING_TIMEOUT,
         )
@@ -142,13 +210,15 @@ JSON schema:
         body = response.json()
         candidate = (body.get("candidates") or [{}])[0]
         raw = "".join(part.get("text", "") for part in (candidate.get("content") or {}).get("parts", []))
-        parsed = _extract_json(raw)
+        if not raw.strip():
+            return {}, "grounding_empty_response"
+        parsed, normalize_engine = _normalize_grounded_research(raw, api_key=api_key, model=model, now=now)
         if not parsed:
-            return {}, "grounding_json_parse_failed"
+            return {}, f"grounding_json_normalize_failed:{normalize_engine}"
         parsed["sources"] = _grounding_sources(candidate)
         metadata = candidate.get("groundingMetadata") or {}
         parsed["search_queries"] = (metadata.get("webSearchQueries") or [])[:10]
-        return parsed, f"google_search_grounding:{model}"
+        return parsed, f"google_search_grounding:{model}:{normalize_engine}"
     except Exception as exc:
         return {}, f"grounding_request_failed:{type(exc).__name__}"
 
@@ -168,7 +238,8 @@ def _prompt(payload: dict) -> str:
         "8. macro_releases는 실제치/예상치/이전치를 구분해서 표시하고, null 값은 확인불가로 쓴다.\n"
         "9. 가상자산, 매수·매도 지시, 목표가·손절가 표현은 금지한다.\n"
         "10. Telegram에서 읽기 쉽게 짧은 문장과 숫자 중심으로 작성한다.\n"
-        "11. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
+        "11. news_issues의 source_grade는 출처 검증 등급이고 importance와 다른 축이다. 혼동하지 않는다.\n"
+        "12. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
         "audit는 {\"pass\":true|false,\"score\":0~100,\"reason\":\"...\"}. 85점 미만이면 pass=false.\n\n"
         "report 형식:\n"
         "🇺🇸 MM/DD 미국증시 마감 → 🇰🇷 한국장 프리뷰\n"
@@ -270,10 +341,28 @@ def _macro_value(value, unit: str = "") -> str:
     return f"{value}{unit or ''}"
 
 
+def _risk_line(global_quotes: list[dict], research: dict) -> str:
+    catalysts = research.get("market_catalysts") or []
+    if catalysts:
+        reaction = str(catalysts[0].get("observed_market_reaction") or "").strip()
+        if reaction:
+            return f"- 핵심 촉매 반전 여부 확인: {reaction}"
+    parts = []
+    for label in ["VIX", "DXY", "US10Y"]:
+        item = next((row for row in global_quotes if row.get("label") == label), {})
+        change = item.get("change_pct")
+        if isinstance(change, (int, float)):
+            parts.append(f"{label} {change:+.2f}%")
+    if parts:
+        return "- " + " / ".join(parts) + " · 변동성·달러·금리의 장중 방향 반전 여부 확인"
+    return "- 시장 리스크 인과분석 확인불가 · 변동성·달러·금리 데이터 재확인 필요"
+
+
 def _local(payload: dict, clusters: list, rule: str) -> str:
     now = datetime.fromisoformat(payload["generated_at_iso"])
     market = payload["market"]
     research = payload.get("grounded_research") or {}
+    quality = payload.get("quality") or {}
     global_quotes = market.get("global_market_quotes") or []
     proxies = market.get("korea_proxies") or []
     baskets = market.get("sector_baskets") or {}
@@ -314,7 +403,10 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
             lines.append(f"{idx}) {item.get('fact') or '사실 확인불가'} → {reaction}")
     elif clusters:
         for idx, cluster in enumerate(clusters[:5], 1):
-            lines.append(f"{idx}) [{materiality_score(cluster)}/{materiality_grade(cluster)}] {display._display_title(cluster, 90)}")
+            lines.append(
+                f"{idx}) [중요도 {materiality_score(cluster)} · 출처 {materiality_grade(cluster)}] "
+                f"{display._display_title(cluster, 90)}"
+            )
     else:
         lines.append("- 중요도 게이트 통과 뉴스 없음")
 
@@ -332,7 +424,7 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
     lines.append("- " + " / ".join(_fmt(x) for x in proxies) if proxies else "- EWY/KORU 확인불가")
     lines.append(f"- {market.get('supply_demand_line') or '투자자별 수급 확인불가'}")
     lines.append(f"- 판정 참고: {market.get('market_bias') or '시장 판단 미확인'}")
-    lines.extend(["", "⚠️ 오늘의 리스크", "- Gemini 최종 인과분석 실패 시 임의 해석하지 않음. 검증된 시세·뉴스·grounding 사실만 표시."])
+    lines.extend(["", "⚠️ 오늘의 리스크", _risk_line(global_quotes, research)])
 
     lines.extend(["", "🗓 주요 일정"])
     events = research.get("upcoming_events") or []
@@ -349,6 +441,8 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
     else:
         lines.append("- 확인 가능한 일정 데이터 없음")
 
+    grounding_engine = str(quality.get("grounding_engine") or "grounding_state_unknown")
+    grounding_status = "사용" if research else f"미사용({grounding_engine})"
     lines.extend([
         "",
         "✅ 3줄 요약",
@@ -356,7 +450,7 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
         f"2. 섹터 확산: {'확인' if shown else '확인불가'}",
         f"3. 한국장: {market.get('market_bias') or '판단 데이터 부족'}",
         "",
-        f"검증: 로컬 fallback · {rule} · Google grounding {'사용' if research else '미사용'}",
+        f"검증: 로컬 fallback · {rule} · Google grounding {grounding_status}",
     ])
     return "\n".join(lines)[:MAX_REPORT_CHARS]
 
@@ -390,6 +484,11 @@ def build_us_close_dashboard(
         },
     }
     report, engine = _gemini(payload)
+    print(
+        "[market-dashboard] "
+        f"grounding={grounding_engine} sources={len(grounded_research.get('sources') or [])} "
+        f"final={engine} selected={len(clusters)}"
+    )
     if report:
         source_count = len(grounded_research.get("sources") or [])
         return report + f"\n\n검증: {engine} · {grounding_engine} · 웹근거 {source_count}개 · 입력 수치 외 생성 금지"
