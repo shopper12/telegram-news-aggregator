@@ -1,7 +1,127 @@
 {
   "version": 1,
-  "updated_at": "2026-08-16T20:19:08+09:00",
+  "updated_at": "2026-08-16T20:46:12+09:00",
   "events": [
+    {
+      "signature": "3d7d5f03cb677af849dc897afc9eb131376b910a",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "KBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-08-16T11:30:51+00:00",
+      "last_seen": "2026-08-16T11:30:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "52e0ca0eede10d7c63a04ef70718940815331864",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA",
+        "YI"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-08-16T11:30:51+00:00",
+      "last_seen": "2026-08-16T11:30:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ecdf5d819393e4b7241942c31b972d8bd2003ec9",
+      "title": "🔔",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 15,
+      "sentiment": 0,
+      "first_seen": "2026-08-15T10:40:44+00:00",
+      "last_seen": "2026-08-16T11:30:50+00:00",
+      "count": 3
+    },
+    {
+      "signature": "122c70de0303c2ca90cdbb1d725ac6ffaa7d32bf",
+      "title": "현재 미국의 국가부채는 40조 달러에 육박하고 있으며 2029년에는 50조 달러에 이를 것으로 예상됨 이자비용은 이미 연간 1조…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-08-16T11:28:38+00:00",
+      "last_seen": "2026-08-16T11:28:38+00:00",
+      "count": 1
+    },
+    {
+      "signature": "85e91db40a60e01aba8e00a2dd8395888120f122",
+      "title": ">>TSMC 주가 1년 새 80% 급등…지금도 살 만할까? 외신의 솔직한 판단",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "tsmc",
+        "반도체"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 14,
+      "sentiment": 3,
+      "first_seen": "2026-08-16T11:27:30+00:00",
+      "last_seen": "2026-08-16T11:27:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "58f63275a0b20185e767ba3f23ec032a99376abe",
+      "title": ">>미국 전력 수요 폭증에도…ESS 프로젝트 ‘계통연계’ 병목 심각",
+      "sectors": [
+        "2차전지",
+        "AI인프라",
+        "전력기기"
+      ],
+      "keywords": [
+        "데이터센터",
+        "배터리",
+        "송전",
+        "전력망",
+        "전선"
+      ],
+      "tickers": [],
+      "materiality": 6,
+      "sentiment": 2,
+      "first_seen": "2026-08-16T11:27:08+00:00",
+      "last_seen": "2026-08-16T11:27:08+00:00",
+      "count": 1
+    },
+    {
+      "signature": "52d3acb4294d86a8198ab0e82a234862103a63fc",
+      "title": "감사합니다, 조지. 이 훌륭한 군사 복합시설/볼룸에 대해 정말 기발한 아이디어들을 제안해 주셨습니다! 도널드 J. 트럼프 대통령…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-16T11:21:35+00:00",
+      "last_seen": "2026-08-16T11:21:35+00:00",
+      "count": 1
+    },
     {
       "signature": "a84b9192590fb4b946426e21b442702291fb4747",
       "title": "S&P500 지수의 2분기 기업 이익이 전년 대비 31% 증가하며, 경기침체 후 회복기를 제외할 경우 1992년 이후 약 30년…",
@@ -20,7 +140,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-16T11:11:48+00:00",
       "last_seen": "2026-08-16T11:11:48+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8ea598db723646e17fdd6166b9501e918f67ad03",
@@ -54,7 +174,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-16T10:57:26+00:00",
       "last_seen": "2026-08-16T10:57:26+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c5236f3e4e33527ed6cc2d190dcb3a165b4baeaf",
@@ -70,7 +190,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-16T10:55:21+00:00",
       "last_seen": "2026-08-16T10:55:21+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "bb42396c3887a3ad4ca0005963fe8bfd2cc9d1f5",
@@ -84,7 +204,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-16T10:55:13+00:00",
       "last_seen": "2026-08-16T10:55:13+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "12fe77cd63e9c36f1be4c8325e4e550db3010bc3",
@@ -107,7 +227,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-16T10:52:54+00:00",
       "last_seen": "2026-08-16T10:52:54+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
@@ -119,7 +239,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-07T11:24:21+00:00",
       "last_seen": "2026-08-16T10:52:29+00:00",
-      "count": 120
+      "count": 121
     },
     {
       "signature": "2f967fd734dc23614d83ebd1c97bb8172c000d28",
@@ -148,7 +268,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-16T10:50:48+00:00",
       "last_seen": "2026-08-16T10:50:48+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "1df52cd928ad8b5a12f5cd12e441b8648c8a0197",
@@ -180,7 +300,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-16T10:50:00+00:00",
       "last_seen": "2026-08-16T10:50:00+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "dea2fc5f926710f3ea437e4731e73196746bdc21",
@@ -197,7 +317,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-16T10:45:17+00:00",
       "last_seen": "2026-08-16T10:45:17+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "5d5325b536a40c0a83949366cdd1188a8522cc74",
@@ -3418,26 +3538,6 @@
       "first_seen": "2026-08-13T23:08:57+00:00",
       "last_seen": "2026-08-15T10:52:21+00:00",
       "count": 8
-    },
-    {
-      "signature": "ecdf5d819393e4b7241942c31b972d8bd2003ec9",
-      "title": "🔔",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 15,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T10:40:44+00:00",
-      "last_seen": "2026-08-15T10:40:44+00:00",
-      "count": 2
     },
     {
       "signature": "fa62107d36a8b64878e263169f524dc889b16e39",
@@ -9483,110 +9583,6 @@
       "first_seen": "2026-08-14T07:20:41+00:00",
       "last_seen": "2026-08-14T07:57:47+00:00",
       "count": 3
-    },
-    {
-      "signature": "f15d009da45545268a077e47a0f6a8cfdc0a0e32",
-      "title": "🔔 카카오엔터, 스토리 3사 연내 통합…“콘텐츠 방만한 확장, 칼 들이댄다... 📈 #카카오엔터테인먼트 📝 #콘텐츠제작 #웹툰웹…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "035720.KS"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-14T07:57:38+00:00",
-      "last_seen": "2026-08-14T07:57:38+00:00",
-      "count": 1
-    },
-    {
-      "signature": "adb6bec0bdc74701824cbab94fef95c3351e59d2",
-      "title": "대성하이텍, 상반기 매출 407억·수주잔고 전년比 144%↑ https://m.stock.naver.com/investment/…",
-      "sectors": [
-        "조선"
-      ],
-      "keywords": [
-        "수주잔고"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 14,
-      "sentiment": 1,
-      "first_seen": "2026-08-14T07:54:09+00:00",
-      "last_seen": "2026-08-14T07:54:09+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c65707a0708fba3523285ec69e4be70bafa95ec8",
-      "title": "신세계푸드 상반기 영업이익 98억원, 전년 대비 5.4% 증가 https://m.stock.naver.com/investment…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-08-14T07:54:07+00:00",
-      "last_seen": "2026-08-14T07:54:07+00:00",
-      "count": 1
-    },
-    {
-      "signature": "31da829c16c32fbb14a7fb0f312b466617af7648",
-      "title": "노랑풍선, 2분기 영업이익 7.7억원으로 흑자전환 https://m.stock.naver.com/investment/news/f…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-08-14T07:54:06+00:00",
-      "last_seen": "2026-08-14T07:54:06+00:00",
-      "count": 1
-    },
-    {
-      "signature": "be8b491f0589180f4fe1620e0b7d40ab2ca8de45",
-      "title": "2026.08.14 15:37:22 기업명: 와이지-원",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-08-14T07:52:57+00:00",
-      "last_seen": "2026-08-14T07:52:57+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8fd6ec651c999403527881fabb639351647b42a1",
-      "title": "🔔 농심, 올 상반기 실적 성장…해외 사업 효과 '톡톡' 📈 #농심 📝 #식품주 #해외실적 농심의 상반기 매출·영업이익이 동반 …",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "YI"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-14T07:52:49+00:00",
-      "last_seen": "2026-08-14T07:52:49+00:00",
-      "count": 1
     }
   ]
 }
