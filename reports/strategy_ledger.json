@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-17T07:30:23+09:00",
+  "updated_at": "2026-08-17T08:14:20+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -1941,7 +1941,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: 🔔; 美 CPI 호재에 상승 닛케이 68000 회복 AI 데이터센터에 월가 돈줄 풀린다 SEC 규제 완화에 5000억달러 자금 몰린다 태광 18조 캐나다 LNG 프로젝트 수주 순이익 신기록 달성 눈앞\n출처: TNB | 시 / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-14T14:35:09+09:00",
@@ -1952,11 +1952,19 @@
           "evaluated_at": "2026-08-15T08:01:56+09:00",
           "price": 180.381,
           "return_pct": -0.0604
+        },
+        "72h": {
+          "evaluated_at": "2026-08-17T08:14:20+09:00",
+          "price": 199.56,
+          "return_pct": 10.5657
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-15T08:01:56+09:00"
+      "learned_at": "2026-08-15T08:01:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-17T08:14:20+09:00",
+      "final_return_pct": 10.5657
     },
     {
       "id": "8c770cd0d9f192c3",
@@ -1987,7 +1995,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +1.79, 뉴스 +4.00 / 연결 뉴스: 美 CPI 호재에 상승 닛케이 68000 회복 AI 데이터센터에 월가 돈줄 풀린다 SEC 규제 완화에 5000억달러 자금 몰린다 태광 18조 캐나다 LNG 프로젝트 수주 순이익 신기록 달성 눈앞\n출처: TNB | 시; [US Conference Call] 어플라이드 머티리얼즈(AMAT) / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-14T14:35:09+09:00",
@@ -1998,11 +2006,19 @@
           "evaluated_at": "2026-08-15T08:01:56+09:00",
           "price": 550.2,
           "return_pct": -0.326
+        },
+        "72h": {
+          "evaluated_at": "2026-08-17T08:14:20+09:00",
+          "price": 550.42,
+          "return_pct": -0.2862
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-15T08:01:56+09:00"
+      "learned_at": "2026-08-15T08:01:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-17T08:14:20+09:00",
+      "final_return_pct": -0.2862
     },
     {
       "id": "7fb898e4a867dbb1",
@@ -2033,7 +2049,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 -0.70, 모멘텀 +1.91, 뉴스 +3.47 / 연결 뉴스: 美 CPI 호재에 상승 닛케이 68000 회복 AI 데이터센터에 월가 돈줄 풀린다 SEC 규제 완화에 5000억달러 자금 몰린다 태광 18조 캐나다 LNG 프로젝트 수주 순이익 신기록 달성 눈앞\n출처: TNB | 시; [반도체 대기업들이 코스피를 강세장으로 이끌었지만, 지정학적 교착 상태는 여전히 시장의 우려 요소로 남아 있다] 진시데이터는 8월 13일, 한국 증시의 급등세에 힘입어 신흥 시장 증시가 상승했으며, 인공지능(AI)  / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-14T14:35:09+09:00",
@@ -2044,11 +2060,19 @@
           "evaluated_at": "2026-08-15T08:01:56+09:00",
           "price": 401.9,
           "return_pct": 0.6033
+        },
+        "72h": {
+          "evaluated_at": "2026-08-17T08:14:20+09:00",
+          "price": 401.48,
+          "return_pct": 0.4981
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-15T08:01:56+09:00"
+      "learned_at": "2026-08-15T08:01:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-17T08:14:20+09:00",
+      "final_return_pct": 0.4981
     },
     {
       "id": "63eba727242c5a17",
@@ -2500,11 +2524,17 @@
           "evaluated_at": "2026-08-16T13:32:40+09:00",
           "price": 199.56,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-17T08:14:20+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
+      "learned_24h": true,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
-      "price_warning": "24h derivative proxy; not official equity spot"
+      "price_warning": "24h derivative proxy; not official equity spot",
+      "learned_at": "2026-08-17T08:14:20+09:00"
     },
     {
       "id": "cb164c0b3ed05bc2",
@@ -2541,10 +2571,16 @@
           "evaluated_at": "2026-08-16T13:32:40+09:00",
           "price": 550.42,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-17T08:14:20+09:00",
+          "price": 550.42,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-17T08:14:20+09:00"
     },
     {
       "id": "bce8fec9e8fa1880",
@@ -2581,10 +2617,16 @@
           "evaluated_at": "2026-08-16T13:32:40+09:00",
           "price": 401.48,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-17T08:14:20+09:00",
+          "price": 401.48,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-17T08:14:20+09:00"
     },
     {
       "id": "59e6d6c833126bd8",
