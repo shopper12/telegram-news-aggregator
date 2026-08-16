@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-16T12:46:06+09:00",
+  "updated_at": "2026-08-16T13:32:40+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2477,7 +2477,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +2.91 / 연결 뉴스: 🔔 코스피 껑충, 삼성전자·SK하이닉스·현대차 등 주가↑…美 CPI·PPI 물가... 📈 #현대차 #SK하이닉스 #삼성전자 #삼…; 🔔 '안 팔길 잘했네'…삼전닉스 '300조' 관측에 반도체 개미 '들썩' 📈 #삼성전자 #SK하이닉스 📝 #반도체주주환원 #반도… / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-16T13:32:40+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
       "price_warning": "24h derivative proxy; not official equity spot"
@@ -2512,7 +2518,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.31, 뉴스 +3.92 / 연결 뉴스: 🔔 코스피 껑충, 삼성전자·SK하이닉스·현대차 등 주가↑…美 CPI·PPI 물가... 📈 #현대차 #SK하이닉스 #삼성전자 #삼…; 🔔 '안 팔길 잘했네'…삼전닉스 '300조' 관측에 반도체 개미 '들썩' 📈 #삼성전자 #SK하이닉스 📝 #반도체주주환원 #반도…",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-16T13:32:40+09:00",
+          "price": 550.42,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -2546,7 +2558,13 @@
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +2.45, 뉴스 +0.66 / 연결 뉴스: 🔔 고점서 물린 삼전·SK하닉 레버리지 ETF 최대 77% 손실…원금 회복까진 ... 📈 #삼성전자 #SK하이닉스 📝 #반도체레…; [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-16T13:32:40+09:00",
+          "price": 401.48,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     }
