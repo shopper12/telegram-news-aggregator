@@ -1,7 +1,64 @@
 {
   "version": 1,
-  "updated_at": "2026-08-16T08:43:33+09:00",
+  "updated_at": "2026-08-16T10:03:25+09:00",
   "events": [
+    {
+      "signature": "07131460501629b1c08c234451d496fdc1d6fc5b",
+      "title": "🔔",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "sk하이닉스",
+        "마이크로소프트",
+        "메모리",
+        "반도체",
+        "삼성전자",
+        "알파벳",
+        "엔비디아"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "materiality": 19,
+      "sentiment": 1,
+      "first_seen": "2026-08-16T00:50:50+00:00",
+      "last_seen": "2026-08-16T00:50:50+00:00",
+      "count": 1
+    },
+    {
+      "signature": "61c859a8269f4ac315b49be9e713f1889b186839",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "HPQ"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-15T06:58:21+00:00",
+      "last_seen": "2026-08-16T00:37:29+00:00",
+      "count": 3
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-08-16T00:27:02+00:00",
+      "count": 112
+    },
     {
       "signature": "292a144807eeb4c8826750214d51958e02c3dae1",
       "title": "폴란드 국군의 날을 맞아 1920년 바르샤바 전투 106주년을 기념하는 폴란드 역사상 최대 규모의 군사 퍼레이드가 바르샤바에서 …",
@@ -13,18 +70,6 @@
       "first_seen": "2026-08-15T23:32:28+00:00",
       "last_seen": "2026-08-15T23:32:28+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 17,
-      "sentiment": 1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-08-15T23:20:22+00:00",
-      "count": 111
     },
     {
       "signature": "940eb2dd9e881908472d1e0becaa6efd90a9c356",
@@ -1807,20 +1852,6 @@
       "first_seen": "2026-08-15T07:14:26+00:00",
       "last_seen": "2026-08-15T07:14:26+00:00",
       "count": 1
-    },
-    {
-      "signature": "61c859a8269f4ac315b49be9e713f1889b186839",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "HPQ"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T06:58:21+00:00",
-      "last_seen": "2026-08-15T06:58:21+00:00",
-      "count": 2
     },
     {
       "signature": "71419980acc72bb6d0807e8a9f40362d4e75e53f",
@@ -9336,24 +9367,6 @@
       "first_seen": "2026-08-14T05:23:54+00:00",
       "last_seen": "2026-08-14T05:23:54+00:00",
       "count": 1
-    },
-    {
-      "signature": "35346ad472e1e3a4905481a209556205b65b7210",
-      "title": "2026.08.14 14:23:07 기업명: 메타바이오메드",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크"
-      ],
-      "keywords": [
-        "ai",
-        "메타"
-      ],
-      "tickers": [],
-      "materiality": 19,
-      "sentiment": 1,
-      "first_seen": "2026-08-14T04:47:02+00:00",
-      "last_seen": "2026-08-14T05:23:35+00:00",
-      "count": 6
     }
   ]
 }
