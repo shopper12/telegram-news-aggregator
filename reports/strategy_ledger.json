@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-17T23:35:16+09:00",
+  "updated_at": "2026-08-18T07:35:10+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2265,7 +2265,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-15T13:57:52+09:00",
@@ -2276,11 +2276,19 @@
           "evaluated_at": "2026-08-16T07:54:40+09:00",
           "price": 199.56,
           "return_pct": 11.0888
+        },
+        "72h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 186.38,
+          "return_pct": 3.7519
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-16T07:54:40+09:00"
+      "learned_at": "2026-08-16T07:54:40+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-18T07:35:10+09:00",
+      "final_return_pct": 3.7519
     },
     {
       "id": "63fbb2e706963fe7",
@@ -2311,7 +2319,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.08, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-15T13:57:52+09:00",
@@ -2322,11 +2330,19 @@
           "evaluated_at": "2026-08-16T07:54:40+09:00",
           "price": 550.42,
           "return_pct": -0.0131
+        },
+        "72h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 560.28,
+          "return_pct": 1.778
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-16T07:54:40+09:00"
+      "learned_at": "2026-08-16T07:54:40+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-18T07:35:10+09:00",
+      "final_return_pct": 1.778
     },
     {
       "id": "db98ed7dda196e23",
@@ -2357,7 +2373,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +1.22, 뉴스 +2.60 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 8월 14일 (금) 14:00 거래대금 상위 분석 · 반도체·자동차 중심 강세 지속 · 코스닥도 로봇·반도체 소부장 중심 순환매… / 가격소스: Yahoo Finance extended-hours",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-15T13:57:52+09:00",
@@ -2368,11 +2384,19 @@
           "evaluated_at": "2026-08-16T07:54:40+09:00",
           "price": 401.48,
           "return_pct": -0.1144
+        },
+        "72h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 404.758,
+          "return_pct": 0.7011
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance extended-hours",
-      "learned_at": "2026-08-16T07:54:40+09:00"
+      "learned_at": "2026-08-16T07:54:40+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-18T07:35:10+09:00",
+      "final_return_pct": 0.7011
     },
     {
       "id": "d556172934c0edf6",
@@ -2873,10 +2897,16 @@
           "evaluated_at": "2026-08-17T14:09:00+09:00",
           "price": 550.42,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 560.28,
+          "return_pct": 1.7914
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-18T07:35:10+09:00"
     },
     {
       "id": "606934c879abe1c8",
@@ -2913,10 +2943,16 @@
           "evaluated_at": "2026-08-17T14:09:00+09:00",
           "price": 401.48,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 404.758,
+          "return_pct": 0.8165
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-18T07:35:10+09:00"
     },
     {
       "id": "4927624c723fbde6",
@@ -2970,7 +3006,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 186.38,
+          "return_pct": -0.2622
+        }
+      },
       "learned_24h": false
     },
     {
@@ -3025,7 +3067,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 560.28,
+          "return_pct": 0.0268
+        }
+      },
       "learned_24h": false
     },
     {
@@ -3075,6 +3123,177 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-18T07:35:10+09:00",
+          "price": 404.758,
+          "return_pct": 0.1356
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "5497bf7651815c5c",
+      "created_at": "2026-08-18T07:35:10+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 186.38,
+      "entry_zone": [
+        185.4481,
+        187.3119
+      ],
+      "stop_price": 172.896859,
+      "target_price": 213.346283,
+      "score": 9.0,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 18일 모닝 시황] 중동 긴장에 3대 지수 하락, 앤트로픽 훈풍에 메모리·광통신 급등 ────────── <요…; 일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 18일 모닝 시황] 중동 긴장에 3대 지수 하락, 앤트로픽 훈풍에 메모리·광통신 급등 ────────── <요…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10184",
+            "https://t.me/rafikiresearch/24395"
+          ],
+          "last_seen": "2026-08-17T21:56:25+00:00"
+        },
+        {
+          "title": "일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/008/0005400922",
+            "https://t.me/aicorporateanalysisdeepdive/10183"
+          ],
+          "last_seen": "2026-08-17T13:21:27+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "33c193f7d1dfc28c",
+      "created_at": "2026-08-18T07:35:10+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 560.28,
+      "entry_zone": [
+        557.4786,
+        563.0814
+      ],
+      "stop_price": 527.994217,
+      "target_price": 624.851565,
+      "score": 7.952,
+      "components": {
+        "momentum": 2.9520827260688325,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +2.95, regime +2.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.95, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 18일 모닝 시황] 중동 긴장에 3대 지수 하락, 앤트로픽 훈풍에 메모리·광통신 급등 ────────── <요…; 일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 18일 모닝 시황] 중동 긴장에 3대 지수 하락, 앤트로픽 훈풍에 메모리·광통신 급등 ────────── <요…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10184",
+            "https://t.me/rafikiresearch/24395"
+          ],
+          "last_seen": "2026-08-17T21:56:25+00:00"
+        },
+        {
+          "title": "일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/008/0005400922",
+            "https://t.me/aicorporateanalysisdeepdive/10183"
+          ],
+          "last_seen": "2026-08-17T13:21:27+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "b448b3e01184bd79",
+      "created_at": "2026-08-18T07:35:10+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 404.758,
+      "entry_zone": [
+        402.73421,
+        406.78179
+      ],
+      "stop_price": 395.339898,
+      "target_price": 423.594205,
+      "score": 3.613,
+      "components": {
+        "momentum": 1.2920541045823808,
+        "regime": -0.7,
+        "news": 2.0211778106922687,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +1.29, regime -0.70, news +2.02, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +1.29, 뉴스 +2.02 / 연결 뉴스: [2026년 8월 18일 모닝 시황] 중동 긴장에 3대 지수 하락, 앤트로픽 훈풍에 메모리·광통신 급등 ────────── <요…; 일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 18일 모닝 시황] 중동 긴장에 3대 지수 하락, 앤트로픽 훈풍에 메모리·광통신 급등 ────────── <요…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10184",
+            "https://t.me/rafikiresearch/24395"
+          ],
+          "last_seen": "2026-08-17T21:56:25+00:00"
+        },
+        {
+          "title": "일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/008/0005400922",
+            "https://t.me/aicorporateanalysisdeepdive/10183"
+          ],
+          "last_seen": "2026-08-17T13:21:27+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
