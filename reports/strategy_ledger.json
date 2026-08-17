@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-17T22:35:48+09:00",
+  "updated_at": "2026-08-17T23:04:01+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2713,10 +2713,16 @@
           "evaluated_at": "2026-08-17T07:30:23+09:00",
           "price": 550.42,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-17T23:04:01+09:00",
+          "price": 560.13,
+          "return_pct": 1.7641
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-17T23:04:01+09:00"
     },
     {
       "id": "8466f2169d6b1f7e",
@@ -2753,10 +2759,16 @@
           "evaluated_at": "2026-08-17T07:30:23+09:00",
           "price": 401.48,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-17T23:04:01+09:00",
+          "price": 404.21,
+          "return_pct": 0.68
         }
       },
-      "learned_24h": false,
-      "price_source": "Yahoo Finance regular-session snapshot"
+      "learned_24h": true,
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "learned_at": "2026-08-17T23:04:01+09:00"
     },
     {
       "id": "a8f08b3971076fdf",
@@ -2881,6 +2893,170 @@
       },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
+    },
+    {
+      "id": "4927624c723fbde6",
+      "created_at": "2026-08-17T23:04:01+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 186.87,
+      "entry_zone": [
+        185.93565,
+        187.80435
+      ],
+      "stop_price": 173.258758,
+      "target_price": 214.092485,
+      "score": 7.0,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: 일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17; 엔비디아, 오픈AI 오하이오 8GW 데이터센터 지원 확정, SB Energy에 15억 달러 투자 : 엔비디아가 SB Energy…",
+      "news_evidence": [
+        {
+          "title": "일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/008/0005400922",
+            "https://t.me/aicorporateanalysisdeepdive/10183"
+          ],
+          "last_seen": "2026-08-17T13:21:27+00:00"
+        },
+        {
+          "title": "엔비디아, 오픈AI 오하이오 8GW 데이터센터 지원 확정, SB Energy에 15억 달러 투자 : 엔비디아가 SB Energy…",
+          "urls": [
+            "https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute",
+            "https://t.me/FastStockNewsUSA/22478"
+          ],
+          "last_seen": "2026-08-17T13:16:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "828643d8b7adc959",
+      "created_at": "2026-08-17T23:04:01+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 560.13,
+      "entry_zone": [
+        557.32935,
+        562.93065
+      ],
+      "stop_price": 527.82203,
+      "target_price": 624.74594,
+      "score": 5.302,
+      "components": {
+        "momentum": 2.3018711651760553,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +2.30, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.30, 뉴스 +4.00 / 연결 뉴스: 일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17; 엔비디아, 오픈AI 오하이오 8GW 데이터센터 지원 확정, SB Energy에 15억 달러 투자 : 엔비디아가 SB Energy…",
+      "news_evidence": [
+        {
+          "title": "일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/008/0005400922",
+            "https://t.me/aicorporateanalysisdeepdive/10183"
+          ],
+          "last_seen": "2026-08-17T13:21:27+00:00"
+        },
+        {
+          "title": "엔비디아, 오픈AI 오하이오 8GW 데이터센터 지원 확정, SB Energy에 15억 달러 투자 : 엔비디아가 SB Energy…",
+          "urls": [
+            "https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute",
+            "https://t.me/FastStockNewsUSA/22478"
+          ],
+          "last_seen": "2026-08-17T13:16:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6e50b31415f9515d",
+      "created_at": "2026-08-17T23:04:01+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 404.21,
+      "entry_zone": [
+        402.18895,
+        406.23105
+      ],
+      "stop_price": 394.83048,
+      "target_price": 422.96904,
+      "score": 4.279,
+      "components": {
+        "momentum": 1.2082592219417225,
+        "regime": 0.2,
+        "news": 1.8708111288202547,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +1.21, regime +0.20, news +1.87, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.21, 뉴스 +1.87 / 연결 뉴스: 일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17; 🌎 글로벌 뉴스 브리핑",
+      "news_evidence": [
+        {
+          "title": "일본 국채금리 30년 최고에도…반도체 훈풍, 키옥시아 15%↑ 2026.08.17",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/008/0005400922",
+            "https://t.me/aicorporateanalysisdeepdive/10183"
+          ],
+          "last_seen": "2026-08-17T13:21:27+00:00"
+        },
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/61324"
+          ],
+          "last_seen": "2026-08-17T10:55:40+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
     }
   ]
 }
