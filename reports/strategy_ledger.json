@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-17T13:14:27+09:00",
+  "updated_at": "2026-08-17T14:09:00+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2779,7 +2779,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +3.17 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 마이크론 주가, 다시 1,000달러 선 근접… 어디까지 오를 수 있을까 최근 메모리주 반등의 배경 중 하나로는 샌디스크 / 가격소스: Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy (24h 파생 프록시·현물 아님)",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-17T14:09:00+09:00",
+          "price": 199.56,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Hyperliquid HIP-3 cash:cash:EWY 24h perp proxy",
       "price_warning": "24h derivative proxy; not official equity spot"
@@ -2814,7 +2820,13 @@
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.83, 뉴스 +4.00 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 마이크론 주가, 다시 1,000달러 선 근접… 어디까지 오를 수 있을까 최근 메모리주 반등의 배경 중 하나로는 샌디스크",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-17T14:09:00+09:00",
+          "price": 550.42,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     },
@@ -2848,7 +2860,13 @@
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +1.18, 뉴스 +0.87 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; >>TSMC 주가 1년 새 80% 급등…지금도 살 만할까? 외신의 솔직한 판단",
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-17T14:09:00+09:00",
+          "price": 401.48,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false,
       "price_source": "Yahoo Finance regular-session snapshot"
     }
