@@ -1,67 +1,303 @@
 {
   "version": 2,
-  "updated_at": "2026-08-17T20:24:54+09:00",
+  "updated_at": "2026-08-17T20:51:56+09:00",
   "events": [
     {
-      "signature": "1f65935096750e12a46beaf687dee65bb65a99f7",
-      "title": "원본 비디오 “오만이 방해한다면 그들을 X나게 폭격할 것입니다(we’ll bomb the s--- out of them)”",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/61331"
+      "signature": "ea2bac96817c48cce985736fea9a2d67fa8ac143",
+      "title": "#카카오모빌 美 ADR 발행 속도…이사회 정식 의결 TPG, 주도권 쥐고 엑시트 시동 신주 없어 중복상장 정면 돌파 미국 진출로…",
+      "sectors": [
+        "AI인프라"
       ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-17T11:22:09+00:00",
-      "last_seen": "2026-08-17T11:22:09+00:00",
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035420.KS",
+        "035720.KS",
+        "TPG",
+        "TPGXL"
+      ],
+      "source_urls": [
+        "https://m.sedaily.com/article/20080004",
+        "https://t.me/sharpha/51434"
+      ],
+      "materiality": 14,
+      "sentiment": 1,
+      "first_seen": "2026-08-17T11:49:48+00:00",
+      "last_seen": "2026-08-17T11:49:48+00:00",
       "count": 1
     },
     {
-      "signature": "7a12f065fb34326fcc13e53623989b149787ed44",
-      "title": "🔔 롤러코스피 쓴맛 본 개미들, 코스닥으로 미국장으로 【 겁나빠른 #드리고봇 뉴스 】 https://n.news.naver.co…",
+      "signature": "b79d77c2da72f82e4a58ddb60a8825ff4829f248",
+      "title": "📝. 미국 선물, 이란 휴전 만료 앞두고 상승세 U.S. FUTURES MOSTLY HIGHER AS IRAN CEASEFIRE…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "XP"
+      ],
+      "source_urls": [
+        "https://t.me/sharpha/51433"
+      ],
+      "materiality": 11,
+      "sentiment": 1,
+      "first_seen": "2026-08-17T11:48:47+00:00",
+      "last_seen": "2026-08-17T11:48:47+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a91fdd30546f3442fa3c03e7240fab2e5b18dec9",
+      "title": "JP모건: 상위 7대 하이퍼스케일러 설비투자",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "마이크로소프트",
+        "메타",
+        "아마존"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/sharpha/51432"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:45:17+00:00",
+      "last_seen": "2026-08-17T11:45:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4d66db8867cd0a1ead1ef6e4271e158d94bcb32e",
+      "title": "Situational Awareness, 레오폴드 아셴브레너(Leopold Aschenbrenner) 2분기 13F 보고서를 제…",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "amd",
+        "avgo",
+        "mu",
+        "nvda",
+        "orcl",
+        "tsmc"
+      ],
+      "tickers": [
+        "AMD",
+        "ATI",
+        "AVGO",
+        "AWRE",
+        "CBRS",
+        "MU",
+        "NBIS",
+        "NNBR"
+      ],
+      "source_urls": [
+        "https://t.me/sharpha/51431"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:44:13+00:00",
+      "last_seen": "2026-08-17T11:44:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a7871720343a6de6df3d55002149a85b14cffaa4",
+      "title": "엔비디아",
+      "sectors": [
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "nvda",
+        "엔비디아"
+      ],
+      "tickers": [
+        "NVDA",
+        "SPCX"
+      ],
+      "source_urls": [
+        "https://t.me/sharpha/51430"
+      ],
+      "materiality": 14,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:43:52+00:00",
+      "last_seen": "2026-08-17T11:43:52+00:00",
+      "count": 1
+    },
+    {
+      "signature": "907314581213119d9ab989e8269dc42c0dd726ce",
+      "title": "#앤트로픽 2분기 매출 115억 달러 돌파 (전년 대비 14배 급증) 블룸버그(Bloomberg)가 입수한 투자자 대상 문서에 …",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "ATI",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://bloomberg.com/news/articles/2026-08-14/anthropic-revenue-ahead-of-ipo-surges-over-14-fold-in-second-quarter",
+        "https://t.me/sharpha/51429"
+      ],
+      "materiality": 7,
+      "sentiment": 1,
+      "first_seen": "2026-08-17T11:42:59+00:00",
+      "last_seen": "2026-08-17T11:42:59+00:00",
+      "count": 1
+    },
+    {
+      "signature": "03b0f2395c755c0d7cd8636f91c958052ed4c756",
+      "title": "🔔 국민대 솔라카팀, 현대차와 기술교류 📈 #현대차 #현대모비스 #기아 📝 #전기차 #자율주행 #친환경에너지 현대차의 솔라카 기…",
       "sectors": [],
       "keywords": [],
       "tickers": [
+        "000270.KS",
+        "005380.KS",
+        "012330.KS",
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://naeil.com/news/read/599013",
+        "https://t.me/dreago_news_ch/296089"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:41:12+00:00",
+      "last_seen": "2026-08-17T11:41:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b95251b53d1694294c82b5031fe2a0b808e7d190",
+      "title": "#애플....하워드 러트닉 미 상무장관은 최근 애플 측에 중국산 메모리를 사용하는 것은 바람직하지 않다는 뜻을 전달 https:…",
+      "sectors": [
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "mu",
+        "메모리",
+        "애플"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://munhwa.com/article/11609753",
+        "https://t.me/sharpha/51428"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:38:18+00:00",
+      "last_seen": "2026-08-17T11:38:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d41b2e291cd13e4c977dd463718a6a40b5f6ca62",
+      "title": "🇺🇸 미국 시장 상승률 상위 [+12.6%] (34.3B)Reddit",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "메모리",
+        "반도체"
+      ],
+      "tickers": [
+        "AMD",
+        "CPRT",
+        "FOXA",
+        "NRG",
+        "NU",
+        "RDDT",
+        "SNDK",
+        "STX"
+      ],
+      "source_urls": [
+        "https://t.me/sharpha/51427"
+      ],
+      "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-08-17T11:37:39+00:00",
+      "last_seen": "2026-08-17T11:37:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "db90e096a86fe41df0652a6ae7502f80585dd025",
+      "title": "🔔 \"반도체 쏠림 판 바뀐다\"…증권사 센터장의 파격 진단 보니 📈 #삼성전자 #SK하이닉스 #에이피알 #HD현대중공업 #한화에어…",
+      "sectors": [
+        "AI인프라",
+        "반도체",
+        "방산/항공",
+        "원전"
+      ],
+      "keywords": [
+        "ai",
+        "sk하이닉스",
+        "반도체",
+        "방산",
+        "삼성전자",
+        "체코"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
         "035420.KS",
         "NNBR",
         "NWS",
         "NWSA"
       ],
       "source_urls": [
-        "https://n.news.naver.com/article/057/0001964091",
-        "https://t.me/dreago_news_ch/296085"
+        "https://n.news.naver.com/article/215/0001262627",
+        "https://t.me/dreago_news_ch/296088"
       ],
-      "materiality": 6,
+      "materiality": 13,
       "sentiment": 0,
-      "first_seen": "2026-08-17T11:20:35+00:00",
-      "last_seen": "2026-08-17T11:20:35+00:00",
+      "first_seen": "2026-08-17T11:36:26+00:00",
+      "last_seen": "2026-08-17T11:36:26+00:00",
       "count": 1
     },
     {
-      "signature": "7a8aa385e51a34fdf233b0f2a17370a2324b15ca",
-      "title": "🔔 삼성전자, 블리자드 신작 '모던 워페어4' 출시 앞두고 대규모 파트너십 📈 #삼성전자 #LG전자 📝 #게이밍가전 #스마트홈I…",
+      "signature": "07131460501629b1c08c234451d496fdc1d6fc5b",
+      "title": "🔔",
       "sectors": [
+        "AI인프라",
+        "미국빅테크",
         "반도체"
       ],
       "keywords": [
-        "삼성전자"
+        "ai",
+        "sk하이닉스",
+        "마이크로소프트",
+        "메모리",
+        "반도체",
+        "삼성전자",
+        "알파벳",
+        "엔비디아",
+        "hbm",
+        "데이터센터"
       ],
       "tickers": [
+        "000660.KS",
         "005930.KS",
-        "066570.KS",
+        "NNBR",
         "NWS",
         "NWSA"
       ],
-      "source_urls": [
-        "http://newsbrite.net/news/articleView.html?idxno=199765",
-        "https://t.me/dreago_news_ch/296084"
-      ],
-      "materiality": 8,
+      "materiality": 25,
       "sentiment": 0,
-      "first_seen": "2026-08-17T11:19:33+00:00",
-      "last_seen": "2026-08-17T11:19:33+00:00",
-      "count": 1
+      "first_seen": "2026-08-16T00:50:50+00:00",
+      "last_seen": "2026-08-17T11:33:30+00:00",
+      "count": 2,
+      "source_urls": [
+        "http://wowtv.co.kr/NewsCenter/News/Read?articleId=A202608170294&t=NN",
+        "https://t.me/dreago_news_ch/296087"
+      ]
     },
     {
       "signature": "178e20e0318862842c115fade542f03011083318",
@@ -94,12 +330,115 @@
         "https://digitimes.com/news/a20260817VL216/samsung-sales-nvidia-2026-hbm.html?chid=10",
         "https://t.me/TNBfolio",
         "https://t.me/TNBfolio/70963",
-        "https://t.me/TNBfolio/70964"
+        "https://t.me/TNBfolio/70964",
+        "https://t.me/TNBfolio/70965"
       ],
       "materiality": 19,
       "sentiment": 2,
       "first_seen": "2026-08-17T11:04:13+00:00",
-      "last_seen": "2026-08-17T11:18:51+00:00",
+      "last_seen": "2026-08-17T11:27:08+00:00",
+      "count": 3
+    },
+    {
+      "signature": "2e4e376edcf31fc19cb21f886d584704278355e1",
+      "title": "🔔 대동, 800억 들여 대구공장 증설… '차세대 농기계' 거점으로 📈 #대동 #동양물산 #한국농기계 #TYM #케이씨에이 📝 …",
+      "sectors": [
+        "AI인프라",
+        "로봇"
+      ],
+      "keywords": [
+        "ai",
+        "로봇"
+      ],
+      "tickers": [
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "http://fnnews.com/news/202608171806006759",
+        "https://t.me/dreago_news_ch/296086"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:26:57+00:00",
+      "last_seen": "2026-08-17T11:26:57+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b77da1c49073498e4cffd105322969195a00acdd",
+      "title": "트럼프: 이스라엘이 가자지구에 계속 공격을 감행하는 이유를 잘 모르겠습니다. 그들은 조속히 중단해야 합니다. 하마스는 모든 무기…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61332"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:26:00+00:00",
+      "last_seen": "2026-08-17T11:26:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1f65935096750e12a46beaf687dee65bb65a99f7",
+      "title": "원본 비디오 “오만이 방해한다면 그들을 X나게 폭격할 것입니다(we’ll bomb the s--- out of them)”",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61331"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:22:09+00:00",
+      "last_seen": "2026-08-17T11:22:09+00:00",
+      "count": 2
+    },
+    {
+      "signature": "7a12f065fb34326fcc13e53623989b149787ed44",
+      "title": "🔔 롤러코스피 쓴맛 본 개미들, 코스닥으로 미국장으로 【 겁나빠른 #드리고봇 뉴스 】 https://n.news.naver.co…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/057/0001964091",
+        "https://t.me/dreago_news_ch/296085"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:20:35+00:00",
+      "last_seen": "2026-08-17T11:20:35+00:00",
+      "count": 2
+    },
+    {
+      "signature": "7a8aa385e51a34fdf233b0f2a17370a2324b15ca",
+      "title": "🔔 삼성전자, 블리자드 신작 '모던 워페어4' 출시 앞두고 대규모 파트너십 📈 #삼성전자 #LG전자 📝 #게이밍가전 #스마트홈I…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS",
+        "066570.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "http://newsbrite.net/news/articleView.html?idxno=199765",
+        "https://t.me/dreago_news_ch/296084"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-08-17T11:19:33+00:00",
+      "last_seen": "2026-08-17T11:19:33+00:00",
       "count": 2
     },
     {
@@ -115,7 +454,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-17T11:11:29+00:00",
       "last_seen": "2026-08-17T11:11:29+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6698a405d425f57a28886a95e232c01ff9d7bf24",
@@ -132,7 +471,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-17T11:10:30+00:00",
       "last_seen": "2026-08-17T11:10:30+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "363abcef869729ef432cb473aecf5252e47765c3",
@@ -147,7 +486,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-17T11:04:16+00:00",
       "last_seen": "2026-08-17T11:04:16+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "657dfd42db59749e415fc856bd6a728f68147ffa",
@@ -176,7 +515,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-17T11:00:31+00:00",
       "last_seen": "2026-08-17T11:00:31+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c6df7a3176de2af4cbdba4c678e00bc598770b7c",
@@ -218,7 +557,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-17T10:57:46+00:00",
       "last_seen": "2026-08-17T10:57:46+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d89b12d8492cea2611c40f839285b017c4a98771",
@@ -250,7 +589,7 @@
       "sentiment": 3,
       "first_seen": "2026-08-17T10:55:40+00:00",
       "last_seen": "2026-08-17T10:55:40+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
@@ -262,7 +601,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T11:24:21+00:00",
       "last_seen": "2026-08-17T10:53:19+00:00",
-      "count": 130,
+      "count": 131,
       "source_urls": [
         "https://khan.co.kr/article/202608171607001",
         "https://t.me/dreago_news_ch/296031",
@@ -285,7 +624,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-17T10:51:27+00:00",
       "last_seen": "2026-08-17T10:51:27+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "d70ba92a543b33c18edf8ee60324a098e2e3a4f8",
@@ -316,7 +655,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-17T10:50:31+00:00",
       "last_seen": "2026-08-17T10:50:31+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "4fd080adcf6c33bb5f90fc7d2778dba7cd9ab1f4",
@@ -6870,37 +7209,6 @@
       "count": 1
     },
     {
-      "signature": "07131460501629b1c08c234451d496fdc1d6fc5b",
-      "title": "🔔",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "sk하이닉스",
-        "마이크로소프트",
-        "메모리",
-        "반도체",
-        "삼성전자",
-        "알파벳",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 19,
-      "sentiment": 1,
-      "first_seen": "2026-08-16T00:50:50+00:00",
-      "last_seen": "2026-08-16T00:50:50+00:00",
-      "count": 1
-    },
-    {
       "signature": "292a144807eeb4c8826750214d51958e02c3dae1",
       "title": "폴란드 국군의 날을 맞아 1920년 바르샤바 전투 106주년을 기념하는 폴란드 역사상 최대 규모의 군사 퍼레이드가 바르샤바에서 …",
       "sectors": [],
@@ -9811,250 +10119,6 @@
       "sentiment": 0,
       "first_seen": "2026-08-15T02:02:29+00:00",
       "last_seen": "2026-08-15T02:02:29+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1b8ca0ebb89c0c7ea315873bb2f2726ee7316857",
-      "title": "🔔 SK텔레콤·GS·네이버 등 AIDC 구축 경쟁...피플바이오·DCP 등 서울 도심... 📈 #현대일렉트릭 #효성중공업 #두산…",
-      "sectors": [
-        "AI인프라",
-        "원전",
-        "전력기기"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터",
-        "두산에너빌리티",
-        "서버",
-        "전력기기",
-        "효성중공업"
-      ],
-      "tickers": [
-        "034020.KS",
-        "035420.KS",
-        "298040.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T01:57:53+00:00",
-      "last_seen": "2026-08-15T01:57:53+00:00",
-      "count": 1
-    },
-    {
-      "signature": "7b446941698884307033c9bf6e967a1261f75e12",
-      "title": "🔔",
-      "sectors": [
-        "방산/항공",
-        "조선"
-      ],
-      "keywords": [
-        "방산",
-        "조선"
-      ],
-      "tickers": [
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 23,
-      "sentiment": 1,
-      "first_seen": "2026-08-15T01:50:59+00:00",
-      "last_seen": "2026-08-15T01:50:59+00:00",
-      "count": 1
-    },
-    {
-      "signature": "07070318107808d55e2e79d52a94f8af89a0b84a",
-      "title": "앤트로픽, IPO 앞두고 첫 흑자 달성…2분기 매출 16.3조 돌파 2026.08.15",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "ai 인프라",
-        "데이터센터"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 12,
-      "sentiment": 1,
-      "first_seen": "2026-08-15T01:46:16+00:00",
-      "last_seen": "2026-08-15T01:46:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "656ff18d78d60b3d51deffe799d3bedd4a5e5d48",
-      "title": "SpaceX, AI 소프트웨어 Cursor 인수 완료…거래 규모 600억달러 2026.08.14",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "ai 인프라",
-        "gpu",
-        "규제",
-        "알파벳"
-      ],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": -1,
-      "first_seen": "2026-08-15T00:46:26+00:00",
-      "last_seen": "2026-08-15T00:46:26+00:00",
-      "count": 1
-    },
-    {
-      "signature": "5f08d791a5818cfda3840173b5c766e327ae373a",
-      "title": "최태원, '재산분할 9440억' 판결 왜 불복했나 2026.08.15",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 3,
-      "first_seen": "2026-08-15T00:44:27+00:00",
-      "last_seen": "2026-08-15T00:44:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "432c6cae0332616d125468241ce64cfb233140f6",
-      "title": "🔔 국내 1·2위 업체 모두 품었다…사모펀드가 렌터카를 사들이는 이유 📈 #롯데렌탈 #SK렌터카 #카카오모빌리티 📝 #렌터카M&…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "035720.KS",
-        "NNBR",
-        "NWS",
-        "NWSA",
-        "TPG",
-        "TPGXL"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T00:40:27+00:00",
-      "last_seen": "2026-08-15T00:40:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "55737d515f21705b1b05727f2eecf60dc4abd1d0",
-      "title": "[단독] \"최태원 회장 결단 없으면 투쟁\"…SK하이닉스 노조마저 거리로 나서나 2026.08.15",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "메모리",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 23,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T00:35:25+00:00",
-      "last_seen": "2026-08-15T00:35:25+00:00",
-      "count": 1
-    },
-    {
-      "signature": "5295315668f2052ea499e5aaccec18fe99a970e8",
-      "title": "SK하이닉스, 소액주주 346만 명 돌파하며 '국민주' 반열 https://m.stock.naver.com/investment/…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스"
-      ],
-      "tickers": [
-        "000660.KS",
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 8,
-      "sentiment": 1,
-      "first_seen": "2026-08-15T00:34:43+00:00",
-      "last_seen": "2026-08-15T00:34:43+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c00e1a9933cb54c20b134cf528014f4f1ba2dbc4",
-      "title": "삼성전자·SK하이닉스 소액주주 1100만명 돌파 https://m.stock.naver.com/investment/news/fl…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 9,
-      "sentiment": 1,
-      "first_seen": "2026-08-15T00:34:42+00:00",
-      "last_seen": "2026-08-15T00:34:42+00:00",
-      "count": 1
-    },
-    {
-      "signature": "32e893294b46c77679c0c035b0e118a9dd13ff18",
-      "title": "13F 일단 웬만한 건 다 올려드렸습니다. 감사합니다!",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T00:34:19+00:00",
-      "last_seen": "2026-08-15T00:34:19+00:00",
-      "count": 1
-    },
-    {
-      "signature": "002b64e7a5e119a6b1daa4a6729ec65ddf5dea1f",
-      "title": "🔔 카카오엔터, 콘텐츠 자회사 3곳 통합…스토리 IP 경쟁력 강화 📈 #카카오엔터테인먼트 #카카오 #삼양씨앤씨 📝 #콘텐츠IP …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T00:31:57+00:00",
-      "last_seen": "2026-08-15T00:31:57+00:00",
-      "count": 1
-    },
-    {
-      "signature": "3fbf7f67b85f17fc1c6a19ba429285c0b901ea64",
-      "title": "🔔 동국제약, 상반기 역대 최대 5099억·534억 달성 📈 #동국제약 #동국생명과학 📝 #제약헬스케어 #의약품 #화장품ODM …",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "HPQ",
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-08-15T00:23:41+00:00",
-      "last_seen": "2026-08-15T00:23:41+00:00",
       "count": 1
     }
   ]
