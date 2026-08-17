@@ -4,6 +4,7 @@ from zoneinfo import ZoneInfo
 
 from telegram_news.adaptive_strategy import _insert_strategy, _summary_news, generate_recommendations
 from telegram_news.strategy_learning import (
+    MIN_AUTO_WEIGHT_SAMPLES,
     adapt_model_from_results,
     default_state,
     evaluate_open_recommendations,
@@ -26,6 +27,27 @@ def test_news_memory_deduplicates_and_counts_repeated_issue():
     update_news_memory(memory, [event], NOW + timedelta(minutes=30))
     assert len(memory["events"]) == 1
     assert memory["events"][0]["count"] == 2
+
+
+def test_news_memory_preserves_verifiable_source_urls():
+    event = {
+        "signature": "url-event",
+        "title": "마이크론 HBM 공급 확대",
+        "sectors": ["반도체"],
+        "keywords": ["HBM"],
+        "tickers": ["MU"],
+        "source_urls": ["https://example.com/mu"],
+        "materiality": 90,
+        "sentiment": 2,
+        "first_seen": NOW.isoformat(),
+        "last_seen": NOW.isoformat(),
+        "count": 1,
+    }
+    memory = {"events": []}
+    update_news_memory(memory, [event], NOW)
+    update_news_memory(memory, [{**event, "source_urls": ["https://example.com/mu2"]}], NOW + timedelta(minutes=30))
+    assert memory["events"][0]["source_urls"] == ["https://example.com/mu", "https://example.com/mu2"]
+    assert memory["events"][0]["tickers"] == ["MU"]
 
 
 def test_all_summaries_are_converted_before_strict_display_filtering():
@@ -71,18 +93,67 @@ def test_generate_recommendations_combines_regime_momentum_and_news():
     assert recommendations[0]["components"]["news"] > 0
 
 
-def test_evaluation_and_online_weight_update_use_24h_result_once():
-    ledger = {"recommendations": [{"id": "r1", "created_at": (NOW - timedelta(hours=25)).isoformat(), "ticker": "SOXX", "entry_price": 100.0, "stop_price": 95.0, "target_price": 110.0, "status": "open", "evaluations": {}, "learned_24h": False, "components": {"momentum": 2.0, "regime": 1.0, "news": 1.5, "defensive": -0.5}}]}
+def _evaluated_item(index: int, return_pct: float, *, learned: bool = False):
+    return {
+        "id": f"r{index}",
+        "created_at": (NOW - timedelta(hours=25)).isoformat(),
+        "ticker": "SOXX",
+        "entry_price": 100.0,
+        "stop_price": 95.0,
+        "target_price": 110.0,
+        "status": "open",
+        "evaluations": {
+            "24h": {
+                "evaluated_at": (NOW - timedelta(minutes=max(0, MIN_AUTO_WEIGHT_SAMPLES - index))).isoformat(),
+                "price": 100.0 + return_pct,
+                "return_pct": return_pct,
+            }
+        },
+        "learned_24h": learned,
+        "components": {"momentum": 2.0, "regime": 1.0, "news": 1.5, "defensive": -0.5},
+    }
+
+
+def test_evaluation_below_200_keeps_weights_fixed_and_tracks_payoff_mdd():
+    ledger = {"recommendations": [{"id": "r0", "created_at": (NOW - timedelta(hours=25)).isoformat(), "ticker": "SOXX", "entry_price": 100.0, "stop_price": 95.0, "target_price": 110.0, "status": "open", "evaluations": {}, "learned_24h": False, "components": {"momentum": 2.0, "regime": 1.0, "news": 1.5, "defensive": -0.5}}]}
     snapshot = {"assets": {"SOXX": {"price": 104.0}}}
     state = default_state()
+    state["weights"] = {"momentum": 1.24, "regime": 0.82, "news": 1.31, "defensive": 0.75}
+
     updates = evaluate_open_recommendations(ledger, snapshot, NOW)
     learned = adapt_model_from_results(state, ledger, NOW)
     learned_again = adapt_model_from_results(state, ledger, NOW)
+
     assert any(item["horizon"] == "24h" for item in updates)
     assert learned == 1 and learned_again == 0
     assert state["stats"]["wins_24h"] == 1
-    assert state["weights"]["momentum"] > 1.0
-    assert state["weights"]["defensive"] < 1.0
+    assert state["stats"]["weight_adjustment_active"] is False
+    assert all(state["weights"][name] == 1.0 for name in state["weights"])
+    assert state["stats"]["average_win_24h_pct"] == 4.0
+    assert state["stats"]["average_loss_24h_pct"] == 0.0
+    assert state["stats"]["max_drawdown_24h_pct"] == 0.0
+
+
+def test_weight_adjustment_starts_at_200_and_never_moves_more_than_five_points():
+    state = default_state()
+    ledger = {
+        "recommendations": [
+            _evaluated_item(index, 1.0 if index % 4 else -0.5, learned=index < MIN_AUTO_WEIGHT_SAMPLES - 1)
+            for index in range(MIN_AUTO_WEIGHT_SAMPLES)
+        ]
+    }
+    before = dict(state["weights"])
+    learned = adapt_model_from_results(state, ledger, NOW)
+
+    assert learned == 1
+    assert state["stats"]["evaluated_24h"] == MIN_AUTO_WEIGHT_SAMPLES
+    assert state["stats"]["weight_adjustment_active"] is True
+    assert state["stats"]["average_win_24h_pct"] > 0
+    assert state["stats"]["average_loss_24h_pct"] < 0
+    assert state["stats"]["payoff_ratio_24h"] is not None
+    assert state["stats"]["max_drawdown_24h_pct"] > 0
+    for name, old in before.items():
+        assert abs(state["weights"][name] - old) <= 0.05 + 1e-9
 
 
 def test_insert_strategy_before_news_selection_line():
