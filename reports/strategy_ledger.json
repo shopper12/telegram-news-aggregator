@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-17T23:04:01+09:00",
+  "updated_at": "2026-08-17T23:35:16+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2103,7 +2103,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +3.59, 뉴스 +4.00 / 연결 뉴스: 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source; 미국 기업 섹터별 소식 정리",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-15T07:32:39+09:00",
@@ -2114,11 +2114,19 @@
           "evaluated_at": "2026-08-16T07:31:56+09:00",
           "price": 199.56,
           "return_pct": 10.175
+        },
+        "72h": {
+          "evaluated_at": "2026-08-17T23:35:16+09:00",
+          "price": 187.5,
+          "return_pct": 3.5168
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-16T07:31:56+09:00"
+      "learned_at": "2026-08-16T07:31:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-17T23:35:16+09:00",
+      "final_return_pct": 3.5168
     },
     {
       "id": "65613e63d2630cb6",
@@ -2149,7 +2157,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +2.60, 뉴스 +2.83 / 연결 뉴스: 8월 14일 (금) 14:00 거래대금 상위 분석 · 반도체·자동차 중심 강세 지속 · 코스닥도 로봇·반도체 소부장 중심 순환매…; AI Capex 확대의 경제적 파급효과",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-15T07:32:39+09:00",
@@ -2160,11 +2168,19 @@
           "evaluated_at": "2026-08-16T07:31:56+09:00",
           "price": 401.48,
           "return_pct": -0.2856
+        },
+        "72h": {
+          "evaluated_at": "2026-08-17T23:35:16+09:00",
+          "price": 405.655,
+          "return_pct": 0.7513
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-16T07:31:56+09:00"
+      "learned_at": "2026-08-16T07:31:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-17T23:35:16+09:00",
+      "final_return_pct": 0.7513
     },
     {
       "id": "1654e236142b17ef",
@@ -2195,7 +2211,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.02, 뉴스 +4.00 / 연결 뉴스: 🇰🇷SK 최태원, CNBC 인터뷰 주요 발언 source; 미국 기업 섹터별 소식 정리",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-15T07:32:39+09:00",
@@ -2206,11 +2222,19 @@
           "evaluated_at": "2026-08-16T07:31:56+09:00",
           "price": 731.07,
           "return_pct": 0.0315
+        },
+        "72h": {
+          "evaluated_at": "2026-08-17T23:35:16+09:00",
+          "price": 732.55,
+          "return_pct": 0.234
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-16T07:31:56+09:00"
+      "learned_at": "2026-08-16T07:31:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-17T23:35:16+09:00",
+      "final_return_pct": 0.234
     },
     {
       "id": "8bd923211be611e4",
