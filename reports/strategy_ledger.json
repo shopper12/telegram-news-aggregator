@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-18T22:37:19+09:00",
+  "updated_at": "2026-08-18T23:08:17+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2477,7 +2477,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.04, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; 메모리 매출 놀랍다… 실적 발표 후 EPS 420까지 보는 종목 2026.08.15",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-16T07:31:56+09:00",
@@ -2488,11 +2488,19 @@
           "evaluated_at": "2026-08-16T23:31:37+09:00",
           "price": 731.07,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-18T23:08:17+09:00",
+          "price": 719.74,
+          "return_pct": -1.5498
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-16T23:31:37+09:00"
+      "learned_at": "2026-08-16T23:31:37+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-18T23:08:17+09:00",
+      "final_return_pct": -1.5498
     },
     {
       "id": "d03b3b3e55073cbd",
@@ -2523,7 +2531,7 @@
         "defensive": 0.88
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +2.45, 뉴스 +0.89 / 연결 뉴스: [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…; AI 전쟁, 이번에도 강세론자가 약세론자를 이길 수 있는 이유 월가에서 AI 버블 논쟁이 다시 거세지는 가운데, Barron's…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-16T07:31:56+09:00",
@@ -2534,11 +2542,19 @@
           "evaluated_at": "2026-08-16T23:31:37+09:00",
           "price": 401.48,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-18T23:08:17+09:00",
+          "price": 403.745,
+          "return_pct": 0.5642
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-16T23:31:37+09:00"
+      "learned_at": "2026-08-16T23:31:37+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-18T23:08:17+09:00",
+      "final_return_pct": 0.5642
     },
     {
       "id": "4a5f9de01729c132",
@@ -3011,9 +3027,15 @@
           "evaluated_at": "2026-08-18T07:35:10+09:00",
           "price": 186.38,
           "return_pct": -0.2622
+        },
+        "24h": {
+          "evaluated_at": "2026-08-18T23:08:17+09:00",
+          "price": 175.56,
+          "return_pct": -6.0523
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-18T23:08:17+09:00"
     },
     {
       "id": "828643d8b7adc959",
@@ -3072,9 +3094,15 @@
           "evaluated_at": "2026-08-18T07:35:10+09:00",
           "price": 560.28,
           "return_pct": 0.0268
+        },
+        "24h": {
+          "evaluated_at": "2026-08-18T23:08:17+09:00",
+          "price": 533.23,
+          "return_pct": -4.8025
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-18T23:08:17+09:00"
     },
     {
       "id": "6e50b31415f9515d",
@@ -3132,9 +3160,15 @@
           "evaluated_at": "2026-08-18T07:35:10+09:00",
           "price": 404.758,
           "return_pct": 0.1356
+        },
+        "24h": {
+          "evaluated_at": "2026-08-18T23:08:17+09:00",
+          "price": 403.745,
+          "return_pct": -0.115
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-18T23:08:17+09:00"
     },
     {
       "id": "5497bf7651815c5c",
@@ -3317,6 +3351,167 @@
           "return_pct": 0.1808
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "a1c917a486362442",
+      "created_at": "2026-08-18T23:08:17+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 403.745,
+      "entry_zone": [
+        401.726275,
+        405.763725
+      ],
+      "stop_price": 394.380051,
+      "target_price": 422.474897,
+      "score": 6.349,
+      "components": {
+        "momentum": 1.1493501066023433,
+        "regime": 0.2,
+        "news": 4.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +1.15, regime +0.20, news +4.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.15, 뉴스 +4.00 / 연결 뉴스: 마켓레이더; 🔔 '19년 만에 최고치' 실물경제 공포 덮쳤는데…'파격 전망' 📈 #은행주 #보험주 #건설주 #증권주 #철강주 📝 #장기국채금…",
+      "news_evidence": [
+        {
+          "title": "마켓레이더",
+          "urls": [
+            "https://t.me/chel3337/35376"
+          ],
+          "last_seen": "2026-08-18T01:58:57+00:00"
+        },
+        {
+          "title": "🔔 '19년 만에 최고치' 실물경제 공포 덮쳤는데…'파격 전망' 📈 #은행주 #보험주 #건설주 #증권주 #철강주 📝 #장기국채금…",
+          "urls": [
+            "https://n.news.naver.com/article/015/0005322084",
+            "https://t.me/dreago_news_ch/296519"
+          ],
+          "last_seen": "2026-08-18T09:50:20+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4a940fa1053d4aa6",
+      "created_at": "2026-08-18T23:08:17+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 175.56,
+      "entry_zone": [
+        174.6822,
+        176.4378
+      ],
+      "stop_price": 162.81174,
+      "target_price": 201.056519,
+      "score": 5.089,
+      "components": {
+        "momentum": 2.0887482380934563,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +2.09, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.09, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 제목 : 마이크론, 美 중국산 메모리 견제에 급등 *연합인포맥스* 바론스는 “마이크론 테크놀로지",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/61424"
+          ],
+          "last_seen": "2026-08-18T10:57:23+00:00"
+        },
+        {
+          "title": "제목 : 마이크론, 美 중국산 메모리 견제에 급등 *연합인포맥스* 바론스는 “마이크론 테크놀로지",
+          "urls": [
+            "https://t.me/kwusa/60308"
+          ],
+          "last_seen": "2026-08-18T05:45:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "ff6888708d65b513",
+      "created_at": "2026-08-18T23:08:17+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 719.74,
+      "entry_zone": [
+        716.1413,
+        723.3387
+      ],
+      "stop_price": 701.852283,
+      "target_price": 755.515434,
+      "score": 3.034,
+      "components": {
+        "momentum": 0.03371795311618642,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.03, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.03, 뉴스 +4.00 / 연결 뉴스: 🔔; 제목 :",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://edaily.co.kr/news/newspath.asp?newsid=01416966645548632",
+            "https://t.me/dreago_news_ch/296117"
+          ],
+          "last_seen": "2026-08-18T13:27:29+00:00"
+        },
+        {
+          "title": "제목 :",
+          "urls": [
+            "https://t.me/kwusa/60324"
+          ],
+          "last_seen": "2026-08-18T09:31:12+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
