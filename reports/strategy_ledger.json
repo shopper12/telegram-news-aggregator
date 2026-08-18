@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-18T23:40:43+09:00",
+  "updated_at": "2026-08-19T07:34:51+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2635,7 +2635,7 @@
         "defensive": 0.85
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.31, 뉴스 +3.92 / 연결 뉴스: 🔔 코스피 껑충, 삼성전자·SK하이닉스·현대차 등 주가↑…美 CPI·PPI 물가... 📈 #현대차 #SK하이닉스 #삼성전자 #삼…; 🔔 '안 팔길 잘했네'…삼전닉스 '300조' 관측에 반도체 개미 '들썩' 📈 #삼성전자 #SK하이닉스 📝 #반도체주주환원 #반도…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-16T13:32:40+09:00",
@@ -2646,11 +2646,19 @@
           "evaluated_at": "2026-08-17T08:14:20+09:00",
           "price": 550.42,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-19T07:34:51+09:00",
+          "price": 529.4,
+          "return_pct": -3.8189
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-17T08:14:20+09:00"
+      "learned_at": "2026-08-17T08:14:20+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-19T07:34:51+09:00",
+      "final_return_pct": -3.8189
     },
     {
       "id": "bce8fec9e8fa1880",
@@ -2681,7 +2689,7 @@
         "defensive": 0.85
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +2.45, 뉴스 +0.66 / 연결 뉴스: 🔔 고점서 물린 삼전·SK하닉 레버리지 ETF 최대 77% 손실…원금 회복까진 ... 📈 #삼성전자 #SK하이닉스 📝 #반도체레…; [2026년 8월 15일 모닝 시황] 소비 쇼크·금리 상승에 3대 지수 하락, 샌디스크·마이크론 메모리 강세 ──────────…",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-16T13:32:40+09:00",
@@ -2692,11 +2700,19 @@
           "evaluated_at": "2026-08-17T08:14:20+09:00",
           "price": 401.48,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-19T07:34:51+09:00",
+          "price": 397.72,
+          "return_pct": -0.9365
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-17T08:14:20+09:00"
+      "learned_at": "2026-08-17T08:14:20+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-19T07:34:51+09:00",
+      "final_return_pct": -0.9365
     },
     {
       "id": "59e6d6c833126bd8",
@@ -3021,7 +3037,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-18T07:35:10+09:00",
@@ -3035,7 +3051,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-18T23:08:17+09:00"
+      "learned_at": "2026-08-18T23:08:17+09:00",
+      "outcome": "stop_observed",
+      "closed_at": "2026-08-19T07:34:51+09:00",
+      "final_return_pct": -9.0972
     },
     {
       "id": "828643d8b7adc959",
@@ -3221,7 +3240,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-18T14:04:38+09:00",
@@ -3229,7 +3248,10 @@
           "return_pct": -0.6868
         }
       },
-      "learned_24h": false
+      "learned_24h": false,
+      "outcome": "stop_observed",
+      "closed_at": "2026-08-19T07:34:51+09:00",
+      "final_return_pct": -8.8582
     },
     {
       "id": "33c193f7d1dfc28c",
@@ -3404,7 +3426,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-19T07:34:51+09:00",
+          "price": 397.72,
+          "return_pct": -1.4923
+        }
+      },
       "learned_24h": false
     },
     {
@@ -3457,7 +3485,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-19T07:34:51+09:00",
+          "price": 169.87,
+          "return_pct": -3.2411
+        }
+      },
       "learned_24h": false
     },
     {
@@ -3507,6 +3541,176 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-19T07:34:51+09:00",
+          "price": 716.6,
+          "return_pct": -0.4363
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "8597b7370a16b7e6",
+      "created_at": "2026-08-19T07:34:51+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 397.72,
+      "entry_zone": [
+        395.7314,
+        399.7086
+      ],
+      "stop_price": 388.227712,
+      "target_price": 416.704576,
+      "score": 5.368,
+      "components": {
+        "momentum": 0.3567385747409615,
+        "regime": 0.2,
+        "news": 3.8114600771553473,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.36, regime +0.20, news +3.81, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.36, 뉴스 +3.81 / 연결 뉴스: [뉴스] 장기 국채 금리 19년 만에 최고 찍었는데…빅테크 9개사 숨은 빚 '4200조' 서울경제; [기업가 및 테크 리더] Jamie Dimon (JPMorgan) 영국 재무장관과의 통화에서 은행에 대한 세율 인상이 금융 일자…",
+      "news_evidence": [
+        {
+          "title": "[뉴스] 장기 국채 금리 19년 만에 최고 찍었는데…빅테크 9개사 숨은 빚 '4200조' 서울경제",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/011/0004652856",
+            "https://t.me/aicorporateanalysisdeepdive/10235"
+          ],
+          "last_seen": "2026-08-18T22:06:45+00:00"
+        },
+        {
+          "title": "[기업가 및 테크 리더] Jamie Dimon (JPMorgan) 영국 재무장관과의 통화에서 은행에 대한 세율 인상이 금융 일자…",
+          "urls": [
+            "https://t.me/rafikiresearch/24450"
+          ],
+          "last_seen": "2026-08-18T21:35:52+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "2d4868c32548ef0b",
+      "created_at": "2026-08-19T07:34:51+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 169.87,
+      "entry_zone": [
+        169.02065,
+        170.71935
+      ],
+      "stop_price": 156.979574,
+      "target_price": 195.650852,
+      "score": 4.488,
+      "components": {
+        "momentum": 0.4884178283137808,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.49, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.49, 뉴스 +4.00 / 연결 뉴스: [뉴스] 장기 국채 금리 19년 만에 최고 찍었는데…빅테크 9개사 숨은 빚 '4200조' 서울경제; [뉴스] 미 육군, 자주포 프로토타입에 한화의 차륜형 K9 선정 브레이킹디펜스(Breaking Defense)",
+      "news_evidence": [
+        {
+          "title": "[뉴스] 장기 국채 금리 19년 만에 최고 찍었는데…빅테크 9개사 숨은 빚 '4200조' 서울경제",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/011/0004652856",
+            "https://t.me/aicorporateanalysisdeepdive/10235"
+          ],
+          "last_seen": "2026-08-18T22:06:45+00:00"
+        },
+        {
+          "title": "[뉴스] 미 육군, 자주포 프로토타입에 한화의 차륜형 K9 선정 브레이킹디펜스(Breaking Defense)",
+          "urls": [
+            "https://breakingdefense.com/2026/08/army-picks-hanwhas-wheeled-k9-for-self-propelled-howitzer-prototypes",
+            "https://t.me/aicorporateanalysisdeepdive/10239"
+          ],
+          "last_seen": "2026-08-18T22:27:21+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "192de1fe30b03df0",
+      "created_at": "2026-08-19T07:34:51+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 716.6,
+      "entry_zone": [
+        713.017,
+        720.183
+      ],
+      "stop_price": 699.264316,
+      "target_price": 751.271367,
+      "score": 4.046,
+      "components": {
+        "momentum": 0.04595625565182354,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.05, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.05, 뉴스 +4.00 / 연결 뉴스: [뉴스] 장기 국채 금리 19년 만에 최고 찍었는데…빅테크 9개사 숨은 빚 '4200조' 서울경제; 🔔",
+      "news_evidence": [
+        {
+          "title": "[뉴스] 장기 국채 금리 19년 만에 최고 찍었는데…빅테크 9개사 숨은 빚 '4200조' 서울경제",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/011/0004652856",
+            "https://t.me/aicorporateanalysisdeepdive/10235"
+          ],
+          "last_seen": "2026-08-18T22:06:45+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://edaily.co.kr/news/newspath.asp?newsid=01416966645548632",
+            "https://t.me/dreago_news_ch/296117"
+          ],
+          "last_seen": "2026-08-18T13:27:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
