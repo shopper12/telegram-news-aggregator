@@ -105,7 +105,7 @@ jobs:
         env:
           INPUT_HOURS: ${{ github.event.inputs.hours || '6' }}
           INPUT_LIMIT: ${{ github.event.inputs.limit || '180' }}
-          INPUT_SEND: ${{ github.event_name == 'schedule' && 'true' || github.event.inputs.send || 'true' }}
+          INPUT_SEND: ${{ github.event_name == 'schedule' && 'true' || inputs.send }}
         run: |
           mkdir -p data reports
           ARGS=(--hours "$INPUT_HOURS" --limit "$INPUT_LIMIT")
