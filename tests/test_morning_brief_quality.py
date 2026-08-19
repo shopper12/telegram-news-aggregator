@@ -230,9 +230,9 @@ def test_notifier_splits_long_morning_note_at_clean_section_boundary():
     first = "[2026년 8월 19일 모닝 시황]\n" + ("요약문장\n" * 260)
     second = "──────────\n<주요 테마>\n" + ("테마설명\n" * 260)
     text = first + second
-    chunks = notifier._split_message(text, limit=3800)
+    chunks = notifier._split_message(text, limit=1800)
 
     assert len(chunks) >= 2
-    assert all(len(chunk) <= 3800 for chunk in chunks)
+    assert all(len(chunk) <= 1800 for chunk in chunks)
     assert "".join(chunks) == text
     assert any(chunk.startswith("──────────\n<주요 테마>") for chunk in chunks[1:])
