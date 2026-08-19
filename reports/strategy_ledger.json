@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-19T23:41:33+09:00",
+  "updated_at": "2026-08-20T07:35:23+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2939,7 +2939,7 @@
         "defensive": 0.82
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.83, 뉴스 +4.00 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 마이크론 주가, 다시 1,000달러 선 근접… 어디까지 오를 수 있을까 최근 메모리주 반등의 배경 중 하나로는 샌디스크",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-17T14:09:00+09:00",
@@ -2950,11 +2950,19 @@
           "evaluated_at": "2026-08-18T07:35:10+09:00",
           "price": 560.28,
           "return_pct": 1.7914
+        },
+        "72h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 523.03,
+          "return_pct": -4.9762
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-18T07:35:10+09:00"
+      "learned_at": "2026-08-18T07:35:10+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-20T07:35:23+09:00",
+      "final_return_pct": -4.9762
     },
     {
       "id": "606934c879abe1c8",
@@ -2985,7 +2993,7 @@
         "defensive": 0.82
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +1.18, 뉴스 +0.87 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; >>TSMC 주가 1년 새 80% 급등…지금도 살 만할까? 외신의 솔직한 판단",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-17T14:09:00+09:00",
@@ -2996,11 +3004,19 @@
           "evaluated_at": "2026-08-18T07:35:10+09:00",
           "price": 404.758,
           "return_pct": 0.8165
+        },
+        "72h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 414.42,
+          "return_pct": 3.2231
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-18T07:35:10+09:00"
+      "learned_at": "2026-08-18T07:35:10+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-20T07:35:23+09:00",
+      "final_return_pct": 3.2231
     },
     {
       "id": "4927624c723fbde6",
@@ -3662,9 +3678,15 @@
           "evaluated_at": "2026-08-19T14:06:02+09:00",
           "price": 398.55,
           "return_pct": 0.2087
+        },
+        "24h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 414.42,
+          "return_pct": 4.1989
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-20T07:35:23+09:00"
     },
     {
       "id": "2d4868c32548ef0b",
@@ -3723,9 +3745,15 @@
           "evaluated_at": "2026-08-19T14:06:02+09:00",
           "price": 170.05,
           "return_pct": 0.106
+        },
+        "24h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 176.6218,
+          "return_pct": 3.9747
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-20T07:35:23+09:00"
     },
     {
       "id": "192de1fe30b03df0",
@@ -3784,9 +3812,15 @@
           "evaluated_at": "2026-08-19T14:06:02+09:00",
           "price": 717.51,
           "return_pct": 0.127
+        },
+        "24h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 718.41,
+          "return_pct": 0.2526
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-20T07:35:23+09:00"
     },
     {
       "id": "a2a34326a1393333",
@@ -3838,7 +3872,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 414.42,
+          "return_pct": 1.0633
+        }
+      },
       "learned_24h": false
     },
     {
@@ -3892,7 +3932,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 176.6218,
+          "return_pct": 1.2391
+        }
+      },
       "learned_24h": false
     },
     {
@@ -3940,6 +3986,175 @@
             "https://t.me/dreago_news_ch/296117"
           ],
           "last_seen": "2026-08-19T13:35:21+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-20T07:35:23+09:00",
+          "price": 718.41,
+          "return_pct": 0.5261
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "e2eaea9f34f3c913",
+      "created_at": "2026-08-20T07:35:23+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 414.42,
+      "entry_zone": [
+        412.3479,
+        416.4921
+      ],
+      "stop_price": 403.282765,
+      "target_price": 436.69447,
+      "score": 5.69,
+      "components": {
+        "momentum": 1.8220324908832057,
+        "regime": 0.2,
+        "news": 2.9681684198592597,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +1.82, regime +0.20, news +2.97, defensive +0.70",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.82, 뉴스 +2.97 / 연결 뉴스: 🔔 '삼전닉스 대신 그걸 왜 사나' 무시했는데…'자산 8조' 반전 📈 #DB손해보험 #GS #우리금융지주 #메리츠금융지주 #지주…; *특징 종목: 모더나, 테슬라, 소프트웨어 상승 Vs. 브로드컴, 델, 마이크론 하락 AI 커스텀 반도체: 구글의 대규모 계약에…",
+      "news_evidence": [
+        {
+          "title": "🔔 '삼전닉스 대신 그걸 왜 사나' 무시했는데…'자산 8조' 반전 📈 #DB손해보험 #GS #우리금융지주 #메리츠금융지주 #지주…",
+          "urls": [
+            "https://n.news.naver.com/article/015/0005322655",
+            "https://t.me/dreago_news_ch/297089"
+          ],
+          "last_seen": "2026-08-19T22:20:29+00:00"
+        },
+        {
+          "title": "*특징 종목: 모더나, 테슬라, 소프트웨어 상승 Vs. 브로드컴, 델, 마이크론 하락 AI 커스텀 반도체: 구글의 대규모 계약에…",
+          "urls": [
+            "https://t.me/sharpha/51657"
+          ],
+          "last_seen": "2026-08-19T21:43:09+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "7dae292dbb021e2c",
+      "created_at": "2026-08-20T07:35:23+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 176.6218,
+      "entry_zone": [
+        175.738691,
+        177.504909
+      ],
+      "stop_price": 163.162505,
+      "target_price": 203.54039,
+      "score": 4.125,
+      "components": {
+        "momentum": 0.12528126721044275,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.13, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.13, 뉴스 +4.00 / 연결 뉴스: [뉴스] 마벨, 구글에 122억 달러 규모 주식 워런트 부여…맞춤형 칩 계약 체결 로이터(Reuters); [뉴스] TSMC 빈자리 파고든 삼성…파운드리 가격 최대 15% 올렸다 조선비즈",
+      "news_evidence": [
+        {
+          "title": "[뉴스] 마벨, 구글에 122억 달러 규모 주식 워런트 부여…맞춤형 칩 계약 체결 로이터(Reuters)",
+          "urls": [
+            "https://reuters.com/technology/marvell-grants-google-122-billion-stock-warrant-custom-chip-deal-2026-08-19",
+            "https://t.me/aicorporateanalysisdeepdive/10281"
+          ],
+          "last_seen": "2026-08-19T22:17:42+00:00"
+        },
+        {
+          "title": "[뉴스] TSMC 빈자리 파고든 삼성…파운드리 가격 최대 15% 올렸다 조선비즈",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/366/0001187180",
+            "https://t.me/aicorporateanalysisdeepdive/10277"
+          ],
+          "last_seen": "2026-08-19T22:11:37+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "c07f8797583aea1c",
+      "created_at": "2026-08-20T07:35:23+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 69018.12,
+      "entry_zone": [
+        68673.0294,
+        69363.2106
+      ],
+      "stop_price": 66962.61885,
+      "target_price": 73129.122301,
+      "score": 3.891,
+      "components": {
+        "momentum": 3.9956431264467334,
+        "regime": 0.0,
+        "news": -0.10476041724074076,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news -0.10, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 -0.10 / 연결 뉴스: 📝. 트럼프 대통령, 미국이 비트코인 등 암호화폐 대량 매입 검토 중이라고 밝혀 BREAKING🇺🇸 PRESIDENT TRUMP…; 🔔 코인원, 카카오뱅크와 실명확인 계좌 1년 재계약 📈 #카카오뱅크 #코인원 📝 #가상자산실명확인 #가상자산거래소연계금융 카카오…",
+      "news_evidence": [
+        {
+          "title": "📝. 트럼프 대통령, 미국이 비트코인 등 암호화폐 대량 매입 검토 중이라고 밝혀 BREAKING🇺🇸 PRESIDENT TRUMP…",
+          "urls": [
+            "https://t.me/sharpha/51655"
+          ],
+          "last_seen": "2026-08-19T21:36:00+00:00"
+        },
+        {
+          "title": "🔔 코인원, 카카오뱅크와 실명확인 계좌 1년 재계약 📈 #카카오뱅크 #코인원 📝 #가상자산실명확인 #가상자산거래소연계금융 카카오…",
+          "urls": [
+            "https://decenter.kr/article/20080968",
+            "https://t.me/dreago_news_ch/296916"
+          ],
+          "last_seen": "2026-08-19T07:57:45+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
