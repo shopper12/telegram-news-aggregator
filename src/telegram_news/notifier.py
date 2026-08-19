@@ -4,6 +4,10 @@ import re
 import requests
 
 
+TELEGRAM_SAFE_LIMIT = 3800
+SECTION_SEPARATOR = "──────────"
+
+
 def _validate_bot_token(bot_token: str) -> None:
     if ":" not in bot_token:
         raise RuntimeError(
@@ -21,6 +25,52 @@ def _plain_text_from_html(text: str) -> str:
     text = re.sub(r'<a\s+href=["\'][^"\']+["\']\s*>', '', text, flags=re.IGNORECASE)
     text = re.sub(r'</a>', '', text, flags=re.IGNORECASE)
     return text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+
+
+def _hard_split(text: str, limit: int) -> list[str]:
+    return [text[index:index + limit] for index in range(0, len(text), limit)]
+
+
+def _split_message(text: str, limit: int = TELEGRAM_SAFE_LIMIT) -> list[str]:
+    """Split long Telegram reports without cutting section headers mid-flow.
+
+    The morning briefing is deliberately long. Prefer section boundaries and
+    normal line boundaries; fall back to a hard split only for a single line that
+    itself exceeds Telegram's safe payload size. Concatenating the returned chunks
+    recreates the exact original text.
+    """
+    if len(text) <= limit:
+        return [text]
+
+    chunks: list[str] = []
+    current = ""
+    for line in text.splitlines(keepends=True):
+        # A separator starts the next logical section. If the current message is
+        # already substantial, finish it before the separator so the new Telegram
+        # message begins with a clean section boundary rather than a trailing rule.
+        if line.strip() == SECTION_SEPARATOR and current and len(current) >= int(limit * 0.45):
+            chunks.append(current)
+            current = ""
+
+        if len(line) > limit:
+            if current:
+                chunks.append(current)
+                current = ""
+            hard = _hard_split(line, limit)
+            chunks.extend(hard[:-1])
+            current = hard[-1]
+            continue
+
+        if current and len(current) + len(line) > limit:
+            chunks.append(current)
+            current = line
+        else:
+            current += line
+
+    if current:
+        chunks.append(current)
+
+    return chunks or [text]
 
 
 def _post_message(bot_token: str, chat_id: str, chunk: str, *, html: bool) -> requests.Response:
@@ -52,7 +102,7 @@ def _raise_for_telegram_error(chat_id: str, resp: requests.Response) -> None:
 
 
 def _send_to_one_chat(bot_token: str, chat_id: str, text: str) -> None:
-    chunks = [text[i:i + 3800] for i in range(0, len(text), 3800)]
+    chunks = _split_message(text)
 
     for chunk in chunks:
         html = _uses_html(chunk)

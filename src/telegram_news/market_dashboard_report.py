@@ -5,38 +5,59 @@ from zoneinfo import ZoneInfo
 import json
 import os
 import re
+from typing import Any
 
 import requests
 
+from . import market_dashboard_data as dashboard_data
 from . import strict_report as strict
 from . import strict_report_v2 as display
-from .market_dashboard_data import get_market_dashboard_context
+from .morning_brief_config import GLOBAL_QUOTE_TICKERS, KOREA_PROXY_TICKERS, THEME_BASKETS
 from .strict_quality import materiality_grade, materiality_score
 from .summarizer import SummaryItem
 from .symbol_resolver import resolve_symbols
 
 
+# Kept as a module-level alias because existing tests and a few library callers
+# monkeypatch this symbol directly. Production prefers the active atomic context.
+get_market_dashboard_context = dashboard_data.get_market_dashboard_context
+
 DEFAULT_MODEL = "gemini-2.5-flash"
-MAX_REPORT_CHARS = int(os.getenv("US_CLOSE_MAX_REPORT_CHARS", "9000"))
-GROUNDING_TIMEOUT = int(os.getenv("US_CLOSE_GROUNDING_TIMEOUT", "35"))
-FORBIDDEN = ["비트코인", "이더리움", "업비트", "바이낸스", "목표가", "손절가", "무조건 매수", "확정 상승"]
+MAX_REPORT_CHARS = int(os.getenv("US_CLOSE_MAX_REPORT_CHARS", "14000"))
+GROUNDING_TIMEOUT = int(os.getenv("US_CLOSE_GROUNDING_TIMEOUT", "45"))
+SECTION_SEPARATOR = "──────────"
 PRIMARY_SOURCE_GRADES = {"A", "B"}
+FORBIDDEN = [
+    "비트코인",
+    "이더리움",
+    "업비트",
+    "바이낸스",
+    "손절가",
+    "진입가",
+    "무조건 매수",
+    "확정 상승",
+    "매수 추천",
+]
+INTERNAL_MARKERS = ["Gemini진단", "Google grounding", "primary_catalyst_eligible", "source_grade"]
+
+
+def _safe_float(value: Any) -> float | None:
+    try:
+        if value is None:
+            return None
+        return float(value)
+    except Exception:
+        return None
 
 
 def _explicit_symbols(cluster) -> list:
-    """Return only securities explicitly recoverable from the news text.
-
-    The strict pipeline normally carries resolved symbols on the cluster. If an
-    upstream catalog/network lookup produced an empty list, retry against the raw
-    title/body so explicit forms such as '엔비디아 (NVDA)' are not displayed as
-    '직접 언급 종목 없음'.
-    """
+    """Return only securities explicitly recoverable from the news text."""
     try:
         symbols = list(display._display_symbols(cluster))
     except Exception:
         symbols = []
     if symbols:
-        return symbols[:3]
+        return symbols[:4]
 
     try:
         best = cluster.best()
@@ -45,7 +66,7 @@ def _explicit_symbols(cluster) -> list:
         categories = list(getattr(item, "categories", None) or [])
         raw_tickers = list(getattr(item, "tickers", None) or [])
         resolved = resolve_symbols(text, categories=categories, raw_tickers=raw_tickers)
-        return [symbol for symbol in resolved if getattr(symbol, "asset_type", "") != "crypto"][:3]
+        return [symbol for symbol in resolved if getattr(symbol, "asset_type", "") != "crypto"][:4]
     except Exception:
         return []
 
@@ -63,7 +84,7 @@ def _primary_catalyst_eligible(cluster) -> bool:
 
 def _issue_payload(clusters: list, now: datetime) -> list[dict]:
     rows = []
-    for idx, cluster in enumerate(clusters[:20], 1):
+    for idx, cluster in enumerate(clusters[:24], 1):
         best = cluster.best()
         symbols = _explicit_symbols(cluster)
         grade = _source_grade(cluster)
@@ -74,9 +95,9 @@ def _issue_payload(clusters: list, now: datetime) -> list[dict]:
                 "source_grade": grade,
                 "primary_catalyst_eligible": grade in PRIMARY_SOURCE_GRADES,
                 "type": best.news_type,
-                "title": display._display_title(cluster, 120),
-                "body": strict.base._short(best.item.body or "", 420),
-                "sectors": cluster.sectors()[:5],
+                "title": display._display_title(cluster, 150),
+                "body": strict.base._short(best.item.body or "", 620),
+                "sectors": cluster.sectors()[:6],
                 "symbols": [{"name": str(s.name or ""), "ticker": s.ticker} for s in symbols],
                 "age": display._age_line(cluster, now),
                 "source_url": display._source_url(cluster),
@@ -115,17 +136,37 @@ def _grounding_sources(candidate: dict) -> list[dict]:
             continue
         seen.add(uri)
         sources.append({"title": title, "uri": uri})
-    return sources[:12]
+    return sources[:20]
 
 
 def _normalization_prompt(raw: str, now: datetime) -> str:
     return f"""
-Convert the grounded research memo below into ONE JSON object. Do not add facts that are absent from the memo. If a value is not explicitly verified, use null. Do not infer dates, consensus values, or market reactions. Times should remain in KST when present.
+Convert the grounded research memo below into ONE JSON object. Do not add facts that are absent from the memo. If a value is not explicitly verified, use null or an empty list. Do not infer dates, consensus values, market reactions, analyst targets, or causal links. Keep separate facts separate. Times should remain in KST when present.
 
 Required schema:
 {{
+  "session_headline": "",
+  "summary_points": [""],
   "macro_releases": [
-    {{"name":"", "released_at_kst":"", "actual":null, "consensus":null, "previous":null, "unit":"", "surprise":"higher|lower|inline|unknown", "market_relevance":""}}
+    {{
+      "name":"", "released_at_kst":"", "actual":null, "consensus":null, "previous":null,
+      "unit":"", "surprise":"higher|lower|inline|unknown", "details":[""], "market_relevance":""
+    }}
+  ],
+  "macro_topics": [
+    {{"title":"", "facts":[""], "market_relevance":"", "affected_assets":[""]}}
+  ],
+  "positioning": [
+    {{"title":"", "fact":"", "market_relevance":""}}
+  ],
+  "analyst_actions": [
+    {{
+      "company":"", "ticker":"", "firm":"", "action":"", "rating":"",
+      "target_price":null, "currency":"", "fact":"", "market_relevance":""
+    }}
+  ],
+  "company_catalysts": [
+    {{"company":"", "ticker":"", "fact":"", "market_reaction":"", "peer_readthrough":""}}
   ],
   "upcoming_events": [
     {{"name":"", "scheduled_at_kst":"", "consensus":null, "previous":null, "unit":"", "why_it_matters":""}}
@@ -140,7 +181,7 @@ Required schema:
 
 Seoul timestamp: {now:%Y-%m-%d %H:%M KST}
 GROUNDED_MEMO:
-{raw[:12000]}
+{raw[:18000]}
 """.strip()
 
 
@@ -156,7 +197,7 @@ def _normalize_grounded_research(raw: str, *, api_key: str, model: str, now: dat
                 "contents": [{"parts": [{"text": _normalization_prompt(raw, now)}]}],
                 "generationConfig": {
                     "temperature": 0.0,
-                    "maxOutputTokens": 2600,
+                    "maxOutputTokens": 4400,
                     "responseMimeType": "application/json",
                 },
             },
@@ -174,12 +215,7 @@ def _normalize_grounded_research(raw: str, *, api_key: str, model: str, now: dat
 
 
 def _grounded_market_research(now: datetime) -> tuple[dict, str]:
-    """Fetch current macro/calendar/catalyst facts using Google Search grounding.
-
-    Search-grounded generation and strict JSON formatting are deliberately split.
-    This avoids making the search stage fail merely because its grounded prose is
-    not valid JSON. Failure remains non-fatal to the market-price dashboard.
-    """
+    """Research the latest US close with enough depth for a desk-quality brief."""
     api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
     if not api_key:
         return {}, "grounding_api_key_missing"
@@ -189,24 +225,36 @@ def _grounded_market_research(now: datetime) -> tuple[dict, str]:
     model = os.getenv("GEMINI_GROUNDING_MODEL", os.getenv("GEMINI_MODEL", DEFAULT_MODEL))
     date_text = now.strftime("%Y-%m-%d")
     prompt = f"""
-You are the fact-checking research stage for a Korean investor's US-close briefing.
+You are the fact-checking research desk for a Korean institutional-style US-close morning briefing.
 Current Seoul date/time: {now:%Y-%m-%d %H:%M KST}.
-Use Google Search for CURRENT, verifiable information only. Produce a concise fact memo. Do not invent missing values.
+Use Google Search for CURRENT, verifiable information only. The final writer needs enough detail to produce a briefing comparable to a professional sell-side morning note, not a headline list.
 
 Research window:
-- US market-moving developments from the latest US session through now.
-- US macro releases published in the last 36 hours and major scheduled releases/events for the next 36 hours.
-- Priority: CPI, core CPI, PPI, core PPI, PCE/core PCE, payrolls, unemployment, jobless claims, ISM/PMI, retail sales, GDP, FOMC/Fed speakers, Treasury auctions when material.
-- Major US earnings/guidance materially affecting AI, semiconductors, memory, optical networking, data-center power, nuclear, quantum, batteries/lithium, or Korea-linked equities.
+- The latest completed US regular session through now, plus the preceding 36 hours when needed to explain the move.
+- High-impact US economic releases and their internal components, not just the headline number.
+- Major scheduled events for the next 36 hours only when verified.
+
+Research these buckets when material:
+1. MARKET DRIVER: what actually moved US equities in the latest session; distinguish the trigger from the price reaction.
+2. RATES / FISCAL: US 10Y and 30Y yield context, Treasury supply/auctions, fiscal-deficit concerns, corporate bond issuance, foreign demand, and whether the move is part of a global long-end selloff.
+3. GEOPOLITICS / ENERGY: Middle East or other supply risks, shipping incidents, OPEC-related developments, and the inflation transmission channel. Do not promote rumors.
+4. GLOBAL CENTRAL BANKS: BOJ/ECB/other major policy or long-yield changes that can spill into US duration or carry trades.
+5. POSITIONING: major fund-manager surveys, hedge-fund positioning, options positioning, insider buying/selling, or well-known investor warnings only when a reputable source provides a concrete statistic or attributed statement.
+6. ECONOMIC DATA: actual vs consensus vs previous, plus important subcomponents such as manufacturing, autos, housing, semiconductors, computers, services, or labor details when the release contains them.
+7. SECTOR ROTATION: semiconductors/memory, storage, AI infrastructure/neocloud, optical networking, software, healthcare/defensives, mega-cap tech, and data-center power. Identify whether moves were broad sector moves or isolated names.
+8. COMPANY CATALYSTS: material company-specific news for the largest movers in those sectors, including litigation/regulation, financing, capex, customer contracts, data-center projects, earnings/guidance, or product news.
+9. SELL-SIDE ACTIONS: brokerage rating/target changes only when firm, company, rating/action, and target are explicitly verified. These are analyst targets, not trading instructions.
 
 Rules:
-1. Never invent actual/consensus/previous values or event times. Mark unverified values as unavailable.
-2. Convert event times to Asia/Seoul where the source makes conversion possible.
-3. Prefer primary/official sources (BLS, BEA, Federal Reserve, Treasury, company IR) and major financial media for market reaction.
-4. Keep actual, consensus, and previous values distinct.
-5. Do not include crypto.
-6. Do not give trading instructions, targets, or stop losses.
-7. Keep only high-impact items relevant to {date_text}.
+- Never invent a number, quote, target price, survey statistic, causal link, or event time.
+- Prefer primary/official sources (BLS, BEA, Federal Reserve, Treasury, company IR) for facts and major financial media for market reaction.
+- If reporting 'profit taking', 'no new fundamental bad news', or 'rotation', require reputable commentary or broad peer-price evidence; do not infer it from one stock falling.
+- Separate the observed market reaction from the explanation.
+- Convert event times to Asia/Seoul only when the source time is known.
+- Do not include crypto.
+- Do not give our own buy/sell/entry/stop/target advice.
+- Keep only items that materially help explain {date_text}'s morning brief.
+- Produce a detailed fact memo with concrete names, numbers, peer moves, and attribution where verified.
 """.strip()
 
     try:
@@ -216,7 +264,7 @@ Rules:
             json={
                 "contents": [{"parts": [{"text": prompt}]}],
                 "tools": [{"google_search": {}}],
-                "generationConfig": {"temperature": 0.0, "maxOutputTokens": 3200},
+                "generationConfig": {"temperature": 0.0, "maxOutputTokens": 5200},
             },
             timeout=GROUNDING_TIMEOUT,
         )
@@ -231,7 +279,7 @@ Rules:
             return {}, f"grounding_json_normalize_failed:{normalize_engine}"
         parsed["sources"] = _grounding_sources(candidate)
         metadata = candidate.get("groundingMetadata") or {}
-        parsed["search_queries"] = (metadata.get("webSearchQueries") or [])[:10]
+        parsed["search_queries"] = (metadata.get("webSearchQueries") or [])[:16]
         return parsed, f"google_search_grounding:{model}:{normalize_engine}"
     except Exception as exc:
         return {}, f"grounding_request_failed:{type(exc).__name__}"
@@ -239,51 +287,65 @@ Rules:
 
 def _prompt(payload: dict) -> str:
     return (
-        "너는 한국 투자자를 위한 글로벌 크로스애셋 시장 데스크 + 뉴스 편집장 + 데이터 검증 담당자다.\n"
-        "목표는 미국장 마감 후 시장을 움직인 원인을 찾아 한국장에 연결하는 것이다.\n\n"
-        "절대 규칙:\n"
-        "1. INPUT_JSON에 존재하는 사실과 숫자만 사용한다. 숫자·실적·가이던스·경제일정을 추정하지 않는다.\n"
-        "2. 값이 없거나 충돌하면 '확인불가'라고 쓴다.\n"
-        "3. 급등·급락 자체를 원인으로 쓰지 않는다. 촉매가 없으면 '가격반응 중심, 촉매 확인 필요'라고 쓴다.\n"
-        "4. 사실과 해석을 구분한다.\n"
-        "5. 한국장 영향은 SOX, EWY/KORU, USD/KRW, 한국 수급, 미국 관련 업종 중 실제 입력 근거가 있을 때만 판단한다.\n"
-        "6. sector_baskets에서 여러 종목이 함께 움직이면 '섹터 확산', 한 종목만 움직이면 '개별주'라고 구분한다.\n"
-        "7. CPI/PPI/FOMC/고용/실적 일정은 grounded_research 또는 news_issues에 검증된 값이 있을 때만 적는다.\n"
-        "8. macro_releases는 실제치/예상치/이전치를 구분해서 표시하고, null 값은 확인불가로 쓴다.\n"
-        "9. 가상자산, 매수·매도 지시, 목표가·손절가 표현은 금지한다.\n"
-        "10. Telegram에서 읽기 쉽게 짧은 문장과 숫자 중심으로 작성한다.\n"
-        "11. news_issues의 source_grade는 출처 검증 등급이고 importance와 다른 축이다. 혼동하지 않는다.\n"
-        "12. news_issues에서 primary_catalyst_eligible=false인 C/D 출처는 보조 관찰 정보일 뿐이다. grounded_research로 독립 검증되지 않은 한 오늘의 한줄이나 '시장이 움직인 핵심 원인'의 주원인으로 쓰지 않는다.\n"
-        "13. 반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
-        "audit는 {\"pass\":true|false,\"score\":0~100,\"reason\":\"...\"}. 85점 미만이면 pass=false.\n\n"
-        "report 형식:\n"
-        "🇺🇸 MM/DD 미국증시 마감 → 🇰🇷 한국장 프리뷰\n"
-        "🔥 오늘의 한줄: [핵심 촉매] → [미국시장 반응] → [한국장 영향]\n\n"
-        "📊 주요 지수\n"
-        "- 다우 / S&P500 / 나스닥 / 러셀2000 / SOX: 값과 등락률\n\n"
-        "🌡️ 주요 시장 지표\n"
-        "- DXY / 미국10년물 / VIX / WTI / USDKRW\n"
-        "- 시장 레짐: RISK-ON | NEUTRAL | RISK-OFF\n\n"
-        "📈 핵심 경제지표\n"
-        "- 발표된 주요 지표: 실제 / 예상 / 이전 / 서프라이즈와 시장 의미\n"
-        "- 검증된 발표가 없으면 생략\n\n"
-        "🧭 시장이 움직인 핵심 원인\n"
-        "1) 사실 / 시장반응 / 의미\n"
-        "2) 필요시 추가\n\n"
-        "🚀 주도 섹터\n"
-        "- AI인프라 / 반도체·메모리 / 광통신·네트워크 / 전력·데이터센터 / 양자컴퓨팅 / 원자력 / 배터리·리튬 / 우주 중 실제 확인된 것만\n"
-        "- 대표 종목 등락률, 촉매, 확산도\n\n"
-        "🇰🇷 한국장 영향\n"
-        "- EWY / KORU / USDKRW / 외국인·기관 수급\n"
-        "- 유리한 섹터 / 부담 섹터\n"
-        "- 판정: 강세 우위 | 선별 강세 | 중립 | 방어 우위 + 이유\n\n"
-        "⚠️ 오늘의 리스크\n"
-        "- 선반영, 갭상승 차익실현, 금리·달러 반전, 이벤트 변동성 등 입력 근거가 있는 것만\n\n"
-        "🗓 주요 일정\n"
-        "- grounded_research.upcoming_events와 earnings_and_guidance를 KST로 표시\n"
-        "- 검증된 일정이 없으면 '확인 가능한 일정 데이터 없음'\n\n"
-        "✅ 3줄 요약\n"
-        "1. 거시환경과 레짐\n2. 가장 강한 섹터와 이유\n3. 한국장 핵심 체크포인트\n\n"
+        "너는 한국 기관투자자용 미국장 마감 모닝노트를 작성하는 글로벌 매크로·주식 리서치 데스크다.\n"
+        "목표는 단순 지수 나열이 아니라 '무슨 일이 있었고 → 왜 자산이 그렇게 움직였고 → 어느 업종으로 자금이 이동했는지'를 구체적 수치와 종목으로 설명하는 것이다.\n\n"
+        "사실성 절대 규칙:\n"
+        "1. INPUT_JSON에 있는 사실과 숫자만 사용한다. 입력에 없는 수치·원인·인용·목표가·일정을 만들지 않는다.\n"
+        "2. 시장 가격/등락률은 market의 동일 snapshot 수치를 최우선으로 사용한다. 뉴스나 grounded_research에 다른 가격이 있어도 market 수치와 섞지 않는다.\n"
+        "3. 값이 없거나 충돌하면 '확인불가'라고 쓰거나 해당 문장을 생략한다.\n"
+        "4. 급락 자체를 원인으로 설명하지 않는다. 금리, 수급, 실적, 규제, 지정학 등 검증된 촉매가 있어야 인과문장을 쓴다.\n"
+        "5. '차익실현', '펀더멘털 훼손 없음', '순환매' 같은 해석은 broad peer move 또는 grounded_research의 검증된 시장 코멘트가 있을 때만 쓴다.\n"
+        "6. news_issues의 C/D 출처는 단독으로 핵심 원인에 올리지 않는다. A/B 또는 grounded_research로 검증된 경우에만 중요 서사에 사용한다.\n"
+        "7. 증권사의 '매수 의견/목표가'는 grounded_research.analyst_actions에 회사·증권사·행동·목표가가 명시된 경우에만 쓸 수 있다. 이는 증권사 견해로 명확히 귀속하고 우리 자체 목표가처럼 쓰지 않는다.\n"
+        "8. 가상자산과 우리 자체 매수·매도·진입·손절·목표가 지시는 금지한다.\n"
+        "9. 비슷한 말을 반복하지 말고, 한 문장마다 새로운 사실·인과·비교를 담는다.\n"
+        "10. 문체는 사용자가 제공한 전문 모닝 시황 예시처럼 간결한 서술형 한국어로 쓴다. 이모지는 쓰지 않는다.\n\n"
+        "내용 품질 규칙:\n"
+        "- 첫 제목은 그날 시장을 한 문장으로 요약한다. 예: '[금리/지정학/실적]에 [섹터] 약세, [대체 섹터]로 순환매'. 단 실제 입력 근거가 있어야 한다.\n"
+        "- <요약>은 5~7줄. 지수 방향, 핵심 거시 촉매, 금리/유가, 가장 큰 약세 섹터, 강한 섹터, 한국장 연결을 압축한다. 각 줄 앞에 불릿 기호를 붙이지 않는다.\n"
+        "- <주요 지수 종합>은 다우·S&P500·Nasdaq를 반드시 포함하고, Russell2000·SOX·EWY/KORU/SOXX·미10년물·미30년물·원/달러 중 입력에 있는 값을 추가한다. 값과 일간 등락률을 같은 줄에 쓴다.\n"
+        "- <경제지표>는 실제/예상/이전뿐 아니라 중요한 세부항목과 시장 해석을 2~4문장으로 설명한다. 발표가 없으면 '검증된 주요 경제지표 발표 없음' 한 줄만 쓴다.\n"
+        "- <매크로>는 3~5개 핵심 주제를 번호로 정리하고 각 주제당 2~4문장. 장기금리, 재정/채권공급, 지정학/유가, 글로벌 중앙은행, 포지셔닝 중 실제로 중요한 것만 쓴다.\n"
+        "- <원자재>는 금·은과 WTI·브렌트를 가능한 범위에서 표시한다. '최근 미국 현지 정산가/일봉 snapshot 기준, 이후 실시간 변동 가능'이라고 명시한다.\n"
+        "- <주요 테마>는 실제 가격 변동이 큰 테마와 뉴스가 있는 테마 3~6개만 고른다. '[반도체·메모리]'처럼 테마 제목을 쓰고, 종목별로 '1. 종목명 (+/-x.xx%)' 다음 2~4문장으로 촉매·동종업계 동반 움직임·검증된 증권사 의견을 설명한다.\n"
+        "- 가격은 움직였지만 촉매를 검증하지 못했으면 '신규 촉매 확인불가'라고 명시하고 임의 이유를 붙이지 않는다.\n"
+        "- theme_baskets의 여러 종목이 같은 방향이면 섹터 확산으로 설명하고, 한 종목만 움직이면 개별주 이슈로 구분한다.\n\n"
+        "반드시 아래 형식을 그대로 지킨다. 헤더 이름을 바꾸거나 새로운 대분류를 추가하지 않는다.\n\n"
+        "[YYYY년 M월 D일 모닝 시황]\n"
+        "그날 시장의 핵심을 요약한 한 줄 제목\n\n"
+        "──────────\n"
+        "<요약>\n"
+        "요약문 1\n"
+        "요약문 2\n"
+        "...\n\n"
+        "──────────\n"
+        "<주요 지수 종합>\n"
+        "다우존스: 값 (등락률)\n"
+        "S&P 500: 값 (등락률)\n"
+        "Nasdaq: 값 (등락률)\n"
+        "기타 검증된 선행지표/금리/환율\n\n"
+        "──────────\n"
+        "<경제지표>\n"
+        "1. (지표명 / 핵심 수치)\n"
+        "상세 설명\n\n"
+        "──────────\n"
+        "<매크로>\n"
+        "1. 핵심 주제\n"
+        "상세 설명\n\n"
+        "──────────\n"
+        "<원자재>\n"
+        "(최근 미국 현지 정산가/일봉 snapshot 기준, 이후 실시간 변동 가능)\n"
+        "1. 금, 은 가격\n"
+        "금 ... , 은 ...\n\n"
+        "2. 유가\n"
+        "WTI ... , 브렌트유 ...\n\n"
+        "──────────\n"
+        "<주요 테마>\n"
+        "[테마명]\n"
+        "1. 종목명 (+/-x.xx%)\n"
+        "2~4문장 설명\n\n"
+        "반드시 JSON 객체 하나만 반환한다. 키는 report, audit 두 개다.\n"
+        "audit는 {\"pass\":true|false,\"score\":0~100,\"reason\":\"...\"}. 형식 누락, 숫자 혼입, 원인 날조, C/D 단독 핵심원인, 자체 매매지시가 있으면 pass=false. 90점 미만도 pass=false.\n\n"
         f"INPUT_JSON:\n{json.dumps(payload, ensure_ascii=False)}"
     )
 
@@ -294,9 +356,16 @@ def _audit(report: str) -> tuple[bool, str]:
     lowered = report.lower()
     if any(word.lower() in lowered for word in FORBIDDEN):
         return False, "forbidden_content"
-    for required in ["미국증시", "주요 지수", "주도 섹터", "한국장 영향", "3줄 요약"]:
-        if required not in report:
-            return False, f"missing_section:{required}"
+    if any(marker.lower() in lowered for marker in INTERNAL_MARKERS):
+        return False, "internal_diagnostic_leak"
+    if not re.search(r"^\[\d{4}년\s+\d{1,2}월\s+\d{1,2}일\s+모닝\s+시황\]", report.strip()):
+        return False, "bad_header"
+    required = ["<요약>", "<주요 지수 종합>", "<경제지표>", "<매크로>", "<원자재>", "<주요 테마>"]
+    for section in required:
+        if section not in report:
+            return False, f"missing_section:{section}"
+    if report.count(SECTION_SEPARATOR) < 6:
+        return False, "missing_separators"
     return True, "pass"
 
 
@@ -313,11 +382,11 @@ def _gemini(payload: dict) -> tuple[str | None, str]:
                 "contents": [{"parts": [{"text": _prompt(payload)}]}],
                 "generationConfig": {
                     "temperature": 0.08,
-                    "maxOutputTokens": 3500,
+                    "maxOutputTokens": 6200,
                     "responseMimeType": "application/json",
                 },
             },
-            timeout=45,
+            timeout=60,
         )
         response.raise_for_status()
         raw = "".join(
@@ -328,7 +397,7 @@ def _gemini(payload: dict) -> tuple[str | None, str]:
         if not parsed:
             return None, "gemini_json_parse_failed"
         audit = parsed.get("audit") or {}
-        if audit.get("pass") is False or int(audit.get("score") or 0) < 85:
+        if audit.get("pass") is False or int(audit.get("score") or 0) < 90:
             return None, f"gemini_self_audit_failed:{audit.get('reason') or 'unknown'}"
         report = str(parsed.get("report") or "").strip()
         ok, reason = _audit(report)
@@ -339,61 +408,214 @@ def _gemini(payload: dict) -> tuple[str | None, str]:
         return None, f"gemini_request_failed:{type(exc).__name__}"
 
 
-def _fmt(item: dict) -> str:
-    label = str(item.get("label") or item.get("ticker") or "?")
-    price = item.get("price")
-    change = item.get("change_pct")
-    if not isinstance(price, (int, float)):
-        return f"{label} 확인불가"
-    price_text = f"{price:,.2f}" if abs(price) < 1000 else f"{price:,.0f}"
-    change_text = f" {change:+.2f}%" if isinstance(change, (int, float)) else ""
-    return f"{label} {price_text}{change_text}"
+def _quote_from_assets(assets: dict[str, dict], label: str, ticker: str) -> dict:
+    item = dict(assets.get(ticker) or {})
+    item["label"] = label
+    item["ticker"] = ticker
+    return item
 
 
-def _macro_value(value, unit: str = "") -> str:
+def _active_atomic_market_context() -> dict | None:
+    """Build the dashboard exclusively from the active one-shot MarketSnapshot."""
+    try:
+        from .report_integrity import current_context
+
+        context = current_context()
+    except Exception:
+        context = None
+    if context is None:
+        return None
+
+    global_snapshot = context.market.global_snapshot
+    assets = dict(global_snapshot.get("assets") or {})
+    base_context = context.market.market_context
+    global_quotes = [
+        _quote_from_assets(assets, label, ticker)
+        for label, ticker in GLOBAL_QUOTE_TICKERS.items()
+    ]
+    korea_proxies = [
+        _quote_from_assets(assets, label, ticker)
+        for label, ticker in KOREA_PROXY_TICKERS.items()
+    ]
+    sector_baskets: dict[str, list[dict]] = {}
+    for sector, members in THEME_BASKETS.items():
+        rows = [_quote_from_assets(assets, name, ticker) for name, ticker in members.items()]
+        rows.sort(
+            key=lambda row: (
+                isinstance(row.get("change_pct"), (int, float)),
+                abs(float(row.get("change_pct") or 0.0)),
+            ),
+            reverse=True,
+        )
+        sector_baskets[sector] = rows
+
+    sp500 = assets.get(GLOBAL_QUOTE_TICKERS["S&P500"]) or {}
+    return {
+        "global_market_quotes": global_quotes,
+        "us_session_date": sp500.get("session_date"),
+        "risk_regime": dashboard_data._risk_regime(global_quotes),
+        "korea_proxies": korea_proxies,
+        "sector_baskets": sector_baskets,
+        "usd_krw": base_context.get("usd_krw"),
+        "kospi_change_pct": base_context.get("kospi_change_pct"),
+        "kosdaq_change_pct": base_context.get("kosdaq_change_pct"),
+        "sp500_change_pct": context.market.index_values.get("sp500_change_pct"),
+        "nasdaq_change_pct": context.market.index_values.get("nasdaq_change_pct"),
+        "investor_flow": base_context.get("investor_flow") or [],
+        "supply_demand_line": base_context.get("supply_demand_line") or "투자자별 수급 확인불가",
+        "market_bias": base_context.get("market_bias") or "시장 판단 미확인",
+        "top_sectors_by_volume": base_context.get("top_sectors_by_volume") or [],
+        "market_cap_leaders": base_context.get("market_cap_leaders") or [],
+        "source": "atomic ReportRunContext / Yahoo Finance daily bars + existing KR market context",
+        "timestamp": context.market.captured_at.isoformat(timespec="seconds"),
+        "snapshot_atomic": True,
+    }
+
+
+def _fmt(item: dict, *, label_override: str | None = None) -> str:
+    raw_label = str(item.get("label") or item.get("ticker") or "?")
+    label = label_override or raw_label
+    price = _safe_float(item.get("price"))
+    change = _safe_float(item.get("change_pct"))
+    if price is None:
+        return f"{label}: 확인불가"
+    if raw_label in {"US10Y", "US30Y"}:
+        price_text = f"{price:.4f}%"
+    elif raw_label in {"DOW", "S&P500", "NASDAQ", "RUSSELL2000", "SOX"}:
+        price_text = f"{price:,.2f}"
+    elif raw_label in {"GOLD", "SILVER", "WTI", "BRENT"}:
+        price_text = f"${price:,.3f}" if price < 100 else f"${price:,.2f}"
+    else:
+        price_text = f"{price:,.2f}" if abs(price) < 10000 else f"{price:,.0f}"
+    change_text = f" ({change:+.2f}%)" if change is not None else ""
+    return f"{label}: {price_text}{change_text}"
+
+
+def _find_quote(market: dict, label: str) -> dict:
+    return next((row for row in (market.get("global_market_quotes") or []) if row.get("label") == label), {"label": label})
+
+
+def _find_proxy(market: dict, label: str) -> dict:
+    return next((row for row in (market.get("korea_proxies") or []) if row.get("label") == label), {"label": label})
+
+
+def _macro_value(value: Any, unit: str = "") -> str:
     if value is None or value == "":
         return "확인불가"
     return f"{value}{unit or ''}"
 
 
-def _risk_line(global_quotes: list[dict], research: dict) -> str:
+def _fallback_headline(research: dict, market: dict) -> str:
+    explicit = str(research.get("session_headline") or "").strip()
+    if explicit:
+        return explicit[:140]
     catalysts = research.get("market_catalysts") or []
     if catalysts:
+        fact = str(catalysts[0].get("fact") or "").strip()
         reaction = str(catalysts[0].get("observed_market_reaction") or "").strip()
-        if reaction:
-            return f"- 핵심 촉매 반전 여부 확인: {reaction}"
-    parts = []
-    for label in ["VIX", "DXY", "US10Y"]:
-        item = next((row for row in global_quotes if row.get("label") == label), {})
-        change = item.get("change_pct")
-        if isinstance(change, (int, float)):
-            parts.append(f"{label} {change:+.2f}%")
-    if parts:
-        return "- " + " / ".join(parts) + " · 변동성·달러·금리의 장중 방향 반전 여부 확인"
-    return "- 시장 리스크 인과분석 확인불가 · 변동성·달러·금리 데이터 재확인 필요"
+        text = " · ".join(part for part in (fact, reaction) if part)
+        if text:
+            return text[:140]
+    spx = _safe_float(_find_quote(market, "S&P500").get("change_pct"))
+    sox = _safe_float(_find_quote(market, "SOX").get("change_pct"))
+    if spx is not None and sox is not None:
+        return f"S&P500 {spx:+.2f}%, 반도체지수 {sox:+.2f}% — 검증된 핵심 촉매는 추가 확인 필요"
+    return "미국장 마감 흐름 확인 — 검증된 핵심 촉매는 추가 확인 필요"
 
 
-def _fallback_one_line(research: dict, regime: dict) -> str:
-    catalysts = research.get("market_catalysts") or []
-    if catalysts:
-        item = catalysts[0]
-        fact = str(item.get("fact") or "핵심 촉매 확인불가").strip()
-        reaction = str(item.get("observed_market_reaction") or "미국시장 반응 확인불가").strip()
-        korea = str(item.get("korea_link") or "한국장 연계 확인 필요").strip()
-        return f"{fact} → {reaction} → {korea}"
-    return f"검증된 단일 촉매 확인불가 · 시세 기준 시장 레짐 {regime.get('regime', '확인불가')}"
+def _summary_fallback(research: dict, market: dict) -> list[str]:
+    points = [str(value).strip() for value in (research.get("summary_points") or []) if str(value).strip()]
+    if points:
+        return points[:7]
+
+    lines = []
+    equity_parts = []
+    for label in ["DOW", "S&P500", "NASDAQ", "SOX"]:
+        change = _safe_float(_find_quote(market, label).get("change_pct"))
+        if change is not None:
+            equity_parts.append(f"{label} {change:+.2f}%")
+    if equity_parts:
+        lines.append("미국 주요 지수: " + " / ".join(equity_parts))
+
+    rate_parts = []
+    for label in ["US10Y", "US30Y"]:
+        quote = _find_quote(market, label)
+        price = _safe_float(quote.get("price"))
+        if price is not None:
+            rate_parts.append(f"{label} {price:.4f}%")
+    if rate_parts:
+        lines.append("장기금리: " + " / ".join(rate_parts))
+
+    oil = _find_quote(market, "WTI")
+    oil_price = _safe_float(oil.get("price"))
+    if oil_price is not None:
+        oil_change = _safe_float(oil.get("change_pct"))
+        lines.append(f"WTI ${oil_price:,.2f}" + (f" ({oil_change:+.2f}%)" if oil_change is not None else ""))
+
+    baskets = market.get("sector_baskets") or {}
+    ranked: list[tuple[float, str, float]] = []
+    for sector, members in baskets.items():
+        changes = [_safe_float(row.get("change_pct")) for row in members]
+        valid = [value for value in changes if value is not None]
+        if valid:
+            ranked.append((abs(sum(valid) / len(valid)), sector, sum(valid) / len(valid)))
+    ranked.sort(reverse=True)
+    if ranked:
+        _, sector, mean = ranked[0]
+        lines.append(f"가장 큰 섹터 변동: {sector} 평균 {mean:+.2f}% — 세부 촉매는 아래 테마에서 확인")
+
+    proxy_parts = []
+    for label in ["EWY", "KORU", "SOXX"]:
+        change = _safe_float(_find_proxy(market, label).get("change_pct"))
+        if change is not None:
+            proxy_parts.append(f"{label} {change:+.2f}%")
+    if proxy_parts:
+        lines.append("한국장 선행 프록시: " + " / ".join(proxy_parts))
+
+    return lines[:7] or ["검증된 요약 데이터가 충분하지 않아 지수·뉴스 재확인 필요"]
 
 
 def _primary_clusters(clusters: list) -> list:
     return [cluster for cluster in clusters if _primary_catalyst_eligible(cluster)]
 
 
+def _company_context(research: dict, ticker: str) -> list[str]:
+    lines: list[str] = []
+    for item in research.get("company_catalysts") or []:
+        if str(item.get("ticker") or "").upper() != ticker.upper():
+            continue
+        fact = str(item.get("fact") or "").strip()
+        reaction = str(item.get("market_reaction") or "").strip()
+        peer = str(item.get("peer_readthrough") or "").strip()
+        if fact:
+            lines.append(fact)
+        if reaction:
+            lines.append(reaction)
+        if peer:
+            lines.append(peer)
+    for item in research.get("analyst_actions") or []:
+        if str(item.get("ticker") or "").upper() != ticker.upper():
+            continue
+        firm = str(item.get("firm") or "증권사").strip()
+        action = str(item.get("action") or item.get("rating") or "").strip()
+        target = item.get("target_price")
+        currency = str(item.get("currency") or "$").strip()
+        fact = str(item.get("fact") or "").strip()
+        parts = [firm]
+        if action:
+            parts.append(action)
+        if target is not None:
+            parts.append(f"목표가 {currency}{target}")
+        if fact:
+            parts.append(fact)
+        lines.append(" · ".join(parts))
+    return lines[:3]
+
+
 def _session_freshness(market: dict, now: datetime) -> tuple[bool | None, str, str]:
-    """Validate that a Tue-Sat KST 07:30 brief represents the prior US date."""
+    """Validate that a Tue-Sat KST morning brief represents the prior US date."""
     actual = str(market.get("us_session_date") or "").strip()
     expected = (now.date() - timedelta(days=1)).isoformat()
-    # Tue-Sat KST corresponds to Mon-Fri US regular sessions. Other weekdays are
-    # manual/non-scheduled invocations, so freshness is informational only.
     if now.weekday() not in {1, 2, 3, 4, 5}:
         return None, expected, actual
     if not actual:
@@ -405,12 +627,14 @@ def _stale_session_notice(now: datetime, expected: str, actual: str) -> str:
     observed = actual or "확인불가"
     return "\n".join(
         [
-            f"🇺🇸 {now:%m/%d} 미국 정규장 휴장·데이터 미갱신 확인",
-            "━━━━━━━━━━━━━━",
-            f"- 이번 브리핑이 요구하는 미국 세션: {expected}",
-            f"- 시장 데이터의 최근 확인 세션: {observed}",
-            "- 이전 거래일 마감 데이터를 오늘 마감처럼 재전송하지 않습니다.",
-            "- 뉴스 수집과 전략 학습은 별도 정기 작업에서 계속됩니다.",
+            f"[{now.year}년 {now.month}월 {now.day}일 모닝 시황]",
+            "미국 정규장 휴장·시장 데이터 미갱신",
+            "",
+            SECTION_SEPARATOR,
+            "<요약>",
+            f"이번 브리핑이 요구하는 미국 거래일은 {expected}이지만 최근 확인 세션은 {observed}",
+            "이전 거래일 마감 데이터를 오늘 마감처럼 재전송하지 않음",
+            "뉴스 수집과 전략 학습은 별도 정기 작업에서 계속 진행",
         ]
     )
 
@@ -419,105 +643,147 @@ def _local(payload: dict, clusters: list, rule: str) -> str:
     now = datetime.fromisoformat(payload["generated_at_iso"])
     market = payload["market"]
     research = payload.get("grounded_research") or {}
-    quality = payload.get("quality") or {}
-    global_quotes = market.get("global_market_quotes") or []
-    proxies = market.get("korea_proxies") or []
-    baskets = market.get("sector_baskets") or {}
-    regime = market.get("risk_regime") or {}
     lines = [
-        f"🇺🇸 {now:%m/%d} 미국증시 마감 → 🇰🇷 한국장 프리뷰",
-        "━━━━━━━━━━━━━━",
-        f"🔥 오늘의 한줄: {_fallback_one_line(research, regime)}",
+        f"[{now.year}년 {now.month}월 {now.day}일 모닝 시황]",
+        _fallback_headline(research, market),
         "",
-        "📊 주요 지수",
+        SECTION_SEPARATOR,
+        "<요약>",
     ]
-    for label in ["DOW", "S&P500", "NASDAQ", "RUSSELL2000", "SOX"]:
-        lines.append("- " + _fmt(next((x for x in global_quotes if x.get("label") == label), {"label": label})))
-    lines.extend(["", "🌡️ 주요 시장 지표"])
-    for label in ["DXY", "US10Y", "VIX", "WTI"]:
-        lines.append("- " + _fmt(next((x for x in global_quotes if x.get("label") == label), {"label": label})))
-    usd = market.get("usd_krw")
-    lines.append(f"- USD/KRW {usd:,.1f}" if isinstance(usd, (int, float)) else "- USD/KRW 확인불가")
-    lines.append(f"- 시장 레짐: {regime.get('regime', '확인불가')}")
+    lines.extend(_summary_fallback(research, market))
 
+    lines.extend(["", SECTION_SEPARATOR, "<주요 지수 종합>"])
+    label_names = {
+        "DOW": "다우존스",
+        "S&P500": "S&P 500",
+        "NASDAQ": "Nasdaq",
+        "RUSSELL2000": "Russell 2000",
+        "SOX": "필라델피아 반도체",
+    }
+    for label in ["DOW", "S&P500", "NASDAQ", "RUSSELL2000", "SOX"]:
+        lines.append(_fmt(_find_quote(market, label), label_override=label_names[label]))
+    for label in ["EWY", "KORU", "SOXX"]:
+        item = _find_proxy(market, label)
+        if _safe_float(item.get("price")) is not None:
+            lines.append(_fmt(item))
+    for label, name in [("US10Y", "미국 10년물"), ("US30Y", "미국 30년물")]:
+        item = _find_quote(market, label)
+        price = _safe_float(item.get("price"))
+        change = _safe_float(item.get("change_pct"))
+        if price is not None:
+            lines.append(f"{name}: {price:.4f}%" + (f" ({change:+.2f}%)" if change is not None else ""))
+    usd = _safe_float(market.get("usd_krw"))
+    if usd is not None:
+        lines.append(f"원/달러: {usd:,.2f}원")
+
+    lines.extend(["", SECTION_SEPARATOR, "<경제지표>"])
     macro = research.get("macro_releases") or []
     if macro:
-        lines.extend(["", "📈 핵심 경제지표"])
-        for item in macro[:6]:
+        for idx, item in enumerate(macro[:5], 1):
             unit = str(item.get("unit") or "")
-            lines.append(
-                f"- {item.get('name') or '지표'}: 실제 {_macro_value(item.get('actual'), unit)} / "
-                f"예상 {_macro_value(item.get('consensus'), unit)} / 이전 {_macro_value(item.get('previous'), unit)}"
-            )
-            if item.get("market_relevance"):
-                lines.append(f"  · {item['market_relevance']}")
+            actual = _macro_value(item.get("actual"), unit)
+            consensus = _macro_value(item.get("consensus"), unit)
+            previous = _macro_value(item.get("previous"), unit)
+            lines.append(f"{idx}. ({item.get('name') or '경제지표'} / 실제 {actual}, 예상 {consensus}, 이전 {previous})")
+            for detail in item.get("details") or []:
+                if str(detail).strip():
+                    lines.append(str(detail).strip())
+            relevance = str(item.get("market_relevance") or "").strip()
+            if relevance:
+                lines.append(relevance)
+            lines.append("")
+        while lines and lines[-1] == "":
+            lines.pop()
+    else:
+        lines.append("검증된 주요 경제지표 발표 없음")
 
-    lines.extend(["", "🧭 시장이 움직인 핵심 원인"])
+    lines.extend(["", SECTION_SEPARATOR, "<매크로>"])
+    topics = research.get("macro_topics") or []
     catalysts = research.get("market_catalysts") or []
-    primary_clusters = _primary_clusters(clusters)
-    if catalysts:
-        for idx, item in enumerate(catalysts[:4], 1):
-            reaction = str(item.get("observed_market_reaction") or "시장반응 확인불가")
-            lines.append(f"{idx}) {item.get('fact') or '사실 확인불가'} → {reaction}")
-    elif primary_clusters:
-        for idx, cluster in enumerate(primary_clusters[:5], 1):
-            lines.append(
-                f"{idx}) [중요도 {materiality_score(cluster)} · 출처 {_source_grade(cluster)}] "
-                f"{display._display_title(cluster, 90)}"
-            )
-    elif clusters:
-        lines.append("- 출처 A/B로 검증된 핵심 촉매 없음")
-        weak = sorted(clusters, key=materiality_score, reverse=True)[:3]
-        for cluster in weak:
-            lines.append(
-                f"  · 보조 관찰 [중요도 {materiality_score(cluster)} · 출처 {_source_grade(cluster)}] "
-                f"{display._display_title(cluster, 80)}"
-            )
+    if topics:
+        for idx, item in enumerate(topics[:5], 1):
+            lines.append(f"{idx}. {item.get('title') or '매크로 이슈'}")
+            for fact in item.get("facts") or []:
+                if str(fact).strip():
+                    lines.append(str(fact).strip())
+            relevance = str(item.get("market_relevance") or "").strip()
+            if relevance:
+                lines.append(relevance)
+            lines.append("")
+        while lines and lines[-1] == "":
+            lines.pop()
+    elif catalysts:
+        for idx, item in enumerate(catalysts[:5], 1):
+            lines.append(f"{idx}. {item.get('fact') or '매크로 이슈'}")
+            reaction = str(item.get("observed_market_reaction") or "").strip()
+            if reaction:
+                lines.append(reaction)
+            korea = str(item.get("korea_link") or "").strip()
+            if korea:
+                lines.append(korea)
+            lines.append("")
+        while lines and lines[-1] == "":
+            lines.pop()
     else:
-        lines.append("- 중요도 게이트 통과 뉴스 없음")
+        primary = _primary_clusters(clusters)
+        if primary:
+            for idx, cluster in enumerate(primary[:4], 1):
+                lines.append(f"{idx}. {display._display_title(cluster, 120)}")
+                body = str(getattr(cluster.best().item, "body", "") or "").strip()
+                if body:
+                    lines.append(strict.base._short(body, 260))
+        else:
+            lines.append("출처 A/B로 검증된 핵심 촉매 없음")
+            if clusters:
+                weak = sorted(clusters, key=materiality_score, reverse=True)[:3]
+                for cluster in weak:
+                    lines.append(
+                        f"보조 관찰 [중요도 {materiality_score(cluster)} · 출처 {_source_grade(cluster)}] "
+                        f"{display._display_title(cluster, 100)}"
+                    )
 
-    lines.extend(["", "🚀 주도 섹터"])
-    shown = False
+    lines.extend(["", SECTION_SEPARATOR, "<원자재>"])
+    lines.append("(최근 미국 현지 정산가/일봉 snapshot 기준, 이후 실시간 변동 가능)")
+    lines.append("1. 금, 은 가격")
+    lines.append(f"{_fmt(_find_quote(market, 'GOLD'), label_override='금')}, {_fmt(_find_quote(market, 'SILVER'), label_override='은')}")
+    lines.append("")
+    lines.append("2. 유가")
+    lines.append(f"{_fmt(_find_quote(market, 'WTI'), label_override='WTI')}, {_fmt(_find_quote(market, 'BRENT'), label_override='브렌트유')}")
+
+    lines.extend(["", SECTION_SEPARATOR, "<주요 테마>"])
+    baskets = market.get("sector_baskets") or {}
+    ranked: list[tuple[float, str, list[dict]]] = []
     for sector, members in baskets.items():
-        valid = [m for m in members if isinstance(m.get("change_pct"), (int, float))]
-        if valid:
-            shown = True
-            lines.append(f"- {sector}: " + ", ".join(_fmt(m) for m in valid[:3]))
-    if not shown:
-        lines.append("- 섹터 시세 확인불가")
+        valid = [row for row in members if _safe_float(row.get("change_pct")) is not None]
+        if not valid:
+            continue
+        magnitude = sum(abs(float(row["change_pct"])) for row in valid) / len(valid)
+        ranked.append((magnitude, sector, valid))
+    ranked.sort(key=lambda row: row[0], reverse=True)
 
-    lines.extend(["", "🇰🇷 한국장 영향"])
-    lines.append("- " + " / ".join(_fmt(x) for x in proxies) if proxies else "- EWY/KORU 확인불가")
-    lines.append(f"- {market.get('supply_demand_line') or '투자자별 수급 확인불가'}")
-    lines.append(f"- 판정 참고: {market.get('market_bias') or '시장 판단 미확인'}")
-    lines.extend(["", "⚠️ 오늘의 리스크", _risk_line(global_quotes, research)])
-
-    lines.extend(["", "🗓 주요 일정"])
-    events = research.get("upcoming_events") or []
-    earnings = research.get("earnings_and_guidance") or []
-    if events or earnings:
-        for item in events[:6]:
-            when = item.get("scheduled_at_kst") or "시각 확인불가"
-            consensus = _macro_value(item.get("consensus"), str(item.get("unit") or ""))
-            lines.append(f"- {when} · {item.get('name') or '경제일정'} · 예상 {consensus}")
-        for item in earnings[:4]:
-            when = item.get("event_time_kst") or "시각 확인불가"
-            ticker = f"({item.get('ticker')})" if item.get("ticker") else ""
-            lines.append(f"- {when} · {item.get('company') or '기업'}{ticker} · {item.get('fact') or '실적/가이던스 일정'}")
+    if not ranked:
+        lines.append("검증 가능한 테마별 종목 시세 없음")
     else:
-        lines.append("- 확인 가능한 일정 데이터 없음")
+        for _, sector, members in ranked[:6]:
+            lines.append(f"[{sector}]")
+            for idx, row in enumerate(members[:4], 1):
+                change = _safe_float(row.get("change_pct"))
+                ticker = str(row.get("ticker") or "")
+                lines.append(f"{idx}. {row.get('label') or ticker} ({change:+.2f}%)")
+                context_lines = _company_context(research, ticker)
+                if context_lines:
+                    lines.extend(context_lines)
+                else:
+                    lines.append("신규 촉매 확인불가 — 가격 움직임만 확인, 임의 원인 부여 금지")
+            lines.append("")
+        while lines and lines[-1] == "":
+            lines.pop()
 
-    grounding_engine = str(quality.get("grounding_engine") or "grounding_state_unknown")
-    grounding_status = "사용" if research else f"미사용({grounding_engine})"
-    lines.extend([
-        "",
-        "✅ 3줄 요약",
-        f"1. 거시환경: {regime.get('regime', '확인불가')}",
-        f"2. 섹터 확산: {'확인' if shown else '확인불가'}",
-        f"3. 한국장: {market.get('market_bias') or '판단 데이터 부족'}",
-        "",
-        f"검증: 로컬 fallback · {rule} · Google grounding {grounding_status}",
-    ])
+    quality = payload.get("quality") or {}
+    grounding_engine = str(quality.get("grounding_engine") or "")
+    if not research and grounding_engine.startswith("grounding_"):
+        lines.extend(["", f"Google grounding 미사용({grounding_engine})"])
+
     return "\n".join(lines)[:MAX_REPORT_CHARS]
 
 
@@ -528,14 +794,21 @@ def build_us_close_dashboard(
 ) -> str:
     now = datetime.now(ZoneInfo(timezone_name))
     selected, stock_count, blocked, rule, pre_gate_count = strict._select_strict(summaries)
-    clusters = display._drop_noise(selected)[:20]
-    market = get_market_dashboard_context()
+    clusters = display._drop_noise(selected)[:24]
+
+    # Production runs are already inside report_integrity.activate_context().
+    # Reusing that snapshot prevents the old second Yahoo fetch from introducing
+    # contradictory index values inside the same morning brief.
+    market = _active_atomic_market_context()
+    snapshot_source = "atomic" if market is not None else "standalone"
+    if market is None:
+        market = get_market_dashboard_context()
 
     fresh, expected_session, actual_session = _session_freshness(market, now)
     if fresh is False:
         print(
             "[market-dashboard] stale_session_blocked "
-            f"expected={expected_session} actual={actual_session or 'missing'}"
+            f"expected={expected_session} actual={actual_session or 'missing'} source={snapshot_source}"
         )
         return _stale_session_notice(now, expected_session, actual_session)
 
@@ -559,6 +832,7 @@ def build_us_close_dashboard(
             "grounding_source_count": len(grounded_research.get("sources") or []),
             "expected_us_session_date": expected_session,
             "actual_us_session_date": actual_session,
+            "market_snapshot_source": snapshot_source,
         },
     }
     report, engine = _gemini(payload)
@@ -566,12 +840,11 @@ def build_us_close_dashboard(
         "[market-dashboard] "
         f"grounding={grounding_engine} sources={len(grounded_research.get('sources') or [])} "
         f"final={engine} selected={len(clusters)} primary={payload['quality']['primary_catalyst_count']} "
-        f"session={actual_session or 'unknown'}"
+        f"session={actual_session or 'unknown'} snapshot={snapshot_source}"
     )
     if report:
-        source_count = len(grounded_research.get("sources") or [])
-        return report + f"\n\n검증: {engine} · {grounding_engine} · 웹근거 {source_count}개 · 입력 수치 외 생성 금지"
+        return report
     local = _local(payload, clusters, rule)
     if os.getenv("DEBUG_QUALITY", "0") == "1":
-        local += f"\nGemini진단: {engine} / Grounding진단: {grounding_engine}"
+        local += f"\n\n[DEBUG] final={engine} / grounding={grounding_engine}"
     return local

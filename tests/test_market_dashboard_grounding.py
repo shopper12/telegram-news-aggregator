@@ -67,7 +67,7 @@ def test_grounded_market_research_failure_is_nonfatal(monkeypatch):
     assert engine == "grounding_request_failed:TimeoutError"
 
 
-def test_local_fallback_displays_macro_actual_consensus_previous_and_schedule():
+def test_local_fallback_displays_macro_actual_consensus_previous_in_new_format():
     payload = {
         "generated_at_iso": "2026-08-14T07:30:00+09:00",
         "market": {
@@ -104,6 +104,7 @@ def test_local_fallback_displays_macro_actual_consensus_previous_and_schedule():
 
     text = report._local(payload, clusters=[], rule="test")
 
-    assert "📈 핵심 경제지표" in text
-    assert "PPI: 실제 0.2% / 예상 0.3% / 이전 0.1%" in text
-    assert "2026-08-14 21:30 KST · 소매판매 · 예상 0.4%" in text
+    assert "<경제지표>" in text
+    assert "1. (PPI / 실제 0.2%, 예상 0.3%, 이전 0.1%)" in text
+    assert "예상 하회" in text
+    assert "🗓 주요 일정" not in text

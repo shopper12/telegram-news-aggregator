@@ -231,10 +231,10 @@ def test_stale_us_session_is_blocked_before_grounding_or_gemini(monkeypatch):
 
     report = market_dashboard_report.build_us_close_dashboard([], hours=12)
 
-    assert "휴장·데이터 미갱신" in report
+    assert "휴장·시장 데이터 미갱신" in report
     assert "2026-08-17" in report
     assert "2026-08-14" in report
-    assert "이전 거래일 마감 데이터를 오늘 마감처럼 재전송하지 않습니다" in report
+    assert "이전 거래일 마감 데이터를 오늘 마감처럼 재전송하지 않음" in report
 
 
 def test_session_freshness_accepts_expected_prior_us_date():
@@ -302,5 +302,7 @@ def test_local_fallback_labels_importance_and_source_grade_and_hides_internal_fa
     text = market_dashboard_report._local(payload, clusters=[], rule="test")
 
     assert "Gemini 최종 인과분석 실패" not in text
-    assert "변동성·달러·금리" in text
+    assert "<요약>" in text
+    assert "<매크로>" in text
+    assert "<주요 테마>" in text
     assert "Google grounding 미사용(grounding_json_normalize_failed:test)" in text
