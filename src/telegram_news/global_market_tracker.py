@@ -66,6 +66,19 @@ def _volatility(closes: list[float]) -> float | None:
     return math.sqrt(sum((value - mean) ** 2 for value in returns) / (len(returns) - 1))
 
 
+def _session_date(result: dict[str, Any], meta: dict[str, Any]) -> str | None:
+    """Return the exchange-local date of the most recent daily bar."""
+    timestamps = [int(value) for value in (result.get("timestamp") or []) if value]
+    epoch = timestamps[-1] if timestamps else meta.get("regularMarketTime")
+    if not epoch:
+        return None
+    try:
+        timezone_name = str(meta.get("exchangeTimezoneName") or "America/New_York")
+        return datetime.fromtimestamp(int(epoch), ZoneInfo(timezone_name)).date().isoformat()
+    except Exception:
+        return None
+
+
 def fetch_asset_snapshot(ticker: str) -> dict[str, Any]:
     now = datetime.now(KST).isoformat(timespec="seconds")
     url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?range=1mo&interval=1d&events=div%2Csplits"
@@ -97,11 +110,24 @@ def fetch_asset_snapshot(ticker: str) -> dict[str, Any]:
             "return_5d": _pct(closes[-1], closes[-6]) if len(closes) >= 6 else None,
             "return_20d": _pct(closes[-1], closes[-21]) if len(closes) >= 21 else None,
             "volatility_20d": _volatility(closes[-21:]),
+            "session_date": _session_date(result, meta),
+            "source": "Yahoo Finance daily bars",
             "timestamp": now,
             "error": None,
         }
     except Exception as exc:
-        return {"ticker": ticker, "price": None, "change_pct": None, "return_5d": None, "return_20d": None, "volatility_20d": None, "timestamp": now, "error": f"{type(exc).__name__}: {exc}"}
+        return {
+            "ticker": ticker,
+            "price": None,
+            "change_pct": None,
+            "return_5d": None,
+            "return_20d": None,
+            "volatility_20d": None,
+            "session_date": None,
+            "source": "Yahoo Finance daily bars",
+            "timestamp": now,
+            "error": f"{type(exc).__name__}: {exc}",
+        }
 
 
 def _change(assets: dict[str, Any], ticker: str) -> float | None:
