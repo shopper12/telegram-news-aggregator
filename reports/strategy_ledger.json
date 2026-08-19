@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-19T22:39:22+09:00",
+  "updated_at": "2026-08-19T23:09:04+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -2787,7 +2787,7 @@
         "defensive": 0.82
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +0.83, 뉴스 +4.00 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 마이크론 주가, 다시 1,000달러 선 근접… 어디까지 오를 수 있을까 최근 메모리주 반등의 배경 중 하나로는 샌디스크",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-17T07:30:23+09:00",
@@ -2798,11 +2798,19 @@
           "evaluated_at": "2026-08-17T23:04:01+09:00",
           "price": 560.13,
           "return_pct": 1.7641
+        },
+        "72h": {
+          "evaluated_at": "2026-08-19T23:09:04+09:00",
+          "price": 519.45,
+          "return_pct": -5.6266
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-17T23:04:01+09:00"
+      "learned_at": "2026-08-17T23:04:01+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-19T23:09:04+09:00",
+      "final_return_pct": -5.6266
     },
     {
       "id": "8466f2169d6b1f7e",
@@ -2833,7 +2841,7 @@
         "defensive": 0.82
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +1.18, 뉴스 +1.14 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; >>TSMC 주가 1년 새 80% 급등…지금도 살 만할까? 외신의 솔직한 판단",
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-17T07:30:23+09:00",
@@ -2844,11 +2852,19 @@
           "evaluated_at": "2026-08-17T23:04:01+09:00",
           "price": 404.21,
           "return_pct": 0.68
+        },
+        "72h": {
+          "evaluated_at": "2026-08-19T23:09:04+09:00",
+          "price": 410.06,
+          "return_pct": 2.1371
         }
       },
       "learned_24h": true,
       "price_source": "Yahoo Finance regular-session snapshot",
-      "learned_at": "2026-08-17T23:04:01+09:00"
+      "learned_at": "2026-08-17T23:04:01+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-19T23:09:04+09:00",
+      "final_return_pct": 2.1371
     },
     {
       "id": "a8f08b3971076fdf",
@@ -3449,9 +3465,15 @@
           "evaluated_at": "2026-08-19T07:34:51+09:00",
           "price": 397.72,
           "return_pct": -1.4923
+        },
+        "24h": {
+          "evaluated_at": "2026-08-19T23:09:04+09:00",
+          "price": 410.06,
+          "return_pct": 1.5641
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-19T23:09:04+09:00"
     },
     {
       "id": "4a940fa1053d4aa6",
@@ -3508,9 +3530,15 @@
           "evaluated_at": "2026-08-19T07:34:51+09:00",
           "price": 169.87,
           "return_pct": -3.2411
+        },
+        "24h": {
+          "evaluated_at": "2026-08-19T23:09:04+09:00",
+          "price": 174.46,
+          "return_pct": -0.6266
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-19T23:09:04+09:00"
     },
     {
       "id": "ff6888708d65b513",
@@ -3568,9 +3596,15 @@
           "evaluated_at": "2026-08-19T07:34:51+09:00",
           "price": 716.6,
           "return_pct": -0.4363
+        },
+        "24h": {
+          "evaluated_at": "2026-08-19T23:09:04+09:00",
+          "price": 714.65,
+          "return_pct": -0.7072
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-19T23:09:04+09:00"
     },
     {
       "id": "8597b7370a16b7e6",
@@ -3752,6 +3786,168 @@
           "return_pct": 0.127
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "a2a34326a1393333",
+      "created_at": "2026-08-19T23:09:04+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 410.06,
+      "entry_zone": [
+        408.0097,
+        412.1103
+      ],
+      "stop_price": 399.62761,
+      "target_price": 430.92478,
+      "score": 6.495,
+      "components": {
+        "momentum": 1.6071065990527948,
+        "regime": 0.2,
+        "news": 3.988248844724826,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +1.61, regime +0.20, news +3.99, defensive +0.70",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.61, 뉴스 +3.99 / 연결 뉴스: AI 붐 수혜로 SK하이닉스가 주주환원 확대에 나서며 약 290억 달러 규모의 자사주 매입 추진. SK하이닉스는 올해 8월 19…; 🌎 글로벌 뉴스 브리핑",
+      "news_evidence": [
+        {
+          "title": "AI 붐 수혜로 SK하이닉스가 주주환원 확대에 나서며 약 290억 달러 규모의 자사주 매입 추진. SK하이닉스는 올해 8월 19…",
+          "urls": [
+            "https://t.me/insidertracking/61531"
+          ],
+          "last_seen": "2026-08-19T10:11:41+00:00"
+        },
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/61535"
+          ],
+          "last_seen": "2026-08-19T11:02:45+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "3abd52bab31e89f7",
+      "created_at": "2026-08-19T23:09:04+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 174.46,
+      "entry_zone": [
+        173.5877,
+        175.3323
+      ],
+      "stop_price": 161.164157,
+      "target_price": 201.051686,
+      "score": 4.51,
+      "components": {
+        "momentum": 0.5099115812987198,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.51, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.51, 뉴스 +4.00 / 연결 뉴스: <8월 19일 보고서‧기사‧특징주> ▶️보고서 이수페타시스 : 다시 한번 꿈꾸는 고공행진 (메리츠증권) https://buly.…; #[유니트리 상장, Physical AI시대 시작 : 하반기 주식시장의 상승 모멘텀, 로봇이 될 가능성] 안녕하세요? 삼성 모빌…",
+      "news_evidence": [
+        {
+          "title": "<8월 19일 보고서‧기사‧특징주> ▶️보고서 이수페타시스 : 다시 한번 꿈꾸는 고공행진 (메리츠증권) https://buly.…",
+          "urls": [
+            "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353420",
+            "https://bbn.kiwoom.com/rfCI5674"
+          ],
+          "last_seen": "2026-08-19T06:35:23+00:00"
+        },
+        {
+          "title": "#[유니트리 상장, Physical AI시대 시작 : 하반기 주식시장의 상승 모멘텀, 로봇이 될 가능성] 안녕하세요? 삼성 모빌…",
+          "urls": [
+            "https://t.me/sharpha/51611"
+          ],
+          "last_seen": "2026-08-19T06:33:30+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "237533ac533424bc",
+      "created_at": "2026-08-19T23:09:04+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 714.65,
+      "entry_zone": [
+        711.07675,
+        718.22325
+      ],
+      "stop_price": 697.385046,
+      "target_price": 749.179907,
+      "score": 3.781,
+      "components": {
+        "momentum": -0.21927083797318,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.22, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.22, 뉴스 +4.00 / 연결 뉴스: <8월 19일 보고서‧기사‧특징주> ▶️보고서 이수페타시스 : 다시 한번 꿈꾸는 고공행진 (메리츠증권) https://buly.…; 🔔",
+      "news_evidence": [
+        {
+          "title": "<8월 19일 보고서‧기사‧특징주> ▶️보고서 이수페타시스 : 다시 한번 꿈꾸는 고공행진 (메리츠증권) https://buly.…",
+          "urls": [
+            "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353420",
+            "https://bbn.kiwoom.com/rfCI5674"
+          ],
+          "last_seen": "2026-08-19T06:35:23+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://edaily.co.kr/news/newspath.asp?newsid=01416966645548632",
+            "https://t.me/dreago_news_ch/296117"
+          ],
+          "last_seen": "2026-08-19T13:35:21+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
