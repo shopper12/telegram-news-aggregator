@@ -1,7 +1,281 @@
 {
   "version": 2,
-  "updated_at": "2026-08-19T20:22:54+09:00",
+  "updated_at": "2026-08-19T20:52:03+09:00",
   "events": [
+    {
+      "signature": "8c9a8ae037bb2895533328b624f73770a729d657",
+      "title": "아니 뭐 계속 10%씩 오르락 내리락하네요....",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61542"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-19T11:48:08+00:00",
+      "last_seen": "2026-08-19T11:48:08+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f90e7f43ca289ab1d36251da35a65f9eb868e8e6",
+      "title": "🇺🇸미국 개장 전 주요 종목🇺🇸 ES 보합 NQ -0.2% RTY 보합 MAG-7: $AMZN +0.3% $META +0.1% …",
+      "sectors": [
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "aapl",
+        "amzn",
+        "googl",
+        "meta",
+        "msft",
+        "nvda",
+        "sk하이닉스",
+        "tsla",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "AAPL",
+        "ADI",
+        "AMZN",
+        "EL",
+        "GOOGL",
+        "LOW"
+      ],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/22513"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-08-19T11:45:42+00:00",
+      "last_seen": "2026-08-19T11:45:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f374ceea0123d8338c1465fc494d7529bc832388",
+      "title": "코스피 야간선물은 다시 반등해서 2.8% 상승중",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61539"
+      ],
+      "materiality": 2,
+      "sentiment": 2,
+      "first_seen": "2026-08-19T11:42:42+00:00",
+      "last_seen": "2026-08-19T11:42:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b702624e29fc7f845624235576280f1f4537013e",
+      "title": "🔔 “주가 조정은 매수 기회”…목표가 19만원까지 나온 ‘이 종목’ 📈 #이수페타시스 📝 #AI반도체기판 #HDI기판 #기판생산…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "반도체"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/016/0002685821",
+        "https://t.me/dreago_news_ch/297010"
+      ],
+      "materiality": 10,
+      "sentiment": -1,
+      "first_seen": "2026-08-19T11:40:29+00:00",
+      "last_seen": "2026-08-19T11:40:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "90f642a166da2a80256a10130daccab19f4a3aa5",
+      "title": "🔔",
+      "sectors": [
+        "바이오"
+      ],
+      "keywords": [
+        "신약",
+        "nda",
+        "임상"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://cbci.co.kr/news/articleView.html?idxno=599362",
+        "https://t.me/dreago_news_ch/296912",
+        "https://newspim.com/news/view/20260819001072",
+        "https://t.me/dreago_news_ch/296898",
+        "https://newspim.com/news/view/20260819001248"
+      ],
+      "materiality": 21,
+      "sentiment": 0,
+      "first_seen": "2026-08-19T07:55:17+00:00",
+      "last_seen": "2026-08-19T11:39:58+00:00",
+      "count": 3
+    },
+    {
+      "signature": "e2ddce22f5d434d6f37a8cc1bd1470522fd764d0",
+      "title": "제목 : 스타벅스, 북미 사업부가 실적 견인할 것",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "정책"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/kwusa/60375"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-08-19T11:34:09+00:00",
+      "last_seen": "2026-08-19T11:34:09+00:00",
+      "count": 1
+    },
+    {
+      "signature": "72e449b246e76744824529efa65e68e4885a7c8a",
+      "title": "제목 : [실적 속보] 애널로그 디바이시스, 실적 호조 발표하며 상승 *연합인포맥스* 애널로그 디바이시스(NAS: ADI)는 F…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "데이터센터",
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/kwusa/60374"
+      ],
+      "materiality": 23,
+      "sentiment": 1,
+      "first_seen": "2026-08-19T11:34:07+00:00",
+      "last_seen": "2026-08-19T11:34:07+00:00",
+      "count": 1
+    },
+    {
+      "signature": "32351940c4e2b7b2f65a2787b64613419357fabf",
+      "title": "#삼성전자 #하이닉스 #공매도 잔고",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://t.me/Yeouido_Lab/37255"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-19T11:34:05+00:00",
+      "last_seen": "2026-08-19T11:34:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3adaf82a637bc49a7fe0c8a191782123e922dab6",
+      "title": "금리 상승 우려",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "전력기기"
+      ],
+      "keywords": [
+        "ai",
+        "cpi",
+        "금리",
+        "데이터센터",
+        "메타",
+        "반도체",
+        "아마존",
+        "엔비디아",
+        "전력기기"
+      ],
+      "tickers": [
+        "BX"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/10273"
+      ],
+      "materiality": 21,
+      "sentiment": 2,
+      "first_seen": "2026-08-19T11:26:07+00:00",
+      "last_seen": "2026-08-19T11:26:07+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c9b5b6749bab42711c0d48d4045bfe5578f434d2",
+      "title": "[뉴스] 머크·모더나, 흑색종 3상 INTerpath-001서 인티스메란+키트루다 병용, 무재발생존(RFS)·원격전이무병생존(D…",
+      "sectors": [
+        "거시/정책",
+        "바이오"
+      ],
+      "keywords": [
+        "규제",
+        "임상",
+        "허가"
+      ],
+      "tickers": [
+        "DMFS",
+        "INT",
+        "MRNA",
+        "NNBR",
+        "NSCLC",
+        "NWS",
+        "NWSA",
+        "RFS"
+      ],
+      "source_urls": [
+        "https://news.modernatx.com/merck-and-moderna-announce-phase-3-interpath-001-trial-of-intismeran-plus-keytruda-met-endpoints-of-rfs-and-dmfs-in-melanoma",
+        "https://t.me/aicorporateanalysisdeepdive/10272"
+      ],
+      "materiality": 29,
+      "sentiment": 0,
+      "first_seen": "2026-08-19T11:24:36+00:00",
+      "last_seen": "2026-08-19T11:24:36+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3348292e284b0b14dd66069d453d976d77aa6644",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "정책"
+      ],
+      "tickers": [
+        "064350.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://news.tvchosun.com/site/data/html_dir/2026/08/19/2026081990254.html",
+        "https://t.me/dreago_news_ch/297008"
+      ],
+      "materiality": 19,
+      "sentiment": 0,
+      "first_seen": "2026-08-19T11:21:30+00:00",
+      "last_seen": "2026-08-19T11:21:30+00:00",
+      "count": 1
+    },
     {
       "signature": "065d0fca782830f56554574b04a332e70ca8ad1f",
       "title": "제목 : 모더나와 머크, mRNA 항암제 후기 임상 성공에 급등 *연합인포맥스* 시킹 알파는 모더나",
@@ -19,7 +293,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-19T11:09:08+00:00",
       "last_seen": "2026-08-19T11:09:08+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "52af17f2ee0d6b38ea1d6a89905ba2b30be760a6",
@@ -38,7 +312,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-19T11:09:02+00:00",
       "last_seen": "2026-08-19T11:09:02+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "f632505455d87507afca32ff1505fa35394027b4",
@@ -72,7 +346,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-19T11:07:34+00:00",
       "last_seen": "2026-08-19T11:07:34+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "a0a07b9d18b597f329332ad4d2d393a66fb40a6f",
@@ -103,7 +377,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-19T11:02:45+00:00",
       "last_seen": "2026-08-19T11:02:45+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "5cf24e1ffa54c899765384479dd855c37e5f2f3a",
@@ -126,7 +400,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-19T11:02:20+00:00",
       "last_seen": "2026-08-19T11:02:20+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "a5bda8d5d093224134afb975ed33da91efa35ca9",
@@ -141,7 +415,7 @@
       "sentiment": 2,
       "first_seen": "2026-08-19T10:56:52+00:00",
       "last_seen": "2026-08-19T10:56:52+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "7a372685f22353c9f24aa8ad8c4b16f7646b12f6",
@@ -160,7 +434,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-19T10:56:10+00:00",
       "last_seen": "2026-08-19T10:56:10+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "a5dd25a23b9dc4994b1735114c29b7b4e3693721",
@@ -4030,32 +4304,6 @@
       "first_seen": "2026-08-17T22:51:11+00:00",
       "last_seen": "2026-08-19T07:39:29+00:00",
       "count": 18
-    },
-    {
-      "signature": "90f642a166da2a80256a10130daccab19f4a3aa5",
-      "title": "🔔",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "신약",
-        "nda"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://cbci.co.kr/news/articleView.html?idxno=599362",
-        "https://t.me/dreago_news_ch/296912",
-        "https://newspim.com/news/view/20260819001072",
-        "https://t.me/dreago_news_ch/296898"
-      ],
-      "materiality": 21,
-      "sentiment": 0,
-      "first_seen": "2026-08-19T07:55:17+00:00",
-      "last_seen": "2026-08-19T07:38:59+00:00",
-      "count": 2
     },
     {
       "signature": "0e6a3e067464939e5f7c8f99713b3e5a8664d168",
@@ -11346,219 +11594,6 @@
       "first_seen": "2026-08-19T01:43:06+00:00",
       "last_seen": "2026-08-19T01:46:37+00:00",
       "count": 3
-    },
-    {
-      "signature": "28c170dd246a814b9a4d98a468d9c442375548e5",
-      "title": "🔔 테스, 실적 양호·수주 잔고 확대…목표가↑-하나증권 📈 #테스 📝 #반도체장비수주증가 #실적성장 테스 실적 성장과 수주잔고 …",
-      "sectors": [
-        "반도체",
-        "조선"
-      ],
-      "keywords": [
-        "반도체",
-        "수주잔고"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://mt.co.kr/stock/2026/08/19/2026081908574532943",
-        "https://t.me/dreago_news_ch/296712"
-      ],
-      "materiality": 19,
-      "sentiment": 3,
-      "first_seen": "2026-08-19T01:45:42+00:00",
-      "last_seen": "2026-08-19T01:45:42+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8639039a525ded4b8f18b81a4e446fca22aba1c8",
-      "title": "🔔 해고자 복직·상여금 인상 평행선…현대차 노조, 전면파업 임박 📈 #현대자동차 #현대모비스 #현대위아 #만도 #한온시스템 📝 …",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "005380.KS",
-        "012330.KS",
-        "018880.KS",
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://nocutnews.co.kr/news/6564635",
-        "https://t.me/dreago_news_ch/296710"
-      ],
-      "materiality": 15,
-      "sentiment": 0,
-      "first_seen": "2026-08-19T01:43:52+00:00",
-      "last_seen": "2026-08-19T01:43:52+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e374daa6adb87ee6dda0f79789be65b5f143bff4",
-      "title": "🔔 현대차에 포스코, 현대중공업까지 … 여름휴가 끝나자 더 거세진 하투 ... 📈 #현대자동차 #포스코인터내셔널 #현대중공업 #…",
-      "sectors": [
-        "AI인프라",
-        "조선"
-      ],
-      "keywords": [
-        "ai",
-        "조선"
-      ],
-      "tickers": [
-        "005380.KS"
-      ],
-      "source_urls": [
-        "https://biz.newdaily.co.kr/site/data/html/2026/08/19/2026081900093.html",
-        "https://t.me/dreago_news_ch/296711"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-08-19T01:43:52+00:00",
-      "last_seen": "2026-08-19T01:43:52+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e201fc4942728116b1a5ddd366719538d8952d6f",
-      "title": "[단독] 美 정부가 먼저 손밀었다… 30조 프로젝트에 ‘K-건설’ 러브콜\n출처: 여의도스토리 | 시각: 2026-08-19T01:42:13+00:00",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "RES"
-      ],
-      "source_urls": [
-        "https://biz.heraldcorp.com/article/10844999",
-        "https://t.me/YeouidoStory2/116283"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-19T01:42:13+00:00",
-      "last_seen": "2026-08-19T01:42:13+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e3aa2f7cd7090c03f23306d9a396b7e1a693b0cb",
-      "title": "2026년 8월 19일 트럼프 대통령 일정 08:00 AM",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "정책"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/61491"
-      ],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-08-19T01:41:27+00:00",
-      "last_seen": "2026-08-19T01:41:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "94f6c48dbeba6fe82aecab31a04e999e23f3e0a5",
-      "title": "✅ UNIST, 대면적 페로브스카이트 태양전지 균일성 진단 기술 개발 https://www.newsis.com//view/NIS…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://newsis.com/view/NISX20260819_0003753942",
-        "https://t.me/c/1208429502/123160"
-      ],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-08-19T01:41:21+00:00",
-      "last_seen": "2026-08-19T01:41:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "14209450b59f25851f6ea95de31c2454342dc6a4",
-      "title": "워.. 유니트리 +630%로 시작합니다😬",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/cyber_rangers/17831",
-        "https://t.me/insidertracking/61489"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-08-19T01:31:34+00:00",
-      "last_seen": "2026-08-19T01:40:31+00:00",
-      "count": 2
-    },
-    {
-      "signature": "9f8905ccbd862ca3a82562ee9e9ca4b564c3e8ef",
-      "title": "🔔 오락가락 장세에…채권혼합형 ETF 인기 📈 #삼성전자 #SK하이닉스 #현대차 #기아 #현대모비스 📝 #채권혼합형ETF #미국…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000270.KS",
-        "000660.KS",
-        "005380.KS",
-        "005930.KS",
-        "012330.KS",
-        "035420.KS",
-        "NNBR",
-        "NWS"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/article/277/0005804553",
-        "https://t.me/dreago_news_ch/296709"
-      ],
-      "materiality": 9,
-      "sentiment": 1,
-      "first_seen": "2026-08-19T01:40:06+00:00",
-      "last_seen": "2026-08-19T01:40:06+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4ad9917cba003b5d8f6c6e6e1937f6765113a9fe",
-      "title": "🔔 카카오페이손보, 역대 최대 매출 또 경신…年매출 1000억원 '정조준' 📈 #카카오페이손해보험 #카카오뱅크 #카카오페이 📝 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS"
-      ],
-      "source_urls": [
-        "https://etnews.com/20260819000129",
-        "https://t.me/dreago_news_ch/296707"
-      ],
-      "materiality": 9,
-      "sentiment": 1,
-      "first_seen": "2026-08-19T01:39:31+00:00",
-      "last_seen": "2026-08-19T01:39:31+00:00",
-      "count": 1
-    },
-    {
-      "signature": "db8e6198421d83c2420e7eb5c89f473c4fc00827",
-      "title": "🔔 카카오, CP 도입 2주년…정신아 \"리스크 점검·관리 체계 갖춰\" 📈 #카카오 📝 #공정거래준수 #규제리스크관리 카카오의 CP",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "규제"
-      ],
-      "tickers": [
-        "035720.KS"
-      ],
-      "source_urls": [
-        "https://news1.kr/it-science/internet-platform/6262836",
-        "https://t.me/dreago_news_ch/296708"
-      ],
-      "materiality": 9,
-      "sentiment": -1,
-      "first_seen": "2026-08-19T01:39:31+00:00",
-      "last_seen": "2026-08-19T01:39:31+00:00",
-      "count": 1
     }
   ]
 }
