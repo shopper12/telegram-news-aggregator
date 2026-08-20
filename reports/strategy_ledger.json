@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-20T22:40:32+09:00",
+  "updated_at": "2026-08-20T23:09:47+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -3208,7 +3208,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-18T07:35:10+09:00",
@@ -3219,10 +3219,18 @@
           "evaluated_at": "2026-08-18T23:08:17+09:00",
           "price": 403.745,
           "return_pct": -0.115
+        },
+        "72h": {
+          "evaluated_at": "2026-08-20T23:09:47+09:00",
+          "price": 411.14,
+          "return_pct": 1.7145
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-18T23:08:17+09:00"
+      "learned_at": "2026-08-18T23:08:17+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-20T23:09:47+09:00",
+      "final_return_pct": 1.7145
     },
     {
       "id": "5497bf7651815c5c",
@@ -3877,9 +3885,15 @@
           "evaluated_at": "2026-08-20T07:35:23+09:00",
           "price": 414.42,
           "return_pct": 1.0633
+        },
+        "24h": {
+          "evaluated_at": "2026-08-20T23:09:47+09:00",
+          "price": 411.14,
+          "return_pct": 0.2634
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-20T23:09:47+09:00"
     },
     {
       "id": "3abd52bab31e89f7",
@@ -3937,9 +3951,15 @@
           "evaluated_at": "2026-08-20T07:35:23+09:00",
           "price": 176.6218,
           "return_pct": 1.2391
+        },
+        "24h": {
+          "evaluated_at": "2026-08-20T23:09:47+09:00",
+          "price": 177.72,
+          "return_pct": 1.8686
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-20T23:09:47+09:00"
     },
     {
       "id": "237533ac533424bc",
@@ -3998,9 +4018,15 @@
           "evaluated_at": "2026-08-20T07:35:23+09:00",
           "price": 718.41,
           "return_pct": 0.5261
+        },
+        "24h": {
+          "evaluated_at": "2026-08-20T23:09:47+09:00",
+          "price": 712.63,
+          "return_pct": -0.2827
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-20T23:09:47+09:00"
     },
     {
       "id": "e2eaea9f34f3c913",
@@ -4181,6 +4207,169 @@
           "return_pct": 0.6273
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "f9521d51f248141e",
+      "created_at": "2026-08-20T23:09:47+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 411.14,
+      "entry_zone": [
+        409.0843,
+        413.1957
+      ],
+      "stop_price": 400.608867,
+      "target_price": 432.202266,
+      "score": 6.037,
+      "components": {
+        "momentum": 1.6391690277542859,
+        "regime": 0.2,
+        "news": 3.1976460640667357,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +1.64, regime +0.20, news +3.20, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.64, 뉴스 +3.20 / 연결 뉴스: 시장금리 상승 및 VKOSPI 반등에 6거래일만 순매도 전환했던 외국인, 미 재무부의 장기국채 매입 확대로 인해 하락한 시장금리 반영하며 순매수 재개. SK하이닉스 자사주 매입 확대에 기타법인 1조원 순매수. 삼성전; 🔔 '하이닉스 자사주·美재무부 국채' 매입에…코스피 급반등 📈 #에스케이하이닉스 #삼성전자 #에스케이증권 📝 #주주환원 #자사주…",
+      "news_evidence": [
+        {
+          "title": "시장금리 상승 및 VKOSPI 반등에 6거래일만 순매도 전환했던 외국인, 미 재무부의 장기국채 매입 확대로 인해 하락한 시장금리 반영하며 순매수 재개. SK하이닉스 자사주 매입 확대에 기타법인 1조원 순매수. 삼성전",
+          "urls": [
+            "https://buly.kr/HHfD5zv",
+            "https://t.me/corevalue/46652"
+          ],
+          "last_seen": "2026-08-20T12:15:41+00:00"
+        },
+        {
+          "title": "🔔 '하이닉스 자사주·美재무부 국채' 매입에…코스피 급반등 📈 #에스케이하이닉스 #삼성전자 #에스케이증권 📝 #주주환원 #자사주…",
+          "urls": [
+            "https://n.news.naver.com/article/009/0005723672",
+            "https://t.me/dreago_news_ch/297472"
+          ],
+          "last_seen": "2026-08-20T09:15:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "657c402ffcff30d4",
+      "created_at": "2026-08-20T23:09:47+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 177.72,
+      "entry_zone": [
+        176.8314,
+        178.6086
+      ],
+      "stop_price": 164.183891,
+      "target_price": 204.792219,
+      "score": 3.439,
+      "components": {
+        "momentum": 0.4387253247811844,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.44, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.44, 뉴스 +4.00 / 연결 뉴스: CoreWeave가 허드슨 리버 트레이딩; 미국 기업 섹터별 소식 정리",
+      "news_evidence": [
+        {
+          "title": "CoreWeave가 허드슨 리버 트레이딩",
+          "urls": [
+            "https://bloomberg.com/news/articles/2026-08-20/hudson-river-signs-multibillion-dollar-coreweave-crwv-deal-for-ai-cloud",
+            "https://t.me/FastStockNewsUSA/22538"
+          ],
+          "last_seen": "2026-08-20T12:58:01+00:00"
+        },
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/61650"
+          ],
+          "last_seen": "2026-08-20T10:53:01+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "150149fe80f55bf4",
+      "created_at": "2026-08-20T23:09:47+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 71765.0,
+      "entry_zone": [
+        71406.175,
+        72123.825
+      ],
+      "stop_price": 69587.766993,
+      "target_price": 76119.466014,
+      "score": 3.171,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.1705111676135301,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.17, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.17 / 연결 뉴스: 🔔 카카오뱅크, 코인원과 실명계정 계약 1년 연장 📈 #카카오뱅크 📝 #가상자산수탁 #실명계정 #암호화폐거래인프라 카카오뱅크의 …; ✔️ BTC 1W 차트 체크포인트 🔴예상대로 긴 횡보가 이어지며,볼린저밴드 수축 이후 큰 방향성이 나왔습니다. 🔴 상방으로 강하…",
+      "news_evidence": [
+        {
+          "title": "🔔 카카오뱅크, 코인원과 실명계정 계약 1년 연장 📈 #카카오뱅크 📝 #가상자산수탁 #실명계정 #암호화폐거래인프라 카카오뱅크의 …",
+          "urls": [
+            "http://bizwnews.com/news/articleView.html?idxno=143813",
+            "https://t.me/dreago_news_ch/297256"
+          ],
+          "last_seen": "2026-08-20T03:13:05+00:00"
+        },
+        {
+          "title": "✔️ BTC 1W 차트 체크포인트 🔴예상대로 긴 횡보가 이어지며,볼린저밴드 수축 이후 큰 방향성이 나왔습니다. 🔴 상방으로 강하…",
+          "urls": [
+            "https://t.me/Goboclub/23716"
+          ],
+          "last_seen": "2026-08-20T07:15:24+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
