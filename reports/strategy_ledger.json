@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-20T23:43:58+09:00",
+  "updated_at": "2026-08-21T07:37:07+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -3417,7 +3417,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-18T14:04:38+09:00",
@@ -3428,10 +3428,18 @@
           "evaluated_at": "2026-08-19T07:56:20+09:00",
           "price": 397.44,
           "return_pct": -1.808
+        },
+        "72h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 414.55,
+          "return_pct": 2.4192
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-19T07:56:20+09:00"
+      "learned_at": "2026-08-19T07:56:20+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-21T07:37:07+09:00",
+      "final_return_pct": 2.4192
     },
     {
       "id": "a1c917a486362442",
@@ -4084,9 +4092,15 @@
           "evaluated_at": "2026-08-20T14:06:30+09:00",
           "price": 413.84,
           "return_pct": -0.14
+        },
+        "24h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 414.55,
+          "return_pct": 0.0314
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-21T07:37:07+09:00"
     },
     {
       "id": "7dae292dbb021e2c",
@@ -4145,9 +4159,15 @@
           "evaluated_at": "2026-08-20T14:06:30+09:00",
           "price": 174.43,
           "return_pct": -1.241
+        },
+        "24h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 178.02,
+          "return_pct": 0.7916
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-21T07:37:07+09:00"
     },
     {
       "id": "c07f8797583aea1c",
@@ -4205,9 +4225,15 @@
           "evaluated_at": "2026-08-20T14:06:30+09:00",
           "price": 69451.05,
           "return_pct": 0.6273
+        },
+        "24h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 72742.44,
+          "return_pct": 5.3961
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-21T07:37:07+09:00"
     },
     {
       "id": "f9521d51f248141e",
@@ -4261,7 +4287,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 414.55,
+          "return_pct": 0.8294
+        }
+      },
       "learned_24h": false
     },
     {
@@ -4315,7 +4347,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 178.02,
+          "return_pct": 0.1688
+        }
+      },
       "learned_24h": false
     },
     {
@@ -4362,6 +4400,172 @@
             "https://t.me/Goboclub/23716"
           ],
           "last_seen": "2026-08-20T07:15:24+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-21T07:37:07+09:00",
+          "price": 72742.44,
+          "return_pct": 1.362
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "06a2e3912c2f232b",
+      "created_at": "2026-08-21T07:37:07+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 414.55,
+      "entry_zone": [
+        412.47725,
+        416.62275
+      ],
+      "stop_price": 404.084479,
+      "target_price": 435.481042,
+      "score": 7.612,
+      "components": {
+        "momentum": 2.780432801615026,
+        "regime": 0.2,
+        "news": 3.63125727181486,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +2.78, regime +0.20, news +3.63, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.78, 뉴스 +3.63 / 연결 뉴스: [2026년 8월 21일 모닝 시황] 금리·월마트·중동 3중고에 3대 지수 하락, 메모리는 강세 ────────── <요약> 금…; 시장금리 상승 및 VKOSPI 반등에 6거래일만 순매도 전환했던 외국인, 미 재무부의 장기국채 매입 확대로 인해 하락한 시장금리 반영하며 순매수 재개. SK하이닉스 자사주 매입 확대에 기타법인 1조원 순매수. 삼성전",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 21일 모닝 시황] 금리·월마트·중동 3중고에 3대 지수 하락, 메모리는 강세 ────────── <요약> 금…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10310"
+          ],
+          "last_seen": "2026-08-20T21:59:45+00:00"
+        },
+        {
+          "title": "시장금리 상승 및 VKOSPI 반등에 6거래일만 순매도 전환했던 외국인, 미 재무부의 장기국채 매입 확대로 인해 하락한 시장금리 반영하며 순매수 재개. SK하이닉스 자사주 매입 확대에 기타법인 1조원 순매수. 삼성전",
+          "urls": [
+            "https://buly.kr/HHfD5zv",
+            "https://t.me/corevalue/46652"
+          ],
+          "last_seen": "2026-08-20T12:15:41+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "68bb6067722f8c12",
+      "created_at": "2026-08-21T07:37:07+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 134.1,
+      "entry_zone": [
+        133.4295,
+        134.7705
+      ],
+      "stop_price": 125.758003,
+      "target_price": 150.783994,
+      "score": 3.771,
+      "components": {
+        "momentum": 2.6260186067638074,
+        "regime": 0.2,
+        "news": 0.9445421792437037,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.63, regime +0.20, news +0.94, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.63, 뉴스 +0.94 / 연결 뉴스: [2026년 8월 21일 모닝 시황] 금리·월마트·중동 3중고에 3대 지수 하락, 메모리는 강세 ────────── <요약> 금…; S&P500 map 국채금리 다시 상승하며 제자리 복귀 국제유가 오르며 석유 에너지, 원자재 섹터 강세 코인 관련주 강세 반도체…",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 21일 모닝 시황] 금리·월마트·중동 3중고에 3대 지수 하락, 메모리는 강세 ────────── <요약> 금…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10310"
+          ],
+          "last_seen": "2026-08-20T21:59:45+00:00"
+        },
+        {
+          "title": "S&P500 map 국채금리 다시 상승하며 제자리 복귀 국제유가 오르며 석유 에너지, 원자재 섹터 강세 코인 관련주 강세 반도체…",
+          "urls": [
+            "https://t.me/jeilstock/46182"
+          ],
+          "last_seen": "2026-08-20T22:32:44+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "b4f2a5853f12625d",
+      "created_at": "2026-08-21T07:37:07+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 72742.44,
+      "entry_zone": [
+        72378.7278,
+        73106.1522
+      ],
+      "stop_price": 70377.422257,
+      "target_price": 77472.475486,
+      "score": 3.203,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.20280324374560188,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.20, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.20 / 연결 뉴스: 일일천하로 끝난 ‘베선트 풋’…비트코인 7만불 돌파 국채 금리가 다시 치솟으며 주식시장은 휘청였지만 비트코인은 6% 넘게 올라 …; 비트코인 상황 살펴보겠습니다. 4개 구조로 현재 상황을 이해하고 싶습니다. ① 채널1 5월 최고점의 하락 채널. 하락 채널은 본…",
+      "news_evidence": [
+        {
+          "title": "일일천하로 끝난 ‘베선트 풋’…비트코인 7만불 돌파 국채 금리가 다시 치솟으며 주식시장은 휘청였지만 비트코인은 6% 넘게 올라 …",
+          "urls": [
+            "https://t.me/chel3337/35424"
+          ],
+          "last_seen": "2026-08-20T22:23:36+00:00"
+        },
+        {
+          "title": "비트코인 상황 살펴보겠습니다. 4개 구조로 현재 상황을 이해하고 싶습니다. ① 채널1 5월 최고점의 하락 채널. 하락 채널은 본…",
+          "urls": [
+            "https://t.me/basixally/11068"
+          ],
+          "last_seen": "2026-08-20T14:23:35+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
