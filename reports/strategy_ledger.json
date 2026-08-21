@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-21T23:42:22+09:00",
+  "updated_at": "2026-08-22T07:33:40+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -4692,7 +4692,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-22T07:33:40+09:00",
+          "price": 422.85,
+          "return_pct": 0.5876
+        }
+      },
       "learned_24h": false
     },
     {
@@ -4746,7 +4752,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-22T07:33:40+09:00",
+          "price": 178.87,
+          "return_pct": -0.1346
+        }
+      },
       "learned_24h": false
     },
     {
@@ -4793,6 +4805,174 @@
             "https://t.me/Goboclub/23725"
           ],
           "last_seen": "2026-08-21T06:59:51+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-22T07:33:40+09:00",
+          "price": 78310.01,
+          "return_pct": 1.769
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "a439f8fa6376ca41",
+      "created_at": "2026-08-22T07:33:40+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 422.85,
+      "entry_zone": [
+        420.73575,
+        424.96425
+      ],
+      "stop_price": 412.005074,
+      "target_price": 444.539852,
+      "score": 7.005,
+      "components": {
+        "momentum": 3.5414076150908294,
+        "regime": 0.2,
+        "news": 3.263950096207848,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.54, regime +0.20, news +3.26, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +3.54, 뉴스 +3.26 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; <8.21 마감 시황> *2:33기준 -코스피 +1.20%, 코스닥 -4.51% -전일 미국 재무부의 장기 국채 바이백 확대 발…",
+      "news_evidence": [
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/61751"
+          ],
+          "last_seen": "2026-08-21T11:05:32+00:00"
+        },
+        {
+          "title": "<8.21 마감 시황> *2:33기준 -코스피 +1.20%, 코스닥 -4.51% -전일 미국 재무부의 장기 국채 바이백 확대 발…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10331"
+          ],
+          "last_seen": "2026-08-21T05:38:32+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "c5a51d3442483072",
+      "created_at": "2026-08-22T07:33:40+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.87,
+      "entry_zone": [
+        177.97565,
+        179.76435
+      ],
+      "stop_price": 165.950149,
+      "target_price": 204.709703,
+      "score": 4.684,
+      "components": {
+        "momentum": 0.6838292413571949,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.68, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.68, 뉴스 +4.00 / 연결 뉴스: 🔔; 🌎 글로벌 뉴스 브리핑",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://namdonews.com/news/articleView.html?idxno=920420",
+            "https://t.me/dreago_news_ch/296684"
+          ],
+          "last_seen": "2026-08-21T05:28:18+00:00"
+        },
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/61751"
+          ],
+          "last_seen": "2026-08-21T11:05:32+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "042d9516788953f0",
+      "created_at": "2026-08-22T07:33:40+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 78310.01,
+      "entry_zone": [
+        77918.45995,
+        78701.56005
+      ],
+      "stop_price": 75156.103501,
+      "target_price": 84617.822998,
+      "score": 4.273,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.27265042586189814,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.27, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.27 / 연결 뉴스: 🔔 “비트코인 구조대 드디어 오시나요”…공매도 청산에 1억원 재돌파 📈 #코인베이스 #마이크로스트레티지 #블랙록 #피델리티 📝 …; 비트코인이 7만 9천 달러를 돌파했습니다. ...",
+      "news_evidence": [
+        {
+          "title": "🔔 “비트코인 구조대 드디어 오시나요”…공매도 청산에 1억원 재돌파 📈 #코인베이스 #마이크로스트레티지 #블랙록 #피델리티 📝 …",
+          "urls": [
+            "https://n.news.naver.com/article/009/0005724202",
+            "https://t.me/dreago_news_ch/297988"
+          ],
+          "last_seen": "2026-08-21T09:40:11+00:00"
+        },
+        {
+          "title": "비트코인이 7만 9천 달러를 돌파했습니다. ...",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/22559",
+            "https://t.me/c/1208429502/123445"
+          ],
+          "last_seen": "2026-08-21T09:13:05+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
