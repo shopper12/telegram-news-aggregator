@@ -1,7 +1,334 @@
 {
   "version": 2,
-  "updated_at": "2026-08-22T14:33:09+09:00",
+  "updated_at": "2026-08-22T15:34:03+09:00",
   "events": [
+    {
+      "signature": "58e7f46424c64b31fcb0c90852f16277b3e585d3",
+      "title": "달리오 \"美, '3±2'년내 부채위기…채권 줄이고 금·비트코인 늘려라\" 2026.08.22",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "금리"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://news.einfomax.co.kr/news/articleView.html?idxno=4431301",
+        "https://t.me/aicorporateanalysisdeepdive/10338"
+      ],
+      "materiality": 10,
+      "sentiment": 1,
+      "first_seen": "2026-08-22T06:29:19+00:00",
+      "last_seen": "2026-08-22T06:29:19+00:00",
+      "count": 1
+    },
+    {
+      "signature": "42a8501454a5ca54d0b82e9bb865f8feab4ae311",
+      "title": "[주간 일정] 8/24~28: AI 반도체 슈퍼위크·PCE·잭슨홀·엔비디아 실적 2026.08.23",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "로봇",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "amd",
+        "fed",
+        "hbm",
+        "nvda",
+        "sk하이닉스",
+        "금리",
+        "메타",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005380.KS",
+        "005930.KS",
+        "HPQ",
+        "MRVL",
+        "NVDA"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/10337"
+      ],
+      "materiality": 25,
+      "sentiment": 1,
+      "first_seen": "2026-08-22T06:26:46+00:00",
+      "last_seen": "2026-08-22T06:26:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a228c065f49361053deb65d712d7c57a5d748333",
+      "title": "🔔 롯데렌탈 새 주인 TPG 등장…주가 추가 상승 가능성 커졌다 📈 #롯데렌탈 📝 #사모펀드투자 #지분구조개편 #리스자동차금융 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NWS",
+        "NWSA",
+        "TPG",
+        "TPGXL"
+      ],
+      "source_urls": [
+        "https://pinpointnews.co.kr/news/articleView.html?idxno=479550",
+        "https://t.me/dreago_news_ch/298120"
+      ],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-08-22T06:26:16+00:00",
+      "last_seen": "2026-08-22T06:26:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c0b36890651e04895c6c9259c3e335ba0bf7d9c9",
+      "title": "🔔 스페이스X 넘어서나…'몸값 2조弗' 앤트로픽 IPO 추진 📈 #엔비디아 #마이크론테크놀로지 #AMD #T멕시코? #TSMC …",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "amd",
+        "hbm",
+        "tsmc",
+        "데이터센터",
+        "메모리",
+        "반도체",
+        "엔비디아"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/215/0001263222",
+        "https://t.me/dreago_news_ch/298119"
+      ],
+      "materiality": 10,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T06:25:04+00:00",
+      "last_seen": "2026-08-22T06:25:04+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ecdcdb76680da0e6f14125fc32351407ec7ba428",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "035720.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "http://wowtv.co.kr/NewsCenter/News/Read?articleId=A202608220360&t=NN",
+        "https://t.me/dreago_news_ch/298118"
+      ],
+      "materiality": 15,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T06:24:28+00:00",
+      "last_seen": "2026-08-22T06:24:28+00:00",
+      "count": 1
+    },
+    {
+      "signature": "84477838a8daa28f089e5a6cd271e7932c1acf19",
+      "title": "🔔 AI업체 모아데이타, '동전주' 관리종목 지정 즉시 EOD통보받아....대출원... 📈 #모아데이타 #에이아이비에스 #솔트룩…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://moneystorm.kr/news/articleView.html?idxno=5893",
+        "https://t.me/dreago_news_ch/298117"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T06:21:12+00:00",
+      "last_seen": "2026-08-22T06:21:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e7890a280de2c63a165d4fa54be784b85a9ad80b",
+      "title": "🔔 SJG세종 5분기 연속 매출 성장…하반기 현대차·기아 신차 효과 온다 📈 #에스제이에스지세종 #현대차 #기아 📝 #자동차부품…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "000270.KS",
+        "005380.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://pinpointnews.co.kr/news/articleView.html?idxno=479593",
+        "https://t.me/dreago_news_ch/298116"
+      ],
+      "materiality": 12,
+      "sentiment": 3,
+      "first_seen": "2026-08-22T06:19:21+00:00",
+      "last_seen": "2026-08-22T06:19:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "eb2fa85301e095341ccf9a9f586d20b7b2a61e4b",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://dt.co.kr/article/12079493",
+        "https://t.me/dreago_news_ch/298103",
+        "https://segye.com/newsView/20260822503869?OutUrl=naver",
+        "https://t.me/dreago_news_ch/298110",
+        "https://dt.co.kr/article/12079501"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T03:43:27+00:00",
+      "last_seen": "2026-08-22T06:18:31+00:00",
+      "count": 3
+    },
+    {
+      "signature": "3530f4e58a8393009c7f5e95c912b49717fb9c25",
+      "title": "최근 60분 동안 암호화폐 시장에서 5억5,000만 달러 규모의 롱 포지션이 청산.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61809"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T06:17:52+00:00",
+      "last_seen": "2026-08-22T06:17:52+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a5420b25cc82875fbe9779c64e44bfa53b52cb71",
+      "title": "삼전닉스 턱밑까지 쫓아온 中 YMTC…6.8조 실탄 마련 나선다 2026.08.22",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "sk하이닉스",
+        "낸드",
+        "메모리",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "035420.KS",
+        "CCSH",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/015/0005323495?sid=101",
+        "https://t.me/aicorporateanalysisdeepdive/10336"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-08-22T06:16:12+00:00",
+      "last_seen": "2026-08-22T06:16:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "eeb20489627f1583db93eafccf1c593f2ba6d15b",
+      "title": "매수, 매도 추천이 아니며, 해당 게시물의 내용은 법적 증거로 사용될 수 없습니다. 매매에 따른 손실은 거래 당사자의 책임입니다",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61808"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T06:14:19+00:00",
+      "last_seen": "2026-08-22T06:14:19+00:00",
+      "count": 1
+    },
+    {
+      "signature": "dde4408a753b6369b851178c4caad301fe70cbf1",
+      "title": "베센트가 시장을 잡지 못했다…일본, '1997년 아시아 금융위기' 재현 위험 2026.08.22",
+      "sectors": [
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "ai",
+        "fomc",
+        "금리",
+        "정책",
+        "환율"
+      ],
+      "tickers": [
+        "000270.KS"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/10335"
+      ],
+      "materiality": 17,
+      "sentiment": -3,
+      "first_seen": "2026-08-22T06:09:27+00:00",
+      "last_seen": "2026-08-22T06:09:27+00:00",
+      "count": 1
+    },
+    {
+      "signature": "9aa278204e3edb19c3eb1c63dba5cc0660eef748",
+      "title": "우크라이나 공격 드론 여러 대가 오전 러시아 차파옙스크에 위치한 오존 물류센터를 타격하는 데 성공했으며, 공격 이후 물류센터에서…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/61807"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T05:39:59+00:00",
+      "last_seen": "2026-08-22T05:39:59+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3a16cb9fe678af77a28eab3384971252d6769af7",
+      "title": "✔️ 이제 코인은 Global M2를 따라가는 것 인가?",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "SIGN"
+      ],
+      "source_urls": [
+        "https://t.me/Goboclub/23735"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-08-22T05:36:08+00:00",
+      "last_seen": "2026-08-22T05:36:08+00:00",
+      "count": 1
+    },
     {
       "signature": "4d319a0121b81c69e434184ba93bc74b27e4ae1c",
       "title": "👀 트럼프 관세 관련 이슈로 일시적인 단기 고배 롱포지션 스퀴즈",
@@ -258,26 +585,6 @@
       "first_seen": "2026-08-22T04:29:02+00:00",
       "last_seen": "2026-08-22T04:29:02+00:00",
       "count": 1
-    },
-    {
-      "signature": "eb2fa85301e095341ccf9a9f586d20b7b2a61e4b",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS"
-      ],
-      "source_urls": [
-        "https://dt.co.kr/article/12079493",
-        "https://t.me/dreago_news_ch/298103",
-        "https://segye.com/newsView/20260822503869?OutUrl=naver",
-        "https://t.me/dreago_news_ch/298110"
-      ],
-      "materiality": 11,
-      "sentiment": -1,
-      "first_seen": "2026-08-22T03:43:27+00:00",
-      "last_seen": "2026-08-22T04:28:03+00:00",
-      "count": 2
     },
     {
       "signature": "d31cda4384adc62674ba34e187f4d29e8db35ccc",
@@ -11242,297 +11549,6 @@
       "sentiment": 2,
       "first_seen": "2026-08-21T05:08:42+00:00",
       "last_seen": "2026-08-21T05:08:42+00:00",
-      "count": 2
-    },
-    {
-      "signature": "3d705f602c83a555921abeb853d720da913367c1",
-      "title": "8월 1~20일 MLCC 수출단가: 삼성전기의 대리점향 30% 가격 인상 통보 이후 반등",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/Yeouido_Lab/37306",
-        "https://t.me/c/1208429502/123408",
-        "https://t.me/sharpha/51835"
-      ],
-      "materiality": 4,
-      "sentiment": 2,
-      "first_seen": "2026-08-21T05:05:37+00:00",
-      "last_seen": "2026-08-21T05:08:34+00:00",
-      "count": 4
-    },
-    {
-      "signature": "a06dc8816b0a632bdc5066aca66fa4d94e507a60",
-      "title": "🔔 오늘만 3천억 생산 차질…현대차 노조 파업에 최대 2.8조 허공으로 📈 #현대차 #현대모비스 #기아 #에스엘 #모트렉스 📝 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "000270.KS",
-        "005380.KS",
-        "012330.KS"
-      ],
-      "source_urls": [
-        "https://news1.kr/industry/auto-industry/6265574",
-        "https://t.me/dreago_news_ch/297814"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-08-21T05:06:42+00:00",
-      "last_seen": "2026-08-21T05:06:42+00:00",
-      "count": 2
-    },
-    {
-      "signature": "c6d50a5f0c2ba9ea922905d56903308eea3dc0af",
-      "title": "에이텀, 테슬라 사이버트럭 ICCU 슬림화 기술 고도화 추진 https://m.stock.naver.com/investment/…",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "테슬라"
-      ],
-      "tickers": [
-        "010120.KS",
-        "012330.KS",
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://m.stock.naver.com/investment/news/flashnews/277/0005805796",
-        "https://t.me/moneythemestock/63656"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-08-21T05:06:23+00:00",
-      "last_seen": "2026-08-21T05:06:23+00:00",
-      "count": 2
-    },
-    {
-      "signature": "3feabb3a8b3b5d386aff7153c3804ffa46cc5d95",
-      "title": "에이텀, LS오토모티브와 전기차 충전장치 슬림화 공동 개발 추진 https://m.stock.naver.com/investmen…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://m.stock.naver.com/investment/news/flashnews/215/0001263142",
-        "https://t.me/moneythemestock/63655"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-21T05:06:22+00:00",
-      "last_seen": "2026-08-21T05:06:22+00:00",
-      "count": 2
-    },
-    {
-      "signature": "040cf456486679abea6f3ed3cb3093b4db395d75",
-      "title": "미국 국채금리 상승에도 코스피, 반도체주 강세로 강보합 유지 https://m.stock.naver.com/investment/…",
-      "sectors": [
-        "거시/정책",
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "금리",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://m.stock.naver.com/investment/news/flashnews/018/0006355657",
-        "https://t.me/moneythemestock/63654"
-      ],
-      "materiality": 15,
-      "sentiment": 2,
-      "first_seen": "2026-08-21T05:06:21+00:00",
-      "last_seen": "2026-08-21T05:06:21+00:00",
-      "count": 2
-    },
-    {
-      "signature": "a9e298af96cfc16bbd999f3cbac29fd0ccdead5b",
-      "title": "🔔 대전시, 알테오젠 2532억 투자 유치… 일자리 135개 창출 📈 #알테오젠 📝 #바이오벤처 #신약개발 #투자유치 알테오젠의…",
-      "sectors": [
-        "AI인프라",
-        "바이오"
-      ],
-      "keywords": [
-        "ai",
-        "신약"
-      ],
-      "tickers": [
-        "035420.KS",
-        "FFIV",
-        "NNBR"
-      ],
-      "source_urls": [
-        "https://biz.chosun.com/topics/topics_social/2026/08/21/CTID2MEG5RF5VPNNNYEOX2XIXI",
-        "https://t.me/dreago_news_ch/297812"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-08-21T05:05:46+00:00",
-      "last_seen": "2026-08-21T05:05:46+00:00",
-      "count": 2
-    },
-    {
-      "signature": "48289c9a5aeb0ee688dfb6a20b703f240f4def6d",
-      "title": "🔔 알테오젠, ALT-B4 직접 생산...2532억원 바이오 플랜트 구축 📈 #알테오젠 📝 #바이오의약품생산 #CDMO #바이오…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://smarttoday.co.kr/ko-kr/articles/110686",
-        "https://t.me/dreago_news_ch/297813"
-      ],
-      "materiality": 10,
-      "sentiment": 1,
-      "first_seen": "2026-08-21T05:05:46+00:00",
-      "last_seen": "2026-08-21T05:05:46+00:00",
-      "count": 2
-    },
-    {
-      "signature": "76e8b4aa59a069a2b38e090de58b5be2de525733",
-      "title": "🔔 코미코·SK텔레콤 급등 vs JYP Ent. 약세… 코리아 밸류업 지수 엇갈린 ... 📈 #에스케이텔레콤 #하나금융지주 #신…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://pinpointnews.co.kr/news/articleView.html?idxno=479373",
-        "https://t.me/dreago_news_ch/297811"
-      ],
-      "materiality": 4,
-      "sentiment": 3,
-      "first_seen": "2026-08-21T05:05:27+00:00",
-      "last_seen": "2026-08-21T05:05:27+00:00",
-      "count": 2
-    },
-    {
-      "signature": "eac113735ba24e8ba7443c7763ac448014149aec",
-      "title": "🔔 美찬바람에도 삼전닉스 3%대 상승에 코스피 강보합 📈 #삼성전자 #에스케이하이닉스 #삼성전자우 #엘지에너지솔루션 #삼성바이오…",
-      "sectors": [
-        "거시/정책",
-        "바이오",
-        "반도체"
-      ],
-      "keywords": [
-        "금리",
-        "메모리",
-        "반도체",
-        "삼성바이오",
-        "삼성전자",
-        "정책"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "035420.KS",
-        "207940.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/article/018/0006355657",
-        "https://t.me/dreago_news_ch/297810"
-      ],
-      "materiality": 15,
-      "sentiment": 1,
-      "first_seen": "2026-08-21T05:05:19+00:00",
-      "last_seen": "2026-08-21T05:05:19+00:00",
-      "count": 2
-    },
-    {
-      "signature": "eeea12ecc77e92a35bcb79499358d07fe5b06bbc",
-      "title": "🔔 코스닥 급락세에 매도 사이드카 발동",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://news2day.co.kr/article/20260821500088",
-        "https://t.me/dreago_news_ch/297807"
-      ],
-      "materiality": 2,
-      "sentiment": -2,
-      "first_seen": "2026-08-21T05:04:36+00:00",
-      "last_seen": "2026-08-21T05:04:36+00:00",
-      "count": 2
-    },
-    {
-      "signature": "329830555087381afff69f19d83da556feb2dc33",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://seoul.co.kr/news/society/2026/08/20/20260820500126?wlog_tag3=naver",
-        "https://t.me/dreago_news_ch/297322",
-        "https://news.jtbc.co.kr/article/NB12314335?influxDiv=NAVER",
-        "https://t.me/dreago_news_ch/297517",
-        "https://news.jtbc.co.kr/article/NB12314419?influxDiv=NAVER"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-08-20T05:34:20+00:00",
-      "last_seen": "2026-08-21T05:04:23+00:00",
-      "count": 5
-    },
-    {
-      "signature": "ff540b91eb0452c2232b450baaa999da19b694ce",
-      "title": "🔔 쿠콘, 2분기 영업이익 49억6000만원…자사주 50억원 매입 📈 #쿠콘 📝 #금융데이터서비스 #스테이블코인 #글로벌결제솔루…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://lcnews.co.kr/news/articleView.html?idxno=206883",
-        "https://t.me/dreago_news_ch/297803"
-      ],
-      "materiality": 10,
-      "sentiment": 2,
-      "first_seen": "2026-08-21T05:03:39+00:00",
-      "last_seen": "2026-08-21T05:03:39+00:00",
-      "count": 2
-    },
-    {
-      "signature": "05c20c9d85acbadb85a9e867c37513302b60f702",
-      "title": "🔔 쿠콘, 영업익 50억···스테이블코인 확장 📈 #쿠콘 #케이씨에스 #엠게임 #한국정보인증 #나이스정보통신 📝 #스테이블코인 …",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "http://hansbiz.co.kr/news/articleView.html?idxno=858503",
-        "https://t.me/dreago_news_ch/297804"
-      ],
-      "materiality": 12,
-      "sentiment": 0,
-      "first_seen": "2026-08-21T05:03:39+00:00",
-      "last_seen": "2026-08-21T05:03:39+00:00",
       "count": 2
     }
   ]
