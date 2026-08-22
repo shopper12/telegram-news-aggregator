@@ -83,6 +83,8 @@ def _start_runtime_patches(api_module: Any) -> threading.Thread:
 
 
 _install_fast_news_path(telegram_news.messenger_api)
+from telegram_news.crossword import install as install_crossword
+install_crossword(telegram_news.messenger_api)
 telegram_news.messenger_api.RUNTIME_PATCH_STATUS = "starting"
 
 
