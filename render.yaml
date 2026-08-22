@@ -47,3 +47,17 @@ services:
         sync: false
       - key: GEMINI_API_KEY
         sync: false
+      - key: CROSSWORD_DATABASE_URL
+        sync: false
+      - key: CROSSWORD_SIGNING_SECRET
+        sync: false
+      - key: CROSSWORD_PUBLIC_BASE_URL
+        value: https://telegram-news-bot-api.onrender.com
+      - key: CROSSWORD_ADMIN_TOKEN
+        sync: false
+      - key: KAKAO_JAVASCRIPT_KEY
+        sync: false
+      - key: CROSSWORD_DAILY_BROADCAST_WEBHOOK
+        sync: false
+      - key: CROSSWORD_DAILY_BROADCAST_TOKEN
+        sync: false

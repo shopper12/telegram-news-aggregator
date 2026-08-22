@@ -1,0 +1,25 @@
+name: Publish daily crossword
+
+on:
+  schedule:
+    # 08:00 Asia/Seoul (23:00 UTC previous day)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: crossword-daily-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wake API and publish Korean + English puzzles
+        env:
+          API_BASE: ${{ vars.RENDER_API_BASE_URL || 'https://telegram-news-bot-api.onrender.com' }}
+          ADMIN_TOKEN: ${{ secrets.CROSSWORD_ADMIN_TOKEN }}
+        run: |
+          test -n "$ADMIN_TOKEN" || { echo 'CROSSWORD_ADMIN_TOKEN secret is required'; exit 1; }
+          curl --retry 4 --retry-all-errors --retry-delay 8 -fsS "$API_BASE/health" >/dev/null
+          curl --retry 3 --retry-all-errors --retry-delay 5 -fsS -X POST -H "Authorization: Bearer $ADMIN_TOKEN" "$API_BASE/api/crossword/admin/publish"
