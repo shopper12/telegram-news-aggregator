@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-22T23:28:49+09:00",
+  "updated_at": "2026-08-23T07:30:11+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -5121,7 +5121,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-23T07:30:11+09:00",
+          "price": 423.36,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -5176,7 +5182,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-23T07:30:11+09:00",
+          "price": 77045.58,
+          "return_pct": -0.3758
+        }
+      },
       "learned_24h": false
     },
     {
@@ -5223,6 +5235,175 @@
             "https://t.me/insidertracking/61763"
           ],
           "last_seen": "2026-08-21T21:03:57+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-23T07:30:11+09:00",
+          "price": 178.34,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "0d2eca3bc56c6e4e",
+      "created_at": "2026-08-23T07:30:11+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 77045.58,
+      "entry_zone": [
+        76660.3521,
+        77430.8079
+      ],
+      "stop_price": 73843.484712,
+      "target_price": 83449.770576,
+      "score": 4.15,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.1502382970949074,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.15, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.15 / 연결 뉴스: 🔔 법인 가상자산 계정 6천개 넘어…두나무 제친 빗썸, 과반 육박 📈 #두나무 #빗썸 #코인원 #고팍스 #코빗 📝 #가상자산거래…; 🔔 장줘얼 \"고배율 알트코인은 격리 모드\" 📈 #비트코인선물상장지수상품 #이더리움선물상장지수상품 #가상자산거래소관련주 #블록체인…",
+      "news_evidence": [
+        {
+          "title": "🔔 법인 가상자산 계정 6천개 넘어…두나무 제친 빗썸, 과반 육박 📈 #두나무 #빗썸 #코인원 #고팍스 #코빗 📝 #가상자산거래…",
+          "urls": [
+            "https://n.news.naver.com/article/001/0016265040",
+            "https://t.me/dreago_news_ch/298150"
+          ],
+          "last_seen": "2026-08-22T22:15:29+00:00"
+        },
+        {
+          "title": "🔔 장줘얼 \"고배율 알트코인은 격리 모드\" 📈 #비트코인선물상장지수상품 #이더리움선물상장지수상품 #가상자산거래소관련주 #블록체인…",
+          "urls": [
+            "https://t.me/dreago_news_ch/298124",
+            "https://tokenpost.kr/news/cryptocurrency/395632"
+          ],
+          "last_seen": "2026-08-22T09:01:50+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "986cd74b6265e6fc",
+      "created_at": "2026-08-23T07:30:11+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 423.36,
+      "entry_zone": [
+        421.2432,
+        425.4768
+      ],
+      "stop_price": 412.501994,
+      "target_price": 445.076012,
+      "score": 4.001,
+      "components": {
+        "momentum": 2.95126800055939,
+        "regime": 0.2,
+        "news": 0.850114526630787,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.95, regime +0.20, news +0.85, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.95, 뉴스 +0.85 / 연결 뉴스: 증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…; 🔔 금융당국 '고금리' 지적에…증권사 '매도담보대출' 금리 줄인하 📈 #키움증권 #대신증권 #삼성증권 #미래에셋증권 #NH투자증…",
+      "news_evidence": [
+        {
+          "title": "증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…",
+          "urls": [
+            "https://t.me/insidertracking/61813"
+          ],
+          "last_seen": "2026-08-22T06:41:08+00:00"
+        },
+        {
+          "title": "🔔 금융당국 '고금리' 지적에…증권사 '매도담보대출' 금리 줄인하 📈 #키움증권 #대신증권 #삼성증권 #미래에셋증권 #NH투자증…",
+          "urls": [
+            "https://n.news.naver.com/article/003/0014141952",
+            "https://t.me/dreago_news_ch/298151"
+          ],
+          "last_seen": "2026-08-22T22:15:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "7dca79bd14ce603d",
+      "created_at": "2026-08-23T07:30:11+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.34,
+      "entry_zone": [
+        177.4483,
+        179.2317
+      ],
+      "stop_price": 165.458431,
+      "target_price": 204.103138,
+      "score": 1.707,
+      "components": {
+        "momentum": 0.7862149439703529,
+        "regime": 0.0,
+        "news": 0.9205957304337384,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.79, regime +0.00, news +0.92, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.79, 뉴스 +0.92 / 연결 뉴스: 증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…; 🔔 SJG세종 5분기 연속 매출 성장…하반기 현대차·기아 신차 효과 온다 📈 #에스제이에스지세종 #현대차 #기아 📝 #자동차부품…",
+      "news_evidence": [
+        {
+          "title": "증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…",
+          "urls": [
+            "https://t.me/insidertracking/61813"
+          ],
+          "last_seen": "2026-08-22T06:41:08+00:00"
+        },
+        {
+          "title": "🔔 SJG세종 5분기 연속 매출 성장…하반기 현대차·기아 신차 효과 온다 📈 #에스제이에스지세종 #현대차 #기아 📝 #자동차부품…",
+          "urls": [
+            "https://pinpointnews.co.kr/news/articleView.html?idxno=479593",
+            "https://t.me/dreago_news_ch/298116"
+          ],
+          "last_seen": "2026-08-22T06:19:21+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
