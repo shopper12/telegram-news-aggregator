@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-22T22:25:35+09:00",
+  "updated_at": "2026-08-22T22:53:28+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -5027,6 +5027,168 @@
           "return_pct": 0.1945
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "bc90f60552ad6bfd",
+      "created_at": "2026-08-22T22:53:28+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 423.36,
+      "entry_zone": [
+        421.2432,
+        425.4768
+      ],
+      "stop_price": 412.501994,
+      "target_price": 445.076012,
+      "score": 5.0,
+      "components": {
+        "momentum": 2.95126800055939,
+        "regime": 0.2,
+        "news": 1.8483519958621526,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.95, regime +0.20, news +1.85, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.95, 뉴스 +1.85 / 연결 뉴스: 증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…; 베센트가 시장을 잡지 못했다…일본, '1997년 아시아 금융위기' 재현 위험 2026.08.22",
+      "news_evidence": [
+        {
+          "title": "증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…",
+          "urls": [
+            "https://t.me/insidertracking/61813"
+          ],
+          "last_seen": "2026-08-22T06:41:08+00:00"
+        },
+        {
+          "title": "베센트가 시장을 잡지 못했다…일본, '1997년 아시아 금융위기' 재현 위험 2026.08.22",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10335"
+          ],
+          "last_seen": "2026-08-22T06:09:27+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4405ced69f1c85e2",
+      "created_at": "2026-08-22T22:53:28+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 77336.23,
+      "entry_zone": [
+        76949.54885,
+        77722.91115
+      ],
+      "stop_price": 74145.150887,
+      "target_price": 83718.388226,
+      "score": 4.192,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.19191719807800928,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.19, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.19 / 연결 뉴스: 🔔 장줘얼 \"고배율 알트코인은 격리 모드\" 📈 #비트코인선물상장지수상품 #이더리움선물상장지수상품 #가상자산거래소관련주 #블록체인…; 달리오 \"美, '3±2'년내 부채위기…채권 줄이고 금·비트코인 늘려라\" 2026.08.22",
+      "news_evidence": [
+        {
+          "title": "🔔 장줘얼 \"고배율 알트코인은 격리 모드\" 📈 #비트코인선물상장지수상품 #이더리움선물상장지수상품 #가상자산거래소관련주 #블록체인…",
+          "urls": [
+            "https://t.me/dreago_news_ch/298124",
+            "https://tokenpost.kr/news/cryptocurrency/395632"
+          ],
+          "last_seen": "2026-08-22T09:01:50+00:00"
+        },
+        {
+          "title": "달리오 \"美, '3±2'년내 부채위기…채권 줄이고 금·비트코인 늘려라\" 2026.08.22",
+          "urls": [
+            "https://news.einfomax.co.kr/news/articleView.html?idxno=4431301",
+            "https://t.me/aicorporateanalysisdeepdive/10338"
+          ],
+          "last_seen": "2026-08-22T06:29:19+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "33bdb0f9b3f84f94",
+      "created_at": "2026-08-22T22:53:28+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.34,
+      "entry_zone": [
+        177.4483,
+        179.2317
+      ],
+      "stop_price": 165.458431,
+      "target_price": 204.103138,
+      "score": 3.604,
+      "components": {
+        "momentum": 0.7862149439703529,
+        "regime": 0.0,
+        "news": 2.8178154480415056,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.79, regime +0.00, news +2.82, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.79, 뉴스 +2.82 / 연결 뉴스: 증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…; 2026년 8월 22일 미국 증시 브리핑 미국 증시는 경기 확장 신호와 에너지·원자재·금융주 강세, 암호화폐 급등이 기술주 조정…",
+      "news_evidence": [
+        {
+          "title": "증시의 숨은 저평가 지역 ‘유럽’…실적 회복에 투자금 돌아온다 오랫동안 미국 투자자들에게 외면받았던 유럽 증시가 새로운 투자처로…",
+          "urls": [
+            "https://t.me/insidertracking/61813"
+          ],
+          "last_seen": "2026-08-22T06:41:08+00:00"
+        },
+        {
+          "title": "2026년 8월 22일 미국 증시 브리핑 미국 증시는 경기 확장 신호와 에너지·원자재·금융주 강세, 암호화폐 급등이 기술주 조정…",
+          "urls": [
+            "https://t.me/insidertracking",
+            "https://t.me/insidertracking/61763"
+          ],
+          "last_seen": "2026-08-21T21:03:57+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
