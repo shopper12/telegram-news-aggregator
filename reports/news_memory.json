@@ -1,7 +1,31 @@
 {
   "version": 2,
-  "updated_at": "2026-08-22T21:31:02+09:00",
+  "updated_at": "2026-08-22T22:12:30+09:00",
   "events": [
+    {
+      "signature": "8f383d5efbbbabfa3017fa12b1ed87738cd23141",
+      "title": "#TVA #데이터센터 #전력요금 #전력인프라 #전력수요 <미국 유틸리티 TVA, 데이터센터에 신규 요금 부과>",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "datacenter",
+        "데이터센터"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://datacenterdynamics.com/en/news/us-utility-tva-imposes-new-rates-on-data-center-firms",
+        "https://t.me/Yeouido_Lab/37317"
+      ],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-08-22T13:01:06+00:00",
+      "last_seen": "2026-08-22T13:01:06+00:00",
+      "count": 1
+    },
     {
       "signature": "247c5145d9a84d73a14acafb723e52445987b1c7",
       "title": "🔔 국립칠곡숲체원, 초등 교과 연계 산림교육 SBS 방송 【 겁나빠른 #드리고봇 뉴스 】 https://www.kbsm.net/…",
@@ -20,7 +44,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-22T12:28:35+00:00",
       "last_seen": "2026-08-22T12:28:35+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c8a53aa3a76bf290dd0770554ac52933c4ccb241",
@@ -35,7 +59,7 @@
       "sentiment": 1,
       "first_seen": "2026-08-22T12:22:03+00:00",
       "last_seen": "2026-08-22T12:22:03+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "482074f109543cb766e08a7d7a55b5a87d62cbf3",
@@ -11520,27 +11544,6 @@
       "sentiment": 1,
       "first_seen": "2026-08-21T05:30:54+00:00",
       "last_seen": "2026-08-21T05:30:54+00:00",
-      "count": 1
-    },
-    {
-      "signature": "65023f4123ce6d65f5154c6697aecb44aca400a8",
-      "title": "#삼성전자 프매 오후 1시40분~",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://t.me/sharpha/51840"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-21T05:30:23+00:00",
-      "last_seen": "2026-08-21T05:30:23+00:00",
       "count": 1
     }
   ]
