@@ -155,14 +155,92 @@ class Cell:
     dirs: set[str]
 
 
+_CHOSEONG_TO_JONG = {
+    0x1100: 1, 0x1101: 2, 0x1102: 4, 0x1103: 7, 0x1105: 8,
+    0x1106: 16, 0x1107: 17, 0x1109: 19, 0x110A: 20, 0x110B: 21,
+    0x110C: 22, 0x110E: 23, 0x110F: 24, 0x1110: 25, 0x1111: 26,
+    0x1112: 27, 0x111A: 15, 0x1121: 18,
+}
+_COMPOUND_JONG = {
+    (0x1100, 0x1109): 3,
+    (0x1102, 0x110C): 5,
+    (0x1102, 0x1112): 6,
+    (0x1105, 0x1100): 9,
+    (0x1105, 0x1106): 10,
+    (0x1105, 0x1107): 11,
+    (0x1105, 0x1109): 12,
+    (0x1105, 0x1110): 13,
+    (0x1105, 0x1111): 14,
+    (0x1105, 0x1112): 15,
+    (0x1107, 0x1109): 18,
+}
+
+
 def _seed(text: str) -> int:
     return int.from_bytes(hashlib.sha256(text.encode("utf-8")).digest()[:8], "big")
 
 
+def _is_jungseong(codepoint: int) -> bool:
+    return 0x1161 <= codepoint <= 0x1175
+
+
+def _compose_hangul_jamo(text: str) -> str:
+    """Compose compatibility/modern jamo into complete Hangul syllables.
+
+    Browser IMEs normally emit precomposed syllables, but mobile composition and
+    copied compatibility jamo can reach the API decomposed. Unicode NFKC alone
+    turns `ㅎㅏㄴ` into `하ᄂ`; this scanner reinterprets a following consonant as
+    jongseong unless it clearly begins the next syllable. Legal compound finals
+    are handled as a pair.
+    """
+    chars = list(unicodedata.normalize("NFKD", str(text or "")))
+    output: list[str] = []
+    index = 0
+    while index < len(chars):
+        lead = ord(chars[index])
+        if not (0x1100 <= lead <= 0x1112 and index + 1 < len(chars) and _is_jungseong(ord(chars[index + 1]))):
+            output.append(chars[index])
+            index += 1
+            continue
+
+        lead_index = lead - 0x1100
+        vowel_index = ord(chars[index + 1]) - 0x1161
+        tail_index = 0
+        consumed = 2
+        tail_pos = index + 2
+        if tail_pos < len(chars):
+            tail = ord(chars[tail_pos])
+            if 0x11A8 <= tail <= 0x11C2:
+                tail_index = tail - 0x11A7
+                consumed = 3
+            elif tail in _CHOSEONG_TO_JONG:
+                starts_next = tail_pos + 1 < len(chars) and _is_jungseong(ord(chars[tail_pos + 1]))
+                if not starts_next:
+                    if tail_pos + 1 < len(chars):
+                        following = ord(chars[tail_pos + 1])
+                        compound = _COMPOUND_JONG.get((tail, following))
+                        following_starts_next = tail_pos + 2 < len(chars) and _is_jungseong(ord(chars[tail_pos + 2]))
+                        if compound and not following_starts_next:
+                            tail_index = compound
+                            consumed = 4
+                        else:
+                            tail_index = _CHOSEONG_TO_JONG[tail]
+                            consumed = 3
+                    else:
+                        tail_index = _CHOSEONG_TO_JONG[tail]
+                        consumed = 3
+
+        syllable = 0xAC00 + (lead_index * 21 + vowel_index) * 28 + tail_index
+        output.append(chr(syllable))
+        index += consumed
+    return unicodedata.normalize("NFC", "".join(output))
+
+
 def normalize_answer(value: object, language: str) -> str:
     text = "".join(str(value or "").split())
-    text = unicodedata.normalize("NFC", unicodedata.normalize("NFKC", text))
-    return text.upper() if language == "en" else text
+    if language == "en":
+        return unicodedata.normalize("NFKC", text).upper()
+    return _compose_hangul_jamo(text)
 
 
 def _normalized_clue(text: str) -> str:
