@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-23T22:26:57+09:00",
+  "updated_at": "2026-08-23T22:55:43+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -5160,9 +5160,15 @@
           "evaluated_at": "2026-08-23T07:30:11+09:00",
           "price": 423.36,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-23T22:55:43+09:00",
+          "price": 423.36,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-23T22:55:43+09:00"
     },
     {
       "id": "4405ced69f1c85e2",
@@ -5221,9 +5227,15 @@
           "evaluated_at": "2026-08-23T07:30:11+09:00",
           "price": 77045.58,
           "return_pct": -0.3758
+        },
+        "24h": {
+          "evaluated_at": "2026-08-23T22:55:43+09:00",
+          "price": 77471.2,
+          "return_pct": 0.1745
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-23T22:55:43+09:00"
     },
     {
       "id": "33bdb0f9b3f84f94",
@@ -5281,9 +5293,15 @@
           "evaluated_at": "2026-08-23T07:30:11+09:00",
           "price": 178.34,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-23T22:55:43+09:00",
+          "price": 178.34,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-23T22:55:43+09:00"
     },
     {
       "id": "0d2eca3bc56c6e4e",
@@ -5464,6 +5482,169 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "1c6c18487a9662a0",
+      "created_at": "2026-08-23T22:55:43+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 423.36,
+      "entry_zone": [
+        421.2432,
+        425.4768
+      ],
+      "stop_price": 412.501994,
+      "target_price": 445.076012,
+      "score": 5.95,
+      "components": {
+        "momentum": 2.95126800055939,
+        "regime": 0.2,
+        "news": 2.7990540609508794,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.95, regime +0.20, news +2.80, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.95, 뉴스 +2.80 / 연결 뉴스: 연말까지 주주환원 기대감 유효; AI 데이터센터 전력수요 급증으로 수소산업 규제 재설계 요구 HLB, FDA 승인 불발로 8년 만에 MSCI 퇴출 LS, 수주잔고 19조원 돌파 및 파리 시그레서 HVDC 공개\n출처: TNB | 시각: 2026-08",
+      "news_evidence": [
+        {
+          "title": "연말까지 주주환원 기대감 유효",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10367",
+            "https://vo.la/Wbb0lH2"
+          ],
+          "last_seen": "2026-08-23T11:55:27+00:00"
+        },
+        {
+          "title": "AI 데이터센터 전력수요 급증으로 수소산업 규제 재설계 요구 HLB, FDA 승인 불발로 8년 만에 MSCI 퇴출 LS, 수주잔고 19조원 돌파 및 파리 시그레서 HVDC 공개\n출처: TNB | 시각: 2026-08",
+          "urls": [
+            "https://naver.me/G7NPB0MY",
+            "https://t.me/TNBfolio/71027"
+          ],
+          "last_seen": "2026-08-23T13:37:31+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "e406ee299928039f",
+      "created_at": "2026-08-23T22:55:43+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.34,
+      "entry_zone": [
+        177.4483,
+        179.2317
+      ],
+      "stop_price": 165.458431,
+      "target_price": 204.103138,
+      "score": 4.786,
+      "components": {
+        "momentum": 0.7862149439703529,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.79, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.79, 뉴스 +4.00 / 연결 뉴스: ESS 성장 논리의 확장, 곳곳에서 확인되는 수주의 징후들 2026.08.24; 연말까지 주주환원 기대감 유효",
+      "news_evidence": [
+        {
+          "title": "ESS 성장 논리의 확장, 곳곳에서 확인되는 수주의 징후들 2026.08.24",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10368",
+            "https://vo.la/mYgIiKb"
+          ],
+          "last_seen": "2026-08-23T11:58:56+00:00"
+        },
+        {
+          "title": "연말까지 주주환원 기대감 유효",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10367",
+            "https://vo.la/Wbb0lH2"
+          ],
+          "last_seen": "2026-08-23T11:55:27+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4d72597e423ef5f4",
+      "created_at": "2026-08-23T22:55:43+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 77471.2,
+      "entry_zone": [
+        77083.844,
+        77858.556
+      ],
+      "stop_price": 74265.202397,
+      "target_price": 83883.195207,
+      "score": 4.291,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.2911318948867824,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.29, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.29 / 연결 뉴스: 📝. 비트코인 ETF 이틀간 순유입 10억 달러 돌파 BITCOIN ETF INFLOWS TOP $1 BILLION IN TWO…; 비트코인 두 달 만에 1억원 탈환…바닥 신호에 연내 10만달러 전망 2026.08.22",
+      "news_evidence": [
+        {
+          "title": "📝. 비트코인 ETF 이틀간 순유입 10억 달러 돌파 BITCOIN ETF INFLOWS TOP $1 BILLION IN TWO…",
+          "urls": [
+            "https://t.me/sharpha/51877"
+          ],
+          "last_seen": "2026-08-23T12:21:04+00:00"
+        },
+        {
+          "title": "비트코인 두 달 만에 1억원 탈환…바닥 신호에 연내 10만달러 전망 2026.08.22",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10348"
+          ],
+          "last_seen": "2026-08-23T01:51:16+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
