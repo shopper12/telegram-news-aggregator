@@ -184,9 +184,10 @@ def _clue_is_acceptable(answer: str, clue: str, language: str) -> bool:
 
 def _validate_bank(language: str) -> None:
     seen: set[str] = set()
+    minimum_answer_length = 2 if language == "ko" else 3
     for answer, clue in BANKS[language]:
         normalized = normalize_answer(answer, language)
-        if len(normalized) < 3 or len(normalized) > 11:
+        if len(normalized) < minimum_answer_length or len(normalized) > 11:
             raise ValueError(f"invalid crossword answer length: {language}:{answer}")
         if normalized in seen:
             raise ValueError(f"duplicate crossword answer: {language}:{answer}")
