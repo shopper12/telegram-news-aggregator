@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-24T22:45:13+09:00",
+  "updated_at": "2026-08-24T23:12:41+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -4791,7 +4791,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-22T07:33:40+09:00",
@@ -4802,10 +4802,18 @@
           "evaluated_at": "2026-08-22T23:28:49+09:00",
           "price": 423.36,
           "return_pct": 0.7089
+        },
+        "72h": {
+          "evaluated_at": "2026-08-24T23:12:41+09:00",
+          "price": 427.989,
+          "return_pct": 1.81
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-22T23:28:49+09:00"
+      "learned_at": "2026-08-22T23:28:49+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-24T23:12:41+09:00",
+      "final_return_pct": 1.81
     },
     {
       "id": "99dd7daafeffadf3",
@@ -4857,7 +4865,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-22T07:33:40+09:00",
@@ -4868,10 +4876,18 @@
           "evaluated_at": "2026-08-22T23:28:49+09:00",
           "price": 178.34,
           "return_pct": -0.4305
+        },
+        "72h": {
+          "evaluated_at": "2026-08-24T23:12:41+09:00",
+          "price": 172.63,
+          "return_pct": -3.6184
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-22T23:28:49+09:00"
+      "learned_at": "2026-08-22T23:28:49+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-24T23:12:41+09:00",
+      "final_return_pct": -3.6184
     },
     {
       "id": "72534ea66a106645",
@@ -4923,7 +4939,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-22T07:33:40+09:00",
@@ -4934,10 +4950,18 @@
           "evaluated_at": "2026-08-22T23:28:49+09:00",
           "price": 77064.67,
           "return_pct": 0.1506
+        },
+        "72h": {
+          "evaluated_at": "2026-08-24T23:12:41+09:00",
+          "price": 79067.72,
+          "return_pct": 2.7537
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-22T23:28:49+09:00"
+      "learned_at": "2026-08-22T23:28:49+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-24T23:12:41+09:00",
+      "final_return_pct": 2.7537
     },
     {
       "id": "a439f8fa6376ca41",
@@ -5591,9 +5615,15 @@
           "evaluated_at": "2026-08-24T08:19:32+09:00",
           "price": 423.36,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-24T23:12:41+09:00",
+          "price": 427.989,
+          "return_pct": 1.0934
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-24T23:12:41+09:00"
     },
     {
       "id": "e406ee299928039f",
@@ -5652,9 +5682,15 @@
           "evaluated_at": "2026-08-24T08:19:32+09:00",
           "price": 178.34,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-08-24T23:12:41+09:00",
+          "price": 172.63,
+          "return_pct": -3.2017
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-24T23:12:41+09:00"
     },
     {
       "id": "4d72597e423ef5f4",
@@ -5711,8 +5747,178 @@
           "evaluated_at": "2026-08-24T08:19:32+09:00",
           "price": 77536.95,
           "return_pct": 0.0849
+        },
+        "24h": {
+          "evaluated_at": "2026-08-24T23:12:41+09:00",
+          "price": 79067.72,
+          "return_pct": 2.0608
         }
       },
+      "learned_24h": true,
+      "learned_at": "2026-08-24T23:12:41+09:00"
+    },
+    {
+      "id": "9bbb1ac3bb5954c1",
+      "created_at": "2026-08-24T23:12:41+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 427.989,
+      "entry_zone": [
+        425.849055,
+        430.128945
+      ],
+      "stop_price": 416.992695,
+      "target_price": 449.981609,
+      "score": 9.784,
+      "components": {
+        "momentum": 2.8640665650225587,
+        "regime": 2.0,
+        "news": 3.2196144689535524,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +2.86, regime +2.00, news +3.22, defensive +1.70",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.86, 뉴스 +3.22 / 연결 뉴스: 🔔 EU, 우크라 방위시스템 정비에 9조8533억원 금융지원 승인; 🌎 글로벌 뉴스 브리핑",
+      "news_evidence": [
+        {
+          "title": "🔔 EU, 우크라 방위시스템 정비에 9조8533억원 금융지원 승인",
+          "urls": [
+            "https://newsis.com/view/NISX20260824_0003760555",
+            "https://t.me/c/1208429502/123540"
+          ],
+          "last_seen": "2026-08-24T08:29:04+00:00"
+        },
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/61918"
+          ],
+          "last_seen": "2026-08-24T05:29:41+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "34f6b4d4257eba6c",
+      "created_at": "2026-08-24T23:12:41+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 132.645,
+      "entry_zone": [
+        131.981775,
+        133.308225
+      ],
+      "stop_price": 125.641947,
+      "target_price": 146.651107,
+      "score": 2.077,
+      "components": {
+        "momentum": 0.7794025179745379,
+        "regime": 0.6,
+        "news": 0.6979926395648148,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.78, regime +0.60, news +0.70, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.60, 모멘텀 +0.78, 뉴스 +0.70 / 연결 뉴스: 🔔 두산에너빌리티, 중동서 대형 프로젝트 잇달아 수주...SMR 생산 능력 확... 📈 #두산에너빌리티 #두산밥캣 #두산로보틱스…; 일본 닛케이 AI 반도체 매도세에 하락 야스 중국 OLED 투자 확대로 매출 급증 두산에너빌리티 중동 수주 확대 및 SMR 증설\n출처: TNB | 시각: 2026-08-24T14:08:46+00:00",
+      "news_evidence": [
+        {
+          "title": "🔔 두산에너빌리티, 중동서 대형 프로젝트 잇달아 수주...SMR 생산 능력 확... 📈 #두산에너빌리티 #두산밥캣 #두산로보틱스…",
+          "urls": [
+            "https://ekoreanews.co.kr/news/articleView.html?idxno=87652",
+            "https://t.me/dreago_news_ch/298738"
+          ],
+          "last_seen": "2026-08-24T09:30:02+00:00"
+        },
+        {
+          "title": "일본 닛케이 AI 반도체 매도세에 하락 야스 중국 OLED 투자 확대로 매출 급증 두산에너빌리티 중동 수주 확대 및 SMR 증설\n출처: TNB | 시각: 2026-08-24T14:08:46+00:00",
+          "urls": [
+            "https://naver.me/F93spA5X",
+            "https://t.me/TNBfolio/71043"
+          ],
+          "last_seen": "2026-08-24T14:08:46+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "03432f2caf476005",
+      "created_at": "2026-08-24T23:12:41+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 79067.72,
+      "entry_zone": [
+        78672.3814,
+        79463.0586
+      ],
+      "stop_price": 75794.336596,
+      "target_price": 85614.486808,
+      "score": 1.994,
+      "components": {
+        "momentum": 4.0,
+        "regime": -2.0,
+        "news": -0.005704790492361098,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime -2.00, news -0.01, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 +4.00, 뉴스 -0.01 / 연결 뉴스: 🔔 \"3년 뒤 장담 못 해…지금 금·비트코인 모아라\" 세계 최대 헤지펀드 창업자 경고 📈 #금지금선물관련주 #금광업주 #비트코인…; ✅ 코인 다시 뜨나…비트코인 급등에 국내 거래소 거래량도 '껑충' https://n.news.naver.com/mnews/art…",
+      "news_evidence": [
+        {
+          "title": "🔔 \"3년 뒤 장담 못 해…지금 금·비트코인 모아라\" 세계 최대 헤지펀드 창업자 경고 📈 #금지금선물관련주 #금광업주 #비트코인…",
+          "urls": [
+            "https://n.news.naver.com/article/277/0005806697",
+            "https://t.me/dreago_news_ch/298753"
+          ],
+          "last_seen": "2026-08-24T10:50:27+00:00"
+        },
+        {
+          "title": "✅ 코인 다시 뜨나…비트코인 급등에 국내 거래소 거래량도 '껑충' https://n.news.naver.com/mnews/art…",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/654/0000196637?sid=101",
+            "https://t.me/c/1208429502/123522"
+          ],
+          "last_seen": "2026-08-24T05:11:54+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
