@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-24T23:50:45+09:00",
+  "updated_at": "2026-08-25T07:37:20+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -5012,7 +5012,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-22T13:59:54+09:00",
@@ -5023,10 +5023,18 @@
           "evaluated_at": "2026-08-23T08:14:13+09:00",
           "price": 423.36,
           "return_pct": 0.1206
+        },
+        "72h": {
+          "evaluated_at": "2026-08-25T07:37:20+09:00",
+          "price": 427.5,
+          "return_pct": 1.0997
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-23T08:14:13+09:00"
+      "learned_at": "2026-08-23T08:14:13+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-25T07:37:20+09:00",
+      "final_return_pct": 1.0997
     },
     {
       "id": "c5a51d3442483072",
@@ -5078,7 +5086,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-22T13:59:54+09:00",
@@ -5089,10 +5097,18 @@
           "evaluated_at": "2026-08-23T08:14:13+09:00",
           "price": 178.34,
           "return_pct": -0.2963
+        },
+        "72h": {
+          "evaluated_at": "2026-08-25T07:37:20+09:00",
+          "price": 173.58,
+          "return_pct": -2.9575
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-23T08:14:13+09:00"
+      "learned_at": "2026-08-23T08:14:13+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-25T07:37:20+09:00",
+      "final_return_pct": -2.9575
     },
     {
       "id": "042d9516788953f0",
@@ -5145,7 +5161,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-22T13:59:54+09:00",
@@ -5156,10 +5172,18 @@
           "evaluated_at": "2026-08-23T08:14:13+09:00",
           "price": 76962.0,
           "return_pct": -1.7214
+        },
+        "72h": {
+          "evaluated_at": "2026-08-25T07:37:20+09:00",
+          "price": 78849.4,
+          "return_pct": 0.6888
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-23T08:14:13+09:00"
+      "learned_at": "2026-08-23T08:14:13+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-25T07:37:20+09:00",
+      "final_return_pct": 0.6888
     },
     {
       "id": "bc90f60552ad6bfd",
@@ -5808,7 +5832,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-25T07:37:20+09:00",
+          "price": 427.5,
+          "return_pct": -0.1143
+        }
+      },
       "learned_24h": false
     },
     {
@@ -5863,7 +5893,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-25T07:37:20+09:00",
+          "price": 132.0549,
+          "return_pct": -0.4449
+        }
+      },
       "learned_24h": false
     },
     {
@@ -5914,6 +5950,174 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-25T07:37:20+09:00",
+          "price": 78849.4,
+          "return_pct": -0.2761
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "c3921a64182af8df",
+      "created_at": "2026-08-25T07:37:20+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 427.5,
+      "entry_zone": [
+        425.3625,
+        429.6375
+      ],
+      "stop_price": 416.534673,
+      "target_price": 449.430655,
+      "score": 7.614,
+      "components": {
+        "momentum": 3.515893053200032,
+        "regime": 2.0,
+        "news": 0.3977325061028709,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +3.52, regime +2.00, news +0.40, defensive +1.70",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +3.52, 뉴스 +0.40 / 연결 뉴스: 8월 25일 (화) ⬛️ 해외 시장 네이버 : 차박주식연구소; AI 권력 집중과 규제 리스크 머스크가 8월 24일 제시한 궤도 AI 데이터센터 일정은 2027년 4분기 발사와 2028년 확대입니다. 직전 장에서 마이크론이 5.8퍼센트, AMD가 3퍼센트대 하락하며 반도체가 급락",
+      "news_evidence": [
+        {
+          "title": "8월 25일 (화) ⬛️ 해외 시장 네이버 : 차박주식연구소",
+          "urls": [
+            "https://etoday.co.kr/news/view/2617079",
+            "https://n.news.naver.com/mnews/article/009/0005725194"
+          ],
+          "last_seen": "2026-08-24T22:26:47+00:00"
+        },
+        {
+          "title": "AI 권력 집중과 규제 리스크 머스크가 8월 24일 제시한 궤도 AI 데이터센터 일정은 2027년 4분기 발사와 2028년 확대입니다. 직전 장에서 마이크론이 5.8퍼센트, AMD가 3퍼센트대 하락하며 반도체가 급락",
+          "urls": [
+            "https://t.me/rafikiresearch/24602"
+          ],
+          "last_seen": "2026-08-24T21:49:01+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "c8525c19c2aa1797",
+      "created_at": "2026-08-25T07:37:20+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 78849.4,
+      "entry_zone": [
+        78455.153,
+        79243.647
+      ],
+      "stop_price": 75588.4111,
+      "target_price": 85371.377799,
+      "score": 1.987,
+      "components": {
+        "momentum": 4.0,
+        "regime": -2.0,
+        "news": -0.01271378685370371,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime -2.00, news -0.01, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 +4.00, 뉴스 -0.01 / 연결 뉴스: 🔔 \"3년 뒤 장담 못 해…지금 금·비트코인 모아라\" 세계 최대 헤지펀드 창업자 경고 📈 #금지금선물관련주 #금광업주 #비트코인…; 👀 과연 79K 복귀한 비트코인이 80K를 돌파할지..?",
+      "news_evidence": [
+        {
+          "title": "🔔 \"3년 뒤 장담 못 해…지금 금·비트코인 모아라\" 세계 최대 헤지펀드 창업자 경고 📈 #금지금선물관련주 #금광업주 #비트코인…",
+          "urls": [
+            "https://n.news.naver.com/article/277/0005806697",
+            "https://t.me/dreago_news_ch/298753"
+          ],
+          "last_seen": "2026-08-24T10:50:27+00:00"
+        },
+        {
+          "title": "👀 과연 79K 복귀한 비트코인이 80K를 돌파할지..?",
+          "urls": [
+            "https://t.me/Goboclub/23753"
+          ],
+          "last_seen": "2026-08-24T12:58:03+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "b45a2042713189b2",
+      "created_at": "2026-08-25T07:37:20+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 132.0549,
+      "entry_zone": [
+        131.394625,
+        132.715174
+      ],
+      "stop_price": 125.061331,
+      "target_price": 146.042038,
+      "score": 1.793,
+      "components": {
+        "momentum": 1.165771134287136,
+        "regime": 0.6,
+        "news": 0.027556299202037105,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.17, regime +0.60, news +0.03, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.60, 모멘텀 +1.17, 뉴스 +0.03 / 연결 뉴스: 유가·국채 금리 하락에도 반도체株 약세…나스닥·S&P 500↓; 🔔 두산에너빌리티, 중동서 대형 프로젝트 잇달아 수주...SMR 생산 능력 확... 📈 #두산에너빌리티 #두산밥캣 #두산로보틱스…",
+      "news_evidence": [
+        {
+          "title": "유가·국채 금리 하락에도 반도체株 약세…나스닥·S&P 500↓",
+          "urls": [
+            "https://t.me/chel3337/35465"
+          ],
+          "last_seen": "2026-08-24T22:31:41+00:00"
+        },
+        {
+          "title": "🔔 두산에너빌리티, 중동서 대형 프로젝트 잇달아 수주...SMR 생산 능력 확... 📈 #두산에너빌리티 #두산밥캣 #두산로보틱스…",
+          "urls": [
+            "https://ekoreanews.co.kr/news/articleView.html?idxno=87652",
+            "https://t.me/dreago_news_ch/298738"
+          ],
+          "last_seen": "2026-08-24T09:30:02+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
