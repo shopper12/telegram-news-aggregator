@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-25T22:43:17+09:00",
+  "updated_at": "2026-08-25T23:15:31+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -5234,7 +5234,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-23T07:30:11+09:00",
@@ -5245,10 +5245,18 @@
           "evaluated_at": "2026-08-23T22:55:43+09:00",
           "price": 423.36,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-25T23:15:31+09:00",
+          "price": 423.98,
+          "return_pct": 0.1464
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-23T22:55:43+09:00"
+      "learned_at": "2026-08-23T22:55:43+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-25T23:15:31+09:00",
+      "final_return_pct": 0.1464
     },
     {
       "id": "4405ced69f1c85e2",
@@ -5301,7 +5309,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-23T07:30:11+09:00",
@@ -5312,10 +5320,18 @@
           "evaluated_at": "2026-08-23T22:55:43+09:00",
           "price": 77471.2,
           "return_pct": 0.1745
+        },
+        "72h": {
+          "evaluated_at": "2026-08-25T23:15:31+09:00",
+          "price": 78969.95,
+          "return_pct": 2.1125
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-23T22:55:43+09:00"
+      "learned_at": "2026-08-23T22:55:43+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-25T23:15:31+09:00",
+      "final_return_pct": 2.1125
     },
     {
       "id": "33bdb0f9b3f84f94",
@@ -5367,7 +5383,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-23T07:30:11+09:00",
@@ -5378,10 +5394,18 @@
           "evaluated_at": "2026-08-23T22:55:43+09:00",
           "price": 178.34,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-25T23:15:31+09:00",
+          "price": 178.51,
+          "return_pct": 0.0953
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-23T22:55:43+09:00"
+      "learned_at": "2026-08-23T22:55:43+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-25T23:15:31+09:00",
+      "final_return_pct": 0.0953
     },
     {
       "id": "0d2eca3bc56c6e4e",
@@ -5837,9 +5861,15 @@
           "evaluated_at": "2026-08-25T07:37:20+09:00",
           "price": 427.5,
           "return_pct": -0.1143
+        },
+        "24h": {
+          "evaluated_at": "2026-08-25T23:15:31+09:00",
+          "price": 423.98,
+          "return_pct": -0.9367
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-25T23:15:31+09:00"
     },
     {
       "id": "34f6b4d4257eba6c",
@@ -5898,9 +5928,15 @@
           "evaluated_at": "2026-08-25T07:37:20+09:00",
           "price": 132.0549,
           "return_pct": -0.4449
+        },
+        "24h": {
+          "evaluated_at": "2026-08-25T23:15:31+09:00",
+          "price": 128.06,
+          "return_pct": -3.4566
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-25T23:15:31+09:00"
     },
     {
       "id": "03432f2caf476005",
@@ -5959,9 +5995,15 @@
           "evaluated_at": "2026-08-25T07:37:20+09:00",
           "price": 78849.4,
           "return_pct": -0.2761
+        },
+        "24h": {
+          "evaluated_at": "2026-08-25T23:15:31+09:00",
+          "price": 78969.95,
+          "return_pct": -0.1237
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-25T23:15:31+09:00"
     },
     {
       "id": "c3921a64182af8df",
@@ -6141,6 +6183,170 @@
           "return_pct": 0.1175
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "5dd5be19cb60afda",
+      "created_at": "2026-08-25T23:15:31+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.51,
+      "entry_zone": [
+        177.61745,
+        179.40255
+      ],
+      "stop_price": 166.188117,
+      "target_price": 203.153767,
+      "score": 7.397,
+      "components": {
+        "momentum": 3.3969175093060624,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.40, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.40, 뉴스 +4.00 / 연결 뉴스: 트렌드포스; Citadel, Hard Choices 1. 미 재무부의 장기 국채 개입과 금융 억압 국채 바이백 한도 확대: 미 재무부",
+      "news_evidence": [
+        {
+          "title": "트렌드포스",
+          "urls": [
+            "https://t.me/sharpha/52099",
+            "https://trendforce.com.tw/presscenter/news/20260825-13197.html"
+          ],
+          "last_seen": "2026-08-25T12:34:41+00:00"
+        },
+        {
+          "title": "Citadel, Hard Choices 1. 미 재무부의 장기 국채 개입과 금융 억압 국채 바이백 한도 확대: 미 재무부",
+          "urls": [
+            "https://citadelsecurities.com/news-and-insights/macro-thoughts/hard-choices",
+            "https://t.me/FastStockNewsUSA/22647"
+          ],
+          "last_seen": "2026-08-25T05:17:50+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "c1b4793e06818412",
+      "created_at": "2026-08-25T23:15:31+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 423.98,
+      "entry_zone": [
+        421.8601,
+        426.0999
+      ],
+      "stop_price": 413.400727,
+      "target_price": 445.138547,
+      "score": 6.573,
+      "components": {
+        "momentum": 2.8029609187892293,
+        "regime": 0.2,
+        "news": 2.869697483528797,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +2.80, regime +0.20, news +2.87, defensive +0.70",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.80, 뉴스 +2.87 / 연결 뉴스: Citadel, Hard Choices 1. 미 재무부의 장기 국채 개입과 금융 억압 국채 바이백 한도 확대: 미 재무부; \"하루에 최소 20억 번다\" 포스코, 드디어 백색황금 '리튬'서 결실 2026.08.25",
+      "news_evidence": [
+        {
+          "title": "Citadel, Hard Choices 1. 미 재무부의 장기 국채 개입과 금융 억압 국채 바이백 한도 확대: 미 재무부",
+          "urls": [
+            "https://citadelsecurities.com/news-and-insights/macro-thoughts/hard-choices",
+            "https://t.me/FastStockNewsUSA/22647"
+          ],
+          "last_seen": "2026-08-25T05:17:50+00:00"
+        },
+        {
+          "title": "\"하루에 최소 20억 번다\" 포스코, 드디어 백색황금 '리튬'서 결실 2026.08.25",
+          "urls": [
+            "https://fnnews.com/news/202608251408120493",
+            "https://t.me/aicorporateanalysisdeepdive/10453"
+          ],
+          "last_seen": "2026-08-25T06:11:05+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "58ea1b5326d0acc1",
+      "created_at": "2026-08-25T23:15:31+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 78969.95,
+      "entry_zone": [
+        78575.10025,
+        79364.79975
+      ],
+      "stop_price": 75688.774595,
+      "target_price": 85532.30081,
+      "score": 4.665,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 0.6650529343628241,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +0.67, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.67 / 연결 뉴스: 트럼프의 가상자산 드라이브, 미 국채 수요와 연결되나 도널드 트럼프 행정부가 추진하는 가상자산 정책이 미국 국채 시장의 새로운 …; 🔔 “갑자기 너무 오른다” 계좌 열었다가 ‘깜짝’…비트코인 급등한 이유는 바로 📈 #비덴트 #우리기술투자 #한화투자증권 #코인원…",
+      "news_evidence": [
+        {
+          "title": "트럼프의 가상자산 드라이브, 미 국채 수요와 연결되나 도널드 트럼프 행정부가 추진하는 가상자산 정책이 미국 국채 시장의 새로운 …",
+          "urls": [
+            "https://t.me/insidertracking/62037"
+          ],
+          "last_seen": "2026-08-25T06:19:39+00:00"
+        },
+        {
+          "title": "🔔 “갑자기 너무 오른다” 계좌 열었다가 ‘깜짝’…비트코인 급등한 이유는 바로 📈 #비덴트 #우리기술투자 #한화투자증권 #코인원…",
+          "urls": [
+            "https://n.news.naver.com/article/011/0004654983",
+            "https://t.me/dreago_news_ch/299132"
+          ],
+          "last_seen": "2026-08-25T07:00:19+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
