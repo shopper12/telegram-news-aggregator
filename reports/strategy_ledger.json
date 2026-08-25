@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-25T23:53:52+09:00",
+  "updated_at": "2026-08-26T07:38:01+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -5458,7 +5458,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-23T13:33:12+09:00",
@@ -5469,10 +5469,18 @@
           "evaluated_at": "2026-08-24T08:19:32+09:00",
           "price": 77536.95,
           "return_pct": 0.6378
+        },
+        "72h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 78845.97,
+          "return_pct": 2.3368
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-24T08:19:32+09:00"
+      "learned_at": "2026-08-24T08:19:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-26T07:38:01+09:00",
+      "final_return_pct": 2.3368
     },
     {
       "id": "986cd74b6265e6fc",
@@ -5524,7 +5532,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-23T13:33:12+09:00",
@@ -5535,10 +5543,18 @@
           "evaluated_at": "2026-08-24T08:19:32+09:00",
           "price": 423.36,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 428.1601,
+          "return_pct": 1.1338
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-24T08:19:32+09:00"
+      "learned_at": "2026-08-24T08:19:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-26T07:38:01+09:00",
+      "final_return_pct": 1.1338
     },
     {
       "id": "7dca79bd14ce603d",
@@ -5590,7 +5606,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-23T13:33:12+09:00",
@@ -5601,10 +5617,18 @@
           "evaluated_at": "2026-08-24T08:19:32+09:00",
           "price": 178.34,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 180.25,
+          "return_pct": 1.071
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-24T08:19:32+09:00"
+      "learned_at": "2026-08-24T08:19:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-08-26T07:38:01+09:00",
+      "final_return_pct": 1.071
     },
     {
       "id": "1c6c18487a9662a0",
@@ -6061,9 +6085,15 @@
           "evaluated_at": "2026-08-25T13:37:52+09:00",
           "price": 426.69,
           "return_pct": -0.1895
+        },
+        "24h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 428.1601,
+          "return_pct": 0.1544
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-26T07:38:01+09:00"
     },
     {
       "id": "c8525c19c2aa1797",
@@ -6121,9 +6151,15 @@
           "evaluated_at": "2026-08-25T13:37:52+09:00",
           "price": 80315.48,
           "return_pct": 1.8593
+        },
+        "24h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 78845.97,
+          "return_pct": -0.0044
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-26T07:38:01+09:00"
     },
     {
       "id": "b45a2042713189b2",
@@ -6181,9 +6217,15 @@
           "evaluated_at": "2026-08-25T13:37:52+09:00",
           "price": 132.21,
           "return_pct": 0.1175
+        },
+        "24h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 125.94,
+          "return_pct": -4.6306
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-26T07:38:01+09:00"
     },
     {
       "id": "5dd5be19cb60afda",
@@ -6237,7 +6279,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 180.25,
+          "return_pct": 0.9747
+        }
+      },
       "learned_24h": false
     },
     {
@@ -6292,7 +6340,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 428.1601,
+          "return_pct": 0.9859
+        }
+      },
       "learned_24h": false
     },
     {
@@ -6324,6 +6378,176 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +0.67 / 연결 뉴스: 트럼프의 가상자산 드라이브, 미 국채 수요와 연결되나 도널드 트럼프 행정부가 추진하는 가상자산 정책이 미국 국채 시장의 새로운 …; 🔔 “갑자기 너무 오른다” 계좌 열었다가 ‘깜짝’…비트코인 급등한 이유는 바로 📈 #비덴트 #우리기술투자 #한화투자증권 #코인원…",
+      "news_evidence": [
+        {
+          "title": "트럼프의 가상자산 드라이브, 미 국채 수요와 연결되나 도널드 트럼프 행정부가 추진하는 가상자산 정책이 미국 국채 시장의 새로운 …",
+          "urls": [
+            "https://t.me/insidertracking/62037"
+          ],
+          "last_seen": "2026-08-25T06:19:39+00:00"
+        },
+        {
+          "title": "🔔 “갑자기 너무 오른다” 계좌 열었다가 ‘깜짝’…비트코인 급등한 이유는 바로 📈 #비덴트 #우리기술투자 #한화투자증권 #코인원…",
+          "urls": [
+            "https://n.news.naver.com/article/011/0004654983",
+            "https://t.me/dreago_news_ch/299132"
+          ],
+          "last_seen": "2026-08-25T07:00:19+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-26T07:38:01+09:00",
+          "price": 78845.97,
+          "return_pct": -0.157
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "8e51545e980eeff1",
+      "created_at": "2026-08-26T07:38:01+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.25,
+      "entry_zone": [
+        179.34875,
+        181.15125
+      ],
+      "stop_price": 167.730462,
+      "target_price": 205.289075,
+      "score": 8.0,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: 8월 26일 (수) ⬛️ 해외 시장 네이버 : 차박주식연구소; [뉴스] 메모리 가격 급등…2027년 주요 CSP 자본지출의 68%를 DRAM·NAND 플래시가 차지 TrendForce",
+      "news_evidence": [
+        {
+          "title": "8월 26일 (수) ⬛️ 해외 시장 네이버 : 차박주식연구소",
+          "urls": [
+            "https://etoday.co.kr/news/view/2617079",
+            "https://hankyung.com/article/2026082521331"
+          ],
+          "last_seen": "2026-08-25T22:16:36+00:00"
+        },
+        {
+          "title": "[뉴스] 메모리 가격 급등…2027년 주요 CSP 자본지출의 68%를 DRAM·NAND 플래시가 차지 TrendForce",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10471",
+            "https://trendforce.com/presscenter/news/20260825-13198.html"
+          ],
+          "last_seen": "2026-08-25T22:24:12+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "2313351df4005ef2",
+      "created_at": "2026-08-26T07:38:01+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 428.1601,
+      "entry_zone": [
+        426.019299,
+        430.3009
+      ],
+      "stop_price": 417.674042,
+      "target_price": 449.132216,
+      "score": 6.023,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 1.1230830055619445,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +1.12, defensive +0.70",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +1.12 / 연결 뉴스: 8월 26일 (수) ⬛️ 해외 시장 네이버 : 차박주식연구소; Citadel, Hard Choices 1. 미 재무부의 장기 국채 개입과 금융 억압 국채 바이백 한도 확대: 미 재무부",
+      "news_evidence": [
+        {
+          "title": "8월 26일 (수) ⬛️ 해외 시장 네이버 : 차박주식연구소",
+          "urls": [
+            "https://etoday.co.kr/news/view/2617079",
+            "https://hankyung.com/article/2026082521331"
+          ],
+          "last_seen": "2026-08-25T22:16:36+00:00"
+        },
+        {
+          "title": "Citadel, Hard Choices 1. 미 재무부의 장기 국채 개입과 금융 억압 국채 바이백 한도 확대: 미 재무부",
+          "urls": [
+            "https://citadelsecurities.com/news-and-insights/macro-thoughts/hard-choices",
+            "https://t.me/FastStockNewsUSA/22647"
+          ],
+          "last_seen": "2026-08-25T05:17:50+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "3bdf5ad47acfecec",
+      "created_at": "2026-08-26T07:38:01+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 78845.97,
+      "entry_zone": [
+        78451.74015,
+        79240.19985
+      ],
+      "stop_price": 75565.500431,
+      "target_price": 85406.909139,
+      "score": 4.253,
+      "components": {
+        "momentum": 3.970404845358023,
+        "regime": 0.0,
+        "news": 0.28230900523006935,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.97, regime +0.00, news +0.28, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.97, 뉴스 +0.28 / 연결 뉴스: 트럼프의 가상자산 드라이브, 미 국채 수요와 연결되나 도널드 트럼프 행정부가 추진하는 가상자산 정책이 미국 국채 시장의 새로운 …; 🔔 “갑자기 너무 오른다” 계좌 열었다가 ‘깜짝’…비트코인 급등한 이유는 바로 📈 #비덴트 #우리기술투자 #한화투자증권 #코인원…",
       "news_evidence": [
         {
           "title": "트럼프의 가상자산 드라이브, 미 국채 수요와 연결되나 도널드 트럼프 행정부가 추진하는 가상자산 정책이 미국 국채 시장의 새로운 …",
