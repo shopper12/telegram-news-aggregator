@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-28T07:46:45+09:00",
+  "updated_at": "2026-08-28T08:06:44+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -7064,6 +7064,166 @@
           "return_pct": 0.215
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "b9c7ddd09caa456d",
+      "created_at": "2026-08-28T08:06:44+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 181.1,
+      "entry_zone": [
+        180.1945,
+        182.0055
+      ],
+      "stop_price": 171.493826,
+      "target_price": 200.312349,
+      "score": 8.09,
+      "components": {
+        "momentum": 2.089728937967011,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.09, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.09, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …; 삼성전자",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10548"
+          ],
+          "last_seen": "2026-08-27T21:58:45+00:00"
+        },
+        {
+          "title": "삼성전자",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10559"
+          ],
+          "last_seen": "2026-08-27T22:38:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "f94e8be967fa116d",
+      "created_at": "2026-08-28T08:06:44+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 719.4779,
+      "entry_zone": [
+        715.880511,
+        723.075289
+      ],
+      "stop_price": 705.088342,
+      "target_price": 748.257016,
+      "score": 7.082,
+      "components": {
+        "momentum": 1.0820797399924889,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.08, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.08, 뉴스 +4.00 / 연결 뉴스: [2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …; 삼성전자",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10548"
+          ],
+          "last_seen": "2026-08-27T21:58:45+00:00"
+        },
+        {
+          "title": "삼성전자",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10559"
+          ],
+          "last_seen": "2026-08-27T22:38:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "5aebd11703f2b77c",
+      "created_at": "2026-08-28T08:06:44+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 422.6,
+      "entry_zone": [
+        420.487,
+        424.713
+      ],
+      "stop_price": 411.775105,
+      "target_price": 444.24979,
+      "score": 4.665,
+      "components": {
+        "momentum": 1.9118204896458124,
+        "regime": -0.7,
+        "news": 3.4527206760259257,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.91, regime -0.70, news +3.45, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +1.91, 뉴스 +3.45 / 연결 뉴스: [2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …; [뉴스] 엔비디아 8.7% 급등하며 기술주 랠리…나스닥 1.57%↑(종합) 연합뉴스",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10548"
+          ],
+          "last_seen": "2026-08-27T21:58:45+00:00"
+        },
+        {
+          "title": "[뉴스] 엔비디아 8.7% 급등하며 기술주 랠리…나스닥 1.57%↑(종합) 연합뉴스",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/001/0016275808",
+            "https://t.me/aicorporateanalysisdeepdive/10549"
+          ],
+          "last_seen": "2026-08-27T22:38:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
