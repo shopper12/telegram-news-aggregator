@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-28T08:47:20+09:00",
+  "updated_at": "2026-08-28T15:06:40+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -6943,9 +6943,15 @@
           "evaluated_at": "2026-08-28T03:11:36+09:00",
           "price": 179.94,
           "return_pct": 0.4242
+        },
+        "24h": {
+          "evaluated_at": "2026-08-28T15:06:40+09:00",
+          "price": 182.14,
+          "return_pct": 1.652
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-28T15:06:40+09:00"
     },
     {
       "id": "18ffd7afdbc17594",
@@ -7003,9 +7009,15 @@
           "evaluated_at": "2026-08-28T03:11:36+09:00",
           "price": 520.766,
           "return_pct": 1.0411
+        },
+        "24h": {
+          "evaluated_at": "2026-08-28T15:06:40+09:00",
+          "price": 525.43,
+          "return_pct": 1.9461
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-28T15:06:40+09:00"
     },
     {
       "id": "628ec02f97baf972",
@@ -7062,9 +7074,15 @@
           "evaluated_at": "2026-08-28T03:11:36+09:00",
           "price": 422.226,
           "return_pct": 0.215
+        },
+        "24h": {
+          "evaluated_at": "2026-08-28T15:06:40+09:00",
+          "price": 422.6,
+          "return_pct": 0.3038
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-28T15:06:40+09:00"
     },
     {
       "id": "b9c7ddd09caa456d",
@@ -7116,7 +7134,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-28T15:06:40+09:00",
+          "price": 182.14,
+          "return_pct": 0.5743
+        }
+      },
       "learned_24h": false
     },
     {
@@ -7169,7 +7193,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-28T15:06:40+09:00",
+          "price": 721.11,
+          "return_pct": 0.2268
+        }
+      },
       "learned_24h": false
     },
     {
@@ -7219,6 +7249,174 @@
         }
       ],
       "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-28T15:06:40+09:00",
+          "price": 422.6,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "e34812a7b6ebe291",
+      "created_at": "2026-08-28T15:06:40+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 182.14,
+      "entry_zone": [
+        181.2293,
+        183.0507
+      ],
+      "stop_price": 172.478661,
+      "target_price": 201.462679,
+      "score": 8.09,
+      "components": {
+        "momentum": 2.090039009076352,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.09, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.09, 뉴스 +4.00 / 연결 뉴스: [뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제; [2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+      "news_evidence": [
+        {
+          "title": "[뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제",
+          "urls": [
+            "https://sedaily.com/article/20084484",
+            "https://t.me/YeouidoStory2/116692"
+          ],
+          "last_seen": "2026-08-28T06:01:18+00:00"
+        },
+        {
+          "title": "[2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10548"
+          ],
+          "last_seen": "2026-08-27T21:58:45+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "596cf897ad1c4f43",
+      "created_at": "2026-08-28T15:06:40+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 721.11,
+      "entry_zone": [
+        717.50445,
+        724.71555
+      ],
+      "stop_price": 706.6878,
+      "target_price": 749.9544,
+      "score": 7.111,
+      "components": {
+        "momentum": 1.111275515696458,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.11, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.11, 뉴스 +4.00 / 연결 뉴스: [뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제; [2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+      "news_evidence": [
+        {
+          "title": "[뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제",
+          "urls": [
+            "https://sedaily.com/article/20084484",
+            "https://t.me/YeouidoStory2/116692"
+          ],
+          "last_seen": "2026-08-28T06:01:18+00:00"
+        },
+        {
+          "title": "[2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10548"
+          ],
+          "last_seen": "2026-08-27T21:58:45+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "cf8aa89de0ba0bf6",
+      "created_at": "2026-08-28T15:06:40+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 422.6,
+      "entry_zone": [
+        420.487,
+        424.713
+      ],
+      "stop_price": 411.775105,
+      "target_price": 444.24979,
+      "score": 3.866,
+      "components": {
+        "momentum": 1.65566239869114,
+        "regime": -0.7,
+        "news": 2.9107017540340276,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.66, regime -0.70, news +2.91, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -0.70, 모멘텀 +1.66, 뉴스 +2.91 / 연결 뉴스: [2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …; [뉴스] 엔비디아 8.7% 급등하며 기술주 랠리…나스닥 1.57%↑(종합) 연합뉴스",
+      "news_evidence": [
+        {
+          "title": "[2026년 8월 28일 모닝 시황] AI 우려 완화, 엔비디아·소프트웨어 급등에 3대 지수 상승 ────────── <요약> …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10548"
+          ],
+          "last_seen": "2026-08-27T21:58:45+00:00"
+        },
+        {
+          "title": "[뉴스] 엔비디아 8.7% 급등하며 기술주 랠리…나스닥 1.57%↑(종합) 연합뉴스",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/001/0016275808",
+            "https://t.me/aicorporateanalysisdeepdive/10549"
+          ],
+          "last_seen": "2026-08-27T22:38:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
