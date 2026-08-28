@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-29T07:50:03+09:00",
+  "updated_at": "2026-08-29T08:10:05+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -7188,9 +7188,15 @@
           "evaluated_at": "2026-08-28T15:06:40+09:00",
           "price": 182.14,
           "return_pct": 0.5743
+        },
+        "24h": {
+          "evaluated_at": "2026-08-29T08:10:05+09:00",
+          "price": 179.85,
+          "return_pct": -0.6902
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-29T08:10:05+09:00"
     },
     {
       "id": "f94e8be967fa116d",
@@ -7247,9 +7253,15 @@
           "evaluated_at": "2026-08-28T15:06:40+09:00",
           "price": 721.11,
           "return_pct": 0.2268
+        },
+        "24h": {
+          "evaluated_at": "2026-08-29T08:10:05+09:00",
+          "price": 716.18,
+          "return_pct": -0.4584
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-29T08:10:05+09:00"
     },
     {
       "id": "5aebd11703f2b77c",
@@ -7496,6 +7508,114 @@
       "outcome": "stop_observed",
       "closed_at": "2026-08-29T05:40:51+09:00",
       "final_return_pct": -3.3081
+    },
+    {
+      "id": "0a21e07cd8e93032",
+      "created_at": "2026-08-29T08:10:05+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 179.85,
+      "entry_zone": [
+        178.95075,
+        180.74925
+      ],
+      "stop_price": 170.481833,
+      "target_price": 198.586334,
+      "score": 4.459,
+      "components": {
+        "momentum": 1.8532366160461087,
+        "regime": 0.0,
+        "news": 3.1055918692468154,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.85, regime +0.00, news +3.11, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.85, 뉴스 +3.11 / 연결 뉴스: [뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제; AI 투자 붐, 글로벌 경제 떠받치는 핵심 동력으로 미국의 무역 갈등과 중동 불안, 높은 차입비용에도 세계 경제가 예상보다 강한…",
+      "news_evidence": [
+        {
+          "title": "[뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제",
+          "urls": [
+            "https://sedaily.com/article/20084484",
+            "https://t.me/YeouidoStory2/116692"
+          ],
+          "last_seen": "2026-08-28T06:01:18+00:00"
+        },
+        {
+          "title": "AI 투자 붐, 글로벌 경제 떠받치는 핵심 동력으로 미국의 무역 갈등과 중동 불안, 높은 차입비용에도 세계 경제가 예상보다 강한…",
+          "urls": [
+            "https://t.me/insidertracking/62311"
+          ],
+          "last_seen": "2026-08-28T08:43:56+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6c97c7eda95c1ad7",
+      "created_at": "2026-08-29T08:10:05+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 716.18,
+      "entry_zone": [
+        712.5991,
+        719.7609
+      ],
+      "stop_price": 701.8564,
+      "target_price": 744.8272,
+      "score": 3.399,
+      "components": {
+        "momentum": 0.5748840578435749,
+        "regime": 0.0,
+        "news": 3.324402453129871,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.57, regime +0.00, news +3.32, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.57, 뉴스 +3.32 / 연결 뉴스: [뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제; AI 투자 붐, 글로벌 경제 떠받치는 핵심 동력으로 미국의 무역 갈등과 중동 불안, 높은 차입비용에도 세계 경제가 예상보다 강한…",
+      "news_evidence": [
+        {
+          "title": "[뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제",
+          "urls": [
+            "https://sedaily.com/article/20084484",
+            "https://t.me/YeouidoStory2/116692"
+          ],
+          "last_seen": "2026-08-28T06:01:18+00:00"
+        },
+        {
+          "title": "AI 투자 붐, 글로벌 경제 떠받치는 핵심 동력으로 미국의 무역 갈등과 중동 불안, 높은 차입비용에도 세계 경제가 예상보다 강한…",
+          "urls": [
+            "https://t.me/insidertracking/62311"
+          ],
+          "last_seen": "2026-08-28T08:43:56+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
     }
   ]
 }
