@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-30T01:56:31+09:00",
+  "updated_at": "2026-08-30T02:19:49+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -7775,6 +7775,171 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "15b42059464589bf",
+      "created_at": "2026-08-30T02:19:49+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.2,
+      "entry_zone": [
+        179.299,
+        181.101
+      ],
+      "stop_price": 170.641565,
+      "target_price": 199.31687,
+      "score": 2.8,
+      "components": {
+        "momentum": 2.090039009076352,
+        "regime": 0.0,
+        "news": 0.7097060151466669,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.09, regime +0.00, news +0.71, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.09, 뉴스 +0.71 / 연결 뉴스: 메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…; 다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+      "news_evidence": [
+        {
+          "title": "메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…",
+          "urls": [
+            "https://finance.biggo.com/news/86e30c48-934d-40af-9e95-b506c95e8244",
+            "https://t.me/FastStockNewsUSA/22747"
+          ],
+          "last_seen": "2026-08-29T11:13:05+00:00"
+        },
+        {
+          "title": "다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10579",
+            "https://t.me/insidertracking/62351"
+          ],
+          "last_seen": "2026-08-29T00:12:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "7ce813bee6f72e1c",
+      "created_at": "2026-08-30T02:19:49+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 408.89,
+      "entry_zone": [
+        406.84555,
+        410.93445
+      ],
+      "stop_price": 398.416286,
+      "target_price": 429.837427,
+      "score": 2.578,
+      "components": {
+        "momentum": 1.65566239869114,
+        "regime": 0.2,
+        "news": 0.7227832033832408,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.66, regime +0.20, news +0.72, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.66, 뉴스 +0.72 / 연결 뉴스: 🔔; 다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/f94178",
+            "https://t.me/dreago_news_ch/299938"
+          ],
+          "last_seen": "2026-08-29T03:15:25+00:00"
+        },
+        {
+          "title": "다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10579",
+            "https://t.me/insidertracking/62351"
+          ],
+          "last_seen": "2026-08-29T00:12:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "ddaeccae9f5be7cc",
+      "created_at": "2026-08-30T02:19:49+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 716.43,
+      "entry_zone": [
+        712.84785,
+        720.01215
+      ],
+      "stop_price": 702.1014,
+      "target_price": 745.0872,
+      "score": 2.42,
+      "components": {
+        "momentum": 1.111275515696458,
+        "regime": 0.0,
+        "news": 1.3084475489875929,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.11, regime +0.00, news +1.31, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.11, 뉴스 +1.31 / 연결 뉴스: 메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…; 다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+      "news_evidence": [
+        {
+          "title": "메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…",
+          "urls": [
+            "https://finance.biggo.com/news/86e30c48-934d-40af-9e95-b506c95e8244",
+            "https://t.me/FastStockNewsUSA/22747"
+          ],
+          "last_seen": "2026-08-29T11:13:05+00:00"
+        },
+        {
+          "title": "다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10579",
+            "https://t.me/insidertracking/62351"
+          ],
+          "last_seen": "2026-08-29T00:12:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
