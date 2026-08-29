@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-29T08:30:41+09:00",
+  "updated_at": "2026-08-29T12:39:25+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -7610,6 +7610,114 @@
         }
       ],
       "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "e2b2c62fe107acdc",
+      "created_at": "2026-08-29T12:39:25+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.2,
+      "entry_zone": [
+        179.299,
+        181.101
+      ],
+      "stop_price": 170.813602,
+      "target_price": 198.972797,
+      "score": 2.4,
+      "components": {
+        "momentum": 1.5186692691920738,
+        "regime": 0.0,
+        "news": 1.3813875945495373,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.52, regime +0.00, news +1.38, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.52, 뉴스 +1.38 / 연결 뉴스: [뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제; 2026년 8월 28일 서학개미 순매수 미국 주식 TOP 50 1위: NVIDIA CORP",
+      "news_evidence": [
+        {
+          "title": "[뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제",
+          "urls": [
+            "https://sedaily.com/article/20084484",
+            "https://t.me/YeouidoStory2/116692"
+          ],
+          "last_seen": "2026-08-28T06:01:18+00:00"
+        },
+        {
+          "title": "2026년 8월 28일 서학개미 순매수 미국 주식 TOP 50 1위: NVIDIA CORP",
+          "urls": [
+            "https://t.me/insidertracking/62355"
+          ],
+          "last_seen": "2026-08-28T20:39:02+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "f1370aa6c0ea5022",
+      "created_at": "2026-08-29T12:39:25+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 716.43,
+      "entry_zone": [
+        712.84785,
+        720.01215
+      ],
+      "stop_price": 702.1014,
+      "target_price": 745.0872,
+      "score": 1.523,
+      "components": {
+        "momentum": 0.3940997517892392,
+        "regime": 0.0,
+        "news": 1.6292280788134264,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.39, regime +0.00, news +1.63, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.39, 뉴스 +1.63 / 연결 뉴스: [뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제; 2026년 8월 28일 서학개미 순매수 미국 주식 TOP 50 1위: NVIDIA CORP",
+      "news_evidence": [
+        {
+          "title": "[뉴스] [단독] 삼성, HBM4 이어 엔비디아 'NVHBM' 선점 서울경제",
+          "urls": [
+            "https://sedaily.com/article/20084484",
+            "https://t.me/YeouidoStory2/116692"
+          ],
+          "last_seen": "2026-08-28T06:01:18+00:00"
+        },
+        {
+          "title": "2026년 8월 28일 서학개미 순매수 미국 주식 TOP 50 1위: NVIDIA CORP",
+          "urls": [
+            "https://t.me/insidertracking/62355"
+          ],
+          "last_seen": "2026-08-28T20:39:02+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,

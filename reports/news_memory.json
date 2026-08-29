@@ -1,7 +1,91 @@
 {
   "version": 2,
-  "updated_at": "2026-08-29T08:30:41+09:00",
+  "updated_at": "2026-08-29T12:39:25+09:00",
   "events": [
+    {
+      "signature": "9881480d04b29ea9e49e684ec4e231fbb0e71d59",
+      "title": "✅ 뉴욕증시, 워시 '매파 발언'에 일제 하락 https://n.news.naver.com/article/055/00013843…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/055/0001384319?sid=104",
+        "https://t.me/c/1208429502/123879"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-08-29T03:17:32+00:00",
+      "last_seen": "2026-08-29T03:17:32+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "한은",
+        "환율",
+        "정책",
+        "금리",
+        "연준"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/f94178",
+        "https://t.me/dreago_news_ch/299938",
+        "https://dreago.kr/n/0962d2",
+        "https://t.me/dreago_news_ch/299937",
+        "https://dreago.kr/n/110953"
+      ],
+      "materiality": 16,
+      "sentiment": 2,
+      "first_seen": "2026-08-27T02:59:07+00:00",
+      "last_seen": "2026-08-29T03:15:25+00:00",
+      "count": 25
+    },
+    {
+      "signature": "6d355e17ea9fc7d603d0e167b7b8263718be16b4",
+      "title": "🔔 李대통령 '전면 재검토' 지시에도…'주가누르기 방지법' 국회로 📈 #한화 #LS #CJ #HD현대 #LG 📝 #저PBR #지…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "006260.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/b674f3",
+        "https://t.me/dreago_news_ch/300591"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-08-29T03:10:23+00:00",
+      "last_seen": "2026-08-29T03:10:23+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ff248fed5f701cfcee50a059c85a475b8f0e0698",
+      "title": "트럼프 \"베네수엘라 석유 650억 배럴 통제권 확보\"…원유 공급망 재편 https://naver.me/5wrSyAu7",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://naver.me/5wrSyAu7",
+        "https://t.me/jeilstock/46318"
+      ],
+      "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-08-29T03:09:14+00:00",
+      "last_seen": "2026-08-29T03:09:14+00:00",
+      "count": 1
+    },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
       "title": "🔔",
@@ -9,10 +93,10 @@
       "keywords": [],
       "tickers": [],
       "materiality": 18,
-      "sentiment": 2,
+      "sentiment": 0,
       "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-08-28T23:05:20+00:00",
-      "count": 378,
+      "last_seen": "2026-08-29T03:04:48+00:00",
+      "count": 380,
       "source_urls": [
         "https://khan.co.kr/article/202608171607001",
         "https://t.me/dreago_news_ch/296031",
@@ -20,6 +104,32 @@
         "https://ytn.co.kr/_ln/0101_202608171951149507",
         "https://news1.kr/politics/assembly/6261083"
       ]
+    },
+    {
+      "signature": "ec14f242636c9715a26d113ac84564b96d7f4750",
+      "title": "케빈 워시 연준 의장 잭슨홀 기조연설 「In Our Time」 2026.08.28",
+      "sectors": [
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "ai",
+        "cpi",
+        "fed",
+        "금리",
+        "연준",
+        "정책"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+        "https://t.me/aicorporateanalysisdeepdive/10582"
+      ],
+      "materiality": 11,
+      "sentiment": 1,
+      "first_seen": "2026-08-29T03:02:19+00:00",
+      "last_seen": "2026-08-29T03:02:19+00:00",
+      "count": 1
     },
     {
       "signature": "fca462f5c7e99d130b05cd4d21e96438650a06c6",
@@ -247,33 +357,6 @@
       "first_seen": "2026-08-28T20:14:28+00:00",
       "last_seen": "2026-08-28T20:14:28+00:00",
       "count": 1
-    },
-    {
-      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
-      "title": "🔔",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "한은",
-        "환율",
-        "정책",
-        "금리",
-        "연준"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/f94178",
-        "https://t.me/dreago_news_ch/299938",
-        "https://dreago.kr/n/0962d2",
-        "https://t.me/dreago_news_ch/299937",
-        "https://dreago.kr/n/110953"
-      ],
-      "materiality": 16,
-      "sentiment": -2,
-      "first_seen": "2026-08-27T02:59:07+00:00",
-      "last_seen": "2026-08-28T20:07:51+00:00",
-      "count": 23
     },
     {
       "signature": "7c63235ade0658ff1886b9224601395cc42ac43f",
@@ -11232,84 +11315,6 @@
       "first_seen": "2026-08-27T00:49:12+00:00",
       "last_seen": "2026-08-27T01:20:01+00:00",
       "count": 3
-    },
-    {
-      "signature": "d938b7486a333a4c732cf136b1db35ef684e5bd1",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "materiality": 25,
-      "sentiment": 1,
-      "first_seen": "2026-08-07T08:51:28+00:00",
-      "last_seen": "2026-08-27T01:19:11+00:00",
-      "count": 443,
-      "source_urls": [
-        "http://yonhapnewstv.co.kr/news/MYH20260817153014FRN",
-        "https://t.me/dreago_news_ch/296024",
-        "https://gukjenews.com/news/articleView.html?idxno=3666419",
-        "https://t.me/dreago_news_ch/296017",
-        "http://yonhapnewstv.co.kr/news/MYH20260817161629wva"
-      ]
-    },
-    {
-      "signature": "30852ff25aeba6b5d1d2fb8d879fea827918386b",
-      "title": "와이엠씨, 美 반도체 장비사 요청 공급 3종→11종 확대 공급 https://v.daum.net/v/202608271009047…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/YeouidoStory2/116638",
-        "https://t.me/c/1208429502/123757",
-        "https://v.daum.net/v/20260827100904799"
-      ],
-      "materiality": 12,
-      "sentiment": 3,
-      "first_seen": "2026-08-27T01:14:08+00:00",
-      "last_seen": "2026-08-27T01:16:29+00:00",
-      "count": 2
-    },
-    {
-      "signature": "4dba07c000c2e5cba25a56269e4064ad1bc995a3",
-      "title": "🔔 컴투스 신작 '제우스: 오만의 신', 애플·구글 매출 1위 📈 #컴투스 #에스엠컬처앤콘텐츠 #드래곤플라이 #네오위즈 #게임빌…",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "애플"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "http://inews24.com/view/1998844",
-        "https://t.me/dreago_news_ch/299864"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-08-27T01:15:53+00:00",
-      "last_seen": "2026-08-27T01:15:53+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c2a2c898a952d9c573371afdc0ba35054ace724f",
-      "title": "두번이안되면세번이있고세번이안되면네번도있고",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/52268"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-08-27T01:15:38+00:00",
-      "last_seen": "2026-08-27T01:15:38+00:00",
-      "count": 1
     }
   ]
 }
