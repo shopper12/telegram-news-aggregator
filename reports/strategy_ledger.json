@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-30T02:38:48+09:00",
+  "updated_at": "2026-08-30T09:04:56+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -7593,9 +7593,15 @@
           "evaluated_at": "2026-08-29T14:24:45+09:00",
           "price": 180.2,
           "return_pct": 0.1946
+        },
+        "24h": {
+          "evaluated_at": "2026-08-30T09:04:56+09:00",
+          "price": 180.2,
+          "return_pct": 0.1946
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-30T09:04:56+09:00"
     },
     {
       "id": "6c97c7eda95c1ad7",
@@ -7653,9 +7659,15 @@
           "evaluated_at": "2026-08-29T14:24:45+09:00",
           "price": 716.43,
           "return_pct": 0.0349
+        },
+        "24h": {
+          "evaluated_at": "2026-08-30T09:04:56+09:00",
+          "price": 716.43,
+          "return_pct": 0.0349
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-08-30T09:04:56+09:00"
     },
     {
       "id": "e2b2c62fe107acdc",
@@ -7829,7 +7841,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-30T09:04:56+09:00",
+          "price": 180.2,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -7884,7 +7902,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-30T09:04:56+09:00",
+          "price": 408.89,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -7916,6 +7940,67 @@
         "defensive": 1.0
       },
       "reason": "글로벌 레짐 +0.00, 모멘텀 +1.11, 뉴스 +1.31 / 연결 뉴스: 메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…; 다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+      "news_evidence": [
+        {
+          "title": "메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…",
+          "urls": [
+            "https://finance.biggo.com/news/86e30c48-934d-40af-9e95-b506c95e8244",
+            "https://t.me/FastStockNewsUSA/22747"
+          ],
+          "last_seen": "2026-08-29T11:13:05+00:00"
+        },
+        {
+          "title": "다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10579",
+            "https://t.me/insidertracking/62351"
+          ],
+          "last_seen": "2026-08-29T00:12:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-08-30T09:04:56+09:00",
+          "price": 716.43,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "ddd6d09387bc73a9",
+      "created_at": "2026-08-30T09:04:56+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.2,
+      "entry_zone": [
+        179.299,
+        181.101
+      ],
+      "stop_price": 170.813602,
+      "target_price": 198.972797,
+      "score": 1.599,
+      "components": {
+        "momentum": 1.5186692691920738,
+        "regime": 0.0,
+        "news": 0.5800495404228241,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +1.52, regime +0.00, news +0.58, defensive -0.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.52, 뉴스 +0.58 / 연결 뉴스: 메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…; 다만 증권사 평가는 양호해 톰 리는 AI 인프라 랠리 속 최고치 경신을, 레이몬드 제임스는 루빈 생산 조기화 등 실적·주주환원을 긍정 평가(평균 목표주가 306달러) 메모리는 SK하이닉스의 2030년까지 부족 지속 ",
       "news_evidence": [
         {
           "title": "메모리 칩 현물 시장 위기 직면; 뱅크 오브 아메리카, 9월 가격 20% 추가 상승 전망 메모리 칩 현물 시장은 심각한 수급 불…",
