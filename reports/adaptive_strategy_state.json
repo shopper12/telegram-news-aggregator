@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-08-31T02:41:59+09:00",
+  "updated_at": "2026-08-31T03:01:28+09:00",
   "weights": {
     "momentum": 1.0,
     "regime": 1.0,
@@ -54,14 +54,11 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-08-31T02:41:59+09:00",
-    "kind": "strategy_evening",
-    "slot": "evening",
+    "timestamp": "2026-08-31T03:01:28+09:00",
+    "kind": "regular",
+    "slot": null,
     "regime": "mixed",
-    "regime_score": -0.286,
-    "recommendation_ids": [
-      "eb5e8e09ae1fd178",
-      "59bb3108fcf7132d"
-    ]
+    "regime_score": -0.281,
+    "recommendation_ids": []
   }
 }
