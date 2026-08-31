@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-08-31T03:01:28+09:00",
+  "updated_at": "2026-08-31T09:26:51+09:00",
   "weights": {
     "momentum": 1.0,
     "regime": 1.0,
@@ -8,11 +8,11 @@
     "defensive": 1.0
   },
   "stats": {
-    "evaluated_24h": 118,
+    "evaluated_24h": 119,
     "wins_24h": 42,
     "losses_24h": 35,
-    "flat_24h": 41,
-    "average_return_24h_pct": 0.2022,
+    "flat_24h": 42,
+    "average_return_24h_pct": 0.2005,
     "average_win_24h_pct": 1.7387,
     "average_loss_24h_pct": -1.4158,
     "payoff_ratio_24h": 1.228,
@@ -38,9 +38,9 @@
       "average_return_pct": 0.2933
     },
     "EWY": {
-      "evaluated": 28,
+      "evaluated": 29,
       "wins": 10,
-      "average_return_pct": 0.7186
+      "average_return_pct": 0.6938
     },
     "USO": {
       "evaluated": 7,
@@ -54,11 +54,14 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-08-31T03:01:28+09:00",
-    "kind": "regular",
-    "slot": null,
+    "timestamp": "2026-08-31T09:26:51+09:00",
+    "kind": "strategy_morning",
+    "slot": "morning",
     "regime": "mixed",
-    "regime_score": -0.281,
-    "recommendation_ids": []
+    "regime_score": -0.388,
+    "recommendation_ids": [
+      "ee4d54b459aa22dd",
+      "6fcb1e08995315ae"
+    ]
   }
 }
