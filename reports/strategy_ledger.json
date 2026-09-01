@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-01T04:55:13+09:00",
+  "updated_at": "2026-09-01T10:14:47+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -7635,7 +7635,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-29T14:24:45+09:00",
@@ -7646,10 +7646,18 @@
           "evaluated_at": "2026-08-30T09:04:56+09:00",
           "price": 180.2,
           "return_pct": 0.1946
+        },
+        "72h": {
+          "evaluated_at": "2026-09-01T10:14:47+09:00",
+          "price": 180.67,
+          "return_pct": 0.4559
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-30T09:04:56+09:00"
+      "learned_at": "2026-08-30T09:04:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-01T10:14:47+09:00",
+      "final_return_pct": 0.4559
     },
     {
       "id": "6c97c7eda95c1ad7",
@@ -7701,7 +7709,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-08-29T14:24:45+09:00",
@@ -7712,10 +7720,18 @@
           "evaluated_at": "2026-08-30T09:04:56+09:00",
           "price": 716.43,
           "return_pct": 0.0349
+        },
+        "72h": {
+          "evaluated_at": "2026-09-01T10:14:47+09:00",
+          "price": 716.7,
+          "return_pct": 0.0726
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-08-30T09:04:56+09:00"
+      "learned_at": "2026-08-30T09:04:56+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-01T10:14:47+09:00",
+      "final_return_pct": 0.0726
     },
     {
       "id": "e2b2c62fe107acdc",
@@ -8300,9 +8316,15 @@
           "evaluated_at": "2026-08-31T19:01:10+09:00",
           "price": 180.87,
           "return_pct": 0.3718
+        },
+        "24h": {
+          "evaluated_at": "2026-09-01T10:14:47+09:00",
+          "price": 180.67,
+          "return_pct": 0.2608
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-01T10:14:47+09:00"
     },
     {
       "id": "6fcb1e08995315ae",
@@ -8361,9 +8383,15 @@
           "evaluated_at": "2026-08-31T19:01:10+09:00",
           "price": 715.43,
           "return_pct": -0.1396
+        },
+        "24h": {
+          "evaluated_at": "2026-09-01T10:14:47+09:00",
+          "price": 716.7,
+          "return_pct": 0.0377
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-01T10:14:47+09:00"
     },
     {
       "id": "b86d5f44ccfdeb49",
@@ -8466,6 +8494,169 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "0dd7f27ed7c8225a",
+      "created_at": "2026-09-01T10:14:47+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.67,
+      "entry_zone": [
+        179.76665,
+        181.57335
+      ],
+      "stop_price": 171.296134,
+      "target_price": 199.417733,
+      "score": 6.931,
+      "components": {
+        "momentum": 2.930882010989813,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.93, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.93, 뉴스 +4.00 / 연결 뉴스: 삼성전기; #삼성전기(시가총액: 106조 5,879억) A009150 보고서명: 단일판매ㆍ공급계약체결 계약상대 : 글로벌 대형기업 계약내용…",
+      "news_evidence": [
+        {
+          "title": "삼성전기",
+          "urls": [
+            "https://t.me/c/1208429502/124019"
+          ],
+          "last_seen": "2026-09-01T00:58:26+00:00"
+        },
+        {
+          "title": "#삼성전기(시가총액: 106조 5,879억) A009150 보고서명: 단일판매ㆍ공급계약체결 계약상대 : 글로벌 대형기업 계약내용…",
+          "urls": [
+            "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901800106",
+            "https://t.me/Yeouido_Lab/37465"
+          ],
+          "last_seen": "2026-09-01T00:59:47+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "111b5866518fe72a",
+      "created_at": "2026-09-01T10:14:47+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 511.0,
+      "entry_zone": [
+        508.445,
+        513.555
+      ],
+      "stop_price": 490.073022,
+      "target_price": 552.853957,
+      "score": 4.449,
+      "components": {
+        "momentum": 0.4488546410561902,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.45, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.45, 뉴스 +4.00 / 연결 뉴스: 삼성전기; #삼성전기(시가총액: 106조 5,879억) A009150 보고서명: 단일판매ㆍ공급계약체결 계약상대 : 글로벌 대형기업 계약내용…",
+      "news_evidence": [
+        {
+          "title": "삼성전기",
+          "urls": [
+            "https://t.me/c/1208429502/124019"
+          ],
+          "last_seen": "2026-09-01T00:58:26+00:00"
+        },
+        {
+          "title": "#삼성전기(시가총액: 106조 5,879억) A009150 보고서명: 단일판매ㆍ공급계약체결 계약상대 : 글로벌 대형기업 계약내용…",
+          "urls": [
+            "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901800106",
+            "https://t.me/Yeouido_Lab/37465"
+          ],
+          "last_seen": "2026-09-01T00:59:47+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "46e1d0d39266a24d",
+      "created_at": "2026-09-01T10:14:47+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 134.5,
+      "entry_zone": [
+        133.8275,
+        135.1725
+      ],
+      "stop_price": 128.602247,
+      "target_price": 146.295506,
+      "score": 1.841,
+      "components": {
+        "momentum": 1.5049355685372063,
+        "regime": 0.2,
+        "news": 0.13648589740520833,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.50, regime +0.20, news +0.14, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.50, 뉴스 +0.14 / 연결 뉴스: 🔔 정유주, 국제 유가 상승에 동반 급등…SK이노베이션 8%↑ 📈 #SK이노베이션 #S-Oil #GS 📝 #정유 #국제유가 #중…; 🔔 SK오션플랜트, 그리스 선주와 5928억원 규모 원유운반선 6척 수주 📈 #SK오션플랜트 📝 #조선 #유조선 #선박수주 최근…",
+      "news_evidence": [
+        {
+          "title": "🔔 정유주, 국제 유가 상승에 동반 급등…SK이노베이션 8%↑ 📈 #SK이노베이션 #S-Oil #GS 📝 #정유 #국제유가 #중…",
+          "urls": [
+            "https://dreago.kr/n/722a49",
+            "https://t.me/dreago_news_ch/301262"
+          ],
+          "last_seen": "2026-09-01T00:50:34+00:00"
+        },
+        {
+          "title": "🔔 SK오션플랜트, 그리스 선주와 5928억원 규모 원유운반선 6척 수주 📈 #SK오션플랜트 📝 #조선 #유조선 #선박수주 최근…",
+          "urls": [
+            "https://dreago.kr/n/6ada98",
+            "https://t.me/dreago_news_ch/300974"
+          ],
+          "last_seen": "2026-08-31T02:52:31+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
