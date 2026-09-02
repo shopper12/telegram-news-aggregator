@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-02T11:40:33+09:00",
+  "updated_at": "2026-09-02T16:40:36+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -8943,7 +8943,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-02T16:40:36+09:00",
+          "price": 141.0,
+          "return_pct": -0.1063
+        }
+      },
       "learned_24h": false
     },
     {
@@ -8981,7 +8987,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-02T16:40:36+09:00",
+          "price": 28.21,
+          "return_pct": -0.4587
+        }
+      },
       "learned_24h": false
     },
     {
@@ -9036,7 +9048,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-02T16:40:36+09:00",
+          "price": 175.8,
+          "return_pct": 0.0626
+        }
+      },
       "learned_24h": false
     }
   ]
