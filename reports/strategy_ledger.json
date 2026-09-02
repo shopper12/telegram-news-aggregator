@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-03T01:56:36+09:00",
+  "updated_at": "2026-09-03T02:16:10+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -9055,6 +9055,170 @@
           "return_pct": 0.0626
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "40c6a1a0b61c48b5",
+      "created_at": "2026-09-03T02:16:10+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.755,
+      "entry_zone": [
+        141.046225,
+        142.463775
+      ],
+      "stop_price": 135.905597,
+      "target_price": 153.453807,
+      "score": 4.741,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.5409793041326737,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.54, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.54 / 연결 뉴스: 중동·이란산 공급 감소에 중국 수요 몰리며 러시아 ESPO 원유 프리미엄 사상 최고 https://m.stock.naver.co…; # VIX변동성지표 20일선 돌파 리스크 확대 # WTI유가 90불까지 상승 리스크 확대 # 미10년국채금리 4.79%까지 상승…",
+      "news_evidence": [
+        {
+          "title": "중동·이란산 공급 감소에 중국 수요 몰리며 러시아 ESPO 원유 프리미엄 사상 최고 https://m.stock.naver.co…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2728940",
+            "https://t.me/moneythemestock/63988"
+          ],
+          "last_seen": "2026-09-02T16:23:44+00:00"
+        },
+        {
+          "title": "# VIX변동성지표 20일선 돌파 리스크 확대 # WTI유가 90불까지 상승 리스크 확대 # 미10년국채금리 4.79%까지 상승…",
+          "urls": [
+            "https://t.me/major_industry/5168",
+            "https://t.me/stockgrandmaster/11984"
+          ],
+          "last_seen": "2026-09-01T22:55:08+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "5480eb23b40a6deb",
+      "created_at": "2026-09-03T02:16:10+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 177.95,
+      "entry_zone": [
+        177.06025,
+        178.83975
+      ],
+      "stop_price": 169.443989,
+      "target_price": 194.962021,
+      "score": 4.337,
+      "components": {
+        "momentum": 0.33717004235943215,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.34, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.34, 뉴스 +4.00 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; ▶️특징주",
+      "news_evidence": [
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/62673"
+          ],
+          "last_seen": "2026-09-02T11:56:39+00:00"
+        },
+        {
+          "title": "▶️특징주",
+          "urls": [
+            "http://seoulsos.com",
+            "https://t.me/YeouidoStory2"
+          ],
+          "last_seen": "2026-09-02T06:40:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "d7dd68ec2fcf9b03",
+      "created_at": "2026-09-03T02:16:10+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 708.221,
+      "entry_zone": [
+        704.679895,
+        711.762105
+      ],
+      "stop_price": 694.05658,
+      "target_price": 736.54984,
+      "score": 3.788,
+      "components": {
+        "momentum": -0.21176888351052378,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.21, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.21, 뉴스 +4.00 / 연결 뉴스: [키움증권 미국 전략/주식 김승혁] 미국은 지금; ▶️특징주",
+      "news_evidence": [
+        {
+          "title": "[키움증권 미국 전략/주식 김승혁] 미국은 지금",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1653",
+            "https://invest.kiwoom.com/inv/no/3176"
+          ],
+          "last_seen": "2026-09-02T07:28:00+00:00"
+        },
+        {
+          "title": "▶️특징주",
+          "urls": [
+            "http://seoulsos.com",
+            "https://t.me/YeouidoStory2"
+          ],
+          "last_seen": "2026-09-02T06:40:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
