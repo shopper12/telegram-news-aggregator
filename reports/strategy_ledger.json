@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-02T02:46:53+09:00",
+  "updated_at": "2026-09-02T09:02:03+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -8489,9 +8489,15 @@
           "evaluated_at": "2026-09-01T10:38:48+09:00",
           "price": 180.67,
           "return_pct": 0.5342
+        },
+        "24h": {
+          "evaluated_at": "2026-09-02T09:02:03+09:00",
+          "price": 175.69,
+          "return_pct": -2.2369
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-02T09:02:03+09:00"
     },
     {
       "id": "d252d369456af08c",
@@ -8549,9 +8555,15 @@
           "evaluated_at": "2026-09-01T10:38:48+09:00",
           "price": 716.7,
           "return_pct": 0.2027
+        },
+        "24h": {
+          "evaluated_at": "2026-09-02T09:02:03+09:00",
+          "price": 707.8299,
+          "return_pct": -1.0374
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-02T09:02:03+09:00"
     },
     {
       "id": "0dd7f27ed7c8225a",
@@ -8784,7 +8796,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-02T09:02:03+09:00",
+          "price": 141.15,
+          "return_pct": 1.3063
+        }
+      },
       "learned_24h": false
     },
     {
@@ -8835,6 +8853,159 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-02T09:02:03+09:00",
+          "price": 396.4,
+          "return_pct": -0.537
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "6f8951ee5bbe952a",
+      "created_at": "2026-09-02T09:02:03+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.15,
+      "entry_zone": [
+        140.44425,
+        141.85575
+      ],
+      "stop_price": 135.254842,
+      "target_price": 152.940316,
+      "score": 5.253,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.6,
+        "news": 0.6527359101437733,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.60, news +0.65, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.60, 모멘텀 +4.00, 뉴스 +0.65 / 연결 뉴스: 호르무즈 해협 유조선 피격에 따른 국제 유가 상승; ' 쉽지 않은 9월의 시장. 낙폭이 과할때만 접근' # 미국시장 주요 리스크지표인 금리, 유가, 달러, 변동성지표가 모두 반등하…",
+      "news_evidence": [
+        {
+          "title": "호르무즈 해협 유조선 피격에 따른 국제 유가 상승",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/22806"
+          ],
+          "last_seen": "2026-09-01T17:02:14+00:00"
+        },
+        {
+          "title": "' 쉽지 않은 9월의 시장. 낙폭이 과할때만 접근' # 미국시장 주요 리스크지표인 금리, 유가, 달러, 변동성지표가 모두 반등하…",
+          "urls": [
+            "https://t.me/stockgrandmaster",
+            "https://t.me/stockgrandmaster/11992"
+          ],
+          "last_seen": "2026-09-01T23:29:46+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "3269845cffdcd046",
+      "created_at": "2026-09-02T09:02:03+09:00",
+      "slot": "morning",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.34,
+      "entry_zone": [
+        28.1983,
+        28.4817
+      ],
+      "stop_price": 27.7732,
+      "target_price": 29.4736,
+      "score": 3.466,
+      "components": {
+        "momentum": 0.46591627970300864,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.47, regime +2.00, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.47, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "49a78621ad3063e0",
+      "created_at": "2026-09-02T09:02:03+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 175.69,
+      "entry_zone": [
+        174.81155,
+        176.56845
+      ],
+      "stop_price": 166.341519,
+      "target_price": 194.386963,
+      "score": 1.818,
+      "components": {
+        "momentum": 0.8176830817272464,
+        "regime": -2.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.82, regime -2.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 +0.82, 뉴스 +4.00 / 연결 뉴스: 🔔 \"8월 반도체 슈퍼사이클 즐겨야\"...설비투자도 두 자릿수 증가세 전환 📈 #삼성전자 #SK하이닉스 #한미반도체 #주성엔지니…; 🔔 두산퓨얼셀, 5014억 규모 연료전지 시스템 공급계약 📈 #두산퓨얼셀 📝 #연료전지 #수소에너지 #분산형전원 연매출을 웃도는…",
+      "news_evidence": [
+        {
+          "title": "🔔 \"8월 반도체 슈퍼사이클 즐겨야\"...설비투자도 두 자릿수 증가세 전환 📈 #삼성전자 #SK하이닉스 #한미반도체 #주성엔지니…",
+          "urls": [
+            "https://dreago.kr/n/f00967",
+            "https://t.me/dreago_news_ch/301588"
+          ],
+          "last_seen": "2026-09-01T23:12:08+00:00"
+        },
+        {
+          "title": "🔔 두산퓨얼셀, 5014억 규모 연료전지 시스템 공급계약 📈 #두산퓨얼셀 📝 #연료전지 #수소에너지 #분산형전원 연매출을 웃도는…",
+          "urls": [
+            "https://dreago.kr/n/f08015",
+            "https://t.me/dreago_news_ch/301600"
+          ],
+          "last_seen": "2026-09-01T23:22:41+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
