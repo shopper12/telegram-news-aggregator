@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-04T01:47:59+09:00",
+  "updated_at": "2026-09-04T02:08:45+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -9482,6 +9482,167 @@
           "return_pct": -0.0437
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "94d7185f3e43f60c",
+      "created_at": "2026-09-04T02:08:45+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 179.46,
+      "entry_zone": [
+        178.5627,
+        180.3573
+      ],
+      "stop_price": 171.17467,
+      "target_price": 196.03066,
+      "score": 4.662,
+      "components": {
+        "momentum": 0.6623252909054578,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.66, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.66, 뉴스 +4.00 / 연결 뉴스: 🔔; 미국 기업 섹터별 소식 정리",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/323042",
+            "https://t.me/dreago_news_ch/300868"
+          ],
+          "last_seen": "2026-09-03T06:43:26+00:00"
+        },
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/62774"
+          ],
+          "last_seen": "2026-09-03T12:19:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "9bb1b6b3dae33bdd",
+      "created_at": "2026-09-04T02:08:45+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 142.01,
+      "entry_zone": [
+        141.29995,
+        142.72005
+      ],
+      "stop_price": 136.275341,
+      "target_price": 153.479319,
+      "score": 4.142,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": -0.05808741950148148,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news -0.06, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 -0.06 / 연결 뉴스: //주식에 상극이면 상극인 모든 악재가 지금 존재하는 상황 전쟁, 고유가, 고금리, 선거, 일본금리인상, 외국인매도 //그런데 …; # VIX변동성지표 다행히 20일선까지 재차조정 # WTI유가도 90불에서 주춤한 모습 # 미10년국채금리도 4.8%에서 저항되…",
+      "news_evidence": [
+        {
+          "title": "//주식에 상극이면 상극인 모든 악재가 지금 존재하는 상황 전쟁, 고유가, 고금리, 선거, 일본금리인상, 외국인매도 //그런데 …",
+          "urls": [
+            "https://t.me/sharpha/52756"
+          ],
+          "last_seen": "2026-09-03T00:50:04+00:00"
+        },
+        {
+          "title": "# VIX변동성지표 다행히 20일선까지 재차조정 # WTI유가도 90불에서 주춤한 모습 # 미10년국채금리도 4.8%에서 저항되…",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/22817",
+            "https://t.me/stockgrandmaster/11993"
+          ],
+          "last_seen": "2026-09-02T22:48:03+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "12952036c7f22763",
+      "created_at": "2026-09-04T02:08:45+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 716.975,
+      "entry_zone": [
+        713.390125,
+        720.559875
+      ],
+      "stop_price": 702.6355,
+      "target_price": 745.654,
+      "score": 4.094,
+      "components": {
+        "momentum": 0.09436791775777592,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.09, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.09, 뉴스 +4.00 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 미국 기업 섹터별 소식 정리",
+      "news_evidence": [
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/62773"
+          ],
+          "last_seen": "2026-09-03T12:17:15+00:00"
+        },
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/62774"
+          ],
+          "last_seen": "2026-09-03T12:19:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
