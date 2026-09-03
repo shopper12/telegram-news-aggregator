@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-03T02:49:45+09:00",
+  "updated_at": "2026-09-03T09:03:47+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -8976,9 +8976,15 @@
           "evaluated_at": "2026-09-02T16:40:36+09:00",
           "price": 141.0,
           "return_pct": -0.1063
+        },
+        "24h": {
+          "evaluated_at": "2026-09-03T09:03:47+09:00",
+          "price": 140.7507,
+          "return_pct": -0.2829
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-03T09:03:47+09:00"
     },
     {
       "id": "3269845cffdcd046",
@@ -9020,9 +9026,15 @@
           "evaluated_at": "2026-09-02T16:40:36+09:00",
           "price": 28.21,
           "return_pct": -0.4587
+        },
+        "24h": {
+          "evaluated_at": "2026-09-03T09:03:47+09:00",
+          "price": 28.1216,
+          "return_pct": -0.7706
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-03T09:03:47+09:00"
     },
     {
       "id": "49a78621ad3063e0",
@@ -9081,9 +9093,15 @@
           "evaluated_at": "2026-09-02T16:40:36+09:00",
           "price": 175.8,
           "return_pct": 0.0626
+        },
+        "24h": {
+          "evaluated_at": "2026-09-03T09:03:47+09:00",
+          "price": 179.224,
+          "return_pct": 2.0115
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-03T09:03:47+09:00"
     },
     {
       "id": "40c6a1a0b61c48b5",
@@ -9137,7 +9155,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-03T09:03:47+09:00",
+          "price": 140.7507,
+          "return_pct": -0.7085
+        }
+      },
       "learned_24h": false
     },
     {
@@ -9191,7 +9215,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-03T09:03:47+09:00",
+          "price": 179.224,
+          "return_pct": 0.7159
+        }
+      },
       "learned_24h": false
     },
     {
@@ -9242,6 +9272,177 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-03T09:03:47+09:00",
+          "price": 709.55,
+          "return_pct": 0.1877
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "dab75410fc615934",
+      "created_at": "2026-09-03T09:03:47+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 179.224,
+      "entry_zone": [
+        178.32788,
+        180.12012
+      ],
+      "stop_price": 169.687474,
+      "target_price": 198.297052,
+      "score": 5.255,
+      "components": {
+        "momentum": 1.255230505729338,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.26, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.26, 뉴스 +4.00 / 연결 뉴스: \"티씨케이, SiC 포커스링 세계 1위…中 반도체 부상도 기회\"-IBK 2026.09.03; * 하나증권 미래산업팀 * 스몰캡/로봇/AI (Analyst 한유건, 권태우, 박찬솔) ★ 반도체 소재·부품·장비(Overwei…",
+      "news_evidence": [
+        {
+          "title": "\"티씨케이, SiC 포커스링 세계 1위…中 반도체 부상도 기회\"-IBK 2026.09.03",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/015/0005328191?ntype=RANKING&rc=N&sid=001",
+            "https://t.me/aicorporateanalysisdeepdive/10720"
+          ],
+          "last_seen": "2026-09-02T23:46:54+00:00"
+        },
+        {
+          "title": "* 하나증권 미래산업팀 * 스몰캡/로봇/AI (Analyst 한유건, 권태우, 박찬솔) ★ 반도체 소재·부품·장비(Overwei…",
+          "urls": [
+            "https://buly.kr/7x97fKy",
+            "https://t.me/YeouidoStory2/116808"
+          ],
+          "last_seen": "2026-09-02T23:23:34+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "cf0f38d390456eee",
+      "created_at": "2026-09-03T09:03:47+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 140.7507,
+      "entry_zone": [
+        140.046946,
+        141.454453
+      ],
+      "stop_price": 134.872219,
+      "target_price": 152.507663,
+      "score": 4.379,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.17856758177222226,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.18, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.18 / 연결 뉴스: 중동·이란산 공급 감소에 중국 수요 몰리며 러시아 ESPO 원유 프리미엄 사상 최고 https://m.stock.naver.co…; 🔔 美 이란 공습에 코스피 '휘청'…장 초반 2.8% 급락 📈 #삼성전자 #SK하이닉스 📝 #지정학적리스크 #국제유가 #금리민감…",
+      "news_evidence": [
+        {
+          "title": "중동·이란산 공급 감소에 중국 수요 몰리며 러시아 ESPO 원유 프리미엄 사상 최고 https://m.stock.naver.co…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2728940",
+            "https://t.me/moneythemestock/63988"
+          ],
+          "last_seen": "2026-09-02T16:23:44+00:00"
+        },
+        {
+          "title": "🔔 美 이란 공습에 코스피 '휘청'…장 초반 2.8% 급락 📈 #삼성전자 #SK하이닉스 📝 #지정학적리스크 #국제유가 #금리민감…",
+          "urls": [
+            "https://dreago.kr/n/a7439e",
+            "https://t.me/dreago_news_ch/301646"
+          ],
+          "last_seen": "2026-09-02T00:30:30+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "8263c3267da43f66",
+      "created_at": "2026-09-03T09:03:47+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 709.55,
+      "entry_zone": [
+        706.00225,
+        713.09775
+      ],
+      "stop_price": 695.359,
+      "target_price": 737.932,
+      "score": 3.634,
+      "components": {
+        "momentum": -0.3662190211599494,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.37, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.37, 뉴스 +4.00 / 연결 뉴스: \"티씨케이, SiC 포커스링 세계 1위…中 반도체 부상도 기회\"-IBK 2026.09.03; #산일전기, 펀더멘털 지표의 압도적 우위에도 저평가 지속…목표가↑\"-LS LS증권은 3일 산일전기에 대해 글로벌 전력기기 업체들…",
+      "news_evidence": [
+        {
+          "title": "\"티씨케이, SiC 포커스링 세계 1위…中 반도체 부상도 기회\"-IBK 2026.09.03",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/015/0005328191?ntype=RANKING&rc=N&sid=001",
+            "https://t.me/aicorporateanalysisdeepdive/10720"
+          ],
+          "last_seen": "2026-09-02T23:46:54+00:00"
+        },
+        {
+          "title": "#산일전기, 펀더멘털 지표의 압도적 우위에도 저평가 지속…목표가↑\"-LS LS증권은 3일 산일전기에 대해 글로벌 전력기기 업체들…",
+          "urls": [
+            "https://hankyung.com/article/2026090309286",
+            "https://t.me/c/1208429502/124168"
+          ],
+          "last_seen": "2026-09-02T23:29:49+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
