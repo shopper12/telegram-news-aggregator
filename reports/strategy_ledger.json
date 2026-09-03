@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-04T02:46:05+09:00",
+  "updated_at": "2026-09-04T08:59:43+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -8523,7 +8523,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-01T10:38:48+09:00",
@@ -8534,10 +8534,18 @@
           "evaluated_at": "2026-09-02T09:02:03+09:00",
           "price": 175.69,
           "return_pct": -2.2369
+        },
+        "72h": {
+          "evaluated_at": "2026-09-04T08:59:43+09:00",
+          "price": 180.25,
+          "return_pct": 0.3005
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-02T09:02:03+09:00"
+      "learned_at": "2026-09-02T09:02:03+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-04T08:59:43+09:00",
+      "final_return_pct": 0.3005
     },
     {
       "id": "d252d369456af08c",
@@ -8589,7 +8597,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-01T10:38:48+09:00",
@@ -8600,10 +8608,18 @@
           "evaluated_at": "2026-09-02T09:02:03+09:00",
           "price": 707.8299,
           "return_pct": -1.0374
+        },
+        "72h": {
+          "evaluated_at": "2026-09-04T08:59:43+09:00",
+          "price": 717.04,
+          "return_pct": 0.2503
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-02T09:02:03+09:00"
+      "learned_at": "2026-09-02T09:02:03+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-04T08:59:43+09:00",
+      "final_return_pct": 0.2503
     },
     {
       "id": "0dd7f27ed7c8225a",
@@ -9553,7 +9569,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-04T08:59:43+09:00",
+          "price": 180.25,
+          "return_pct": 0.4402
+        }
+      },
       "learned_24h": false
     },
     {
@@ -9607,7 +9629,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-04T08:59:43+09:00",
+          "price": 142.12,
+          "return_pct": 0.0775
+        }
+      },
       "learned_24h": false
     },
     {
@@ -9653,6 +9681,176 @@
             "https://t.me/insidertracking/62774"
           ],
           "last_seen": "2026-09-03T12:19:35+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-04T08:59:43+09:00",
+          "price": 717.04,
+          "return_pct": 0.0091
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "d10d0e31466f37e5",
+      "created_at": "2026-09-04T08:59:43+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 180.25,
+      "entry_zone": [
+        179.34875,
+        181.15125
+      ],
+      "stop_price": 171.923686,
+      "target_price": 196.902629,
+      "score": 4.625,
+      "components": {
+        "momentum": 0.6249354044334602,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.62, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.62, 뉴스 +4.00 / 연결 뉴스: MSTW 21.28%(MSTR 1.2x 주배당) 미국 장기 국채금리 급등으로 국내 상장 미국 10년·30년 국채 ETF들이 잇따라 52주 신저가 기록. 여기에 AI 인프라 투자를 위한 글로벌 기술기업들의 대규모 회사; 로보티즈, 美 FCC 대중 규제 '수혜'…북미에 중국까지 휴머노이드·방산 수주 '급증' 2026.09.04",
+      "news_evidence": [
+        {
+          "title": "MSTW 21.28%(MSTR 1.2x 주배당) 미국 장기 국채금리 급등으로 국내 상장 미국 10년·30년 국채 ETF들이 잇따라 52주 신저가 기록. 여기에 AI 인프라 투자를 위한 글로벌 기술기업들의 대규모 회사",
+          "urls": [
+            "https://buly.kr/6ijpX83",
+            "https://buly.kr/FLaxb6J"
+          ],
+          "last_seen": "2026-09-03T22:58:11+00:00"
+        },
+        {
+          "title": "로보티즈, 美 FCC 대중 규제 '수혜'…북미에 중국까지 휴머노이드·방산 수주 '급증' 2026.09.04",
+          "urls": [
+            "https://newsprime.co.kr/news/article?no=746433",
+            "https://t.me/aicorporateanalysisdeepdive/10745"
+          ],
+          "last_seen": "2026-09-03T23:19:05+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "d5aa8e92bbc16e40",
+      "created_at": "2026-09-04T08:59:43+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 142.12,
+      "entry_zone": [
+        141.4094,
+        142.8306
+      ],
+      "stop_price": 136.38167,
+      "target_price": 153.59666,
+      "score": 4.181,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": -0.019200000000000002,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news -0.02, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 -0.02 / 연결 뉴스: //주식에 상극이면 상극인 모든 악재가 지금 존재하는 상황 전쟁, 고유가, 고금리, 선거, 일본금리인상, 외국인매도 //그런데 …; ✅ \"호르무즈 막히면 수출 제로\"… 중동 산유국, '우회 송유관' 확보에 사활 👉철강주 상승 이유로 보입니다. https://w…",
+      "news_evidence": [
+        {
+          "title": "//주식에 상극이면 상극인 모든 악재가 지금 존재하는 상황 전쟁, 고유가, 고금리, 선거, 일본금리인상, 외국인매도 //그런데 …",
+          "urls": [
+            "https://t.me/sharpha/52756"
+          ],
+          "last_seen": "2026-09-03T00:50:04+00:00"
+        },
+        {
+          "title": "✅ \"호르무즈 막히면 수출 제로\"… 중동 산유국, '우회 송유관' 확보에 사활 👉철강주 상승 이유로 보입니다. https://w…",
+          "urls": [
+            "https://g-enews.com/article/Global-Biz/2026/09/2026090217241571820c8c1c064d_1",
+            "https://t.me/c/1208429502/124176"
+          ],
+          "last_seen": "2026-09-03T00:03:45+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "7de7f9863ea763b1",
+      "created_at": "2026-09-04T08:59:43+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 81273.87,
+      "entry_zone": [
+        80867.50065,
+        81680.23935
+      ],
+      "stop_price": 77576.095594,
+      "target_price": 88669.418813,
+      "score": 3.996,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": -0.004,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news -0.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 -0.00 / 연결 뉴스: 🔔 “주식은 비과세, 코인은 22%”…2027년 가상자산 과세 논란 📈 #우리기술투자 #한화투자증권 📝 #가상자산 #블록체인 #…; 🔔 국내 거래소 알트코인 무분별 상장… \"그건 범죄행위\" 📝 #가상자산 #블록체인 #가상자산거래소 알트코인 무분별 상장 실태가 …",
+      "news_evidence": [
+        {
+          "title": "🔔 “주식은 비과세, 코인은 22%”…2027년 가상자산 과세 논란 📈 #우리기술투자 #한화투자증권 📝 #가상자산 #블록체인 #…",
+          "urls": [
+            "https://dreago.kr/n/d13afb",
+            "https://t.me/dreago_news_ch/302097"
+          ],
+          "last_seen": "2026-09-03T02:25:22+00:00"
+        },
+        {
+          "title": "🔔 국내 거래소 알트코인 무분별 상장… \"그건 범죄행위\" 📝 #가상자산 #블록체인 #가상자산거래소 알트코인 무분별 상장 실태가 …",
+          "urls": [
+            "https://dreago.kr/n/1673bc",
+            "https://t.me/dreago_news_ch/302347"
+          ],
+          "last_seen": "2026-09-03T16:21:51+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
