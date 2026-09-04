@@ -1,7 +1,186 @@
 {
   "version": 2,
-  "updated_at": "2026-09-05T02:32:14+09:00",
+  "updated_at": "2026-09-05T08:55:51+09:00",
   "events": [
+    {
+      "signature": "dbe0aa45023b72884b1551b8fad1f60f3c9b9f2f",
+      "title": "아메리칸항공 여객기에서 승객 난동 사건이 발생해 볼티모어로 항로 변경. 해당 남성은 승무원에게 인종차별적 비하 표현을 사용한 뒤…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/62923"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-09-04T23:53:42+00:00",
+      "last_seen": "2026-09-04T23:53:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "58fe6be208e4a346a565b091079c45e4df43cf46",
+      "title": "앤트로픽의 기업공개",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/62922"
+      ],
+      "materiality": 15,
+      "sentiment": 1,
+      "first_seen": "2026-09-04T23:51:45+00:00",
+      "last_seen": "2026-09-04T23:51:45+00:00",
+      "count": 1
+    },
+    {
+      "signature": "82232906b3e6c9ef08533344936529731b682908",
+      "title": "UBS, 반도체 (Semiconductors) 사이클 업데이트: 초고성장(Hyper-growth) 단계로부터의 전환 메모리와 C…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "semiconductor",
+        "메모리",
+        "반도체",
+        "서버"
+      ],
+      "tickers": [
+        "LTA"
+      ],
+      "source_urls": [
+        "https://t.me/Yeouido_Lab/37572"
+      ],
+      "materiality": 20,
+      "sentiment": 3,
+      "first_seen": "2026-09-04T23:42:26+00:00",
+      "last_seen": "2026-09-04T23:42:26+00:00",
+      "count": 1
+    },
+    {
+      "signature": "11210b6fa3ac2848c5ece75f1c467b97a79ff171",
+      "title": "[2026년 9월 5일 모닝 시황] 고용 서프라이즈에 3대 지수 하락, 반도체 급등이 낙폭 방어 ────────── <요약> 금…",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "amd",
+        "dram",
+        "fomc",
+        "gpu",
+        "sk하이닉스",
+        "금리",
+        "마이크로소프트",
+        "메모리"
+      ],
+      "tickers": [
+        "000660.KS",
+        "AMD",
+        "DRAM",
+        "GPT",
+        "NDAQ",
+        "WTI"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/10758"
+      ],
+      "materiality": 32,
+      "sentiment": 0,
+      "first_seen": "2026-09-04T23:29:22+00:00",
+      "last_seen": "2026-09-04T23:29:22+00:00",
+      "count": 1
+    },
+    {
+      "signature": "893eb831e8065bafa00475ee2f05f70a7c6f1095",
+      "title": "🔔 고금리 우려 속 미 단기국채 ETF에 한주간 1천억 몰려 📝 #미국단기국채ETF #미국대표지수ETF #고금리 #ETF 고금리…",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "금리"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/2d5cfe",
+        "https://t.me/dreago_news_ch/302669"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-09-04T23:15:20+00:00",
+      "last_seen": "2026-09-04T23:15:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "한은",
+        "환율",
+        "정책",
+        "금리",
+        "연준"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/f94178",
+        "https://t.me/dreago_news_ch/299938",
+        "https://dreago.kr/n/0962d2",
+        "https://t.me/dreago_news_ch/299937",
+        "https://dreago.kr/n/110953"
+      ],
+      "materiality": 22,
+      "sentiment": -1,
+      "first_seen": "2026-08-27T02:59:07+00:00",
+      "last_seen": "2026-09-04T23:11:53+00:00",
+      "count": 66
+    },
+    {
+      "signature": "9c01c0e76ce1f618026640e6755b1436ae0e5509",
+      "title": "📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …",
+      "sectors": [
+        "2차전지",
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "2차전지",
+        "ai",
+        "ai 추론",
+        "amd",
+        "dram",
+        "gpu",
+        "sk하이닉스",
+        "규제",
+        "금리",
+        "리튬"
+      ],
+      "tickers": [
+        "000660.KS",
+        "HPQ",
+        "MSCI"
+      ],
+      "source_urls": [
+        "https://t.me/goldilbong/15990"
+      ],
+      "materiality": 32,
+      "sentiment": 3,
+      "first_seen": "2026-09-04T23:07:29+00:00",
+      "last_seen": "2026-09-04T23:07:29+00:00",
+      "count": 1
+    },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
       "title": "🔔",
@@ -11,8 +190,8 @@
       "materiality": 18,
       "sentiment": -1,
       "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-09-04T15:59:46+00:00",
-      "count": 595,
+      "last_seen": "2026-09-04T22:58:04+00:00",
+      "count": 597,
       "source_urls": [
         "https://khan.co.kr/article/202608171607001",
         "https://t.me/dreago_news_ch/296031",
@@ -20,6 +199,22 @@
         "https://ytn.co.kr/_ln/0101_202608171951149507",
         "https://news1.kr/politics/assembly/6261083"
       ]
+    },
+    {
+      "signature": "060f02e0bf782835375b2fc41cf5f0e8ccbd9507",
+      "title": "주말 칼럼 “국채 위기의 구조” 한 나라 정부가 국채 이자로 지급하는 금액이 조세 수입의 20%를 넘으면 부도 위험이 높다고 합…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://rafikiresearch.blogspot.com/2026/09/column-20260905.html",
+        "https://t.me/rafikiresearch/24879"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-09-04T22:56:19+00:00",
+      "last_seen": "2026-09-04T22:56:19+00:00",
+      "count": 1
     },
     {
       "signature": "f0c02e2e6bc3a23ec9749132082573fd660266f4",
@@ -1072,33 +1267,6 @@
       "first_seen": "2026-09-04T06:53:58+00:00",
       "last_seen": "2026-09-04T06:53:58+00:00",
       "count": 1
-    },
-    {
-      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
-      "title": "🔔",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "한은",
-        "환율",
-        "정책",
-        "금리",
-        "연준"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/f94178",
-        "https://t.me/dreago_news_ch/299938",
-        "https://dreago.kr/n/0962d2",
-        "https://t.me/dreago_news_ch/299937",
-        "https://dreago.kr/n/110953"
-      ],
-      "materiality": 22,
-      "sentiment": -1,
-      "first_seen": "2026-08-27T02:59:07+00:00",
-      "last_seen": "2026-09-04T06:52:53+00:00",
-      "count": 63
     },
     {
       "signature": "0e6617c5c71d64d86ac01e09dbe6459d2662dc9a",
@@ -10375,159 +10543,6 @@
       "sentiment": 0,
       "first_seen": "2026-09-03T00:14:19+00:00",
       "last_seen": "2026-09-03T00:14:19+00:00",
-      "count": 2
-    },
-    {
-      "signature": "d6dd8b49295ca0a093d90a691220209b5432de2e",
-      "title": "[속보] 정부, 보안특화 AI 모델 개발 사업자로 네이버 컨소시엄 선정",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "035420.KS"
-      ],
-      "source_urls": [
-        "https://t.me/YeouidoStory2/116880",
-        "https://yna.co.kr/view/AKR20260903036400017"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-09-03T00:13:45+00:00",
-      "last_seen": "2026-09-03T00:13:45+00:00",
-      "count": 2
-    },
-    {
-      "signature": "935bbe4d0ec44fed37b797bcfd023d30b14da51e",
-      "title": "🔔 '5만 년' 가는 반도체 온실가스, KAIST·삼성전자 공동 연구진이 잡았다 📈 #삼성전자 📝 #반도체 #친환경촉매 #탄소저…",
-      "sectors": [
-        "AI인프라",
-        "반도체",
-        "방산/항공"
-      ],
-      "keywords": [
-        "ai",
-        "kai",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/5dbe6c",
-        "https://t.me/dreago_news_ch/302015"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-09-03T00:11:01+00:00",
-      "last_seen": "2026-09-03T00:11:01+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8cad84ce2e599c4d80d726a2508eb872993ffb72",
-      "title": "✅",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "035420.KS"
-      ],
-      "source_urls": [
-        "https://mt.co.kr/tech/2026/09/03/2026090308261933482",
-        "https://t.me/c/1208429502/124179"
-      ],
-      "materiality": 13,
-      "sentiment": 1,
-      "first_seen": "2026-09-03T00:09:29+00:00",
-      "last_seen": "2026-09-03T00:09:29+00:00",
-      "count": 2
-    },
-    {
-      "signature": "0e2e00f6b502b7372c8b6d7880a1525f2dba52bb",
-      "title": "로킷헬스케어, '美 하버드 공동 연구' 신장 재생 패치서 '손상 신장 GFR 63% 보존' 확인 https://www.newsp…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://newsprime.co.kr/news/article?no=746258",
-        "https://t.me/YeouidoStory2/116879",
-        "https://t.me/c/1208429502/124177"
-      ],
-      "materiality": 6,
-      "sentiment": 1,
-      "first_seen": "2026-09-03T00:06:20+00:00",
-      "last_seen": "2026-09-03T00:09:16+00:00",
-      "count": 3
-    },
-    {
-      "signature": "6ff8d6fd928ac5da8bec5944692cb444fa3fe1dd",
-      "title": "브로드컴 “AI칩 매출 3배↑”…삼성 수혜 기대감 커진다 https://n.news.naver.com/mnews/article/…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/029/0003045928?sid=101",
-        "https://t.me/YeouidoStory2/116878"
-      ],
-      "materiality": 8,
-      "sentiment": 0,
-      "first_seen": "2026-09-03T00:09:02+00:00",
-      "last_seen": "2026-09-03T00:09:02+00:00",
-      "count": 1
-    },
-    {
-      "signature": "eda136867258ae377eadb7ff2b776d60feea35f7",
-      "title": "알래스카애들~~~~~ #화성밸브 #넥스틸",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/52739"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-03T00:08:36+00:00",
-      "last_seen": "2026-09-03T00:08:36+00:00",
-      "count": 2
-    },
-    {
-      "signature": "2f80282ce74c1175eae989253ed54a1721f68ffc",
-      "title": "✅ 곳간에 800억 있는데 100억에 빼앗기나?... 써니전자, KX그룹이 경영참여 선언 https://biz.chosun.co…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "035420.KS"
-      ],
-      "source_urls": [
-        "https://biz.chosun.com/stock/market_trend/2026/09/03/QCWUB5ISBFDFDEIIALWQVXC5MA",
-        "https://t.me/c/1208429502/124178"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-09-03T00:08:27+00:00",
-      "last_seen": "2026-09-03T00:08:27+00:00",
       "count": 2
     }
   ]

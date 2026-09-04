@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-05T02:32:14+09:00",
+  "updated_at": "2026-09-05T08:55:51+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -10006,7 +10006,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-05T08:55:51+09:00",
+          "price": 187.59,
+          "return_pct": 0.3772
+        }
+      },
       "learned_24h": false
     },
     {
@@ -10060,7 +10066,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-05T08:55:51+09:00",
+          "price": 518.0,
+          "return_pct": -0.2715
+        }
+      },
       "learned_24h": false
     },
     {
@@ -10111,6 +10123,165 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-05T08:55:51+09:00",
+          "price": 142.0008,
+          "return_pct": 0.4107
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "750f7c17c911477b",
+      "created_at": "2026-09-05T08:55:51+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 187.59,
+      "entry_zone": [
+        186.65205,
+        188.52795
+      ],
+      "stop_price": 178.507031,
+      "target_price": 205.755938,
+      "score": 5.737,
+      "components": {
+        "momentum": 3.171767269627565,
+        "regime": 0.0,
+        "news": 2.564982907005554,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.17, regime +0.00, news +2.56, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.17, 뉴스 +2.56 / 연결 뉴스: 📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …; UBS, 반도체 (Semiconductors) 사이클 업데이트: 초고성장(Hyper-growth) 단계로부터의 전환 메모리와 C…",
+      "news_evidence": [
+        {
+          "title": "📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …",
+          "urls": [
+            "https://t.me/goldilbong/15990"
+          ],
+          "last_seen": "2026-09-04T23:07:29+00:00"
+        },
+        {
+          "title": "UBS, 반도체 (Semiconductors) 사이클 업데이트: 초고성장(Hyper-growth) 단계로부터의 전환 메모리와 C…",
+          "urls": [
+            "https://t.me/Yeouido_Lab/37572"
+          ],
+          "last_seen": "2026-09-04T23:42:26+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "2d3aa365a9532b38",
+      "created_at": "2026-09-05T08:55:51+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 142.0008,
+      "entry_zone": [
+        141.290796,
+        142.710804
+      ],
+      "stop_price": 136.309874,
+      "target_price": 153.382651,
+      "score": 4.224,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.024,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.02, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.02 / 연결 뉴스: 유가 상승에 남몰래 웃는다…S-Oil 10%, GS 5% 정유주 강세 https://n.news.naver.com/mnews/a…",
+      "news_evidence": [
+        {
+          "title": "유가 상승에 남몰래 웃는다…S-Oil 10%, GS 5% 정유주 강세 https://n.news.naver.com/mnews/a…",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/011/0004658566?sid=101",
+            "https://t.me/jeilstock/46427"
+          ],
+          "last_seen": "2026-09-04T01:47:32+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "44c276749e2aecd2",
+      "created_at": "2026-09-05T08:55:51+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 518.0,
+      "entry_zone": [
+        515.41,
+        520.59
+      ],
+      "stop_price": 500.402165,
+      "target_price": 553.195671,
+      "score": 3.481,
+      "components": {
+        "momentum": 0.38905365841580475,
+        "regime": 0.0,
+        "news": 3.0923276816574066,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.39, regime +0.00, news +3.09, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.39, 뉴스 +3.09 / 연결 뉴스: 📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …; UBS, 반도체 (Semiconductors) 사이클 업데이트: 초고성장(Hyper-growth) 단계로부터의 전환 메모리와 C…",
+      "news_evidence": [
+        {
+          "title": "📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …",
+          "urls": [
+            "https://t.me/goldilbong/15990"
+          ],
+          "last_seen": "2026-09-04T23:07:29+00:00"
+        },
+        {
+          "title": "UBS, 반도체 (Semiconductors) 사이클 업데이트: 초고성장(Hyper-growth) 단계로부터의 전환 메모리와 C…",
+          "urls": [
+            "https://t.me/Yeouido_Lab/37572"
+          ],
+          "last_seen": "2026-09-04T23:42:26+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
