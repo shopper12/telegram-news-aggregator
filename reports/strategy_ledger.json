@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-05T01:41:48+09:00",
+  "updated_at": "2026-09-05T01:58:01+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -9919,6 +9919,169 @@
           "return_pct": -0.6398
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "dd50b2626d410fa7",
+      "created_at": "2026-09-05T01:58:01+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 186.885,
+      "entry_zone": [
+        185.950575,
+        187.819425
+      ],
+      "stop_price": 178.03217,
+      "target_price": 204.59066,
+      "score": 6.624,
+      "components": {
+        "momentum": 2.6997522999981416,
+        "regime": 0.0,
+        "news": 3.9245196527221076,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.70, regime +0.00, news +3.92, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.70, 뉴스 +3.92 / 연결 뉴스: <9월 4일 보고서‧기사‧특징주> ▶️보고서 [파인엠텍] 삼성 묻고, 애플로 더블로 가!(한양증권) -2Q26 Review, 모…; 마켓레이더",
+      "news_evidence": [
+        {
+          "title": "<9월 4일 보고서‧기사‧특징주> ▶️보고서 [파인엠텍] 삼성 묻고, 애플로 더블로 가!(한양증권) -2Q26 Review, 모…",
+          "urls": [
+            "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353690",
+            "http://buly.kr/3CQfv7q"
+          ],
+          "last_seen": "2026-09-04T06:57:15+00:00"
+        },
+        {
+          "title": "마켓레이더",
+          "urls": [
+            "https://t.me/chel3337/35595"
+          ],
+          "last_seen": "2026-09-04T02:01:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "0a84d79783da0c50",
+      "created_at": "2026-09-05T01:58:01+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 519.41,
+      "entry_zone": [
+        516.81295,
+        522.00705
+      ],
+      "stop_price": 501.832183,
+      "target_price": 554.565635,
+      "score": 4.638,
+      "components": {
+        "momentum": 0.6378367768609403,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.64, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.64, 뉴스 +4.00 / 연결 뉴스: 제목 : HPE, 서버 수요 강세에도 매출·마진 정점 우려; <9월 4일 보고서‧기사‧특징주> ▶️보고서 [파인엠텍] 삼성 묻고, 애플로 더블로 가!(한양증권) -2Q26 Review, 모…",
+      "news_evidence": [
+        {
+          "title": "제목 : HPE, 서버 수요 강세에도 매출·마진 정점 우려",
+          "urls": [
+            "https://t.me/kwusa/60629"
+          ],
+          "last_seen": "2026-09-04T06:58:08+00:00"
+        },
+        {
+          "title": "<9월 4일 보고서‧기사‧특징주> ▶️보고서 [파인엠텍] 삼성 묻고, 애플로 더블로 가!(한양증권) -2Q26 Review, 모…",
+          "urls": [
+            "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353690",
+            "http://buly.kr/3CQfv7q"
+          ],
+          "last_seen": "2026-09-04T06:57:15+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "52d4877b6bb1169f",
+      "created_at": "2026-09-05T01:58:01+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.42,
+      "entry_zone": [
+        140.7129,
+        142.1271
+      ],
+      "stop_price": 135.730154,
+      "target_price": 152.799693,
+      "score": 4.288,
+      "components": {
+        "momentum": 3.9374127153057996,
+        "regime": 0.2,
+        "news": 0.15105997541111113,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.94, regime +0.20, news +0.15, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +3.94, 뉴스 +0.15 / 연결 뉴스: [뉴스] 유가 뛰자 석화 제품값도 오른다…한화·LG·롯데 나란히 20만원 인상 ZDNet Korea; 유가 상승에 남몰래 웃는다…S-Oil 10%, GS 5% 정유주 강세 https://n.news.naver.com/mnews/a…",
+      "news_evidence": [
+        {
+          "title": "[뉴스] 유가 뛰자 석화 제품값도 오른다…한화·LG·롯데 나란히 20만원 인상 ZDNet Korea",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10738",
+            "https://zdnet.co.kr/view?no=20260903163425"
+          ],
+          "last_seen": "2026-09-03T22:29:46+00:00"
+        },
+        {
+          "title": "유가 상승에 남몰래 웃는다…S-Oil 10%, GS 5% 정유주 강세 https://n.news.naver.com/mnews/a…",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/011/0004658566?sid=101",
+            "https://t.me/jeilstock/46427"
+          ],
+          "last_seen": "2026-09-04T01:47:32+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
