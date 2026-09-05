@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-06T00:43:51+09:00",
+  "updated_at": "2026-09-06T01:11:58+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -10347,6 +10347,160 @@
           "return_pct": 0.3591
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "d7a8924e10caab32",
+      "created_at": "2026-09-06T01:11:58+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.87,
+      "entry_zone": [
+        187.92565,
+        189.81435
+      ],
+      "stop_price": 179.725054,
+      "target_price": 207.159891,
+      "score": 4.901,
+      "components": {
+        "momentum": 3.2595031818542344,
+        "regime": 0.0,
+        "news": 1.6410569242908337,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.26, regime +0.00, news +1.64, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.26, 뉴스 +1.64 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …",
+      "news_evidence": [
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/62941"
+          ],
+          "last_seen": "2026-09-05T11:07:40+00:00"
+        },
+        {
+          "title": "📌 09/04 미 증시 클로징 노트 고용 서프라이즈(16.2만 vs 예상 5.5만)에 하락 출발 그러나 '계절조정 착시' 해석 …",
+          "urls": [
+            "https://t.me/goldilbong/15990"
+          ],
+          "last_seen": "2026-09-04T23:07:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "de263a0c589c4096",
+      "created_at": "2026-09-06T01:11:58+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.96,
+      "entry_zone": [
+        141.2502,
+        142.6698
+      ],
+      "stop_price": 136.270709,
+      "target_price": 153.338581,
+      "score": 4.223,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.02286522518958335,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.02, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.02 / 연결 뉴스: 🔔 [속보] 국제유가, 상승...WTI 0.2%↑ 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/b56047",
+      "news_evidence": [
+        {
+          "title": "🔔 [속보] 국제유가, 상승...WTI 0.2%↑ 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/b56047",
+          "urls": [
+            "https://dreago.kr/n/b56047",
+            "https://t.me/dreago_news_ch/302664"
+          ],
+          "last_seen": "2026-09-04T21:11:18+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "35bb23310de6cc00",
+      "created_at": "2026-09-06T01:11:58+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 79804.33,
+      "entry_zone": [
+        79405.30835,
+        80203.35165
+      ],
+      "stop_price": 76082.948882,
+      "target_price": 87247.092237,
+      "score": 3.191,
+      "components": {
+        "momentum": 3.092685001014092,
+        "regime": 0.0,
+        "news": 0.09846096478634261,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.09, regime +0.00, news +0.10, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.09, 뉴스 +0.10 / 연결 뉴스: 비트코인 근황입니다. 오늘 여의도 불꽃 축제였다고 하는데, 저랑은 관련이 없는 일이네요. 2개의 채널로 현재 구조를 살펴보고 싶…; 🔔 비트코인",
+      "news_evidence": [
+        {
+          "title": "비트코인 근황입니다. 오늘 여의도 불꽃 축제였다고 하는데, 저랑은 관련이 없는 일이네요. 2개의 채널로 현재 구조를 살펴보고 싶…",
+          "urls": [
+            "https://t.me/basixally/11072"
+          ],
+          "last_seen": "2026-09-05T13:41:20+00:00"
+        },
+        {
+          "title": "🔔 비트코인",
+          "urls": [
+            "https://dreago.kr/n/df7a97",
+            "https://t.me/dreago_news_ch/302712"
+          ],
+          "last_seen": "2026-09-05T06:30:47+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
