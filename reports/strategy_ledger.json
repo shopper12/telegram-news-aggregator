@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-05T08:55:51+09:00",
+  "updated_at": "2026-09-05T09:21:06+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -9042,7 +9042,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-02T16:40:36+09:00",
@@ -9053,10 +9053,18 @@
           "evaluated_at": "2026-09-03T09:03:47+09:00",
           "price": 140.7507,
           "return_pct": -0.2829
+        },
+        "72h": {
+          "evaluated_at": "2026-09-05T09:21:06+09:00",
+          "price": 142.0999,
+          "return_pct": 0.673
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-03T09:03:47+09:00"
+      "learned_at": "2026-09-03T09:03:47+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-05T09:21:06+09:00",
+      "final_return_pct": 0.673
     },
     {
       "id": "3269845cffdcd046",
@@ -9092,7 +9100,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-02T16:40:36+09:00",
@@ -9103,10 +9111,18 @@
           "evaluated_at": "2026-09-03T09:03:47+09:00",
           "price": 28.1216,
           "return_pct": -0.7706
+        },
+        "72h": {
+          "evaluated_at": "2026-09-05T09:21:06+09:00",
+          "price": 27.9808,
+          "return_pct": -1.2675
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-03T09:03:47+09:00"
+      "learned_at": "2026-09-03T09:03:47+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-05T09:21:06+09:00",
+      "final_return_pct": -1.2675
     },
     {
       "id": "49a78621ad3063e0",
@@ -9159,7 +9175,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-02T16:40:36+09:00",
@@ -9170,10 +9186,18 @@
           "evaluated_at": "2026-09-03T09:03:47+09:00",
           "price": 179.224,
           "return_pct": 2.0115
+        },
+        "72h": {
+          "evaluated_at": "2026-09-05T09:21:06+09:00",
+          "price": 180.44,
+          "return_pct": 2.7036
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-03T09:03:47+09:00"
+      "learned_at": "2026-09-03T09:03:47+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-05T09:21:06+09:00",
+      "final_return_pct": 2.7036
     },
     {
       "id": "40c6a1a0b61c48b5",
@@ -9830,9 +9854,15 @@
           "evaluated_at": "2026-09-04T16:43:53+09:00",
           "price": 180.56,
           "return_pct": 0.172
+        },
+        "24h": {
+          "evaluated_at": "2026-09-05T09:21:06+09:00",
+          "price": 180.44,
+          "return_pct": 0.1054
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-05T09:21:06+09:00"
     },
     {
       "id": "d5aa8e92bbc16e40",
@@ -9890,9 +9920,15 @@
           "evaluated_at": "2026-09-04T16:43:53+09:00",
           "price": 142.09,
           "return_pct": -0.0211
+        },
+        "24h": {
+          "evaluated_at": "2026-09-05T09:21:06+09:00",
+          "price": 142.0999,
+          "return_pct": -0.0141
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-05T09:21:06+09:00"
     },
     {
       "id": "7de7f9863ea763b1",
@@ -9951,9 +9987,15 @@
           "evaluated_at": "2026-09-04T16:43:53+09:00",
           "price": 80753.89,
           "return_pct": -0.6398
+        },
+        "24h": {
+          "evaluated_at": "2026-09-05T09:21:06+09:00",
+          "price": 79640.43,
+          "return_pct": -2.0098
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-05T09:21:06+09:00"
     },
     {
       "id": "dd50b2626d410fa7",
