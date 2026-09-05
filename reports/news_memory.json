@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-09-05T09:21:06+09:00",
+  "updated_at": "2026-09-05T09:32:05+09:00",
   "events": [
     {
       "signature": "29e94a89fd2b615262adf7c92ca48f96f3360ac5",
@@ -24,7 +24,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-05T00:07:45+00:00",
       "last_seen": "2026-09-05T00:07:45+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "911ce1d81b9523e21ed60a3b7f9a3a055e696c4a",
@@ -41,7 +41,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-05T00:05:16+00:00",
       "last_seen": "2026-09-05T00:05:16+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "7578b6d1198014a74d604e1ce6e6c83e454fa1b0",
@@ -62,7 +62,7 @@
       "sentiment": -1,
       "first_seen": "2026-09-04T23:59:57+00:00",
       "last_seen": "2026-09-04T23:59:57+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "5648dff943d113d476745eb0c5130f89f4d48a88",
@@ -85,7 +85,7 @@
       "sentiment": -1,
       "first_seen": "2026-09-04T23:54:21+00:00",
       "last_seen": "2026-09-04T23:54:21+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "dbe0aa45023b72884b1551b8fad1f60f3c9b9f2f",
@@ -100,7 +100,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-04T23:53:42+00:00",
       "last_seen": "2026-09-04T23:53:42+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "58fe6be208e4a346a565b091079c45e4df43cf46",
@@ -115,7 +115,34 @@
       "sentiment": 1,
       "first_seen": "2026-09-04T23:51:45+00:00",
       "last_seen": "2026-09-04T23:51:45+00:00",
-      "count": 2
+      "count": 3
+    },
+    {
+      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "한은",
+        "환율",
+        "정책",
+        "금리",
+        "연준"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/f94178",
+        "https://t.me/dreago_news_ch/299938",
+        "https://dreago.kr/n/0962d2",
+        "https://t.me/dreago_news_ch/299937",
+        "https://dreago.kr/n/110953"
+      ],
+      "materiality": 22,
+      "sentiment": -1,
+      "first_seen": "2026-08-27T02:59:07+00:00",
+      "last_seen": "2026-09-04T23:49:22+00:00",
+      "count": 72
     },
     {
       "signature": "82232906b3e6c9ef08533344936529731b682908",
@@ -141,7 +168,26 @@
       "sentiment": 3,
       "first_seen": "2026-09-04T23:42:26+00:00",
       "last_seen": "2026-09-04T23:42:26+00:00",
-      "count": 2
+      "count": 3
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 18,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-09-04T23:36:11+00:00",
+      "count": 611,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
     },
     {
       "signature": "11210b6fa3ac2848c5ece75f1c467b97a79ff171",
@@ -1009,33 +1055,6 @@
       "count": 3
     },
     {
-      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
-      "title": "🔔",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "한은",
-        "환율",
-        "정책",
-        "금리",
-        "연준"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/f94178",
-        "https://t.me/dreago_news_ch/299938",
-        "https://dreago.kr/n/0962d2",
-        "https://t.me/dreago_news_ch/299937",
-        "https://dreago.kr/n/110953"
-      ],
-      "materiality": 22,
-      "sentiment": 2,
-      "first_seen": "2026-08-27T02:59:07+00:00",
-      "last_seen": "2026-09-04T15:16:06+00:00",
-      "count": 71
-    },
-    {
       "signature": "88dfb35ebc8483fa71e42f1248247130a9353422",
       "title": "🔔 \"9억 오른 부동산, 주식도 이렇게 벌 수 있나\"…존리 \"잘못된 비유\" 【 겁나빠른 #드리고봇 뉴스 】 https://dre…",
       "sectors": [],
@@ -1468,25 +1487,6 @@
       "first_seen": "2026-09-04T12:41:55+00:00",
       "last_seen": "2026-09-04T12:41:55+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 18,
-      "sentiment": 1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-09-04T12:40:36+00:00",
-      "count": 609,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "551112f1a89a4098f07263b2e4c90b25040b7a13",
