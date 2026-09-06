@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-07T00:55:54+09:00",
+  "updated_at": "2026-09-07T01:24:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -10488,9 +10488,15 @@
           "evaluated_at": "2026-09-06T08:46:02+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-07T01:24:32+09:00",
+          "price": 188.87,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-07T01:24:32+09:00"
     },
     {
       "id": "de263a0c589c4096",
@@ -10541,9 +10547,15 @@
           "evaluated_at": "2026-09-06T08:46:02+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-07T01:24:32+09:00",
+          "price": 141.96,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-07T01:24:32+09:00"
     },
     {
       "id": "35bb23310de6cc00",
@@ -10601,9 +10613,15 @@
           "evaluated_at": "2026-09-06T08:46:02+09:00",
           "price": 79862.22,
           "return_pct": 0.0725
+        },
+        "24h": {
+          "evaluated_at": "2026-09-07T01:24:32+09:00",
+          "price": 79653.81,
+          "return_pct": -0.1886
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-07T01:24:32+09:00"
     },
     {
       "id": "b507088bf5460495",
@@ -10767,6 +10785,162 @@
           "return_pct": -0.0545
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "f2869162e6af6473",
+      "created_at": "2026-09-07T01:24:32+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.87,
+      "entry_zone": [
+        187.92565,
+        189.81435
+      ],
+      "stop_price": 179.725054,
+      "target_price": 207.159891,
+      "score": 4.906,
+      "components": {
+        "momentum": 3.2595031818542344,
+        "regime": 0.0,
+        "news": 1.6461823893305556,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.26, regime +0.00, news +1.65, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.26, 뉴스 +1.65 / 연결 뉴스: [메리츠증권 전기전자/IT부품 양승수] ▶ PCB「搶料戰」為何越打越兇？高階玻纖布、銅箔、CCL吃緊 專家揭真正瓶頸; [미국 에너지부 장관: 미 해군, 호르무즈 해협 유조선 호위 지속] 9월 6일 진시데이터에 따르면, 라이트 미국 에너지부 장관은 일요일(현지시간) 미 해군 호위함들이 호르무즈 해협을 통과하는 유조선들을 지원하고 있으",
+      "news_evidence": [
+        {
+          "title": "[메리츠증권 전기전자/IT부품 양승수] ▶ PCB「搶料戰」為何越打越兇？高階玻纖布、銅箔、CCL吃緊 專家揭真正瓶頸",
+          "urls": [
+            "https://buly.kr/FhQUKv7",
+            "https://t.me/c/1208429502/124383"
+          ],
+          "last_seen": "2026-09-06T11:30:18+00:00"
+        },
+        {
+          "title": "[미국 에너지부 장관: 미 해군, 호르무즈 해협 유조선 호위 지속] 9월 6일 진시데이터에 따르면, 라이트 미국 에너지부 장관은 일요일(현지시간) 미 해군 호위함들이 호르무즈 해협을 통과하는 유조선들을 지원하고 있으",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/22936"
+          ],
+          "last_seen": "2026-09-06T15:49:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "36beaf286eeb16a8",
+      "created_at": "2026-09-07T01:24:32+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.96,
+      "entry_zone": [
+        141.2502,
+        142.6698
+      ],
+      "stop_price": 136.270709,
+      "target_price": 153.338581,
+      "score": 4.248,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.04810656154351852,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.05, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.05 / 연결 뉴스: 🔔 “앞으로 1년은 수익률 기대마라”…골드만 “좋은 수익 이미 거둬” 증시 전망 어떻길래 📝 #금리민감주 #성장주 #국제유가 #…",
+      "news_evidence": [
+        {
+          "title": "🔔 “앞으로 1년은 수익률 기대마라”…골드만 “좋은 수익 이미 거둬” 증시 전망 어떻길래 📝 #금리민감주 #성장주 #국제유가 #…",
+          "urls": [
+            "https://dreago.kr/n/3f1f2c",
+            "https://t.me/dreago_news_ch/302818"
+          ],
+          "last_seen": "2026-09-06T06:50:28+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "0403493d3d44fdbc",
+      "created_at": "2026-09-07T01:24:32+09:00",
+      "slot": "evening",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 79653.81,
+      "entry_zone": [
+        79255.54095,
+        80052.07905
+      ],
+      "stop_price": 75944.382902,
+      "target_price": 87072.664195,
+      "score": 2.928,
+      "components": {
+        "momentum": 2.965043107571317,
+        "regime": 0.0,
+        "news": -0.03714291979930555,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.97, regime +0.00, news -0.04, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.97, 뉴스 -0.04 / 연결 뉴스: 🔔 테더가 15개월 전 투자한 칠레 오리온엑스, 700만달러 커스터디 공백에... 📝 #가상자산 #암호화폐거래소 #디지털자산커스…; 비트코인 8만달러 재돌파 시도 속 美 CPI가 단기 방향성 좌우 https://m.stock.naver.com/investmen…",
+      "news_evidence": [
+        {
+          "title": "🔔 테더가 15개월 전 투자한 칠레 오리온엑스, 700만달러 커스터디 공백에... 📝 #가상자산 #암호화폐거래소 #디지털자산커스…",
+          "urls": [
+            "https://dreago.kr/n/62b9fa",
+            "https://t.me/dreago_news_ch/302881"
+          ],
+          "last_seen": "2026-09-06T14:29:57+00:00"
+        },
+        {
+          "title": "비트코인 8만달러 재돌파 시도 속 美 CPI가 단기 방향성 좌우 https://m.stock.naver.com/investmen…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/flashnews/029/0003046329",
+            "https://t.me/moneythemestock/64054"
+          ],
+          "last_seen": "2026-09-06T02:22:44+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
