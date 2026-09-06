@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-07T01:50:30+09:00",
+  "updated_at": "2026-09-07T08:47:12+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -9698,7 +9698,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-04T08:59:43+09:00",
@@ -9709,10 +9709,18 @@
           "evaluated_at": "2026-09-05T02:32:14+09:00",
           "price": 186.47,
           "return_pct": 3.9062
+        },
+        "72h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 188.87,
+          "return_pct": 5.2435
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-05T02:32:14+09:00"
+      "learned_at": "2026-09-05T02:32:14+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-07T08:47:12+09:00",
+      "final_return_pct": 5.2435
     },
     {
       "id": "9bb1b6b3dae33bdd",
@@ -9764,7 +9772,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-04T08:59:43+09:00",
@@ -9775,10 +9783,18 @@
           "evaluated_at": "2026-09-05T02:32:14+09:00",
           "price": 141.425,
           "return_pct": -0.4119
+        },
+        "72h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 141.96,
+          "return_pct": -0.0352
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-05T02:32:14+09:00"
+      "learned_at": "2026-09-05T02:32:14+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-07T08:47:12+09:00",
+      "final_return_pct": -0.0352
     },
     {
       "id": "12952036c7f22763",
@@ -9829,7 +9845,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-04T08:59:43+09:00",
@@ -9840,10 +9856,18 @@
           "evaluated_at": "2026-09-05T02:32:14+09:00",
           "price": 717.18,
           "return_pct": 0.0286
+        },
+        "72h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 718.96,
+          "return_pct": 0.2769
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-05T02:32:14+09:00"
+      "learned_at": "2026-09-05T02:32:14+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-07T08:47:12+09:00",
+      "final_return_pct": 0.2769
     },
     {
       "id": "d10d0e31466f37e5",
@@ -10663,9 +10687,15 @@
           "evaluated_at": "2026-09-06T16:35:38+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 141.96,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-07T08:47:12+09:00"
     },
     {
       "id": "62c2b09aeee13abd",
@@ -10723,9 +10753,15 @@
           "evaluated_at": "2026-09-06T16:35:38+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 188.87,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-07T08:47:12+09:00"
     },
     {
       "id": "f907f3fc42076077",
@@ -10783,9 +10819,15 @@
           "evaluated_at": "2026-09-06T16:35:38+09:00",
           "price": 79818.68,
           "return_pct": -0.0545
+        },
+        "24h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 80502.29,
+          "return_pct": 0.8015
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-07T08:47:12+09:00"
     },
     {
       "id": "f2869162e6af6473",
@@ -10838,7 +10880,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 188.87,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -10885,7 +10933,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 141.96,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -10933,6 +10987,169 @@
             "https://t.me/moneythemestock/64054"
           ],
           "last_seen": "2026-09-06T02:22:44+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-07T08:47:12+09:00",
+          "price": 80502.29,
+          "return_pct": 1.0652
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "7cbb697d7e7ed1bc",
+      "created_at": "2026-09-07T08:47:12+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.87,
+      "entry_zone": [
+        187.92565,
+        189.81435
+      ],
+      "stop_price": 179.725054,
+      "target_price": 207.159891,
+      "score": 7.26,
+      "components": {
+        "momentum": 3.2595031818542344,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.26, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.26, 뉴스 +4.00 / 연결 뉴스: 디케이티: 휴머노이드 탈중국 공급망 구축의 수혜주 2026; 신한투자증권 IT팀 [전기전자/IT부품 오강호] [반도체 김형태, 송혜수] [소부장/디스플레이 박현우, 김예성] ​ IT(소부장…",
+      "news_evidence": [
+        {
+          "title": "디케이티: 휴머노이드 탈중국 공급망 구축의 수혜주 2026",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10787",
+            "https://t.me/dreago_news_ch/302911"
+          ],
+          "last_seen": "2026-09-06T23:32:39+00:00"
+        },
+        {
+          "title": "신한투자증권 IT팀 [전기전자/IT부품 오강호] [반도체 김형태, 송혜수] [소부장/디스플레이 박현우, 김예성] ​ IT(소부장…",
+          "urls": [
+            "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353712",
+            "https://t.me/Yeouido_Lab/37576"
+          ],
+          "last_seen": "2026-09-06T23:07:13+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "21da0ac8ef9df8aa",
+      "created_at": "2026-09-07T08:47:12+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 519.86,
+      "entry_zone": [
+        517.2607,
+        522.4593
+      ],
+      "stop_price": 502.198976,
+      "target_price": 555.182049,
+      "score": 4.682,
+      "components": {
+        "momentum": 0.6817089507995461,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.68, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.68, 뉴스 +4.00 / 연결 뉴스: 디케이티: 휴머노이드 탈중국 공급망 구축의 수혜주 2026; 신한투자증권 IT팀 [전기전자/IT부품 오강호] [반도체 김형태, 송혜수] [소부장/디스플레이 박현우, 김예성] ​ IT(소부장…",
+      "news_evidence": [
+        {
+          "title": "디케이티: 휴머노이드 탈중국 공급망 구축의 수혜주 2026",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10787",
+            "https://t.me/dreago_news_ch/302911"
+          ],
+          "last_seen": "2026-09-06T23:32:39+00:00"
+        },
+        {
+          "title": "신한투자증권 IT팀 [전기전자/IT부품 오강호] [반도체 김형태, 송혜수] [소부장/디스플레이 박현우, 김예성] ​ IT(소부장…",
+          "urls": [
+            "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353712",
+            "https://t.me/Yeouido_Lab/37576"
+          ],
+          "last_seen": "2026-09-06T23:07:13+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "83583a8187471a77",
+      "created_at": "2026-09-07T08:47:12+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.96,
+      "entry_zone": [
+        141.2502,
+        142.6698
+      ],
+      "stop_price": 136.270709,
+      "target_price": 153.338581,
+      "score": 4.224,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.023513942675925926,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.02, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.02 / 연결 뉴스: 🔔 “앞으로 1년은 수익률 기대마라”…골드만 “좋은 수익 이미 거둬” 증시 전망 어떻길래 📝 #금리민감주 #성장주 #국제유가 #…",
+      "news_evidence": [
+        {
+          "title": "🔔 “앞으로 1년은 수익률 기대마라”…골드만 “좋은 수익 이미 거둬” 증시 전망 어떻길래 📝 #금리민감주 #성장주 #국제유가 #…",
+          "urls": [
+            "https://dreago.kr/n/3f1f2c",
+            "https://t.me/dreago_news_ch/302818"
+          ],
+          "last_seen": "2026-09-06T06:50:28+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
