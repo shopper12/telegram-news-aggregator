@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-07T08:47:12+09:00",
+  "updated_at": "2026-09-07T09:38:48+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -9920,7 +9920,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-04T16:43:53+09:00",
@@ -9931,10 +9931,18 @@
           "evaluated_at": "2026-09-05T09:21:06+09:00",
           "price": 180.44,
           "return_pct": 0.1054
+        },
+        "72h": {
+          "evaluated_at": "2026-09-07T09:38:48+09:00",
+          "price": 188.87,
+          "return_pct": 4.7822
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-05T09:21:06+09:00"
+      "learned_at": "2026-09-05T09:21:06+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-07T09:38:48+09:00",
+      "final_return_pct": 4.7822
     },
     {
       "id": "d5aa8e92bbc16e40",
@@ -9986,7 +9994,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-04T16:43:53+09:00",
@@ -9997,10 +10005,18 @@
           "evaluated_at": "2026-09-05T09:21:06+09:00",
           "price": 142.0999,
           "return_pct": -0.0141
+        },
+        "72h": {
+          "evaluated_at": "2026-09-07T09:38:48+09:00",
+          "price": 141.96,
+          "return_pct": -0.1126
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-05T09:21:06+09:00"
+      "learned_at": "2026-09-05T09:21:06+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-07T09:38:48+09:00",
+      "final_return_pct": -0.1126
     },
     {
       "id": "7de7f9863ea763b1",
@@ -10053,7 +10069,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-04T16:43:53+09:00",
@@ -10064,10 +10080,18 @@
           "evaluated_at": "2026-09-05T09:21:06+09:00",
           "price": 79640.43,
           "return_pct": -2.0098
+        },
+        "72h": {
+          "evaluated_at": "2026-09-07T09:38:48+09:00",
+          "price": 80160.81,
+          "return_pct": -1.3695
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-05T09:21:06+09:00"
+      "learned_at": "2026-09-05T09:21:06+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-07T09:38:48+09:00",
+      "final_return_pct": -1.3695
     },
     {
       "id": "dd50b2626d410fa7",
