@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-08T03:01:07+09:00",
+  "updated_at": "2026-09-08T03:21:02+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -11242,6 +11242,161 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "1403628379431231",
+      "created_at": "2026-09-08T03:21:02+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.87,
+      "entry_zone": [
+        187.92565,
+        189.81435
+      ],
+      "stop_price": 179.725054,
+      "target_price": 207.159891,
+      "score": 6.26,
+      "components": {
+        "momentum": 3.2595031818542344,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +3.26, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.26, 뉴스 +4.00 / 연결 뉴스: 🔔; Astra 이후의 AI 산업 주요포인트 : 사용 확대에서 메모리 수요, 그리고 생산성으로 최근 AI와 반도체 시장을 관통하는 핵…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/65e70e",
+            "https://t.me/dreago_news_ch/302344"
+          ],
+          "last_seen": "2026-09-07T07:44:23+00:00"
+        },
+        {
+          "title": "Astra 이후의 AI 산업 주요포인트 : 사용 확대에서 메모리 수요, 그리고 생산성으로 최근 AI와 반도체 시장을 관통하는 핵…",
+          "urls": [
+            "https://t.me/goldilbong/16017"
+          ],
+          "last_seen": "2026-09-07T07:41:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "60e6faa16862d1e2",
+      "created_at": "2026-09-08T03:21:02+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.96,
+      "entry_zone": [
+        141.2502,
+        142.6698
+      ],
+      "stop_price": 136.270709,
+      "target_price": 153.338581,
+      "score": 4.2,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.00 / 연결 뉴스: 🔔 현대차, 파업에 5만대 차질…다올證 “연간 목표 밑돌지만 90% 만회” 📈 #현대차 📝 #자동차 #완성차 노조 파업과 중동발…",
+      "news_evidence": [
+        {
+          "title": "🔔 현대차, 파업에 5만대 차질…다올證 “연간 목표 밑돌지만 90% 만회” 📈 #현대차 📝 #자동차 #완성차 노조 파업과 중동발…",
+          "urls": [
+            "https://dreago.kr/n/e671d2",
+            "https://t.me/dreago_news_ch/303027"
+          ],
+          "last_seen": "2026-09-07T01:54:16+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "23950f9335e63527",
+      "created_at": "2026-09-08T03:21:02+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 519.86,
+      "entry_zone": [
+        517.2607,
+        522.4593
+      ],
+      "stop_price": 502.198976,
+      "target_price": 555.182049,
+      "score": 3.682,
+      "components": {
+        "momentum": 0.6817089507995461,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.68, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.68, 뉴스 +4.00 / 연결 뉴스: 🔔; Astra 이후의 AI 산업 주요포인트 : 사용 확대에서 메모리 수요, 그리고 생산성으로 최근 AI와 반도체 시장을 관통하는 핵…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/65e70e",
+            "https://t.me/dreago_news_ch/302344"
+          ],
+          "last_seen": "2026-09-07T07:44:23+00:00"
+        },
+        {
+          "title": "Astra 이후의 AI 산업 주요포인트 : 사용 확대에서 메모리 수요, 그리고 생산성으로 최근 AI와 반도체 시장을 관통하는 핵…",
+          "urls": [
+            "https://t.me/goldilbong/16017"
+          ],
+          "last_seen": "2026-09-07T07:41:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
