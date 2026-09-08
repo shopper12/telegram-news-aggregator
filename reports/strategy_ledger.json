@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-08T21:37:31+09:00",
+  "updated_at": "2026-09-09T01:57:25+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -10578,7 +10578,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-06T08:46:02+09:00",
@@ -10589,10 +10589,18 @@
           "evaluated_at": "2026-09-07T01:24:32+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-09T01:57:25+09:00",
+          "price": 190.3,
+          "return_pct": 0.7571
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-07T01:24:32+09:00"
+      "learned_at": "2026-09-07T01:24:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-09T01:57:25+09:00",
+      "final_return_pct": 0.7571
     },
     {
       "id": "de263a0c589c4096",
@@ -10637,7 +10645,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-06T08:46:02+09:00",
@@ -10648,10 +10656,18 @@
           "evaluated_at": "2026-09-07T01:24:32+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-09T01:57:25+09:00",
+          "price": 143.65,
+          "return_pct": 1.1905
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-07T01:24:32+09:00"
+      "learned_at": "2026-09-07T01:24:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-09T01:57:25+09:00",
+      "final_return_pct": 1.1905
     },
     {
       "id": "35bb23310de6cc00",
@@ -10703,7 +10719,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-06T08:46:02+09:00",
@@ -10714,10 +10730,18 @@
           "evaluated_at": "2026-09-07T01:24:32+09:00",
           "price": 79653.81,
           "return_pct": -0.1886
+        },
+        "72h": {
+          "evaluated_at": "2026-09-09T01:57:25+09:00",
+          "price": 78698.9,
+          "return_pct": -1.3852
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-07T01:24:32+09:00"
+      "learned_at": "2026-09-07T01:24:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-09T01:57:25+09:00",
+      "final_return_pct": -1.3852
     },
     {
       "id": "b507088bf5460495",
