@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-08T03:40:58+09:00",
+  "updated_at": "2026-09-08T09:12:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -10365,7 +10365,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-05T16:21:51+09:00",
@@ -10376,10 +10376,18 @@
           "evaluated_at": "2026-09-06T09:28:28+09:00",
           "price": 188.87,
           "return_pct": 0.6823
+        },
+        "72h": {
+          "evaluated_at": "2026-09-08T09:12:32+09:00",
+          "price": 188.87,
+          "return_pct": 0.6823
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-06T09:28:28+09:00"
+      "learned_at": "2026-09-06T09:28:28+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-08T09:12:32+09:00",
+      "final_return_pct": 0.6823
     },
     {
       "id": "2d3aa365a9532b38",
@@ -10424,7 +10432,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-05T16:21:51+09:00",
@@ -10435,10 +10443,18 @@
           "evaluated_at": "2026-09-06T09:28:28+09:00",
           "price": 141.96,
           "return_pct": -0.0287
+        },
+        "72h": {
+          "evaluated_at": "2026-09-08T09:12:32+09:00",
+          "price": 141.96,
+          "return_pct": -0.0287
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-06T09:28:28+09:00"
+      "learned_at": "2026-09-06T09:28:28+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-08T09:12:32+09:00",
+      "final_return_pct": -0.0287
     },
     {
       "id": "44c276749e2aecd2",
@@ -10489,7 +10505,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-05T16:21:51+09:00",
@@ -10500,10 +10516,18 @@
           "evaluated_at": "2026-09-06T09:28:28+09:00",
           "price": 519.86,
           "return_pct": 0.3591
+        },
+        "72h": {
+          "evaluated_at": "2026-09-08T09:12:32+09:00",
+          "price": 519.86,
+          "return_pct": 0.3591
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-06T09:28:28+09:00"
+      "learned_at": "2026-09-06T09:28:28+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-08T09:12:32+09:00",
+      "final_return_pct": 0.3591
     },
     {
       "id": "d7a8924e10caab32",
@@ -11126,9 +11150,15 @@
           "evaluated_at": "2026-09-07T16:54:42+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-08T09:12:32+09:00",
+          "price": 188.87,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-08T09:12:32+09:00"
     },
     {
       "id": "21da0ac8ef9df8aa",
@@ -11187,9 +11217,15 @@
           "evaluated_at": "2026-09-07T16:54:42+09:00",
           "price": 519.86,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-08T09:12:32+09:00",
+          "price": 519.86,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-08T09:12:32+09:00"
     },
     {
       "id": "83583a8187471a77",
@@ -11240,9 +11276,15 @@
           "evaluated_at": "2026-09-07T16:54:42+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-08T09:12:32+09:00",
+          "price": 141.96,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-08T09:12:32+09:00"
     },
     {
       "id": "1403628379431231",
@@ -11389,6 +11431,171 @@
             "https://t.me/goldilbong/16017"
           ],
           "last_seen": "2026-09-07T07:41:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "f325ce1b4c3bc051",
+      "created_at": "2026-09-08T09:12:32+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.87,
+      "entry_zone": [
+        187.92565,
+        189.81435
+      ],
+      "stop_price": 179.725054,
+      "target_price": 207.159891,
+      "score": 5.093,
+      "components": {
+        "momentum": 3.2595031818542344,
+        "regime": 0.0,
+        "news": 2.833686509821713,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +3.26, regime +0.00, news +2.83, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.26, 뉴스 +2.83 / 연결 뉴스: [리딩투자증권 한제윤] ■ AP시스템(265520); 🔔",
+      "news_evidence": [
+        {
+          "title": "[리딩투자증권 한제윤] ■ AP시스템(265520)",
+          "urls": [
+            "https://buly.kr/8piwkmz",
+            "https://t.me/YeouidoStory2/117021"
+          ],
+          "last_seen": "2026-09-07T23:22:34+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/65e70e",
+            "https://t.me/dreago_news_ch/302344"
+          ],
+          "last_seen": "2026-09-07T07:44:23+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "5500246fbd3ca251",
+      "created_at": "2026-09-08T09:12:32+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 141.96,
+      "entry_zone": [
+        141.2502,
+        142.6698
+      ],
+      "stop_price": 136.270709,
+      "target_price": 153.338581,
+      "score": 4.259,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.05879366994305556,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.06, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.06 / 연결 뉴스: #유가] 美·이란 선박 공격에 유가 6주래 최고…사우디 아람코 시설도 피격 https://m.newspim.com/news/vi…; [리포트 브리핑]한국공항, '항공 밸류체인 중 유가에도 끄덕 없는 회사' Not Rated",
+      "news_evidence": [
+        {
+          "title": "#유가] 美·이란 선박 공격에 유가 6주래 최고…사우디 아람코 시설도 피격 https://m.newspim.com/news/vi…",
+          "urls": [
+            "https://m.newspim.com/news/view/20260908000014",
+            "https://t.me/sharpha/53051"
+          ],
+          "last_seen": "2026-09-07T23:43:35+00:00"
+        },
+        {
+          "title": "[리포트 브리핑]한국공항, '항공 밸류체인 중 유가에도 끄덕 없는 회사' Not Rated",
+          "urls": [
+            "http://spot.rassiro.com/rd/20260908/1000100",
+            "https://t.me/rassiro_channel/304550"
+          ],
+          "last_seen": "2026-09-07T23:32:33+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "e244c8b9c01c45cc",
+      "created_at": "2026-09-08T09:12:32+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 519.86,
+      "entry_zone": [
+        517.2607,
+        522.4593
+      ],
+      "stop_price": 502.198976,
+      "target_price": 555.182049,
+      "score": 3.025,
+      "components": {
+        "momentum": 0.6817089507995461,
+        "regime": 0.0,
+        "news": 3.343268503601573,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.68, regime +0.00, news +3.34, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.68, 뉴스 +3.34 / 연결 뉴스: [리딩투자증권 한제윤] ■ AP시스템(265520); [단독] 세방전지, 현대차·LG 조(兆) 단위 수주 '잭팟' 2026.09.07",
+      "news_evidence": [
+        {
+          "title": "[리딩투자증권 한제윤] ■ AP시스템(265520)",
+          "urls": [
+            "https://buly.kr/8piwkmz",
+            "https://t.me/YeouidoStory2/117021"
+          ],
+          "last_seen": "2026-09-07T23:22:34+00:00"
+        },
+        {
+          "title": "[단독] 세방전지, 현대차·LG 조(兆) 단위 수주 '잭팟' 2026.09.07",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/015/0005329608",
+            "https://t.me/aicorporateanalysisdeepdive/10813"
+          ],
+          "last_seen": "2026-09-07T23:50:45+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
