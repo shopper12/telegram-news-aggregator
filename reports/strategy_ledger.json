@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-09T01:57:25+09:00",
+  "updated_at": "2026-09-09T02:22:11+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -11664,6 +11664,171 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "81b08fdf5dd49731",
+      "created_at": "2026-09-09T02:22:11+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.245,
+      "entry_zone": [
+        190.288775,
+        192.201225
+      ],
+      "stop_price": 182.153612,
+      "target_price": 209.427776,
+      "score": 7.236,
+      "components": {
+        "momentum": 3.2362012587629567,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.24, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.24, 뉴스 +4.00 / 연결 뉴스: 디케이티(290550): 실적은 폴더블·전장, 다음 축은 휴머노이드 3사 2026.09.09; 🔔",
+      "news_evidence": [
+        {
+          "title": "디케이티(290550): 실적은 폴더블·전장, 다음 축은 휴머노이드 3사 2026.09.09",
+          "urls": [
+            "https://buly.kr/1RH7iNq",
+            "https://t.me/aicorporateanalysisdeepdive/10828"
+          ],
+          "last_seen": "2026-09-08T12:24:05+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/eddfde",
+            "https://t.me/dreago_news_ch/303279"
+          ],
+          "last_seen": "2026-09-08T15:58:58+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "450285ad1e7ab419",
+      "created_at": "2026-09-09T02:22:11+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 532.0,
+      "entry_zone": [
+        529.34,
+        534.66
+      ],
+      "stop_price": 513.961352,
+      "target_price": 568.077295,
+      "score": 5.381,
+      "components": {
+        "momentum": 1.3807936250886441,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.38, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.38, 뉴스 +4.00 / 연결 뉴스: 🔔; 🔔",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/eddfde",
+            "https://t.me/dreago_news_ch/303279"
+          ],
+          "last_seen": "2026-09-08T15:58:58+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/65e70e",
+            "https://t.me/dreago_news_ch/302344"
+          ],
+          "last_seen": "2026-09-08T15:58:58+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "d5daf870676de34e",
+      "created_at": "2026-09-09T02:22:11+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 143.44,
+      "entry_zone": [
+        142.7228,
+        144.1572
+      ],
+      "stop_price": 138.606059,
+      "target_price": 153.107882,
+      "score": 3.616,
+      "components": {
+        "momentum": 3.2129235658991693,
+        "regime": 0.2,
+        "news": 0.20326086557291667,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.21, regime +0.20, news +0.20, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +3.21, 뉴스 +0.20 / 연결 뉴스: ' ASTRA GPT-6모델이 반도체업황의 체인저가 될수 있을가' # 미국시장 노동절로 휴장인 가운데 유가와 금리는 강보합수준으…; 🔔 코스피 7,171 찍고 6,954로 후퇴…유가 급등에 삼성전자·SK하이닉스 꺾... 【 겁나빠른 #드리고봇 뉴스 】 http…",
+      "news_evidence": [
+        {
+          "title": "' ASTRA GPT-6모델이 반도체업황의 체인저가 될수 있을가' # 미국시장 노동절로 휴장인 가운데 유가와 금리는 강보합수준으…",
+          "urls": [
+            "https://t.me/stockgrandmaster",
+            "https://t.me/stockgrandmaster/12015"
+          ],
+          "last_seen": "2026-09-07T23:03:30+00:00"
+        },
+        {
+          "title": "🔔 코스피 7,171 찍고 6,954로 후퇴…유가 급등에 삼성전자·SK하이닉스 꺾... 【 겁나빠른 #드리고봇 뉴스 】 http…",
+          "urls": [
+            "https://dreago.kr/n/8c6e36",
+            "https://t.me/dreago_news_ch/303451"
+          ],
+          "last_seen": "2026-09-08T07:35:39+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]

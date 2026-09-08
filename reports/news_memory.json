@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-09-09T01:57:25+09:00",
+  "updated_at": "2026-09-09T02:22:11+09:00",
   "events": [
     {
       "signature": "6940f3844ff23b95614ea55675530b685cadee60",
@@ -22,7 +22,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-08T16:54:53+00:00",
       "last_seen": "2026-09-08T16:54:53+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "351f24c176410becdec4214664239a689bd1f353",
@@ -43,7 +43,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-03T00:36:40+00:00",
       "last_seen": "2026-09-08T16:40:59+00:00",
-      "count": 9
+      "count": 10
     },
     {
       "signature": "d57b7a2c7dba6eed4d0bfc53b8c769cb7240a11f",
@@ -67,7 +67,26 @@
       "sentiment": 1,
       "first_seen": "2026-09-07T00:27:31+00:00",
       "last_seen": "2026-09-08T16:22:15+00:00",
-      "count": 8
+      "count": 9
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 18,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-09-08T16:22:15+00:00",
+      "count": 686,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
     },
     {
       "signature": "b5912bae68287de50d387616a3ed37899f237f33",
@@ -296,25 +315,6 @@
       "first_seen": "2026-09-08T00:19:15+00:00",
       "last_seen": "2026-09-08T15:58:58+00:00",
       "count": 3
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 18,
-      "sentiment": -1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-09-08T15:57:27+00:00",
-      "count": 683,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "592b9d0554ee2c3596c6ff6d2a81b2bdfb45d6d6",
