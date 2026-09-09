@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T01:57:47+09:00",
+  "updated_at": "2026-09-10T02:15:19+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12111,6 +12111,167 @@
           "return_pct": -0.6599
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "7c377e1d989bb309",
+      "created_at": "2026-09-10T02:15:19+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.16,
+      "entry_zone": [
+        190.2042,
+        192.1158
+      ],
+      "stop_price": 182.160424,
+      "target_price": 209.159153,
+      "score": 7.511,
+      "components": {
+        "momentum": 3.5113361706340864,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.51, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.51, 뉴스 +4.00 / 연결 뉴스: 다소 거칠수있으니 주의 1. AI투자 세계에서 제일 돈많은 빅테크들도 미친듯이 투자한다. 2. 빅테크들은 빚까지 내면서 투자한다…; TSMC, ASML과 손잡고 12인치 포토마스크 추진/ 인텔 가격인상 소문 2026.09.09",
+      "news_evidence": [
+        {
+          "title": "다소 거칠수있으니 주의 1. AI투자 세계에서 제일 돈많은 빅테크들도 미친듯이 투자한다. 2. 빅테크들은 빚까지 내면서 투자한다…",
+          "urls": [
+            "https://t.me/goldilbong/16047"
+          ],
+          "last_seen": "2026-09-09T02:38:17+00:00"
+        },
+        {
+          "title": "TSMC, ASML과 손잡고 12인치 포토마스크 추진/ 인텔 가격인상 소문 2026.09.09",
+          "urls": [
+            "https://adersaytech.com/tech-news/tech-news-digest-20260909.html",
+            "https://t.me/aicorporateanalysisdeepdive/10849"
+          ],
+          "last_seen": "2026-09-09T12:24:54+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1e433ea95bcbfb1d",
+      "created_at": "2026-09-10T02:15:19+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 532.625,
+      "entry_zone": [
+        529.961875,
+        535.288125
+      ],
+      "stop_price": 514.874609,
+      "target_price": 568.125782,
+      "score": 5.564,
+      "components": {
+        "momentum": 1.5637168431160575,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.56, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.56, 뉴스 +4.00 / 연결 뉴스: 다소 거칠수있으니 주의 1. AI투자 세계에서 제일 돈많은 빅테크들도 미친듯이 투자한다. 2. 빅테크들은 빚까지 내면서 투자한다…; 2026년 9월 9일 프리마켓 주요 종목 동향 ━━━━━━━━━━━━━━ 상승 종목 ODD",
+      "news_evidence": [
+        {
+          "title": "다소 거칠수있으니 주의 1. AI투자 세계에서 제일 돈많은 빅테크들도 미친듯이 투자한다. 2. 빅테크들은 빚까지 내면서 투자한다…",
+          "urls": [
+            "https://t.me/goldilbong/16047"
+          ],
+          "last_seen": "2026-09-09T02:38:17+00:00"
+        },
+        {
+          "title": "2026년 9월 9일 프리마켓 주요 종목 동향 ━━━━━━━━━━━━━━ 상승 종목 ODD",
+          "urls": [
+            "https://t.me/insidertracking/63261"
+          ],
+          "last_seen": "2026-09-09T12:29:46+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1484f8e70204abfa",
+      "created_at": "2026-09-10T02:15:19+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 147.91,
+      "entry_zone": [
+        147.17045,
+        148.64955
+      ],
+      "stop_price": 142.795677,
+      "target_price": 158.138646,
+      "score": 3.711,
+      "components": {
+        "momentum": 2.9187415707205835,
+        "regime": 0.2,
+        "news": 0.5925998971271993,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.92, regime +0.20, news +0.59, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.92, 뉴스 +0.59 / 연결 뉴스: 📌 09/08 미 증시 클로징 노트 유가 급등 + 제약주 붕괴에 다우 -1.18% 반면 AI·반도체는 컨퍼런스 훈풍에 강세 — …; [2026년 9월 9일 모닝 시황] 중동發 유가 급등에 3대 지수 하락, 반도체·AI는 나홀로 강세 ────────── <요약>…",
+      "news_evidence": [
+        {
+          "title": "📌 09/08 미 증시 클로징 노트 유가 급등 + 제약주 붕괴에 다우 -1.18% 반면 AI·반도체는 컨퍼런스 훈풍에 강세 — …",
+          "urls": [
+            "https://t.me/goldilbong/16040"
+          ],
+          "last_seen": "2026-09-08T22:55:15+00:00"
+        },
+        {
+          "title": "[2026년 9월 9일 모닝 시황] 중동發 유가 급등에 3대 지수 하락, 반도체·AI는 나홀로 강세 ────────── <요약>…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10829",
+            "https://t.me/insidertracking/63159"
+          ],
+          "last_seen": "2026-09-08T22:02:01+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
