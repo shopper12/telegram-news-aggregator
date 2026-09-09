@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-09T02:52:24+09:00",
+  "updated_at": "2026-09-09T09:05:34+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -10777,7 +10777,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-06T16:35:38+09:00",
@@ -10788,10 +10788,18 @@
           "evaluated_at": "2026-09-07T08:47:12+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 147.0,
+          "return_pct": 3.5503
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-07T08:47:12+09:00"
+      "learned_at": "2026-09-07T08:47:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-09T09:05:34+09:00",
+      "final_return_pct": 3.5503
     },
     {
       "id": "62c2b09aeee13abd",
@@ -10843,7 +10851,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-06T16:35:38+09:00",
@@ -10854,10 +10862,18 @@
           "evaluated_at": "2026-09-07T08:47:12+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 189.32,
+          "return_pct": 0.2383
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-07T08:47:12+09:00"
+      "learned_at": "2026-09-07T08:47:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-09T09:05:34+09:00",
+      "final_return_pct": 0.2383
     },
     {
       "id": "f907f3fc42076077",
@@ -10909,7 +10925,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-06T16:35:38+09:00",
@@ -10920,10 +10936,18 @@
           "evaluated_at": "2026-09-07T08:47:12+09:00",
           "price": 80502.29,
           "return_pct": 0.8015
+        },
+        "72h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 78548.9,
+          "return_pct": -1.6445
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-07T08:47:12+09:00"
+      "learned_at": "2026-09-07T08:47:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-09T09:05:34+09:00",
+      "final_return_pct": -1.6445
     },
     {
       "id": "f2869162e6af6473",
@@ -11366,9 +11390,15 @@
           "evaluated_at": "2026-09-08T09:45:00+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 189.32,
+          "return_pct": 0.2383
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-09T09:05:34+09:00"
     },
     {
       "id": "60e6faa16862d1e2",
@@ -11419,9 +11449,15 @@
           "evaluated_at": "2026-09-08T09:45:00+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 147.0,
+          "return_pct": 3.5503
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-09T09:05:34+09:00"
     },
     {
       "id": "23950f9335e63527",
@@ -11479,9 +11515,15 @@
           "evaluated_at": "2026-09-08T09:45:00+09:00",
           "price": 519.86,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 528.0,
+          "return_pct": 1.5658
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-09T09:05:34+09:00"
     },
     {
       "id": "f325ce1b4c3bc051",
@@ -11718,7 +11760,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 189.32,
+          "return_pct": -1.0066
+        }
+      },
       "learned_24h": false
     },
     {
@@ -11773,7 +11821,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 528.0,
+          "return_pct": -0.7519
+        }
+      },
       "learned_24h": false
     },
     {
@@ -11824,6 +11878,174 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-09T09:05:34+09:00",
+          "price": 147.0,
+          "return_pct": 2.4819
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "1a1a3ca00e5c1cfc",
+      "created_at": "2026-09-09T09:05:34+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 189.32,
+      "entry_zone": [
+        188.3734,
+        190.2666
+      ],
+      "stop_price": 180.078533,
+      "target_price": 207.802933,
+      "score": 5.901,
+      "components": {
+        "momentum": 1.9011359233563057,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.90, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.90, 뉴스 +4.00 / 연결 뉴스: DS투자증권 반도체 Analyst 이수림 [반도체] DB하이텍; IBK투자증권 코스닥리서치 조은애 연구위원",
+      "news_evidence": [
+        {
+          "title": "DS투자증권 반도체 Analyst 이수림 [반도체] DB하이텍",
+          "urls": [
+            "https://t.me/YeouidoStory2/117077"
+          ],
+          "last_seen": "2026-09-08T23:23:30+00:00"
+        },
+        {
+          "title": "IBK투자증권 코스닥리서치 조은애 연구위원",
+          "urls": [
+            "https://t.me/YeouidoStory2/117074",
+            "https://zrr.kr/9xt1en"
+          ],
+          "last_seen": "2026-09-08T23:07:54+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1f9033acb91a6873",
+      "created_at": "2026-09-09T09:05:34+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 528.0,
+      "entry_zone": [
+        525.36,
+        530.64
+      ],
+      "stop_price": 510.210828,
+      "target_price": 563.578344,
+      "score": 5.078,
+      "components": {
+        "momentum": 1.0780038214740606,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.08, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.08, 뉴스 +4.00 / 연결 뉴스: DS투자증권 반도체 Analyst 이수림 [반도체] DB하이텍; 🔔 \"지엔씨에너지, 신규수주 올해 4700억→2028년 1조원 전망\"-IBK 📈 #지엔씨에너지 📝 #AI인프라 #데이터센터 #비…",
+      "news_evidence": [
+        {
+          "title": "DS투자증권 반도체 Analyst 이수림 [반도체] DB하이텍",
+          "urls": [
+            "https://t.me/YeouidoStory2/117077"
+          ],
+          "last_seen": "2026-09-08T23:23:30+00:00"
+        },
+        {
+          "title": "🔔 \"지엔씨에너지, 신규수주 올해 4700억→2028년 1조원 전망\"-IBK 📈 #지엔씨에너지 📝 #AI인프라 #데이터센터 #비…",
+          "urls": [
+            "https://dreago.kr/n/c5ae3a",
+            "https://t.me/dreago_news_ch/303627"
+          ],
+          "last_seen": "2026-09-08T23:49:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "b0bd6c31ced37c80",
+      "created_at": "2026-09-09T09:05:34+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 147.0,
+      "entry_zone": [
+        146.265,
+        147.735
+      ],
+      "stop_price": 141.914645,
+      "target_price": 157.17071,
+      "score": 4.575,
+      "components": {
+        "momentum": 3.867670589296849,
+        "regime": 0.2,
+        "news": 0.5069041486035764,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.87, regime +0.20, news +0.51, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +3.87, 뉴스 +0.51 / 연결 뉴스: # VIX변동성지표 20일선 돌파하여 리스크 소폭 확대 # 유가 및 미10년국채금리 5일선 타고가며 상승세 지속되어 리스크 확대…; 글로벌 정제 설비 병목현상 심화, 중동 분쟁 격화 속 유가 급등 압력",
+      "news_evidence": [
+        {
+          "title": "# VIX변동성지표 20일선 돌파하여 리스크 소폭 확대 # 유가 및 미10년국채금리 5일선 타고가며 상승세 지속되어 리스크 확대…",
+          "urls": [
+            "https://t.me/stockgrandmaster/12016"
+          ],
+          "last_seen": "2026-09-08T23:47:16+00:00"
+        },
+        {
+          "title": "글로벌 정제 설비 병목현상 심화, 중동 분쟁 격화 속 유가 급등 압력",
+          "urls": [
+            "https://marketwatch.com/story/refining-bottlenecks-are-emerging-as-the-next-big-oil-problem-as-middle-east-skirmishes-flare-up-24528e22",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-08T23:54:31+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
