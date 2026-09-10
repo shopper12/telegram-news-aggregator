@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-11T02:06:15+09:00",
+  "updated_at": "2026-09-11T02:37:57+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12166,7 +12166,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-09T16:53:03+09:00",
@@ -12180,7 +12180,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-10T09:08:48+09:00"
+      "learned_at": "2026-09-10T09:08:48+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-11T02:37:57+09:00",
+      "final_return_pct": 7.0952
     },
     {
       "id": "7c377e1d989bb309",
@@ -12238,9 +12241,15 @@
           "evaluated_at": "2026-09-10T09:08:48+09:00",
           "price": 190.47,
           "return_pct": -0.361
+        },
+        "24h": {
+          "evaluated_at": "2026-09-11T02:37:57+09:00",
+          "price": 183.58,
+          "return_pct": -3.9653
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-11T02:37:57+09:00"
     },
     {
       "id": "1e433ea95bcbfb1d",
@@ -12297,9 +12306,15 @@
           "evaluated_at": "2026-09-10T09:08:48+09:00",
           "price": 531.8,
           "return_pct": -0.1549
+        },
+        "24h": {
+          "evaluated_at": "2026-09-11T02:37:57+09:00",
+          "price": 519.76,
+          "return_pct": -2.4154
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-11T02:37:57+09:00"
     },
     {
       "id": "1484f8e70204abfa",
@@ -12357,9 +12372,15 @@
           "evaluated_at": "2026-09-10T09:08:48+09:00",
           "price": 150.34,
           "return_pct": 1.6429
+        },
+        "24h": {
+          "evaluated_at": "2026-09-11T02:37:57+09:00",
+          "price": 157.43,
+          "return_pct": 6.4363
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-11T02:37:57+09:00"
     },
     {
       "id": "bc022281c2420117",
