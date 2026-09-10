@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T16:53:35+09:00",
+  "updated_at": "2026-09-10T21:41:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -11491,7 +11491,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-08T09:45:00+09:00",
@@ -11505,7 +11505,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-09T09:05:34+09:00"
+      "learned_at": "2026-09-09T09:05:34+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-10T21:41:32+09:00",
+      "final_return_pct": 9.5238
     },
     {
       "id": "23950f9335e63527",
@@ -11691,7 +11694,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-08T16:51:35+09:00",
@@ -11705,7 +11708,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-09T09:42:58+09:00"
+      "learned_at": "2026-09-09T09:42:58+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-10T21:41:32+09:00",
+      "final_return_pct": 9.5238
     },
     {
       "id": "e244c8b9c01c45cc",
@@ -11959,7 +11965,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-09T09:05:34+09:00",
@@ -11973,7 +11979,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-10T02:45:43+09:00"
+      "learned_at": "2026-09-10T02:45:43+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-10T21:41:32+09:00",
+      "final_return_pct": 8.3938
     },
     {
       "id": "1a1a3ca00e5c1cfc",
