@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-11T01:47:14+09:00",
+  "updated_at": "2026-09-11T02:06:15+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12540,6 +12540,169 @@
           "return_pct": -0.2461
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "f1f128d84a1600b8",
+      "created_at": "2026-09-11T02:06:15+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 156.88,
+      "entry_zone": [
+        156.0956,
+        157.6644
+      ],
+      "stop_price": 151.007049,
+      "target_price": 168.625902,
+      "score": 4.653,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.4525410628564815,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.45, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.45 / 연결 뉴스: 9월 10일 장 전 코멘트: 유가·금리 동반 상승 속 S&P500 로테이션, 'AI 캐펙스 지출자 vs 수금자' 갈림 2026.…; 🔔 태국 이어 필리핀·중동으로…HD현대重·한화오션 특수선 수주전 📈 #한화오션 #HD현대중공업 📝 #특수선 #함정수출 #방산 #…",
+      "news_evidence": [
+        {
+          "title": "9월 10일 장 전 코멘트: 유가·금리 동반 상승 속 S&P500 로테이션, 'AI 캐펙스 지출자 vs 수금자' 갈림 2026.…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10872"
+          ],
+          "last_seen": "2026-09-09T23:19:46+00:00"
+        },
+        {
+          "title": "🔔 태국 이어 필리핀·중동으로…HD현대重·한화오션 특수선 수주전 📈 #한화오션 #HD현대중공업 📝 #특수선 #함정수출 #방산 #…",
+          "urls": [
+            "https://dreago.kr/n/f42bf0",
+            "https://t.me/dreago_news_ch/304247"
+          ],
+          "last_seen": "2026-09-10T07:49:00+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "8cb6f1a68d55c6bd",
+      "created_at": "2026-09-11T02:06:15+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 399.805,
+      "entry_zone": [
+        397.805975,
+        401.804025
+      ],
+      "stop_price": 388.616988,
+      "target_price": 422.181024,
+      "score": 3.218,
+      "components": {
+        "momentum": -0.4463170447971091,
+        "regime": 0.2,
+        "news": 2.463915908884954,
+        "defensive": 1.0
+      },
+      "component_text": "momentum -0.45, regime +0.20, news +2.46, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 -0.45, 뉴스 +2.46 / 연결 뉴스: ▶️ 9월 10일 증권사 보고서, 뉴스, 특징주 정리 : 여의도스토리 https://t.me/YeouidoStory2 서울SOS…; 🚨 경제 지표 발표 🚨 ━━━━━━━━━━━━━━━ 🟡 미국 생산자물가지수",
+      "news_evidence": [
+        {
+          "title": "▶️ 9월 10일 증권사 보고서, 뉴스, 특징주 정리 : 여의도스토리 https://t.me/YeouidoStory2 서울SOS…",
+          "urls": [
+            "http://seoulsos.com",
+            "https://aitimes.com/news/articleView.html?idxno=215089"
+          ],
+          "last_seen": "2026-09-10T07:08:05+00:00"
+        },
+        {
+          "title": "🚨 경제 지표 발표 🚨 ━━━━━━━━━━━━━━━ 🟡 미국 생산자물가지수",
+          "urls": [
+            "https://t.me/insidertracking/63367"
+          ],
+          "last_seen": "2026-09-10T12:30:30+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "ea446dd5695a81eb",
+      "created_at": "2026-09-11T02:06:15+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 183.835,
+      "entry_zone": [
+        182.915825,
+        184.754175
+      ],
+      "stop_price": 175.308129,
+      "target_price": 200.888741,
+      "score": 2.942,
+      "components": {
+        "momentum": 0.44170149603161446,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.5
+      },
+      "component_text": "momentum +0.44, regime +0.00, news +4.00, defensive -1.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.44, 뉴스 +4.00 / 연결 뉴스: 🔔; 미코, 세계 1위 HRSG 품었다…AI 전력시장 공략 2026.09.10",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d1989f",
+            "https://t.me/dreago_news_ch/304079"
+          ],
+          "last_seen": "2026-09-10T11:44:21+00:00"
+        },
+        {
+          "title": "미코, 세계 1위 HRSG 품었다…AI 전력시장 공략 2026.09.10",
+          "urls": [
+            "https://naver.me/Gi0A4ZEB",
+            "https://t.me/aicorporateanalysisdeepdive/10874"
+          ],
+          "last_seen": "2026-09-09T23:29:23+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
