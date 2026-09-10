@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T02:45:43+09:00",
+  "updated_at": "2026-09-10T09:08:48+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -11216,7 +11216,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-07T16:54:42+09:00",
@@ -11227,10 +11227,18 @@
           "evaluated_at": "2026-09-08T09:12:32+09:00",
           "price": 188.87,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 190.47,
+          "return_pct": 0.8471
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-08T09:12:32+09:00"
+      "learned_at": "2026-09-08T09:12:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-10T09:08:48+09:00",
+      "final_return_pct": 0.8471
     },
     {
       "id": "21da0ac8ef9df8aa",
@@ -11283,7 +11291,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-07T16:54:42+09:00",
@@ -11294,10 +11302,18 @@
           "evaluated_at": "2026-09-08T09:12:32+09:00",
           "price": 519.86,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 531.8,
+          "return_pct": 2.2968
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-08T09:12:32+09:00"
+      "learned_at": "2026-09-08T09:12:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-10T09:08:48+09:00",
+      "final_return_pct": 2.2968
     },
     {
       "id": "83583a8187471a77",
@@ -11342,7 +11358,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-07T16:54:42+09:00",
@@ -11353,10 +11369,18 @@
           "evaluated_at": "2026-09-08T09:12:32+09:00",
           "price": 141.96,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 150.34,
+          "return_pct": 5.9031
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-08T09:12:32+09:00"
+      "learned_at": "2026-09-08T09:12:32+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-10T09:08:48+09:00",
+      "final_return_pct": 5.9031
     },
     {
       "id": "1403628379431231",
@@ -12007,9 +12031,15 @@
           "evaluated_at": "2026-09-09T16:53:03+09:00",
           "price": 189.91,
           "return_pct": 0.3116
+        },
+        "24h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 190.47,
+          "return_pct": 0.6074
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-10T09:08:48+09:00"
     },
     {
       "id": "1f9033acb91a6873",
@@ -12067,9 +12097,15 @@
           "evaluated_at": "2026-09-09T16:53:03+09:00",
           "price": 528.4,
           "return_pct": 0.0758
+        },
+        "24h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 531.8,
+          "return_pct": 0.7197
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-10T09:08:48+09:00"
     },
     {
       "id": "b0bd6c31ced37c80",
@@ -12127,9 +12163,15 @@
           "evaluated_at": "2026-09-09T16:53:03+09:00",
           "price": 146.03,
           "return_pct": -0.6599
+        },
+        "24h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 150.34,
+          "return_pct": 2.2721
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-10T09:08:48+09:00"
     },
     {
       "id": "7c377e1d989bb309",
@@ -12182,7 +12224,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 190.47,
+          "return_pct": -0.361
+        }
+      },
       "learned_24h": false
     },
     {
@@ -12235,7 +12283,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 531.8,
+          "return_pct": -0.1549
+        }
+      },
       "learned_24h": false
     },
     {
@@ -12285,6 +12339,175 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-10T09:08:48+09:00",
+          "price": 150.34,
+          "return_pct": 1.6429
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "bc022281c2420117",
+      "created_at": "2026-09-10T09:08:48+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 190.47,
+      "entry_zone": [
+        189.51765,
+        191.42235
+      ],
+      "stop_price": 181.418526,
+      "target_price": 208.572948,
+      "score": 8.0,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: 미코, 세계 1위 HRSG 품었다…AI 전력시장 공략 2026.09.10; 테스(095610), 도움닫기 끝, 적용처 3단 점프 시작 2026.09.10",
+      "news_evidence": [
+        {
+          "title": "미코, 세계 1위 HRSG 품었다…AI 전력시장 공략 2026.09.10",
+          "urls": [
+            "https://naver.me/Gi0A4ZEB",
+            "https://t.me/aicorporateanalysisdeepdive/10874"
+          ],
+          "last_seen": "2026-09-09T23:29:23+00:00"
+        },
+        {
+          "title": "테스(095610), 도움닫기 끝, 적용처 3단 점프 시작 2026.09.10",
+          "urls": [
+            "https://t.me/YeouidoStory2/117134",
+            "https://t.me/aicorporateanalysisdeepdive/10875"
+          ],
+          "last_seen": "2026-09-09T23:30:36+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "bc801f81d107603e",
+      "created_at": "2026-09-10T09:08:48+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 531.8,
+      "entry_zone": [
+        529.141,
+        534.459
+      ],
+      "stop_price": 514.057301,
+      "target_price": 567.285397,
+      "score": 5.847,
+      "components": {
+        "momentum": 1.8470909244832756,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.85, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.85, 뉴스 +4.00 / 연결 뉴스: 미코, 세계 1위 HRSG 품었다…AI 전력시장 공략 2026.09.10; 테스(095610), 도움닫기 끝, 적용처 3단 점프 시작 2026.09.10",
+      "news_evidence": [
+        {
+          "title": "미코, 세계 1위 HRSG 품었다…AI 전력시장 공략 2026.09.10",
+          "urls": [
+            "https://naver.me/Gi0A4ZEB",
+            "https://t.me/aicorporateanalysisdeepdive/10874"
+          ],
+          "last_seen": "2026-09-09T23:29:23+00:00"
+        },
+        {
+          "title": "테스(095610), 도움닫기 끝, 적용처 3단 점프 시작 2026.09.10",
+          "urls": [
+            "https://t.me/YeouidoStory2/117134",
+            "https://t.me/aicorporateanalysisdeepdive/10875"
+          ],
+          "last_seen": "2026-09-09T23:30:36+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "59811d9704c3632f",
+      "created_at": "2026-09-10T09:08:48+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 150.34,
+      "entry_zone": [
+        149.5883,
+        151.0917
+      ],
+      "stop_price": 145.13989,
+      "target_price": 160.740219,
+      "score": 4.592,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.39173455019328707,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.39, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.39 / 연결 뉴스: 9월 10일 장 전 코멘트: 유가·금리 동반 상승 속 S&P500 로테이션, 'AI 캐펙스 지출자 vs 수금자' 갈림 2026.…; # VIX변동성지표 20일선 돌파후 추가반등하여 리스크 소폭 확대 # 유가 및 미10년국채금리 5일선 타고가며 상승세 지속되어 …",
+      "news_evidence": [
+        {
+          "title": "9월 10일 장 전 코멘트: 유가·금리 동반 상승 속 S&P500 로테이션, 'AI 캐펙스 지출자 vs 수금자' 갈림 2026.…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10872"
+          ],
+          "last_seen": "2026-09-09T23:19:46+00:00"
+        },
+        {
+          "title": "# VIX변동성지표 20일선 돌파후 추가반등하여 리스크 소폭 확대 # 유가 및 미10년국채금리 5일선 타고가며 상승세 지속되어 …",
+          "urls": [
+            "https://t.me/stockgrandmaster/12025"
+          ],
+          "last_seen": "2026-09-09T23:05:17+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
