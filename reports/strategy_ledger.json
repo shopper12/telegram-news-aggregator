@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-11T02:37:57+09:00",
+  "updated_at": "2026-09-11T09:03:30+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -11432,7 +11432,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-08T09:45:00+09:00",
@@ -11443,10 +11443,18 @@
           "evaluated_at": "2026-09-09T09:05:34+09:00",
           "price": 189.32,
           "return_pct": 0.2383
+        },
+        "72h": {
+          "evaluated_at": "2026-09-11T09:03:30+09:00",
+          "price": 182.8,
+          "return_pct": -3.2139
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-09T09:05:34+09:00"
+      "learned_at": "2026-09-09T09:05:34+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-11T09:03:30+09:00",
+      "final_return_pct": -3.2139
     },
     {
       "id": "60e6faa16862d1e2",
@@ -11560,7 +11568,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-08T09:45:00+09:00",
@@ -11571,10 +11579,18 @@
           "evaluated_at": "2026-09-09T09:05:34+09:00",
           "price": 528.0,
           "return_pct": 1.5658
+        },
+        "72h": {
+          "evaluated_at": "2026-09-11T09:03:30+09:00",
+          "price": 514.8528,
+          "return_pct": -0.9632
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-09T09:05:34+09:00"
+      "learned_at": "2026-09-09T09:05:34+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-11T09:03:30+09:00",
+      "final_return_pct": -0.9632
     },
     {
       "id": "f325ce1b4c3bc051",
@@ -12300,7 +12316,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-10T09:08:48+09:00",
@@ -12314,7 +12330,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-11T02:37:57+09:00"
+      "learned_at": "2026-09-11T02:37:57+09:00",
+      "outcome": "stop_observed",
+      "closed_at": "2026-09-11T09:03:30+09:00",
+      "final_return_pct": -3.3367
     },
     {
       "id": "1484f8e70204abfa",
@@ -12366,7 +12385,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-10T09:08:48+09:00",
@@ -12380,7 +12399,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-11T02:37:57+09:00"
+      "learned_at": "2026-09-11T02:37:57+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-11T09:03:30+09:00",
+      "final_return_pct": 8.4928
     },
     {
       "id": "bc022281c2420117",
@@ -12614,7 +12636,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-11T09:03:30+09:00",
+          "price": 160.4717,
+          "return_pct": 2.2895
+        }
+      },
       "learned_24h": false
     },
     {
@@ -12668,7 +12696,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-11T09:03:30+09:00",
+          "price": 395.3114,
+          "return_pct": -1.1239
+        }
+      },
       "learned_24h": false
     },
     {
@@ -12719,6 +12753,175 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-11T09:03:30+09:00",
+          "price": 182.8,
+          "return_pct": -0.563
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "60c295c66222c259",
+      "created_at": "2026-09-11T09:03:30+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 182.8,
+      "entry_zone": [
+        181.886,
+        183.714
+      ],
+      "stop_price": 174.192439,
+      "target_price": 200.015123,
+      "score": 6.21,
+      "components": {
+        "momentum": 3.710289504365332,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.5
+      },
+      "component_text": "momentum +3.71, regime +0.00, news +4.00, defensive -1.50",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +3.71, 뉴스 +4.00 / 연결 뉴스: OCI +121% YoY — RPO의 매출 전환 본격화: AI 신규 계약 $30B+ — RPO $664B로 확대: A: FY27 매출·이익 가이던스 영향 없음.\n출처: 미국급등일보, 여의도스토리, 주식클라쓰 | 시각; 9월 11일 (금) ⬛️ 해외 시장 네이버 : 차박주식연구소",
+      "news_evidence": [
+        {
+          "title": "OCI +121% YoY — RPO의 매출 전환 본격화: AI 신규 계약 $30B+ — RPO $664B로 확대: A: FY27 매출·이익 가이던스 영향 없음.\n출처: 미국급등일보, 여의도스토리, 주식클라쓰 | 시각",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23058",
+            "https://t.me/YeouidoStory2/117184"
+          ],
+          "last_seen": "2026-09-10T23:40:38+00:00"
+        },
+        {
+          "title": "9월 11일 (금) ⬛️ 해외 시장 네이버 : 차박주식연구소",
+          "urls": [
+            "https://etoday.co.kr/news/view/2622239",
+            "https://hankyung.com/article/2026091073311"
+          ],
+          "last_seen": "2026-09-10T23:14:24+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "47f43aa86a1eceaa",
+      "created_at": "2026-09-11T09:03:30+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 160.4717,
+      "entry_zone": [
+        159.669342,
+        161.274058
+      ],
+      "stop_price": 154.818641,
+      "target_price": 171.777817,
+      "score": 5.447,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 1.2471063671810183,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +1.25, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +1.25 / 연결 뉴스: # VIX변동서지표 200일선까지 반등. 중요한 분기점 # 달러인덱스도 200일선까지 반등 # WTI유가 5일선 타고가며 급등하…; [美 금리 발작] 미국 재무부의 국채 바이백 확대에도 미국 국채 금리가 급등하며 채권시장 불안이 이어지고 있다. 국제유가 상승과 인플레이션 압력으로 연방준비제도(Fed·연준)의 금리 인상 가능성까지 커지면서, 국채 ",
+      "news_evidence": [
+        {
+          "title": "# VIX변동서지표 200일선까지 반등. 중요한 분기점 # 달러인덱스도 200일선까지 반등 # WTI유가 5일선 타고가며 급등하…",
+          "urls": [
+            "https://t.me/stockgrandmaster/12040"
+          ],
+          "last_seen": "2026-09-10T23:25:39+00:00"
+        },
+        {
+          "title": "[美 금리 발작] 미국 재무부의 국채 바이백 확대에도 미국 국채 금리가 급등하며 채권시장 불안이 이어지고 있다. 국제유가 상승과 인플레이션 압력으로 연방준비제도(Fed·연준)의 금리 인상 가능성까지 커지면서, 국채 ",
+          "urls": [
+            "https://t.me/chel3337/35672"
+          ],
+          "last_seen": "2026-09-10T23:21:26+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "21742cf66c02212f",
+      "created_at": "2026-09-11T09:03:30+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 395.3114,
+      "entry_zone": [
+        393.334843,
+        397.287957
+      ],
+      "stop_price": 384.229001,
+      "target_price": 417.476197,
+      "score": 4.452,
+      "components": {
+        "momentum": 0.10940276860676743,
+        "regime": 0.2,
+        "news": 3.142595062524804,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.11, regime +0.20, news +3.14, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.11, 뉴스 +3.14 / 연결 뉴스: 9월 11일 (금) ⬛️ 해외 시장 네이버 : 차박주식연구소; [키움증권 미국 주식 박기현/RA 한유진] 미국은 지금",
+      "news_evidence": [
+        {
+          "title": "9월 11일 (금) ⬛️ 해외 시장 네이버 : 차박주식연구소",
+          "urls": [
+            "https://etoday.co.kr/news/view/2622239",
+            "https://hankyung.com/article/2026091073311"
+          ],
+          "last_seen": "2026-09-10T23:14:24+00:00"
+        },
+        {
+          "title": "[키움증권 미국 주식 박기현/RA 한유진] 미국은 지금",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1664",
+            "https://invest.kiwoom.com/inv/no/3176"
+          ],
+          "last_seen": "2026-09-10T23:02:37+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
