@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-12T01:50:32+09:00",
+  "updated_at": "2026-09-12T02:06:19+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12675,9 +12675,15 @@
           "evaluated_at": "2026-09-11T09:03:30+09:00",
           "price": 160.4717,
           "return_pct": 2.2895
+        },
+        "24h": {
+          "evaluated_at": "2026-09-12T02:06:19+09:00",
+          "price": 154.165,
+          "return_pct": -1.7306
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-12T02:06:19+09:00"
     },
     {
       "id": "8cb6f1a68d55c6bd",
@@ -12735,9 +12741,15 @@
           "evaluated_at": "2026-09-11T09:03:30+09:00",
           "price": 395.3114,
           "return_pct": -1.1239
+        },
+        "24h": {
+          "evaluated_at": "2026-09-12T02:06:19+09:00",
+          "price": 400.04,
+          "return_pct": 0.0588
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-12T02:06:19+09:00"
     },
     {
       "id": "ea446dd5695a81eb",
@@ -12796,9 +12808,15 @@
           "evaluated_at": "2026-09-11T09:03:30+09:00",
           "price": 182.8,
           "return_pct": -0.563
+        },
+        "24h": {
+          "evaluated_at": "2026-09-12T02:06:19+09:00",
+          "price": 189.29,
+          "return_pct": 2.9673
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-12T02:06:19+09:00"
     },
     {
       "id": "60c295c66222c259",
@@ -12982,6 +13000,171 @@
           "return_pct": 0.2653
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "c69ba7dc7cc5d6ad",
+      "created_at": "2026-09-12T02:06:19+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 189.29,
+      "entry_zone": [
+        188.34355,
+        190.23645
+      ],
+      "stop_price": 180.140947,
+      "target_price": 207.588105,
+      "score": 8.309,
+      "components": {
+        "momentum": 2.308512216915998,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.31, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.31, 뉴스 +4.00 / 연결 뉴스: 🔔 인텔리안테크, NI에 '美 WGS 기준 충족' 410억 규모 국방 위성통신 단말... 📈 #인텔리안테크 📝 #위성통신 #방산…; OCI +121% YoY — RPO의 매출 전환 본격화: AI 신규 계약 $30B+ — RPO $664B로 확대: A: FY27 매출·이익 가이던스 영향 없음.\n출처: 미국급등일보, 여의도스토리, 주식클라쓰 | 시각",
+      "news_evidence": [
+        {
+          "title": "🔔 인텔리안테크, NI에 '美 WGS 기준 충족' 410억 규모 국방 위성통신 단말... 📈 #인텔리안테크 📝 #위성통신 #방산…",
+          "urls": [
+            "https://dreago.kr/n/9c5c9c",
+            "https://t.me/dreago_news_ch/304525"
+          ],
+          "last_seen": "2026-09-11T07:19:43+00:00"
+        },
+        {
+          "title": "OCI +121% YoY — RPO의 매출 전환 본격화: AI 신규 계약 $30B+ — RPO $664B로 확대: A: FY27 매출·이익 가이던스 영향 없음.\n출처: 미국급등일보, 여의도스토리, 주식클라쓰 | 시각",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23058",
+            "https://t.me/YeouidoStory2/117184"
+          ],
+          "last_seen": "2026-09-10T23:40:38+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6d277f72247883fa",
+      "created_at": "2026-09-12T02:06:19+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 529.615,
+      "entry_zone": [
+        526.966925,
+        532.263075
+      ],
+      "stop_price": 511.302274,
+      "target_price": 566.240452,
+      "score": 7.257,
+      "components": {
+        "momentum": 1.2568035691830075,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.26, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.26, 뉴스 +4.00 / 연결 뉴스: SK이노베이션 신용등급 전망 상향 및 바이코(Vicor) AI 팹 증설 효과 분석 (by https://t.me/TNBfolio…; 🔔 AI 비중 84%의 그늘…가온전선의 공공망 첫 수주, '진짜 시험대'는 지금... 📈 #가온전선 📝 #전력케이블 #데이터센터…",
+      "news_evidence": [
+        {
+          "title": "SK이노베이션 신용등급 전망 상향 및 바이코(Vicor) AI 팹 증설 효과 분석 (by https://t.me/TNBfolio…",
+          "urls": [
+            "https://investing.com/news/stock-market-news/why-is-vicor-stock-surging-today-93CH-4898226",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-11T15:59:47+00:00"
+        },
+        {
+          "title": "🔔 AI 비중 84%의 그늘…가온전선의 공공망 첫 수주, '진짜 시험대'는 지금... 📈 #가온전선 📝 #전력케이블 #데이터센터…",
+          "urls": [
+            "https://dreago.kr/n/257b82",
+            "https://t.me/dreago_news_ch/304522"
+          ],
+          "last_seen": "2026-09-11T07:14:50+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "0b0c9c6f88af0d26",
+      "created_at": "2026-09-12T02:06:19+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 154.165,
+      "entry_zone": [
+        153.394175,
+        154.935825
+      ],
+      "stop_price": 148.021272,
+      "target_price": 166.452456,
+      "score": 5.16,
+      "components": {
+        "momentum": 3.77658784332835,
+        "regime": 0.4,
+        "news": 0.9833209805272105,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.78, regime +0.40, news +0.98, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.40, 모멘텀 +3.78, 뉴스 +0.98 / 연결 뉴스: 🔔 \"또 파랗네\" 힘 빠지는 개미…'살까, 팔까, 버틸까' 슈퍼위크 온다 📝 #금리 #국제유가 #인플레이션 #FOMC #BOJ …; 🔔 유가 3%대 반락에 美주식·채권 매도세 진정…CPI 앞두고 긴장 여전 📝 #국제유가 #인플레이션 #금리 #중동정세 호르무즈 …",
+      "news_evidence": [
+        {
+          "title": "🔔 \"또 파랗네\" 힘 빠지는 개미…'살까, 팔까, 버틸까' 슈퍼위크 온다 📝 #금리 #국제유가 #인플레이션 #FOMC #BOJ …",
+          "urls": [
+            "https://dreago.kr/n/8e3df3",
+            "https://t.me/dreago_news_ch/304586"
+          ],
+          "last_seen": "2026-09-11T12:11:39+00:00"
+        },
+        {
+          "title": "🔔 유가 3%대 반락에 美주식·채권 매도세 진정…CPI 앞두고 긴장 여전 📝 #국제유가 #인플레이션 #금리 #중동정세 호르무즈 …",
+          "urls": [
+            "https://dreago.kr/n/a8d9d9",
+            "https://t.me/dreago_news_ch/304589"
+          ],
+          "last_seen": "2026-09-11T12:20:28+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
