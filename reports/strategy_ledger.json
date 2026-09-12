@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-12T02:42:47+09:00",
+  "updated_at": "2026-09-12T09:06:03+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12082,7 +12082,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-09T16:53:03+09:00",
@@ -12093,10 +12093,18 @@
           "evaluated_at": "2026-09-10T09:08:48+09:00",
           "price": 190.47,
           "return_pct": 0.6074
+        },
+        "72h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 189.16,
+          "return_pct": -0.0845
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-10T09:08:48+09:00"
+      "learned_at": "2026-09-10T09:08:48+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-12T09:06:03+09:00",
+      "final_return_pct": -0.0845
     },
     {
       "id": "1f9033acb91a6873",
@@ -12148,7 +12156,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-09T16:53:03+09:00",
@@ -12159,10 +12167,18 @@
           "evaluated_at": "2026-09-10T09:08:48+09:00",
           "price": 531.8,
           "return_pct": 0.7197
+        },
+        "72h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 527.6667,
+          "return_pct": -0.0631
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-10T09:08:48+09:00"
+      "learned_at": "2026-09-10T09:08:48+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-12T09:06:03+09:00",
+      "final_return_pct": -0.0631
     },
     {
       "id": "b0bd6c31ced37c80",
@@ -12891,9 +12907,15 @@
           "evaluated_at": "2026-09-11T16:47:01+09:00",
           "price": 182.78,
           "return_pct": -0.0109
+        },
+        "24h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 189.16,
+          "return_pct": 3.4792
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-12T09:06:03+09:00"
     },
     {
       "id": "47f43aa86a1eceaa",
@@ -13014,9 +13036,15 @@
           "evaluated_at": "2026-09-11T16:47:01+09:00",
           "price": 396.36,
           "return_pct": 0.2653
+        },
+        "24h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 398.2896,
+          "return_pct": 0.7534
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-12T09:06:03+09:00"
     },
     {
       "id": "c69ba7dc7cc5d6ad",
@@ -13070,7 +13098,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 189.16,
+          "return_pct": -0.0687
+        }
+      },
       "learned_24h": false
     },
     {
@@ -13125,7 +13159,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 527.6667,
+          "return_pct": -0.3679
+        }
+      },
       "learned_24h": false
     },
     {
@@ -13176,6 +13216,177 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-12T09:06:03+09:00",
+          "price": 154.6155,
+          "return_pct": 0.2922
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "3089103c77d4941a",
+      "created_at": "2026-09-12T09:06:03+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 154.6155,
+      "entry_zone": [
+        153.842422,
+        155.388577
+      ],
+      "stop_price": 148.608453,
+      "target_price": 166.629594,
+      "score": 4.568,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.36826791971851847,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.37, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.37 / 연결 뉴스: ✅ 뉴욕증시, 유가하락·CPI 안도에 5일만에 반등…다우 1%↑ https://n.news.naver.com/article/37…; 🔔 \"또 파랗네\" 힘 빠지는 개미…'살까, 팔까, 버틸까' 슈퍼위크 온다 📝 #금리 #국제유가 #인플레이션 #FOMC #BOJ …",
+      "news_evidence": [
+        {
+          "title": "✅ 뉴욕증시, 유가하락·CPI 안도에 5일만에 반등…다우 1%↑ https://n.news.naver.com/article/37…",
+          "urls": [
+            "https://n.news.naver.com/article/374/0000532532?sid=104",
+            "https://t.me/c/1208429502/124834"
+          ],
+          "last_seen": "2026-09-11T23:35:01+00:00"
+        },
+        {
+          "title": "🔔 \"또 파랗네\" 힘 빠지는 개미…'살까, 팔까, 버틸까' 슈퍼위크 온다 📝 #금리 #국제유가 #인플레이션 #FOMC #BOJ …",
+          "urls": [
+            "https://dreago.kr/n/8e3df3",
+            "https://t.me/dreago_news_ch/304586"
+          ],
+          "last_seen": "2026-09-11T12:11:39+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4c4657afcfa7927a",
+      "created_at": "2026-09-12T09:06:03+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 527.6667,
+      "entry_zone": [
+        525.028366,
+        530.305033
+      ],
+      "stop_price": 510.012384,
+      "target_price": 562.975331,
+      "score": 3.51,
+      "components": {
+        "momentum": 1.0710773094952328,
+        "regime": 0.0,
+        "news": 2.438756749862222,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.07, regime +0.00, news +2.44, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.07, 뉴스 +2.44 / 연결 뉴스: SK이노베이션 신용등급 전망 상향 및 바이코(Vicor) AI 팹 증설 효과 분석 (by https://t.me/TNBfolio…; 🔔 AI 비중 84%의 그늘…가온전선의 공공망 첫 수주, '진짜 시험대'는 지금... 📈 #가온전선 📝 #전력케이블 #데이터센터…",
+      "news_evidence": [
+        {
+          "title": "SK이노베이션 신용등급 전망 상향 및 바이코(Vicor) AI 팹 증설 효과 분석 (by https://t.me/TNBfolio…",
+          "urls": [
+            "https://investing.com/news/stock-market-news/why-is-vicor-stock-surging-today-93CH-4898226",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-11T15:59:47+00:00"
+        },
+        {
+          "title": "🔔 AI 비중 84%의 그늘…가온전선의 공공망 첫 수주, '진짜 시험대'는 지금... 📈 #가온전선 📝 #전력케이블 #데이터센터…",
+          "urls": [
+            "https://dreago.kr/n/257b82",
+            "https://t.me/dreago_news_ch/304522"
+          ],
+          "last_seen": "2026-09-11T07:14:50+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "46f6b9c050959d07",
+      "created_at": "2026-09-12T09:06:03+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 189.16,
+      "entry_zone": [
+        188.2142,
+        190.1058
+      ],
+      "stop_price": 180.260455,
+      "target_price": 206.95909,
+      "score": 3.11,
+      "components": {
+        "momentum": 1.719544893770511,
+        "regime": 0.0,
+        "news": 1.390943829362963,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.72, regime +0.00, news +1.39, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.72, 뉴스 +1.39 / 연결 뉴스: 🔔; 🔔 인텔리안테크, NI에 '美 WGS 기준 충족' 410억 규모 국방 위성통신 단말... 📈 #인텔리안테크 📝 #위성통신 #방산…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/1311d7",
+            "https://t.me/dreago_news_ch/304638"
+          ],
+          "last_seen": "2026-09-11T23:42:31+00:00"
+        },
+        {
+          "title": "🔔 인텔리안테크, NI에 '美 WGS 기준 충족' 410억 규모 국방 위성통신 단말... 📈 #인텔리안테크 📝 #위성통신 #방산…",
+          "urls": [
+            "https://dreago.kr/n/9c5c9c",
+            "https://t.me/dreago_news_ch/304525"
+          ],
+          "last_seen": "2026-09-11T07:19:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
