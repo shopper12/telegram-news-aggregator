@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-09-13T01:54:27+09:00",
+  "updated_at": "2026-09-13T08:55:25+09:00",
   "weights": {
     "momentum": 1.0,
     "regime": 1.0,
@@ -8,14 +8,14 @@
     "defensive": 1.0
   },
   "stats": {
-    "evaluated_24h": 186,
-    "wins_24h": 73,
-    "losses_24h": 50,
+    "evaluated_24h": 189,
+    "wins_24h": 74,
+    "losses_24h": 52,
     "flat_24h": 63,
-    "average_return_24h_pct": 0.3023,
-    "average_win_24h_pct": 1.8247,
-    "average_loss_24h_pct": -1.55,
-    "payoff_ratio_24h": 1.1772,
+    "average_return_24h_pct": 0.2959,
+    "average_win_24h_pct": 1.8065,
+    "average_loss_24h_pct": -1.5054,
+    "payoff_ratio_24h": 1.2,
     "max_drawdown_24h_pct": 17.8842,
     "weight_adjustment_active": false,
     "weight_min_samples": 200,
@@ -28,9 +28,9 @@
       "average_return_pct": 0.0441
     },
     "SOXX": {
-      "evaluated": 24,
+      "evaluated": 25,
       "wins": 11,
-      "average_return_pct": -0.2142
+      "average_return_pct": -0.2249
     },
     "GLD": {
       "evaluated": 41,
@@ -38,14 +38,14 @@
       "average_return_pct": 0.3098
     },
     "EWY": {
-      "evaluated": 52,
+      "evaluated": 53,
       "wins": 22,
-      "average_return_pct": 0.4623
+      "average_return_pct": 0.4479
     },
     "USO": {
-      "evaluated": 27,
-      "wins": 12,
-      "average_return_pct": 0.7787
+      "evaluated": 28,
+      "wins": 13,
+      "average_return_pct": 0.7679
     },
     "BTC-USD": {
       "evaluated": 15,
@@ -59,11 +59,14 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-13T01:54:27+09:00",
-    "kind": "regular",
-    "slot": null,
+    "timestamp": "2026-09-13T08:55:25+09:00",
+    "kind": "strategy_morning",
+    "slot": "morning",
     "regime": "mixed",
-    "regime_score": 0.584,
-    "recommendation_ids": []
+    "regime_score": 0.577,
+    "recommendation_ids": [
+      "c411fdfb1bc11795",
+      "6b6dae6bd0b3c97f"
+    ]
   }
 }

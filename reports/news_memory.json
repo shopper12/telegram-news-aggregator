@@ -1,7 +1,151 @@
 {
   "version": 2,
-  "updated_at": "2026-09-13T01:54:27+09:00",
+  "updated_at": "2026-09-13T08:55:25+09:00",
   "events": [
+    {
+      "signature": "decf707d78e15c33ebf9595492a2bf45c0eaa08f",
+      "title": "📰",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "035720.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/052/0002405966",
+        "https://t.me/YeouidoStory2/117237"
+      ],
+      "materiality": 7,
+      "sentiment": -1,
+      "first_seen": "2026-09-12T23:49:21+00:00",
+      "last_seen": "2026-09-12T23:49:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0225f270b70ae46330e702de27a4a4eba2e1e850",
+      "title": "📰",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "hbm",
+        "sk하이닉스",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/016/0002696337",
+        "https://t.me/YeouidoStory2/117236"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-09-12T23:43:35+00:00",
+      "last_seen": "2026-09-12T23:43:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "5397cce52a5c891e823447f43442d87452a49492",
+      "title": "AI 실존적 위험",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "전력기기"
+      ],
+      "keywords": [
+        "ai",
+        "규제",
+        "메타",
+        "전선",
+        "한은"
+      ],
+      "tickers": [
+        "OOMA"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/10923"
+      ],
+      "materiality": 19,
+      "sentiment": 0,
+      "first_seen": "2026-09-12T23:42:18+00:00",
+      "last_seen": "2026-09-12T23:42:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "57bd964e5815de783de7e7a527bc0d65e13964fd",
+      "title": "📰",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/009/0005734138",
+        "https://t.me/YeouidoStory2/117235"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-09-12T23:41:39+00:00",
+      "last_seen": "2026-09-12T23:41:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "727eb750cd462565bc3a0fa273e6bb1b935cf8e8",
+      "title": "올트먼, AI 안전 우려에 \"오픈AI IPO, 2026년엔 없다\" 2026.09.12",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/001/0016306269?sid=104",
+        "https://t.me/aicorporateanalysisdeepdive/10922"
+      ],
+      "materiality": 14,
+      "sentiment": -1,
+      "first_seen": "2026-09-12T23:33:13+00:00",
+      "last_seen": "2026-09-12T23:33:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "351f24c176410becdec4214664239a689bd1f353",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "FFIV"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/f57740",
+        "https://t.me/dreago_news_ch/304705"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-09-12T22:55:17+00:00",
+      "last_seen": "2026-09-12T22:55:17+00:00",
+      "count": 1
+    },
     {
       "signature": "13ddcd40f38bb5c1458641666f19b8a73e433b2f",
       "title": "🔔 국내 원전주 엇갈려…두산에너빌리티 한전기술↑ 우리기술 오르비텍↓ 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.…",
@@ -10559,134 +10703,6 @@
       "sentiment": 1,
       "first_seen": "2026-09-10T02:40:11+00:00",
       "last_seen": "2026-09-10T02:40:11+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1e46ca691925eef49725714468951e3ff761a845",
-      "title": "AI 수요 폭증에 8월 수출 824억달러…월간 사상 최고 경신 (대만) 2026.09.09",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "ai 인프라",
-        "관세",
-        "메모리",
-        "반도체",
-        "서버",
-        "정책"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://t.me/aicorporateanalysisdeepdive/10881",
-        "https://udn.com/news/story/7240/9744243"
-      ],
-      "materiality": 18,
-      "sentiment": 3,
-      "first_seen": "2026-09-10T02:37:48+00:00",
-      "last_seen": "2026-09-10T02:37:48+00:00",
-      "count": 1
-    },
-    {
-      "signature": "bbbf7fd07f9ba267a90097c321e6183ddfc98d0c",
-      "title": "앤트로픽 연구원 사표내며 경고…\"10년내 인류 멸망시킬수도\"(종합) 2026.09.08",
-      "sectors": [
-        "AI인프라",
-        "거시/정책"
-      ],
-      "keywords": [
-        "ai",
-        "규제"
-      ],
-      "tickers": [
-        "035420.KS",
-        "WSJ"
-      ],
-      "source_urls": [
-        "https://naver.me/5ajwHbz2",
-        "https://t.me/aicorporateanalysisdeepdive/10880"
-      ],
-      "materiality": 12,
-      "sentiment": -2,
-      "first_seen": "2026-09-10T02:36:19+00:00",
-      "last_seen": "2026-09-10T02:36:19+00:00",
-      "count": 1
-    },
-    {
-      "signature": "2af3f88b150e16f972d21704057c8b16da8e4f2c",
-      "title": "딱 10시이후 찍어내고 6920 찍어내고 변동폭계산해서 반등타점찍어내고~잘해~잘해 하형",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/53328"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-09-10T02:35:59+00:00",
-      "last_seen": "2026-09-10T02:35:59+00:00",
-      "count": 1
-    },
-    {
-      "signature": "a313757f902cebdc11c42cd963cfe53fe1389171",
-      "title": "🔔 “건물값 그대로면 1600억 더 갚아야”…제이알글로벌리츠, 연말 또 고비 📈 #제이알글로벌리츠 📝 #리츠 #해외부동산 #부동…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/f44991",
-        "https://t.me/dreago_news_ch/304141"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-10T02:35:14+00:00",
-      "last_seen": "2026-09-10T02:35:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d0056f326a5eefc91a5eadc023c0f4be77957465",
-      "title": "🔔 조선해양의 날 기념식…HD한국조선해양·두원하이스틸 은탑산업훈장 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.k…",
-      "sectors": [
-        "조선"
-      ],
-      "keywords": [
-        "조선"
-      ],
-      "tickers": [
-        "009540.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/f8c7a9",
-        "https://t.me/dreago_news_ch/304140"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-09-10T02:33:25+00:00",
-      "last_seen": "2026-09-10T02:33:25+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8734557aef5af46159c08362f4eb6c2acd897e34",
-      "title": "미국 레딧 관심도 애플, 유가...",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "애플"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/63321"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-09-10T02:33:23+00:00",
-      "last_seen": "2026-09-10T02:33:23+00:00",
       "count": 1
     }
   ]

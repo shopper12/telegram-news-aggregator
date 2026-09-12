@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-13T01:54:27+09:00",
+  "updated_at": "2026-09-13T08:55:25+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12299,7 +12299,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-10T09:08:48+09:00",
@@ -12310,10 +12310,18 @@
           "evaluated_at": "2026-09-11T02:37:57+09:00",
           "price": 183.58,
           "return_pct": -3.9653
+        },
+        "72h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 188.72,
+          "return_pct": -1.2764
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-11T02:37:57+09:00"
+      "learned_at": "2026-09-11T02:37:57+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-13T08:55:25+09:00",
+      "final_return_pct": -1.2764
     },
     {
       "id": "1e433ea95bcbfb1d",
@@ -13103,9 +13111,15 @@
           "evaluated_at": "2026-09-12T09:06:03+09:00",
           "price": 189.16,
           "return_pct": -0.0687
+        },
+        "24h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 188.72,
+          "return_pct": -0.3011
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-13T08:55:25+09:00"
     },
     {
       "id": "6d277f72247883fa",
@@ -13164,9 +13178,15 @@
           "evaluated_at": "2026-09-12T09:06:03+09:00",
           "price": 527.6667,
           "return_pct": -0.3679
+        },
+        "24h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 527.07,
+          "return_pct": -0.4805
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-13T08:55:25+09:00"
     },
     {
       "id": "0b0c9c6f88af0d26",
@@ -13225,9 +13245,15 @@
           "evaluated_at": "2026-09-12T09:06:03+09:00",
           "price": 154.6155,
           "return_pct": 0.2922
+        },
+        "24h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 154.9,
+          "return_pct": 0.4768
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-13T08:55:25+09:00"
     },
     {
       "id": "3089103c77d4941a",
@@ -13464,7 +13490,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 154.9,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -13518,7 +13550,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 188.72,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -13565,6 +13603,105 @@
             "https://t.me/insidertracking/63482"
           ],
           "last_seen": "2026-09-11T20:50:41+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-13T08:55:25+09:00",
+          "price": 527.07,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "c411fdfb1bc11795",
+      "created_at": "2026-09-13T08:55:25+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 154.9,
+      "entry_zone": [
+        154.1255,
+        155.6745
+      ],
+      "stop_price": 148.813207,
+      "target_price": 167.073586,
+      "score": 4.2,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6b6dae6bd0b3c97f",
+      "created_at": "2026-09-13T08:55:25+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.72,
+      "entry_zone": [
+        187.7764,
+        189.6636
+      ],
+      "stop_price": 179.649148,
+      "target_price": 206.861704,
+      "score": 2.266,
+      "components": {
+        "momentum": 2.151000261843948,
+        "regime": 0.0,
+        "news": 0.1147400969861111,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.15, regime +0.00, news +0.11, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.15, 뉴스 +0.11 / 연결 뉴스: Saudi Arabia 핵심 송유관, 이라크발 드론 피격 후 화재로 전격 폐쇄; 🔔 “구형 반도체라고 무시했는데, 주문 2배 폭주”…한달새 21% 뛴 DB하이텍... 📈 #DB하이텍 📝 #8인치파운드리 #레거…",
+      "news_evidence": [
+        {
+          "title": "Saudi Arabia 핵심 송유관, 이라크발 드론 피격 후 화재로 전격 폐쇄",
+          "urls": [
+            "https://sg.news.yahoo.com/saudi-arabian-oil-pipeline-system-162845099.html",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-12T06:44:10+00:00"
+        },
+        {
+          "title": "🔔 “구형 반도체라고 무시했는데, 주문 2배 폭주”…한달새 21% 뛴 DB하이텍... 📈 #DB하이텍 📝 #8인치파운드리 #레거…",
+          "urls": [
+            "https://dreago.kr/n/19ef7c",
+            "https://t.me/dreago_news_ch/304671"
+          ],
+          "last_seen": "2026-09-12T07:13:01+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
