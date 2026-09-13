@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-14T01:46:16+09:00",
+  "updated_at": "2026-09-14T02:02:21+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -13782,6 +13782,162 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "7c7ef72536c1676f",
+      "created_at": "2026-09-14T02:02:21+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 154.9,
+      "entry_zone": [
+        154.1255,
+        155.6745
+      ],
+      "stop_price": 148.813207,
+      "target_price": 167.073586,
+      "score": 4.2,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.00 / 연결 뉴스: 🔔 '3고' 공포 다시 덮치나…유럽 금리 인상, 美 연준도 갈림길 📝 #글로벌금리 #인플레이션 #국제유가 #환율 국제유가발 인플…",
+      "news_evidence": [
+        {
+          "title": "🔔 '3고' 공포 다시 덮치나…유럽 금리 인상, 美 연준도 갈림길 📝 #글로벌금리 #인플레이션 #국제유가 #환율 국제유가발 인플…",
+          "urls": [
+            "https://dreago.kr/n/88c512",
+            "https://t.me/dreago_news_ch/304735"
+          ],
+          "last_seen": "2026-09-13T02:40:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "a4d81492adfacf9a",
+      "created_at": "2026-09-14T02:02:21+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.72,
+      "entry_zone": [
+        187.7764,
+        189.6636
+      ],
+      "stop_price": 179.649148,
+      "target_price": 206.861704,
+      "score": 3.365,
+      "components": {
+        "momentum": 2.151000261843948,
+        "regime": 0.0,
+        "news": 1.2135540302200232,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.15, regime +0.00, news +1.21, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.15, 뉴스 +1.21 / 연결 뉴스: \"이제 범용 제품 안 만듭니다\"...세계 1위 MLCC 제조사의 폭탄 선언 2026.09.13; 개인·외국인, 5개월 만에 삼성전자·SK하이닉스 동반 '팔자' 전환 2026.09.13",
+      "news_evidence": [
+        {
+          "title": "\"이제 범용 제품 안 만듭니다\"...세계 1위 MLCC 제조사의 폭탄 선언 2026.09.13",
+          "urls": [
+            "https://n.news.naver.com/article/009/0005734398",
+            "https://t.me/aicorporateanalysisdeepdive/10939"
+          ],
+          "last_seen": "2026-09-13T12:54:14+00:00"
+        },
+        {
+          "title": "개인·외국인, 5개월 만에 삼성전자·SK하이닉스 동반 '팔자' 전환 2026.09.13",
+          "urls": [
+            "https://n.news.naver.com/article/050/0000110800?ntype=RANKING",
+            "https://t.me/aicorporateanalysisdeepdive/10940"
+          ],
+          "last_seen": "2026-09-13T12:55:30+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "93323c1e8497e163",
+      "created_at": "2026-09-14T02:02:21+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 527.07,
+      "entry_zone": [
+        524.43465,
+        529.70535
+      ],
+      "stop_price": 509.078526,
+      "target_price": 563.052947,
+      "score": 2.374,
+      "components": {
+        "momentum": 1.0104969284758052,
+        "regime": 0.0,
+        "news": 1.3638146142605556,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.01, regime +0.00, news +1.36, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.01, 뉴스 +1.36 / 연결 뉴스: \"이제 범용 제품 안 만듭니다\"...세계 1위 MLCC 제조사의 폭탄 선언 2026.09.13; » 미국 IG",
+      "news_evidence": [
+        {
+          "title": "\"이제 범용 제품 안 만듭니다\"...세계 1위 MLCC 제조사의 폭탄 선언 2026.09.13",
+          "urls": [
+            "https://n.news.naver.com/article/009/0005734398",
+            "https://t.me/aicorporateanalysisdeepdive/10939"
+          ],
+          "last_seen": "2026-09-13T12:54:14+00:00"
+        },
+        {
+          "title": "» 미국 IG",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23091"
+          ],
+          "last_seen": "2026-09-13T07:46:38+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
