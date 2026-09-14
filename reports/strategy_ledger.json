@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-15T03:17:24+09:00",
+  "updated_at": "2026-09-15T03:49:41+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14236,6 +14236,60 @@
       "outcome": "stop_observed",
       "closed_at": "2026-09-14T18:13:42+09:00",
       "final_return_pct": -4.6749
+    },
+    {
+      "id": "fdc2c3745b474591",
+      "created_at": "2026-09-15T03:49:41+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 155.04,
+      "entry_zone": [
+        154.2648,
+        155.8152
+      ],
+      "stop_price": 148.922781,
+      "target_price": 167.274437,
+      "score": 4.594,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.3942994424141203,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.39, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.39 / 연결 뉴스: 🔔 원화강세·유가폭등에…車·전기 유틸리티 추풍낙엽 📈 #현대차 #기아 #한국전력 #현대모비스 #두산에너빌리티 📝 #자동차 #전력…; 자 이제 국채금리가 임계점을 넘어서 오르려고 하고 유가도 100불 위로 올라가서 찰랑 거리니",
+      "news_evidence": [
+        {
+          "title": "🔔 원화강세·유가폭등에…車·전기 유틸리티 추풍낙엽 📈 #현대차 #기아 #한국전력 #현대모비스 #두산에너빌리티 📝 #자동차 #전력…",
+          "urls": [
+            "https://dreago.kr/n/a8aaac",
+            "https://t.me/dreago_news_ch/305105"
+          ],
+          "last_seen": "2026-09-14T09:00:46+00:00"
+        },
+        {
+          "title": "자 이제 국채금리가 임계점을 넘어서 오르려고 하고 유가도 100불 위로 올라가서 찰랑 거리니",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23123"
+          ],
+          "last_seen": "2026-09-14T15:19:12+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
     }
   ]
 }
