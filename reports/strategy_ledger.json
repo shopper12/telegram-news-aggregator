@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-14T02:22:38+09:00",
+  "updated_at": "2026-09-14T09:08:43+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -12957,7 +12957,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-11T16:47:01+09:00",
@@ -12968,10 +12968,18 @@
           "evaluated_at": "2026-09-12T09:06:03+09:00",
           "price": 189.16,
           "return_pct": 3.4792
+        },
+        "72h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 188.72,
+          "return_pct": 3.2385
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-12T09:06:03+09:00"
+      "learned_at": "2026-09-12T09:06:03+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-14T09:08:43+09:00",
+      "final_return_pct": 3.2385
     },
     {
       "id": "47f43aa86a1eceaa",
@@ -13086,7 +13094,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-11T16:47:01+09:00",
@@ -13097,10 +13105,18 @@
           "evaluated_at": "2026-09-12T09:06:03+09:00",
           "price": 398.2896,
           "return_pct": 0.7534
+        },
+        "72h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 398.77,
+          "return_pct": 0.8749
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-12T09:06:03+09:00"
+      "learned_at": "2026-09-12T09:06:03+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-14T09:08:43+09:00",
+      "final_return_pct": 0.8749
     },
     {
       "id": "c69ba7dc7cc5d6ad",
@@ -13743,9 +13759,15 @@
           "evaluated_at": "2026-09-13T16:58:26+09:00",
           "price": 154.9,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 154.9,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-14T09:08:43+09:00"
     },
     {
       "id": "6b6dae6bd0b3c97f",
@@ -13804,9 +13826,15 @@
           "evaluated_at": "2026-09-13T16:58:26+09:00",
           "price": 188.72,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 188.72,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-14T09:08:43+09:00"
     },
     {
       "id": "7c7ef72536c1676f",
@@ -13852,7 +13880,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 154.9,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -13907,7 +13941,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 188.72,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -13954,6 +13994,174 @@
             "https://t.me/FastStockNewsUSA/23091"
           ],
           "last_seen": "2026-09-13T07:46:38+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-14T09:08:43+09:00",
+          "price": 527.07,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "e2c63b50fd895c7e",
+      "created_at": "2026-09-14T09:08:43+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 188.72,
+      "entry_zone": [
+        187.7764,
+        189.6636
+      ],
+      "stop_price": 179.649148,
+      "target_price": 206.861704,
+      "score": 6.151,
+      "components": {
+        "momentum": 2.151000261843948,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.15, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.15, 뉴스 +4.00 / 연결 뉴스: 유안타증권, '26년 Fed 금리전망 동결→9월·12월 25bp씩 2회 인상으로 수정 2026.09.14; 🔔 한화에어로스페이스, 크로아티아 천무 수출계약 체결…방산 최선호주 유지-한투 📈 #한화에어로스페이스 📝 #방산 #다연장로켓 #…",
+      "news_evidence": [
+        {
+          "title": "유안타증권, '26년 Fed 금리전망 동결→9월·12월 25bp씩 2회 인상으로 수정 2026.09.14",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10957"
+          ],
+          "last_seen": "2026-09-13T23:13:31+00:00"
+        },
+        {
+          "title": "🔔 한화에어로스페이스, 크로아티아 천무 수출계약 체결…방산 최선호주 유지-한투 📈 #한화에어로스페이스 📝 #방산 #다연장로켓 #…",
+          "urls": [
+            "https://dreago.kr/n/1f26be",
+            "https://t.me/dreago_news_ch/304859"
+          ],
+          "last_seen": "2026-09-13T23:10:32+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "9d71928f663e3da0",
+      "created_at": "2026-09-14T09:08:43+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 154.9,
+      "entry_zone": [
+        154.1255,
+        155.6745
+      ],
+      "stop_price": 148.813207,
+      "target_price": 167.073586,
+      "score": 4.587,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.2,
+        "news": 0.3865825430138889,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.20, news +0.39, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +4.00, 뉴스 +0.39 / 연결 뉴스: 🔔 美금리 5%·유가 100달러에도…“아직 최악의 상황 아니다” 📝 #미국금리 #국제유가 #AI인프라 미국 장기금리와 유가 상승…; # VIX변동성지표 다행히 200일선 저항되며 20일선까지 조정. 리스크 제한됨 # 유가와 미10년국채금리는 5일선 타고가며 상…",
+      "news_evidence": [
+        {
+          "title": "🔔 美금리 5%·유가 100달러에도…“아직 최악의 상황 아니다” 📝 #미국금리 #국제유가 #AI인프라 미국 장기금리와 유가 상승…",
+          "urls": [
+            "https://dreago.kr/n/0c8745",
+            "https://t.me/dreago_news_ch/304860"
+          ],
+          "last_seen": "2026-09-13T23:10:32+00:00"
+        },
+        {
+          "title": "# VIX변동성지표 다행히 200일선 저항되며 20일선까지 조정. 리스크 제한됨 # 유가와 미10년국채금리는 5일선 타고가며 상…",
+          "urls": [
+            "https://t.me/stockgrandmaster/12042"
+          ],
+          "last_seen": "2026-09-13T23:33:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "03148ed0503264da",
+      "created_at": "2026-09-14T09:08:43+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 527.07,
+      "entry_zone": [
+        524.43465,
+        529.70535
+      ],
+      "stop_price": 509.078526,
+      "target_price": 563.052947,
+      "score": 4.586,
+      "components": {
+        "momentum": 1.0104969284758052,
+        "regime": 0.0,
+        "news": 3.5754494596547115,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.01, regime +0.00, news +3.58, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.01, 뉴스 +3.58 / 연결 뉴스: 유안타증권, '26년 Fed 금리전망 동결→9월·12월 25bp씩 2회 인상으로 수정 2026.09.14; 🔔 에스투더블유, '7000억 매개변수' 잡는다…'보안 특화 AI 모델' 정부 프... 📈 #에스투더블유 📝 #인공지능 #사이버…",
+      "news_evidence": [
+        {
+          "title": "유안타증권, '26년 Fed 금리전망 동결→9월·12월 25bp씩 2회 인상으로 수정 2026.09.14",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/10957"
+          ],
+          "last_seen": "2026-09-13T23:13:31+00:00"
+        },
+        {
+          "title": "🔔 에스투더블유, '7000억 매개변수' 잡는다…'보안 특화 AI 모델' 정부 프... 📈 #에스투더블유 📝 #인공지능 #사이버…",
+          "urls": [
+            "https://dreago.kr/n/3b3a3f",
+            "https://t.me/c/1208429502/124852"
+          ],
+          "last_seen": "2026-09-13T23:16:07+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
