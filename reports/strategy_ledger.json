@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-15T04:11:44+09:00",
+  "updated_at": "2026-09-15T09:31:20+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -13384,7 +13384,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-12T16:40:16+09:00",
@@ -13395,10 +13395,18 @@
           "evaluated_at": "2026-09-13T09:32:16+09:00",
           "price": 154.9,
           "return_pct": 0.184
+        },
+        "72h": {
+          "evaluated_at": "2026-09-15T09:31:20+09:00",
+          "price": 156.9027,
+          "return_pct": 1.4793
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-13T09:32:16+09:00"
+      "learned_at": "2026-09-13T09:32:16+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-15T09:31:20+09:00",
+      "final_return_pct": 1.4793
     },
     {
       "id": "4c4657afcfa7927a",
@@ -14170,9 +14178,15 @@
           "evaluated_at": "2026-09-14T18:13:42+09:00",
           "price": 158.85,
           "return_pct": 2.55
+        },
+        "24h": {
+          "evaluated_at": "2026-09-15T09:31:20+09:00",
+          "price": 156.9027,
+          "return_pct": 1.2929
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-15T09:31:20+09:00"
     },
     {
       "id": "03148ed0503264da",
@@ -14284,6 +14298,170 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "2159f5e6eb9dbc74",
+      "created_at": "2026-09-15T09:31:20+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 156.9027,
+      "entry_zone": [
+        156.118187,
+        157.687213
+      ],
+      "stop_price": 150.485205,
+      "target_price": 169.737691,
+      "score": 4.269,
+      "components": {
+        "momentum": 3.8705163547257597,
+        "regime": 0.2,
+        "news": 0.19802004975000004,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.87, regime +0.20, news +0.20, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +3.87, 뉴스 +0.20 / 연결 뉴스: 🔔 원화강세·유가폭등에…車·전기 유틸리티 추풍낙엽 📈 #현대차 #기아 #한국전력 #현대모비스 #두산에너빌리티 📝 #자동차 #전력…; 자 이제 국채금리가 임계점을 넘어서 오르려고 하고 유가도 100불 위로 올라가서 찰랑 거리니",
+      "news_evidence": [
+        {
+          "title": "🔔 원화강세·유가폭등에…車·전기 유틸리티 추풍낙엽 📈 #현대차 #기아 #한국전력 #현대모비스 #두산에너빌리티 📝 #자동차 #전력…",
+          "urls": [
+            "https://dreago.kr/n/a8aaac",
+            "https://t.me/dreago_news_ch/305105"
+          ],
+          "last_seen": "2026-09-14T09:00:46+00:00"
+        },
+        {
+          "title": "자 이제 국채금리가 임계점을 넘어서 오르려고 하고 유가도 100불 위로 올라가서 찰랑 거리니",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23123"
+          ],
+          "last_seen": "2026-09-14T15:19:12+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "317c1861849de3c0",
+      "created_at": "2026-09-15T09:31:20+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 499.73,
+      "entry_zone": [
+        497.23135,
+        502.22865
+      ],
+      "stop_price": 482.052786,
+      "target_price": 535.084428,
+      "score": 3.437,
+      "components": {
+        "momentum": 0.4366127028820719,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.44, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.44, 뉴스 +4.00 / 연결 뉴스: 전력기기 섹터 Top pick은 효성중공업(009830)을 유지합니다 주요 투자포인트는 1) 미국향 수주 모멘텀 지속으로 미국향 수주 비중이 2023년 25%에서 2Q26 63%까지 상승, 2) 수주 시점 환헷지를 ; 올릭스 주가 상승에 솔리더스인베스트먼트 지분가치 594억원…텐배거 수익 기대 2026.09.14",
+      "news_evidence": [
+        {
+          "title": "전력기기 섹터 Top pick은 효성중공업(009830)을 유지합니다 주요 투자포인트는 1) 미국향 수주 모멘텀 지속으로 미국향 수주 비중이 2023년 25%에서 2Q26 63%까지 상승, 2) 수주 시점 환헷지를 ",
+          "urls": [
+            "https://han.gl/HzxjK",
+            "https://t.me/YeouidoStory2/117333"
+          ],
+          "last_seen": "2026-09-15T00:08:57+00:00"
+        },
+        {
+          "title": "올릭스 주가 상승에 솔리더스인베스트먼트 지분가치 594억원…텐배거 수익 기대 2026.09.14",
+          "urls": [
+            "https://dealsite.co.kr/articles/168828",
+            "https://t.me/aicorporateanalysisdeepdive/11001"
+          ],
+          "last_seen": "2026-09-15T00:22:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "e96168ddc8b78288",
+      "created_at": "2026-09-15T09:31:20+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.9,
+      "entry_zone": [
+        178.0055,
+        179.7945
+      ],
+      "stop_price": 170.015215,
+      "target_price": 196.669569,
+      "score": 3.093,
+      "components": {
+        "momentum": 0.09305342390661153,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -1.0
+      },
+      "component_text": "momentum +0.09, regime +0.00, news +4.00, defensive -1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.09, 뉴스 +4.00 / 연결 뉴스: 전력기기 섹터 Top pick은 효성중공업(009830)을 유지합니다 주요 투자포인트는 1) 미국향 수주 모멘텀 지속으로 미국향 수주 비중이 2023년 25%에서 2Q26 63%까지 상승, 2) 수주 시점 환헷지를 ; 🔔",
+      "news_evidence": [
+        {
+          "title": "전력기기 섹터 Top pick은 효성중공업(009830)을 유지합니다 주요 투자포인트는 1) 미국향 수주 모멘텀 지속으로 미국향 수주 비중이 2023년 25%에서 2Q26 63%까지 상승, 2) 수주 시점 환헷지를 ",
+          "urls": [
+            "https://han.gl/HzxjK",
+            "https://t.me/YeouidoStory2/117333"
+          ],
+          "last_seen": "2026-09-15T00:08:57+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/09b8ca",
+            "https://t.me/dreago_news_ch/305214"
+          ],
+          "last_seen": "2026-09-15T00:10:56+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
