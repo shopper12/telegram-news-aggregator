@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-16T02:26:00+09:00",
+  "updated_at": "2026-09-16T02:44:48+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14499,6 +14499,99 @@
           "return_pct": -1.1179
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "44a01144c2d0eb2e",
+      "created_at": "2026-09-16T02:44:48+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 162.9,
+      "entry_zone": [
+        162.0855,
+        163.7145
+      ],
+      "stop_price": 156.362301,
+      "target_price": 175.975398,
+      "score": 4.875,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.6,
+        "news": 0.27455798838694445,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.60, news +0.27, defensive +0.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +0.60, 모멘텀 +4.00, 뉴스 +0.27 / 연결 뉴스: 인도 OIS 금리 급등, 유가·미국채 금리 상승에 RBI 인상 전망 고조 https://m.stock.naver.com/inve…; 🔔 국고채 3년물 금리도 4%대 돌파…\"美 이어 韓도 금리 인상 가능성\" 📝 #금리인상 #국채금리 #고유가 #성장주 미국과 한국…",
+      "news_evidence": [
+        {
+          "title": "인도 OIS 금리 급등, 유가·미국채 금리 상승에 RBI 인상 전망 고조 https://m.stock.naver.com/inve…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2741589",
+            "https://t.me/moneythemestock/64220"
+          ],
+          "last_seen": "2026-09-15T08:43:43+00:00"
+        },
+        {
+          "title": "🔔 국고채 3년물 금리도 4%대 돌파…\"美 이어 韓도 금리 인상 가능성\" 📝 #금리인상 #국채금리 #고유가 #성장주 미국과 한국…",
+          "urls": [
+            "https://dreago.kr/n/9cebf2",
+            "https://t.me/dreago_news_ch/305437"
+          ],
+          "last_seen": "2026-09-15T08:05:26+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "58d513cfa0f2a452",
+      "created_at": "2026-09-16T02:44:48+09:00",
+      "slot": "evening",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.215,
+      "entry_zone": [
+        28.073925,
+        28.356075
+      ],
+      "stop_price": 27.6507,
+      "target_price": 29.3436,
+      "score": 3.25,
+      "components": {
+        "momentum": 0.24974897911073726,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.25, regime +2.00, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0,
+        "regime": 1.0,
+        "news": 1.0,
+        "defensive": 1.0
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.25, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
