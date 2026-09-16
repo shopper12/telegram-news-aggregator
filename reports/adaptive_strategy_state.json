@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "updated_at": "2026-09-16T09:14:19+09:00",
+  "updated_at": "2026-09-16T09:54:03+09:00",
   "weights": {
-    "momentum": 1.0037,
-    "regime": 0.9972,
-    "news": 1.0068,
-    "defensive": 0.9986
+    "momentum": 1.0077,
+    "regime": 0.9945,
+    "news": 1.0131,
+    "defensive": 0.9975
   },
   "stats": {
-    "evaluated_24h": 200,
-    "wins_24h": 77,
-    "losses_24h": 53,
-    "flat_24h": 70,
-    "average_return_24h_pct": 0.311,
-    "average_win_24h_pct": 1.8195,
-    "average_loss_24h_pct": -1.4814,
-    "payoff_ratio_24h": 1.2282,
+    "evaluated_24h": 203,
+    "wins_24h": 78,
+    "losses_24h": 54,
+    "flat_24h": 71,
+    "average_return_24h_pct": 0.3153,
+    "average_win_24h_pct": 1.8349,
+    "average_loss_24h_pct": -1.4736,
+    "payoff_ratio_24h": 1.2451,
     "max_drawdown_24h_pct": 17.8842,
     "weight_adjustment_active": true,
     "weight_min_samples": 200,
@@ -28,9 +28,9 @@
       "average_return_pct": 0.0441
     },
     "SOXX": {
-      "evaluated": 27,
+      "evaluated": 28,
       "wins": 11,
-      "average_return_pct": -0.2124
+      "average_return_pct": -0.2098
     },
     "GLD": {
       "evaluated": 41,
@@ -38,14 +38,14 @@
       "average_return_pct": 0.3098
     },
     "EWY": {
-      "evaluated": 56,
+      "evaluated": 57,
       "wins": 22,
-      "average_return_pct": 0.4198
+      "average_return_pct": 0.3938
     },
     "USO": {
-      "evaluated": 34,
-      "wins": 16,
-      "average_return_pct": 0.8267
+      "evaluated": 35,
+      "wins": 17,
+      "average_return_pct": 0.8893
     },
     "BTC-USD": {
       "evaluated": 15,
@@ -59,14 +59,11 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-16T09:14:19+09:00",
-    "kind": "strategy_morning",
-    "slot": "morning",
+    "timestamp": "2026-09-16T09:54:03+09:00",
+    "kind": "us_close",
+    "slot": null,
     "regime": "risk_off",
-    "regime_score": -1.192,
-    "recommendation_ids": [
-      "5e9afa3524a046ba",
-      "bd0e24966a4c4cd4"
-    ]
+    "regime_score": -1.143,
+    "recommendation_ids": []
   }
 }
