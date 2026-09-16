@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-17T02:24:36+09:00",
+  "updated_at": "2026-09-17T02:42:22+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14765,6 +14765,171 @@
           "return_pct": 1.0543
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "8c1f907627969d8b",
+      "created_at": "2026-09-17T02:42:22+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 709.04,
+      "entry_zone": [
+        705.4948,
+        712.5852
+      ],
+      "stop_price": 694.8592,
+      "target_price": 737.4016,
+      "score": 3.816,
+      "components": {
+        "momentum": -0.23463096174724205,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.23, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0077,
+        "regime": 0.9945,
+        "news": 1.0131,
+        "defensive": 0.9975
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.23, 뉴스 +4.00 / 연결 뉴스: 7월 일본 기계수주 전월비 3.7% 감소하며 2개월 만에 하락 도쿄증시 FOMC 대기 속 중간 배당 매수세에 상승 배경훈 부총리 한국은 AI 추격국 재확인하며 위기감 강조\n출처: TNB | 시각: 2026-09-16; 중국 덤핑에 맞선 LG에너지솔루션의 '소듐이온 전지' 반격 2026.09.16",
+      "news_evidence": [
+        {
+          "title": "7월 일본 기계수주 전월비 3.7% 감소하며 2개월 만에 하락 도쿄증시 FOMC 대기 속 중간 배당 매수세에 상승 배경훈 부총리 한국은 AI 추격국 재확인하며 위기감 강조\n출처: TNB | 시각: 2026-09-16",
+          "urls": [
+            "https://naver.me/5Gc3N5PG",
+            "https://t.me/TNBfolio/71285"
+          ],
+          "last_seen": "2026-09-16T13:41:23+00:00"
+        },
+        {
+          "title": "중국 덤핑에 맞선 LG에너지솔루션의 '소듐이온 전지' 반격 2026.09.16",
+          "urls": [
+            "https://newsquest.co.kr/news/articleView.html?idxno=301049",
+            "https://t.me/aicorporateanalysisdeepdive/11071"
+          ],
+          "last_seen": "2026-09-16T02:34:06+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6bd9ba9ad532822f",
+      "created_at": "2026-09-17T02:42:22+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 178.141,
+      "entry_zone": [
+        177.250295,
+        179.031705
+      ],
+      "stop_price": 170.364474,
+      "target_price": 193.694053,
+      "score": 3.195,
+      "components": {
+        "momentum": -0.8510957854807513,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.85, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0077,
+        "regime": 0.9945,
+        "news": 1.0131,
+        "defensive": 0.9975
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.85, 뉴스 +4.00 / 연결 뉴스: 7월 일본 기계수주 전월비 3.7% 감소하며 2개월 만에 하락 도쿄증시 FOMC 대기 속 중간 배당 매수세에 상승 배경훈 부총리 한국은 AI 추격국 재확인하며 위기감 강조\n출처: TNB | 시각: 2026-09-16; 중국 덤핑에 맞선 LG에너지솔루션의 '소듐이온 전지' 반격 2026.09.16",
+      "news_evidence": [
+        {
+          "title": "7월 일본 기계수주 전월비 3.7% 감소하며 2개월 만에 하락 도쿄증시 FOMC 대기 속 중간 배당 매수세에 상승 배경훈 부총리 한국은 AI 추격국 재확인하며 위기감 강조\n출처: TNB | 시각: 2026-09-16",
+          "urls": [
+            "https://naver.me/5Gc3N5PG",
+            "https://t.me/TNBfolio/71285"
+          ],
+          "last_seen": "2026-09-16T13:41:23+00:00"
+        },
+        {
+          "title": "중국 덤핑에 맞선 LG에너지솔루션의 '소듐이온 전지' 반격 2026.09.16",
+          "urls": [
+            "https://newsquest.co.kr/news/articleView.html?idxno=301049",
+            "https://t.me/aicorporateanalysisdeepdive/11071"
+          ],
+          "last_seen": "2026-09-16T02:34:06+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1d5af48ba077e75a",
+      "created_at": "2026-09-17T02:42:22+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 398.29,
+      "entry_zone": [
+        396.29855,
+        400.28145
+      ],
+      "stop_price": 387.184768,
+      "target_price": 420.500463,
+      "score": 2.968,
+      "components": {
+        "momentum": -0.1049701285836242,
+        "regime": 0.2,
+        "news": 2.1482291784914818,
+        "defensive": 0.7
+      },
+      "component_text": "momentum -0.10, regime +0.20, news +2.15, defensive +0.70",
+      "weights": {
+        "momentum": 1.0077,
+        "regime": 0.9945,
+        "news": 1.0131,
+        "defensive": 0.9975
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 -0.10, 뉴스 +2.15 / 연결 뉴스: 7월 일본 기계수주 전월비 3.7% 감소하며 2개월 만에 하락 도쿄증시 FOMC 대기 속 중간 배당 매수세에 상승 배경훈 부총리 한국은 AI 추격국 재확인하며 위기감 강조\n출처: TNB | 시각: 2026-09-16; 🔔",
+      "news_evidence": [
+        {
+          "title": "7월 일본 기계수주 전월비 3.7% 감소하며 2개월 만에 하락 도쿄증시 FOMC 대기 속 중간 배당 매수세에 상승 배경훈 부총리 한국은 AI 추격국 재확인하며 위기감 강조\n출처: TNB | 시각: 2026-09-16",
+          "urls": [
+            "https://naver.me/5Gc3N5PG",
+            "https://t.me/TNBfolio/71285"
+          ],
+          "last_seen": "2026-09-16T13:41:23+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/f94178",
+            "https://t.me/dreago_news_ch/299938"
+          ],
+          "last_seen": "2026-09-16T13:47:36+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
