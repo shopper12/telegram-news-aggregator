@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-16T03:05:29+09:00",
+  "updated_at": "2026-09-16T09:14:19+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -13795,7 +13795,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-13T16:58:26+09:00",
@@ -13806,10 +13806,18 @@
           "evaluated_at": "2026-09-14T09:08:43+09:00",
           "price": 154.9,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-16T09:14:19+09:00",
+          "price": 161.6396,
+          "return_pct": 4.3509
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-14T09:08:43+09:00"
+      "learned_at": "2026-09-14T09:08:43+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-16T09:14:19+09:00",
+      "final_return_pct": 4.3509
     },
     {
       "id": "6b6dae6bd0b3c97f",
@@ -14315,9 +14323,15 @@
           "evaluated_at": "2026-09-15T09:59:00+09:00",
           "price": 156.9027,
           "return_pct": 1.2014
+        },
+        "24h": {
+          "evaluated_at": "2026-09-16T09:14:19+09:00",
+          "price": 161.6396,
+          "return_pct": 4.2567
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-16T09:14:19+09:00"
     },
     {
       "id": "2159f5e6eb9dbc74",
@@ -14553,7 +14567,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-16T09:14:19+09:00",
+          "price": 161.6396,
+          "return_pct": -0.7737
+        }
+      },
       "learned_24h": false
     },
     {
@@ -14587,6 +14607,121 @@
       "reason": "글로벌 레짐 +2.00, 모멘텀 +0.25, 뉴스 +0.00",
       "news_evidence": [],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-16T09:14:19+09:00",
+          "price": 28.22,
+          "return_pct": 0.0177
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "5e9afa3524a046ba",
+      "created_at": "2026-09-16T09:14:19+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 161.6396,
+      "entry_zone": [
+        160.831402,
+        162.447798
+      ],
+      "stop_price": 155.214094,
+      "target_price": 174.490611,
+      "score": 5.036,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.6,
+        "news": 0.419726029034375,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.60, news +0.42, defensive +0.00",
+      "weights": {
+        "momentum": 1.0037,
+        "regime": 0.9972,
+        "news": 1.0068,
+        "defensive": 0.9986
+      },
+      "reason": "글로벌 레짐 +0.60, 모멘텀 +4.00, 뉴스 +0.42 / 연결 뉴스: 📌 09/15 미 증시 클로징 노트 10년물 5.04%로 2007년 이후 최고 ,n유가 급등에 하락 다만 베센트 발언과 반도체 …; 인도 OIS 금리 급등, 유가·미국채 금리 상승에 RBI 인상 전망 고조 https://m.stock.naver.com/inve…",
+      "news_evidence": [
+        {
+          "title": "📌 09/15 미 증시 클로징 노트 10년물 5.04%로 2007년 이후 최고 ,n유가 급등에 하락 다만 베센트 발언과 반도체 …",
+          "urls": [
+            "https://t.me/goldilbong/16139"
+          ],
+          "last_seen": "2026-09-15T23:16:55+00:00"
+        },
+        {
+          "title": "인도 OIS 금리 급등, 유가·미국채 금리 상승에 RBI 인상 전망 고조 https://m.stock.naver.com/inve…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2741589",
+            "https://t.me/moneythemestock/64220"
+          ],
+          "last_seen": "2026-09-15T08:43:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "bd0e24966a4c4cd4",
+      "created_at": "2026-09-16T09:14:19+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 392.67,
+      "entry_zone": [
+        390.70665,
+        394.63335
+      ],
+      "stop_price": 381.297061,
+      "target_price": 415.415877,
+      "score": 2.577,
+      "components": {
+        "momentum": -1.0791745980543834,
+        "regime": 2.0,
+        "news": 1.6542059386449075,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -1.08, regime +2.00, news +1.65, defensive +0.00",
+      "weights": {
+        "momentum": 1.0037,
+        "regime": 0.9972,
+        "news": 1.0068,
+        "defensive": 0.9986
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 -1.08, 뉴스 +1.65 / 연결 뉴스: 오픈AI, 1.2조달러 몸값 추가 투자 논의…IPO 전 자금조달 검토 2026.09.16; 미 10년물 국채금리 19년 만의 최고치...베선트 \"바이백 없었으면 더 올랐을 것\" 2026.09.16",
+      "news_evidence": [
+        {
+          "title": "오픈AI, 1.2조달러 몸값 추가 투자 논의…IPO 전 자금조달 검토 2026.09.16",
+          "urls": [
+            "https://g-enews.com/view.php?ud=2026091608083585349a1f309431_1",
+            "https://t.me/aicorporateanalysisdeepdive/11048"
+          ],
+          "last_seen": "2026-09-15T23:33:01+00:00"
+        },
+        {
+          "title": "미 10년물 국채금리 19년 만의 최고치...베선트 \"바이백 없었으면 더 올랐을 것\" 2026.09.16",
+          "urls": [
+            "https://m.etoday.co.kr/news/view/2625984",
+            "https://t.me/aicorporateanalysisdeepdive/11049"
+          ],
+          "last_seen": "2026-09-15T23:38:20+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,

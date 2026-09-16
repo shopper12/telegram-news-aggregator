@@ -1,23 +1,23 @@
 {
   "version": 2,
-  "updated_at": "2026-09-16T03:05:29+09:00",
+  "updated_at": "2026-09-16T09:14:19+09:00",
   "weights": {
-    "momentum": 1.0,
-    "regime": 1.0,
-    "news": 1.0,
-    "defensive": 1.0
+    "momentum": 1.0037,
+    "regime": 0.9972,
+    "news": 1.0068,
+    "defensive": 0.9986
   },
   "stats": {
-    "evaluated_24h": 199,
-    "wins_24h": 76,
+    "evaluated_24h": 200,
+    "wins_24h": 77,
     "losses_24h": 53,
     "flat_24h": 70,
-    "average_return_24h_pct": 0.2911,
-    "average_win_24h_pct": 1.7874,
+    "average_return_24h_pct": 0.311,
+    "average_win_24h_pct": 1.8195,
     "average_loss_24h_pct": -1.4814,
-    "payoff_ratio_24h": 1.2066,
+    "payoff_ratio_24h": 1.2282,
     "max_drawdown_24h_pct": 17.8842,
-    "weight_adjustment_active": false,
+    "weight_adjustment_active": true,
     "weight_min_samples": 200,
     "weight_max_step": 0.05
   },
@@ -43,9 +43,9 @@
       "average_return_pct": 0.4198
     },
     "USO": {
-      "evaluated": 33,
-      "wins": 15,
-      "average_return_pct": 0.7228
+      "evaluated": 34,
+      "wins": 16,
+      "average_return_pct": 0.8267
     },
     "BTC-USD": {
       "evaluated": 15,
@@ -59,11 +59,14 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-16T03:05:29+09:00",
-    "kind": "regular",
-    "slot": null,
+    "timestamp": "2026-09-16T09:14:19+09:00",
+    "kind": "strategy_morning",
+    "slot": "morning",
     "regime": "risk_off",
-    "regime_score": -0.69,
-    "recommendation_ids": []
+    "regime_score": -1.192,
+    "recommendation_ids": [
+      "5e9afa3524a046ba",
+      "bd0e24966a4c4cd4"
+    ]
   }
 }
