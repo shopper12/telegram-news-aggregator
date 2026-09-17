@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-17T03:05:31+09:00",
+  "updated_at": "2026-09-17T09:23:20+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14196,7 +14196,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-14T18:13:42+09:00",
@@ -14207,10 +14207,18 @@
           "evaluated_at": "2026-09-15T09:31:20+09:00",
           "price": 156.9027,
           "return_pct": 1.2929
+        },
+        "72h": {
+          "evaluated_at": "2026-09-17T09:23:20+09:00",
+          "price": 156.0,
+          "return_pct": 0.7101
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-15T09:31:20+09:00"
+      "learned_at": "2026-09-15T09:31:20+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-17T09:23:20+09:00",
+      "final_return_pct": 0.7101
     },
     {
       "id": "03148ed0503264da",
@@ -14717,9 +14725,15 @@
           "evaluated_at": "2026-09-16T17:49:09+09:00",
           "price": 160.4121,
           "return_pct": -0.7594
+        },
+        "24h": {
+          "evaluated_at": "2026-09-17T09:23:20+09:00",
+          "price": 156.0,
+          "return_pct": -3.489
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-17T09:23:20+09:00"
     },
     {
       "id": "bd0e24966a4c4cd4",
@@ -14778,9 +14792,15 @@
           "evaluated_at": "2026-09-16T17:49:09+09:00",
           "price": 396.81,
           "return_pct": 1.0543
+        },
+        "24h": {
+          "evaluated_at": "2026-09-17T09:23:20+09:00",
+          "price": 391.57,
+          "return_pct": -0.2801
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-17T09:23:20+09:00"
     },
     {
       "id": "8c1f907627969d8b",
@@ -14834,7 +14854,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-17T09:23:20+09:00",
+          "price": 709.46,
+          "return_pct": 0.0592
+        }
+      },
       "learned_24h": false
     },
     {
@@ -14889,7 +14915,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-17T09:23:20+09:00",
+          "price": 178.16,
+          "return_pct": 0.0107
+        }
+      },
       "learned_24h": false
     },
     {
@@ -14940,6 +14972,104 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-17T09:23:20+09:00",
+          "price": 391.57,
+          "return_pct": -1.6872
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "fcfbf225e72f9a49",
+      "created_at": "2026-09-17T09:23:20+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 156.0,
+      "entry_zone": [
+        155.22,
+        156.78
+      ],
+      "stop_price": 149.827282,
+      "target_price": 168.345435,
+      "score": 4.603,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.6,
+        "news": -0.04694257715370369,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.60, news -0.05, defensive +0.00",
+      "weights": {
+        "momentum": 1.0145,
+        "regime": 0.9893,
+        "news": 1.0252,
+        "defensive": 0.9957
+      },
+      "reason": "글로벌 레짐 +0.60, 모멘텀 +4.00, 뉴스 -0.05 / 연결 뉴스: 📌 09/16 미 증시 프리마켓 노트 FOMC 당일 — 25bp 인상 확률 90%, 관건은 점도표와 워시 발언 API 원유 재고…; 🔔 치솟는 금리·유가에 살얼음판 증시…외인 'OUT' 기관 'IN' 📝 #고금리 #국제유가 #AI반도체 미국 금리와 유가 급등이…",
+      "news_evidence": [
+        {
+          "title": "📌 09/16 미 증시 프리마켓 노트 FOMC 당일 — 25bp 인상 확률 90%, 관건은 점도표와 워시 발언 API 원유 재고…",
+          "urls": [
+            "https://t.me/goldilbong/16151"
+          ],
+          "last_seen": "2026-09-16T13:06:17+00:00"
+        },
+        {
+          "title": "🔔 치솟는 금리·유가에 살얼음판 증시…외인 'OUT' 기관 'IN' 📝 #고금리 #국제유가 #AI반도체 미국 금리와 유가 급등이…",
+          "urls": [
+            "https://dreago.kr/n/c08a16",
+            "https://t.me/dreago_news_ch/305661"
+          ],
+          "last_seen": "2026-09-16T02:45:18+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6628a07aef536860",
+      "created_at": "2026-09-17T09:23:20+09:00",
+      "slot": "morning",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.47,
+      "entry_zone": [
+        28.32765,
+        28.61235
+      ],
+      "stop_price": 27.9006,
+      "target_price": 29.6088,
+      "score": 3.516,
+      "components": {
+        "momentum": 0.5340602453460115,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.53, regime +2.00, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0145,
+        "regime": 0.9893,
+        "news": 1.0252,
+        "defensive": 0.9957
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.53, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
