@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-18T02:23:35+09:00",
+  "updated_at": "2026-09-18T02:43:00+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14862,9 +14862,15 @@
           "evaluated_at": "2026-09-17T09:23:20+09:00",
           "price": 709.46,
           "return_pct": 0.0592
+        },
+        "24h": {
+          "evaluated_at": "2026-09-18T02:43:00+09:00",
+          "price": 716.57,
+          "return_pct": 1.062
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-18T02:43:00+09:00"
     },
     {
       "id": "6bd9ba9ad532822f",
@@ -14923,9 +14929,15 @@
           "evaluated_at": "2026-09-17T09:23:20+09:00",
           "price": 178.16,
           "return_pct": 0.0107
+        },
+        "24h": {
+          "evaluated_at": "2026-09-18T02:43:00+09:00",
+          "price": 182.955,
+          "return_pct": 2.7024
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-18T02:43:00+09:00"
     },
     {
       "id": "1d5af48ba077e75a",
@@ -14984,9 +14996,15 @@
           "evaluated_at": "2026-09-17T09:23:20+09:00",
           "price": 391.57,
           "return_pct": -1.6872
+        },
+        "24h": {
+          "evaluated_at": "2026-09-18T02:43:00+09:00",
+          "price": 399.63,
+          "return_pct": 0.3364
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-18T02:43:00+09:00"
     },
     {
       "id": "fcfbf225e72f9a49",
@@ -15090,6 +15108,168 @@
           "return_pct": -0.2459
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "67001c5f0c7e72bb",
+      "created_at": "2026-09-18T02:43:00+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 182.955,
+      "entry_zone": [
+        182.040225,
+        183.869775
+      ],
+      "stop_price": 174.676402,
+      "target_price": 199.512197,
+      "score": 6.876,
+      "components": {
+        "momentum": 1.2494978100429863,
+        "regime": 2.0,
+        "news": 3.518849130976564,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.25, regime +2.00, news +3.52, defensive +0.00",
+      "weights": {
+        "momentum": 1.0176,
+        "regime": 0.9866,
+        "news": 1.0319,
+        "defensive": 0.995
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.25, 뉴스 +3.52 / 연결 뉴스: 🔔 한화시스템 'UAE 하늘 지킨다' 통합대공망 구축사업 참여, 글로벌 흐름 ... 📈 #한화시스템 📝 #방산 #통합대공망 #중…; 한화엔진, 한화에너지·한화오션 연계로 북미 데이터센터 발전엔진 수요 조기 확보 기대 SK증권 한승한·고서영 핵심 한화엔진은 그룹…",
+      "news_evidence": [
+        {
+          "title": "🔔 한화시스템 'UAE 하늘 지킨다' 통합대공망 구축사업 참여, 글로벌 흐름 ... 📈 #한화시스템 📝 #방산 #통합대공망 #중…",
+          "urls": [
+            "https://dreago.kr/n/8f4b2a",
+            "https://t.me/dreago_news_ch/306154"
+          ],
+          "last_seen": "2026-09-17T08:07:20+00:00"
+        },
+        {
+          "title": "한화엔진, 한화에너지·한화오션 연계로 북미 데이터센터 발전엔진 수요 조기 확보 기대 SK증권 한승한·고서영 핵심 한화엔진은 그룹…",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/11145"
+          ],
+          "last_seen": "2026-09-17T00:05:56+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "74f530d5ac138abb",
+      "created_at": "2026-09-18T02:43:00+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 519.89,
+      "entry_zone": [
+        517.29055,
+        522.48945
+      ],
+      "stop_price": 500.795254,
+      "target_price": 558.079492,
+      "score": 6.868,
+      "components": {
+        "momentum": 0.7540172476751175,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.75, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0176,
+        "regime": 0.9866,
+        "news": 1.0319,
+        "defensive": 0.995
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.75, 뉴스 +4.00 / 연결 뉴스: 제네락, 아마존 데이터센터에 최대 80억달러 발전기 공급…워런트까지 부여 2026.09.17; 바클레이즈가 제너락에 대한 ‘Equalweight’ 투자의견 유지. 목표주가는 278달러로 제시했으며, 현재가 233.81달러 …",
+      "news_evidence": [
+        {
+          "title": "제네락, 아마존 데이터센터에 최대 80억달러 발전기 공급…워런트까지 부여 2026.09.17",
+          "urls": [
+            "https://newspim.com/news/view/20260917000078",
+            "https://t.me/aicorporateanalysisdeepdive/11166"
+          ],
+          "last_seen": "2026-09-17T08:25:23+00:00"
+        },
+        {
+          "title": "바클레이즈가 제너락에 대한 ‘Equalweight’ 투자의견 유지. 목표주가는 278달러로 제시했으며, 현재가 233.81달러 …",
+          "urls": [
+            "https://t.me/insidertracking/63967"
+          ],
+          "last_seen": "2026-09-17T08:35:23+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "67502ca5c3ff96d0",
+      "created_at": "2026-09-18T02:43:00+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 156.193,
+      "entry_zone": [
+        155.412035,
+        156.973965
+      ],
+      "stop_price": 149.493204,
+      "target_price": 169.592592,
+      "score": 2.117,
+      "components": {
+        "momentum": 1.623047094021931,
+        "regime": 0.4,
+        "news": 0.06812459328740743,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.62, regime +0.40, news +0.07, defensive +0.00",
+      "weights": {
+        "momentum": 1.0176,
+        "regime": 0.9866,
+        "news": 1.0319,
+        "defensive": 0.995
+      },
+      "reason": "글로벌 레짐 +0.40, 모멘텀 +1.62, 뉴스 +0.07 / 연결 뉴스: # VIX변동성지표 : 200일선까지 종가 상승. 돌파시는 리스크 확대 # 유가 105불에서 저항되며 5일선까지 눌리며 쉬어감 …; ■ 트럼프, 중동 6개국 정상과 뉴욕 회동…이란전 논의 https://www.obsnews.co.kr/news/articleVi…",
+      "news_evidence": [
+        {
+          "title": "# VIX변동성지표 : 200일선까지 종가 상승. 돌파시는 리스크 확대 # 유가 105불에서 저항되며 5일선까지 눌리며 쉬어감 …",
+          "urls": [
+            "https://t.me/stockgrandmaster/12068"
+          ],
+          "last_seen": "2026-09-16T23:04:49+00:00"
+        },
+        {
+          "title": "■ 트럼프, 중동 6개국 정상과 뉴욕 회동…이란전 논의 https://www.obsnews.co.kr/news/articleVi…",
+          "urls": [
+            "https://obsnews.co.kr/news/articleView.html?idxno=1537880",
+            "https://t.me/cyber_rangers/18218"
+          ],
+          "last_seen": "2026-09-17T13:09:21+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
