@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-19T01:50:42+09:00",
+  "updated_at": "2026-09-19T02:09:53+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -15512,6 +15512,168 @@
           "return_pct": -0.2062
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "017aaecc4544301f",
+      "created_at": "2026-09-19T02:09:53+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 716.995,
+      "entry_zone": [
+        713.410025,
+        720.579975
+      ],
+      "stop_price": 702.6551,
+      "target_price": 745.6748,
+      "score": 4.311,
+      "components": {
+        "momentum": 0.15370867987262005,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.15, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0202,
+        "regime": 0.9835,
+        "news": 1.0386,
+        "defensive": 0.9941
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.15, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 앤스로픽·오픈AI, 20~30MW 소규모 데이터센터 계약 타진…추론 수요가 바꾼 조달 방식 2026.09.18",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/64081"
+          ],
+          "last_seen": "2026-09-18T12:34:06+00:00"
+        },
+        {
+          "title": "앤스로픽·오픈AI, 20~30MW 소규모 데이터센터 계약 타진…추론 수요가 바꾼 조달 방식 2026.09.18",
+          "urls": [
+            "https://cnbc.com/2026/09/18/anthropic-openai-small-ai-data-center-deals.html",
+            "https://t.me/aicorporateanalysisdeepdive/11240"
+          ],
+          "last_seen": "2026-09-18T12:12:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "bb93d2757b30dfcb",
+      "created_at": "2026-09-19T02:09:53+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 524.55,
+      "entry_zone": [
+        521.92725,
+        527.17275
+      ],
+      "stop_price": 505.311715,
+      "target_price": 563.026569,
+      "score": 4.297,
+      "components": {
+        "momentum": 0.13947831954832945,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.14, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0202,
+        "regime": 0.9835,
+        "news": 1.0386,
+        "defensive": 0.9941
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.14, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 앤스로픽·오픈AI, 20~30MW 소규모 데이터센터 계약 타진…추론 수요가 바꾼 조달 방식 2026.09.18",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/64081"
+          ],
+          "last_seen": "2026-09-18T12:34:06+00:00"
+        },
+        {
+          "title": "앤스로픽·오픈AI, 20~30MW 소규모 데이터센터 계약 타진…추론 수요가 바꾼 조달 방식 2026.09.18",
+          "urls": [
+            "https://cnbc.com/2026/09/18/anthropic-openai-small-ai-data-center-deals.html",
+            "https://t.me/aicorporateanalysisdeepdive/11240"
+          ],
+          "last_seen": "2026-09-18T12:12:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "889d96a77696f321",
+      "created_at": "2026-09-19T02:09:53+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 402.2,
+      "entry_zone": [
+        400.189,
+        404.211
+      ],
+      "stop_price": 392.243516,
+      "target_price": 422.112969,
+      "score": 2.726,
+      "components": {
+        "momentum": 0.0477250566937224,
+        "regime": 0.2,
+        "news": 2.3887959170032875,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.05, regime +0.20, news +2.39, defensive +0.00",
+      "weights": {
+        "momentum": 1.0202,
+        "regime": 0.9835,
+        "news": 1.0386,
+        "defensive": 0.9941
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.05, 뉴스 +2.39 / 연결 뉴스: GSPT1 분해제를 활용한 DAC에 이어 새로운 분자접착제와 단백질분해제 페이로드도 개발하고 있다. BMS 계약 종료로 약 8000만달러의 추가 마일스톤은 받을 수 없게 됐지만, 이미 받은 계약금 1억달러는 반환 의; *특징 종목: 마이크론, 엔비디아, AMD, 테슬라, 오라클, 아이온큐, 아마존 상승 메모리, 스토리지 반도체: 인텔 CEO의 …",
+      "news_evidence": [
+        {
+          "title": "GSPT1 분해제를 활용한 DAC에 이어 새로운 분자접착제와 단백질분해제 페이로드도 개발하고 있다. BMS 계약 종료로 약 8000만달러의 추가 마일스톤은 받을 수 없게 됐지만, 이미 받은 계약금 1억달러는 반환 의",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/015/0005333910?sid=105",
+            "https://t.me/Yeouido_Lab/37788"
+          ],
+          "last_seen": "2026-09-18T07:28:06+00:00"
+        },
+        {
+          "title": "*특징 종목: 마이크론, 엔비디아, AMD, 테슬라, 오라클, 아이온큐, 아마존 상승 메모리, 스토리지 반도체: 인텔 CEO의 …",
+          "urls": [
+            "https://t.me/sharpha/53825"
+          ],
+          "last_seen": "2026-09-17T23:06:01+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
