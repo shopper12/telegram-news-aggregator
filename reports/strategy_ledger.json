@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-18T03:06:15+09:00",
+  "updated_at": "2026-09-18T09:09:19+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14333,7 +14333,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-15T09:59:00+09:00",
@@ -14344,10 +14344,18 @@
           "evaluated_at": "2026-09-16T09:14:19+09:00",
           "price": 161.6396,
           "return_pct": 4.2567
+        },
+        "72h": {
+          "evaluated_at": "2026-09-18T09:09:19+09:00",
+          "price": 155.2,
+          "return_pct": 0.1032
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-16T09:14:19+09:00"
+      "learned_at": "2026-09-16T09:14:19+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-18T09:09:19+09:00",
+      "final_return_pct": 0.1032
     },
     {
       "id": "2159f5e6eb9dbc74",
@@ -15161,7 +15169,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-18T09:09:19+09:00",
+          "price": 182.6,
+          "return_pct": -0.194
+        }
+      },
       "learned_24h": false
     },
     {
@@ -15215,7 +15229,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-18T09:09:19+09:00",
+          "price": 518.73,
+          "return_pct": -0.2231
+        }
+      },
       "learned_24h": false
     },
     {
@@ -15265,6 +15285,174 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-18T09:09:19+09:00",
+          "price": 155.2,
+          "return_pct": -0.6358
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "08fcb362780b9fc7",
+      "created_at": "2026-09-18T09:09:19+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 398.44,
+      "entry_zone": [
+        396.4478,
+        400.4322
+      ],
+      "stop_price": 387.410815,
+      "target_price": 420.498369,
+      "score": 4.282,
+      "components": {
+        "momentum": -0.7266730434011449,
+        "regime": 0.2,
+        "news": 4.0,
+        "defensive": 0.7
+      },
+      "component_text": "momentum -0.73, regime +0.20, news +4.00, defensive +0.70",
+      "weights": {
+        "momentum": 1.0176,
+        "regime": 0.9866,
+        "news": 1.0319,
+        "defensive": 0.995
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 -0.73, 뉴스 +4.00 / 연결 뉴스: *특징 종목: 마이크론, 엔비디아, AMD, 테슬라, 오라클, 아이온큐, 아마존 상승 메모리, 스토리지 반도체: 인텔 CEO의 …; [키움증권 미국 전략/주식 김승혁] 미국은 지금",
+      "news_evidence": [
+        {
+          "title": "*특징 종목: 마이크론, 엔비디아, AMD, 테슬라, 오라클, 아이온큐, 아마존 상승 메모리, 스토리지 반도체: 인텔 CEO의 …",
+          "urls": [
+            "https://t.me/sharpha/53825"
+          ],
+          "last_seen": "2026-09-17T23:06:01+00:00"
+        },
+        {
+          "title": "[키움증권 미국 전략/주식 김승혁] 미국은 지금",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1677",
+            "https://t.me/YeouidoStory2/117546"
+          ],
+          "last_seen": "2026-09-17T23:38:53+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "fe0151124a229a54",
+      "created_at": "2026-09-18T09:09:19+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 715.7966,
+      "entry_zone": [
+        712.217617,
+        719.375583
+      ],
+      "stop_price": 701.480668,
+      "target_price": 744.428464,
+      "score": 3.754,
+      "components": {
+        "momentum": -0.36682355420413804,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.37, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0176,
+        "regime": 0.9866,
+        "news": 1.0319,
+        "defensive": 0.995
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.37, 뉴스 +4.00 / 연결 뉴스: *특징 종목: 마이크론, 엔비디아, AMD, 테슬라, 오라클, 아이온큐, 아마존 상승 메모리, 스토리지 반도체: 인텔 CEO의 …; [키움증권 미국 전략/주식 김승혁] 미국은 지금",
+      "news_evidence": [
+        {
+          "title": "*특징 종목: 마이크론, 엔비디아, AMD, 테슬라, 오라클, 아이온큐, 아마존 상승 메모리, 스토리지 반도체: 인텔 CEO의 …",
+          "urls": [
+            "https://t.me/sharpha/53825"
+          ],
+          "last_seen": "2026-09-17T23:06:01+00:00"
+        },
+        {
+          "title": "[키움증권 미국 전략/주식 김승혁] 미국은 지금",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1677",
+            "https://t.me/YeouidoStory2/117546"
+          ],
+          "last_seen": "2026-09-17T23:38:53+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "9a9452131d677bc0",
+      "created_at": "2026-09-18T09:09:19+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 155.2,
+      "entry_zone": [
+        154.424,
+        155.976
+      ],
+      "stop_price": 148.549894,
+      "target_price": 168.500211,
+      "score": 3.642,
+      "components": {
+        "momentum": 2.5312105045368516,
+        "regime": 0.2,
+        "news": 0.8419906603157407,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.53, regime +0.20, news +0.84, defensive +0.00",
+      "weights": {
+        "momentum": 1.0176,
+        "regime": 0.9866,
+        "news": 1.0319,
+        "defensive": 0.995
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.53, 뉴스 +0.84 / 연결 뉴스: # 미국시장 금리와 유가가 하락하며 변동성 리스크가 완화되자 S&P500지수와 나스닥은 60일선을 지지하며 반등했고 필반지수도 …; 📌 09/17 미 증시 클로징 노트 매파적 FOMC를 하루 만에 소화 — 유가·금리 하락에 AI 반도체 급등 필라델피아 반도체 …",
+      "news_evidence": [
+        {
+          "title": "# 미국시장 금리와 유가가 하락하며 변동성 리스크가 완화되자 S&P500지수와 나스닥은 60일선을 지지하며 반등했고 필반지수도 …",
+          "urls": [
+            "https://t.me/stockgrandmaster",
+            "https://t.me/stockgrandmaster/12084"
+          ],
+          "last_seen": "2026-09-17T23:57:19+00:00"
+        },
+        {
+          "title": "📌 09/17 미 증시 클로징 노트 매파적 FOMC를 하루 만에 소화 — 유가·금리 하락에 AI 반도체 급등 필라델피아 반도체 …",
+          "urls": [
+            "https://t.me/goldilbong/16171"
+          ],
+          "last_seen": "2026-09-17T23:06:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
