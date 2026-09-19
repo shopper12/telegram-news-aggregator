@@ -1,7 +1,330 @@
 {
   "version": 2,
-  "updated_at": "2026-09-19T16:48:06+09:00",
+  "updated_at": "2026-09-19T21:16:42+09:00",
   "events": [
+    {
+      "signature": "7d5b38acce6a533eacc2eaa144b8d98a2a5bcad2",
+      "title": "TSMC 파운드리 가격 인상 전가?...AMD, 2026년 4분기부터 전 제품 10% 인상설, 인텔과 동반 인상 2026.09.…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "amd",
+        "gpu",
+        "tsmc",
+        "메모리",
+        "반도체",
+        "서버",
+        "파운드리"
+      ],
+      "tickers": [
+        "NNBR"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/11248",
+        "https://t.me/aicorporateanalysisdeepdive/11249",
+        "https://wallstreetcn.com/articles/3782103"
+      ],
+      "materiality": 15,
+      "sentiment": 2,
+      "first_seen": "2026-09-19T12:10:02+00:00",
+      "last_seen": "2026-09-19T12:11:17+00:00",
+      "count": 2
+    },
+    {
+      "signature": "d3b97e714ea111095a5d1c949f24a2f0cea3263b",
+      "title": "🔔 中 CXMT·美 마이크론 동시에 치고 온다…삼성전자·SK하이닉스 '메모리... 📈 #삼성전자 #SK하이닉스 📝 #메모리반도체…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "dram",
+        "hbm",
+        "sk하이닉스",
+        "낸드",
+        "메모리",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/b1417b",
+        "https://t.me/dreago_news_ch/306650"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-09-19T12:11:00+00:00",
+      "last_seen": "2026-09-19T12:11:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2933caaee0bca3e30872e3d55637aca21a79303a",
+      "title": "美, 미사일 재고 부족으로 동맹국 무기 인도 최대 5년 지연 경고 2026.09.18",
+      "sectors": [
+        "AI인프라",
+        "방산/항공"
+      ],
+      "keywords": [
+        "ai",
+        "방산"
+      ],
+      "tickers": [
+        "CBO"
+      ],
+      "source_urls": [
+        "https://straitstimes.com/world/united-states/us-warns-allies-of-missile-delivery-delays-due-to-shortage",
+        "https://t.me/aicorporateanalysisdeepdive/11247"
+      ],
+      "materiality": 20,
+      "sentiment": 3,
+      "first_seen": "2026-09-19T12:06:01+00:00",
+      "last_seen": "2026-09-19T12:06:01+00:00",
+      "count": 1
+    },
+    {
+      "signature": "7079884e9bf844bae28e0125a984939908bde836",
+      "title": "WSJ \"앤트로픽, IPO 11월로 연기 검토…3분기 실적 공개 후 상장\" 2026.09.19",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "로봇"
+      ],
+      "keywords": [
+        "ai",
+        "규제",
+        "데이터센터",
+        "로봇"
+      ],
+      "tickers": [
+        "035420.KS",
+        "MHS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/123/0002390529?sid=104",
+        "https://t.me/aicorporateanalysisdeepdive/11246"
+      ],
+      "materiality": 21,
+      "sentiment": -2,
+      "first_seen": "2026-09-19T12:01:35+00:00",
+      "last_seen": "2026-09-19T12:01:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a5c367a5d6dc23c7aac395b81b3f87201c9d86c5",
+      "title": "중국 CXMT, D램 넘어 낸드플래시 진출 준비...한국 반도체 위협 우려 2026.09.18",
+      "sectors": [
+        "AI인프라",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "sk하이닉스",
+        "낸드",
+        "메모리",
+        "반도체",
+        "삼성전자",
+        "조선"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/11245",
+        "https://v.daum.net/v/20260918163037116"
+      ],
+      "materiality": 14,
+      "sentiment": 0,
+      "first_seen": "2026-09-19T11:58:22+00:00",
+      "last_seen": "2026-09-19T11:58:22+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c5ea5e81efb20f5973a0cba5d174c1e33777e64c",
+      "title": "트럼프, 반도체·AI는 막고 중국산 신약엔 빗장 풀 듯 2026.09.18",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "바이오",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "규제",
+        "반도체",
+        "신약"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/421/0009179833?sid=104",
+        "https://t.me/aicorporateanalysisdeepdive/11244"
+      ],
+      "materiality": 23,
+      "sentiment": 1,
+      "first_seen": "2026-09-19T11:57:17+00:00",
+      "last_seen": "2026-09-19T11:57:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "481152289effe55db1d978540a727d5307d2232b",
+      "title": "DC향 엔진·FDC 확산 속 조선주, 미중정상회담이 가를 단기 변수 메리츠증권 배기연 핵심 메리츠증권은 제네락홀딩스-아마존 간 …",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "lng선",
+        "데이터센터",
+        "선박",
+        "아마존",
+        "조선",
+        "한은"
+      ],
+      "tickers": [
+        "ABS",
+        "FDC",
+        "VG"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/11243",
+        "https://zrr.kr/UZkht0"
+      ],
+      "materiality": 28,
+      "sentiment": 3,
+      "first_seen": "2026-09-19T11:53:10+00:00",
+      "last_seen": "2026-09-19T11:53:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "7c7c53bb0adec0129c13822e09cc8b5069db6743",
+      "title": "에이치브이엠, 416억원 단조설비 투자로 우주항공 소재 밸류체인 확대 하나증권 한유건 핵심 하나증권 한유건 애널리스트는 에이치브…",
+      "sectors": [
+        "방산/항공",
+        "조선"
+      ],
+      "keywords": [
+        "방산",
+        "수주잔고"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://buly.kr/1n6hfjH",
+        "https://t.me/aicorporateanalysisdeepdive/11242"
+      ],
+      "materiality": 21,
+      "sentiment": 1,
+      "first_seen": "2026-09-19T11:52:05+00:00",
+      "last_seen": "2026-09-19T11:52:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e1b93130a742693bdf4c7589d2e21e00ce0f721a",
+      "title": "🔹SpaceX가 주도하는 우주 데이터센터. 관건은 발사 비용 절감 » 미국 기준 가상의 1GW 우주 데이터센터 구축 비용은 약 …",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "gpu",
+        "데이터센터"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/23267",
+        "https://t.me/c/1208429502/125404"
+      ],
+      "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-09-19T11:46:50+00:00",
+      "last_seen": "2026-09-19T11:46:50+00:00",
+      "count": 2
+    },
+    {
+      "signature": "9f6254fc2b67a90b1af0a566d9f6db62147b8a7c",
+      "title": "위켄드 유가는 크게 튀지는 않았네요",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/64150"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-09-19T11:33:35+00:00",
+      "last_seen": "2026-09-19T11:33:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "eb6e742283b856c8d94cfc9ac922061449247b12",
+      "title": "🔔",
+      "sectors": [
+        "방산/항공"
+      ],
+      "keywords": [
+        "방산"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/079016",
+        "https://t.me/dreago_news_ch/306649"
+      ],
+      "materiality": 12,
+      "sentiment": -1,
+      "first_seen": "2026-09-19T11:29:51+00:00",
+      "last_seen": "2026-09-19T11:29:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "260f59927a41fb24730a27e7fcf509831e49e562",
+      "title": "🔔 “모여서 각자 제품 개발”…카카오벤처스, 창업자 몰입 공간 '템프서울... 【 겁나빠른 #드리고봇 뉴스 】 https://d…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035720.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/fa3d93",
+        "https://t.me/dreago_news_ch/306648"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-09-19T11:28:06+00:00",
+      "last_seen": "2026-09-19T11:28:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "5963ddcc302df9b14e30a2d654183f39c2d9a85f",
+      "title": "후티 고위 관계자 히잠 알 아사드가 사우디아라비아 리야드 킹 칼리드 국제공항에서 발생한 것으로 알려진 화재와 관련해 짧은 메시지…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/64146"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-09-19T11:20:29+00:00",
+      "last_seen": "2026-09-19T11:20:29+00:00",
+      "count": 1
+    },
     {
       "signature": "524087a2f0e7d7b90a157ac490bf8e809a968db5",
       "title": "🔔 LG디스플레이 3분기 흑자전환… 그런데 목표주가는 29% 낮췄다 📈 #LG디스플레이 📝 #디스플레이 #OLED #IT기기 흑…",
@@ -10579,303 +10902,6 @@
       "sentiment": 1,
       "first_seen": "2026-09-17T02:24:46+00:00",
       "last_seen": "2026-09-17T02:24:46+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0c392b721145b1b9618a7f296a0d0a8e54b1358a",
-      "title": "기업명: 지어소프트 제목: 유상증자결정(종속회사의주요경영사항)",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260917900175",
-        "https://moneytoring.ai/mv",
-        "https://t.me/c/1208429502/125247"
-      ],
-      "materiality": 10,
-      "sentiment": 2,
-      "first_seen": "2026-09-17T02:23:04+00:00",
-      "last_seen": "2026-09-17T02:23:04+00:00",
-      "count": 1
-    },
-    {
-      "signature": "ab3f599d69da1e2486bd8f16b2482c9635574f2c",
-      "title": "✅ SV인베스트먼트 상승 이유로 보입니다. https://www.mk.co.kr/news/stock/12155224",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://mk.co.kr/news/stock/12155224",
-        "https://t.me/c/1208429502/125246"
-      ],
-      "materiality": 4,
-      "sentiment": 2,
-      "first_seen": "2026-09-17T02:19:52+00:00",
-      "last_seen": "2026-09-17T02:19:52+00:00",
-      "count": 1
-    },
-    {
-      "signature": "52629663c5068b96ed7df016618a886571c9c639",
-      "title": "[뉴욕증시]美 장기채 금리, 금융위기 이후 최고…일제히 하락 10년물 5.04%·30년물 5.40% 기록 2007년 이후 최고점 경신\n출처: 신한투자증권 | 시각: 2026-09-15T22:16:41+00:00",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "fed",
-        "금리",
-        "연준",
-        "fomc",
-        "환율"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/chel3337/35722",
-        "https://t.me/chel3337/35744",
-        "https://t.me/chel3337/35755"
-      ],
-      "materiality": 9,
-      "sentiment": 3,
-      "first_seen": "2026-09-15T22:16:41+00:00",
-      "last_seen": "2026-09-17T02:19:45+00:00",
-      "count": 4
-    },
-    {
-      "signature": "67a67bad2c9beba6b1628d13654619e76a710141",
-      "title": "🔔 \"선제 매수할 시점\" 한화엔진, 4행정 중속엔진 새 성장축…포스코인터내... 【 겁나빠른 #드리고봇 뉴스 】 https://…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/473838",
-        "https://t.me/dreago_news_ch/306012"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-17T02:19:41+00:00",
-      "last_seen": "2026-09-17T02:19:41+00:00",
-      "count": 1
-    },
-    {
-      "signature": "df631dd7757e82d95e1c9191b397760aaf1749a8",
-      "title": "🔔 \"GPU 다음은 AI 추론칩\"…삼성전자, '제2 엔비디아' 유클리드에 베팅한 ... 📈 #삼성전자 📝 #AI반도체 #AI추론…",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "ai 추론",
-        "gpu",
-        "반도체",
-        "삼성전자",
-        "엔비디아"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/874eaf",
-        "https://t.me/dreago_news_ch/306011"
-      ],
-      "materiality": 7,
-      "sentiment": 1,
-      "first_seen": "2026-09-17T02:19:19+00:00",
-      "last_seen": "2026-09-17T02:19:19+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6fc6e69608ec65dbff919d9184912466cbe0ed6e",
-      "title": "#조선 #방산 #기계==#환율",
-      "sectors": [
-        "거시/정책",
-        "방산/항공",
-        "조선"
-      ],
-      "keywords": [
-        "방산",
-        "조선",
-        "환율"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/53786"
-      ],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-09-17T02:18:18+00:00",
-      "last_seen": "2026-09-17T02:18:18+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d6f461d11a98edf2be3e8c864d0caa7a9519f5ab",
-      "title": "🔔",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "배터리"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/cea35b",
-        "https://t.me/dreago_news_ch/306009"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-09-17T02:16:23+00:00",
-      "last_seen": "2026-09-17T02:16:23+00:00",
-      "count": 1
-    },
-    {
-      "signature": "9f9c60bc9467e717781bba682e044d91c7efcdf3",
-      "title": "월스트리트저널의 닉 티미라오스에 따르면 연준의 장기 금리 전망에 상방 위험이 커지고 있다는 분석. 2년 전 연준이 금리 인하를 …",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "금리",
-        "연준",
-        "정책"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/63937"
-      ],
-      "materiality": 8,
-      "sentiment": 3,
-      "first_seen": "2026-09-17T02:16:06+00:00",
-      "last_seen": "2026-09-17T02:16:06+00:00",
-      "count": 1
-    },
-    {
-      "signature": "9b33cd55b30aa4926dbedcf03dd583a9fe99aad6",
-      "title": "[단독] 중국 CAS, EUV 없이 DUV 기반 3nm 이하 GAA 공정 경로 확보",
-      "sectors": [
-        "거시/정책",
-        "반도체"
-      ],
-      "keywords": [
-        "규제",
-        "반도체"
-      ],
-      "tickers": [
-        "CAS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://digitimes.com/news/a20260917PD204/china-3nm-duv-euv-gaa-development.html",
-        "https://t.me/TNBfolio",
-        "https://t.me/TNBfolio/71291"
-      ],
-      "materiality": 21,
-      "sentiment": -1,
-      "first_seen": "2026-09-17T02:15:19+00:00",
-      "last_seen": "2026-09-17T02:15:19+00:00",
-      "count": 1
-    },
-    {
-      "signature": "5c803ea54eaa1100abddd4515ea56c21f07cf23b",
-      "title": "🔔 현대차 파업 여파 ‘자동차 지표’ 일제 하락 📈 #현대차 #기아 #현대모비스 📝 #자동차 #자동차부품 #수출 현대차 파업과 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "000270.KS",
-        "005380.KS",
-        "012330.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/a1c30a",
-        "https://t.me/dreago_news_ch/306007"
-      ],
-      "materiality": 11,
-      "sentiment": -2,
-      "first_seen": "2026-09-17T02:13:43+00:00",
-      "last_seen": "2026-09-17T02:13:43+00:00",
-      "count": 1
-    },
-    {
-      "signature": "2c87974510ecdda528d4f6ccb20c3651eae352ae",
-      "title": "🔔 삼성전자, 필리핀 복합단지에 AI 홈·빌딩 솔루션 공급 📈 #삼성전자 📝 #스마트홈 #스마트빌딩 #AIoT #스마트싱스 필리…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/1f3128",
-        "https://t.me/dreago_news_ch/306006"
-      ],
-      "materiality": 13,
-      "sentiment": 2,
-      "first_seen": "2026-09-17T02:12:59+00:00",
-      "last_seen": "2026-09-17T02:12:59+00:00",
-      "count": 1
-    },
-    {
-      "signature": "340769b75430714383c6258f70aed926082d1b10",
-      "title": "#AI 데이터센터 50조달러…돈은 '전력·장비'로",
-      "sectors": [
-        "AI인프라",
-        "반도체",
-        "전력기기"
-      ],
-      "keywords": [
-        "ai",
-        "gpu",
-        "데이터센터",
-        "메모리",
-        "전력기기"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/014/0005577265",
-        "https://t.me/sharpha/53784"
-      ],
-      "materiality": 16,
-      "sentiment": 1,
-      "first_seen": "2026-09-17T02:12:55+00:00",
-      "last_seen": "2026-09-17T02:12:55+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e19de19234d9969fda253061bcfdd6c6b6443942",
-      "title": "✅ MLCC, AI 서버 시장 진출은 아직 초기 단계! 모건 스탠리, 무라타·삼성·국거를 최대 수혜주로 지목",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "서버"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://finance.technews.tw/2026/09/16/overweight-mlcc",
-        "https://t.me/sharpha/53783"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-09-17T02:11:57+00:00",
-      "last_seen": "2026-09-17T02:11:57+00:00",
       "count": 1
     }
   ]
