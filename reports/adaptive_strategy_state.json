@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "updated_at": "2026-09-19T02:38:20+09:00",
+  "updated_at": "2026-09-19T09:07:54+09:00",
   "weights": {
-    "momentum": 1.0202,
-    "regime": 0.9835,
-    "news": 1.0386,
-    "defensive": 0.9941
+    "momentum": 1.0226,
+    "regime": 0.9805,
+    "news": 1.0452,
+    "defensive": 0.9932
   },
   "stats": {
-    "evaluated_24h": 212,
-    "wins_24h": 82,
-    "losses_24h": 59,
+    "evaluated_24h": 215,
+    "wins_24h": 83,
+    "losses_24h": 61,
     "flat_24h": 71,
-    "average_return_24h_pct": 0.2816,
-    "average_win_24h_pct": 1.7984,
-    "average_loss_24h_pct": -1.4954,
-    "payoff_ratio_24h": 1.2026,
+    "average_return_24h_pct": 0.2777,
+    "average_win_24h_pct": 1.806,
+    "average_loss_24h_pct": -1.4862,
+    "payoff_ratio_24h": 1.2151,
     "max_drawdown_24h_pct": 17.8842,
     "weight_adjustment_active": true,
     "weight_min_samples": 200,
@@ -28,9 +28,9 @@
       "average_return_pct": 0.0818
     },
     "SOXX": {
-      "evaluated": 28,
-      "wins": 11,
-      "average_return_pct": -0.2098
+      "evaluated": 29,
+      "wins": 12,
+      "average_return_pct": -0.1189
     },
     "GLD": {
       "evaluated": 43,
@@ -38,14 +38,14 @@
       "average_return_pct": 0.2967
     },
     "EWY": {
-      "evaluated": 58,
+      "evaluated": 59,
       "wins": 23,
-      "average_return_pct": 0.4336
+      "average_return_pct": 0.4078
     },
     "USO": {
-      "evaluated": 38,
+      "evaluated": 39,
       "wins": 17,
-      "average_return_pct": 0.6071
+      "average_return_pct": 0.5572
     },
     "BTC-USD": {
       "evaluated": 15,
@@ -59,11 +59,15 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-19T02:38:20+09:00",
-    "kind": "regular",
-    "slot": null,
+    "timestamp": "2026-09-19T09:07:54+09:00",
+    "kind": "strategy_morning",
+    "slot": "morning",
     "regime": "mixed",
-    "regime_score": -0.07,
-    "recommendation_ids": []
+    "regime_score": 0.135,
+    "recommendation_ids": [
+      "3850c890dd3e7551",
+      "7027c28ac6fc72b0",
+      "4eab1bbd6a3979f4"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-19T02:38:20+09:00",
+  "updated_at": "2026-09-19T09:07:54+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14685,7 +14685,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-16T09:14:19+09:00",
@@ -14696,10 +14696,18 @@
           "evaluated_at": "2026-09-17T03:05:31+09:00",
           "price": 28.285,
           "return_pct": 0.2481
+        },
+        "72h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 28.33,
+          "return_pct": 0.4076
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-17T03:05:31+09:00"
+      "learned_at": "2026-09-17T03:05:31+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-19T09:07:54+09:00",
+      "final_return_pct": 0.4076
     },
     {
       "id": "5e9afa3524a046ba",
@@ -15210,9 +15218,15 @@
           "evaluated_at": "2026-09-18T09:09:19+09:00",
           "price": 182.6,
           "return_pct": -0.194
+        },
+        "24h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 180.96,
+          "return_pct": -1.0904
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-19T09:07:54+09:00"
     },
     {
       "id": "74f530d5ac138abb",
@@ -15270,9 +15284,15 @@
           "evaluated_at": "2026-09-18T09:09:19+09:00",
           "price": 518.73,
           "return_pct": -0.2231
+        },
+        "24h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 532.5,
+          "return_pct": 2.4255
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-19T09:07:54+09:00"
     },
     {
       "id": "67502ca5c3ff96d0",
@@ -15330,9 +15350,15 @@
           "evaluated_at": "2026-09-18T09:09:19+09:00",
           "price": 155.2,
           "return_pct": -0.6358
+        },
+        "24h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 154.0989,
+          "return_pct": -1.3407
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-19T09:07:54+09:00"
     },
     {
       "id": "08fcb362780b9fc7",
@@ -15565,7 +15591,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 722.0999,
+          "return_pct": 0.712
+        }
+      },
       "learned_24h": false
     },
     {
@@ -15619,7 +15651,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 532.5,
+          "return_pct": 1.5156
+        }
+      },
       "learned_24h": false
     },
     {
@@ -15669,6 +15707,168 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-19T09:07:54+09:00",
+          "price": 401.8003,
+          "return_pct": -0.0994
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "3850c890dd3e7551",
+      "created_at": "2026-09-19T09:07:54+09:00",
+      "slot": "morning",
+      "ticker": "BTC-USD",
+      "asset": "비트코인",
+      "direction": "LONG",
+      "entry_price": 80923.49,
+      "entry_zone": [
+        80518.87255,
+        81328.10745
+      ],
+      "stop_price": 78074.506998,
+      "target_price": 86621.456003,
+      "score": 2.287,
+      "components": {
+        "momentum": 2.5737199809755302,
+        "regime": 0.0,
+        "news": 0.14470388076388888,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +2.57, regime +0.00, news +0.14, defensive -0.50",
+      "weights": {
+        "momentum": 1.0226,
+        "regime": 0.9805,
+        "news": 1.0452,
+        "defensive": 0.9932
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.57, 뉴스 +0.14 / 연결 뉴스: 🔔 오늘 코인시장은 왜 올랐나…규제 기대·비트코인 돌파·알트코인 순환... 📈 #우리기술투자 #한화투자증권 📝 #가상자산 #블록…",
+      "news_evidence": [
+        {
+          "title": "🔔 오늘 코인시장은 왜 올랐나…규제 기대·비트코인 돌파·알트코인 순환... 📈 #우리기술투자 #한화투자증권 📝 #가상자산 #블록…",
+          "urls": [
+            "https://dreago.kr/n/a37814",
+            "https://t.me/dreago_news_ch/306590"
+          ],
+          "last_seen": "2026-09-18T23:17:04+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "7027c28ac6fc72b0",
+      "created_at": "2026-09-19T09:07:54+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 532.5,
+      "entry_zone": [
+        529.8375,
+        535.1625
+      ],
+      "stop_price": 513.048323,
+      "target_price": 571.403354,
+      "score": 2.206,
+      "components": {
+        "momentum": 0.2632270518234865,
+        "regime": 0.0,
+        "news": 2.32840994620926,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.26, regime +0.00, news +2.33, defensive -0.50",
+      "weights": {
+        "momentum": 1.0226,
+        "regime": 0.9805,
+        "news": 1.0452,
+        "defensive": 0.9932
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.26, 뉴스 +2.33 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 앤스로픽·오픈AI, 20~30MW 소규모 데이터센터 계약 타진…추론 수요가 바꾼 조달 방식 2026.09.18",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/64081"
+          ],
+          "last_seen": "2026-09-18T12:34:06+00:00"
+        },
+        {
+          "title": "앤스로픽·오픈AI, 20~30MW 소규모 데이터센터 계약 타진…추론 수요가 바꾼 조달 방식 2026.09.18",
+          "urls": [
+            "https://cnbc.com/2026/09/18/anthropic-openai-small-ai-data-center-deals.html",
+            "https://t.me/aicorporateanalysisdeepdive/11240"
+          ],
+          "last_seen": "2026-09-18T12:12:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4eab1bbd6a3979f4",
+      "created_at": "2026-09-19T09:07:54+09:00",
+      "slot": "morning",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 154.0989,
+      "entry_zone": [
+        153.328405,
+        154.869394
+      ],
+      "stop_price": 147.456873,
+      "target_price": 167.382954,
+      "score": 1.911,
+      "components": {
+        "momentum": 1.3372346222919393,
+        "regime": 0.2,
+        "news": 0.33249632363425924,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.34, regime +0.20, news +0.33, defensive +0.00",
+      "weights": {
+        "momentum": 1.0226,
+        "regime": 0.9805,
+        "news": 1.0452,
+        "defensive": 0.9932
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +1.34, 뉴스 +0.33 / 연결 뉴스: 🔔 안전자산 채권 ETF도 수익률 '파란불'… \"매수는 OO 이후에\" 📝 #장기채ETF #금리상승 #국제유가 #인플레이션 재정적…; Saudi Aramco, 홍해 파이프라인 피격으로 유럽 정유사에 다음 달 원유 공급 전면 중단",
+      "news_evidence": [
+        {
+          "title": "🔔 안전자산 채권 ETF도 수익률 '파란불'… \"매수는 OO 이후에\" 📝 #장기채ETF #금리상승 #국제유가 #인플레이션 재정적…",
+          "urls": [
+            "https://dreago.kr/n/8a9c9b",
+            "https://t.me/dreago_news_ch/306591"
+          ],
+          "last_seen": "2026-09-18T23:25:28+00:00"
+        },
+        {
+          "title": "Saudi Aramco, 홍해 파이프라인 피격으로 유럽 정유사에 다음 달 원유 공급 전면 중단",
+          "urls": [
+            "https://bloomberg.com/news/articles/2026-09-18/saudis-tell-european-refiners-they-ll-get-no-crude-next-month",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-18T12:14:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
