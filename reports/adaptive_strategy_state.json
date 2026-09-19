@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "updated_at": "2026-09-19T09:07:54+09:00",
+  "updated_at": "2026-09-19T09:32:04+09:00",
   "weights": {
-    "momentum": 1.0226,
-    "regime": 0.9805,
-    "news": 1.0452,
-    "defensive": 0.9932
+    "momentum": 1.0246,
+    "regime": 0.9776,
+    "news": 1.0523,
+    "defensive": 0.9925
   },
   "stats": {
-    "evaluated_24h": 215,
-    "wins_24h": 83,
-    "losses_24h": 61,
+    "evaluated_24h": 218,
+    "wins_24h": 85,
+    "losses_24h": 62,
     "flat_24h": 71,
-    "average_return_24h_pct": 0.2777,
-    "average_win_24h_pct": 1.806,
-    "average_loss_24h_pct": -1.4862,
-    "payoff_ratio_24h": 1.2151,
+    "average_return_24h_pct": 0.279,
+    "average_win_24h_pct": 1.7829,
+    "average_loss_24h_pct": -1.4706,
+    "payoff_ratio_24h": 1.2124,
     "max_drawdown_24h_pct": 17.8842,
     "weight_adjustment_active": true,
     "weight_min_samples": 200,
@@ -23,9 +23,9 @@
   },
   "asset_stats": {
     "QQQ": {
-      "evaluated": 27,
-      "wins": 8,
-      "average_return_pct": 0.0818
+      "evaluated": 28,
+      "wins": 9,
+      "average_return_pct": 0.1103
     },
     "SOXX": {
       "evaluated": 29,
@@ -33,9 +33,9 @@
       "average_return_pct": -0.1189
     },
     "GLD": {
-      "evaluated": 43,
-      "wins": 18,
-      "average_return_pct": 0.2967
+      "evaluated": 44,
+      "wins": 19,
+      "average_return_pct": 0.3074
     },
     "EWY": {
       "evaluated": 59,
@@ -43,9 +43,9 @@
       "average_return_pct": 0.4078
     },
     "USO": {
-      "evaluated": 39,
+      "evaluated": 40,
       "wins": 17,
-      "average_return_pct": 0.5572
+      "average_return_pct": 0.5304
     },
     "BTC-USD": {
       "evaluated": 15,
@@ -59,15 +59,11 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-19T09:07:54+09:00",
-    "kind": "strategy_morning",
-    "slot": "morning",
+    "timestamp": "2026-09-19T09:32:04+09:00",
+    "kind": "us_close",
+    "slot": null,
     "regime": "mixed",
-    "regime_score": 0.135,
-    "recommendation_ids": [
-      "3850c890dd3e7551",
-      "7027c28ac6fc72b0",
-      "4eab1bbd6a3979f4"
-    ]
+    "regime_score": 0.14,
+    "recommendation_ids": []
   }
 }
