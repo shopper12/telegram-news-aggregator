@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-20T02:07:55+09:00",
+  "updated_at": "2026-09-20T09:03:55+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -14904,7 +14904,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-17T09:23:20+09:00",
@@ -14915,10 +14915,18 @@
           "evaluated_at": "2026-09-18T02:43:00+09:00",
           "price": 716.57,
           "return_pct": 1.062
+        },
+        "72h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 721.45,
+          "return_pct": 1.7503
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-18T02:43:00+09:00"
+      "learned_at": "2026-09-18T02:43:00+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-20T09:03:55+09:00",
+      "final_return_pct": 1.7503
     },
     {
       "id": "6bd9ba9ad532822f",
@@ -14971,7 +14979,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-17T09:23:20+09:00",
@@ -14982,10 +14990,18 @@
           "evaluated_at": "2026-09-18T02:43:00+09:00",
           "price": 182.955,
           "return_pct": 2.7024
+        },
+        "72h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 181.31,
+          "return_pct": 1.7789
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-18T02:43:00+09:00"
+      "learned_at": "2026-09-18T02:43:00+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-20T09:03:55+09:00",
+      "final_return_pct": 1.7789
     },
     {
       "id": "1d5af48ba077e75a",
@@ -15038,7 +15054,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-17T09:23:20+09:00",
@@ -15049,10 +15065,18 @@
           "evaluated_at": "2026-09-18T02:43:00+09:00",
           "price": 399.63,
           "return_pct": 0.3364
+        },
+        "72h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 401.17,
+          "return_pct": 0.7231
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-18T02:43:00+09:00"
+      "learned_at": "2026-09-18T02:43:00+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-20T09:03:55+09:00",
+      "final_return_pct": 0.7231
     },
     {
       "id": "fcfbf225e72f9a49",
@@ -15622,9 +15646,15 @@
           "evaluated_at": "2026-09-19T09:07:54+09:00",
           "price": 722.0999,
           "return_pct": 0.712
+        },
+        "24h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 721.45,
+          "return_pct": 0.6213
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-20T09:03:55+09:00"
     },
     {
       "id": "bb93d2757b30dfcb",
@@ -15682,9 +15712,15 @@
           "evaluated_at": "2026-09-19T09:07:54+09:00",
           "price": 532.5,
           "return_pct": 1.5156
+        },
+        "24h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 533.07,
+          "return_pct": 1.6242
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-20T09:03:55+09:00"
     },
     {
       "id": "889d96a77696f321",
@@ -15742,9 +15778,15 @@
           "evaluated_at": "2026-09-19T09:07:54+09:00",
           "price": 401.8003,
           "return_pct": -0.0994
+        },
+        "24h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 401.17,
+          "return_pct": -0.2561
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-20T09:03:55+09:00"
     },
     {
       "id": "3850c890dd3e7551",
@@ -15972,7 +16014,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 533.07,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -16020,6 +16068,67 @@
             "https://t.me/aicorporateanalysisdeepdive/11247"
           ],
           "last_seen": "2026-09-19T12:06:01+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-20T09:03:55+09:00",
+          "price": 721.45,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "80fa2b00d4a27018",
+      "created_at": "2026-09-20T09:03:55+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 533.07,
+      "entry_zone": [
+        530.40465,
+        535.73535
+      ],
+      "stop_price": 512.955239,
+      "target_price": 573.299522,
+      "score": 2.105,
+      "components": {
+        "momentum": 0.9538703594121113,
+        "regime": 0.0,
+        "news": 1.5303372523441783,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.95, regime +0.00, news +1.53, defensive -0.50",
+      "weights": {
+        "momentum": 1.0266,
+        "regime": 0.9747,
+        "news": 1.0597,
+        "defensive": 0.9918
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.95, 뉴스 +1.53 / 연결 뉴스: 메모리 공급부족 2030년까지 지속 전망, 마이크론 실적 발표 앞두고 부각 2026.09.19; DC향 엔진·FDC 확산 속 조선주, 미중정상회담이 가를 단기 변수 메리츠증권 배기연 핵심 메리츠증권은 제네락홀딩스-아마존 간 …",
+      "news_evidence": [
+        {
+          "title": "메모리 공급부족 2030년까지 지속 전망, 마이크론 실적 발표 앞두고 부각 2026.09.19",
+          "urls": [
+            "https://finance.biggo.com/news/89711ae7-5af8-41ae-a4ac-1d02ff82f7f4",
+            "https://t.me/aicorporateanalysisdeepdive/11264"
+          ],
+          "last_seen": "2026-09-19T23:20:15+00:00"
+        },
+        {
+          "title": "DC향 엔진·FDC 확산 속 조선주, 미중정상회담이 가를 단기 변수 메리츠증권 배기연 핵심 메리츠증권은 제네락홀딩스-아마존 간 …",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/11243",
+            "https://zrr.kr/UZkht0"
+          ],
+          "last_seen": "2026-09-19T11:53:10+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
