@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-22T03:24:23+09:00",
+  "updated_at": "2026-09-22T03:52:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -16514,6 +16514,116 @@
           "return_pct": 0.962
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "849aaa5e1c2885a0",
+      "created_at": "2026-09-22T03:52:32+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 558.0,
+      "entry_zone": [
+        555.21,
+        560.79
+      ],
+      "stop_price": 535.127915,
+      "target_price": 603.744171,
+      "score": 10.179,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 3.773195979334723,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +3.77, defensive +0.00",
+      "weights": {
+        "momentum": 1.0356,
+        "regime": 0.9631,
+        "news": 1.0893,
+        "defensive": 0.9884
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +3.77 / 연결 뉴스: ✅; [키움증권 미국 전략/주식 김승혁] 미국 주식 Weekly: 큠틴 아메리카 ▶ 09월 14일 ~ 09월 18일 Review -S…",
+      "news_evidence": [
+        {
+          "title": "✅",
+          "urls": [
+            "https://n.news.naver.com/mnews/article/015/0005334768?sid=001",
+            "https://t.me/c/1208429502/125513"
+          ],
+          "last_seen": "2026-09-21T09:07:08+00:00"
+        },
+        {
+          "title": "[키움증권 미국 전략/주식 김승혁] 미국 주식 Weekly: 큠틴 아메리카 ▶ 09월 14일 ~ 09월 18일 Review -S…",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1679",
+            "https://invest.kiwoom.com/inv/no/3176"
+          ],
+          "last_seen": "2026-09-21T08:14:03+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "daaf2b0184b0caa8",
+      "created_at": "2026-09-22T03:52:32+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 189.2,
+      "entry_zone": [
+        188.254,
+        190.146
+      ],
+      "stop_price": 180.324783,
+      "target_price": 206.950434,
+      "score": 8.266,
+      "components": {
+        "momentum": 3.02779301714033,
+        "regime": 2.0,
+        "news": 2.9413037733796075,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.03, regime +2.00, news +2.94, defensive +0.00",
+      "weights": {
+        "momentum": 1.0356,
+        "regime": 0.9631,
+        "news": 1.0893,
+        "defensive": 0.9884
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +3.03, 뉴스 +2.94 / 연결 뉴스: [키움증권 미국 전략/주식 김승혁] 미국 주식 Weekly: 큠틴 아메리카 ▶ 09월 14일 ~ 09월 18일 Review -S…; 메모리 쟁탈전, 관련주 '장기 계약",
+      "news_evidence": [
+        {
+          "title": "[키움증권 미국 전략/주식 김승혁] 미국 주식 Weekly: 큠틴 아메리카 ▶ 09월 14일 ~ 09월 18일 Review -S…",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1679",
+            "https://invest.kiwoom.com/inv/no/3176"
+          ],
+          "last_seen": "2026-09-21T08:14:03+00:00"
+        },
+        {
+          "title": "메모리 쟁탈전, 관련주 '장기 계약",
+          "urls": [
+            "https://ctee.com.tw/news/20260921700188-430501",
+            "https://t.me/YeouidoStory2/117622"
+          ],
+          "last_seen": "2026-09-20T23:22:01+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
