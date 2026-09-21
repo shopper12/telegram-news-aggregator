@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-21T02:23:14+09:00",
+  "updated_at": "2026-09-21T09:11:15+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -15260,7 +15260,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-18T09:09:19+09:00",
@@ -15271,10 +15271,18 @@
           "evaluated_at": "2026-09-19T09:07:54+09:00",
           "price": 180.96,
           "return_pct": -1.0904
+        },
+        "72h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 181.31,
+          "return_pct": -0.8991
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-19T09:07:54+09:00"
+      "learned_at": "2026-09-19T09:07:54+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-21T09:11:15+09:00",
+      "final_return_pct": -0.8991
     },
     {
       "id": "74f530d5ac138abb",
@@ -15326,7 +15334,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-18T09:09:19+09:00",
@@ -15337,10 +15345,18 @@
           "evaluated_at": "2026-09-19T09:07:54+09:00",
           "price": 532.5,
           "return_pct": 2.4255
+        },
+        "72h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 533.07,
+          "return_pct": 2.5352
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-19T09:07:54+09:00"
+      "learned_at": "2026-09-19T09:07:54+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-21T09:11:15+09:00",
+      "final_return_pct": 2.5352
     },
     {
       "id": "67502ca5c3ff96d0",
@@ -15392,7 +15408,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-18T09:09:19+09:00",
@@ -15403,10 +15419,18 @@
           "evaluated_at": "2026-09-19T09:07:54+09:00",
           "price": 154.0989,
           "return_pct": -1.3407
+        },
+        "72h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 153.82,
+          "return_pct": -1.5193
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-19T09:07:54+09:00"
+      "learned_at": "2026-09-19T09:07:54+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-21T09:11:15+09:00",
+      "final_return_pct": -1.5193
     },
     {
       "id": "08fcb362780b9fc7",
@@ -15458,7 +15482,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-18T17:02:25+09:00",
@@ -15469,10 +15493,18 @@
           "evaluated_at": "2026-09-19T09:32:04+09:00",
           "price": 401.5,
           "return_pct": 0.768
+        },
+        "72h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 401.17,
+          "return_pct": 0.6852
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-19T09:32:04+09:00"
+      "learned_at": "2026-09-19T09:32:04+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-21T09:11:15+09:00",
+      "final_return_pct": 0.6852
     },
     {
       "id": "fe0151124a229a54",
@@ -15524,7 +15556,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-18T17:02:25+09:00",
@@ -15535,10 +15567,18 @@
           "evaluated_at": "2026-09-19T09:32:04+09:00",
           "price": 722.0999,
           "return_pct": 0.8806
+        },
+        "72h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 721.45,
+          "return_pct": 0.7898
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-19T09:32:04+09:00"
+      "learned_at": "2026-09-19T09:32:04+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-21T09:11:15+09:00",
+      "final_return_pct": 0.7898
     },
     {
       "id": "9a9452131d677bc0",
@@ -15590,7 +15630,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-18T17:02:25+09:00",
@@ -15601,10 +15641,18 @@
           "evaluated_at": "2026-09-19T09:32:04+09:00",
           "price": 154.4,
           "return_pct": -0.5155
+        },
+        "72h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 153.82,
+          "return_pct": -0.8892
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-19T09:32:04+09:00"
+      "learned_at": "2026-09-19T09:32:04+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-21T09:11:15+09:00",
+      "final_return_pct": -0.8892
     },
     {
       "id": "017aaecc4544301f",
@@ -16187,9 +16235,15 @@
           "evaluated_at": "2026-09-20T17:47:01+09:00",
           "price": 533.07,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 533.07,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-21T09:11:15+09:00"
     },
     {
       "id": "116219e999d3d491",
@@ -16243,7 +16297,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 533.07,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -16282,6 +16342,122 @@
             "https://t.me/Goboclub/23902"
           ],
           "last_seen": "2026-09-20T03:03:34+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-21T09:11:15+09:00",
+          "price": 81490.0,
+          "return_pct": 0.2144
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "53d4dd0a498017e6",
+      "created_at": "2026-09-21T09:11:15+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 533.07,
+      "entry_zone": [
+        530.40465,
+        535.73535
+      ],
+      "stop_price": 512.955239,
+      "target_price": 573.299522,
+      "score": 4.818,
+      "components": {
+        "momentum": 0.9538703594121113,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.95, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.0332,
+        "regime": 0.966,
+        "news": 1.0819,
+        "defensive": 0.9894
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.95, 뉴스 +4.00 / 연결 뉴스: 메모리 쟁탈전, 관련주 '장기 계약; 삼성전자 골드만 Buy·CL, TP 보통주 49만",
+      "news_evidence": [
+        {
+          "title": "메모리 쟁탈전, 관련주 '장기 계약",
+          "urls": [
+            "https://ctee.com.tw/news/20260921700188-430501",
+            "https://t.me/YeouidoStory2/117622"
+          ],
+          "last_seen": "2026-09-20T23:22:01+00:00"
+        },
+        {
+          "title": "삼성전자 골드만 Buy·CL, TP 보통주 49만",
+          "urls": [
+            "https://t.me/Yeouido_Lab/37798",
+            "https://t.me/c/1208429502/125426"
+          ],
+          "last_seen": "2026-09-20T23:59:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "d2ece4e0386f74c4",
+      "created_at": "2026-09-21T09:11:15+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 721.45,
+      "entry_zone": [
+        717.84275,
+        725.05725
+      ],
+      "stop_price": 707.021,
+      "target_price": 750.308,
+      "score": 4.314,
+      "components": {
+        "momentum": 0.4653365584624259,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +0.47, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.0332,
+        "regime": 0.966,
+        "news": 1.0819,
+        "defensive": 0.9894
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.47, 뉴스 +4.00 / 연결 뉴스: 메모리 쟁탈전, 관련주 '장기 계약; 삼성전자 골드만 Buy·CL, TP 보통주 49만",
+      "news_evidence": [
+        {
+          "title": "메모리 쟁탈전, 관련주 '장기 계약",
+          "urls": [
+            "https://ctee.com.tw/news/20260921700188-430501",
+            "https://t.me/YeouidoStory2/117622"
+          ],
+          "last_seen": "2026-09-20T23:22:01+00:00"
+        },
+        {
+          "title": "삼성전자 골드만 Buy·CL, TP 보통주 49만",
+          "urls": [
+            "https://t.me/Yeouido_Lab/37798",
+            "https://t.me/c/1208429502/125426"
+          ],
+          "last_seen": "2026-09-20T23:59:42+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
