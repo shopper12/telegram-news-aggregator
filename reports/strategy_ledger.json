@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-22T04:13:32+09:00",
+  "updated_at": "2026-09-22T09:45:39+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -15919,7 +15919,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-19T16:48:06+09:00",
@@ -15930,10 +15930,18 @@
           "evaluated_at": "2026-09-20T09:33:19+09:00",
           "price": 81265.03,
           "return_pct": 0.4221
+        },
+        "72h": {
+          "evaluated_at": "2026-09-22T09:45:39+09:00",
+          "price": 86317.29,
+          "return_pct": 6.6653
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-20T09:33:19+09:00"
+      "learned_at": "2026-09-20T09:33:19+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-22T09:45:39+09:00",
+      "final_return_pct": 6.6653
     },
     {
       "id": "7027c28ac6fc72b0",
@@ -15985,7 +15993,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-19T16:48:06+09:00",
@@ -15996,10 +16004,18 @@
           "evaluated_at": "2026-09-20T09:33:19+09:00",
           "price": 533.07,
           "return_pct": 0.107
+        },
+        "72h": {
+          "evaluated_at": "2026-09-22T09:45:39+09:00",
+          "price": 562.6803,
+          "return_pct": 5.6677
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-20T09:33:19+09:00"
+      "learned_at": "2026-09-20T09:33:19+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-22T09:45:39+09:00",
+      "final_return_pct": 5.6677
     },
     {
       "id": "4eab1bbd6a3979f4",
@@ -16052,7 +16068,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-19T16:48:06+09:00",
@@ -16063,10 +16079,18 @@
           "evaluated_at": "2026-09-20T09:33:19+09:00",
           "price": 153.82,
           "return_pct": -0.181
+        },
+        "72h": {
+          "evaluated_at": "2026-09-22T09:45:39+09:00",
+          "price": 148.38,
+          "return_pct": -3.7112
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-20T09:33:19+09:00"
+      "learned_at": "2026-09-20T09:33:19+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-22T09:45:39+09:00",
+      "final_return_pct": -3.7112
     },
     {
       "id": "73fb81b6ca5098ee",
@@ -16451,9 +16475,15 @@
           "evaluated_at": "2026-09-21T18:15:28+09:00",
           "price": 545.49,
           "return_pct": 2.3299
+        },
+        "24h": {
+          "evaluated_at": "2026-09-22T09:45:39+09:00",
+          "price": 562.6803,
+          "return_pct": 5.5547
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-22T09:45:39+09:00"
     },
     {
       "id": "d2ece4e0386f74c4",
@@ -16512,9 +16542,15 @@
           "evaluated_at": "2026-09-21T18:15:28+09:00",
           "price": 728.39,
           "return_pct": 0.962
+        },
+        "24h": {
+          "evaluated_at": "2026-09-22T09:45:39+09:00",
+          "price": 742.9869,
+          "return_pct": 2.9852
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-22T09:45:39+09:00"
     },
     {
       "id": "849aaa5e1c2885a0",
@@ -16619,6 +16655,170 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "15f2ce36ec6b3252",
+      "created_at": "2026-09-22T09:45:39+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 562.6803,
+      "entry_zone": [
+        559.866898,
+        565.493701
+      ],
+      "stop_price": 541.187869,
+      "target_price": 605.665162,
+      "score": 7.055,
+      "components": {
+        "momentum": 2.567763980152255,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.57, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0381,
+        "regime": 0.9602,
+        "news": 1.0973,
+        "defensive": 0.9872
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.57, 뉴스 +4.00 / 연결 뉴스: 대덕전자, Tesla·Marvell·Renesas와 장기 공급 계약 협상 임박; [교보증권 리서치센터] *교보증권 Corporate Day 미팅노트 엠케이전자",
+      "news_evidence": [
+        {
+          "title": "대덕전자, Tesla·Marvell·Renesas와 장기 공급 계약 협상 임박",
+          "urls": [
+            "https://digitimes.com/news/a20260921VL223/capacity-doosan-ccl-demand-substrate.html",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-22T00:27:38+00:00"
+        },
+        {
+          "title": "[교보증권 리서치센터] *교보증권 Corporate Day 미팅노트 엠케이전자",
+          "urls": [
+            "https://iprovest.com/upload/research/report/cominf/20260922/20260922_B_20250069_94.pdf",
+            "https://t.me/corevalue/47115"
+          ],
+          "last_seen": "2026-09-22T00:16:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "857fd2d12f21122a",
+      "created_at": "2026-09-22T09:45:39+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 742.9869,
+      "entry_zone": [
+        739.271965,
+        746.701834
+      ],
+      "stop_price": 728.127162,
+      "target_price": 772.706376,
+      "score": 5.47,
+      "components": {
+        "momentum": 1.0410153270351852,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.04, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0381,
+        "regime": 0.9602,
+        "news": 1.0973,
+        "defensive": 0.9872
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.04, 뉴스 +4.00 / 연결 뉴스: 대덕전자, Tesla·Marvell·Renesas와 장기 공급 계약 협상 임박; [교보증권 리서치센터] *교보증권 Corporate Day 미팅노트 엠케이전자",
+      "news_evidence": [
+        {
+          "title": "대덕전자, Tesla·Marvell·Renesas와 장기 공급 계약 협상 임박",
+          "urls": [
+            "https://digitimes.com/news/a20260921VL223/capacity-doosan-ccl-demand-substrate.html",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-22T00:27:38+00:00"
+        },
+        {
+          "title": "[교보증권 리서치센터] *교보증권 Corporate Day 미팅노트 엠케이전자",
+          "urls": [
+            "https://iprovest.com/upload/research/report/cominf/20260922/20260922_B_20250069_94.pdf",
+            "https://t.me/corevalue/47115"
+          ],
+          "last_seen": "2026-09-22T00:16:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "5e753d2f61369435",
+      "created_at": "2026-09-22T09:45:39+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 400.36,
+      "entry_zone": [
+        398.3582,
+        402.3618
+      ],
+      "stop_price": 390.64604,
+      "target_price": 419.78792,
+      "score": 1.792,
+      "components": {
+        "momentum": 0.4704142229126197,
+        "regime": 0.2,
+        "news": 0.383624037488426,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +0.47, regime +0.20, news +0.38, defensive +0.70",
+      "weights": {
+        "momentum": 1.0381,
+        "regime": 0.9602,
+        "news": 1.0973,
+        "defensive": 0.9872
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.47, 뉴스 +0.38 / 연결 뉴스: [키움증권 미국 전략/주식 김승혁] 미국 주식 Weekly: 큠틴 아메리카 ▶ 09월 14일 ~ 09월 18일 Review -S…; 모건스탠리의 마이클 윌슨 전략팀은 에너지 가격의 추가 상승과 채권시장 변동성 확대가 미국 증시에 단기적인 부담으로 작용할 수 있…",
+      "news_evidence": [
+        {
+          "title": "[키움증권 미국 전략/주식 김승혁] 미국 주식 Weekly: 큠틴 아메리카 ▶ 09월 14일 ~ 09월 18일 Review -S…",
+          "urls": [
+            "https://bbn.kiwoom.com/rfCC1679",
+            "https://invest.kiwoom.com/inv/no/3176"
+          ],
+          "last_seen": "2026-09-21T08:14:03+00:00"
+        },
+        {
+          "title": "모건스탠리의 마이클 윌슨 전략팀은 에너지 가격의 추가 상승과 채권시장 변동성 확대가 미국 증시에 단기적인 부담으로 작용할 수 있…",
+          "urls": [
+            "https://t.me/insidertracking/64285"
+          ],
+          "last_seen": "2026-09-21T08:59:45+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
