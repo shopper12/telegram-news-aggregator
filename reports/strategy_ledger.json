@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-23T03:02:34+09:00",
+  "updated_at": "2026-09-23T09:21:00+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -16293,7 +16293,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-20T17:47:01+09:00",
@@ -16304,10 +16304,18 @@
           "evaluated_at": "2026-09-21T09:11:15+09:00",
           "price": 533.07,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-23T09:21:00+09:00",
+          "price": 573.7,
+          "return_pct": 7.6219
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-21T09:11:15+09:00"
+      "learned_at": "2026-09-21T09:11:15+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-23T09:21:00+09:00",
+      "final_return_pct": 7.6219
     },
     {
       "id": "116219e999d3d491",
@@ -16360,7 +16368,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-21T09:11:15+09:00",
@@ -16374,7 +16382,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-22T03:24:23+09:00"
+      "learned_at": "2026-09-22T03:24:23+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-23T09:21:00+09:00",
+      "final_return_pct": 7.6219
     },
     {
       "id": "fbda2a032a27a424",
@@ -16485,7 +16496,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-21T18:15:28+09:00",
@@ -16499,7 +16510,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-22T09:45:39+09:00"
+      "learned_at": "2026-09-22T09:45:39+09:00",
+      "outcome": "target_observed",
+      "closed_at": "2026-09-23T09:21:00+09:00",
+      "final_return_pct": 7.6219
     },
     {
       "id": "d2ece4e0386f74c4",
@@ -16625,9 +16639,15 @@
           "evaluated_at": "2026-09-22T10:17:09+09:00",
           "price": 562.6803,
           "return_pct": 0.8388
+        },
+        "24h": {
+          "evaluated_at": "2026-09-23T09:21:00+09:00",
+          "price": 573.7,
+          "return_pct": 2.8136
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-23T09:21:00+09:00"
     },
     {
       "id": "daaf2b0184b0caa8",
@@ -16686,9 +16706,15 @@
           "evaluated_at": "2026-09-22T10:17:09+09:00",
           "price": 189.65,
           "return_pct": 0.2378
+        },
+        "24h": {
+          "evaluated_at": "2026-09-23T09:21:00+09:00",
+          "price": 192.96,
+          "return_pct": 1.9873
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-23T09:21:00+09:00"
     },
     {
       "id": "15f2ce36ec6b3252",
@@ -16923,7 +16949,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-23T09:21:00+09:00",
+          "price": 573.7,
+          "return_pct": 1.0444
+        }
+      },
       "learned_24h": false
     },
     {
@@ -16973,6 +17005,122 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-23T09:21:00+09:00",
+          "price": 192.96,
+          "return_pct": 1.0685
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "940380adef880094",
+      "created_at": "2026-09-23T09:21:00+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 573.7,
+      "entry_zone": [
+        570.8315,
+        576.5685
+      ],
+      "stop_price": 550.296367,
+      "target_price": 620.507266,
+      "score": 10.503,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0411,
+        "regime": 0.958,
+        "news": 1.1057,
+        "defensive": 0.986
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +4.00 / 연결 뉴스: [메리츠증권 전기전자/IT부품 양승수] 삼성전기(009150): CPU의 아래에는 ABF, 옆에는 MLCC ▶ 3Q26 Prev…; 파두: 뜨거워지는 시장 유진투자증권 핵심 손인준 애널리스트",
+      "news_evidence": [
+        {
+          "title": "[메리츠증권 전기전자/IT부품 양승수] 삼성전기(009150): CPU의 아래에는 ABF, 옆에는 MLCC ▶ 3Q26 Prev…",
+          "urls": [
+            "https://buly.kr/DlMFePg",
+            "https://t.me/Yeouido_Lab/37839"
+          ],
+          "last_seen": "2026-09-22T23:51:55+00:00"
+        },
+        {
+          "title": "파두: 뜨거워지는 시장 유진투자증권 핵심 손인준 애널리스트",
+          "urls": [
+            "https://bit.ly/4hiwBhc",
+            "https://t.me/aicorporateanalysisdeepdive/11424"
+          ],
+          "last_seen": "2026-09-22T23:17:36+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "90d4123c2c059b9d",
+      "created_at": "2026-09-23T09:21:00+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 192.96,
+      "entry_zone": [
+        191.9952,
+        193.9248
+      ],
+      "stop_price": 183.934041,
+      "target_price": 211.011917,
+      "score": 9.759,
+      "components": {
+        "momentum": 3.2852917782756292,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +3.29, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0411,
+        "regime": 0.958,
+        "news": 1.1057,
+        "defensive": 0.986
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +3.29, 뉴스 +4.00 / 연결 뉴스: [메리츠증권 전기전자/IT부품 양승수] 삼성전기(009150): CPU의 아래에는 ABF, 옆에는 MLCC ▶ 3Q26 Prev…; 파두: 뜨거워지는 시장 유진투자증권 핵심 손인준 애널리스트",
+      "news_evidence": [
+        {
+          "title": "[메리츠증권 전기전자/IT부품 양승수] 삼성전기(009150): CPU의 아래에는 ABF, 옆에는 MLCC ▶ 3Q26 Prev…",
+          "urls": [
+            "https://buly.kr/DlMFePg",
+            "https://t.me/Yeouido_Lab/37839"
+          ],
+          "last_seen": "2026-09-22T23:51:55+00:00"
+        },
+        {
+          "title": "파두: 뜨거워지는 시장 유진투자증권 핵심 손인준 애널리스트",
+          "urls": [
+            "https://bit.ly/4hiwBhc",
+            "https://t.me/aicorporateanalysisdeepdive/11424"
+          ],
+          "last_seen": "2026-09-22T23:17:36+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
