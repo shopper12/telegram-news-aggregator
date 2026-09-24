@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-24T03:21:53+09:00",
+  "updated_at": "2026-09-24T09:23:43+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -16574,7 +16574,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-21T18:15:28+09:00",
@@ -16585,10 +16585,18 @@
           "evaluated_at": "2026-09-22T09:45:39+09:00",
           "price": 742.9869,
           "return_pct": 2.9852
+        },
+        "72h": {
+          "evaluated_at": "2026-09-24T09:23:43+09:00",
+          "price": 740.8,
+          "return_pct": 2.6821
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-22T09:45:39+09:00"
+      "learned_at": "2026-09-22T09:45:39+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-24T09:23:43+09:00",
+      "final_return_pct": 2.6821
     },
     {
       "id": "849aaa5e1c2885a0",
@@ -17113,9 +17121,15 @@
           "evaluated_at": "2026-09-23T17:49:38+09:00",
           "price": 569.2,
           "return_pct": -0.7844
+        },
+        "24h": {
+          "evaluated_at": "2026-09-24T09:23:43+09:00",
+          "price": 564.92,
+          "return_pct": -1.5304
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-24T09:23:43+09:00"
     },
     {
       "id": "90d4123c2c059b9d",
@@ -17174,9 +17188,15 @@
           "evaluated_at": "2026-09-23T17:49:38+09:00",
           "price": 188.22,
           "return_pct": -2.4565
+        },
+        "24h": {
+          "evaluated_at": "2026-09-24T09:23:43+09:00",
+          "price": 185.85,
+          "return_pct": -3.6847
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-24T09:23:43+09:00"
     },
     {
       "id": "0e51a840ab12bc70",
@@ -17229,7 +17249,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-24T09:23:43+09:00",
+          "price": 564.92,
+          "return_pct": 0.1773
+        }
+      },
       "learned_24h": false
     },
     {
@@ -17283,7 +17309,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-24T09:23:43+09:00",
+          "price": 185.85,
+          "return_pct": -0.2362
+        }
+      },
       "learned_24h": false
     },
     {
@@ -17317,6 +17349,118 @@
       "reason": "글로벌 레짐 +0.20, 모멘텀 +0.66, 뉴스 +0.00",
       "news_evidence": [],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-24T09:23:43+09:00",
+          "price": 28.78,
+          "return_pct": 0.5239
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "a739882633120882",
+      "created_at": "2026-09-24T09:23:43+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 564.92,
+      "entry_zone": [
+        562.0954,
+        567.7446
+      ],
+      "stop_price": 542.182546,
+      "target_price": 610.394909,
+      "score": 8.177,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 2.275633862103704,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +2.28, defensive -0.50",
+      "weights": {
+        "momentum": 1.0492,
+        "regime": 0.9497,
+        "news": 1.1303,
+        "defensive": 0.9824
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +2.28 / 연결 뉴스: 메타가 Connect 행사에서 스마트 글래스 라인업을 대폭 개편. • 레이밴 메타 오디오: 메타 최초의 카메라 없는 레이밴으로 …; 📌 09/23 미 증시 프리마켓 노트 오늘 밤 미중 정상회담 앞두고 선물 소폭 조정 미-이란 협상은 진전과 한계가 동시에 확인,…",
+      "news_evidence": [
+        {
+          "title": "메타가 Connect 행사에서 스마트 글래스 라인업을 대폭 개편. • 레이밴 메타 오디오: 메타 최초의 카메라 없는 레이밴으로 …",
+          "urls": [
+            "https://t.me/insidertracking/64515"
+          ],
+          "last_seen": "2026-09-23T23:36:30+00:00"
+        },
+        {
+          "title": "📌 09/23 미 증시 프리마켓 노트 오늘 밤 미중 정상회담 앞두고 선물 소폭 조정 미-이란 협상은 진전과 한계가 동시에 확인,…",
+          "urls": [
+            "https://t.me/goldilbong/16243"
+          ],
+          "last_seen": "2026-09-23T13:26:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4863a6ffa357a69a",
+      "created_at": "2026-09-24T09:23:43+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 185.85,
+      "entry_zone": [
+        184.92075,
+        186.77925
+      ],
+      "stop_price": 177.341933,
+      "target_price": 202.866134,
+      "score": 7.691,
+      "components": {
+        "momentum": 4.0,
+        "regime": 2.0,
+        "news": 1.8458203266787039,
+        "defensive": -0.5
+      },
+      "component_text": "momentum +4.00, regime +2.00, news +1.85, defensive -0.50",
+      "weights": {
+        "momentum": 1.0492,
+        "regime": 0.9497,
+        "news": 1.1303,
+        "defensive": 0.9824
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +4.00, 뉴스 +1.85 / 연결 뉴스: 메타가 Connect 행사에서 스마트 글래스 라인업을 대폭 개편. • 레이밴 메타 오디오: 메타 최초의 카메라 없는 레이밴으로 …; 📌 09/23 미 증시 프리마켓 노트 오늘 밤 미중 정상회담 앞두고 선물 소폭 조정 미-이란 협상은 진전과 한계가 동시에 확인,…",
+      "news_evidence": [
+        {
+          "title": "메타가 Connect 행사에서 스마트 글래스 라인업을 대폭 개편. • 레이밴 메타 오디오: 메타 최초의 카메라 없는 레이밴으로 …",
+          "urls": [
+            "https://t.me/insidertracking/64515"
+          ],
+          "last_seen": "2026-09-23T23:36:30+00:00"
+        },
+        {
+          "title": "📌 09/23 미 증시 프리마켓 노트 오늘 밤 미중 정상회담 앞두고 선물 소폭 조정 미-이란 협상은 진전과 한계가 동시에 확인,…",
+          "urls": [
+            "https://t.me/goldilbong/16243"
+          ],
+          "last_seen": "2026-09-23T13:26:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
