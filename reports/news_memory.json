@@ -1,7 +1,381 @@
 {
   "version": 2,
-  "updated_at": "2026-09-24T17:07:21+09:00",
+  "updated_at": "2026-09-24T22:42:45+09:00",
   "events": [
+    {
+      "signature": "09c4d23f3b6f7e6c1f3022d5fdd9c55a8afc8bd6",
+      "title": "빠르게 반등해서 양봉+상승불을 켠 분야는 CPU(인텔/AMD)쪽입니다",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "amd"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/goldilbong/16253"
+      ],
+      "materiality": 6,
+      "sentiment": 2,
+      "first_seen": "2026-09-24T13:40:12+00:00",
+      "last_seen": "2026-09-24T13:40:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bcdf07d7563af475e4596f544c512f8e4d7d2dca",
+      "title": "트럼프 대통령 \"초지능이 주요 의제\"…미·중 정상회담 개막 2026.09.24",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "바이오"
+      ],
+      "keywords": [
+        "ai",
+        "관세",
+        "규제",
+        "금리",
+        "허가"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://asia.nikkei.com/spotlight/trump-xi-summit/trump-xi-summit-live-us-president-says-super-intelligence-will-be-big-topic",
+        "https://t.me/aicorporateanalysisdeepdive/11469"
+      ],
+      "materiality": 24,
+      "sentiment": 0,
+      "first_seen": "2026-09-24T13:39:55+00:00",
+      "last_seen": "2026-09-24T13:39:55+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ca038bf4ad9366a5db96e6d4f05910a05bf7b651",
+      "title": "나스닥선물 38.2%되돌림 구간에서 반등시도중 아직까진 뭐 문제없다고 보여짐 충분히 조정도 나와줄만한 구간이였고 조정폭도 깊진않음",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/goldilbong/16252"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-09-24T13:39:35+00:00",
+      "last_seen": "2026-09-24T13:39:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-09-24T13:34:39+00:00",
+      "count": 1109,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
+    {
+      "signature": "f2eda7f059d832a80bb03ae62a04af1837bc1c4e",
+      "title": "인도, 외국인 투자자의 실물인도형 비농업 상품 파생상품 거래 허용 예정 https://m.stock.naver.com/inves…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2752034",
+        "https://t.me/moneythemestock/64421"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-09-24T13:34:20+00:00",
+      "last_seen": "2026-09-24T13:34:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3021792490185d365ce5f46dfd1497b78bd8a29f",
+      "title": "퀄컴, 애플과 글로벌 특허 라이선스 계약 갱신 — 2027년 4월 발효 2026.09.24",
+      "sectors": [
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "애플"
+      ],
+      "tickers": [
+        "NNBR",
+        "NWS",
+        "NWSA",
+        "QCOM",
+        "QTL"
+      ],
+      "source_urls": [
+        "https://qualcomm.com/news/releases/2026/09/qualcomm-announces-renewal-of-global-patent-license-agreement-wi",
+        "https://t.me/aicorporateanalysisdeepdive/11468"
+      ],
+      "materiality": 24,
+      "sentiment": 1,
+      "first_seen": "2026-09-24T13:33:37+00:00",
+      "last_seen": "2026-09-24T13:33:37+00:00",
+      "count": 1
+    },
+    {
+      "signature": "248775ea308d86e24e740c50a38e4da23e80112d",
+      "title": "삼성물산, GE버노바·히타치·SGE와 유럽 SMR 배치 컨소시엄 서명 2026.09.23",
+      "sectors": [
+        "바이오",
+        "원전"
+      ],
+      "keywords": [
+        "smr",
+        "원자로",
+        "원전",
+        "허가"
+      ],
+      "tickers": [
+        "ATI",
+        "NNBR"
+      ],
+      "source_urls": [
+        "https://state.gov/releases/office-of-the-spokesperson/2026/09/the-united-states-announces-civil-nuclear-initiatives-on-the-margins-of-the-united-nations-general-assembly",
+        "https://t.me/aicorporateanalysisdeepdive/11467"
+      ],
+      "materiality": 21,
+      "sentiment": 1,
+      "first_seen": "2026-09-24T13:33:23+00:00",
+      "last_seen": "2026-09-24T13:33:23+00:00",
+      "count": 1
+    },
+    {
+      "signature": "64dd19e485be91724aff7a82e07c7d96aeb20c5f",
+      "title": "TSMC, 2027년 1월부터 웨이퍼 가격 3~6% 인상 확정 2026.09.24",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "tsmc",
+        "반도체",
+        "삼성전자",
+        "애플",
+        "엔비디아",
+        "파운드리"
+      ],
+      "tickers": [
+        "005930.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://digitimes.com/news/a20260924PD214/tsmc-wafer-price-2027-demand.html",
+        "https://t.me/aicorporateanalysisdeepdive/11466"
+      ],
+      "materiality": 22,
+      "sentiment": 0,
+      "first_seen": "2026-09-24T13:33:09+00:00",
+      "last_seen": "2026-09-24T13:33:09+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ac514f4343ed28a971955d475bf89c0a288c4411",
+      "title": "진양곤 HLB그룹 이사회 의장이 담관암 신약 '리픽투(성분 리라푸그라티닙)'의 FDA 승인 소식을 전하며 꺼낸 말입니다. 진 의장은 24일 유튜브 영상에서 신약 개발 과정을 '20년간의 여정'으로 돌아보며 임직원과 ",
+      "sectors": [
+        "바이오"
+      ],
+      "keywords": [
+        "fda",
+        "신약",
+        "허가"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://t.me/Yeouido_Lab/37858",
+        "https://thebionews.net/news/articleView.html?idxno=28453"
+      ],
+      "materiality": 12,
+      "sentiment": 1,
+      "first_seen": "2026-09-24T13:31:48+00:00",
+      "last_seen": "2026-09-24T13:31:48+00:00",
+      "count": 1
+    },
+    {
+      "signature": "7e78b46d32ee4eaab74705c5b51f7b7fb2307b3d",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "YI"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/11159a",
+        "https://t.me/dreago_news_ch/308044"
+      ],
+      "materiality": 3,
+      "sentiment": -1,
+      "first_seen": "2026-09-24T13:20:34+00:00",
+      "last_seen": "2026-09-24T13:20:34+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3454fd1d1922897e01efe08c15cbe9355816511d",
+      "title": "📌 09/24 미 증시 프리마켓 노트 나스닥 선물 -1.0% — 오라클 불가항력 통지에 AI 인프라 신뢰 흔들 오늘 미중 정상회…",
+      "sectors": [
+        "2차전지",
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "바이오",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "fda",
+        "meta",
+        "mu",
+        "tsmc",
+        "관세",
+        "규제",
+        "금리",
+        "데이터센터"
+      ],
+      "tickers": [
+        "HPQ",
+        "SNAP"
+      ],
+      "source_urls": [
+        "https://t.me/goldilbong/16251"
+      ],
+      "materiality": 31,
+      "sentiment": 0,
+      "first_seen": "2026-09-24T13:19:33+00:00",
+      "last_seen": "2026-09-24T13:19:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "22dda3111264c0036649618b30db41566ef1c085",
+      "title": "메타, 이동 중 뮤즈",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "meta",
+        "mu",
+        "메타",
+        "애플"
+      ],
+      "tickers": [
+        "CTO",
+        "NWS",
+        "NWSA",
+        "USBC"
+      ],
+      "source_urls": [
+        "https://bloomberg.com/news/articles/2026-09-23/meta-debuts-a-dedicated-palm-sized-muse-charm-device-to-use-ai-on-the-go?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5MDIwNzg4MCwiZXhwIjoxNzkwODEyNjgwLCJhcnRpY2xlSWQiOiJUTFRUVUxUOU5KTFMwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.k7amXXn8zTVQuiTpQIE0Q_IJY9ny_TINEpSrguxIva8&leadSource=article-gifting",
+        "https://t.me/FastStockNewsUSA/23387"
+      ],
+      "materiality": 18,
+      "sentiment": 2,
+      "first_seen": "2026-09-24T12:49:59+00:00",
+      "last_seen": "2026-09-24T12:49:59+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d5b69e2690203781e247b1793cb2f124b18420bf",
+      "title": "# 메타 스마트 안경이 뮤즈랑 연결되면 꽤 파워풀하겠는데요",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "meta",
+        "mu",
+        "메타"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/23386"
+      ],
+      "materiality": 6,
+      "sentiment": 2,
+      "first_seen": "2026-09-24T12:48:06+00:00",
+      "last_seen": "2026-09-24T12:48:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "136a8d647c1fd778c61f40879ab120290be15d4b",
+      "title": "AI는 내년 말까지, 늦어도 2028년까지 모든 분야를 압도할 것입니다. #일론",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/23385"
+      ],
+      "materiality": 4,
+      "sentiment": 1,
+      "first_seen": "2026-09-24T12:47:49+00:00",
+      "last_seen": "2026-09-24T12:47:49+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0425319e35eea869071fd5b9347ff8cd98ba28a3",
+      "title": "PER만으로 설명할 수 없는 미국 증시의 가치 -주식이 비싼지는 PER만으로 판단할 수 없으며, 지금의 가격을 정당화할 이익이 …",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/23384",
+        "https://t.me/harveyspecterMike"
+      ],
+      "materiality": 12,
+      "sentiment": 3,
+      "first_seen": "2026-09-24T12:47:44+00:00",
+      "last_seen": "2026-09-24T12:47:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6b31fa7495480534fc87b58cec4778d4667e6bef",
+      "title": "❇️ [속보] 美 신규 실업수당 청구 19만7000건…예상치 소폭 하회",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/Goboclub/23927"
+      ],
+      "materiality": 10,
+      "sentiment": 0,
+      "first_seen": "2026-09-24T12:43:29+00:00",
+      "last_seen": "2026-09-24T12:43:29+00:00",
+      "count": 1
+    },
     {
       "signature": "10d68c905f739d2136eb45a8e04f2df5e5f3b9f1",
       "title": "👀 자존심 하나로 하이퍼리퀴드 현물 상장 안하더니 결국은 하였네요 바낸도.",
@@ -156,25 +530,6 @@
       "first_seen": "2026-09-24T07:37:49+00:00",
       "last_seen": "2026-09-24T07:37:49+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 0,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-09-24T07:37:00+00:00",
-      "count": 1108,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "c27c664af36448884d3866beb4b8d9d93a92bfd9",
@@ -10507,320 +10862,6 @@
       "sentiment": 0,
       "first_seen": "2026-09-22T00:55:40+00:00",
       "last_seen": "2026-09-22T00:55:40+00:00",
-      "count": 2
-    },
-    {
-      "signature": "7e500cfb649998fe4536d5d6ed148dce7d33ca8b",
-      "title": "#메타가 8일 공개한 개인용 AI 에이전트 Muse가 최근 3일 연속 미국 아이폰 무료 앱 다운로드 1위를 기록하는 등 빠르게 …",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "amd",
-        "mu",
-        "메타",
-        "엔비디아"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/54040"
-      ],
-      "materiality": 9,
-      "sentiment": 3,
-      "first_seen": "2026-09-22T00:55:15+00:00",
-      "last_seen": "2026-09-22T00:55:15+00:00",
-      "count": 2
-    },
-    {
-      "signature": "57d84a3dd773d2d2017a1bbc3a03d7e6cc6b3ee1",
-      "title": "1. 베링거인겔하임과 공동연구 중인 펩타이드 물질은 전임상 평가 마지막 단계에 와 있음 2. 연내 글로벌 딜을 발표하는 게 목표…",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "셀트리온",
-        "임상",
-        "허가"
-      ],
-      "tickers": [
-        "068270.KS",
-        "NOV"
-      ],
-      "source_urls": [
-        "https://t.me/Yeouido_Lab/37822",
-        "https://v.daum.net/v/20260922070205721?sicode=01"
-      ],
-      "materiality": 12,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:54:58+00:00",
-      "last_seen": "2026-09-22T00:54:58+00:00",
-      "count": 2
-    },
-    {
-      "signature": "f51ac10f18e8da5ffea1a49fd070d289288c0ced",
-      "title": "#메타 'Muse' 앱, 美 iOS·구글플레이 무료 앱 1위…출시 6일간 90만 다운로드 전작 메타 AI 앱",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "amd",
-        "mu",
-        "메타"
-      ],
-      "tickers": [
-        "HPQ"
-      ],
-      "source_urls": [
-        "https://buly.kr/ChrhPYX",
-        "https://t.me/sharpha/54039"
-      ],
-      "materiality": 13,
-      "sentiment": 3,
-      "first_seen": "2026-09-22T00:54:09+00:00",
-      "last_seen": "2026-09-22T00:54:09+00:00",
-      "count": 2
-    },
-    {
-      "signature": "952ec00ab79ffdd33dc71c2856e3e413176e4847",
-      "title": "Muse 일간 다운로드, DAU 추이",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "mu"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/Yeouido_Lab/37821",
-        "https://t.me/sharpha/54038"
-      ],
-      "materiality": 8,
-      "sentiment": 1,
-      "first_seen": "2026-09-22T00:36:04+00:00",
-      "last_seen": "2026-09-22T00:53:02+00:00",
-      "count": 3
-    },
-    {
-      "signature": "b54270273f6776b53c2a7ebf7201abec6d2cc780",
-      "title": "아크릴, 레인보우로보틱스와 '650억 규모' 피지컬 AI 국책과제 '핵심' 담당한다 https://www.newsprime.co…",
-      "sectors": [
-        "AI인프라",
-        "로봇"
-      ],
-      "keywords": [
-        "ai",
-        "피지컬 ai"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://newsprime.co.kr/news/article?no=748664",
-        "https://t.me/YeouidoStory2/117701",
-        "https://t.me/c/1208429502/125550"
-      ],
-      "materiality": 10,
-      "sentiment": 1,
-      "first_seen": "2026-09-22T00:46:56+00:00",
-      "last_seen": "2026-09-22T00:52:34+00:00",
-      "count": 3
-    },
-    {
-      "signature": "f390e3ebc2b771c984ac75399fe3050877cf7e35",
-      "title": "갭상했고 60-20-5가 하나의 쩜으로",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/54037"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:51:36+00:00",
-      "last_seen": "2026-09-22T00:51:36+00:00",
-      "count": 2
-    },
-    {
-      "signature": "d6d5d56257eb4fec1f05ab1b3495efad5291d112",
-      "title": "🔔 SK하이닉스 ADR 주가, 188.86달러 0.73% 상승 마감 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/5014c6",
-        "https://t.me/dreago_news_ch/307239"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-09-22T00:51:18+00:00",
-      "last_seen": "2026-09-22T00:51:18+00:00",
-      "count": 2
-    },
-    {
-      "signature": "34a9bbc2b414bf947d3f79d3e79686790b24562f",
-      "title": "🔔 삼성 부품 넣고 100만원 더 받는 애플... 삼성전자가 웃고 있다 【 겁나빠른 #드리고봇 뉴스 】 https://dreag…",
-      "sectors": [
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "삼성전자",
-        "애플"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/488cf2",
-        "https://t.me/dreago_news_ch/307238"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:49:09+00:00",
-      "last_seen": "2026-09-22T00:49:09+00:00",
-      "count": 2
-    },
-    {
-      "signature": "3d70675f2db4ce8b81aca6fe2091add01ca5fe4a",
-      "title": "세일즈포스 이사 Kirk David는 자사주 매수 평단가는 $237.23 현재 주가는 $236.42",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/64334"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-09-22T00:48:56+00:00",
-      "last_seen": "2026-09-22T00:48:56+00:00",
-      "count": 2
-    },
-    {
-      "signature": "83e0ca5e2f1770a317a6b9d54bb13663ef29b289",
-      "title": "시장이 정말 세려면 거래가 붙어야 되는데 아직 적어 보임",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/rafikiresearch/25325"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:47:57+00:00",
-      "last_seen": "2026-09-22T00:47:57+00:00",
-      "count": 2
-    },
-    {
-      "signature": "ca853b79b169e043c1cbcc8ed6f3b2e7b5ecc63c",
-      "title": "64GB RDIMM: 115% 32GB RDIMM: 145% RDIMM의 Spot premium이 강세를 보이기 시작한 시점은 AI Scale out이 시작된 25년 4분기였습니다.\n출처: 가치투자전략 | 시각: 2",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "dram",
-        "메모리",
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/corevalue/47118"
-      ],
-      "materiality": 7,
-      "sentiment": 1,
-      "first_seen": "2026-09-22T00:47:31+00:00",
-      "last_seen": "2026-09-22T00:47:31+00:00",
-      "count": 2
-    },
-    {
-      "signature": "b55827d83a449c160308abe9cb806c412ba6b350",
-      "title": "원전 신규건설 찬반 넘어…정부, 3개월간 ‘원전 역할’ 국민 공론화 https://n.news.naver.com/mnews/ar…",
-      "sectors": [
-        "원전"
-      ],
-      "keywords": [
-        "원전"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/018/0006374154?sid=101",
-        "https://t.me/YeouidoStory2/117702"
-      ],
-      "materiality": 8,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:47:15+00:00",
-      "last_seen": "2026-09-22T00:47:15+00:00",
-      "count": 2
-    },
-    {
-      "signature": "ad572b8ad68dbaaf9838082f8ffa71e01af9d78b",
-      "title": "[리포트 브리핑]에이피알, '얼마나 더 잘할 지 감도 안오는 회사' 목표가 570,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.rassiro.com/rd/20260922/1001003",
-        "https://t.me/rassiro_channel/305385"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:46:02+00:00",
-      "last_seen": "2026-09-22T00:46:02+00:00",
-      "count": 2
-    },
-    {
-      "signature": "898d762dbc672a34cce6221c2a946135f60eb294",
-      "title": "✅ 유튜브·인스타 점령한 ‘AI목소리’…54억달러 몸값 힉스필드 영상에도 활용 22일 관련 업계에 따르면 AI 음성 플랫폼 타입…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://datatooza.com/article/202609220925014199e80ea65769_80",
-        "https://t.me/c/1208429502/125549"
-      ],
-      "materiality": 4,
-      "sentiment": 1,
-      "first_seen": "2026-09-22T00:45:44+00:00",
-      "last_seen": "2026-09-22T00:45:44+00:00",
-      "count": 2
-    },
-    {
-      "signature": "6f14c49c4ff9838c92f31c74c1389df46e1d9225",
-      "title": "[리포트 브리핑]LG화학, '3분기 일회성 요인 소멸 + 과징금 리스크' 목표가 235,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.rassiro.com/rd/20260922/1001002",
-        "https://t.me/rassiro_channel/305383"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T00:45:33+00:00",
-      "last_seen": "2026-09-22T00:45:33+00:00",
       "count": 2
     }
   ]
