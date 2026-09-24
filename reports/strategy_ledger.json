@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-25T02:40:22+09:00",
+  "updated_at": "2026-09-25T02:55:51+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -16916,7 +16916,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-22T17:55:49+09:00",
@@ -16930,7 +16930,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-23T10:04:59+09:00"
+      "learned_at": "2026-09-23T10:04:59+09:00",
+      "outcome": "stop_observed",
+      "closed_at": "2026-09-25T02:55:51+09:00",
+      "final_return_pct": -2.4353
     },
     {
       "id": "2e6f17b731c59912",
@@ -17481,6 +17484,170 @@
           "return_pct": -0.2421
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "6766aa08ee8e7601",
+      "created_at": "2026-09-25T02:55:51+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 561.68,
+      "entry_zone": [
+        558.8716,
+        564.4884
+      ],
+      "stop_price": 538.723183,
+      "target_price": 607.593633,
+      "score": 4.93,
+      "components": {
+        "momentum": 2.6256935592074164,
+        "regime": 0.0,
+        "news": 1.9240052252305668,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.63, regime +0.00, news +1.92, defensive +0.00",
+      "weights": {
+        "momentum": 1.0492,
+        "regime": 0.9497,
+        "news": 1.1303,
+        "defensive": 0.9824
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.63, 뉴스 +1.92 / 연결 뉴스: 메타, 이동 중 뮤즈; PER만으로 설명할 수 없는 미국 증시의 가치 -주식이 비싼지는 PER만으로 판단할 수 없으며, 지금의 가격을 정당화할 이익이 …",
+      "news_evidence": [
+        {
+          "title": "메타, 이동 중 뮤즈",
+          "urls": [
+            "https://bloomberg.com/news/articles/2026-09-23/meta-debuts-a-dedicated-palm-sized-muse-charm-device-to-use-ai-on-the-go?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5MDIwNzg4MCwiZXhwIjoxNzkwODEyNjgwLCJhcnRpY2xlSWQiOiJUTFRUVUxUOU5KTFMwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.k7amXXn8zTVQuiTpQIE0Q_IJY9ny_TINEpSrguxIva8&leadSource=article-gifting",
+            "https://t.me/FastStockNewsUSA/23387"
+          ],
+          "last_seen": "2026-09-24T12:49:59+00:00"
+        },
+        {
+          "title": "PER만으로 설명할 수 없는 미국 증시의 가치 -주식이 비싼지는 PER만으로 판단할 수 없으며, 지금의 가격을 정당화할 이익이 …",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23384",
+            "https://t.me/harveyspecterMike"
+          ],
+          "last_seen": "2026-09-24T12:47:44+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1c395c46d21fcb86",
+      "created_at": "2026-09-25T02:55:51+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 739.245,
+      "entry_zone": [
+        735.548775,
+        742.941225
+      ],
+      "stop_price": 724.4601,
+      "target_price": 768.8148,
+      "score": 3.5,
+      "components": {
+        "momentum": 1.0811048187585788,
+        "regime": 0.0,
+        "news": 2.0928452893583214,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.08, regime +0.00, news +2.09, defensive +0.00",
+      "weights": {
+        "momentum": 1.0492,
+        "regime": 0.9497,
+        "news": 1.1303,
+        "defensive": 0.9824
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.08, 뉴스 +2.09 / 연결 뉴스: 메타, 이동 중 뮤즈; PER만으로 설명할 수 없는 미국 증시의 가치 -주식이 비싼지는 PER만으로 판단할 수 없으며, 지금의 가격을 정당화할 이익이 …",
+      "news_evidence": [
+        {
+          "title": "메타, 이동 중 뮤즈",
+          "urls": [
+            "https://bloomberg.com/news/articles/2026-09-23/meta-debuts-a-dedicated-palm-sized-muse-charm-device-to-use-ai-on-the-go?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5MDIwNzg4MCwiZXhwIjoxNzkwODEyNjgwLCJhcnRpY2xlSWQiOiJUTFRUVUxUOU5KTFMwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.k7amXXn8zTVQuiTpQIE0Q_IJY9ny_TINEpSrguxIva8&leadSource=article-gifting",
+            "https://t.me/FastStockNewsUSA/23387"
+          ],
+          "last_seen": "2026-09-24T12:49:59+00:00"
+        },
+        {
+          "title": "PER만으로 설명할 수 없는 미국 증시의 가치 -주식이 비싼지는 PER만으로 판단할 수 없으며, 지금의 가격을 정당화할 이익이 …",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23384",
+            "https://t.me/harveyspecterMike"
+          ],
+          "last_seen": "2026-09-24T12:47:44+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "b4251fff603c54a7",
+      "created_at": "2026-09-25T02:55:51+09:00",
+      "slot": "evening",
+      "ticker": "USO",
+      "asset": "원유",
+      "direction": "LONG",
+      "entry_price": 153.52,
+      "entry_zone": [
+        152.7524,
+        154.2876
+      ],
+      "stop_price": 146.739283,
+      "target_price": 167.081434,
+      "score": 2.68,
+      "components": {
+        "momentum": 2.3471164046400763,
+        "regime": 0.2,
+        "news": 0.02459134504546296,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.35, regime +0.20, news +0.02, defensive +0.00",
+      "weights": {
+        "momentum": 1.0492,
+        "regime": 0.9497,
+        "news": 1.1303,
+        "defensive": 0.9824
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +2.35, 뉴스 +0.02 / 연결 뉴스: 국채 금리 급등·중동 정세 불안에 하락 마감…나스닥 1%대↓ [뉴욕증시 브리핑]; 미·이란 긴장 완화 기대에 유가 하락·케이블 시장 안정 https://m.stock.naver.com/investment/new…",
+      "news_evidence": [
+        {
+          "title": "국채 금리 급등·중동 정세 불안에 하락 마감…나스닥 1%대↓ [뉴욕증시 브리핑]",
+          "urls": [
+            "https://t.me/chel3337/35824"
+          ],
+          "last_seen": "2026-09-24T00:38:16+00:00"
+        },
+        {
+          "title": "미·이란 긴장 완화 기대에 유가 하락·케이블 시장 안정 https://m.stock.naver.com/investment/new…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2752328",
+            "https://t.me/moneythemestock/64423"
+          ],
+          "last_seen": "2026-09-24T17:06:21+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
