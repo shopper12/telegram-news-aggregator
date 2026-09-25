@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "updated_at": "2026-09-25T03:22:36+09:00",
+  "updated_at": "2026-09-25T09:26:16+09:00",
   "weights": {
-    "momentum": 1.0492,
-    "regime": 0.9497,
-    "news": 1.1303,
-    "defensive": 0.9824
+    "momentum": 1.0509,
+    "regime": 0.9462,
+    "news": 1.1372,
+    "defensive": 0.9817
   },
   "stats": {
-    "evaluated_24h": 240,
-    "wins_24h": 96,
-    "losses_24h": 67,
-    "flat_24h": 77,
-    "average_return_24h_pct": 0.3383,
-    "average_win_24h_pct": 1.8814,
-    "average_loss_24h_pct": -1.4888,
-    "payoff_ratio_24h": 1.2637,
+    "evaluated_24h": 245,
+    "wins_24h": 97,
+    "losses_24h": 69,
+    "flat_24h": 79,
+    "average_return_24h_pct": 0.3213,
+    "average_win_24h_pct": 1.8692,
+    "average_loss_24h_pct": -1.4902,
+    "payoff_ratio_24h": 1.2543,
     "max_drawdown_24h_pct": 17.8842,
     "weight_adjustment_active": true,
     "weight_min_samples": 200,
@@ -28,9 +28,9 @@
       "average_return_pct": 0.2316
     },
     "SOXX": {
-      "evaluated": 39,
+      "evaluated": 41,
       "wins": 17,
-      "average_return_pct": 0.2825
+      "average_return_pct": 0.2667
     },
     "GLD": {
       "evaluated": 46,
@@ -38,9 +38,9 @@
       "average_return_pct": 0.2869
     },
     "EWY": {
-      "evaluated": 62,
+      "evaluated": 64,
       "wins": 24,
-      "average_return_pct": 0.3215
+      "average_return_pct": 0.2635
     },
     "USO": {
       "evaluated": 41,
@@ -53,17 +53,21 @@
       "average_return_pct": 0.5538
     },
     "UUP": {
-      "evaluated": 3,
-      "wins": 1,
-      "average_return_pct": -0.2795
+      "evaluated": 4,
+      "wins": 2,
+      "average_return_pct": -0.0353
     }
   },
   "last_run": {
-    "timestamp": "2026-09-25T03:22:36+09:00",
-    "kind": "regular",
-    "slot": null,
+    "timestamp": "2026-09-25T09:26:16+09:00",
+    "kind": "strategy_morning",
+    "slot": "morning",
     "regime": "mixed",
-    "regime_score": 0.0,
-    "recommendation_ids": []
+    "regime_score": 0.618,
+    "recommendation_ids": [
+      "90283b50b4c6ffc4",
+      "1988b0e25192f592",
+      "02c69bcc447a888a"
+    ]
   }
 }

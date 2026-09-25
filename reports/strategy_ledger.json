@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-25T03:22:36+09:00",
+  "updated_at": "2026-09-25T09:26:16+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -16649,7 +16649,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-22T10:17:09+09:00",
@@ -16660,10 +16660,18 @@
           "evaluated_at": "2026-09-23T09:21:00+09:00",
           "price": 573.7,
           "return_pct": 2.8136
+        },
+        "72h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 564.19,
+          "return_pct": 1.1093
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-23T09:21:00+09:00"
+      "learned_at": "2026-09-23T09:21:00+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-25T09:26:16+09:00",
+      "final_return_pct": 1.1093
     },
     {
       "id": "daaf2b0184b0caa8",
@@ -16716,7 +16724,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-22T10:17:09+09:00",
@@ -16727,10 +16735,18 @@
           "evaluated_at": "2026-09-23T09:21:00+09:00",
           "price": 192.96,
           "return_pct": 1.9873
+        },
+        "72h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 183.21,
+          "return_pct": -3.166
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-23T09:21:00+09:00"
+      "learned_at": "2026-09-23T09:21:00+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-25T09:26:16+09:00",
+      "final_return_pct": -3.166
     },
     {
       "id": "15f2ce36ec6b3252",
@@ -17260,9 +17276,15 @@
           "evaluated_at": "2026-09-24T09:23:43+09:00",
           "price": 564.92,
           "return_pct": 0.1773
+        },
+        "24h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 564.19,
+          "return_pct": 0.0479
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-25T09:26:16+09:00"
     },
     {
       "id": "ce5618f899ca7445",
@@ -17320,9 +17342,15 @@
           "evaluated_at": "2026-09-24T09:23:43+09:00",
           "price": 185.85,
           "return_pct": -0.2362
+        },
+        "24h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 183.21,
+          "return_pct": -1.6533
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-25T09:26:16+09:00"
     },
     {
       "id": "3efdeb233c2b946b",
@@ -17364,9 +17392,15 @@
           "evaluated_at": "2026-09-24T09:23:43+09:00",
           "price": 28.78,
           "return_pct": 0.5239
+        },
+        "24h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 28.8297,
+          "return_pct": 0.6975
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-25T09:26:16+09:00"
     },
     {
       "id": "a739882633120882",
@@ -17423,9 +17457,15 @@
           "evaluated_at": "2026-09-24T17:07:21+09:00",
           "price": 558.17,
           "return_pct": -1.1949
+        },
+        "24h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 564.19,
+          "return_pct": -0.1292
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-25T09:26:16+09:00"
     },
     {
       "id": "4863a6ffa357a69a",
@@ -17482,9 +17522,15 @@
           "evaluated_at": "2026-09-24T17:07:21+09:00",
           "price": 185.4,
           "return_pct": -0.2421
+        },
+        "24h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 183.21,
+          "return_pct": -1.4205
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-25T09:26:16+09:00"
     },
     {
       "id": "6766aa08ee8e7601",
@@ -17538,7 +17584,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 564.19,
+          "return_pct": 0.4469
+        }
+      },
       "learned_24h": false
     },
     {
@@ -17593,7 +17645,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 739.4087,
+          "return_pct": 0.0221
+        }
+      },
       "learned_24h": false
     },
     {
@@ -17643,6 +17701,158 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-25T09:26:16+09:00",
+          "price": 151.19,
+          "return_pct": -1.5177
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "90283b50b4c6ffc4",
+      "created_at": "2026-09-25T09:26:16+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 564.19,
+      "entry_zone": [
+        561.36905,
+        567.01095
+      ],
+      "stop_price": 541.260849,
+      "target_price": 610.048302,
+      "score": 6.007,
+      "components": {
+        "momentum": 4.0,
+        "regime": 0.0,
+        "news": 1.5860094355633103,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +4.00, regime +0.00, news +1.59, defensive +0.00",
+      "weights": {
+        "momentum": 1.0509,
+        "regime": 0.9462,
+        "news": 1.1372,
+        "defensive": 0.9817
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +4.00, 뉴스 +1.59 / 연결 뉴스: CME 페드워치상 10월 금리인상 확률이 약 70%로 상승, 일주일 전 약 49%에서 크게 높아진 상황 민주당 석권 시 AI 규제 가드레일·법인세 인상 우려로 반도체는 공화당 우위를 선호하는 흐름 플로리다 국제대(F; 메타, 이동 중 뮤즈",
+      "news_evidence": [
+        {
+          "title": "CME 페드워치상 10월 금리인상 확률이 약 70%로 상승, 일주일 전 약 49%에서 크게 높아진 상황 민주당 석권 시 AI 규제 가드레일·법인세 인상 우려로 반도체는 공화당 우위를 선호하는 흐름 플로리다 국제대(F",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/11470"
+          ],
+          "last_seen": "2026-09-24T23:30:42+00:00"
+        },
+        {
+          "title": "메타, 이동 중 뮤즈",
+          "urls": [
+            "https://bloomberg.com/news/articles/2026-09-23/meta-debuts-a-dedicated-palm-sized-muse-charm-device-to-use-ai-on-the-go?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5MDIwNzg4MCwiZXhwIjoxNzkwODEyNjgwLCJhcnRpY2xlSWQiOiJUTFRUVUxUOU5KTFMwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.k7amXXn8zTVQuiTpQIE0Q_IJY9ny_TINEpSrguxIva8&leadSource=article-gifting",
+            "https://t.me/FastStockNewsUSA/23387"
+          ],
+          "last_seen": "2026-09-24T12:49:59+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1988b0e25192f592",
+      "created_at": "2026-09-25T09:26:16+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 739.4087,
+      "entry_zone": [
+        735.711657,
+        743.105743
+      ],
+      "stop_price": 724.620526,
+      "target_price": 768.985048,
+      "score": 3.943,
+      "components": {
+        "momentum": 2.178516843091668,
+        "regime": 0.0,
+        "news": 1.4539600971227662,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.18, regime +0.00, news +1.45, defensive +0.00",
+      "weights": {
+        "momentum": 1.0509,
+        "regime": 0.9462,
+        "news": 1.1372,
+        "defensive": 0.9817
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.18, 뉴스 +1.45 / 연결 뉴스: CME 페드워치상 10월 금리인상 확률이 약 70%로 상승, 일주일 전 약 49%에서 크게 높아진 상황 민주당 석권 시 AI 규제 가드레일·법인세 인상 우려로 반도체는 공화당 우위를 선호하는 흐름 플로리다 국제대(F; 메타, 이동 중 뮤즈",
+      "news_evidence": [
+        {
+          "title": "CME 페드워치상 10월 금리인상 확률이 약 70%로 상승, 일주일 전 약 49%에서 크게 높아진 상황 민주당 석권 시 AI 규제 가드레일·법인세 인상 우려로 반도체는 공화당 우위를 선호하는 흐름 플로리다 국제대(F",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/11470"
+          ],
+          "last_seen": "2026-09-24T23:30:42+00:00"
+        },
+        {
+          "title": "메타, 이동 중 뮤즈",
+          "urls": [
+            "https://bloomberg.com/news/articles/2026-09-23/meta-debuts-a-dedicated-palm-sized-muse-charm-device-to-use-ai-on-the-go?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5MDIwNzg4MCwiZXhwIjoxNzkwODEyNjgwLCJhcnRpY2xlSWQiOiJUTFRUVUxUOU5KTFMwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.k7amXXn8zTVQuiTpQIE0Q_IJY9ny_TINEpSrguxIva8&leadSource=article-gifting",
+            "https://t.me/FastStockNewsUSA/23387"
+          ],
+          "last_seen": "2026-09-24T12:49:59+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "02c69bcc447a888a",
+      "created_at": "2026-09-25T09:26:16+09:00",
+      "slot": "morning",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.8297,
+      "entry_zone": [
+        28.685551,
+        28.973848
+      ],
+      "stop_price": 28.253106,
+      "target_price": 29.982888,
+      "score": 1.823,
+      "components": {
+        "momentum": 0.6201413620543124,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.62, regime +0.20, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0509,
+        "regime": 0.9462,
+        "news": 1.1372,
+        "defensive": 0.9817
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.62, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
