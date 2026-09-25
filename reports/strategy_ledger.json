@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-26T02:39:22+09:00",
+  "updated_at": "2026-09-26T03:02:56+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -17017,7 +17017,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-23T09:21:00+09:00",
@@ -17028,10 +17028,18 @@
           "evaluated_at": "2026-09-24T02:56:02+09:00",
           "price": 563.92,
           "return_pct": -0.6781
+        },
+        "72h": {
+          "evaluated_at": "2026-09-26T03:02:56+09:00",
+          "price": 573.84,
+          "return_pct": 1.0691
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-24T02:56:02+09:00"
+      "learned_at": "2026-09-24T02:56:02+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-26T03:02:56+09:00",
+      "final_return_pct": 1.0691
     },
     {
       "id": "818cda091f2010a3",
@@ -17083,7 +17091,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-23T09:21:00+09:00",
@@ -17094,10 +17102,18 @@
           "evaluated_at": "2026-09-24T02:56:02+09:00",
           "price": 186.29,
           "return_pct": -2.4251
+        },
+        "72h": {
+          "evaluated_at": "2026-09-26T03:02:56+09:00",
+          "price": 187.02,
+          "return_pct": -2.0427
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-24T02:56:02+09:00"
+      "learned_at": "2026-09-24T02:56:02+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-26T03:02:56+09:00",
+      "final_return_pct": -2.0427
     },
     {
       "id": "940380adef880094",
@@ -17605,9 +17621,15 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 564.19,
           "return_pct": 0.4469
+        },
+        "24h": {
+          "evaluated_at": "2026-09-26T03:02:56+09:00",
+          "price": 573.84,
+          "return_pct": 2.1649
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-26T03:02:56+09:00"
     },
     {
       "id": "1c395c46d21fcb86",
@@ -17666,9 +17688,15 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 739.4087,
           "return_pct": 0.0221
+        },
+        "24h": {
+          "evaluated_at": "2026-09-26T03:02:56+09:00",
+          "price": 744.91,
+          "return_pct": 0.7663
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-26T03:02:56+09:00"
     },
     {
       "id": "b4251fff603c54a7",
@@ -17726,9 +17754,15 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 151.19,
           "return_pct": -1.5177
+        },
+        "24h": {
+          "evaluated_at": "2026-09-26T03:02:56+09:00",
+          "price": 148.2,
+          "return_pct": -3.4653
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-26T03:02:56+09:00"
     },
     {
       "id": "90283b50b4c6ffc4",
@@ -17892,6 +17926,116 @@
           "return_pct": -0.4846
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "40e3377946a009a2",
+      "created_at": "2026-09-26T03:02:56+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 573.84,
+      "entry_zone": [
+        570.9708,
+        576.7092
+      ],
+      "stop_price": 550.633383,
+      "target_price": 620.253234,
+      "score": 5.26,
+      "components": {
+        "momentum": 2.8895263375128772,
+        "regime": 0.0,
+        "news": 1.9388469952608793,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.89, regime +0.00, news +1.94, defensive +0.00",
+      "weights": {
+        "momentum": 1.0527,
+        "regime": 0.9427,
+        "news": 1.1443,
+        "defensive": 0.981
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.89, 뉴스 +1.94 / 연결 뉴스: 미 법무부, X의 EU 벌금 취소 소송에 참가 신청 — EU는 \"방어할 준비\" 맞대응 2026.09.25; OpenAI, OpenClaw 기반 AI 에이전트 출시설 — 홍하이·콴타 수주 모멘텀 기대 2026.09.25",
+      "news_evidence": [
+        {
+          "title": "미 법무부, X의 EU 벌금 취소 소송에 참가 신청 — EU는 \"방어할 준비\" 맞대응 2026.09.25",
+          "urls": [
+            "https://apnews.com/article/musk-x-eu-legal-challenge-4f58184c2e48b2b181e949945e7587f0",
+            "https://t.me/aicorporateanalysisdeepdive/11491"
+          ],
+          "last_seen": "2026-09-25T14:19:28+00:00"
+        },
+        {
+          "title": "OpenAI, OpenClaw 기반 AI 에이전트 출시설 — 홍하이·콴타 수주 모멘텀 기대 2026.09.25",
+          "urls": [
+            "https://money.udn.com/money/story/5612/9776525",
+            "https://t.me/aicorporateanalysisdeepdive/11489"
+          ],
+          "last_seen": "2026-09-25T14:13:15+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "98b1c2c395e6aee6",
+      "created_at": "2026-09-26T03:02:56+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 744.91,
+      "entry_zone": [
+        741.18545,
+        748.63455
+      ],
+      "stop_price": 730.0118,
+      "target_price": 774.7064,
+      "score": 3.315,
+      "components": {
+        "momentum": 1.1866359288019566,
+        "regime": 0.0,
+        "news": 1.805389033474352,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.19, regime +0.00, news +1.81, defensive +0.00",
+      "weights": {
+        "momentum": 1.0527,
+        "regime": 0.9427,
+        "news": 1.1443,
+        "defensive": 0.981
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.19, 뉴스 +1.81 / 연결 뉴스: 미 법무부, X의 EU 벌금 취소 소송에 참가 신청 — EU는 \"방어할 준비\" 맞대응 2026.09.25; OpenAI, OpenClaw 기반 AI 에이전트 출시설 — 홍하이·콴타 수주 모멘텀 기대 2026.09.25",
+      "news_evidence": [
+        {
+          "title": "미 법무부, X의 EU 벌금 취소 소송에 참가 신청 — EU는 \"방어할 준비\" 맞대응 2026.09.25",
+          "urls": [
+            "https://apnews.com/article/musk-x-eu-legal-challenge-4f58184c2e48b2b181e949945e7587f0",
+            "https://t.me/aicorporateanalysisdeepdive/11491"
+          ],
+          "last_seen": "2026-09-25T14:19:28+00:00"
+        },
+        {
+          "title": "OpenAI, OpenClaw 기반 AI 에이전트 출시설 — 홍하이·콴타 수주 모멘텀 기대 2026.09.25",
+          "urls": [
+            "https://money.udn.com/money/story/5612/9776525",
+            "https://t.me/aicorporateanalysisdeepdive/11489"
+          ],
+          "last_seen": "2026-09-25T14:13:15+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]

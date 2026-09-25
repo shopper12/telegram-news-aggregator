@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "updated_at": "2026-09-26T02:39:22+09:00",
+  "updated_at": "2026-09-26T03:02:56+09:00",
   "weights": {
-    "momentum": 1.0509,
-    "regime": 0.9462,
-    "news": 1.1372,
-    "defensive": 0.9817
+    "momentum": 1.0527,
+    "regime": 0.9427,
+    "news": 1.1443,
+    "defensive": 0.981
   },
   "stats": {
-    "evaluated_24h": 245,
-    "wins_24h": 97,
-    "losses_24h": 69,
+    "evaluated_24h": 248,
+    "wins_24h": 99,
+    "losses_24h": 70,
     "flat_24h": 79,
-    "average_return_24h_pct": 0.3213,
-    "average_win_24h_pct": 1.8692,
-    "average_loss_24h_pct": -1.4902,
-    "payoff_ratio_24h": 1.2543,
+    "average_return_24h_pct": 0.3153,
+    "average_win_24h_pct": 1.8611,
+    "average_loss_24h_pct": -1.5184,
+    "payoff_ratio_24h": 1.2257,
     "max_drawdown_24h_pct": 17.8842,
     "weight_adjustment_active": true,
     "weight_min_samples": 200,
@@ -23,14 +23,14 @@
   },
   "asset_stats": {
     "QQQ": {
-      "evaluated": 32,
-      "wins": 12,
-      "average_return_pct": 0.2316
+      "evaluated": 33,
+      "wins": 13,
+      "average_return_pct": 0.2478
     },
     "SOXX": {
-      "evaluated": 41,
-      "wins": 17,
-      "average_return_pct": 0.2667
+      "evaluated": 42,
+      "wins": 18,
+      "average_return_pct": 0.3119
     },
     "GLD": {
       "evaluated": 46,
@@ -43,9 +43,9 @@
       "average_return_pct": 0.2635
     },
     "USO": {
-      "evaluated": 41,
+      "evaluated": 42,
       "wins": 17,
-      "average_return_pct": 0.513
+      "average_return_pct": 0.4183
     },
     "BTC-USD": {
       "evaluated": 17,
@@ -59,11 +59,14 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-26T02:39:22+09:00",
-    "kind": "regular",
-    "slot": null,
+    "timestamp": "2026-09-26T03:02:56+09:00",
+    "kind": "strategy_evening",
+    "slot": "evening",
     "regime": "mixed",
-    "regime_score": 0.594,
-    "recommendation_ids": []
+    "regime_score": 0.625,
+    "recommendation_ids": [
+      "40e3377946a009a2",
+      "98b1c2c395e6aee6"
+    ]
   }
 }
