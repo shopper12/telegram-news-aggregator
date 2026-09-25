@@ -1,7 +1,82 @@
 {
   "version": 2,
-  "updated_at": "2026-09-25T09:46:46+09:00",
+  "updated_at": "2026-09-25T10:04:44+09:00",
   "events": [
+    {
+      "signature": "ae81fa0feea36d48e87561a9deb324a725458f3d",
+      "title": "트럼프 대통령과 영부인이 국빈 만찬을 위해 시진핑과 펑리위안 여사를 맞이함.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/64593"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-09-25T01:01:51+00:00",
+      "last_seen": "2026-09-25T01:01:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c545381a96a9ac9447925ff87d6890e0d1ec27b7",
+      "title": "에마뉘엘 마크롱 프랑스 대통령이 24일 사우디아라비아 서부 해안 얀부항의 석유 시설을 예멘 후티 반군의 공격으로부터 보호하기 위…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/64592"
+      ],
+      "materiality": 8,
+      "sentiment": 2,
+      "first_seen": "2026-09-25T00:53:42+00:00",
+      "last_seen": "2026-09-25T00:53:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b3aa3a288edfe8bf4970cd8755a5b88c374c1ceb",
+      "title": "코스트코",
+      "sectors": [
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "관세",
+        "메모리",
+        "정책",
+        "환율"
+      ],
+      "tickers": [
+        "COST",
+        "DASH"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/64591"
+      ],
+      "materiality": 18,
+      "sentiment": 1,
+      "first_seen": "2026-09-25T00:49:38+00:00",
+      "last_seen": "2026-09-25T00:49:38+00:00",
+      "count": 1
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-09-25T00:38:22+00:00",
+      "count": 1138,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
     {
       "signature": "ccd0e77d1b1d8f95e48e607b9c19ea8eb0a1157d",
       "title": "근본적으로 어떤거래소던 해킹 위협은 있습니다. 규모가 큰 거래소라고 해서 상대적으로 안전할거라는 판단도 죄송하지만 큰 오산입니다…",
@@ -20,7 +95,7 @@
       "sentiment": -1,
       "first_seen": "2026-09-25T00:32:42+00:00",
       "last_seen": "2026-09-25T00:32:42+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "be137b31b22369cd120e5c810fdcab05318a0944",
@@ -41,7 +116,7 @@
       "sentiment": 1,
       "first_seen": "2026-09-25T00:30:16+00:00",
       "last_seen": "2026-09-25T00:30:16+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "0768aab014a80c0de34481616f7314498ef1dcaa",
@@ -59,7 +134,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-25T00:21:25+00:00",
       "last_seen": "2026-09-25T00:21:25+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "ea542c7a0220e2d3543d5c1c4bf789955bb80ed2",
@@ -81,7 +156,29 @@
       "sentiment": 1,
       "first_seen": "2026-09-25T00:14:45+00:00",
       "last_seen": "2026-09-25T00:14:45+00:00",
-      "count": 2
+      "count": 3
+    },
+    {
+      "signature": "eb6e742283b856c8d94cfc9ac922061449247b12",
+      "title": "🔔",
+      "sectors": [
+        "방산/항공"
+      ],
+      "keywords": [
+        "방산"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/d296d5",
+        "https://t.me/dreago_news_ch/308104",
+        "https://dreago.kr/n/2ffd12",
+        "https://t.me/dreago_news_ch/308068"
+      ],
+      "materiality": 19,
+      "sentiment": -2,
+      "first_seen": "2026-09-25T00:08:45+00:00",
+      "last_seen": "2026-09-25T00:08:45+00:00",
+      "count": 4
     },
     {
       "signature": "b4feb4efcca9cf9fba02133dcc1553dc1d298cf5",
@@ -99,7 +196,7 @@
       "sentiment": 0,
       "first_seen": "2026-09-25T00:05:29+00:00",
       "last_seen": "2026-09-25T00:05:29+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "52e2f9c44bae6323c4ef04cd5ee2a19052872d29",
@@ -1052,28 +1149,6 @@
       "count": 1
     },
     {
-      "signature": "eb6e742283b856c8d94cfc9ac922061449247b12",
-      "title": "🔔",
-      "sectors": [
-        "방산/항공"
-      ],
-      "keywords": [
-        "방산"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/d296d5",
-        "https://t.me/dreago_news_ch/308104",
-        "https://dreago.kr/n/2ffd12",
-        "https://t.me/dreago_news_ch/308068"
-      ],
-      "materiality": 19,
-      "sentiment": 2,
-      "first_seen": "2026-09-25T00:08:45+00:00",
-      "last_seen": "2026-09-24T19:46:41+00:00",
-      "count": 3
-    },
-    {
       "signature": "adad396d88af11e262dd13a7be444485b3389c19",
       "title": "🔔 미중 정상회담, 화두는 'AI 경쟁'…\"제로섬 싸움 아니다\" 📝 #인공지능 #AI반도체 #반도체 #미중갈등 미중 정상 간 A…",
       "sectors": [
@@ -1713,25 +1788,6 @@
       "first_seen": "2026-09-24T13:39:35+00:00",
       "last_seen": "2026-09-24T13:39:35+00:00",
       "count": 2
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 0,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-09-24T13:34:39+00:00",
-      "count": 1137,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "f2eda7f059d832a80bb03ae62a04af1837bc1c4e",
@@ -10863,68 +10919,6 @@
       "sentiment": 3,
       "first_seen": "2026-09-22T08:15:21+00:00",
       "last_seen": "2026-09-22T08:15:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f6cca01da7ea2f6419698d81402d4b30d31dd8ec",
-      "title": "🔔 카카오게임즈, 퀘이사존과 '크로노 오디세이' PC 최적화···사양별 성능... 📈 #카카오게임즈 📝 #PC게임 #온라인게임 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/d1eda1",
-        "https://t.me/dreago_news_ch/307463"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T08:10:28+00:00",
-      "last_seen": "2026-09-22T08:10:28+00:00",
-      "count": 1
-    },
-    {
-      "signature": "39f6286ab40307f1930f1913f87d6c080393225f",
-      "title": "🔔 SK하이닉스, 잇단 해외 팹 투자설…곽노정 \"신규 거점 준비 중\" 📈 #SK하이닉스 📝 #메모리반도체 #반도체생산설비 #반도…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "메모리",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/7a9dd4",
-        "https://t.me/dreago_news_ch/307462"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T08:07:33+00:00",
-      "last_seen": "2026-09-22T08:07:33+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4fdfad6e6eabb847ae238b22bfb28f25b61a6f4c",
-      "title": "🔔 SKC, 앱솔릭스에 921억 추가 출자…글라스기판 상업화 속도 📈 #SKC 📝 #글라스기판 #반도체패키징 SKC의 앱솔릭스 …",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/c1070f",
-        "https://t.me/dreago_news_ch/307461"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-09-22T08:05:42+00:00",
-      "last_seen": "2026-09-22T08:05:42+00:00",
       "count": 1
     }
   ]
