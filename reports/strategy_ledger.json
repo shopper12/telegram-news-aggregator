@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-27T01:51:10+09:00",
+  "updated_at": "2026-09-27T02:22:09+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18196,6 +18196,116 @@
           "return_pct": -0.1207
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "d43ef517d0e1df03",
+      "created_at": "2026-09-27T02:22:09+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 572.68,
+      "entry_zone": [
+        569.8166,
+        575.5434
+      ],
+      "stop_price": 549.55159,
+      "target_price": 618.93682,
+      "score": 5.542,
+      "components": {
+        "momentum": 2.7826086332265394,
+        "regime": 0.0,
+        "news": 2.2638468494308457,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.78, regime +0.00, news +2.26, defensive +0.00",
+      "weights": {
+        "momentum": 1.0548,
+        "regime": 0.9392,
+        "news": 1.1515,
+        "defensive": 0.9801
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.78, 뉴스 +2.26 / 연결 뉴스: 1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…; >>‘AI 클라우드’: 수요의 75%를 거절했으며, 향후 18개월 시장 전망은 매우 명확함 • NBIS 최고매출책임자",
+      "news_evidence": [
+        {
+          "title": "1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…",
+          "urls": [
+            "https://ir.akamai.com/news-releases/news-release-details/akamai-announces-116-billion-multi-year-agreement-anthropic",
+            "https://t.me/FastStockNewsUSA/23434"
+          ],
+          "last_seen": "2026-09-26T12:46:37+00:00"
+        },
+        {
+          "title": ">>‘AI 클라우드’: 수요의 75%를 거절했으며, 향후 18개월 시장 전망은 매우 명확함 • NBIS 최고매출책임자",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23431",
+            "https://wallstreetcn.com/charts/41959925"
+          ],
+          "last_seen": "2026-09-26T12:40:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4247121b9d25b7aa",
+      "created_at": "2026-09-27T02:22:09+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 744.5,
+      "entry_zone": [
+        740.7775,
+        748.2225
+      ],
+      "stop_price": 729.61,
+      "target_price": 774.28,
+      "score": 3.868,
+      "components": {
+        "momentum": 1.1584645432033436,
+        "regime": 0.0,
+        "news": 2.2982323962838547,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.16, regime +0.00, news +2.30, defensive +0.00",
+      "weights": {
+        "momentum": 1.0548,
+        "regime": 0.9392,
+        "news": 1.1515,
+        "defensive": 0.9801
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.16, 뉴스 +2.30 / 연결 뉴스: 1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…; >>‘AI 클라우드’: 수요의 75%를 거절했으며, 향후 18개월 시장 전망은 매우 명확함 • NBIS 최고매출책임자",
+      "news_evidence": [
+        {
+          "title": "1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…",
+          "urls": [
+            "https://ir.akamai.com/news-releases/news-release-details/akamai-announces-116-billion-multi-year-agreement-anthropic",
+            "https://t.me/FastStockNewsUSA/23434"
+          ],
+          "last_seen": "2026-09-26T12:46:37+00:00"
+        },
+        {
+          "title": ">>‘AI 클라우드’: 수요의 75%를 거절했으며, 향후 18개월 시장 전망은 매우 명확함 • NBIS 최고매출책임자",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23431",
+            "https://wallstreetcn.com/charts/41959925"
+          ],
+          "last_seen": "2026-09-26T12:40:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
