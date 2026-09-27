@@ -1,18 +1,18 @@
 {
   "version": 2,
-  "updated_at": "2026-09-27T23:48:08+09:00",
+  "updated_at": "2026-09-28T02:23:00+09:00",
   "weights": {
-    "momentum": 1.0586,
-    "regime": 0.9322,
-    "news": 1.1655,
-    "defensive": 0.9783
+    "momentum": 1.0605,
+    "regime": 0.9287,
+    "news": 1.1725,
+    "defensive": 0.9774
   },
   "stats": {
-    "evaluated_24h": 255,
+    "evaluated_24h": 257,
     "wins_24h": 101,
     "losses_24h": 72,
-    "flat_24h": 82,
-    "average_return_24h_pct": 0.3114,
+    "flat_24h": 84,
+    "average_return_24h_pct": 0.309,
     "average_win_24h_pct": 1.848,
     "average_loss_24h_pct": -1.4892,
     "payoff_ratio_24h": 1.2409,
@@ -23,14 +23,14 @@
   },
   "asset_stats": {
     "QQQ": {
-      "evaluated": 36,
+      "evaluated": 37,
       "wins": 14,
-      "average_return_pct": 0.2448
+      "average_return_pct": 0.2382
     },
     "SOXX": {
-      "evaluated": 45,
+      "evaluated": 46,
       "wins": 19,
-      "average_return_pct": 0.32
+      "average_return_pct": 0.313
     },
     "GLD": {
       "evaluated": 46,
@@ -59,11 +59,11 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-09-27T23:48:08+09:00",
+    "timestamp": "2026-09-28T02:23:00+09:00",
     "kind": "regular",
     "slot": null,
     "regime": "mixed",
-    "regime_score": 0.602,
+    "regime_score": 0.584,
     "recommendation_ids": []
   }
 }
