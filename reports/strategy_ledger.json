@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-28T02:23:00+09:00",
+  "updated_at": "2026-09-28T02:54:59+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18516,6 +18516,116 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "93f8b6e9de6174cd",
+      "created_at": "2026-09-28T02:54:59+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 572.68,
+      "entry_zone": [
+        569.8166,
+        575.5434
+      ],
+      "stop_price": 549.55159,
+      "target_price": 618.93682,
+      "score": 3.91,
+      "components": {
+        "momentum": 2.7826086332265394,
+        "regime": 0.0,
+        "news": 0.8178183682120951,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.78, regime +0.00, news +0.82, defensive +0.00",
+      "weights": {
+        "momentum": 1.0605,
+        "regime": 0.9287,
+        "news": 1.1725,
+        "defensive": 0.9774
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.78, 뉴스 +0.82 / 연결 뉴스: 🔔; 🔔",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/12415b",
+            "https://t.me/dreago_news_ch/305953"
+          ],
+          "last_seen": "2026-09-27T08:32:18+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/6587f0",
+            "https://t.me/dreago_news_ch/306563"
+          ],
+          "last_seen": "2026-09-27T08:32:18+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "2b1be270fb0135e2",
+      "created_at": "2026-09-28T02:54:59+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 187.18,
+      "entry_zone": [
+        186.2441,
+        188.1159
+      ],
+      "stop_price": 178.314537,
+      "target_price": 204.910925,
+      "score": 2.693,
+      "components": {
+        "momentum": 1.450974316446074,
+        "regime": 0.0,
+        "news": 0.9842433254909144,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.45, regime +0.00, news +0.98, defensive +0.00",
+      "weights": {
+        "momentum": 1.0605,
+        "regime": 0.9287,
+        "news": 1.1725,
+        "defensive": 0.9774
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.45, 뉴스 +0.98 / 연결 뉴스: 🔔; GPU·ASIC 고성능 테스트 수요 강세… 대만 반도체 후공정 양강 AI 성장 수혜 2026.09.27",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/6587f0",
+            "https://t.me/dreago_news_ch/306563"
+          ],
+          "last_seen": "2026-09-27T08:32:18+00:00"
+        },
+        {
+          "title": "GPU·ASIC 고성능 테스트 수요 강세… 대만 반도체 후공정 양강 AI 성장 수혜 2026.09.27",
+          "urls": [
+            "https://money.udn.com/money/story/5612/9779318?from=ednappsharing",
+            "https://t.me/aicorporateanalysisdeepdive/11510"
+          ],
+          "last_seen": "2026-09-27T00:16:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
