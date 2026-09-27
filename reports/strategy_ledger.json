@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-27T02:42:29+09:00",
+  "updated_at": "2026-09-27T09:26:05+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -17310,7 +17310,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-24T09:23:43+09:00",
@@ -17321,10 +17321,18 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 564.19,
           "return_pct": 0.0479
+        },
+        "72h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 572.68,
+          "return_pct": 1.5534
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-25T09:26:16+09:00"
+      "learned_at": "2026-09-25T09:26:16+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-27T09:26:05+09:00",
+      "final_return_pct": 1.5534
     },
     {
       "id": "ce5618f899ca7445",
@@ -17376,7 +17384,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-24T09:23:43+09:00",
@@ -17387,10 +17395,18 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 183.21,
           "return_pct": -1.6533
+        },
+        "72h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 187.18,
+          "return_pct": 0.4777
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-25T09:26:16+09:00"
+      "learned_at": "2026-09-25T09:26:16+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-27T09:26:05+09:00",
+      "final_return_pct": 0.4777
     },
     {
       "id": "3efdeb233c2b946b",
@@ -17426,7 +17442,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-24T09:23:43+09:00",
@@ -17437,10 +17453,18 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 28.8297,
           "return_pct": 0.6975
+        },
+        "72h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 28.62,
+          "return_pct": -0.0349
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-25T09:26:16+09:00"
+      "learned_at": "2026-09-25T09:26:16+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-27T09:26:05+09:00",
+      "final_return_pct": -0.0349
     },
     {
       "id": "a739882633120882",
@@ -17491,7 +17515,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-24T17:07:21+09:00",
@@ -17502,10 +17526,18 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 564.19,
           "return_pct": -0.1292
+        },
+        "72h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 572.68,
+          "return_pct": 1.3736
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-25T09:26:16+09:00"
+      "learned_at": "2026-09-25T09:26:16+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-27T09:26:05+09:00",
+      "final_return_pct": 1.3736
     },
     {
       "id": "4863a6ffa357a69a",
@@ -17556,7 +17588,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-24T17:07:21+09:00",
@@ -17567,10 +17599,18 @@
           "evaluated_at": "2026-09-25T09:26:16+09:00",
           "price": 183.21,
           "return_pct": -1.4205
+        },
+        "72h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 187.18,
+          "return_pct": 0.7156
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-25T09:26:16+09:00"
+      "learned_at": "2026-09-25T09:26:16+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-27T09:26:05+09:00",
+      "final_return_pct": 0.7156
     },
     {
       "id": "6766aa08ee8e7601",
@@ -18011,9 +18051,15 @@
           "evaluated_at": "2026-09-26T09:30:53+09:00",
           "price": 573.138,
           "return_pct": -0.1223
+        },
+        "24h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 572.68,
+          "return_pct": -0.2021
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-27T09:26:05+09:00"
     },
     {
       "id": "98b1c2c395e6aee6",
@@ -18072,9 +18118,15 @@
           "evaluated_at": "2026-09-26T09:30:53+09:00",
           "price": 745.4,
           "return_pct": 0.0658
+        },
+        "24h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 744.5,
+          "return_pct": -0.055
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-27T09:26:05+09:00"
     },
     {
       "id": "37c0a5ede57436db",
@@ -18250,7 +18302,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 572.68,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -18298,6 +18356,122 @@
             "https://wallstreetcn.com/charts/41959925"
           ],
           "last_seen": "2026-09-26T12:40:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-27T09:26:05+09:00",
+          "price": 744.5,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "4d74ec91314e1cd8",
+      "created_at": "2026-09-27T09:26:05+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 572.68,
+      "entry_zone": [
+        569.8166,
+        575.5434
+      ],
+      "stop_price": 549.55159,
+      "target_price": 618.93682,
+      "score": 4.569,
+      "components": {
+        "momentum": 2.7826086332265394,
+        "regime": 0.0,
+        "news": 1.4056552916022682,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.78, regime +0.00, news +1.41, defensive +0.00",
+      "weights": {
+        "momentum": 1.0567,
+        "regime": 0.9357,
+        "news": 1.1585,
+        "defensive": 0.9792
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.78, 뉴스 +1.41 / 연결 뉴스: GPU·ASIC 고성능 테스트 수요 강세… 대만 반도체 후공정 양강 AI 성장 수혜 2026.09.27; 1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…",
+      "news_evidence": [
+        {
+          "title": "GPU·ASIC 고성능 테스트 수요 강세… 대만 반도체 후공정 양강 AI 성장 수혜 2026.09.27",
+          "urls": [
+            "https://money.udn.com/money/story/5612/9779318?from=ednappsharing",
+            "https://t.me/aicorporateanalysisdeepdive/11510"
+          ],
+          "last_seen": "2026-09-27T00:16:29+00:00"
+        },
+        {
+          "title": "1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…",
+          "urls": [
+            "https://ir.akamai.com/news-releases/news-release-details/akamai-announces-116-billion-multi-year-agreement-anthropic",
+            "https://t.me/FastStockNewsUSA/23434"
+          ],
+          "last_seen": "2026-09-26T12:46:37+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "d778e83f46b9d9a4",
+      "created_at": "2026-09-27T09:26:05+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 187.18,
+      "entry_zone": [
+        186.2441,
+        188.1159
+      ],
+      "stop_price": 178.314537,
+      "target_price": 204.910925,
+      "score": 3.379,
+      "components": {
+        "momentum": 1.450974316446074,
+        "regime": 0.0,
+        "news": 1.593274468714074,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.45, regime +0.00, news +1.59, defensive +0.00",
+      "weights": {
+        "momentum": 1.0567,
+        "regime": 0.9357,
+        "news": 1.1585,
+        "defensive": 0.9792
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.45, 뉴스 +1.59 / 연결 뉴스: GPU·ASIC 고성능 테스트 수요 강세… 대만 반도체 후공정 양강 AI 성장 수혜 2026.09.27; 1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…",
+      "news_evidence": [
+        {
+          "title": "GPU·ASIC 고성능 테스트 수요 강세… 대만 반도체 후공정 양강 AI 성장 수혜 2026.09.27",
+          "urls": [
+            "https://money.udn.com/money/story/5612/9779318?from=ednappsharing",
+            "https://t.me/aicorporateanalysisdeepdive/11510"
+          ],
+          "last_seen": "2026-09-27T00:16:29+00:00"
+        },
+        {
+          "title": "1. AI CPU 인프라 계획이라는 점 2. 분산형 클라우드라는 점이 핵심입니다 추론이란거죠 아카마이와의 계약 관련 크게 네 가…",
+          "urls": [
+            "https://ir.akamai.com/news-releases/news-release-details/akamai-announces-116-billion-multi-year-agreement-anthropic",
+            "https://t.me/FastStockNewsUSA/23434"
+          ],
+          "last_seen": "2026-09-26T12:46:37+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
