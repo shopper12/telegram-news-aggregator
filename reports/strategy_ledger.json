@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-28T19:05:33+09:00",
+  "updated_at": "2026-09-29T03:14:04+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18093,7 +18093,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-26T09:30:53+09:00",
@@ -18104,10 +18104,18 @@
           "evaluated_at": "2026-09-27T09:26:05+09:00",
           "price": 572.68,
           "return_pct": -0.2021
+        },
+        "72h": {
+          "evaluated_at": "2026-09-29T03:14:04+09:00",
+          "price": 560.45,
+          "return_pct": -2.3334
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-27T09:26:05+09:00"
+      "learned_at": "2026-09-27T09:26:05+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-29T03:14:04+09:00",
+      "final_return_pct": -2.3334
     },
     {
       "id": "98b1c2c395e6aee6",
@@ -18160,7 +18168,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-26T09:30:53+09:00",
@@ -18171,10 +18179,18 @@
           "evaluated_at": "2026-09-27T09:26:05+09:00",
           "price": 744.5,
           "return_pct": -0.055
+        },
+        "72h": {
+          "evaluated_at": "2026-09-29T03:14:04+09:00",
+          "price": 738.23,
+          "return_pct": -0.8968
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-27T09:26:05+09:00"
+      "learned_at": "2026-09-27T09:26:05+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-29T03:14:04+09:00",
+      "final_return_pct": -0.8968
     },
     {
       "id": "37c0a5ede57436db",
@@ -18635,9 +18651,15 @@
           "evaluated_at": "2026-09-28T09:34:28+09:00",
           "price": 572.68,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-29T03:14:04+09:00",
+          "price": 560.45,
+          "return_pct": -2.1356
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-29T03:14:04+09:00"
     },
     {
       "id": "2b1be270fb0135e2",
@@ -18696,9 +18718,15 @@
           "evaluated_at": "2026-09-28T09:34:28+09:00",
           "price": 187.18,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-09-29T03:14:04+09:00",
+          "price": 183.85,
+          "return_pct": -1.779
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-29T03:14:04+09:00"
     },
     {
       "id": "c0c9bdacc8e82d1b",
