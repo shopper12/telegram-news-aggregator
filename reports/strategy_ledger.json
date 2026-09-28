@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-29T04:56:57+09:00",
+  "updated_at": "2026-09-29T05:13:18+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18848,6 +18848,98 @@
           "return_pct": -1.7951
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "0bd6683624f9a0d0",
+      "created_at": "2026-09-29T05:13:18+09:00",
+      "slot": "evening",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.705,
+      "entry_zone": [
+        28.561475,
+        28.848525
+      ],
+      "stop_price": 28.1309,
+      "target_price": 29.8532,
+      "score": 3.063,
+      "components": {
+        "momentum": 0.2297302070760447,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.23, regime +2.00, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.064,
+        "regime": 0.9217,
+        "news": 1.1863,
+        "defensive": 0.9756
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.23, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "3985c48a3774a342",
+      "created_at": "2026-09-29T05:13:18+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 559.47,
+      "entry_zone": [
+        556.67265,
+        562.26735
+      ],
+      "stop_price": 536.94056,
+      "target_price": 604.528881,
+      "score": 1.505,
+      "components": {
+        "momentum": 0.06239299853545835,
+        "regime": -2.0,
+        "news": 4.0,
+        "defensive": -1.5
+      },
+      "component_text": "momentum +0.06, regime -2.00, news +4.00, defensive -1.50",
+      "weights": {
+        "momentum": 1.064,
+        "regime": 0.9217,
+        "news": 1.1863,
+        "defensive": 0.9756
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 +0.06, 뉴스 +4.00 / 연결 뉴스: 2026년 9월 29일 미국 증시 브리핑 미국 증시는 국채금리 급등과 시장 폭 축소 부담으로 하락 마감. S&P500 -0.77…; 🌎 글로벌 뉴스 브리핑",
+      "news_evidence": [
+        {
+          "title": "2026년 9월 29일 미국 증시 브리핑 미국 증시는 국채금리 급등과 시장 폭 축소 부담으로 하락 마감. S&P500 -0.77…",
+          "urls": [
+            "https://t.me/insidertracking",
+            "https://t.me/insidertracking/64866"
+          ],
+          "last_seen": "2026-09-28T20:03:25+00:00"
+        },
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/64865"
+          ],
+          "last_seen": "2026-09-28T19:50:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
