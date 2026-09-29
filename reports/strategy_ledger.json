@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-29T05:30:44+09:00",
+  "updated_at": "2026-09-29T10:48:12+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18243,7 +18243,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-26T17:46:37+09:00",
@@ -18254,10 +18254,18 @@
           "evaluated_at": "2026-09-27T10:03:45+09:00",
           "price": 572.68,
           "return_pct": -0.0799
+        },
+        "72h": {
+          "evaluated_at": "2026-09-29T10:48:12+09:00",
+          "price": 560.86,
+          "return_pct": -2.1422
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-27T10:03:45+09:00"
+      "learned_at": "2026-09-27T10:03:45+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-29T10:48:12+09:00",
+      "final_return_pct": -2.1422
     },
     {
       "id": "d2ec6f04cfe9e549",
@@ -18310,7 +18318,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-26T17:46:37+09:00",
@@ -18321,10 +18329,18 @@
           "evaluated_at": "2026-09-27T10:03:45+09:00",
           "price": 744.5,
           "return_pct": -0.1207
+        },
+        "72h": {
+          "evaluated_at": "2026-09-29T10:48:12+09:00",
+          "price": 737.0492,
+          "return_pct": -1.1203
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-27T10:03:45+09:00"
+      "learned_at": "2026-09-27T10:03:45+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-29T10:48:12+09:00",
+      "final_return_pct": -1.1203
     },
     {
       "id": "d43ef517d0e1df03",
@@ -18785,9 +18801,15 @@
           "evaluated_at": "2026-09-28T19:05:33+09:00",
           "price": 560.06,
           "return_pct": -2.2037
+        },
+        "24h": {
+          "evaluated_at": "2026-09-29T10:48:12+09:00",
+          "price": 560.86,
+          "return_pct": -2.064
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-29T10:48:12+09:00"
     },
     {
       "id": "41ff95ae7ffa016c",
@@ -18846,9 +18868,15 @@
           "evaluated_at": "2026-09-28T19:05:33+09:00",
           "price": 183.82,
           "return_pct": -1.7951
+        },
+        "24h": {
+          "evaluated_at": "2026-09-29T10:48:12+09:00",
+          "price": 183.61,
+          "return_pct": -1.9073
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-29T10:48:12+09:00"
     },
     {
       "id": "0bd6683624f9a0d0",
@@ -18932,6 +18960,99 @@
             "https://t.me/insidertracking/64865"
           ],
           "last_seen": "2026-09-28T19:50:42+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1e17dd4e7e2e0ef6",
+      "created_at": "2026-09-29T10:48:12+09:00",
+      "slot": "morning",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.7,
+      "entry_zone": [
+        28.5565,
+        28.8435
+      ],
+      "stop_price": 28.126,
+      "target_price": 29.848,
+      "score": 3.048,
+      "components": {
+        "momentum": 0.22272394024320316,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.22, regime +2.00, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0653,
+        "regime": 0.9182,
+        "news": 1.1925,
+        "defensive": 0.9747
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.22, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "f0b966fde19a15df",
+      "created_at": "2026-09-29T10:48:12+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 560.86,
+      "entry_zone": [
+        558.0557,
+        563.6643
+      ],
+      "stop_price": 538.274585,
+      "target_price": 606.030829,
+      "score": 1.584,
+      "components": {
+        "momentum": 0.10588175313909792,
+        "regime": -2.0,
+        "news": 4.0,
+        "defensive": -1.5
+      },
+      "component_text": "momentum +0.11, regime -2.00, news +4.00, defensive -1.50",
+      "weights": {
+        "momentum": 1.0653,
+        "regime": 0.9182,
+        "news": 1.1925,
+        "defensive": 0.9747
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 +0.11, 뉴스 +4.00 / 연결 뉴스: 2026년 9월 29일 미국 증시 브리핑 미국 증시는 국채금리 급등과 시장 폭 축소 부담으로 하락 마감. S&P500 -0.77…; 🔔",
+      "news_evidence": [
+        {
+          "title": "2026년 9월 29일 미국 증시 브리핑 미국 증시는 국채금리 급등과 시장 폭 축소 부담으로 하락 마감. S&P500 -0.77…",
+          "urls": [
+            "https://t.me/insidertracking",
+            "https://t.me/insidertracking/64866"
+          ],
+          "last_seen": "2026-09-28T20:03:25+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-09-29T01:14:05+00:00"
         }
       ],
       "price_source": "Yahoo Finance extended-hours",
