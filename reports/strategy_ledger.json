@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-30T03:24:38+09:00",
+  "updated_at": "2026-09-30T03:49:02+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -19101,6 +19101,116 @@
           "return_pct": 0.5991
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "b2cc17ddc7af333f",
+      "created_at": "2026-09-30T03:49:02+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 569.085,
+      "entry_zone": [
+        566.239575,
+        571.930425
+      ],
+      "stop_price": 546.694925,
+      "target_price": 613.865149,
+      "score": 6.109,
+      "components": {
+        "momentum": 1.2568090966861196,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.26, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0653,
+        "regime": 0.9182,
+        "news": 1.1925,
+        "defensive": 0.9747
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.26, 뉴스 +4.00 / 연결 뉴스: 🔔; 🔔 LG전자, AI 데이터센터 맞춤형 냉각 솔루션 선보여 📈 #LG전자 📝 #데이터센터 #AI인프라 #냉각솔루션 AI 데이터센터…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/12415b",
+            "https://t.me/dreago_news_ch/305953"
+          ],
+          "last_seen": "2026-09-29T00:28:54+00:00"
+        },
+        {
+          "title": "🔔 LG전자, AI 데이터센터 맞춤형 냉각 솔루션 선보여 📈 #LG전자 📝 #데이터센터 #AI인프라 #냉각솔루션 AI 데이터센터…",
+          "urls": [
+            "https://dreago.kr/n/2eb2e8",
+            "https://t.me/dreago_news_ch/309193"
+          ],
+          "last_seen": "2026-09-29T16:03:14+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "a47f60f2bab52e3b",
+      "created_at": "2026-09-30T03:49:02+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 738.38,
+      "entry_zone": [
+        734.6881,
+        742.0719
+      ],
+      "stop_price": 723.6124,
+      "target_price": 767.9152,
+      "score": 4.858,
+      "components": {
+        "momentum": 0.08299883910810132,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.08, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0653,
+        "regime": 0.9182,
+        "news": 1.1925,
+        "defensive": 0.9747
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.08, 뉴스 +4.00 / 연결 뉴스: 🔔; 🔔 LG전자, AI 데이터센터 맞춤형 냉각 솔루션 선보여 📈 #LG전자 📝 #데이터센터 #AI인프라 #냉각솔루션 AI 데이터센터…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/12415b",
+            "https://t.me/dreago_news_ch/305953"
+          ],
+          "last_seen": "2026-09-29T00:28:54+00:00"
+        },
+        {
+          "title": "🔔 LG전자, AI 데이터센터 맞춤형 냉각 솔루션 선보여 📈 #LG전자 📝 #데이터센터 #AI인프라 #냉각솔루션 AI 데이터센터…",
+          "urls": [
+            "https://dreago.kr/n/2eb2e8",
+            "https://t.me/dreago_news_ch/309193"
+          ],
+          "last_seen": "2026-09-29T16:03:14+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
