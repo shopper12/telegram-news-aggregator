@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-30T04:15:01+09:00",
+  "updated_at": "2026-09-30T10:16:14+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18543,7 +18543,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-27T18:27:59+09:00",
@@ -18554,10 +18554,18 @@
           "evaluated_at": "2026-09-28T09:34:28+09:00",
           "price": 572.68,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-30T10:16:14+09:00",
+          "price": 569.82,
+          "return_pct": -0.4994
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-28T09:34:28+09:00"
+      "learned_at": "2026-09-28T09:34:28+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-30T10:16:14+09:00",
+      "final_return_pct": -0.4994
     },
     {
       "id": "d778e83f46b9d9a4",
@@ -18610,7 +18618,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-27T18:27:59+09:00",
@@ -18621,10 +18629,18 @@
           "evaluated_at": "2026-09-28T09:34:28+09:00",
           "price": 187.18,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-09-30T10:16:14+09:00",
+          "price": 186.93,
+          "return_pct": -0.1336
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-28T09:34:28+09:00"
+      "learned_at": "2026-09-28T09:34:28+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-09-30T10:16:14+09:00",
+      "final_return_pct": -0.1336
     },
     {
       "id": "93f8b6e9de6174cd",
@@ -18934,9 +18950,15 @@
           "evaluated_at": "2026-09-29T11:23:03+09:00",
           "price": 28.7,
           "return_pct": -0.0174
+        },
+        "24h": {
+          "evaluated_at": "2026-09-30T10:16:14+09:00",
+          "price": 28.8,
+          "return_pct": 0.331
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-30T10:16:14+09:00"
     },
     {
       "id": "3985c48a3774a342",
@@ -18994,9 +19016,15 @@
           "evaluated_at": "2026-09-29T11:23:03+09:00",
           "price": 560.79,
           "return_pct": 0.2359
+        },
+        "24h": {
+          "evaluated_at": "2026-09-30T10:16:14+09:00",
+          "price": 569.82,
+          "return_pct": 1.85
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-09-30T10:16:14+09:00"
     },
     {
       "id": "1e17dd4e7e2e0ef6",
@@ -19155,7 +19183,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-30T10:16:14+09:00",
+          "price": 569.82,
+          "return_pct": 0.1292
+        }
+      },
       "learned_24h": false
     },
     {
@@ -19206,6 +19240,160 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-09-30T10:16:14+09:00",
+          "price": 740.3,
+          "return_pct": 0.26
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "4901a9a45d73f784",
+      "created_at": "2026-09-30T10:16:14+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 569.82,
+      "entry_zone": [
+        566.9709,
+        572.6691
+      ],
+      "stop_price": 546.873773,
+      "target_price": 615.712454,
+      "score": 2.932,
+      "components": {
+        "momentum": -0.03211041364012236,
+        "regime": -2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.03, regime -2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0666,
+        "regime": 0.9148,
+        "news": 1.1989,
+        "defensive": 0.9737
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 -0.03, 뉴스 +4.00 / 연결 뉴스: 🔔; 육불화텅스텐·SiC·실리콘 웨이퍼, AI 연산 폭증에 반도체 소재 공급난 및 가격 급등세 본격화",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/6587f0",
+            "https://t.me/dreago_news_ch/306563"
+          ],
+          "last_seen": "2026-09-30T01:03:36+00:00"
+        },
+        {
+          "title": "육불화텅스텐·SiC·실리콘 웨이퍼, AI 연산 폭증에 반도체 소재 공급난 및 가격 급등세 본격화",
+          "urls": [
+            "http://finance.eastmoney.com/a/202606153771488050.html",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-30T00:47:04+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6b3a6ca2f5f32c37",
+      "created_at": "2026-09-30T10:16:14+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 740.3,
+      "entry_zone": [
+        736.5985,
+        744.0015
+      ],
+      "stop_price": 725.494,
+      "target_price": 769.912,
+      "score": 2.252,
+      "components": {
+        "momentum": -0.31753753495816583,
+        "regime": -2.0,
+        "news": 3.687007059816666,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.32, regime -2.00, news +3.69, defensive +0.00",
+      "weights": {
+        "momentum": 1.0666,
+        "regime": 0.9148,
+        "news": 1.1989,
+        "defensive": 0.9737
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 -0.32, 뉴스 +3.69 / 연결 뉴스: 육불화텅스텐·SiC·실리콘 웨이퍼, AI 연산 폭증에 반도체 소재 공급난 및 가격 급등세 본격화; ✅ 고영테크놀러지, 차세대 AI 메모리 ‘SOCAMM2’ 검사장비 추가 수주 https://www.irobotnews.com/n…",
+      "news_evidence": [
+        {
+          "title": "육불화텅스텐·SiC·실리콘 웨이퍼, AI 연산 폭증에 반도체 소재 공급난 및 가격 급등세 본격화",
+          "urls": [
+            "http://finance.eastmoney.com/a/202606153771488050.html",
+            "https://t.me/TNBfolio"
+          ],
+          "last_seen": "2026-09-30T00:47:04+00:00"
+        },
+        {
+          "title": "✅ 고영테크놀러지, 차세대 AI 메모리 ‘SOCAMM2’ 검사장비 추가 수주 https://www.irobotnews.com/n…",
+          "urls": [
+            "https://irobotnews.com/news/articleView.html?idxno=48753",
+            "https://t.me/c/1208429502/125885"
+          ],
+          "last_seen": "2026-09-30T00:52:24+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "ff6d0c9e770f25f2",
+      "created_at": "2026-09-30T10:16:14+09:00",
+      "slot": "morning",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.8,
+      "entry_zone": [
+        28.656,
+        28.944
+      ],
+      "stop_price": 28.224,
+      "target_price": 29.952,
+      "score": 2.225,
+      "components": {
+        "momentum": 0.3704363604418158,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.37, regime +2.00, news +0.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0666,
+        "regime": 0.9148,
+        "news": 1.1989,
+        "defensive": 0.9737
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.37, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
