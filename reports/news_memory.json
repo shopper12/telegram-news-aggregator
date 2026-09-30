@@ -1,7 +1,137 @@
 {
   "version": 2,
-  "updated_at": "2026-09-30T19:17:00+09:00",
+  "updated_at": "2026-10-01T01:29:06+09:00",
   "events": [
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-09-30T16:27:41+00:00",
+      "count": 1243,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
+    {
+      "signature": "016dd5722c1abe617a211c529a14e72bf02acb07",
+      "title": "미 SEC, 사모자산 소매 투자 접근 확대 규정안 제안 https://m.stock.naver.com/investment/new…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2758750",
+        "https://t.me/moneythemestock/64532"
+      ],
+      "materiality": 5,
+      "sentiment": 1,
+      "first_seen": "2026-09-30T16:24:46+00:00",
+      "last_seen": "2026-09-30T16:24:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6dc9fbbd6e4151d3399cbc8138a1de8fb18d5717",
+      "title": "🔔",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "amd",
+        "데이터센터",
+        "반도체",
+        "서버"
+      ],
+      "tickers": [
+        "HPQ"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/fcba4e",
+        "https://t.me/dreago_news_ch/309589"
+      ],
+      "materiality": 14,
+      "sentiment": 3,
+      "first_seen": "2026-09-30T16:08:46+00:00",
+      "last_seen": "2026-09-30T16:08:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1ca189c13c4d3b235ee0f3d73dcc306c3f6ade80",
+      "title": "🔔 삼성전자, 평택 포승지구에 5000억 규모 물류센터 📈 #삼성전자 📝 #스마트물류 #물류자동화 #가전 삼성전자의 5000억원…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/4a9474",
+        "https://t.me/dreago_news_ch/309588"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-09-30T16:00:55+00:00",
+      "last_seen": "2026-09-30T16:00:55+00:00",
+      "count": 1
+    },
+    {
+      "signature": "5ce0a8284c2286f6e8e0929bba4607b2793ea719",
+      "title": "🔔 현대차 파업에 울산 산업지표 '우울' 📈 #현대차 #현대모비스 📝 #자동차 #자동차부품 #울산산업 현대차 파업과 대외 불확실…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "005380.KS",
+        "012330.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/4fe2d9",
+        "https://t.me/dreago_news_ch/309587"
+      ],
+      "materiality": 10,
+      "sentiment": -1,
+      "first_seen": "2026-09-30T15:39:30+00:00",
+      "last_seen": "2026-09-30T15:39:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d723522439b8cf7d516659c2f9c31bf8b5af2d66",
+      "title": "🔔 오텍캐리어·LG전자, 차세대 냉각 기술 선보여 📈 #LG전자 #오텍 📝 #데이터센터 #AI인프라 #데이터센터냉각 AI 데이터…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai",
+        "데이터센터"
+      ],
+      "tickers": [
+        "066570.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/54ec0e",
+        "https://t.me/dreago_news_ch/309586"
+      ],
+      "materiality": 12,
+      "sentiment": 2,
+      "first_seen": "2026-09-30T15:37:29+00:00",
+      "last_seen": "2026-09-30T15:37:29+00:00",
+      "count": 1
+    },
     {
       "signature": "9649afa510eec1886ff9d17dd856f9ee8aefef6d",
       "title": "🔔 코웨이, 매트리스에 수면 분석 기능 탑재…슬립테크 영역 넓힌다 📈 #코웨이 📝 #슬립테크 #스마트홈 #수면산업 수면 측정·맞…",
@@ -417,25 +547,6 @@
       "first_seen": "2026-09-30T09:36:59+00:00",
       "last_seen": "2026-09-30T09:36:59+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 0,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-09-30T09:36:20+00:00",
-      "count": 1242,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "8e5541ff5e29491265cb8795866199664762ae67",
@@ -10528,102 +10639,6 @@
       "sentiment": 0,
       "first_seen": "2026-09-29T00:08:40+00:00",
       "last_seen": "2026-09-29T00:08:40+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f3d24b855dd50bcbe59e9374ed250fc91430d890",
-      "title": "[개장] 코스닥 843.09P (-0.4%↓) 에코프로비엠, 에코프로등 하락\n출처: 씽크풀 | 시각: 2026-09-29T00:08:40+00:00",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "에코프로",
-        "에코프로비엠"
-      ],
-      "tickers": [
-        "086520.KQ",
-        "247540.KQ"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20260929/1000255",
-        "https://t.me/rassiro_channel/305609"
-      ],
-      "materiality": 6,
-      "sentiment": -1,
-      "first_seen": "2026-09-29T00:08:40+00:00",
-      "last_seen": "2026-09-29T00:08:40+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d23e75c6cdc15aeba9ef94e07a678c56ff2581c5",
-      "title": "[개장] 코스피 6,873.37P (-0.2%↓) LG에너지솔루션, 삼성생명등 하락\n출처: 씽크풀 | 시각: 2026-09-29T00:08:40+00:00",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "lg에너지솔루션"
-      ],
-      "tickers": [
-        "373220.KS"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20260929/1000254",
-        "https://t.me/rassiro_channel/305610"
-      ],
-      "materiality": 5,
-      "sentiment": -1,
-      "first_seen": "2026-09-29T00:08:40+00:00",
-      "last_seen": "2026-09-29T00:08:40+00:00",
-      "count": 1
-    },
-    {
-      "signature": "375d2bc375cf5dd583f7451488b727114f165d7e",
-      "title": "제목 : 팔란티어, 고객 맞춤형 전략이 경쟁우위 제공",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/kwusa/60863"
-      ],
-      "materiality": 8,
-      "sentiment": 1,
-      "first_seen": "2026-09-29T00:08:16+00:00",
-      "last_seen": "2026-09-29T00:08:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "df34cbac5e82b926794105890d6f4c84bce33573",
-      "title": "첫 15분봉이 양봉이면되는겨 (코스피 15분봉)",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/54362"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-09-29T00:08:08+00:00",
-      "last_seen": "2026-09-29T00:08:08+00:00",
-      "count": 1
-    },
-    {
-      "signature": "fcfd113fcaccc07f03a60a133edfd7d5e30551fa",
-      "title": "✅ “꿈의 암치료 현실로”…에스지헬스케어, CASHIM 차세대 입자치료 시스템 국내 독점 사업권 확보 https://www.ha…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://hankyung.com/article/202609290989P",
-        "https://t.me/c/1208429502/125808"
-      ],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-09-29T00:07:52+00:00",
-      "last_seen": "2026-09-29T00:07:52+00:00",
       "count": 1
     }
   ]
