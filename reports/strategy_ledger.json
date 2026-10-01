@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-01T04:02:57+09:00",
+  "updated_at": "2026-10-01T10:17:38+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -18843,7 +18843,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-28T19:05:33+09:00",
@@ -18854,10 +18854,18 @@
           "evaluated_at": "2026-09-29T10:48:12+09:00",
           "price": 560.86,
           "return_pct": -2.064
+        },
+        "72h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 570.38,
+          "return_pct": -0.4016
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-29T10:48:12+09:00"
+      "learned_at": "2026-09-29T10:48:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-01T10:17:38+09:00",
+      "final_return_pct": -0.4016
     },
     {
       "id": "41ff95ae7ffa016c",
@@ -18910,7 +18918,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-09-28T19:05:33+09:00",
@@ -18921,10 +18929,18 @@
           "evaluated_at": "2026-09-29T10:48:12+09:00",
           "price": 183.61,
           "return_pct": -1.9073
+        },
+        "72h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 183.55,
+          "return_pct": -1.9393
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-09-29T10:48:12+09:00"
+      "learned_at": "2026-09-29T10:48:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-01T10:17:38+09:00",
+      "final_return_pct": -1.9393
     },
     {
       "id": "0bd6683624f9a0d0",
@@ -19350,9 +19366,15 @@
           "evaluated_at": "2026-09-30T19:17:00+09:00",
           "price": 564.64,
           "return_pct": -0.9091
+        },
+        "24h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 570.38,
+          "return_pct": 0.0983
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-01T10:17:38+09:00"
     },
     {
       "id": "6b3a6ca2f5f32c37",
@@ -19411,9 +19433,15 @@
           "evaluated_at": "2026-09-30T19:17:00+09:00",
           "price": 737.2,
           "return_pct": -0.4187
+        },
+        "24h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 742.8,
+          "return_pct": 0.3377
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-01T10:17:38+09:00"
     },
     {
       "id": "ff6d0c9e770f25f2",
@@ -19455,9 +19483,15 @@
           "evaluated_at": "2026-09-30T19:17:00+09:00",
           "price": 28.75,
           "return_pct": -0.1736
+        },
+        "24h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 28.77,
+          "return_pct": -0.1042
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-01T10:17:38+09:00"
     },
     {
       "id": "db2085e209589fbb",
@@ -19511,7 +19545,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 570.38,
+          "return_pct": 0.4402
+        }
+      },
       "learned_24h": false
     },
     {
@@ -19561,6 +19601,120 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-01T10:17:38+09:00",
+          "price": 742.8,
+          "return_pct": -0.0296
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "6fe2c4d20cc5f4b1",
+      "created_at": "2026-10-01T10:17:38+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 570.38,
+      "entry_zone": [
+        567.5281,
+        573.2319
+      ],
+      "stop_price": 548.128682,
+      "target_price": 614.882635,
+      "score": 4.808,
+      "components": {
+        "momentum": -0.06561486235070432,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.07, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0704,
+        "regime": 0.9037,
+        "news": 1.2196,
+        "defensive": 0.9698
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.07, 뉴스 +4.00 / 연결 뉴스: LS ELECTRIC; 세미파이브(490470) 단일판매ㆍ공급계약체결 📌 규모 매출대비 : 공개유보 계약금액 : 공개유보 📌 내용 계약상대 : 모빌린트…",
+      "news_evidence": [
+        {
+          "title": "LS ELECTRIC",
+          "urls": [
+            "https://t.me/c/1208429502/125967",
+            "https://t.me/corevalue/47226"
+          ],
+          "last_seen": "2026-10-01T00:56:26+00:00"
+        },
+        {
+          "title": "세미파이브(490470) 단일판매ㆍ공급계약체결 📌 규모 매출대비 : 공개유보 계약금액 : 공개유보 📌 내용 계약상대 : 모빌린트…",
+          "urls": [
+            "https://t.me/c/1208429502/125966"
+          ],
+          "last_seen": "2026-10-01T00:46:19+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "74f68c14e32ec893",
+      "created_at": "2026-10-01T10:17:38+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 742.8,
+      "entry_zone": [
+        739.086,
+        746.514
+      ],
+      "stop_price": 727.944,
+      "target_price": 772.512,
+      "score": 4.612,
+      "components": {
+        "momentum": -0.24933244330620039,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.25, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0704,
+        "regime": 0.9037,
+        "news": 1.2196,
+        "defensive": 0.9698
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.25, 뉴스 +4.00 / 연결 뉴스: LS ELECTRIC; 세미파이브(490470) 단일판매ㆍ공급계약체결 📌 규모 매출대비 : 공개유보 계약금액 : 공개유보 📌 내용 계약상대 : 모빌린트…",
+      "news_evidence": [
+        {
+          "title": "LS ELECTRIC",
+          "urls": [
+            "https://t.me/c/1208429502/125967",
+            "https://t.me/corevalue/47226"
+          ],
+          "last_seen": "2026-10-01T00:56:26+00:00"
+        },
+        {
+          "title": "세미파이브(490470) 단일판매ㆍ공급계약체결 📌 규모 매출대비 : 공개유보 계약금액 : 공개유보 📌 내용 계약상대 : 모빌린트…",
+          "urls": [
+            "https://t.me/c/1208429502/125966"
+          ],
+          "last_seen": "2026-10-01T00:46:19+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
