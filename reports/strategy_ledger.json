@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-02T03:39:25+09:00",
+  "updated_at": "2026-10-02T03:59:36+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -19744,6 +19744,154 @@
           "return_pct": 0.3298
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "df79851a4059228e",
+      "created_at": "2026-10-02T03:59:36+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 578.075,
+      "entry_zone": [
+        575.184625,
+        580.965375
+      ],
+      "stop_price": 556.033335,
+      "target_price": 622.158331,
+      "score": 7.377,
+      "components": {
+        "momentum": 2.303371613910419,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.30, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0717,
+        "regime": 0.8998,
+        "news": 1.227,
+        "defensive": 0.9685
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.30, 뉴스 +4.00 / 연결 뉴스: 🔔; LS ELECTRIC",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/12415b",
+            "https://t.me/dreago_news_ch/305953"
+          ],
+          "last_seen": "2026-10-01T16:19:41+00:00"
+        },
+        {
+          "title": "LS ELECTRIC",
+          "urls": [
+            "https://t.me/c/1208429502/125967",
+            "https://t.me/corevalue/47226"
+          ],
+          "last_seen": "2026-10-01T00:56:26+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "db5f9902196e1361",
+      "created_at": "2026-10-02T03:59:36+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 743.42,
+      "entry_zone": [
+        739.7029,
+        747.1371
+      ],
+      "stop_price": 728.5516,
+      "target_price": 773.1568,
+      "score": 5.604,
+      "components": {
+        "momentum": 0.6496263132290314,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.65, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0717,
+        "regime": 0.8998,
+        "news": 1.227,
+        "defensive": 0.9685
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.65, 뉴스 +4.00 / 연결 뉴스: 🔔; LS ELECTRIC",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/12415b",
+            "https://t.me/dreago_news_ch/305953"
+          ],
+          "last_seen": "2026-10-01T16:19:41+00:00"
+        },
+        {
+          "title": "LS ELECTRIC",
+          "urls": [
+            "https://t.me/c/1208429502/125967",
+            "https://t.me/corevalue/47226"
+          ],
+          "last_seen": "2026-10-01T00:56:26+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1c194f9d06a4276f",
+      "created_at": "2026-10-02T03:59:36+09:00",
+      "slot": "evening",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.97,
+      "entry_zone": [
+        28.82515,
+        29.11485
+      ],
+      "stop_price": 28.3906,
+      "target_price": 30.1288,
+      "score": 1.528,
+      "components": {
+        "momentum": 0.6252313373611156,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +0.63, regime +0.20, news +0.00, defensive +0.70",
+      "weights": {
+        "momentum": 1.0717,
+        "regime": 0.8998,
+        "news": 1.227,
+        "defensive": 0.9685
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.63, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
