@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-04T01:54:50+09:00",
+  "updated_at": "2026-10-04T02:31:28+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -20390,6 +20390,115 @@
           "return_pct": -0.1255
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "a1aacc88f176e49d",
+      "created_at": "2026-10-04T02:31:28+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 588.9,
+      "entry_zone": [
+        585.9555,
+        591.8445
+      ],
+      "stop_price": 566.331627,
+      "target_price": 634.036745,
+      "score": 7.431,
+      "components": {
+        "momentum": 2.7530214955328343,
+        "regime": 2.0,
+        "news": 2.1528816494239353,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.75, regime +2.00, news +2.15, defensive +0.00",
+      "weights": {
+        "momentum": 1.076,
+        "regime": 0.8881,
+        "news": 1.2509,
+        "defensive": 0.9646
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.75, 뉴스 +2.15 / 연결 뉴스: 🔔; JP모건) 미국: 서두르지 말고 천천히 9월 고용보고서는 예상보다 다소 약했지만 크게 우려할 수준은 아니었습니다. 비농업 고용은…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-10-02T22:08:08+00:00"
+        },
+        {
+          "title": "JP모건) 미국: 서두르지 말고 천천히 9월 고용보고서는 예상보다 다소 약했지만 크게 우려할 수준은 아니었습니다. 비농업 고용은…",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23555"
+          ],
+          "last_seen": "2026-10-03T09:33:46+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "8c0b5e69fdd8c5f4",
+      "created_at": "2026-10-04T02:31:28+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.88,
+      "entry_zone": [
+        190.9206,
+        192.8394
+      ],
+      "stop_price": 182.501598,
+      "target_price": 210.636803,
+      "score": 6.048,
+      "components": {
+        "momentum": 1.7344604008770779,
+        "regime": 2.0,
+        "news": 1.922782358991713,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.73, regime +2.00, news +1.92, defensive +0.00",
+      "weights": {
+        "momentum": 1.076,
+        "regime": 0.8881,
+        "news": 1.2509,
+        "defensive": 0.9646
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.73, 뉴스 +1.92 / 연결 뉴스: 🔔; 🔔",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-10-02T22:08:08+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/cb80a7",
+            "https://t.me/dreago_news_ch/309308"
+          ],
+          "last_seen": "2026-10-03T00:54:18+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
