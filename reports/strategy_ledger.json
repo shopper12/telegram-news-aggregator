@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-03T04:07:04+09:00",
+  "updated_at": "2026-10-03T10:03:33+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -20164,7 +20164,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-03T10:03:33+09:00",
+          "price": 589.64,
+          "return_pct": 0.1716
+        }
+      },
       "learned_24h": false
     },
     {
@@ -20215,6 +20221,122 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-03T10:03:33+09:00",
+          "price": 191.13,
+          "return_pct": 0.5207
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "6adb173ca8d46227",
+      "created_at": "2026-10-03T10:03:33+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.13,
+      "entry_zone": [
+        190.17435,
+        192.08565
+      ],
+      "stop_price": 181.750388,
+      "target_price": 209.889225,
+      "score": 2.793,
+      "components": {
+        "momentum": 0.8105944830820131,
+        "regime": 0.0,
+        "news": 1.5462950929033568,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.81, regime +0.00, news +1.55, defensive +0.00",
+      "weights": {
+        "momentum": 1.0745,
+        "regime": 0.892,
+        "news": 1.2427,
+        "defensive": 0.9659
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.81, 뉴스 +1.55 / 연결 뉴스: 🔔; 🔔 \"삼전닉스서 458조원 쓸어 담는다\"…고환율 폭탄 없는 이유 📈 #삼성전자 #SK하이닉스 📝 #반도체 #원화강세 #외환시장 …",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/cb80a7",
+            "https://t.me/dreago_news_ch/309308"
+          ],
+          "last_seen": "2026-10-03T00:54:18+00:00"
+        },
+        {
+          "title": "🔔 \"삼전닉스서 458조원 쓸어 담는다\"…고환율 폭탄 없는 이유 📈 #삼성전자 #SK하이닉스 📝 #반도체 #원화강세 #외환시장 …",
+          "urls": [
+            "https://dreago.kr/n/944e2e",
+            "https://t.me/dreago_news_ch/310322"
+          ],
+          "last_seen": "2026-10-02T09:51:13+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "09645f5e983c991b",
+      "created_at": "2026-10-03T10:03:33+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 589.64,
+      "entry_zone": [
+        586.6918,
+        592.5882
+      ],
+      "stop_price": 566.629533,
+      "target_price": 635.660934,
+      "score": 1.966,
+      "components": {
+        "momentum": 0.9260771372656496,
+        "regime": 0.0,
+        "news": 0.7809730363484262,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.93, regime +0.00, news +0.78, defensive +0.00",
+      "weights": {
+        "momentum": 1.0745,
+        "regime": 0.892,
+        "news": 1.2427,
+        "defensive": 0.9659
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.93, 뉴스 +0.78 / 연결 뉴스: 🔔 \"현대차가 일찍 찍었다\"…'2.7조→13조' 몸값 뛴 美 AI회사 📈 #현대차 📝 #피지컬AI #로봇 #휴머노이드로봇 필드A…; 🔔 \"삼전닉스서 458조원 쓸어 담는다\"…고환율 폭탄 없는 이유 📈 #삼성전자 #SK하이닉스 📝 #반도체 #원화강세 #외환시장 …",
+      "news_evidence": [
+        {
+          "title": "🔔 \"현대차가 일찍 찍었다\"…'2.7조→13조' 몸값 뛴 美 AI회사 📈 #현대차 📝 #피지컬AI #로봇 #휴머노이드로봇 필드A…",
+          "urls": [
+            "https://dreago.kr/n/3791c7",
+            "https://t.me/dreago_news_ch/310387"
+          ],
+          "last_seen": "2026-10-03T00:50:54+00:00"
+        },
+        {
+          "title": "🔔 \"삼전닉스서 458조원 쓸어 담는다\"…고환율 폭탄 없는 이유 📈 #삼성전자 #SK하이닉스 📝 #반도체 #원화강세 #외환시장 …",
+          "urls": [
+            "https://dreago.kr/n/944e2e",
+            "https://t.me/dreago_news_ch/310322"
+          ],
+          "last_seen": "2026-10-02T09:51:13+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
