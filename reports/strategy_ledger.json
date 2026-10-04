@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-05T02:13:05+09:00",
+  "updated_at": "2026-10-05T02:46:59+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -20504,9 +20504,15 @@
           "evaluated_at": "2026-10-04T09:28:25+09:00",
           "price": 588.9,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-10-05T02:46:59+09:00",
+          "price": 588.9,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-05T02:46:59+09:00"
     },
     {
       "id": "8c0b5e69fdd8c5f4",
@@ -20565,9 +20571,15 @@
           "evaluated_at": "2026-10-04T09:28:25+09:00",
           "price": 191.88,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-10-05T02:46:59+09:00",
+          "price": 191.88,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-05T02:46:59+09:00"
     },
     {
       "id": "4374d264463eb130",
@@ -20688,6 +20700,115 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "734e1d34a385a511",
+      "created_at": "2026-10-05T02:46:59+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 588.9,
+      "entry_zone": [
+        585.9555,
+        591.8445
+      ],
+      "stop_price": 566.331627,
+      "target_price": 634.036745,
+      "score": 6.705,
+      "components": {
+        "momentum": 2.7530214955328343,
+        "regime": 2.0,
+        "news": 1.548820572388889,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.75, regime +2.00, news +1.55, defensive +0.00",
+      "weights": {
+        "momentum": 1.0808,
+        "regime": 0.8764,
+        "news": 1.2763,
+        "defensive": 0.9607
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.75, 뉴스 +1.55 / 연결 뉴스: 🔔; 🔔",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-10-04T14:57:36+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/12415b",
+            "https://t.me/dreago_news_ch/305953"
+          ],
+          "last_seen": "2026-10-04T10:14:31+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "5c67518dbc5fd2f0",
+      "created_at": "2026-10-05T02:46:59+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.88,
+      "entry_zone": [
+        190.9206,
+        192.8394
+      ],
+      "stop_price": 182.501598,
+      "target_price": 210.636803,
+      "score": 4.977,
+      "components": {
+        "momentum": 1.7344604008770779,
+        "regime": 2.0,
+        "news": 1.0573290231712962,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.73, regime +2.00, news +1.06, defensive +0.00",
+      "weights": {
+        "momentum": 1.0808,
+        "regime": 0.8764,
+        "news": 1.2763,
+        "defensive": 0.9607
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.73, 뉴스 +1.06 / 연결 뉴스: 🔔; 📌 메모리 시장 업데이트 JP모건은 마이크론 4QFY26 실적을 통해 메모리 공급 부족이 2028년까지 이어질 가능성이 높고, …",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-10-04T14:57:36+00:00"
+        },
+        {
+          "title": "📌 메모리 시장 업데이트 JP모건은 마이크론 4QFY26 실적을 통해 메모리 공급 부족이 2028년까지 이어질 가능성이 높고, …",
+          "urls": [
+            "https://t.me/corevalue/47259"
+          ],
+          "last_seen": "2026-10-04T03:33:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
