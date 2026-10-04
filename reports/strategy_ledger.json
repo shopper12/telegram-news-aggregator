@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-04T02:52:33+09:00",
+  "updated_at": "2026-10-04T09:28:25+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -19616,7 +19616,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-01T10:17:38+09:00",
@@ -19627,10 +19627,18 @@
           "evaluated_at": "2026-10-02T03:39:25+09:00",
           "price": 577.166,
           "return_pct": 1.6352
+        },
+        "72h": {
+          "evaluated_at": "2026-10-04T09:28:25+09:00",
+          "price": 588.9,
+          "return_pct": 3.7015
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-02T03:39:25+09:00"
+      "learned_at": "2026-10-02T03:39:25+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-04T09:28:25+09:00",
+      "final_return_pct": 3.7015
     },
     {
       "id": "1cf98c6d0e56141f",
@@ -19682,7 +19690,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-01T10:17:38+09:00",
@@ -19693,10 +19701,18 @@
           "evaluated_at": "2026-10-02T03:39:25+09:00",
           "price": 742.985,
           "return_pct": -0.0047
+        },
+        "72h": {
+          "evaluated_at": "2026-10-04T09:28:25+09:00",
+          "price": 749.58,
+          "return_pct": 0.8829
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-02T03:39:25+09:00"
+      "learned_at": "2026-10-02T03:39:25+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-04T09:28:25+09:00",
+      "final_return_pct": 0.8829
     },
     {
       "id": "6fe2c4d20cc5f4b1",
@@ -20205,9 +20221,15 @@
           "evaluated_at": "2026-10-03T10:03:33+09:00",
           "price": 589.64,
           "return_pct": 0.1716
+        },
+        "24h": {
+          "evaluated_at": "2026-10-04T09:28:25+09:00",
+          "price": 588.9,
+          "return_pct": 0.0459
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-04T09:28:25+09:00"
     },
     {
       "id": "4fbbf746bdaef0e9",
@@ -20266,9 +20288,15 @@
           "evaluated_at": "2026-10-03T10:03:33+09:00",
           "price": 191.13,
           "return_pct": 0.5207
+        },
+        "24h": {
+          "evaluated_at": "2026-10-04T09:28:25+09:00",
+          "price": 191.88,
+          "return_pct": 0.9151
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-04T09:28:25+09:00"
     },
     {
       "id": "6adb173ca8d46227",
@@ -20443,7 +20471,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-04T09:28:25+09:00",
+          "price": 588.9,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -20483,6 +20517,121 @@
             "https://t.me/dreago_news_ch/308867"
           ],
           "last_seen": "2026-10-02T22:08:08+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/cb80a7",
+            "https://t.me/dreago_news_ch/309308"
+          ],
+          "last_seen": "2026-10-03T00:54:18+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-04T09:28:25+09:00",
+          "price": 191.88,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "4374d264463eb130",
+      "created_at": "2026-10-04T09:28:25+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 588.9,
+      "entry_zone": [
+        585.9555,
+        591.8445
+      ],
+      "stop_price": 566.331627,
+      "target_price": 634.036745,
+      "score": 6.2,
+      "components": {
+        "momentum": 2.7530214955328343,
+        "regime": 2.0,
+        "news": 1.1632717414682872,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.75, regime +2.00, news +1.16, defensive +0.00",
+      "weights": {
+        "momentum": 1.0776,
+        "regime": 0.8842,
+        "news": 1.2593,
+        "defensive": 0.9633
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.75, 뉴스 +1.16 / 연결 뉴스: \"한국 주식, 싸다고 좋은 게 아니다\"...'빅쇼트' 버리 제자 '일침' 2026.10.04; JP모건) 미국: 서두르지 말고 천천히 9월 고용보고서는 예상보다 다소 약했지만 크게 우려할 수준은 아니었습니다. 비농업 고용은…",
+      "news_evidence": [
+        {
+          "title": "\"한국 주식, 싸다고 좋은 게 아니다\"...'빅쇼트' 버리 제자 '일침' 2026.10.04",
+          "urls": [
+            "https://magazine.hankyung.com/business/article/202609305465b",
+            "https://t.me/aicorporateanalysisdeepdive/11795"
+          ],
+          "last_seen": "2026-10-03T23:42:18+00:00"
+        },
+        {
+          "title": "JP모건) 미국: 서두르지 말고 천천히 9월 고용보고서는 예상보다 다소 약했지만 크게 우려할 수준은 아니었습니다. 비농업 고용은…",
+          "urls": [
+            "https://t.me/FastStockNewsUSA/23555"
+          ],
+          "last_seen": "2026-10-03T09:33:46+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "f86d92fef72d417a",
+      "created_at": "2026-10-04T09:28:25+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.88,
+      "entry_zone": [
+        190.9206,
+        192.8394
+      ],
+      "stop_price": 182.501598,
+      "target_price": 210.636803,
+      "score": 4.872,
+      "components": {
+        "momentum": 1.7344604008770779,
+        "regime": 2.0,
+        "news": 0.9804688480680555,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.73, regime +2.00, news +0.98, defensive +0.00",
+      "weights": {
+        "momentum": 1.0776,
+        "regime": 0.8842,
+        "news": 1.2593,
+        "defensive": 0.9633
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.73, 뉴스 +0.98 / 연결 뉴스: \"한국 주식, 싸다고 좋은 게 아니다\"...'빅쇼트' 버리 제자 '일침' 2026.10.04; 🔔",
+      "news_evidence": [
+        {
+          "title": "\"한국 주식, 싸다고 좋은 게 아니다\"...'빅쇼트' 버리 제자 '일침' 2026.10.04",
+          "urls": [
+            "https://magazine.hankyung.com/business/article/202609305465b",
+            "https://t.me/aicorporateanalysisdeepdive/11795"
+          ],
+          "last_seen": "2026-10-03T23:42:18+00:00"
         },
         {
           "title": "🔔",
