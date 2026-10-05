@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-06T05:57:36+09:00",
+  "updated_at": "2026-10-06T06:15:01+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -21023,6 +21023,114 @@
           "return_pct": -0.4795
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "e3b883e3073731e7",
+      "created_at": "2026-10-06T06:15:01+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 590.37,
+      "entry_zone": [
+        587.41815,
+        593.32185
+      ],
+      "stop_price": 568.026551,
+      "target_price": 635.056898,
+      "score": 9.159,
+      "components": {
+        "momentum": 2.0753771276779465,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.08, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0839,
+        "regime": 0.8684,
+        "news": 1.2931,
+        "defensive": 0.9581
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.08, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🔔 ‘AI 믿음’에 나스닥 최고치…삼전·SK하닉도 올라탈까 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #메모리반도체 #인공지능…",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/65445"
+          ],
+          "last_seen": "2026-10-05T20:24:35+00:00"
+        },
+        {
+          "title": "🔔 ‘AI 믿음’에 나스닥 최고치…삼전·SK하닉도 올라탈까 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #메모리반도체 #인공지능…",
+          "urls": [
+            "https://dreago.kr/n/6ccad4",
+            "https://t.me/dreago_news_ch/310697"
+          ],
+          "last_seen": "2026-10-05T20:45:20+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "e0f6f3432b5033c2",
+      "created_at": "2026-10-06T06:15:01+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 756.4,
+      "entry_zone": [
+        752.618,
+        760.182
+      ],
+      "stop_price": 741.272,
+      "target_price": 786.656,
+      "score": 8.072,
+      "components": {
+        "momentum": 1.0730039480730904,
+        "regime": 2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.07, regime +2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0839,
+        "regime": 0.8684,
+        "news": 1.2931,
+        "defensive": 0.9581
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.07, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🔔 제작에만 6년…원전 핵심부품 조달, 美 원전 8기 속도전 변수로 📈 #두산에너빌리티 #한전기술 #한전KPS 📝 #원자력발전 …",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/65445"
+          ],
+          "last_seen": "2026-10-05T20:24:35+00:00"
+        },
+        {
+          "title": "🔔 제작에만 6년…원전 핵심부품 조달, 美 원전 8기 속도전 변수로 📈 #두산에너빌리티 #한전기술 #한전KPS 📝 #원자력발전 …",
+          "urls": [
+            "https://dreago.kr/n/80a7b5",
+            "https://t.me/dreago_news_ch/310694"
+          ],
+          "last_seen": "2026-10-05T20:10:31+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
