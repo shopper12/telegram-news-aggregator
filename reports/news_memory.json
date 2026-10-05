@@ -1,7 +1,280 @@
 {
   "version": 2,
-  "updated_at": "2026-10-05T09:41:34+09:00",
+  "updated_at": "2026-10-05T10:28:47+09:00",
   "events": [
+    {
+      "signature": "84866567c89b8074ef09e0c4e1f3051f20a945ac",
+      "title": "23조원 ETF 리밸런싱 '옵션 만기일'에 집중…반도체 ETF, 삼성전자 비중 줄고 SK하이닉스·소부장 확대 2026.10.05",
+      "sectors": [
+        "2차전지",
+        "로봇",
+        "반도체"
+      ],
+      "keywords": [
+        "2차전지",
+        "sk하이닉스",
+        "로봇",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://hankyung.com/article/202610020399i",
+        "https://t.me/aicorporateanalysisdeepdive/11814"
+      ],
+      "materiality": 9,
+      "sentiment": -1,
+      "first_seen": "2026-10-05T01:18:10+00:00",
+      "last_seen": "2026-10-05T01:18:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3b5c8945bd96e8f2d8f77c98997338876005aec2",
+      "title": "🔔 美 국채·주식 아슬아슬한 ‘디커플링’…증시 떠받치는 AI 📝 #AI반도체 #데이터센터 #미국장기금리 #성장주 장기금리 상승과…",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "금리",
+        "데이터센터",
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/ca92c1",
+        "https://t.me/dreago_news_ch/310570"
+      ],
+      "materiality": 16,
+      "sentiment": 0,
+      "first_seen": "2026-10-05T01:15:41+00:00",
+      "last_seen": "2026-10-05T01:15:41+00:00",
+      "count": 1
+    },
+    {
+      "signature": "58acecb46f8d2729b7e34dc02f5f1f0d9fa83159",
+      "title": "🔔 대미투자 수혜주 '현대건설'⋯한미 원전 8기 '반등 열쇠' 📈 #현대건설 📝 #원자력발전 #대형원전 #SMR #해외건설 한미…",
+      "sectors": [
+        "원전"
+      ],
+      "keywords": [
+        "smr",
+        "원전",
+        "웨스팅하우스"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/a6136a",
+        "https://t.me/dreago_news_ch/310571"
+      ],
+      "materiality": 18,
+      "sentiment": 2,
+      "first_seen": "2026-10-05T01:15:41+00:00",
+      "last_seen": "2026-10-05T01:15:41+00:00",
+      "count": 1
+    },
+    {
+      "signature": "02fedd9a41393570a241d9b09f93e0de1d0ece37",
+      "title": "SEC, 3배 비트코인·이더리움 ETP 상장 승인…일일 변동률 3배 추종 미국 증권거래위원회",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "ATI",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/65381"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-10-05T01:09:00+00:00",
+      "last_seen": "2026-10-05T01:09:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d7d4c06b2828281969295487c4835e4ea9a91c03",
+      "title": "[단독] 강력한 오픈 모델, AI 경쟁 판도 뒤흔든다 리플렉션은 네비우스와 10억 달러가 넘는 컴퓨팅 계약을 체결 앞서 6월에는 스페이스X와도 컴퓨팅 확보 계약을 맺음)\n출처: 급등일보 | 시각: 2026-10-05",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "googl",
+        "gpu",
+        "nvidia",
+        "엔비디아"
+      ],
+      "tickers": [
+        "NVDA"
+      ],
+      "source_urls": [
+        "https://axios.com/2026/10/04/reflection-open-weight-ai",
+        "https://t.me/c/1208429502/126083"
+      ],
+      "materiality": 22,
+      "sentiment": 2,
+      "first_seen": "2026-10-05T01:02:17+00:00",
+      "last_seen": "2026-10-05T01:02:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ef7f9bde93bee40a069398973ecc7cdd787d3b70",
+      "title": "니케이아시아에 따르면 일본 파운드리 업체 라피더스가 도시바그룹을 포함한 17개 반도체 설계업체와 협력해 고객사의 자체 브랜드 첨…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "semiconductor",
+        "반도체",
+        "파운드리"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://asia.nikkei.com/business/tech/semiconductors/japan-s-rapidus-to-help-17-companies-design-chips-for-clients",
+        "https://t.me/insidertracking/65379"
+      ],
+      "materiality": 17,
+      "sentiment": 3,
+      "first_seen": "2026-10-05T00:56:02+00:00",
+      "last_seen": "2026-10-05T00:56:02+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ca73e22a877fce816266ada17c853e4cffea1996",
+      "title": "🔔 시총 문턱에서 잰걸음…저시총주 유증 ‘러시’ 📈 #모아데이타 #KS인더스트리 #케스피온 📝 #유상증자 #상장폐지위험 #코스닥…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/384c49",
+        "https://t.me/dreago_news_ch/310569"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-10-05T00:55:25+00:00",
+      "last_seen": "2026-10-05T00:55:25+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6feacf5cf2f77216ce208c4e8ea8f147155529dd",
+      "title": "美·中 반도체 전쟁에도 국경 넘는다… RISC-V 연합, 피지컬 AI·데이터센터로 급팽창 2026.10.05",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "로봇",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "규제",
+        "데이터센터",
+        "로봇",
+        "반도체",
+        "수출규제",
+        "정책",
+        "파운드리",
+        "피지컬 ai",
+        "휴머노이드"
+      ],
+      "tickers": [
+        "ESWIN",
+        "HPQ",
+        "IP"
+      ],
+      "source_urls": [
+        "http://m.g-enews.com/view.php?ud=2026100417061033950c8c1c064d_1",
+        "https://t.me/aicorporateanalysisdeepdive/11813"
+      ],
+      "materiality": 21,
+      "sentiment": -2,
+      "first_seen": "2026-10-05T00:54:10+00:00",
+      "last_seen": "2026-10-05T00:54:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2c76390f228efe0d0405841fc964c81826fcf081",
+      "title": "🔔 “20좌 안 되면 못 파나”…단일종목 레버리지 ‘단주 출구’ 만든다 📝 #레버리지ETF #ETF #금융규제 단일종목 레버리지…",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "규제"
+      ],
+      "tickers": [
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/de216b",
+        "https://t.me/dreago_news_ch/310568"
+      ],
+      "materiality": 9,
+      "sentiment": 0,
+      "first_seen": "2026-10-05T00:50:41+00:00",
+      "last_seen": "2026-10-05T00:50:41+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1e960225937ca6185e6735c1cdbd541a2a324674",
+      "title": "외신 채널들은 브라질 대선 이야기만 하네요...",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/65378"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-10-05T00:47:52+00:00",
+      "last_seen": "2026-10-05T00:47:52+00:00",
+      "count": 1
+    },
+    {
+      "signature": "79f5b76c5ae93bf7e88ef8fcf723b5f9bb65e353",
+      "title": "🔔 수수료 깎아줘도 대출 안 갚았다…1~8월 중도상환액 13% 감소 📈 #KB금융 #신한지주 #하나금융지주 #우리금융지주 📝 #…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/26578a",
+        "https://t.me/dreago_news_ch/310567"
+      ],
+      "materiality": 2,
+      "sentiment": -1,
+      "first_seen": "2026-10-05T00:45:22+00:00",
+      "last_seen": "2026-10-05T00:45:22+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4baa9e0d738eb41ddbfc0d9dcf650dc3f1d0ab6e",
+      "title": "🔔 삼전·SK하닉 급락하자 호가 끊겼다…레버리지 ETF LP ‘구멍’ 📝 #레버리지ETF #ETF시장 #시장유동성 급락장에서 레…",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "규제"
+      ],
+      "tickers": [
+        "005930.KS",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/688d08",
+        "https://t.me/dreago_news_ch/310566"
+      ],
+      "materiality": 10,
+      "sentiment": -3,
+      "first_seen": "2026-10-05T00:40:49+00:00",
+      "last_seen": "2026-10-05T00:40:49+00:00",
+      "count": 1
+    },
     {
       "signature": "831854bbb26205f7a907db5d8ff83406b338f2ef",
       "title": "🔔 은행 대출 기준 1년여 새 149번 변경…실수요자 혼란 📈 #하나금융지주 #KB금융 #신한지주 #우리금융지주 #BNK금융지주…",
@@ -22,7 +295,7 @@
       "sentiment": -1,
       "first_seen": "2026-10-05T00:35:27+00:00",
       "last_seen": "2026-10-05T00:35:27+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8280461323f6b4d84002494783eb0c293331c50d",
@@ -10108,236 +10381,6 @@
       "sentiment": 1,
       "first_seen": "2026-10-01T00:59:07+00:00",
       "last_seen": "2026-10-01T00:59:07+00:00",
-      "count": 3
-    },
-    {
-      "signature": "9cde0ce8cee74ea133010f6d2db9bf079a3f1f9f",
-      "title": "🔔 온디바이스 AI 기기 확산… 에이팩트, 고사양 메모리 테스트 수혜 기대 【 겁나빠른 #드리고봇 뉴스 】 https://dre…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "메모리"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/3efe7a",
-        "https://t.me/dreago_news_ch/309688"
-      ],
-      "materiality": 6,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:58:10+00:00",
-      "last_seen": "2026-10-01T00:58:10+00:00",
-      "count": 3
-    },
-    {
-      "signature": "6110cf90bd618032145d3a86e1034beaf4c71ee0",
-      "title": "[리포트 브리핑]피엔케이피부임상연구센타, '점점 중요해지는 화장품 임상' Not Rated",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "임상"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000887",
-        "https://t.me/rassiro_channel/305848"
-      ],
-      "materiality": 4,
-      "sentiment": -1,
-      "first_seen": "2026-10-01T00:58:03+00:00",
-      "last_seen": "2026-10-01T00:58:03+00:00",
-      "count": 3
-    },
-    {
-      "signature": "463c1a1c49de83f01eec95ace422b9b4e2a1f8f9",
-      "title": "[리포트 브리핑]씨티케이, '플랫폼 비즈니스의 한계를 극복하는 중' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000856",
-        "https://t.me/rassiro_channel/305847"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:56:32+00:00",
-      "last_seen": "2026-10-01T00:56:32+00:00",
-      "count": 3
-    },
-    {
-      "signature": "2c34c1e930c46569031341b5126113065a8efb64",
-      "title": "LS ELECTRIC",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "data center"
-      ],
-      "tickers": [
-        "006260.KS",
-        "010120.KS",
-        "GPUS"
-      ],
-      "source_urls": [
-        "https://t.me/c/1208429502/125967",
-        "https://t.me/corevalue/47226"
-      ],
-      "materiality": 22,
-      "sentiment": 3,
-      "first_seen": "2026-10-01T00:53:37+00:00",
-      "last_seen": "2026-10-01T00:56:26+00:00",
-      "count": 4
-    },
-    {
-      "signature": "a0bb0779cbbddb309f29ee6b2b555c7c520ec8b9",
-      "title": "#SK하이닉스 실시간 프로그램매매추이",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://t.me/sharpha/54570"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:56:11+00:00",
-      "last_seen": "2026-10-01T00:56:11+00:00",
-      "count": 3
-    },
-    {
-      "signature": "cf75a693419facdd175baf0451f2ad81eaf0d664",
-      "title": "[리포트 브리핑]클리오, '안정화되고 있는 실적' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000486",
-        "https://t.me/rassiro_channel/305821",
-        "https://t.me/rassiro_channel/305842",
-        "https://t.me/rassiro_channel/305846"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:19:24+00:00",
-      "last_seen": "2026-10-01T00:55:45+00:00",
-      "count": 4
-    },
-    {
-      "signature": "ff37f061447398aeaafaafd8629e5cd224bcc21f",
-      "title": "[리포트 브리핑]코디, '기막힌 타이밍' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000834",
-        "https://t.me/rassiro_channel/305842",
-        "https://t.me/rassiro_channel/305846"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:55:15+00:00",
-      "last_seen": "2026-10-01T00:55:45+00:00",
-      "count": 2
-    },
-    {
-      "signature": "41733f48680e8e02f499495f04c044aef60dc2f4",
-      "title": "🔔 이형일號 첫 투자대책 7.9조…절반은 현대차 울산공장 📈 #현대차 📝 #자동차 #전기차 #스마트팩토리 현대차 울산공장 중심의…",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "허가"
-      ],
-      "tickers": [
-        "005380.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/983d3a",
-        "https://t.me/dreago_news_ch/309687"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-10-01T00:55:34+00:00",
-      "last_seen": "2026-10-01T00:55:34+00:00",
-      "count": 3
-    },
-    {
-      "signature": "15c5c1a5b68a50243efd3f41a78bbc59a2cf57a2",
-      "title": "[리포트 브리핑]아이큐어, '숨어 있는 화장품 ODM 강자' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000826",
-        "https://t.me/rassiro_channel/305843"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:55:19+00:00",
-      "last_seen": "2026-10-01T00:55:19+00:00",
-      "count": 3
-    },
-    {
-      "signature": "34b9cee4d67cce31054d230e12144325ebf43c48",
-      "title": "[리포트 브리핑]현대바이오랜드, '브랜드 사업으로 성장 여력 키우기' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000828",
-        "https://t.me/rassiro_channel/305844"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:55:19+00:00",
-      "last_seen": "2026-10-01T00:55:19+00:00",
-      "count": 3
-    },
-    {
-      "signature": "9dc053e31ee29fef93602c7384701c848a5ab8a1",
-      "title": "[리포트 브리핑]선진뷰티사이언스, '높은 기술력 기반 화장품 소재에서 OTC ODM까지' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261001/1000829",
-        "https://t.me/rassiro_channel/305845"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-10-01T00:55:19+00:00",
-      "last_seen": "2026-10-01T00:55:19+00:00",
-      "count": 3
-    },
-    {
-      "signature": "8753bee4cb8e106953b13baa066d353d608010a1",
-      "title": "🔔 \"크기 줄이고 탐색거리 늘렸다\" 삼성전자, '갤럭시 스마트태그3' 선봬 📈 #삼성전자 📝 #사물인터넷 #스마트기기 스마트태그…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/2e7391",
-        "https://t.me/dreago_news_ch/309685"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-10-01T00:55:18+00:00",
-      "last_seen": "2026-10-01T00:55:18+00:00",
       "count": 3
     }
   ]
