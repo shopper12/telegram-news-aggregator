@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-05T03:05:06+09:00",
+  "updated_at": "2026-10-05T09:41:34+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -19913,7 +19913,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-02T10:34:17+09:00",
@@ -19924,10 +19924,18 @@
           "evaluated_at": "2026-10-03T04:07:04+09:00",
           "price": 589.46,
           "return_pct": 1.9695
+        },
+        "72h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 588.9,
+          "return_pct": 1.8726
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-03T04:07:04+09:00"
+      "learned_at": "2026-10-03T04:07:04+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-05T09:41:34+09:00",
+      "final_return_pct": 1.8726
     },
     {
       "id": "db5f9902196e1361",
@@ -19980,7 +19988,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-02T10:34:17+09:00",
@@ -19991,10 +19999,18 @@
           "evaluated_at": "2026-10-03T04:07:04+09:00",
           "price": 748.919,
           "return_pct": 0.7397
+        },
+        "72h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 749.58,
+          "return_pct": 0.8286
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-03T04:07:04+09:00"
+      "learned_at": "2026-10-03T04:07:04+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-05T09:41:34+09:00",
+      "final_return_pct": 0.8286
     },
     {
       "id": "1c194f9d06a4276f",
@@ -20030,7 +20046,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-02T10:34:17+09:00",
@@ -20041,10 +20057,18 @@
           "evaluated_at": "2026-10-03T04:07:04+09:00",
           "price": 28.93,
           "return_pct": -0.1381
+        },
+        "72h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 28.89,
+          "return_pct": -0.2761
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-03T04:07:04+09:00"
+      "learned_at": "2026-10-03T04:07:04+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-05T09:41:34+09:00",
+      "final_return_pct": -0.2761
     },
     {
       "id": "3a7eb1437aca4d4f",
@@ -20637,9 +20661,15 @@
           "evaluated_at": "2026-10-04T19:42:52+09:00",
           "price": 588.9,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 588.9,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-05T09:41:34+09:00"
     },
     {
       "id": "f86d92fef72d417a",
@@ -20698,9 +20728,15 @@
           "evaluated_at": "2026-10-04T19:42:52+09:00",
           "price": 191.88,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 191.88,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-05T09:41:34+09:00"
     },
     {
       "id": "734e1d34a385a511",
@@ -20754,7 +20790,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 588.9,
+          "return_pct": 0.0
+        }
+      },
       "learned_24h": false
     },
     {
@@ -20801,6 +20843,122 @@
             "https://t.me/corevalue/47259"
           ],
           "last_seen": "2026-10-04T03:33:43+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-05T09:41:34+09:00",
+          "price": 191.88,
+          "return_pct": 0.0
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "4900508dfaf388ca",
+      "created_at": "2026-10-05T09:41:34+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 588.9,
+      "entry_zone": [
+        585.9555,
+        591.8445
+      ],
+      "stop_price": 566.331627,
+      "target_price": 634.036745,
+      "score": 6.337,
+      "components": {
+        "momentum": 2.7530214955328343,
+        "regime": 2.0,
+        "news": 1.2548842526604167,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.75, regime +2.00, news +1.25, defensive +0.00",
+      "weights": {
+        "momentum": 1.0824,
+        "regime": 0.8725,
+        "news": 1.2848,
+        "defensive": 0.9594
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +2.75, 뉴스 +1.25 / 연결 뉴스: 🔔 3보 전진 위한 ‘1보 후퇴’…쎄크, 전자빔 기술로 흑자 전환 시동 📈 #쎄크 📝 #HBM #반도체검사장비 #방산 #선형가속…; 🔔",
+      "news_evidence": [
+        {
+          "title": "🔔 3보 전진 위한 ‘1보 후퇴’…쎄크, 전자빔 기술로 흑자 전환 시동 📈 #쎄크 📝 #HBM #반도체검사장비 #방산 #선형가속…",
+          "urls": [
+            "https://dreago.kr/n/409da2",
+            "https://t.me/dreago_news_ch/310560"
+          ],
+          "last_seen": "2026-10-05T00:03:27+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-10-04T14:57:36+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "8b25af7bd454af79",
+      "created_at": "2026-10-05T09:41:34+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.88,
+      "entry_zone": [
+        190.9206,
+        192.8394
+      ],
+      "stop_price": 182.501598,
+      "target_price": 210.636803,
+      "score": 4.866,
+      "components": {
+        "momentum": 1.7344604008770779,
+        "regime": 2.0,
+        "news": 0.9678111808416667,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.73, regime +2.00, news +0.97, defensive +0.00",
+      "weights": {
+        "momentum": 1.0824,
+        "regime": 0.8725,
+        "news": 1.2848,
+        "defensive": 0.9594
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.73, 뉴스 +0.97 / 연결 뉴스: 🔔 3보 전진 위한 ‘1보 후퇴’…쎄크, 전자빔 기술로 흑자 전환 시동 📈 #쎄크 📝 #HBM #반도체검사장비 #방산 #선형가속…; 🔔",
+      "news_evidence": [
+        {
+          "title": "🔔 3보 전진 위한 ‘1보 후퇴’…쎄크, 전자빔 기술로 흑자 전환 시동 📈 #쎄크 📝 #HBM #반도체검사장비 #방산 #선형가속…",
+          "urls": [
+            "https://dreago.kr/n/409da2",
+            "https://t.me/dreago_news_ch/310560"
+          ],
+          "last_seen": "2026-10-05T00:03:27+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/d0de56",
+            "https://t.me/dreago_news_ch/308867"
+          ],
+          "last_seen": "2026-10-04T14:57:36+00:00"
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
