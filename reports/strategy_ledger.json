@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-07T03:43:16+09:00",
+  "updated_at": "2026-10-07T04:00:18+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -21368,6 +21368,114 @@
           "return_pct": 0.7693
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "3dfa65a6136f1f0b",
+      "created_at": "2026-10-07T04:00:18+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 592.8,
+      "entry_zone": [
+        589.836,
+        595.764
+      ],
+      "stop_price": 570.962715,
+      "target_price": 636.47457,
+      "score": 7.733,
+      "components": {
+        "momentum": 2.3293419460678444,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.33, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0853,
+        "regime": 0.8641,
+        "news": 1.3013,
+        "defensive": 0.9568
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.33, 뉴스 +4.00 / 연결 뉴스: >>Constellation Energy 미국 주식 장전 5% 이상 상승, 구글과 890MW 규모 원전 발전용량 계약 체결 보도…; 🔔 “삼성그룹 환영”…15년 전 ‘특허 악연’ 털어낸 한미반도체 📈 #한미반도체 📝 #반도체장비 #AI반도체 #첨단패키징 삼성전…",
+      "news_evidence": [
+        {
+          "title": ">>Constellation Energy 미국 주식 장전 5% 이상 상승, 구글과 890MW 규모 원전 발전용량 계약 체결 보도…",
+          "urls": [
+            "https://t.me/sharpha/54801"
+          ],
+          "last_seen": "2026-10-06T10:51:40+00:00"
+        },
+        {
+          "title": "🔔 “삼성그룹 환영”…15년 전 ‘특허 악연’ 털어낸 한미반도체 📈 #한미반도체 📝 #반도체장비 #AI반도체 #첨단패키징 삼성전…",
+          "urls": [
+            "https://dreago.kr/n/e5d36d",
+            "https://t.me/dreago_news_ch/311078"
+          ],
+          "last_seen": "2026-10-06T11:38:16+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "cbb75215928ee2fe",
+      "created_at": "2026-10-07T04:00:18+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 761.0,
+      "entry_zone": [
+        757.195,
+        764.805
+      ],
+      "stop_price": 745.78,
+      "target_price": 791.44,
+      "score": 6.745,
+      "components": {
+        "momentum": 1.4191148706898096,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.42, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0853,
+        "regime": 0.8641,
+        "news": 1.3013,
+        "defensive": 0.9568
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.42, 뉴스 +4.00 / 연결 뉴스: >>Constellation Energy 미국 주식 장전 5% 이상 상승, 구글과 890MW 규모 원전 발전용량 계약 체결 보도…; 🔔 “삼성그룹 환영”…15년 전 ‘특허 악연’ 털어낸 한미반도체 📈 #한미반도체 📝 #반도체장비 #AI반도체 #첨단패키징 삼성전…",
+      "news_evidence": [
+        {
+          "title": ">>Constellation Energy 미국 주식 장전 5% 이상 상승, 구글과 890MW 규모 원전 발전용량 계약 체결 보도…",
+          "urls": [
+            "https://t.me/sharpha/54801"
+          ],
+          "last_seen": "2026-10-06T10:51:40+00:00"
+        },
+        {
+          "title": "🔔 “삼성그룹 환영”…15년 전 ‘특허 악연’ 털어낸 한미반도체 📈 #한미반도체 📝 #반도체장비 #AI반도체 #첨단패키징 삼성전…",
+          "urls": [
+            "https://dreago.kr/n/e5d36d",
+            "https://t.me/dreago_news_ch/311078"
+          ],
+          "last_seen": "2026-10-06T11:38:16+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
