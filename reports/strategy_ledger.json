@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-06T06:28:25+09:00",
+  "updated_at": "2026-10-06T11:13:17+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -20421,7 +20421,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-03T18:40:23+09:00",
@@ -20432,10 +20432,18 @@
           "evaluated_at": "2026-10-04T11:18:38+09:00",
           "price": 191.88,
           "return_pct": 0.3924
+        },
+        "72h": {
+          "evaluated_at": "2026-10-06T11:13:17+09:00",
+          "price": 191.46,
+          "return_pct": 0.1727
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-04T11:18:38+09:00"
+      "learned_at": "2026-10-04T11:18:38+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-06T11:13:17+09:00",
+      "final_return_pct": 0.1727
     },
     {
       "id": "09645f5e983c991b",
@@ -20488,7 +20496,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-03T18:40:23+09:00",
@@ -20499,10 +20507,18 @@
           "evaluated_at": "2026-10-04T11:18:38+09:00",
           "price": 588.9,
           "return_pct": -0.1255
+        },
+        "72h": {
+          "evaluated_at": "2026-10-06T11:13:17+09:00",
+          "price": 589.51,
+          "return_pct": -0.022
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-04T11:18:38+09:00"
+      "learned_at": "2026-10-04T11:18:38+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-06T11:13:17+09:00",
+      "final_return_pct": -0.022
     },
     {
       "id": "a1aacc88f176e49d",
@@ -20960,9 +20976,15 @@
           "evaluated_at": "2026-10-05T20:09:59+09:00",
           "price": 584.0,
           "return_pct": -0.8321
+        },
+        "24h": {
+          "evaluated_at": "2026-10-06T11:13:17+09:00",
+          "price": 589.51,
+          "return_pct": 0.1036
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-06T11:13:17+09:00"
     },
     {
       "id": "8b25af7bd454af79",
@@ -21021,9 +21043,15 @@
           "evaluated_at": "2026-10-05T20:09:59+09:00",
           "price": 190.96,
           "return_pct": -0.4795
+        },
+        "24h": {
+          "evaluated_at": "2026-10-06T11:13:17+09:00",
+          "price": 191.46,
+          "return_pct": -0.2189
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-06T11:13:17+09:00"
     },
     {
       "id": "e3b883e3073731e7",
@@ -21126,6 +21154,169 @@
         }
       ],
       "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "e07c1d8b279f20e1",
+      "created_at": "2026-10-06T11:13:17+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 589.51,
+      "entry_zone": [
+        586.56245,
+        592.45755
+      ],
+      "stop_price": 567.199099,
+      "target_price": 634.131802,
+      "score": 6.475,
+      "components": {
+        "momentum": 1.1704309000957345,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.17, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0853,
+        "regime": 0.8641,
+        "news": 1.3013,
+        "defensive": 0.9568
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.17, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🔔 '50만전자·328만닉스' 장밋빛 전망, 이유는…\"HBM 양산 반도체 호재\" 📈 #삼성전자 #SK하이닉스 📝 #HBM #메모…",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/65445"
+          ],
+          "last_seen": "2026-10-05T20:24:35+00:00"
+        },
+        {
+          "title": "🔔 '50만전자·328만닉스' 장밋빛 전망, 이유는…\"HBM 양산 반도체 호재\" 📈 #삼성전자 #SK하이닉스 📝 #HBM #메모…",
+          "urls": [
+            "https://dreago.kr/n/911ff4",
+            "https://t.me/dreago_news_ch/310817"
+          ],
+          "last_seen": "2026-10-06T01:45:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "fa2fa804eff6a1c6",
+      "created_at": "2026-10-06T11:13:17+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 191.46,
+      "entry_zone": [
+        190.5027,
+        192.4173
+      ],
+      "stop_price": 182.379314,
+      "target_price": 209.621371,
+      "score": 6.212,
+      "components": {
+        "momentum": 0.9274870465974765,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.93, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0853,
+        "regime": 0.8641,
+        "news": 1.3013,
+        "defensive": 0.9568
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.93, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🔔 '50만전자·328만닉스' 장밋빛 전망, 이유는…\"HBM 양산 반도체 호재\" 📈 #삼성전자 #SK하이닉스 📝 #HBM #메모…",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/65445"
+          ],
+          "last_seen": "2026-10-05T20:24:35+00:00"
+        },
+        {
+          "title": "🔔 '50만전자·328만닉스' 장밋빛 전망, 이유는…\"HBM 양산 반도체 호재\" 📈 #삼성전자 #SK하이닉스 📝 #HBM #메모…",
+          "urls": [
+            "https://dreago.kr/n/911ff4",
+            "https://t.me/dreago_news_ch/310817"
+          ],
+          "last_seen": "2026-10-06T01:45:29+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "6684914bb9b0eb95",
+      "created_at": "2026-10-06T11:13:17+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 379.55,
+      "entry_zone": [
+        377.65225,
+        381.44775
+      ],
+      "stop_price": 371.529664,
+      "target_price": 395.590671,
+      "score": 3.072,
+      "components": {
+        "momentum": 0.07047906882857172,
+        "regime": 0.2,
+        "news": 2.1688150272371525,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.07, regime +0.20, news +2.17, defensive +0.00",
+      "weights": {
+        "momentum": 1.0853,
+        "regime": 0.8641,
+        "news": 1.3013,
+        "defensive": 0.9568
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.07, 뉴스 +2.17 / 연결 뉴스: 🔔; 🔔 ‘AI 믿음’에 나스닥 최고치…삼전·SK하닉도 올라탈까 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #메모리반도체 #인공지능…",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/f94178",
+            "https://t.me/dreago_news_ch/299938"
+          ],
+          "last_seen": "2026-10-06T01:13:21+00:00"
+        },
+        {
+          "title": "🔔 ‘AI 믿음’에 나스닥 최고치…삼전·SK하닉도 올라탈까 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #메모리반도체 #인공지능…",
+          "urls": [
+            "https://dreago.kr/n/6ccad4",
+            "https://t.me/dreago_news_ch/310697"
+          ],
+          "last_seen": "2026-10-05T20:45:20+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
