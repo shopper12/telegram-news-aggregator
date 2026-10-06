@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-10-06T13:39:03+09:00",
+  "updated_at": "2026-10-06T20:45:21+09:00",
   "weights": {
     "momentum": 1.0853,
     "regime": 0.8641,
@@ -59,11 +59,11 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-10-06T13:39:03+09:00",
+    "timestamp": "2026-10-06T20:45:21+09:00",
     "kind": "regular",
     "slot": null,
-    "regime": "mixed",
-    "regime_score": 0.495,
+    "regime": "risk_on",
+    "regime_score": 0.994,
     "recommendation_ids": []
   }
 }
