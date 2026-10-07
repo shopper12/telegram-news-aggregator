@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-08T04:09:34+09:00",
+  "updated_at": "2026-10-08T04:28:02+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -21745,6 +21745,114 @@
           "return_pct": -1.0998
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "d43689734544e3b5",
+      "created_at": "2026-10-08T04:28:02+09:00",
+      "slot": "evening",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 580.39,
+      "entry_zone": [
+        577.48805,
+        583.29195
+      ],
+      "stop_price": 558.529957,
+      "target_price": 624.110086,
+      "score": 4.433,
+      "components": {
+        "momentum": 1.1126650405027612,
+        "regime": 0.0,
+        "news": 2.4296065195208336,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.11, regime +0.00, news +2.43, defensive +0.00",
+      "weights": {
+        "momentum": 1.0893,
+        "regime": 0.8523,
+        "news": 1.3256,
+        "defensive": 0.9529
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.11, 뉴스 +2.43 / 연결 뉴스: 제목 : 마이크론, 강력한 가시성과 자사주매입 확대 전망 주목; 삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+      "news_evidence": [
+        {
+          "title": "제목 : 마이크론, 강력한 가시성과 자사주매입 확대 전망 주목",
+          "urls": [
+            "https://t.me/kwusa/61074"
+          ],
+          "last_seen": "2026-10-07T10:23:08+00:00"
+        },
+        {
+          "title": "삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+          "urls": [
+            "https://newsprime.co.kr/news/article?no=750111",
+            "https://t.me/YeouidoStory2/118190"
+          ],
+          "last_seen": "2026-10-07T00:46:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "4c9e86e0e378a935",
+      "created_at": "2026-10-08T04:28:02+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 756.9,
+      "entry_zone": [
+        753.1155,
+        760.6845
+      ],
+      "stop_price": 741.762,
+      "target_price": 787.176,
+      "score": 4.164,
+      "components": {
+        "momentum": 1.035091513509032,
+        "regime": 0.0,
+        "news": 2.2909817258618057,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.04, regime +0.00, news +2.29, defensive +0.00",
+      "weights": {
+        "momentum": 1.0893,
+        "regime": 0.8523,
+        "news": 1.3256,
+        "defensive": 0.9529
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.04, 뉴스 +2.29 / 연결 뉴스: 제목 : 마이크론, 강력한 가시성과 자사주매입 확대 전망 주목; 삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+      "news_evidence": [
+        {
+          "title": "제목 : 마이크론, 강력한 가시성과 자사주매입 확대 전망 주목",
+          "urls": [
+            "https://t.me/kwusa/61074"
+          ],
+          "last_seen": "2026-10-07T10:23:08+00:00"
+        },
+        {
+          "title": "삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+          "urls": [
+            "https://newsprime.co.kr/news/article?no=750111",
+            "https://t.me/YeouidoStory2/118190"
+          ],
+          "last_seen": "2026-10-07T00:46:11+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
