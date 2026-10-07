@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-07T04:24:07+09:00",
+  "updated_at": "2026-10-07T10:27:12+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -20719,7 +20719,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-04T19:42:52+09:00",
@@ -20730,10 +20730,18 @@
           "evaluated_at": "2026-10-05T09:41:34+09:00",
           "price": 588.9,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-10-07T10:27:12+09:00",
+          "price": 590.11,
+          "return_pct": 0.2055
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-05T09:41:34+09:00"
+      "learned_at": "2026-10-05T09:41:34+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-07T10:27:12+09:00",
+      "final_return_pct": 0.2055
     },
     {
       "id": "f86d92fef72d417a",
@@ -20786,7 +20794,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-04T19:42:52+09:00",
@@ -20797,10 +20805,18 @@
           "evaluated_at": "2026-10-05T09:41:34+09:00",
           "price": 191.88,
           "return_pct": 0.0
+        },
+        "72h": {
+          "evaluated_at": "2026-10-07T10:27:12+09:00",
+          "price": 187.65,
+          "return_pct": -2.2045
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-05T09:41:34+09:00"
+      "learned_at": "2026-10-05T09:41:34+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-07T10:27:12+09:00",
+      "final_return_pct": -2.2045
     },
     {
       "id": "734e1d34a385a511",
@@ -21125,9 +21141,15 @@
           "evaluated_at": "2026-10-06T13:39:03+09:00",
           "price": 589.51,
           "return_pct": -0.1457
+        },
+        "24h": {
+          "evaluated_at": "2026-10-07T10:27:12+09:00",
+          "price": 590.11,
+          "return_pct": -0.044
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-07T10:27:12+09:00"
     },
     {
       "id": "e0f6f3432b5033c2",
@@ -21185,9 +21207,15 @@
           "evaluated_at": "2026-10-06T13:39:03+09:00",
           "price": 756.2,
           "return_pct": -0.0264
+        },
+        "24h": {
+          "evaluated_at": "2026-10-07T10:27:12+09:00",
+          "price": 759.82,
+          "return_pct": 0.4521
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-07T10:27:12+09:00"
     },
     {
       "id": "e07c1d8b279f20e1",
@@ -21421,7 +21449,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-07T10:27:12+09:00",
+          "price": 590.11,
+          "return_pct": -0.4538
+        }
+      },
       "learned_24h": false
     },
     {
@@ -21471,6 +21505,177 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-07T10:27:12+09:00",
+          "price": 759.82,
+          "return_pct": -0.1551
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "5eb594dbac5b3afe",
+      "created_at": "2026-10-07T10:27:12+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 590.11,
+      "entry_zone": [
+        587.15945,
+        593.06055
+      ],
+      "stop_price": 568.332943,
+      "target_price": 633.664114,
+      "score": 8.211,
+      "components": {
+        "momentum": 2.7345531626701307,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.73, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0868,
+        "regime": 0.8601,
+        "news": 1.3098,
+        "defensive": 0.9555
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.73, 뉴스 +4.00 / 연결 뉴스: 삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07; 🔔 '큰손' 빅테크가 직접 주문…\"전력기기 내년에도 고성장\" 📈 #효성중공업 #LS ELECTRIC #HD현대일렉트릭 📝 #전력…",
+      "news_evidence": [
+        {
+          "title": "삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+          "urls": [
+            "https://newsprime.co.kr/news/article?no=750111",
+            "https://t.me/YeouidoStory2/118190"
+          ],
+          "last_seen": "2026-10-07T00:46:11+00:00"
+        },
+        {
+          "title": "🔔 '큰손' 빅테크가 직접 주문…\"전력기기 내년에도 고성장\" 📈 #효성중공업 #LS ELECTRIC #HD현대일렉트릭 📝 #전력…",
+          "urls": [
+            "https://dreago.kr/n/e45f24",
+            "https://t.me/dreago_news_ch/311219"
+          ],
+          "last_seen": "2026-10-07T01:15:30+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "cba3bcc7223a3611",
+      "created_at": "2026-10-07T10:27:12+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 759.82,
+      "entry_zone": [
+        756.0209,
+        763.6191
+      ],
+      "stop_price": 744.6236,
+      "target_price": 790.2128,
+      "score": 7.16,
+      "components": {
+        "momentum": 1.7676227209842996,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.77, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.0868,
+        "regime": 0.8601,
+        "news": 1.3098,
+        "defensive": 0.9555
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.77, 뉴스 +4.00 / 연결 뉴스: 삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07; 🔔 '큰손' 빅테크가 직접 주문…\"전력기기 내년에도 고성장\" 📈 #효성중공업 #LS ELECTRIC #HD현대일렉트릭 📝 #전력…",
+      "news_evidence": [
+        {
+          "title": "삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+          "urls": [
+            "https://newsprime.co.kr/news/article?no=750111",
+            "https://t.me/YeouidoStory2/118190"
+          ],
+          "last_seen": "2026-10-07T00:46:11+00:00"
+        },
+        {
+          "title": "🔔 '큰손' 빅테크가 직접 주문…\"전력기기 내년에도 고성장\" 📈 #효성중공업 #LS ELECTRIC #HD현대일렉트릭 📝 #전력…",
+          "urls": [
+            "https://dreago.kr/n/e45f24",
+            "https://t.me/dreago_news_ch/311219"
+          ],
+          "last_seen": "2026-10-07T01:15:30+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "67000005652db4be",
+      "created_at": "2026-10-07T10:27:12+09:00",
+      "slot": "morning",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 381.9,
+      "entry_zone": [
+        379.9905,
+        383.8095
+      ],
+      "stop_price": 373.931836,
+      "target_price": 397.836329,
+      "score": 1.786,
+      "components": {
+        "momentum": -0.5182388208291091,
+        "regime": 0.2,
+        "news": 1.1518758831096183,
+        "defensive": 0.7
+      },
+      "component_text": "momentum -0.52, regime +0.20, news +1.15, defensive +0.70",
+      "weights": {
+        "momentum": 1.0868,
+        "regime": 0.8601,
+        "news": 1.3098,
+        "defensive": 0.9555
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 -0.52, 뉴스 +1.15 / 연결 뉴스: 삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07; 플리토, AI 공급계약 금액 반토막에 7% 급락 https://m.stock.naver.com/investment/news/fl…",
+      "news_evidence": [
+        {
+          "title": "삼미금속, 가스터빈 블레이드 납품 개시…\"글로벌 쇼티지에 후속 수주 논의 중\" 2026.10.07",
+          "urls": [
+            "https://newsprime.co.kr/news/article?no=750111",
+            "https://t.me/YeouidoStory2/118190"
+          ],
+          "last_seen": "2026-10-07T00:46:11+00:00"
+        },
+        {
+          "title": "플리토, AI 공급계약 금액 반토막에 7% 급락 https://m.stock.naver.com/investment/news/fl…",
+          "urls": [
+            "https://m.stock.naver.com/investment/news/flashnews/008/0005423017",
+            "https://t.me/dreago_news_ch/311189"
+          ],
+          "last_seen": "2026-10-07T00:35:22+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
