@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-08T04:52:01+09:00",
+  "updated_at": "2026-10-08T10:48:39+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -21018,7 +21018,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-05T20:09:59+09:00",
@@ -21029,10 +21029,18 @@
           "evaluated_at": "2026-10-06T11:13:17+09:00",
           "price": 589.51,
           "return_pct": 0.1036
+        },
+        "72h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 585.0105,
+          "return_pct": -0.6605
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-06T11:13:17+09:00"
+      "learned_at": "2026-10-06T11:13:17+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-08T10:48:39+09:00",
+      "final_return_pct": -0.6605
     },
     {
       "id": "8b25af7bd454af79",
@@ -21085,7 +21093,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-05T20:09:59+09:00",
@@ -21096,10 +21104,18 @@
           "evaluated_at": "2026-10-06T11:13:17+09:00",
           "price": 191.46,
           "return_pct": -0.2189
+        },
+        "72h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 184.2,
+          "return_pct": -4.0025
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-06T11:13:17+09:00"
+      "learned_at": "2026-10-06T11:13:17+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-08T10:48:39+09:00",
+      "final_return_pct": -4.0025
     },
     {
       "id": "e3b883e3073731e7",
@@ -21621,9 +21637,15 @@
           "evaluated_at": "2026-10-07T20:15:16+09:00",
           "price": 579.6,
           "return_pct": -1.781
+        },
+        "24h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 585.0105,
+          "return_pct": -0.8642
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-08T10:48:39+09:00"
     },
     {
       "id": "cba3bcc7223a3611",
@@ -21682,9 +21704,15 @@
           "evaluated_at": "2026-10-07T20:15:16+09:00",
           "price": 754.69,
           "return_pct": -0.6752
+        },
+        "24h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 758.56,
+          "return_pct": -0.1658
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-08T10:48:39+09:00"
     },
     {
       "id": "67000005652db4be",
@@ -21743,9 +21771,15 @@
           "evaluated_at": "2026-10-07T20:15:16+09:00",
           "price": 377.7,
           "return_pct": -1.0998
+        },
+        "24h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 376.62,
+          "return_pct": -1.3826
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-08T10:48:39+09:00"
     },
     {
       "id": "d43689734544e3b5",
@@ -21798,7 +21832,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 585.0105,
+          "return_pct": 0.7961
+        }
+      },
       "learned_24h": false
     },
     {
@@ -21848,6 +21888,122 @@
         }
       ],
       "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-08T10:48:39+09:00",
+          "price": 758.56,
+          "return_pct": 0.2193
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "9ec10503b65dc93d",
+      "created_at": "2026-10-08T10:48:39+09:00",
+      "slot": "morning",
+      "ticker": "SOXX",
+      "asset": "미국 반도체",
+      "direction": "LONG",
+      "entry_price": 585.0105,
+      "entry_zone": [
+        582.085447,
+        587.935552
+      ],
+      "stop_price": 563.132897,
+      "target_price": 628.765707,
+      "score": 4.845,
+      "components": {
+        "momentum": 2.027306240651958,
+        "regime": 0.0,
+        "news": 1.9768887728391202,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +2.03, regime +0.00, news +1.98, defensive +0.00",
+      "weights": {
+        "momentum": 1.0903,
+        "regime": 0.8484,
+        "news": 1.3328,
+        "defensive": 0.9515
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +2.03, 뉴스 +1.98 / 연결 뉴스: 🔔 주가 10% 빠져도 “더 간다”…'18만→29만원' 높아진 증권가 눈높이 📈 #LG전자 📝 #AI데이터센터 #냉각솔루션 #로…; 🔔 메리츠證 “삼성전자, 메모리 가격 경쟁력 입증⋯내년에도 실적 개선 기... 📈 #삼성전자 📝 #메모리반도체 #DRAM #낸드…",
+      "news_evidence": [
+        {
+          "title": "🔔 주가 10% 빠져도 “더 간다”…'18만→29만원' 높아진 증권가 눈높이 📈 #LG전자 📝 #AI데이터센터 #냉각솔루션 #로…",
+          "urls": [
+            "https://dreago.kr/n/ebceed",
+            "https://t.me/dreago_news_ch/311697"
+          ],
+          "last_seen": "2026-10-08T01:35:52+00:00"
+        },
+        {
+          "title": "🔔 메리츠證 “삼성전자, 메모리 가격 경쟁력 입증⋯내년에도 실적 개선 기... 📈 #삼성전자 📝 #메모리반도체 #DRAM #낸드…",
+          "urls": [
+            "https://dreago.kr/n/1e17ce",
+            "https://t.me/dreago_news_ch/311680"
+          ],
+          "last_seen": "2026-10-08T00:56:20+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "a0f035b22f9224e4",
+      "created_at": "2026-10-08T10:48:39+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 758.56,
+      "entry_zone": [
+        754.7672,
+        762.3528
+      ],
+      "stop_price": 743.3888,
+      "target_price": 788.9024,
+      "score": 3.785,
+      "components": {
+        "momentum": 1.580009289723003,
+        "regime": 0.0,
+        "news": 1.5471283087569445,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +1.58, regime +0.00, news +1.55, defensive +0.00",
+      "weights": {
+        "momentum": 1.0903,
+        "regime": 0.8484,
+        "news": 1.3328,
+        "defensive": 0.9515
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +1.58, 뉴스 +1.55 / 연결 뉴스: 🔔 주가 10% 빠져도 “더 간다”…'18만→29만원' 높아진 증권가 눈높이 📈 #LG전자 📝 #AI데이터센터 #냉각솔루션 #로…; 삼아알미늄 분기별 가동률 미국의 데이터센터용 ESS 배터리에 들어가는 알루미늄박을 국내 배터리 3사",
+      "news_evidence": [
+        {
+          "title": "🔔 주가 10% 빠져도 “더 간다”…'18만→29만원' 높아진 증권가 눈높이 📈 #LG전자 📝 #AI데이터센터 #냉각솔루션 #로…",
+          "urls": [
+            "https://dreago.kr/n/ebceed",
+            "https://t.me/dreago_news_ch/311697"
+          ],
+          "last_seen": "2026-10-08T01:35:52+00:00"
+        },
+        {
+          "title": "삼아알미늄 분기별 가동률 미국의 데이터센터용 ESS 배터리에 들어가는 알루미늄박을 국내 배터리 3사",
+          "urls": [
+            "https://t.me/Yeouido_Lab/38044",
+            "https://t.me/corevalue/47291"
+          ],
+          "last_seen": "2026-10-08T00:53:03+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
