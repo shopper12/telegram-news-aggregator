@@ -50,6 +50,16 @@ def _compact(value: Any, limit: int = 120) -> str:
     return text[: max(1, limit - 1)].rstrip() + "…"
 
 
+def _clean_news_text(value: Any, limit: int = 120) -> str:
+    text = str(value or "")
+    text = re.sub(r"https?://\S+", " ", text)
+    text = re.sub(r"^[\s🔔📈📝🚨⚡📌]+", "", text)
+    text = re.sub(r"(?<!\w)#[0-9A-Za-z가-힣_]+", " ", text)
+    text = re.sub(r"\s+(?:출처|source)\s*:\s*[^|\n]+(?:\s*\|\s*시각\s*:.*)?$", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text).strip(" -•·")
+    return _compact(text, limit)
+
+
 def _sentences(value: Any, limit: int = 3) -> list[str]:
     text = _compact(value, 520)
     if not text:
@@ -211,8 +221,8 @@ def _cluster_payload(cluster: Any) -> dict[str, Any]:
         sectors = [str(value) for value in getattr(item, "sectors", []) if str(value).strip()]
     return {
         "cluster": cluster,
-        "title": _compact(getattr(item, "title", ""), 88),
-        "body": _compact(getattr(item, "body", ""), 500),
+        "title": _clean_news_text(getattr(item, "title", ""), 88),
+        "body": _clean_news_text(getattr(item, "body", ""), 500),
         "news_type": str(getattr(best, "news_type", "") or ""),
         "score": score,
         "grade": grade,
@@ -400,19 +410,20 @@ def _feature_lines(payloads: list[dict[str, Any]], used: set[int]) -> list[str]:
     return lines
 
 
-def _korea_lines(payloads: list[dict[str, Any]]) -> list[str]:
+def _korea_lines(payloads: list[dict[str, Any]], *, repeat_titles: bool = True) -> list[str]:
     direct: list[str] = []
     derived_sectors: Counter[str] = Counter()
     for payload in payloads:
         kr_symbols = _symbol_text(payload["symbols"], korean_only=True)
         if kr_symbols:
-            direct.append(f"　- {kr_symbols}: {payload['title']}")
+            suffix = f": {payload['title']}" if repeat_titles else " · 상단 핵심요인/섹터에 직접 언급"
+            direct.append(f"　- {kr_symbols}{suffix}")
         for sector in payload["sectors"]:
             if sector not in GENERIC_SECTORS:
                 derived_sectors[sector] += payload["score"]
     lines = ["■ 한국 증시 관련"]
     if direct:
-        lines.extend(direct[:6])
+        lines.extend(list(dict.fromkeys(direct))[:6])
     else:
         lines.append("　- 뉴스 본문에 직접 언급된 한국 상장 종목 없음")
     if derived_sectors:
@@ -551,7 +562,7 @@ def build_market_note(
     if feature_lines:
         lines.extend(["", *feature_lines])
 
-    lines.extend(["", *_korea_lines(payloads)])
+    lines.extend(["", *_korea_lines(payloads, repeat_titles=strategy_kind)])
     lines.extend(["", *_judgment_lines(outlook)])
 
     if strategy_kind:
