@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-08T20:33:38+09:00",
+  "updated_at": "2026-10-09T03:22:04+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -21167,7 +21167,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-06T13:39:03+09:00",
@@ -21181,7 +21181,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-07T10:27:12+09:00"
+      "learned_at": "2026-10-07T10:27:12+09:00",
+      "outcome": "stop_observed",
+      "closed_at": "2026-10-09T03:22:04+09:00",
+      "final_return_pct": -4.3922
     },
     {
       "id": "e0f6f3432b5033c2",
@@ -21299,7 +21302,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-06T20:45:21+09:00",
@@ -21313,7 +21316,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-07T13:03:57+09:00"
+      "learned_at": "2026-10-07T13:03:57+09:00",
+      "outcome": "stop_observed",
+      "closed_at": "2026-10-09T03:22:04+09:00",
+      "final_return_pct": -4.2527
     },
     {
       "id": "fa2fa804eff6a1c6",
@@ -21637,7 +21643,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-07T20:15:16+09:00",
@@ -21651,7 +21657,10 @@
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-08T10:48:39+09:00"
+      "learned_at": "2026-10-08T10:48:39+09:00",
+      "outcome": "stop_observed",
+      "closed_at": "2026-10-09T03:22:04+09:00",
+      "final_return_pct": -4.35
     },
     {
       "id": "cba3bcc7223a3611",
