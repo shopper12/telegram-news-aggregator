@@ -117,8 +117,8 @@ def _display_symbols(cluster) -> list:
     text = _cluster_text(cluster)
     # Match only article prose. URLs/source metadata can otherwise create false direct symbols
     # such as NAVER from a naver.com source link.
-    match_text = re.sub(r"https?://\\S+", " ", text, flags=re.IGNORECASE)
-    match_text = re.sub(r"\\b(?:출처|source|via)\\s*:\\s*[^|\\n]+", " ", match_text, flags=re.IGNORECASE)
+    match_text = re.sub(r"https?://\S+", " ", text, flags=re.IGNORECASE)
+    match_text = re.sub(r"\b(?:출처|source|via)\s*:\s*[^|\n]+", " ", match_text, flags=re.IGNORECASE)
     lower = match_text.lower()
     out = []
     seen = set()
@@ -129,10 +129,10 @@ def _display_symbols(cluster) -> list:
         name = str(sym.name or "")
         name_key = re.sub(r"[^0-9a-z가-힣]+", "", name.lower())
         name_hit = bool(name and name.lower() in lower)
-        kr_code_hit = bool(ticker.isdigit() and re.search(rf"(?<!\\d){re.escape(ticker)}(?!\\d)", match_text))
+        kr_code_hit = bool(ticker.isdigit() and re.search(rf"(?<!\d){re.escape(ticker)}(?!\d)", match_text))
         explicit_us_hit = bool(
             re.search(
-                rf"(?:\\${re.escape(ticker)}|\\({re.escape(ticker)}\\)|NASDAQ:{re.escape(ticker)}|NYSE:{re.escape(ticker)}|AMEX:{re.escape(ticker)})\\b",
+                rf"(?:\${re.escape(ticker)}|\({re.escape(ticker)}\)|NASDAQ:{re.escape(ticker)}|NYSE:{re.escape(ticker)}|AMEX:{re.escape(ticker)})\b",
                 match_text,
                 re.IGNORECASE,
             )
