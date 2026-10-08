@@ -24,7 +24,8 @@ DISPLAY_HISTORY_PATH = Path(os.getenv("DISPLAYED_NEWS_HISTORY_PATH", "reports/di
 LATEST_REPORT_PATH = Path(os.getenv("LATEST_REPORT_JSON_PATH", "reports/latest_report.json"))
 NEWS_REPEAT_SUPPRESS_HOURS = int(os.getenv("NEWS_REPEAT_SUPPRESS_HOURS", "6"))
 
-BAD_DISPLAY_TICKERS = {"IDF", "ESS", "NIM", "GLP", "STRC", "DRAM", "NWS", "NWSA"}
+BAD_DISPLAY_TICKERS = {"IDF", "ESS", "NIM", "GLP", "STRC", "DRAM", "NWS", "NWSA", "ZZZTT"}
+GENERIC_DISPLAY_SYMBOL_NAMES = {"etf", "fund", "stock", "stocks", "shares", "trust", "commonstock"}
 LOW_VALUE_DISPLAY_WORDS = LOW_VALUE_WORDS + [
     "아직 상장안한", "상장안한", "상장 안 한", "etf도 가능합니다", "도 가능합니다",
     "미리보기가 되지 않아", "다시 올립니다", "아까 올린", "무료방", "추천방", "리딩방",
@@ -114,7 +115,11 @@ def _display_title(cluster, limit: int = 95) -> str:
 
 def _display_symbols(cluster) -> list:
     text = _cluster_text(cluster)
-    lower = text.lower()
+    # Match only article prose. URLs/source metadata can otherwise create false direct symbols
+    # such as NAVER from a naver.com source link.
+    match_text = re.sub(r"https?://\\S+", " ", text, flags=re.IGNORECASE)
+    match_text = re.sub(r"\\b(?:출처|source|via)\\s*:\\s*[^|\\n]+", " ", match_text, flags=re.IGNORECASE)
+    lower = match_text.lower()
     out = []
     seen = set()
     for sym in cluster.symbols():
@@ -122,15 +127,18 @@ def _display_symbols(cluster) -> list:
         if ticker in BAD_DISPLAY_TICKERS:
             continue
         name = str(sym.name or "")
+        name_key = re.sub(r"[^0-9a-z가-힣]+", "", name.lower())
         name_hit = bool(name and name.lower() in lower)
-        kr_code_hit = ticker.isdigit() and re.search(rf"(?<!\d){re.escape(ticker)}(?!\d)", text)
+        kr_code_hit = bool(ticker.isdigit() and re.search(rf"(?<!\\d){re.escape(ticker)}(?!\\d)", match_text))
         explicit_us_hit = bool(
             re.search(
-                rf"(?:\${re.escape(ticker)}|\({re.escape(ticker)}\)|NASDAQ:{re.escape(ticker)}|NYSE:{re.escape(ticker)}|AMEX:{re.escape(ticker)})\b",
-                text,
+                rf"(?:\\${re.escape(ticker)}|\\({re.escape(ticker)}\\)|NASDAQ:{re.escape(ticker)}|NYSE:{re.escape(ticker)}|AMEX:{re.escape(ticker)})\\b",
+                match_text,
                 re.IGNORECASE,
             )
         )
+        if name_key in GENERIC_DISPLAY_SYMBOL_NAMES and not (kr_code_hit or explicit_us_hit):
+            continue
         common_us = ticker in {
             "NVDA", "TSLA", "AAPL", "MSFT", "GOOGL", "AMZN", "META", "IBM", "AMD",
             "AVGO", "PLTR", "INTC", "ORCL", "NFLX", "MU", "SMCI", "MSTR", "KORU",
@@ -141,7 +149,6 @@ def _display_symbols(cluster) -> list:
             seen.add(sym.ticker)
             out.append(sym)
     return out[:6]
-
 
 def _source_url(cluster) -> str:
     candidates = []
