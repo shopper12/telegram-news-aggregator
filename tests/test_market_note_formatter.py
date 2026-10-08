@@ -213,3 +213,120 @@ def test_messenger_bridge_expands_reply_route_limit(monkeypatch):
 
     assert len(response) == 6000
     assert response == long_note
+
+
+def test_regular_evening_note_uses_one_market_snapshot_and_removes_routine_noise(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
+    monkeypatch.setattr(
+        formatter,
+        "_outlook",
+        lambda *args, **kwargs: SimpleNamespace(
+            verdict="중립/혼조",
+            score=1,
+            confidence="높음",
+            evidence_line="축1 지수(30%) +0.00 | 축2 레짐(30%) +0 | 축3 흐름(20%) -1 | 축4 뉴스(20%) +2",
+            upside_condition="미국 지수·위험선호 동반 개선",
+            downside_condition="미국 지수 약세 지속",
+        ),
+    )
+    now = datetime(2026, 10, 8, 20, 33, tzinfo=KST)
+    snapshot = _snapshot()
+    snapshot["assets"]["^GSPC"]["change_pct"] = -0.22
+    snapshot["assets"]["^IXIC"]["change_pct"] = -0.22
+    snapshot["assets"]["^RUT"]["change_pct"] = -1.31
+    snapshot["assets"]["^SOX"]["change_pct"] = -1.15
+    snapshot["assets"]["^GSPC"]["session_date"] = "2026-10-07"
+
+    cluster = FakeCluster(
+        "🔔 삼성전자 실적 호조에도 ETF 리밸런싱 여파 📈 #삼성전자 #반도체",
+        "삼성전자 실적 발표 뒤 ETF 리밸런싱 이슈가 부각됐다. 출처: 테스트 | 시각: 2026-10-08T11:04:03+00:00",
+        "실적",
+        ["AI인프라", "반도체"],
+        [_symbol("삼성전자", "005930.KS")],
+        99,
+        "A",
+        "https://example.com/samsung",
+    )
+    original = "\n".join(
+        [
+            "1) [99/A] 삼성전자 실적 호조에도 ETF 리밸런싱 여파",
+            "🧠 지속학습 상태",
+            "  • 누적 성과: 303건",
+            "🎯 아침 글로벌 매매전략",
+            "1) 미국 반도체(SOXX) LONG",
+            "검증: 로컬인사이트엔진 · 원문 16건",
+        ]
+    )
+
+    note = formatter.build_market_note(
+        original_report=original,
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=now,
+        market_context={
+            "kospi_change_pct": 1.10,
+            "kosdaq_change_pct": 4.25,
+            "sp500_change_pct": 1.96,
+            "nasdaq_change_pct": 2.10,
+            "usd_krw": 1345.0,
+        },
+        snapshot=snapshot,
+        selected=[cluster],
+    )
+
+    assert "10/08 한국 증시 마감 · 미 증시 프리마켓" in note
+    assert "글로벌 마감 시황 노트" not in note
+    assert "KOSDAQ +4.25% vs S&P500" not in note
+    assert "S&P500 +1.96%" not in note
+    assert "S&P500 ▼ -0.22%" in note
+    assert "🧠 지속학습 상태" not in note
+    assert "🎯 아침 글로벌 매매전략" not in note
+    assert "출처 A" not in note
+    assert "중요도등급 A" in note
+    assert "■ AI인프라" not in note
+    assert "■ 반도체" not in note
+    assert "하락가 핵심 변수" not in note
+    assert "#삼성전자" not in note
+    assert "뉴스 범위: 최근 1시간" in note
+    assert "미 증시 기준세션 2026-10-07" in note
+
+
+def test_regular_note_does_not_repeat_korean_headline_in_korea_section(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
+    monkeypatch.setattr(
+        formatter,
+        "_outlook",
+        lambda *args, **kwargs: SimpleNamespace(
+            verdict="중립",
+            score=0,
+            confidence="중간",
+            evidence_line="축1 지수(30%) +0.00",
+            upside_condition="확인 필요",
+            downside_condition="확인 필요",
+        ),
+    )
+    cluster = FakeCluster(
+        "삼성전자 실적 발표",
+        "삼성전자 실적 발표가 확인됐다.",
+        "실적",
+        ["반도체"],
+        [_symbol("삼성전자", "005930.KS")],
+        90,
+        "A",
+    )
+    note = formatter.build_market_note(
+        original_report="검증: 테스트",
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=datetime(2026, 10, 8, 20, 33, tzinfo=KST),
+        market_context={"kospi_change_pct": 0.2, "kosdaq_change_pct": 0.1},
+        snapshot=_snapshot(),
+        selected=[cluster],
+    )
+    korea_block = note.split("■ 한국 증시 관련", 1)[1].split("■ 시황 판정", 1)[0]
+    assert "삼성전자(005930.KS) · 상단 핵심요인/섹터에 직접 언급" in korea_block
+    assert "삼성전자 실적 발표" not in korea_block
