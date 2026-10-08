@@ -13,6 +13,7 @@ from . import strict_report_v2 as base_report
 
 
 KST = ZoneInfo("Asia/Seoul")
+NY = ZoneInfo("America/New_York")
 MAX_NOTE_SECTORS = int(os.getenv("MARKET_NOTE_MAX_SECTORS", "3"))
 MAX_NOTE_CHARS = int(os.getenv("MAX_REPORT_CHARS", "12000"))
 MESSENGER_NOTE_MAX_CHARS = int(os.getenv("MESSENGER_NOTE_MAX_CHARS", "8000"))
@@ -47,6 +48,16 @@ def _compact(value: Any, limit: int = 120) -> str:
     if len(text) <= limit:
         return text
     return text[: max(1, limit - 1)].rstrip() + "…"
+
+
+def _clean_news_text(value: Any, limit: int = 120) -> str:
+    text = str(value or "")
+    text = re.sub(r"https?://\S+", " ", text)
+    text = re.sub(r"^[\s🔔📈📝🚨⚡📌]+", "", text)
+    text = re.sub(r"(?<!\w)#[0-9A-Za-z가-힣_]+", " ", text)
+    text = re.sub(r"\s+(?:출처|source)\s*:\s*[^|\n]+(?:\s*\|\s*시각\s*:.*)?$", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text).strip(" -•·")
+    return _compact(text, limit)
 
 
 def _sentences(value: Any, limit: int = 3) -> list[str]:
@@ -101,6 +112,18 @@ def _ensure_note_assets(snapshot: dict[str, Any] | None) -> dict[str, Any]:
     return result
 
 
+def _ny_market_phase(now: datetime) -> str:
+    ny = now.astimezone(NY)
+    if ny.weekday() >= 5:
+        return "closed"
+    minute = ny.hour * 60 + ny.minute
+    if minute < 9 * 60 + 30:
+        return "premarket"
+    if minute < 16 * 60:
+        return "regular"
+    return "afterhours"
+
+
 def _note_name(kind: str, now: datetime) -> str:
     normalized = str(kind or "").strip().lower()
     if normalized == "us_close":
@@ -119,16 +142,38 @@ def _note_name(kind: str, now: datetime) -> str:
         return "한국 증시 클로징 노트"
     if normalized == "overnight":
         return "글로벌 야간 시황 노트"
+
     minute = now.hour * 60 + now.minute
+    ny_phase = _ny_market_phase(now)
     if minute < 9 * 60:
-        return "글로벌 장전 브리핑"
+        return "미 증시 마감후 · 한국장 장전" if ny_phase == "afterhours" else "글로벌 장전 브리핑"
     if minute < 15 * 60 + 30:
         return "한국 증시 장중 노트"
-    return "글로벌 마감 시황 노트"
+    if ny_phase == "premarket":
+        return "한국 증시 마감 · 미 증시 프리마켓"
+    if ny_phase == "regular":
+        return "미 증시 장중 노트"
+    if ny_phase == "afterhours":
+        return "미 증시 마감후 노트"
+    return "한국 증시 마감 · 글로벌 점검"
 
 
 def _is_us_note(note_name: str) -> bool:
     return note_name.startswith("미 증시")
+
+
+def _canonical_market_context(
+    market_context: dict[str, Any] | None,
+    snapshot: dict[str, Any],
+) -> dict[str, Any]:
+    context = dict(market_context or {})
+    sp500 = _asset_change(snapshot, "^GSPC")
+    nasdaq = _asset_change(snapshot, "^IXIC")
+    if sp500 is not None:
+        context["sp500_change_pct"] = sp500
+    if nasdaq is not None:
+        context["nasdaq_change_pct"] = nasdaq
+    return context
 
 
 def _selected_clusters(summaries: list[Any]) -> list[Any]:
@@ -176,8 +221,8 @@ def _cluster_payload(cluster: Any) -> dict[str, Any]:
         sectors = [str(value) for value in getattr(item, "sectors", []) if str(value).strip()]
     return {
         "cluster": cluster,
-        "title": _compact(getattr(item, "title", ""), 88),
-        "body": _compact(getattr(item, "body", ""), 500),
+        "title": _clean_news_text(getattr(item, "title", ""), 88),
+        "body": _clean_news_text(getattr(item, "body", ""), 500),
         "news_type": str(getattr(best, "news_type", "") or ""),
         "score": score,
         "grade": grade,
@@ -201,21 +246,21 @@ def _symbol_text(symbols: list[Any], *, korean_only: bool = False) -> str:
 
 def _headline_contrast(note_name: str, market_context: dict[str, Any] | None, snapshot: dict[str, Any]) -> str:
     candidates: list[tuple[str, float]] = []
-    if _is_us_note(note_name):
-        for ticker, label in (("^DJI", "다우"), ("^IXIC", "나스닥"), ("^GSPC", "S&P500"), ("^RUT", "러셀2000"), ("^SOX", "반도체")):
-            value = _asset_change(snapshot, ticker)
+    if note_name.startswith("한국 증시"):
+        for key, label in (("kospi_change_pct", "KOSPI"), ("kosdaq_change_pct", "KOSDAQ")):
+            value = _safe_float((market_context or {}).get(key))
             if value is not None:
                 candidates.append((label, value))
     else:
-        for key, label in (("kospi_change_pct", "KOSPI"), ("kosdaq_change_pct", "KOSDAQ"), ("sp500_change_pct", "S&P500"), ("nasdaq_change_pct", "Nasdaq")):
-            value = _safe_float((market_context or {}).get(key))
+        for ticker, label in (("^DJI", "다우"), ("^IXIC", "나스닥"), ("^GSPC", "S&P500"), ("^RUT", "러셀2000"), ("^SOX", "반도체")):
+            value = _asset_change(snapshot, ticker)
             if value is not None:
                 candidates.append((label, value))
     if len(candidates) < 2:
         return str(snapshot.get("flow_proxy") or snapshot.get("regime_label") or "시장 차별화 확인 필요")
     strongest = max(candidates, key=lambda item: item[1])
     weakest = min(candidates, key=lambda item: item[1])
-    return f"{strongest[0]} {strongest[1]:+.2f}% 견인 vs {weakest[0]} {weakest[1]:+.2f}% 차별화"
+    return f"{strongest[0]} {strongest[1]:+.2f}% vs {weakest[0]} {weakest[1]:+.2f}%"
 
 
 def _index_lines(note_name: str, market_context: dict[str, Any] | None, snapshot: dict[str, Any]) -> list[str]:
@@ -315,7 +360,7 @@ def _change_factor_lines(index: int, payload: dict[str, Any]) -> list[str]:
     for detail in details:
         lines.append(f"　- {detail}")
     symbols = _symbol_text(payload["symbols"])
-    meta = f"[중요도 {payload['score']} · 출처 {payload['grade']}]"
+    meta = f"[중요도 {payload['score']} · 중요도등급 {payload['grade']}]"
     if symbols:
         lines.append(f"　→ {meta} 직접 언급: {symbols}")
     else:
@@ -346,7 +391,7 @@ def _sector_lines(sector: str, payloads: list[dict[str, Any]]) -> list[str]:
     for payload in payloads[:4]:
         symbols = _symbol_text(payload["symbols"])
         suffix = f" / {symbols}" if symbols else ""
-        lines.append(f"　- [중요도 {payload['score']} · 출처 {payload['grade']}] {payload['title']}{suffix}")
+        lines.append(f"　- [중요도 {payload['score']} · 중요도등급 {payload['grade']}] {payload['title']}{suffix}")
         detail = next(iter(_sentences(payload["body"], 1)), "")
         if detail and detail != payload["title"]:
             lines.append(f"　　{detail}")
@@ -360,24 +405,25 @@ def _feature_lines(payloads: list[dict[str, Any]], used: set[int]) -> list[str]:
     lines = ["■ 기타 특징주"]
     for payload in featured[:8]:
         lines.append(
-            f"　- {_symbol_text(payload['symbols'])}: {payload['title']} [중요도 {payload['score']} · 출처 {payload['grade']}]"
+            f"　- {_symbol_text(payload['symbols'])}: {payload['title']} [중요도 {payload['score']} · 중요도등급 {payload['grade']}]"
         )
     return lines
 
 
-def _korea_lines(payloads: list[dict[str, Any]]) -> list[str]:
+def _korea_lines(payloads: list[dict[str, Any]], *, repeat_titles: bool = True) -> list[str]:
     direct: list[str] = []
     derived_sectors: Counter[str] = Counter()
     for payload in payloads:
         kr_symbols = _symbol_text(payload["symbols"], korean_only=True)
         if kr_symbols:
-            direct.append(f"　- {kr_symbols}: {payload['title']}")
+            suffix = f": {payload['title']}" if repeat_titles else " · 상단 핵심요인/섹터에 직접 언급"
+            direct.append(f"　- {kr_symbols}{suffix}")
         for sector in payload["sectors"]:
             if sector not in GENERIC_SECTORS:
                 derived_sectors[sector] += payload["score"]
     lines = ["■ 한국 증시 관련"]
     if direct:
-        lines.extend(direct[:6])
+        lines.extend(list(dict.fromkeys(direct))[:6])
     else:
         lines.append("　- 뉴스 본문에 직접 언급된 한국 상장 종목 없음")
     if derived_sectors:
@@ -445,7 +491,7 @@ def _payload_matches_keys(payload: dict[str, Any], keys: list[str]) -> bool:
 def _one_line(payloads: list[dict[str, Any]], outlook: Any, snapshot: dict[str, Any]) -> str:
     driver = payloads[0]["title"] if payloads else "뚜렷한 단일 뉴스 촉매 없음"
     risk = "위험회피 지속" if str(snapshot.get("regime")) == "risk_off" else "자금 흐름 확인 필요"
-    return f"{driver}가 핵심 변수이며, 4축 판정은 {outlook.verdict}({outlook.score:+d}/10) — {risk}."
+    return f"핵심 변수: {driver}. 4축 판정은 {outlook.verdict}({outlook.score:+d}/10) — {risk}."
 
 
 def build_market_note(
@@ -462,13 +508,14 @@ def build_market_note(
 ) -> str:
     selected = list(selected) if selected is not None else _selected_clusters(summaries)
     snapshot = _ensure_note_assets(snapshot)
+    market_context = _canonical_market_context(market_context, snapshot)
     payloads = sorted((_cluster_payload(cluster) for cluster in selected), key=lambda item: item["score"], reverse=True)
     displayed_keys = _issue_title_keys(original_report)
     if displayed_keys:
         payloads = [payload for payload in payloads if _payload_matches_keys(payload, displayed_keys)]
         selected = [payload["cluster"] for payload in payloads]
-    outlook = _outlook(selected, market_context, snapshot, kind, now)
     note_name = _note_name(kind, now)
+    outlook = _outlook(selected, market_context, snapshot, kind, now)
 
     title_driver = payloads[0]["title"] if payloads else f"{outlook.verdict} · 신규 핵심 이슈 제한"
     contrast = _headline_contrast(note_name, market_context, snapshot)
@@ -479,7 +526,7 @@ def build_market_note(
         f"┃ {_compact(contrast, 42)} ┃",
         "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛",
         "",
-        "📊 마감 지수" if "클로징" in note_name or "마감" in note_name else "📊 주요 지수",
+        "📊 마감 지수" if ("클로징" in note_name or note_name.startswith("미 증시 마감")) else "📊 주요 지수",
         *_index_lines(note_name, market_context, snapshot),
         "",
         "■ 장세 요약",
@@ -501,29 +548,41 @@ def build_market_note(
         lines.extend(["", *_change_factor_lines(index, payload)])
         used.add(id(payload["cluster"]))
 
+    strategy_kind = str(kind or "").lower() in {"strategy_morning", "strategy_evening"}
     for sector, sector_payloads in _ranked_sector_groups(payloads):
-        lines.extend(["", *_sector_lines(sector, sector_payloads)])
-        used.update(id(item["cluster"]) for item in sector_payloads)
+        visible_payloads = sector_payloads if strategy_kind else [
+            item for item in sector_payloads if id(item["cluster"]) not in used
+        ]
+        if not visible_payloads:
+            continue
+        lines.extend(["", *_sector_lines(sector, visible_payloads)])
+        used.update(id(item["cluster"]) for item in visible_payloads)
 
     feature_lines = _feature_lines(payloads, used)
     if feature_lines:
         lines.extend(["", *feature_lines])
 
-    lines.extend(["", *_korea_lines(payloads)])
+    lines.extend(["", *_korea_lines(payloads, repeat_titles=strategy_kind)])
     lines.extend(["", *_judgment_lines(outlook)])
 
-    learning = _extract_block(original_report, "🧠 지속학습 상태", ("🎯", "선별방식:", "📌 핵심 이슈", "검증:"))
-    if learning:
-        lines.extend(["", *learning])
-    strategy = _extract_block(original_report, "🎯", ("선별방식:", "📌 핵심 이슈", "검증:"))
-    if strategy:
-        lines.extend(["", *strategy])
+    if strategy_kind:
+        learning = _extract_block(original_report, "🧠 지속학습 상태", ("🎯", "선별방식:", "📌 핵심 이슈", "검증:"))
+        if learning:
+            lines.extend(["", *learning])
+        strategy = _extract_block(original_report, "🎯", ("선별방식:", "📌 핵심 이슈", "검증:"))
+        if strategy:
+            lines.extend(["", *strategy])
 
     lines.extend(["", "📝 한 줄 정리", f"　{_one_line(payloads, outlook, snapshot)}"])
     verification = _verification_line(original_report)
     if verification:
         lines.extend(["", verification])
-    lines.append(f"데이터 범위: 최근 {hours}시간 · 확인된 뉴스와 시장 데이터만 사용 · 미확인 옵션/수급 서사 생성 금지")
+    session_date = str(_asset(snapshot, "^GSPC").get("session_date") or "").strip()
+    session_text = f" · 미 증시 기준세션 {session_date}" if session_date else ""
+    lines.append(
+        f"뉴스 범위: 최근 {hours}시간 · 시장 가격: 최근 확정 세션/동일 스냅샷{session_text} · "
+        "미확인 옵션/수급 서사 생성 금지"
+    )
 
     note = "\n".join(lines).strip()
     max_chars = min(MAX_NOTE_CHARS, int(getattr(base_report, "MAX_REPORT_CHARS", MAX_NOTE_CHARS)))
