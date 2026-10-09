@@ -330,3 +330,24 @@ def test_regular_note_does_not_repeat_korean_headline_in_korea_section(monkeypat
     korea_block = note.split("■ 한국 증시 관련", 1)[1].split("■ 시황 판정", 1)[0]
     assert "삼성전자(005930.KS) · 상단 핵심요인/섹터에 직접 언급" in korea_block
     assert "삼성전자 실적 발표" not in korea_block
+
+def test_display_symbols_ignores_source_domain_and_generic_etf_false_positives():
+    from telegram_news import strict_report_v2
+
+    samsung = SimpleNamespace(name="삼성전자", ticker="005930.KS")
+    naver = SimpleNamespace(name="NAVER", ticker="035420.KS")
+    fake_etf = SimpleNamespace(name="ETF", ticker="ZZZTT")
+    cluster = FakeCluster(
+        "삼성전자 실적 발표",
+        "삼성전자 실적 발표가 확인됐다. 원문 https://m.stock.naver.com/foo ETF 리밸런싱 이슈.",
+        "실적",
+        ["반도체"],
+        [samsung, naver, fake_etf],
+        95,
+        "A",
+    )
+
+    displayed = strict_report_v2._display_symbols(cluster)
+
+    assert [symbol.ticker for symbol in displayed] == ["005930.KS"]
+
