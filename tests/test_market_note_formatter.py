@@ -330,3 +330,53 @@ def test_regular_note_does_not_repeat_korean_headline_in_korea_section(monkeypat
     korea_block = note.split("■ 한국 증시 관련", 1)[1].split("■ 시황 판정", 1)[0]
     assert "삼성전자(005930.KS) · 상단 핵심요인/섹터에 직접 언급" in korea_block
     assert "삼성전자 실적 발표" not in korea_block
+
+def test_regular_empty_note_aligns_verification_and_hides_internal_axis_math(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
+    monkeypatch.setattr(
+        formatter,
+        "_outlook",
+        lambda *args, **kwargs: SimpleNamespace(
+            verdict="중립/혼조",
+            score=1,
+            confidence="보통",
+            evidence_line="축1 지수(30%) +0.75 | 축2 레짐(30%) +0 | 축3 흐름(20%) +0 | 축4 뉴스(20%) +0",
+            upside_condition="주요 지수 강세 확산",
+            downside_condition="지수 저점 이탈",
+        ),
+    )
+
+    note = formatter.build_market_note(
+        original_report="검증: 로컬인사이트엔진 · 엄격 · 원문 1건 → 신규 1개 선별 · 중복억제 0건",
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=datetime(2026, 10, 10, 8, 30, tzinfo=KST),
+        market_context={"usd_krw": 1340.8},
+        snapshot=_snapshot(),
+        selected=[],
+    )
+
+    assert "새 중요 뉴스 없음" in note
+    assert "■ 한국 증시 관련" not in note
+    assert "축1 지수(30%)" not in note
+    assert "신규 0개 선별" in note
+    assert "신규 1개 선별" not in note
+
+
+def test_strategy_judgment_keeps_axis_math():
+    outlook = SimpleNamespace(
+        verdict="선별 강세",
+        score=3,
+        confidence="높음",
+        evidence_line="축1 지수(30%) +1.00 | 축2 레짐(30%) +1",
+        upside_condition="상승 확산",
+        downside_condition="지수 이탈",
+    )
+
+    lines = formatter._judgment_lines(outlook, detailed=True)
+
+    assert any("축1 지수(30%)" in line for line in lines)
+    assert any("축2 레짐(30%)" in line for line in lines)
+
