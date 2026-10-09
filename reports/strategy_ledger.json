@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-09T04:46:52+09:00",
+  "updated_at": "2026-10-09T10:59:26+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -21236,7 +21236,7 @@
       "price_warning": "",
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
-      "status": "open",
+      "status": "closed",
       "evaluations": {
         "6h": {
           "evaluated_at": "2026-10-06T13:39:03+09:00",
@@ -21247,10 +21247,18 @@
           "evaluated_at": "2026-10-07T10:27:12+09:00",
           "price": 759.82,
           "return_pct": 0.4521
+        },
+        "72h": {
+          "evaluated_at": "2026-10-09T10:59:26+09:00",
+          "price": 747.75,
+          "return_pct": -1.1436
         }
       },
       "learned_24h": true,
-      "learned_at": "2026-10-07T10:27:12+09:00"
+      "learned_at": "2026-10-07T10:27:12+09:00",
+      "outcome": "time_exit",
+      "closed_at": "2026-10-09T10:59:26+09:00",
+      "final_return_pct": -1.1436
     },
     {
       "id": "e07c1d8b279f20e1",
@@ -22049,9 +22057,15 @@
           "evaluated_at": "2026-10-08T20:33:38+09:00",
           "price": 751.98,
           "return_pct": -0.8674
+        },
+        "24h": {
+          "evaluated_at": "2026-10-09T10:59:26+09:00",
+          "price": 747.75,
+          "return_pct": -1.4251
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-10-09T10:59:26+09:00"
     },
     {
       "id": "5d4ab1387938063c",
@@ -22082,6 +22096,50 @@
         "defensive": 0.9515
       },
       "reason": "글로벌 레짐 +2.00, 모멘텀 +0.35, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-10-09T10:59:26+09:00",
+          "price": 28.98,
+          "return_pct": -0.0552
+        }
+      },
+      "learned_24h": false
+    },
+    {
+      "id": "949f208195245181",
+      "created_at": "2026-10-09T10:59:26+09:00",
+      "slot": "morning",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 28.98,
+      "entry_zone": [
+        28.8351,
+        29.1249
+      ],
+      "stop_price": 28.4004,
+      "target_price": 30.1392,
+      "score": 2.128,
+      "components": {
+        "momentum": 0.3183033453185447,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +0.32, regime +0.20, news +0.00, defensive +1.70",
+      "weights": {
+        "momentum": 1.0918,
+        "regime": 0.8406,
+        "news": 1.3463,
+        "defensive": 0.9487
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.32, 뉴스 +0.00",
       "news_evidence": [],
       "price_source": "Yahoo Finance regular-session snapshot",
       "price_warning": "",
