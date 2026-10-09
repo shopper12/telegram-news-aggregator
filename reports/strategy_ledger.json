@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-10T03:36:34+09:00",
+  "updated_at": "2026-10-10T03:56:51+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22161,6 +22161,60 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "7701f9f11907a29a",
+      "created_at": "2026-10-10T03:56:51+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 751.22,
+      "entry_zone": [
+        747.4639,
+        754.9761
+      ],
+      "stop_price": 736.1956,
+      "target_price": 781.2688,
+      "score": 2.19,
+      "components": {
+        "momentum": 0.6537280205370224,
+        "regime": 0.0,
+        "news": 1.0962104474682293,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.65, regime +0.00, news +1.10, defensive +0.00",
+      "weights": {
+        "momentum": 1.0918,
+        "regime": 0.8406,
+        "news": 1.3463,
+        "defensive": 0.9487
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 +0.65, 뉴스 +1.10 / 연결 뉴스: #미국 #ESS #가스터빈 #데이터센터 #전력시장 <4시간 ESS, 글로벌 시장서 가스 피커보다 저렴…Wood Mackenzie>; 미국 기업 섹터별 소식 정리",
+      "news_evidence": [
+        {
+          "title": "#미국 #ESS #가스터빈 #데이터센터 #전력시장 <4시간 ESS, 글로벌 시장서 가스 피커보다 저렴…Wood Mackenzie>",
+          "urls": [
+            "https://t.me/corevalue/47296",
+            "https://utilitydive.com/news/4-hour-storage-cheaper-than-gas-peakers-across-global-markets-woodmac/832489"
+          ],
+          "last_seen": "2026-10-09T03:59:34+00:00"
+        },
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/65761"
+          ],
+          "last_seen": "2026-10-08T21:51:07+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
