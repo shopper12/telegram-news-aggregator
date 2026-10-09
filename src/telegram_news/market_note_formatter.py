@@ -433,14 +433,15 @@ def _korea_lines(payloads: list[dict[str, Any]], *, repeat_titles: bool = True) 
     return lines
 
 
-def _judgment_lines(outlook: Any) -> list[str]:
+def _judgment_lines(outlook: Any, *, detailed: bool = False) -> list[str]:
     lines = [
         "■ 시황 판정",
         f"　- 최종: {outlook.verdict} | 점수 {outlook.score:+d}/10 | 신뢰도 {outlook.confidence}",
     ]
-    for part in str(outlook.evidence_line or "").split(" | "):
-        if part.startswith("축"):
-            lines.append(f"　- {part}")
+    if detailed:
+        for part in str(outlook.evidence_line or "").split(" | "):
+            if part.startswith("축"):
+                lines.append(f"　- {part}")
     lines.append(f"　- 상방 확인: {outlook.upside_condition}")
     lines.append(f"　- 하방/무효: {outlook.downside_condition}")
     return lines
@@ -464,6 +465,18 @@ def _verification_line(report: str) -> str:
         if line.startswith("검증:"):
             return line
     return ""
+
+
+def _aligned_verification_line(report: str, displayed_count: int) -> str:
+    line = _verification_line(report)
+    if not line:
+        return ""
+    return re.sub(
+        r"신규\s+\d+개\s+선별",
+        f"신규 {max(0, int(displayed_count))}개 선별",
+        line,
+        count=1,
+    )
 
 
 def _issue_title_keys(report: str) -> list[str]:
@@ -517,7 +530,7 @@ def build_market_note(
     note_name = _note_name(kind, now)
     outlook = _outlook(selected, market_context, snapshot, kind, now)
 
-    title_driver = payloads[0]["title"] if payloads else f"{outlook.verdict} · 신규 핵심 이슈 제한"
+    title_driver = payloads[0]["title"] if payloads else f"{outlook.verdict} · 새 중요 뉴스 없음"
     contrast = _headline_contrast(note_name, market_context, snapshot)
     lines = [
         "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓",
@@ -562,8 +575,11 @@ def build_market_note(
     if feature_lines:
         lines.extend(["", *feature_lines])
 
-    lines.extend(["", *_korea_lines(payloads, repeat_titles=strategy_kind)])
-    lines.extend(["", *_judgment_lines(outlook)])
+    if payloads:
+        lines.extend(["", *_korea_lines(payloads, repeat_titles=strategy_kind)])
+    elif not strategy_kind:
+        lines.extend(["", "■ 새 중요 뉴스 없음", "　- 가격·금리·자금 흐름만 갱신. 반복/저중요 뉴스는 본문에서 제외"])
+    lines.extend(["", *_judgment_lines(outlook, detailed=strategy_kind)])
 
     if strategy_kind:
         learning = _extract_block(original_report, "🧠 지속학습 상태", ("🎯", "선별방식:", "📌 핵심 이슈", "검증:"))
@@ -574,7 +590,7 @@ def build_market_note(
             lines.extend(["", *strategy])
 
     lines.extend(["", "📝 한 줄 정리", f"　{_one_line(payloads, outlook, snapshot)}"])
-    verification = _verification_line(original_report)
+    verification = _aligned_verification_line(original_report, len(payloads))
     if verification:
         lines.extend(["", verification])
     session_date = str(_asset(snapshot, "^GSPC").get("session_date") or "").strip()
