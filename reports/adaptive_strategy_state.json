@@ -1,18 +1,18 @@
 {
   "version": 2,
-  "updated_at": "2026-10-10T03:56:51+09:00",
+  "updated_at": "2026-10-10T04:23:48+09:00",
   "weights": {
-    "momentum": 1.0918,
-    "regime": 0.8406,
-    "news": 1.3463,
-    "defensive": 0.9487
+    "momentum": 1.0925,
+    "regime": 0.8367,
+    "news": 1.353,
+    "defensive": 0.9473
   },
   "stats": {
-    "evaluated_24h": 306,
+    "evaluated_24h": 307,
     "wins_24h": 116,
     "losses_24h": 86,
-    "flat_24h": 104,
-    "average_return_24h_pct": 0.2373,
+    "flat_24h": 105,
+    "average_return_24h_pct": 0.237,
     "average_win_24h_pct": 1.7448,
     "average_loss_24h_pct": -1.5063,
     "payoff_ratio_24h": 1.1583,
@@ -53,19 +53,17 @@
       "average_return_pct": 0.5538
     },
     "UUP": {
-      "evaluated": 9,
+      "evaluated": 10,
       "wins": 3,
-      "average_return_pct": -0.0673
+      "average_return_pct": -0.0454
     }
   },
   "last_run": {
-    "timestamp": "2026-10-10T03:56:51+09:00",
-    "kind": "strategy_evening",
-    "slot": "evening",
+    "timestamp": "2026-10-10T04:23:48+09:00",
+    "kind": "regular",
+    "slot": null,
     "regime": "mixed",
-    "regime_score": -0.065,
-    "recommendation_ids": [
-      "7701f9f11907a29a"
-    ]
+    "regime_score": -0.031,
+    "recommendation_ids": []
   }
 }
