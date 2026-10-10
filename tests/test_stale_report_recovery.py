@@ -112,3 +112,43 @@ def test_kakao_oauth_400_exposes_error_without_secret(monkeypatch):
     assert "invalid_grant" in message
     assert "refresh token is invalid or expired" in message
     assert "refresh-secret" not in message
+
+
+def test_stale_local_report_uses_newest_remote_timestamp_even_when_remote_is_stale(tmp_path, monkeypatch):
+    local_path = tmp_path / "latest_report.json"
+    local_path.write_text(
+        json.dumps(
+            {
+                "ok": True,
+                "generated_at": "2026-07-22T03:59:21",
+                "report": "very old local " + ("x" * 120),
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    remote_time = "2026-08-01T12:34:56"
+    remote_body = "newer but still stale remote " + ("y" * 120)
+
+    monkeypatch.setattr(report_cache, "LATEST_REPORT_JSON", local_path)
+    monkeypatch.setattr(report_cache, "ENABLE_GITHUB_REPORT_FALLBACK", True)
+    monkeypatch.setattr(report_cache, "ALLOW_STALE_LOCAL_REPORT", False)
+    monkeypatch.setattr(
+        report_cache.requests,
+        "get",
+        lambda *args, **kwargs: FakeResponse(
+            200,
+            {
+                "ok": True,
+                "generated_at": remote_time,
+                "report": remote_body,
+            },
+        ),
+    )
+
+    result = report_cache.load_latest_report()
+
+    assert result["stale"] is True
+    assert result["generated_at"] == remote_time
+    assert result["fallback_reason"] == "local_cache_stale_github_newer"
+    assert remote_body not in result["report"]
