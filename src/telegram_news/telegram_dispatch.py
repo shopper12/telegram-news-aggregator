@@ -244,7 +244,12 @@ def _install_cli_dispatch_hook(previous_hash: str) -> None:
         if notifier not in {"none", "", "off", "false", "no", "telegram", "kakao", "discord", "both", "all"}:
             raise RuntimeError("NOTIFIER must be one of: none, telegram, kakao, discord, both, all")
         if notifier in {"kakao", "both", "all"}:
-            dispatch_latest_report_to_kakao(report, raise_on_error=True)
+            kakao_sent = dispatch_latest_report_to_kakao(report, raise_on_error=False)
+            if not kakao_sent:
+                print(
+                    "[kakao-dispatch] non-fatal delivery failure; "
+                    "the generated report cache remains valid and will still be committed"
+                )
         if notifier in {"discord", "both", "all"}:
             app._send_report_to_discord(report)
 
