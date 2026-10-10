@@ -85,11 +85,11 @@ def _is_stale(generated_at: str) -> bool:
     return bool(age is not None and age > MAX_CACHE_AGE_SECONDS)
 
 
-def _validated_remote_payload(data: dict | None, source: str) -> dict | None:
+def _validated_remote_payload(data: dict | None, source: str, *, allow_stale: bool = False) -> dict | None:
     if not isinstance(data, dict) or not str(data.get("report") or "").strip():
         return None
     generated_at = str(data.get("generated_at") or "")
-    if generated_at and _is_stale(generated_at) and not ALLOW_STALE_GITHUB_FALLBACK:
+    if generated_at and _is_stale(generated_at) and not (ALLOW_STALE_GITHUB_FALLBACK or allow_stale):
         return None
     data = dict(data)
     data.setdefault("source", source)
@@ -108,7 +108,7 @@ def _decode_contents_api_payload(payload: dict) -> dict | None:
         return None
 
 
-def _load_github_fallback() -> dict | None:
+def _load_github_fallback(*, allow_stale: bool = False) -> dict | None:
     """Load the newest persisted report through two independent GitHub paths.
 
     Render occasionally fails a raw.githubusercontent.com request. A single raw
@@ -130,7 +130,7 @@ def _load_github_fallback() -> dict | None:
         try:
             response = requests.get(raw_url, headers=auth_headers, timeout=FALLBACK_TIMEOUT_SECONDS)
             if response.status_code == 200:
-                candidate = _validated_remote_payload(response.json(), "github_raw")
+                candidate = _validated_remote_payload(response.json(), "github_raw", allow_stale=allow_stale)
                 if candidate:
                     candidate["remote_path"] = "raw"
                     return candidate
@@ -148,7 +148,7 @@ def _load_github_fallback() -> dict | None:
             if response.status_code == 200:
                 payload = response.json()
                 decoded = _decode_contents_api_payload(payload) if isinstance(payload, dict) else None
-                candidate = _validated_remote_payload(decoded, "github_contents_api")
+                candidate = _validated_remote_payload(decoded, "github_contents_api", allow_stale=allow_stale)
                 if candidate:
                     candidate["remote_path"] = "contents_api"
                     return candidate
@@ -174,7 +174,7 @@ def _stale_result(data: dict) -> dict:
         data["stale"] = True
         return _normalize_report_payload(data)
 
-    return {
+    result = {
         "ok": False,
         "stale": True,
         "error": "latest_report_stale",
@@ -185,6 +185,11 @@ def _stale_result(data: dict) -> dict:
             "오래된 뉴스 본문은 표시하지 않습니다. GitHub Actions 최신 수집 결과를 확인하세요."
         ),
     }
+    if data.get("source"):
+        result["source"] = data.get("source")
+    if data.get("fallback_reason"):
+        result["fallback_reason"] = data.get("fallback_reason")
+    return result
 
 
 def load_latest_report() -> dict:
@@ -195,9 +200,12 @@ def load_latest_report() -> dict:
             report = str(data.get("report") or "").strip()
 
             if generated_at and _is_stale(generated_at):
-                fallback = _load_github_fallback()
+                fallback = _load_github_fallback(allow_stale=True)
                 if fallback and _is_newer_report(fallback, data):
                     fallback["fallback_reason"] = "local_cache_stale_github_newer"
+                    remote_generated_at = str(fallback.get("generated_at") or "")
+                    if remote_generated_at and _is_stale(remote_generated_at):
+                        return _stale_result(fallback)
                     return fallback
                 return _stale_result(data)
 
