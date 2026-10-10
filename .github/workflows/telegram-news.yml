@@ -102,16 +102,16 @@ jobs:
           if event_name == "schedule":
               hours = "1"
               limit = "999"
-              if schedule == "0 22 * * *":
+              if schedule == "7 22 * * *":
                   briefing_kind = "strategy_morning"
                   reason = "kst_0700_morning_strategy"
-              elif schedule == "30 22 * * 1-5":
+              elif schedule == "37 22 * * 1-5":
                   hours = "12"
                   limit = "300"
                   briefing_kind = "us_close"
                   notifier = "telegram"
                   reason = "kst_0730_us_close_to_korea_dashboard"
-              elif schedule == "30 13 * * *":
+              elif schedule == "37 13 * * *":
                   briefing_kind = "strategy_evening"
                   reason = "kst_2230_evening_strategy"
               else:
