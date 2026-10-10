@@ -97,3 +97,29 @@ def test_dispatch_logs_missing_configuration(monkeypatch, tmp_path, capsys):
     output = capsys.readouterr().out
     assert "missing Telegram configuration" in output
     assert "TELEGRAM_BOT_TOKEN" in output
+
+
+def test_cli_kakao_delivery_failure_does_not_fail_report_run(monkeypatch):
+    from telegram_news import app as app_module
+
+    previous_send = app_module._send_report
+    calls = []
+    monkeypatch.setenv("NOTIFIER", "kakao")
+    monkeypatch.setattr(
+        dispatch,
+        "dispatch_latest_report_to_telegram",
+        lambda *args, **kwargs: calls.append("telegram") or True,
+    )
+    monkeypatch.setattr(
+        dispatch,
+        "dispatch_latest_report_to_kakao",
+        lambda *args, **kwargs: calls.append("kakao") or False,
+    )
+
+    try:
+        dispatch._install_cli_dispatch_hook("")
+        app_module._send_report("generated report")
+    finally:
+        app_module._send_report = previous_send
+
+    assert calls == ["telegram", "kakao"]
