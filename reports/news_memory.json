@@ -1,7 +1,399 @@
 {
   "version": 2,
-  "updated_at": "2026-10-12T13:07:22+09:00",
+  "updated_at": "2026-10-12T21:19:50+09:00",
   "events": [
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-10-12T12:14:47+00:00",
+      "count": 1534,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
+    {
+      "signature": "95443ece2513cdd2bccc6f7d4549f552dcb85d45",
+      "title": "나머지 뉴스들은 내일 새벽에 업데이트 드리겠습니다. 오늘 하루 고생 많으셨습니다.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/66057"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T12:14:42+00:00",
+      "last_seen": "2026-10-12T12:14:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "cb2ff6c707ea5e7535768fb7e653f4ba9c2042e7",
+      "title": "📢 공지사항 안내 Speed matters, Facts matter more 속도도 중요하지만, 정확한 사실이 우선이다 미국 주…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "035720.KS"
+      ],
+      "source_urls": [
+        "https://maily.so/insidertracking",
+        "https://t.me/honeylifetip",
+        "https://t.me/insidertracking/22307",
+        "https://t.me/insidertracking/58040",
+        "https://t.me/insidertracking/61796"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T12:14:37+00:00",
+      "last_seen": "2026-10-12T12:14:37+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1a12eb38a7f0c8f4814c7957c914c63a67fea5db",
+      "title": "미국 기업 섹터별 소식 정리",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "로봇",
+        "바이오",
+        "반도체",
+        "방산/항공"
+      ],
+      "keywords": [
+        "ai",
+        "ionq",
+        "mu",
+        "규제",
+        "데이터센터",
+        "로봇",
+        "반도체",
+        "방산",
+        "임상",
+        "허가"
+      ],
+      "tickers": [
+        "ABCL",
+        "APLD",
+        "ASTS",
+        "BMY",
+        "CRM",
+        "FSLR",
+        "FVC",
+        "HOOD"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/66054"
+      ],
+      "materiality": 36,
+      "sentiment": 1,
+      "first_seen": "2026-10-12T12:09:42+00:00",
+      "last_seen": "2026-10-12T12:09:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a26e3a87eaf0eed0bab838cdfe50862e75cf8777",
+      "title": "온다스와 팔란티어가 국방 및 핵심 임무 수행을 위한 소버린 AI",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "ISR"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/66053"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T12:08:48+00:00",
+      "last_seen": "2026-10-12T12:08:48+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a1fd1bfbff8cdfe8b695f15b212349f4da9184f5",
+      "title": "🌎 글로벌 뉴스 브리핑",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "로봇",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "ai",
+        "관세",
+        "로봇",
+        "애플",
+        "정책"
+      ],
+      "tickers": [
+        "NPT"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/66052"
+      ],
+      "materiality": 19,
+      "sentiment": 2,
+      "first_seen": "2026-10-12T12:07:58+00:00",
+      "last_seen": "2026-10-12T12:07:58+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0ca7ff3a1c66f1bc3f00fd08d48157598de7ba5f",
+      "title": "🔔 가온전선, 美 원전용 케이블 시장 공략 시동 📈 #가온전선 📝 #원자력발전 #SMR #전력케이블 미국 현지 원전용 케이블 생…",
+      "sectors": [
+        "원전",
+        "전력기기"
+      ],
+      "keywords": [
+        "smr",
+        "원전",
+        "전선"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/be6788",
+        "https://t.me/dreago_news_ch/312738"
+      ],
+      "materiality": 14,
+      "sentiment": 2,
+      "first_seen": "2026-10-12T11:58:38+00:00",
+      "last_seen": "2026-10-12T11:58:38+00:00",
+      "count": 1
+    },
+    {
+      "signature": "aa9ceae1ffc9e5cb690505046a1f0453f8dd9cf6",
+      "title": "뱅크오브아메리카",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/65739",
+        "https://t.me/insidertracking/66051"
+      ],
+      "materiality": 8,
+      "sentiment": 2,
+      "first_seen": "2026-10-08T11:30:58+00:00",
+      "last_seen": "2026-10-12T11:58:21+00:00",
+      "count": 2
+    },
+    {
+      "signature": "025d0e5d96eab606e52046db33439abde8b5bf0a",
+      "title": "우승해라 이시키들아 감독님이 하라시잖아",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/25786"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T11:57:05+00:00",
+      "last_seen": "2026-10-12T11:57:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "407ec78cf0a208baf11c2a7d8f2809a1cf323539",
+      "title": "UBS가 꼽은 AI 투자 다음 주도 테마: 전력·데이터센터·핵심 자원 2026.10.12",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "전력기기"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "데이터센터",
+        "아마존",
+        "알파벳",
+        "전력망"
+      ],
+      "tickers": [
+        "PPA"
+      ],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/23708",
+        "https://t.me/aicorporateanalysisdeepdive",
+        "https://t.me/aicorporateanalysisdeepdive/12060",
+        "https://t.me/c/1208429502/126357",
+        "https://wallstreetcn.com/articles/3783448"
+      ],
+      "materiality": 21,
+      "sentiment": 3,
+      "first_seen": "2026-10-12T11:49:01+00:00",
+      "last_seen": "2026-10-12T11:55:36+00:00",
+      "count": 3
+    },
+    {
+      "signature": "3558cf5d12f0a959d2c8f9d85e15576be60cb9cc",
+      "title": "🔔 한화오션 불법 점거 농성에 지역 산업계 우려 확산 📈 #한화오션 📝 #조선 한화오션의 고공농성과 노사 갈등이 장기화될 경우 …",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "조선"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/4206a2",
+        "https://t.me/dreago_news_ch/312736"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T11:51:32+00:00",
+      "last_seen": "2026-10-12T11:51:32+00:00",
+      "count": 1
+    },
+    {
+      "signature": "08e47cab38b692b9cc2ca7aab83c4485d52f5328",
+      "title": "🔔 한화도 LG도 못 넘은 경이로운 수치..역대 최다 '171만, 99.4%' 뜨거웠던... 【 겁나빠른 #드리고봇 뉴스 】 h…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/2448e9",
+        "https://t.me/dreago_news_ch/312737"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T11:51:32+00:00",
+      "last_seen": "2026-10-12T11:51:32+00:00",
+      "count": 1
+    },
+    {
+      "signature": "28712b46fb0cdd4e31962497864628d7b976ac6a",
+      "title": "2026년 10월 12일",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://blog.naver.com/101ancha/224439413511",
+        "https://t.me/kwusa/61145"
+      ],
+      "materiality": 3,
+      "sentiment": -1,
+      "first_seen": "2026-10-12T11:51:16+00:00",
+      "last_seen": "2026-10-12T11:51:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "69a29e6bbc61e027a20678262b3827aa8a19703f",
+      "title": "전력, 데이터센터, 핵심자원도 AI 아닌가요? ㅎㅎ",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai",
+        "데이터센터"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/23709"
+      ],
+      "materiality": 4,
+      "sentiment": 1,
+      "first_seen": "2026-10-12T11:49:52+00:00",
+      "last_seen": "2026-10-12T11:49:52+00:00",
+      "count": 1
+    },
+    {
+      "signature": "758334456326e914bfc0cbc98a91d7fcfcb7bd0f",
+      "title": "위고비, 건강보험 적용 추진…\"비만약 가격경쟁 신호탄\" 노보 노디스크가 글루카곤유사펩타이드-1",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/029/0003052617",
+        "https://t.me/insidertracking/66050"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T11:49:18+00:00",
+      "last_seen": "2026-10-12T11:49:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "c881d5fd65126a38a507b4985717aa84c6dae248",
+      "title": "아이온큐가 사이버보안 기업 엘리시티를 최대 13억 달러 규모의 전액 주식 교환 방식으로 인수하는 데 합의. 인수 금액에는 성과 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/66048"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T11:45:05+00:00",
+      "last_seen": "2026-10-12T11:45:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "411bac4ded90007ea505d9b743dc666e77bb53a4",
+      "title": "🔔 알테오젠 \"실탄 6300억, 새 기술 도입에 투자\" 📈 #알테오젠 📝 #약물전달기술 #바이오 보유자금을 활용한 기술 도입·M…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/e3f7ab",
+        "https://t.me/dreago_news_ch/312735"
+      ],
+      "materiality": 15,
+      "sentiment": 0,
+      "first_seen": "2026-10-12T11:27:47+00:00",
+      "last_seen": "2026-10-12T11:27:47+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2b605188df5ac1a5e56d7b5710fe261b396d5f9b",
+      "title": "[Ep 5-1] \"예탁금 100조 장세, 코스닥 1,000p 돌파를 결정지을 단 하나의 지표 ✔️ 하반기 랠리 분수령: 코스닥 1,000p를 결정지을 10월 14일 미국 #CPI 와 #기준금리 동향 📞 ARS 간편 ",
+      "sectors": [
+        "2차전지",
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "cpi",
+        "금리",
+        "반도체",
+        "에코프로",
+        "에코프로비엠"
+      ],
+      "tickers": [
+        "086520.KQ",
+        "247540.KQ"
+      ],
+      "source_urls": [
+        "https://bit.ly/4y3QoYT",
+        "https://bit.ly/4yQ8fmI",
+        "https://t.me/sharpha/55096"
+      ],
+      "materiality": 18,
+      "sentiment": 2,
+      "first_seen": "2026-10-12T11:20:07+00:00",
+      "last_seen": "2026-10-12T11:20:07+00:00",
+      "count": 1
+    },
     {
       "signature": "edd7463e6aafee010ed77c692c18a2d9d53b1574",
       "title": "RBI 달러 수요 억제 조치에 인도 루피화 1% 급등 https://m.stock.naver.com/investment/news…",
@@ -2122,25 +2514,6 @@
       "first_seen": "2026-10-12T01:08:47+00:00",
       "last_seen": "2026-10-12T01:08:47+00:00",
       "count": 2
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 1,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-10-12T01:08:46+00:00",
-      "count": 1533,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "31bd7d49dc734bbc19a3fddced23d1c956567d1e",
@@ -7871,21 +8244,6 @@
       "count": 1
     },
     {
-      "signature": "aa9ceae1ffc9e5cb690505046a1f0453f8dd9cf6",
-      "title": "뱅크오브아메리카",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/65739"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T11:30:58+00:00",
-      "last_seen": "2026-10-08T11:30:58+00:00",
-      "count": 1
-    },
-    {
       "signature": "95ff578a87f52b43fa5bcb596477fe818db05392",
       "title": "📚안녕하세요. 원리버입니다! 드디어 제 두 번째 책, 『10배 오르는 바이오 주식의 비밀』이 출간되었습니다! 사실 며칠 전에 예…",
       "sectors": [
@@ -9798,306 +10156,6 @@
       "sentiment": 0,
       "first_seen": "2026-10-08T01:44:55+00:00",
       "last_seen": "2026-10-08T01:44:55+00:00",
-      "count": 3
-    },
-    {
-      "signature": "33dd9b64ae2daf8b6847040672c1448ad418f25f",
-      "title": "🔔 메모리 초호황 탄 삼성전자…영업익 '세계 1위' 기대감 📈 #삼성전자 📝 #메모리반도체 #AI반도체 AI 메모리 호황에 따른…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "메모리",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/f66c23",
-        "https://t.me/dreago_news_ch/311702"
-      ],
-      "materiality": 20,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:43:40+00:00",
-      "last_seen": "2026-10-08T01:43:40+00:00",
-      "count": 3
-    },
-    {
-      "signature": "0dd8cb8632a5b200b64cd03c23b8d7d6e08efb18",
-      "title": "[리포트 브리핑]삼성SDI, '본업 흑자를 확인할 3분기' 목표가 940,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261008/1001072",
-        "https://t.me/rassiro_channel/306329"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:43:02+00:00",
-      "last_seen": "2026-10-08T01:43:02+00:00",
-      "count": 3
-    },
-    {
-      "signature": "7b966e5e09b79617e7cee5760d59a3b02362e6f4",
-      "title": "✅ SK이터닉스, 연료전지로 AI 데이터센터 전력 댄다…마스턴과 사업 추진 https://www.etoday.co.kr/news…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://etoday.co.kr/news/view/2633735",
-        "https://t.me/c/1208429502/126251"
-      ],
-      "materiality": 6,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:42:04+00:00",
-      "last_seen": "2026-10-08T01:42:04+00:00",
-      "count": 3
-    },
-    {
-      "signature": "805f315907db2c2cd1e6e9ad78ef2d06cc2ce741",
-      "title": "올해증시는 지수는 사상유례없는 최고가에서 잊혀지는 섹터나 종목이 많아진게 미리보는 한해 리뷰",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/54923"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:41:43+00:00",
-      "last_seen": "2026-10-08T01:41:43+00:00",
-      "count": 3
-    },
-    {
-      "signature": "834cce8ff9b60b0521fdf8f3d39b8fc1107a69f9",
-      "title": "🔔 KB증권 \"크래프톤 목표주가 하향, 배틀그라운드 트래픽 둔화 영향\" 📈 #크래프톤 📝 #게임 배틀그라운드 트래픽 둔화 우려가…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/11b353",
-        "https://t.me/dreago_news_ch/311700"
-      ],
-      "materiality": 2,
-      "sentiment": -1,
-      "first_seen": "2026-10-08T01:40:17+00:00",
-      "last_seen": "2026-10-08T01:40:17+00:00",
-      "count": 3
-    },
-    {
-      "signature": "95d60379157e8942737d73fbdfa418aa48d9f3da",
-      "title": "'디아이' 52주 신고가 경신, 외국인, 기관 각각 4일 연속 순매수, 4일 연속 순매도 http://spot.thinkpool…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261008/1001039",
-        "https://t.me/rassiro_channel/306328"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:38:10+00:00",
-      "last_seen": "2026-10-08T01:38:10+00:00",
-      "count": 3
-    },
-    {
-      "signature": "b2fdf1e179142484124ee0413db5c972883b77fc",
-      "title": "🔔 고영, 3만9350원까지 밀려…외국인 9거래일 이상 매수·개인 7거래일 연... 【 겁나빠른 #드리고봇 뉴스 】 https:…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/9a5227",
-        "https://t.me/dreago_news_ch/311699"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-10-08T01:36:22+00:00",
-      "last_seen": "2026-10-08T01:36:22+00:00",
-      "count": 3
-    },
-    {
-      "signature": "3c17f9ce5835c821e08a543dccb1c6eba5a88e49",
-      "title": "본계약 없이 릴리 기술평가 종료…펩트론 28% 급락",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/chel3337/35953"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-10-08T01:36:12+00:00",
-      "last_seen": "2026-10-08T01:36:12+00:00",
-      "count": 3
-    },
-    {
-      "signature": "ccb0a966fa8d3251a28b269e04b12f40431ba104",
-      "title": "🔔 테오도르의 시장분석 : 특징주와 테마주 \"바이오 신약 개발, 통신장비 ... 【 겁나빠른 #드리고봇 뉴스 】 https://…",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "신약"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/616a7a",
-        "https://t.me/dreago_news_ch/311698"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-10-08T01:36:10+00:00",
-      "last_seen": "2026-10-08T01:36:10+00:00",
-      "count": 3
-    },
-    {
-      "signature": "a60f80417989ffdc682148b4da35800a067f3a62",
-      "title": "🔔 주가 10% 빠져도 “더 간다”…'18만→29만원' 높아진 증권가 눈높이 📈 #LG전자 📝 #AI데이터센터 #냉각솔루션 #로…",
-      "sectors": [
-        "AI인프라",
-        "로봇"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터",
-        "로봇"
-      ],
-      "tickers": [
-        "066570.KS",
-        "BCE"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/ebceed",
-        "https://t.me/dreago_news_ch/311697"
-      ],
-      "materiality": 21,
-      "sentiment": 2,
-      "first_seen": "2026-10-08T01:35:52+00:00",
-      "last_seen": "2026-10-08T01:35:52+00:00",
-      "count": 3
-    },
-    {
-      "signature": "990ac8ae99603349c21f0a172b8e66be6155e368",
-      "title": "오늘은 하닉이 코스피를 캐리. 삼성은 좀 쉬고",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/54920"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-10-08T01:33:51+00:00",
-      "last_seen": "2026-10-08T01:33:51+00:00",
-      "count": 3
-    },
-    {
-      "signature": "53ed53a46dc551b6cf502217c476202bda3746e2",
-      "title": "[리포트 브리핑]컴투스홀딩스, '다층적인 수익 구조 형성' Not Rated",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261008/1000948",
-        "https://t.me/rassiro_channel/306327"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-10-08T01:31:10+00:00",
-      "last_seen": "2026-10-08T01:31:10+00:00",
-      "count": 3
-    },
-    {
-      "signature": "90972215afdede5e68b24c311176237b58b8f418",
-      "title": "한미약품 \"'에페' 가격 막판 고심 중…환자 접근성 향상 원칙\" https://n.news.naver.com/mnews/arti…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/421/0009216615",
-        "https://t.me/jeilstock/46797"
-      ],
-      "materiality": 6,
-      "sentiment": 0,
-      "first_seen": "2026-10-08T01:31:05+00:00",
-      "last_seen": "2026-10-08T01:31:05+00:00",
-      "count": 2
-    },
-    {
-      "signature": "f5c1e5b40a14ec5a9bc7506c6118ab463842897c",
-      "title": "🚀 [KRX 상승률 TOP10] 2026-10-08 10:30 (KST)",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "KST"
-      ],
-      "source_urls": [
-        "https://t.me/moneythemestock/64782",
-        "https://t.me/moneythemestock/64778"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:30:03+00:00",
-      "last_seen": "2026-10-08T01:30:03+00:00",
-      "count": 3
-    },
-    {
-      "signature": "e67b9d1108c66157e228dc17a1d3c664ee319297",
-      "title": "🔔 HLB 간암신약, 추가 확장성 보인다…中서 TACE 병용 허가심사 진전 📈 #HLB 📝 #간암치료제 #면역항암제 #항암제 중…",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "신약",
-        "허가"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/996bc3",
-        "https://t.me/dreago_news_ch/311695"
-      ],
-      "materiality": 12,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:29:26+00:00",
-      "last_seen": "2026-10-08T01:29:26+00:00",
-      "count": 3
-    },
-    {
-      "signature": "d362ae44023d1dba858217490541900633342389",
-      "title": "[리포트 브리핑]카카오게임즈, '회복하는 MMO 시장, 27년 턴어라운드에 따른 매수매력 보유' 목표가 13,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "005380.KS",
-        "035720.KS"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261008/1000905",
-        "https://t.me/rassiro_channel/306326"
-      ],
-      "materiality": 4,
-      "sentiment": 1,
-      "first_seen": "2026-10-08T01:29:19+00:00",
-      "last_seen": "2026-10-08T01:29:19+00:00",
       "count": 3
     }
   ]
