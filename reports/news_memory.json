@@ -1,7 +1,218 @@
 {
   "version": 2,
-  "updated_at": "2026-10-17T09:17:30+09:00",
+  "updated_at": "2026-10-17T09:41:24+09:00",
   "events": [
+    {
+      "signature": "486c6ec90c340ff6d43e11698400f2bbd7315442",
+      "title": "10/19~10/23 주간 변화요인: AI 신용위험, 실적, AI 컨퍼런스, 국채금리 이번 주 주식시장의 핵심은 AI 인프라 기…",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "바이오",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "cpi",
+        "fomc",
+        "meta",
+        "nvidia",
+        "tsla",
+        "tsmc",
+        "금리",
+        "데이터센터"
+      ],
+      "tickers": [
+        "064350.KS",
+        "207940.KS",
+        "ABT",
+        "AXP",
+        "BX",
+        "COF",
+        "DHR",
+        "ELV"
+      ],
+      "source_urls": [
+        "https://t.me/cyber_rangers/18544"
+      ],
+      "materiality": 25,
+      "sentiment": 2,
+      "first_seen": "2026-10-17T00:37:16+00:00",
+      "last_seen": "2026-10-17T00:37:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3f7bd8056eb368c249b23a14c5db72b1587fddc1",
+      "title": "🔔 '노사 임단협에 골머리' 한화오션 고공농성 지속 전망 📈 #한화오션 📝 #조선 임단협 교착과 고공농성 지속은 생산 차질로 번…",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "조선"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/adf0af",
+        "https://t.me/dreago_news_ch/314569"
+      ],
+      "materiality": 10,
+      "sentiment": 0,
+      "first_seen": "2026-10-17T00:28:21+00:00",
+      "last_seen": "2026-10-17T00:28:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6f10c8a76fcd0bcd9700f63a13b0527198b94d23",
+      "title": "🔔 한화오션, '골리앗 크레인' 농성 파장…조선업·지역경제 우려 📈 #한화오션 📝 #조선업 골리앗 크레인 가동 중단이 장기화되면…",
+      "sectors": [
+        "조선"
+      ],
+      "keywords": [
+        "선박",
+        "조선"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/83aec6",
+        "https://t.me/dreago_news_ch/314570"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-10-17T00:28:21+00:00",
+      "last_seen": "2026-10-17T00:28:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "160271e3a77f9cc6243b293e46ebd6d76d6146ed",
+      "title": "중동 출신 사람의 이름이 확실하지 않다면, 그냥 모하메드라고 부르면 된다. 맞힐 확률이 약 65%나 된다. 나는 수년 동안 그렇…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/66508"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-10-17T00:26:46+00:00",
+      "last_seen": "2026-10-17T00:26:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d1f99a80e2f5ab5ab9f1813553e01ab1096121b7",
+      "title": "CBS뉴스에 따르면 미국 육군참모총장 랜디 조지 대장이 이란 전쟁 발발 약 2개월 전인 2025년 12월 말, 미 육군의 미사일…",
+      "sectors": [
+        "방산/항공"
+      ],
+      "keywords": [
+        "방산"
+      ],
+      "tickers": [
+        "CSIS",
+        "JDAM",
+        "SDB",
+        "THAAD"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/66507"
+      ],
+      "materiality": 8,
+      "sentiment": -2,
+      "first_seen": "2026-10-17T00:25:24+00:00",
+      "last_seen": "2026-10-17T00:25:24+00:00",
+      "count": 1
+    },
+    {
+      "signature": "36be1b77674adebd666da8ff8c8f65b8e329a306",
+      "title": "백악관 인스타그램: We really got flying cars before GTA 6 GTA 6 전에 비행 자동차가 있었죠",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/66506"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-10-17T00:22:44+00:00",
+      "last_seen": "2026-10-17T00:22:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3e44f29f44397d341b7fd55e302e9bb410778e5e",
+      "title": "2분기 기준 AWS의 수주잔고는 약 5,000억달러로, 대기업·AI 연구기업·중소기업에 걸쳐 있습니다. AWS의 AI 서버 투자 회수기간은 3년 미만이라고 설명했습니다. AWS는 상당한 투자 수익과 생산성 개선을 확",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "서버",
+        "수주잔고",
+        "아마존"
+      ],
+      "tickers": [
+        "AWS",
+        "PTC"
+      ],
+      "source_urls": [
+        "https://axios.com/2026/10/16/amazon-web-services-ai-cfo",
+        "https://t.me/Yeouido_Lab/38216"
+      ],
+      "materiality": 23,
+      "sentiment": 3,
+      "first_seen": "2026-10-17T00:21:57+00:00",
+      "last_seen": "2026-10-17T00:21:57+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ef4d15f5e6264f4848bb0b1091906ad55eb773ad",
+      "title": "10월 17일 보도에 따르면, 오픈AI는 스페이스X 소속 그레이엄 시먼스",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "GHM"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/66505"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-10-17T00:19:14+00:00",
+      "last_seen": "2026-10-17T00:19:14+00:00",
+      "count": 1
+    },
+    {
+      "signature": "050687e8dddf32e049e8a8cfec2e616dfa9fa502",
+      "title": "좋좋소들의 절대 다수가 컴플라이언스 개념이 없는데, 따라서 갠적으로는 회사 탓을 하기 보다는 시스템의 실패라고 생각. 그렇다면 …",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "규제"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/article/024/0000108959",
+        "https://t.me/Yeouido_Lab/38215"
+      ],
+      "materiality": 12,
+      "sentiment": -1,
+      "first_seen": "2026-10-17T00:16:51+00:00",
+      "last_seen": "2026-10-17T00:16:51+00:00",
+      "count": 1
+    },
     {
       "signature": "d3abfe7ae78b83f692c9cc1cc3f9d5acbfae1359",
       "title": "🔔 \"잠든 선불충전금 255억\"...네이버·카카오·토스, 잔액 알리고 바로 환... 📈 #카카오페이 #NAVER 📝 #간편결제 …",
@@ -19,7 +230,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-17T00:13:02+00:00",
       "last_seen": "2026-10-17T00:13:02+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "db411392d1c98039caffa557739aeee67123bfda",
@@ -37,7 +248,7 @@
       "sentiment": 1,
       "first_seen": "2026-10-17T00:06:45+00:00",
       "last_seen": "2026-10-17T00:06:45+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "37c2801cb0c6be4add29ef3b9383f0e5e43257bb",
@@ -57,7 +268,7 @@
       "sentiment": 1,
       "first_seen": "2026-10-17T00:00:48+00:00",
       "last_seen": "2026-10-17T00:00:48+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
@@ -69,7 +280,7 @@
       "sentiment": -1,
       "first_seen": "2026-08-07T11:24:21+00:00",
       "last_seen": "2026-10-16T23:58:26+00:00",
-      "count": 1642,
+      "count": 1643,
       "source_urls": [
         "https://khan.co.kr/article/202608171607001",
         "https://t.me/dreago_news_ch/296031",
@@ -98,7 +309,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-16T23:58:05+00:00",
       "last_seen": "2026-10-16T23:58:05+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "a54477362f0ea8143238f84b4a1524411613e463",
@@ -121,7 +332,7 @@
       "sentiment": 1,
       "first_seen": "2026-10-16T23:55:47+00:00",
       "last_seen": "2026-10-16T23:55:47+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "10c7f03aaee7a0bf25750b370041b4dd7277574b",
@@ -144,7 +355,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-16T23:45:40+00:00",
       "last_seen": "2026-10-16T23:45:40+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "ffcb2184b65edbdb35c8fadf5089d1135ea3c0aa",
@@ -166,7 +377,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-16T23:42:24+00:00",
       "last_seen": "2026-10-16T23:42:24+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "f603295625da999d95b5359d9f8fbc57bc9ccda0",
@@ -188,7 +399,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-16T23:40:50+00:00",
       "last_seen": "2026-10-16T23:40:50+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "16298ef5bc7a9b8482aae750bff8dc2e09a00cad",
@@ -211,7 +422,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-16T23:40:49+00:00",
       "last_seen": "2026-10-16T23:40:49+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "dc3fef07207b6639632b3e9174f845b7226a5c38",
@@ -229,7 +440,7 @@
       "sentiment": 0,
       "first_seen": "2026-10-16T23:40:49+00:00",
       "last_seen": "2026-10-16T23:40:49+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "0a4294858c1b38394bb72cf853a70f39cee59898",
@@ -245,7 +456,7 @@
       "sentiment": -2,
       "first_seen": "2026-10-16T23:40:40+00:00",
       "last_seen": "2026-10-16T23:40:40+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "9672eb190c9b2cc3a031bd56fa414640735f99ae",
@@ -9967,191 +10178,6 @@
       "first_seen": "2026-10-15T00:12:50+00:00",
       "last_seen": "2026-10-15T00:14:19+00:00",
       "count": 4
-    },
-    {
-      "signature": "66e3429bc46643b793de4c52db08dfe3013e387c",
-      "title": "✅ '유니켐 인수 추진' 美 루미아, 로봇 손 적용 ‘전자피부’ 기술 공개 https://www.edaily.co.kr/news…",
-      "sectors": [
-        "AI인프라",
-        "로봇"
-      ],
-      "keywords": [
-        "ai",
-        "로봇"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://edaily.co.kr/news/read?newsId=02673206645613248",
-        "https://t.me/c/1208429502/126519"
-      ],
-      "materiality": 8,
-      "sentiment": 1,
-      "first_seen": "2026-10-15T00:13:59+00:00",
-      "last_seen": "2026-10-15T00:13:59+00:00",
-      "count": 3
-    },
-    {
-      "signature": "75b862fec9de2c991878113bdef187f51addaa4d",
-      "title": "🔔 AI 자율성 확대 대응…카카오, 에이전트 윤리 원칙 'SPIRIT' 선포 📈 #카카오 📝 #인공지능 AI 윤리 원칙 공개는 …",
-      "sectors": [
-        "AI인프라",
-        "거시/정책"
-      ],
-      "keywords": [
-        "ai",
-        "규제"
-      ],
-      "tickers": [
-        "035720.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/361638",
-        "https://t.me/dreago_news_ch/313775"
-      ],
-      "materiality": 17,
-      "sentiment": 0,
-      "first_seen": "2026-10-15T00:13:43+00:00",
-      "last_seen": "2026-10-15T00:13:43+00:00",
-      "count": 3
-    },
-    {
-      "signature": "47011a385fcfc3515bf147ab89fc68f00f1d5f15",
-      "title": "스피드카 발동 코스닥",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/Yeouido_Lab/38167"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-10-15T00:12:51+00:00",
-      "last_seen": "2026-10-15T00:12:51+00:00",
-      "count": 3
-    },
-    {
-      "signature": "c65ff9e4d14d9f0217ba1b0fc2054236ae7f9535",
-      "title": "'HT로보틱스' 52주 신고가 경신, 전일 기관 대량 순매수 http://spot.thinkpool.com/rd/20261015…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261015/1002775",
-        "https://t.me/rassiro_channel/306832"
-      ],
-      "materiality": 2,
-      "sentiment": 2,
-      "first_seen": "2026-10-15T00:12:42+00:00",
-      "last_seen": "2026-10-15T00:12:42+00:00",
-      "count": 3
-    },
-    {
-      "signature": "1d896b67d79cadde04868c458647dc46c2b54a6c",
-      "title": "🔔 삼성전자, 글로벌 파트너와 차세대 네트워크 미래 논의 📈 #삼성전자 📝 #6G #AI네트워크 AI·6G 네트워크 진화 방향을…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/2761f4",
-        "https://t.me/dreago_news_ch/313774"
-      ],
-      "materiality": 20,
-      "sentiment": 1,
-      "first_seen": "2026-10-15T00:11:13+00:00",
-      "last_seen": "2026-10-15T00:11:13+00:00",
-      "count": 3
-    },
-    {
-      "signature": "75c5ac397af221f480e9469c15bfa9dc3a5cc023",
-      "title": "🔔 [속보] 코스피 매도 사이드카…올해 27번째 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/2c4c91",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/2c4c91",
-        "https://t.me/dreago_news_ch/313772"
-      ],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-10-15T00:10:36+00:00",
-      "last_seen": "2026-10-15T00:10:36+00:00",
-      "count": 3
-    },
-    {
-      "signature": "89e8ea0e39e4c921387667c676fb41334d8c249f",
-      "title": "🔔 대한전선, 美서 대규모 초고압 프로젝트 턴키 수주… 1200억 자재 공급 ... 📈 #대한전선 📝 #초고압케이블 #전력망 #…",
-      "sectors": [
-        "전력기기"
-      ],
-      "keywords": [
-        "대한전선",
-        "전력망",
-        "전선"
-      ],
-      "tickers": [
-        "001440.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/b5366e",
-        "https://t.me/dreago_news_ch/313771"
-      ],
-      "materiality": 18,
-      "sentiment": 2,
-      "first_seen": "2026-10-15T00:08:45+00:00",
-      "last_seen": "2026-10-15T00:08:45+00:00",
-      "count": 2
-    },
-    {
-      "signature": "846e924a46773358966d76f7c49ca45d0042da06",
-      "title": "[개장] 코스피 5,734.47P (-4.6%↓), KRX SK하이닉스 TR 지수, 코스피 전기·전자 등 약세\n출처: 씽크풀 | 시각: 2026-10-15T00:08:37+00:00",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261015/1002367",
-        "https://t.me/rassiro_channel/306831"
-      ],
-      "materiality": 5,
-      "sentiment": -1,
-      "first_seen": "2026-10-15T00:08:37+00:00",
-      "last_seen": "2026-10-15T00:08:37+00:00",
-      "count": 2
-    },
-    {
-      "signature": "7f45a3ed5b49435ae867c36a56259e7546f368f8",
-      "title": "제목 : 존슨 앤드 존슨, ‘27년 EPS 증가세 제한될 것 번스타인 *연합인포맥스* 번스타인의 애널리스트는 존슨 앤드 존슨",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/kwusa/61205"
-      ],
-      "materiality": 13,
-      "sentiment": 1,
-      "first_seen": "2026-10-15T00:06:15+00:00",
-      "last_seen": "2026-10-15T00:06:15+00:00",
-      "count": 2
     }
   ]
 }
