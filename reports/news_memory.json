@@ -1,7 +1,82 @@
 {
   "version": 2,
-  "updated_at": "2026-10-29T01:46:25+09:00",
+  "updated_at": "2026-10-29T03:35:49+09:00",
   "events": [
+    {
+      "signature": "d0c2abc0cad35250a4fe3f955208b77db2b14420",
+      "title": "애플 신형 맥북 프로 사전주문 개시 및 11월 6일 출하 https://m.stock.naver.com/investment/ne…",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "애플"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2791782",
+        "https://t.me/moneythemestock/65507"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-10-28T18:04:18+00:00",
+      "last_seen": "2026-10-28T18:04:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "한은",
+        "환율",
+        "정책",
+        "금리",
+        "연준",
+        "규제",
+        "관세",
+        "cpi",
+        "fomc",
+        "fed"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/f94178",
+        "https://t.me/dreago_news_ch/299938",
+        "https://dreago.kr/n/0962d2",
+        "https://t.me/dreago_news_ch/299937",
+        "https://dreago.kr/n/110953"
+      ],
+      "materiality": 23,
+      "sentiment": 1,
+      "first_seen": "2026-08-27T02:59:07+00:00",
+      "last_seen": "2026-10-28T18:03:49+00:00",
+      "count": 210
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": -2,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-10-28T17:40:22+00:00",
+      "count": 1929,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
     {
       "signature": "ef714a081776f6387cd625ca70edaa58561adb69",
       "title": "International Paper, 3분기 매출 전망 하회에 주가 급락 https://m.stock.naver.com/inve…",
@@ -43,25 +118,6 @@
       "first_seen": "2026-10-28T16:42:53+00:00",
       "last_seen": "2026-10-28T16:42:53+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": -2,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-10-28T16:31:24+00:00",
-      "count": 1927,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "d57b7a2c7dba6eed4d0bfc53b8c769cb7240a11f",
@@ -1572,37 +1628,6 @@
       "first_seen": "2026-10-28T02:55:02+00:00",
       "last_seen": "2026-10-28T02:55:02+00:00",
       "count": 1
-    },
-    {
-      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
-      "title": "🔔",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "한은",
-        "환율",
-        "정책",
-        "금리",
-        "연준",
-        "규제",
-        "관세",
-        "cpi",
-        "fomc"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/f94178",
-        "https://t.me/dreago_news_ch/299938",
-        "https://dreago.kr/n/0962d2",
-        "https://t.me/dreago_news_ch/299937",
-        "https://dreago.kr/n/110953"
-      ],
-      "materiality": 23,
-      "sentiment": -1,
-      "first_seen": "2026-08-27T02:59:07+00:00",
-      "last_seen": "2026-10-28T02:54:53+00:00",
-      "count": 207
     },
     {
       "signature": "8c46c3a1a379f6a7180d37d4a81031f9b8dcaeb5",
@@ -10385,26 +10410,6 @@
       "first_seen": "2026-10-26T19:03:13+00:00",
       "last_seen": "2026-10-26T19:03:13+00:00",
       "count": 2
-    },
-    {
-      "signature": "d6d58747321cb3d083f94eda27d86962c5e47ff2",
-      "title": "FTC와 20개 주, 과다 청구 혐의로 달러 제너럴 제소해 주가 약 3% 하락 https://m.stock.naver.com/i…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2788020",
-        "https://t.me/moneythemestock/65364"
-      ],
-      "materiality": 5,
-      "sentiment": -1,
-      "first_seen": "2026-10-26T18:23:05+00:00",
-      "last_seen": "2026-10-26T18:23:05+00:00",
-      "count": 1
     }
   ]
 }
