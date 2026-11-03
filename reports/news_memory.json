@@ -1,7 +1,48 @@
 {
   "version": 2,
-  "updated_at": "2026-11-03T21:59:07+09:00",
+  "updated_at": "2026-11-04T04:55:03+09:00",
   "events": [
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 2,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-11-03T19:49:53+00:00",
+      "count": 2042,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
+    {
+      "signature": "e7164909eccc2b5c7f4c876e4eb68193d4f33566",
+      "title": "[인사이트 나우] 디즈니의 대규모 감원, 애플 실적 발표의 디테일, 전력에 진심인 구글\n출처: 실시간 | 시각: 2026-11-03T19:31:32+00:00",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "애플"
+      ],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://naver.me/FTdvWH5l",
+        "https://t.me/realtime_stock_news/61964"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-11-03T19:31:32+00:00",
+      "last_seen": "2026-11-03T19:31:32+00:00",
+      "count": 1
+    },
     {
       "signature": "58dca298ea35b7adc8b9e47b6a4a82a807ce7f23",
       "title": "심텍, 3Q26 영업이익 1,018억원 서프라이즈… 하나증권 \"가격 협상력 상승 구간\", 목표가 21만원 2026.11.03",
@@ -1016,25 +1057,6 @@
       "first_seen": "2026-11-03T04:50:26+00:00",
       "last_seen": "2026-11-03T04:50:26+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": -2,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-11-03T04:48:11+00:00",
-      "count": 2041,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "de5d3541534c93807d7981fd6808569a16993e06",
@@ -10304,34 +10326,6 @@
       "first_seen": "2026-10-31T17:35:19+00:00",
       "last_seen": "2026-10-31T17:35:19+00:00",
       "count": 2
-    },
-    {
-      "signature": "fae60c390143ec04c5a438faf1fd3adfa41ffffc",
-      "title": "글로벌 뉴스 브리핑",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "ai 인프라",
-        "규제",
-        "메타",
-        "반도체",
-        "정책",
-        "한은"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/67951"
-      ],
-      "materiality": 22,
-      "sentiment": 1,
-      "first_seen": "2026-10-31T10:04:28+00:00",
-      "last_seen": "2026-10-31T10:04:28+00:00",
-      "count": 1
     }
   ]
 }
