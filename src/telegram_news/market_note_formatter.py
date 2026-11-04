@@ -323,7 +323,8 @@ def _headline_contrast(note_name: str, market_context: dict[str, Any] | None, sn
             if value is not None:
                 candidates.append((label, value))
     if len(candidates) < 2:
-        return str(snapshot.get("flow_proxy") or snapshot.get("regime_label") or "시장 차별화 확인 필요")
+        flow = _flow_summary(snapshot)
+        return flow if flow != "자금 흐름 프록시 확인불가" else str(snapshot.get("regime_label") or "시장 차별화 확인 필요")
     strongest = max(candidates, key=lambda item: item[1])
     weakest = min(candidates, key=lambda item: item[1])
     return f"{strongest[0]} {strongest[1]:+.2f}% vs {weakest[0]} {weakest[1]:+.2f}%"
