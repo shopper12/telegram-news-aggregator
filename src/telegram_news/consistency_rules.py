@@ -260,7 +260,8 @@ def _regime_axis(snapshot: dict[str, Any] | None) -> tuple[int, str, int]:
 
 
 def _asset_change(snapshot: dict[str, Any] | None, ticker: str) -> float | None:
-    value = (((snapshot or {}).get("assets") or {}).get(ticker) or {}).get("change_pct")
+    item = (((snapshot or {}).get("assets") or {}).get(ticker) or {})
+    value = item.get("validated_change_pct") if "validated_change_pct" in item else item.get("change_pct")
     return float(value) if isinstance(value, (int, float)) else None
 
 
