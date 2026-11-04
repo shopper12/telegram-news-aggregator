@@ -372,15 +372,15 @@ def _outlook(selected: list[Any], market_context: dict[str, Any] | None, snapsho
 
 
 def _flow_summary(snapshot: dict[str, Any]) -> str:
-    flow = str(snapshot.get("flow_proxy") or "").strip()
-    if flow:
-        return flow
     values = []
-    for ticker, label in (("QQQ", "성장주"), ("EEM", "신흥국"), ("HYG", "하이일드"), ("GLD", "금"), ("TLT", "장기채")):
+    for ticker, label in (("QQQ", "성장주"), ("IWM", "중소형"), ("EEM", "신흥국"), ("HYG", "하이일드"), ("GLD", "금"), ("TLT", "장기채")):
         change = _asset_change(snapshot, ticker)
         if change is not None:
             values.append(f"{label} {change:+.2f}%")
-    return " / ".join(values) if values else "자금 흐름 프록시 확인불가"
+    if values:
+        return " / ".join(values)
+    flow = str(snapshot.get("flow_proxy") or "").strip()
+    return flow or "자금 흐름 프록시 확인불가"
 
 
 def _macro_snapshot(snapshot: dict[str, Any]) -> str:
