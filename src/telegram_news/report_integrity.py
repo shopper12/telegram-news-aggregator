@@ -45,6 +45,14 @@ GLOBAL_INDEX_FIELDS = (
     "russell2000_change_pct",
     "sox_change_pct",
 )
+REGULAR_INDEX_FIELDS = (
+    "kospi_change_pct",
+    "kosdaq_change_pct",
+    "sp500_change_pct",
+    "nasdaq_change_pct",
+    "russell2000_change_pct",
+    "sox_change_pct",
+)
 REPORT_INDEX_WHITELIST = {
     "us_close": US_INDEX_FIELDS,
     "strategy_morning": US_INDEX_FIELDS,
@@ -57,8 +65,8 @@ REPORT_INDEX_WHITELIST = {
     "kr_aftermarket": KR_INDEX_FIELDS,
     "aftermarket": KR_INDEX_FIELDS,
     "overnight": GLOBAL_INDEX_FIELDS,
-    "regular": GLOBAL_INDEX_FIELDS,
-    "manual": GLOBAL_INDEX_FIELDS,
+    "regular": REGULAR_INDEX_FIELDS,
+    "manual": REGULAR_INDEX_FIELDS,
 }
 
 REPORT_SNAPSHOT_ASSETS = {
