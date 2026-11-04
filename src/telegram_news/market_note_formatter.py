@@ -27,6 +27,9 @@ NOTE_ASSETS = {
     "CL=F": "WTI",
 }
 GENERIC_SECTORS = {"거시/정책", "거시", "리스크", "정보", "가격반응", "테마"}
+PRIMARY_DRIVER_GRADES = {"A", "B"}
+REGULAR_VISIBLE_GRADES = {"A", "B"}
+PRIMARY_DRIVER_MIN_SCORE = int(os.getenv("MARKET_NOTE_PRIMARY_DRIVER_MIN_SCORE", "70"))
 _INSTALLED = False
 _DISPATCH_HOOKED = False
 
@@ -85,7 +88,10 @@ def _asset(snapshot: dict[str, Any] | None, ticker: str) -> dict[str, Any]:
 
 
 def _asset_change(snapshot: dict[str, Any] | None, ticker: str) -> float | None:
-    return _safe_float(_asset(snapshot, ticker).get("change_pct"))
+    item = _asset(snapshot, ticker)
+    if "validated_change_pct" in item:
+        return _safe_float(item.get("validated_change_pct"))
+    return _safe_float(item.get("change_pct"))
 
 
 def _asset_price(snapshot: dict[str, Any] | None, ticker: str) -> float | None:
@@ -232,6 +238,66 @@ def _cluster_payload(cluster: Any) -> dict[str, Any]:
     }
 
 
+
+def _sector_market_confirmed(payload: dict[str, Any], snapshot: dict[str, Any]) -> bool:
+    sectors = " ".join(str(value or "").lower() for value in payload.get("sectors") or [])
+    checks: list[str] = []
+    if any(word in sectors for word in ("반도체", "메모리", "ai인프라", "ai 인프라")):
+        checks.extend(["^SOX", "SOXX"])
+    if any(word in sectors for word in ("빅테크", "소프트웨어", "기술주", "ai")):
+        checks.extend(["^IXIC", "QQQ"])
+    if any(word in sectors for word in ("바이오", "헬스케어")):
+        checks.extend(["XBI", "XLV"])
+    if "에너지" in sectors:
+        checks.append("XLE")
+    if "금융" in sectors:
+        checks.append("XLF")
+    return any(
+        (value := _asset_change(snapshot, ticker)) is not None and abs(value) >= 0.75
+        for ticker in dict.fromkeys(checks)
+    )
+
+
+def _primary_driver_eligible(payload: dict[str, Any], snapshot: dict[str, Any]) -> bool:
+    if str(payload.get("grade") or "") not in PRIMARY_DRIVER_GRADES:
+        return False
+    if int(payload.get("score") or 0) < PRIMARY_DRIVER_MIN_SCORE:
+        return False
+    news_type = str(payload.get("news_type") or "")
+    if news_type in {"거시", "리스크"}:
+        return True
+    meaningful_sectors = [s for s in payload.get("sectors") or [] if s not in GENERIC_SECTORS]
+    if not meaningful_sectors:
+        return False
+    return _sector_market_confirmed(payload, snapshot)
+
+
+def _primary_driver_payloads(payloads: list[dict[str, Any]], snapshot: dict[str, Any]) -> list[dict[str, Any]]:
+    return [payload for payload in payloads if _primary_driver_eligible(payload, snapshot)]
+
+
+def _regular_visible_payloads(payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        payload for payload in payloads
+        if str(payload.get("grade") or "") in REGULAR_VISIBLE_GRADES and int(payload.get("score") or 0) >= 60
+    ]
+
+
+def _market_data_warning(snapshot: dict[str, Any]) -> str:
+    warnings = [str(value) for value in snapshot.get("validation_warnings") or [] if str(value).strip()]
+    return " / ".join(warnings[:2])
+
+
+def _market_state_title(
+    note_name: str,
+    market_context: dict[str, Any] | None,
+    snapshot: dict[str, Any],
+    primary_payloads: list[dict[str, Any]],
+) -> str:
+    if primary_payloads:
+        return primary_payloads[0]["title"]
+    return f"{_headline_contrast(note_name, market_context, snapshot)} · 검증 촉매 없음"
+
 def _symbol_text(symbols: list[Any], *, korean_only: bool = False) -> str:
     values: list[str] = []
     for symbol in symbols:
@@ -341,16 +407,17 @@ def _market_summary(
     market_context: dict[str, Any] | None,
     snapshot: dict[str, Any],
 ) -> list[str]:
+    primary = _primary_driver_payloads(payloads, snapshot)
     bullets = [
-        f"　- 4축 판정 {outlook.verdict}({outlook.score:+d}/10), 글로벌 레짐 {snapshot.get('regime_label', '확인불가')}",
-        f"　- {_headline_contrast(note_name, market_context, snapshot)}",
+        f"　- 시장 구조: {_headline_contrast(note_name, market_context, snapshot)} · 글로벌 레짐 {snapshot.get('regime_label', '확인불가')}",
+        f"　- 검증 촉매: {primary[0]['title']}" if primary else "　- 검증 촉매: 시장 전체를 설명할 A/B급 신규 뉴스 없음",
+        f"　- 매크로: {_macro_snapshot(snapshot)}",
+        f"　- 자금 흐름: {_flow_summary(snapshot)}",
     ]
-    if payloads:
-        bullets.append(f"　- 핵심 뉴스: {payloads[0]['title']}")
-    bullets.append(f"　- 매크로: {_macro_snapshot(snapshot)}")
-    bullets.append(f"　- 자금 흐름: {_flow_summary(snapshot)}")
+    warning = _market_data_warning(snapshot)
+    if warning:
+        bullets.append(f"　- 데이터 검증: 비정상 프록시 제외 · {warning}")
     return bullets[:5]
-
 
 def _change_factor_lines(index: int, payload: dict[str, Any]) -> list[str]:
     lines = [f"■ 변화 요인 {'①' if index == 1 else '②'} — {payload['title']}"]
@@ -434,18 +501,17 @@ def _korea_lines(payloads: list[dict[str, Any]], *, repeat_titles: bool = True) 
 
 
 def _judgment_lines(outlook: Any, *, detailed: bool = False) -> list[str]:
-    lines = [
-        "■ 시황 판정",
-        f"　- 최종: {outlook.verdict} | 점수 {outlook.score:+d}/10 | 신뢰도 {outlook.confidence}",
-    ]
+    lines = ["■ 시황 판정"]
     if detailed:
+        lines.append(f"　- 최종: {outlook.verdict} | 점수 {outlook.score:+d}/10 | 신뢰도 {outlook.confidence}")
         for part in str(outlook.evidence_line or "").split(" | "):
             if part.startswith("축"):
                 lines.append(f"　- {part}")
+    else:
+        lines.append(f"　- 판정: {outlook.verdict} | 신뢰도 {outlook.confidence}")
     lines.append(f"　- 상방 확인: {outlook.upside_condition}")
     lines.append(f"　- 하방/무효: {outlook.downside_condition}")
     return lines
-
 
 def _extract_block(report: str, start_prefix: str, stop_prefixes: tuple[str, ...]) -> list[str]:
     lines = report.splitlines()
@@ -501,11 +567,16 @@ def _payload_matches_keys(payload: dict[str, Any], keys: list[str]) -> bool:
     )
 
 
-def _one_line(payloads: list[dict[str, Any]], outlook: Any, snapshot: dict[str, Any]) -> str:
-    driver = payloads[0]["title"] if payloads else "뚜렷한 단일 뉴스 촉매 없음"
-    risk = "위험회피 지속" if str(snapshot.get("regime")) == "risk_off" else "자금 흐름 확인 필요"
-    return f"핵심 변수: {driver}. 4축 판정은 {outlook.verdict}({outlook.score:+d}/10) — {risk}."
-
+def _one_line(
+    note_name: str,
+    payloads: list[dict[str, Any]],
+    outlook: Any,
+    market_context: dict[str, Any] | None,
+    snapshot: dict[str, Any],
+) -> str:
+    primary = _primary_driver_payloads(payloads, snapshot)
+    driver = primary[0]["title"] if primary else "시장 전체를 설명할 검증된 신규 촉매 없음"
+    return f"{_headline_contrast(note_name, market_context, snapshot)}. 검증 촉매: {driver}. 판정은 {outlook.verdict}."
 
 def build_market_note(
     *,
@@ -528,9 +599,13 @@ def build_market_note(
         payloads = [payload for payload in payloads if _payload_matches_keys(payload, displayed_keys)]
         selected = [payload["cluster"] for payload in payloads]
     note_name = _note_name(kind, now)
+    strategy_kind = str(kind or "").lower() in {"strategy_morning", "strategy_evening"}
+    visible_payloads = payloads if strategy_kind else _regular_visible_payloads(payloads)
+    selected = [payload["cluster"] for payload in visible_payloads]
     outlook = _outlook(selected, market_context, snapshot, kind, now)
+    primary_payloads = _primary_driver_payloads(visible_payloads, snapshot)
 
-    title_driver = payloads[0]["title"] if payloads else f"{outlook.verdict} · 새 중요 뉴스 없음"
+    title_driver = _market_state_title(note_name, market_context, snapshot, primary_payloads)
     contrast = _headline_contrast(note_name, market_context, snapshot)
     lines = [
         "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓",
@@ -543,15 +618,15 @@ def build_market_note(
         *_index_lines(note_name, market_context, snapshot),
         "",
         "■ 장세 요약",
-        *_market_summary(note_name, payloads, outlook, market_context, snapshot),
+        *_market_summary(note_name, visible_payloads, outlook, market_context, snapshot),
     ]
 
     macro_first = [
-        payload for payload in payloads
+        payload for payload in primary_payloads
         if payload["news_type"] in {"거시", "리스크"} or any(sector in {"거시/정책", "거시"} for sector in payload["sectors"])
     ]
     factors = []
-    for payload in macro_first + payloads:
+    for payload in macro_first + primary_payloads:
         if id(payload["cluster"]) not in {id(item["cluster"]) for item in factors}:
             factors.append(payload)
         if len(factors) == 2:
@@ -561,8 +636,7 @@ def build_market_note(
         lines.extend(["", *_change_factor_lines(index, payload)])
         used.add(id(payload["cluster"]))
 
-    strategy_kind = str(kind or "").lower() in {"strategy_morning", "strategy_evening"}
-    for sector, sector_payloads in _ranked_sector_groups(payloads):
+    for sector, sector_payloads in _ranked_sector_groups(visible_payloads):
         visible_payloads = sector_payloads if strategy_kind else [
             item for item in sector_payloads if id(item["cluster"]) not in used
         ]
@@ -571,12 +645,12 @@ def build_market_note(
         lines.extend(["", *_sector_lines(sector, visible_payloads)])
         used.update(id(item["cluster"]) for item in visible_payloads)
 
-    feature_lines = _feature_lines(payloads, used)
+    feature_lines = _feature_lines(visible_payloads, used)
     if feature_lines:
         lines.extend(["", *feature_lines])
 
-    if payloads:
-        lines.extend(["", *_korea_lines(payloads, repeat_titles=strategy_kind)])
+    if visible_payloads:
+        lines.extend(["", *_korea_lines(visible_payloads, repeat_titles=strategy_kind)])
     elif not strategy_kind:
         lines.extend(["", "■ 새 중요 뉴스 없음", "　- 가격·금리·자금 흐름만 갱신. 반복/저중요 뉴스는 본문에서 제외"])
     lines.extend(["", *_judgment_lines(outlook, detailed=strategy_kind)])
@@ -589,8 +663,8 @@ def build_market_note(
         if strategy:
             lines.extend(["", *strategy])
 
-    lines.extend(["", "📝 한 줄 정리", f"　{_one_line(payloads, outlook, snapshot)}"])
-    verification = _aligned_verification_line(original_report, len(payloads))
+    lines.extend(["", "📝 한 줄 정리", f"　{_one_line(note_name, visible_payloads, outlook, market_context, snapshot)}"])
+    verification = _aligned_verification_line(original_report, len(visible_payloads))
     if verification:
         lines.extend(["", verification])
     session_date = str(_asset(snapshot, "^GSPC").get("session_date") or "").strip()
