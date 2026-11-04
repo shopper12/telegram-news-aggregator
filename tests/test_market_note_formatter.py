@@ -495,6 +495,7 @@ def test_regular_note_excludes_invalid_qqq_and_surfaces_data_warning(monkeypatch
         selected=[],
     )
 
-    assert "QQQ -5.30%" not in note
+    proxy_line = next(line for line in note.splitlines() if "ETF 가격 프록시" in line)
+    assert "QQQ -5.30%" not in proxy_line
     assert "비정상 프록시 제외" in note
     assert "QQQ -5.30% vs ^IXIC +0.83% 괴리 6.13%p" in note
