@@ -114,6 +114,9 @@ def source_grade(cluster: Any) -> str:
     return "D"
 
 
+SOURCE_GRADE_SCORE_CAP = {"A": 100, "B": 94, "C": 79, "D": 59}
+
+
 def _scaled(raw: int, low: int, high: int) -> int:
     ratio = max(0.0, min(1.0, float(raw) / 100.0))
     return int(round(low + (high - low) * ratio))
@@ -135,21 +138,21 @@ def consistent_materiality_score(cluster: Any) -> int:
     low_confidence = any(word in text for word in LOW_CONFIDENCE_WORDS)
 
     if low_confidence or simple_disclosure:
-        return min(39, _scaled(raw, 10, 39))
-    if strong_macro:
-        if grade == "A" and raw >= 90:
-            return 100
-        return min(99, _scaled(raw, 90, 99))
-    if major_event:
-        return min(99, _scaled(raw, 80, 99))
-    if sector_event:
-        return _scaled(raw, 60, 79)
-    if repeated or "ir" in text or "후속" in text:
-        return _scaled(raw, 40, 59)
-    if news_type in {"가격반응", "테마", "정보"}:
-        return min(59, _scaled(raw, 30, 59))
-    return _scaled(raw, 40, 59)
+        result = min(39, _scaled(raw, 10, 39))
+    elif strong_macro:
+        result = 100 if grade == "A" and raw >= 90 else min(99, _scaled(raw, 90, 99))
+    elif major_event:
+        result = min(99, _scaled(raw, 80, 99))
+    elif sector_event:
+        result = _scaled(raw, 60, 79)
+    elif repeated or "ir" in text or "후속" in text:
+        result = _scaled(raw, 40, 59)
+    elif news_type in {"가격반응", "테마", "정보"}:
+        result = min(59, _scaled(raw, 30, 59))
+    else:
+        result = _scaled(raw, 40, 59)
 
+    return min(int(result), SOURCE_GRADE_SCORE_CAP.get(grade, 59))
 
 def consistent_materiality_grade(cluster: Any) -> str:
     return source_grade(cluster)
@@ -256,7 +259,8 @@ def _regime_axis(snapshot: dict[str, Any] | None) -> tuple[int, str, int]:
 
 
 def _asset_change(snapshot: dict[str, Any] | None, ticker: str) -> float | None:
-    value = (((snapshot or {}).get("assets") or {}).get(ticker) or {}).get("change_pct")
+    item = (((snapshot or {}).get("assets") or {}).get(ticker) or {})
+    value = item.get("validated_change_pct") if "validated_change_pct" in item else item.get("change_pct")
     return float(value) if isinstance(value, (int, float)) else None
 
 
