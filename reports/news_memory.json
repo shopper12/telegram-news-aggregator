@@ -1,7 +1,198 @@
 {
   "version": 2,
-  "updated_at": "2026-11-05T05:10:11+09:00",
+  "updated_at": "2026-11-05T05:31:30+09:00",
   "events": [
+    {
+      "signature": "860450a3861d21211720187dbd531eebab3ea8fa",
+      "title": "트럼프 지지율은 오늘로 끝입니다.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26421"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:28:50+00:00",
+      "last_seen": "2026-11-04T20:28:50+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6e3c95aa91915bdbe5b968d66f9cd9efbef81f22",
+      "title": "트럼프 취임 652일차 1기 43.5% 2기 39.1%",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26420"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:28:39+00:00",
+      "last_seen": "2026-11-04T20:28:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "9c0bc760cb4cc048a376dfd8394be6917898c0f3",
+      "title": "나스닥바이오테크 신고가",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26419"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-04T20:25:16+00:00",
+      "last_seen": "2026-11-04T20:25:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "37294e7aa07b5686c762582f23412b15418000b9",
+      "title": "나스닥바이오테크 +2.03% 필라델피아반도체 -3.81%",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26418"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:25:05+00:00",
+      "last_seen": "2026-11-04T20:25:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f2ca6ffba43632464314e957ffb3215a9d3de4af",
+      "title": "SK하이닉스ADR -5.54% 마이크론 -6.63% CXMT +13.63%",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26417"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:22:01+00:00",
+      "last_seen": "2026-11-04T20:22:01+00:00",
+      "count": 1
+    },
+    {
+      "signature": "76f0ecd3e71e91ad10108adcdd14c9398821b339",
+      "title": "미 데이터센터 +2.09% 엔비디아 -2.11%",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "데이터센터",
+        "엔비디아"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26416"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:21:31+00:00",
+      "last_seen": "2026-11-04T20:21:31+00:00",
+      "count": 1
+    },
+    {
+      "signature": "cdf043bde607ee102a72d19b2d374c3d2ac37dac",
+      "title": "D램 ETF 주가 -5.0% 좌수 -0.4%(하루전)",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "FTEC",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26415"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:20:24+00:00",
+      "last_seen": "2026-11-04T20:20:24+00:00",
+      "count": 1
+    },
+    {
+      "signature": "5719f4df2aeff1c9db0e1d27c66b05636f8ac562",
+      "title": "인플레 상승 -> 금리 상승 -> 인플레와 금리를 이기는 에너지&반도체만 오르다가 중간선거 트럼프 망 인플레 하락하겠지 -> 금…",
+      "sectors": [
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "금리",
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26414"
+      ],
+      "materiality": 10,
+      "sentiment": 1,
+      "first_seen": "2026-11-04T20:18:17+00:00",
+      "last_seen": "2026-11-04T20:18:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ce39e8c6b97f59224ef1a6f95e67ad0f59ddb101",
+      "title": "미국 4.888% 한국 3.950% 차 0.938%p 일본 2.821%",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26413"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:16:57+00:00",
+      "last_seen": "2026-11-04T20:16:57+00:00",
+      "count": 1
+    },
+    {
+      "signature": "487c425e9e8ed74e34f99af0a66e070812d4d5cd",
+      "title": "WTI 88 브렌트 95 두바이 101(하루전)",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26410"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:12:04+00:00",
+      "last_seen": "2026-11-04T20:12:04+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3c0db924921758e6475f65bb9c2b7678bc44b761",
+      "title": "🔔 미국 빅테크 실적에 '일희일비'…변동성 커진 코스피 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/c1…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/c129d7",
+        "https://t.me/dreago_news_ch/321587"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-11-04T20:10:34+00:00",
+      "last_seen": "2026-11-04T20:10:34+00:00",
+      "count": 1
+    },
     {
       "signature": "a2c950ce7f081e89c7485df219d370817ccd969a",
       "title": "Lululemon, 수요 약화·공시 문제 관련 증권 집단소송 제기 https://finance.yahoo.com/markets/…",
@@ -18,7 +209,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-04T20:06:21+00:00",
       "last_seen": "2026-11-04T20:06:21+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "5fa2194588fed6ca963a70c495d6362b98c6a562",
@@ -38,7 +229,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-04T20:06:19+00:00",
       "last_seen": "2026-11-04T20:06:19+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "bce44a0ba35621674b31bce280ee7f2a9049cb2b",
@@ -56,7 +247,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-04T20:06:17+00:00",
       "last_seen": "2026-11-04T20:06:17+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "797c0520f5551918d3cd2c496ddad3a38ed5c19c",
@@ -78,7 +269,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-04T19:32:03+00:00",
       "last_seen": "2026-11-04T19:32:03+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c53ebc90525e9819809f0890a43a2cbba6bca728",
@@ -9901,236 +10092,6 @@
       "sentiment": 1,
       "first_seen": "2026-11-02T03:54:56+00:00",
       "last_seen": "2026-11-02T03:54:56+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c341dc016e7fe53eb505450d22aeda00b6712a57",
-      "title": "트럼프, 중간선거 D-2 알래스카 또 거론…\"한중일行 선박 위한 가스관 있다\" https://n.news.naver.com/mn…",
-      "sectors": [
-        "조선"
-      ],
-      "keywords": [
-        "선박"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/374/0000541128?sid=104",
-        "https://t.me/jeilstock/47057"
-      ],
-      "materiality": 8,
-      "sentiment": 0,
-      "first_seen": "2026-11-02T03:54:05+00:00",
-      "last_seen": "2026-11-02T03:54:05+00:00",
-      "count": 1
-    },
-    {
-      "signature": "435c43c043df6dfbb19975121fef1f82a4c58061",
-      "title": "[리포트 브리핑]현대로템, '도약 전야의 숨 고르기' 목표가 138,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "064350.KS"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261102/1003064",
-        "https://t.me/rassiro_channel/308465"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-11-02T03:48:08+00:00",
-      "last_seen": "2026-11-02T03:48:08+00:00",
-      "count": 1
-    },
-    {
-      "signature": "ab16b20addf7dea2a7a2321a45513decb443b221",
-      "title": "🔔 '저평가 딱지' 붙자 주가는 급등…현대제철 10%↑·롯데쇼핑 8%↑ 【 겁나빠른 #드리고봇 뉴스 】 https://dreag…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/e28055",
-        "https://t.me/dreago_news_ch/320350"
-      ],
-      "materiality": 2,
-      "sentiment": 2,
-      "first_seen": "2026-11-02T03:45:00+00:00",
-      "last_seen": "2026-11-02T03:45:00+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4546f5a57f427b2f5c0bee91e5432d85a012b46a",
-      "title": "2026년 11월 2일",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "EST",
-        "KST"
-      ],
-      "source_urls": [
-        "https://t.me/insidertracking/68042"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-11-02T03:41:34+00:00",
-      "last_seen": "2026-11-02T03:41:34+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6a8afcc323a7456455733afe63941d3daff9b1d4",
-      "title": "🔔 삼성전자·SK하이닉스 거래대금 27% 감소…영광 3위 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/e…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/ef670c",
-        "https://t.me/dreago_news_ch/320349"
-      ],
-      "materiality": 6,
-      "sentiment": -1,
-      "first_seen": "2026-11-02T03:41:14+00:00",
-      "last_seen": "2026-11-02T03:41:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "a4bc0424cec461a58922767ea004fce469ec66ac",
-      "title": "[단독] 호반그룹, 한진칼 최대주주로 올라서… 공정위 기업결합 심사 중 2026.11.02",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "GIB",
-        "JAL",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/016/0002717527?sid=101",
-        "https://t.me/aicorporateanalysisdeepdive/13034"
-      ],
-      "materiality": 21,
-      "sentiment": 0,
-      "first_seen": "2026-11-02T03:40:34+00:00",
-      "last_seen": "2026-11-02T03:40:34+00:00",
-      "count": 1
-    },
-    {
-      "signature": "426ce93b6a2046f2df682ed1fd7c0966dc6693e3",
-      "title": "🔔 한화오션, 잠수함 핵심장비인 어뢰 발사장치 국산화 성공 📈 #한화오션 📝 #잠수함 #방산 #방산수출 잠수함 핵심장비의 국산화…",
-      "sectors": [
-        "방산/항공"
-      ],
-      "keywords": [
-        "방산"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/4cb87c",
-        "https://t.me/dreago_news_ch/320348"
-      ],
-      "materiality": 10,
-      "sentiment": 1,
-      "first_seen": "2026-11-02T03:37:30+00:00",
-      "last_seen": "2026-11-02T03:37:30+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4d7e61c72f4145c3ed989712a7d6cd984729b752",
-      "title": "✅ 2026년 미국 중간선거: 민주당, 상원 주요 경합 지역에서 세를 넓히며 공화당이 장악한 5개 주에서 선두를 달리고 있다",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://aninews.in/news/world/us/us-midterm-elections-2026-democrats-gain-ground-in-key-senate-battlegrounds-lead-in-five-republican-held-states20261102084518",
-        "https://t.me/c/1208429502/127279"
-      ],
-      "materiality": 6,
-      "sentiment": 1,
-      "first_seen": "2026-11-02T03:34:34+00:00",
-      "last_seen": "2026-11-02T03:34:34+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f54ba2101584a58ddb4ee7dc118ab2804988e401",
-      "title": "🔔 디케이락, 북미서 100억원 수주…\"LNG 넘어 AI 데이터센터까지\" 📈 #디케이락 📝 #피팅밸브 #LNG #AI데이터센터 …",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/84337e",
-        "https://t.me/dreago_news_ch/320347"
-      ],
-      "materiality": 18,
-      "sentiment": 2,
-      "first_seen": "2026-11-02T03:34:18+00:00",
-      "last_seen": "2026-11-02T03:34:18+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1e0d5b989d7531e7f418834bd75ce112c7a1e0fe",
-      "title": "🔔 하이닉스 배당 6.2조 받는 SK스퀘어…4.3조 주주에 푼다 📈 #SK스퀘어 📝 #주주환원 #지주사 SK하이닉스 배당수입을 …",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/40045e",
-        "https://t.me/dreago_news_ch/320346"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-11-02T03:33:44+00:00",
-      "last_seen": "2026-11-02T03:33:44+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8db926ad3ada8bc90b2b3645cfb08c1654915eff",
-      "title": "미국의 AI 투자가 빠르게 가속화되고 있다. 2026년 3분기 미국의 정보처리 장비 및 소프트웨어에 대한 민간 고정투자는 연율 …",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/56767",
-        "https://x.com/KobeissiLetter/status/2116996835621621916?a=uOuRCBOFZArH67KgGOI&s=20"
-      ],
-      "materiality": 4,
-      "sentiment": 2,
-      "first_seen": "2026-11-02T03:33:41+00:00",
-      "last_seen": "2026-11-02T03:33:41+00:00",
       "count": 1
     }
   ]
