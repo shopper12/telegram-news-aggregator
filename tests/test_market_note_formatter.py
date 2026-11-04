@@ -380,3 +380,63 @@ def test_strategy_judgment_keeps_axis_math():
     assert any("축1 지수(30%)" in line for line in lines)
     assert any("축2 레짐(30%)" in line for line in lines)
 
+
+
+def test_primary_driver_rejects_low_source_grade_even_with_high_score():
+    snapshot = _snapshot()
+    snapshot["assets"]["^SOX"]["change_pct"] = 2.63
+    low_source = {
+        "title": "SharkNinja 실적 요약",
+        "score": 97,
+        "grade": "D",
+        "news_type": "실적",
+        "sectors": ["미국빅테크"],
+        "symbols": [],
+        "cluster": object(),
+    }
+    verified_sector = {
+        "title": "반도체 장비 수요 장기화",
+        "score": 79,
+        "grade": "B",
+        "news_type": "이벤트",
+        "sectors": ["반도체"],
+        "symbols": [],
+        "cluster": object(),
+    }
+
+    drivers = formatter._primary_driver_payloads([low_source, verified_sector], snapshot)
+
+    assert [item["title"] for item in drivers] == ["반도체 장비 수요 장기화"]
+
+
+def test_flow_summary_excludes_invalid_proxy_instead_of_calling_it_growth_flow():
+    snapshot = _snapshot()
+    snapshot["assets"]["QQQ"].update({
+        "change_pct": -5.30,
+        "validated_change_pct": None,
+        "validation_status": "invalid",
+        "validation_reason": "benchmark_divergence:^IXIC:6.13pp",
+    })
+    snapshot["flow_proxy"] = "성장주 -5.30% / 신흥국 -2.71%"
+
+    flow = formatter._flow_summary(snapshot)
+
+    assert "성장주 -5.30%" not in flow
+    assert "신흥국 +0.30%" in flow
+
+
+def test_regular_judgment_hides_internal_four_axis_score():
+    outlook = SimpleNamespace(
+        verdict="중립/혼조",
+        score=0,
+        confidence="보통",
+        evidence_line="축1 지수(30%) +0.00 | 축2 레짐(30%) -3",
+        upside_condition="확인",
+        downside_condition="무효",
+    )
+
+    text = "\n".join(formatter._judgment_lines(outlook, detailed=False))
+
+    assert "점수" not in text
+    assert "축1" not in text
+    assert "판정: 중립/혼조" in text
