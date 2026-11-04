@@ -95,6 +95,22 @@ def test_materiality_score_and_source_grade_are_separate(monkeypatch):
     assert rules.consistent_materiality_grade(cluster) == "A"
 
 
+
+def test_single_source_d_earnings_is_capped_below_alert_gate(monkeypatch):
+    cluster = FakeCluster(
+        "SharkNinja 3분기 실적",
+        "매출 19.76억달러, 전년 대비 21.2% 증가",
+        "실적",
+        urls=[],
+        channels=1,
+        item_count=1,
+    )
+    monkeypatch.setattr(rules, "_ORIGINAL_MATERIALITY_SCORE", lambda _cluster: 100)
+    assert rules.source_grade(cluster) == "D"
+    assert rules.consistent_materiality_score(cluster) <= 59
+
+
+
 def test_report_caps_perfect_a_and_marks_unmapped_stocks():
     report = "\n".join([
         "1) [100/A] 첫째",
