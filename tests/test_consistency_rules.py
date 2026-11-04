@@ -161,3 +161,15 @@ def test_empty_learning_state_is_hidden_until_strategy_exists():
         0,
     )
     assert "🧠 지속학습 상태" in active
+
+
+def test_four_axis_flow_excludes_invalid_qqq_proxy():
+    snapshot = _snapshot("mixed", qqq=-5.30, eem=0.2, hyg=0.1, gld=0.0, tlt=0.1)
+    snapshot["assets"]["QQQ"]["validated_change_pct"] = None
+    snapshot["assets"]["QQQ"]["validation_status"] = "invalid"
+
+    score, detail, valid = rules._flow_axis(snapshot)
+
+    assert "성장주 -5.30%" not in detail
+    assert valid >= 2
+    assert score >= -1
