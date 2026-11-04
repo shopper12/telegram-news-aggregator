@@ -471,7 +471,7 @@ def _feature_lines(payloads: list[dict[str, Any]], used: set[int]) -> list[str]:
     if not featured:
         return []
     lines = ["■ 기타 특징주"]
-    for payload in featured[:8]:
+    for payload in featured[:4]:
         lines.append(
             f"　- {_symbol_text(payload['symbols'])}: {payload['title']} [중요도 {payload['score']} · 중요도등급 {payload['grade']}]"
         )
@@ -494,10 +494,12 @@ def _korea_lines(payloads: list[dict[str, Any]], *, repeat_titles: bool = True) 
         lines.extend(list(dict.fromkeys(direct))[:6])
     else:
         lines.append("　- 뉴스 본문에 직접 언급된 한국 상장 종목 없음")
-    if derived_sectors:
+    if derived_sectors and repeat_titles:
         sectors = " > ".join(sector for sector, _ in derived_sectors.most_common(4))
         lines.append(f"　- 파생 관찰 섹터(추정): {sectors}")
         lines.append("　　개별 국내 수혜주는 원문 직접 언급이 없으므로 자동 매핑하지 않음")
+    elif not direct:
+        lines.append("　- 검증된 한국장 직접 연결 없음 · 억지 수혜주/섹터 매핑 생략")
     return lines
 
 
