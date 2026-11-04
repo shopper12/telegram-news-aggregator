@@ -75,6 +75,17 @@ def _context(*, displayed=()):
     )
 
 
+
+def test_regular_snapshot_keeps_korean_close_and_us_reference_indices():
+    snapshot = _market_snapshot("regular")
+    assert snapshot.allowed_index_fields == integrity.REGULAR_INDEX_FIELDS
+    assert snapshot.index_value("kospi_change_pct") == 0.91
+    assert snapshot.index_value("kosdaq_change_pct") == 8.24
+    assert snapshot.index_value("sp500_change_pct") == -0.17
+    assert snapshot.index_value("sox_change_pct") == -0.33
+
+
+
 def test_us_closing_header_and_axis_use_exact_same_sp500_snapshot(monkeypatch):
     snapshot = _market_snapshot("strategy_morning")
     context = integrity.ReportRunContext(
