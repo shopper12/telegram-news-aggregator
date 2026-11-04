@@ -236,3 +236,49 @@ def test_notifier_splits_long_morning_note_at_clean_section_boundary():
     assert all(len(chunk) <= 1800 for chunk in chunks)
     assert "".join(chunks) == text
     assert any(chunk.startswith("──────────\n<주요 테마>") for chunk in chunks[1:])
+
+
+def test_global_snapshot_rejects_qqq_when_it_diverges_from_nasdaq(monkeypatch):
+    session = "2026-11-03"
+    changes = {
+        "QQQ": -5.30,
+        "^IXIC": 0.83,
+        "SPY": 0.36,
+        "^GSPC": 0.36,
+        "IWM": 0.23,
+        "^RUT": 0.23,
+        "SOXX": 2.50,
+        "^SOX": 2.63,
+        "EEM": -0.30,
+        "EWY": -0.20,
+        "HYG": 0.10,
+        "BTC-USD": 0.20,
+        "GLD": -0.10,
+        "TLT": 0.20,
+        "UUP": 0.10,
+        "USO": 0.10,
+        "^VIX": -1.0,
+        "^TNX": 0.2,
+    }
+
+    def fake_snapshot(ticker):
+        return {
+            "ticker": ticker,
+            "price": 100.0,
+            "change_pct": changes.get(ticker, 0.0),
+            "return_5d": 0.0,
+            "return_20d": 0.0,
+            "volatility_20d": 1.0,
+            "session_date": session,
+            "source": "test",
+            "timestamp": "2026-11-04T00:00:00+09:00",
+            "error": None,
+        }
+
+    monkeypatch.setattr(global_market_tracker, "fetch_asset_snapshot", fake_snapshot)
+    snapshot = global_market_tracker.collect_global_snapshot()
+
+    assert snapshot["assets"]["QQQ"]["validation_status"] == "invalid"
+    assert snapshot["assets"]["QQQ"]["validated_change_pct"] is None
+    assert "성장주 -5.30%" not in snapshot["flow_proxy"]
+    assert any("QQQ" in warning and "괴리" in warning for warning in snapshot["validation_warnings"])
