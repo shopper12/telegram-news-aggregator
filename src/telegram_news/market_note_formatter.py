@@ -85,7 +85,10 @@ def _asset(snapshot: dict[str, Any] | None, ticker: str) -> dict[str, Any]:
 
 
 def _asset_change(snapshot: dict[str, Any] | None, ticker: str) -> float | None:
-    return _safe_float(_asset(snapshot, ticker).get("change_pct"))
+    item = _asset(snapshot, ticker)
+    if "validated_change_pct" in item:
+        return _safe_float(item.get("validated_change_pct"))
+    return _safe_float(item.get("change_pct"))
 
 
 def _asset_price(snapshot: dict[str, Any] | None, ticker: str) -> float | None:
@@ -244,15 +247,42 @@ def _cluster_repeat_support(cluster: Any) -> bool:
         return False
 
 
-def _routine_payload_allowed(payload: dict[str, Any]) -> bool:
-    """User-facing routine notes require evidence quality, not just a high score."""
+def _sector_price_confirmed(payload: dict[str, Any], snapshot: dict[str, Any]) -> bool:
+    sectors = " ".join(str(value or "").lower() for value in payload.get("sectors") or [])
+    checks: list[str] = []
+    if any(word in sectors for word in ("반도체", "메모리", "ai인프라", "ai 인프라")):
+        checks.extend(["^SOX", "SOXX", "^IXIC", "QQQ"])
+    elif any(word in sectors for word in ("빅테크", "소프트웨어", "기술주", "ai")):
+        checks.extend(["^IXIC", "QQQ"])
+
+    return any(
+        (value := _asset_change(snapshot, ticker)) is not None and abs(value) >= 0.75
+        for ticker in dict.fromkeys(checks)
+    )
+
+
+def _routine_payload_allowed(
+    payload: dict[str, Any],
+    *,
+    note_name: str,
+    snapshot: dict[str, Any],
+) -> bool:
+    """Routine notes show only evidence that is both credible and decision-relevant."""
     grade = str(payload.get("grade") or "D").upper()
     score = int(payload.get("score") or 0)
+    news_type = str(payload.get("news_type") or "")
     if grade == "D":
         return False
-    if grade == "C":
-        return score >= 75 and _cluster_repeat_support(payload.get("cluster"))
-    return score >= 68
+    if grade == "C" and not (score >= 75 and _cluster_repeat_support(payload.get("cluster"))):
+        return False
+    if grade in {"A", "B"} and score < 68:
+        return False
+
+    if news_type in {"거시", "리스크"}:
+        return True
+    if _symbol_text(payload.get("symbols") or [], korean_only=True):
+        return True
+    return _sector_price_confirmed(payload, snapshot)
 
 
 def _routine_payload_rank(payload: dict[str, Any], note_name: str) -> tuple[int, int, int]:
@@ -265,6 +295,11 @@ def _routine_payload_rank(payload: dict[str, Any], note_name: str) -> tuple[int,
         korea_direct = 28 if _symbol_text(payload.get("symbols") or [], korean_only=True) else 0
     symbol_penalty = -12 if not payload.get("symbols") and news_type not in {"거시", "리스크"} else 0
     return (int(payload.get("score") or 0) + source_bonus + market_wide + korea_direct + symbol_penalty, source_bonus, int(payload.get("score") or 0))
+
+
+def _market_data_warning(snapshot: dict[str, Any]) -> str:
+    warnings = [str(value).strip() for value in snapshot.get("validation_warnings") or [] if str(value).strip()]
+    return " / ".join(warnings[:2])
 
 
 def _source_confidence_text(payload: dict[str, Any]) -> str:
@@ -641,6 +676,11 @@ def _build_routine_note(
         f"　- {_routine_market_read(snapshot)}",
         f"　- 금리·변동성: {_macro_snapshot(snapshot)}",
         f"　- {_flow_summary(snapshot)}",
+    ]
+    warning = _market_data_warning(snapshot)
+    if warning:
+        lines.append(f"　- 데이터 검증: 비정상 프록시 제외 · {warning}")
+    lines += [
         "",
         "핵심 변화",
     ]
@@ -699,7 +739,11 @@ def build_market_note(
     strategy_kind = str(kind or "").lower() in {"strategy_morning", "strategy_evening"}
 
     if not strategy_kind:
-        payloads = [payload for payload in payloads if _routine_payload_allowed(payload)]
+        payloads = [
+            payload
+            for payload in payloads
+            if _routine_payload_allowed(payload, note_name=note_name, snapshot=snapshot)
+        ]
         payloads = sorted(payloads, key=lambda item: _routine_payload_rank(item, note_name), reverse=True)[:3]
         return _build_routine_note(
             original_report=original_report,
