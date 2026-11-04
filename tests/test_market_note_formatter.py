@@ -403,3 +403,98 @@ def test_strategy_judgment_keeps_axis_math():
     assert any("축1 지수(30%)" in line for line in lines)
     assert any("축2 레짐(30%)" in line for line in lines)
 
+
+
+def test_regular_note_drops_unconfirmed_us_company_news_even_when_source_is_b(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
+    monkeypatch.setattr(
+        formatter,
+        "_score_grade",
+        lambda cluster: (cluster.materiality_score_override, cluster.materiality_grade_override),
+    )
+    cluster = FakeCluster(
+        "CVS Health 사업분할 추진",
+        "CVS Health가 2개 독립 상장사 분리를 검토한다.",
+        "이벤트",
+        ["헬스케어"],
+        [_symbol("CVS Health", "CVS")],
+        79,
+        "B",
+        "https://example.com/cvs",
+    )
+    note = formatter.build_market_note(
+        original_report="1) [79/B] CVS Health 사업분할 추진\n검증: 테스트",
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=datetime(2026, 11, 4, 20, 48, tzinfo=KST),
+        market_context={"kospi_change_pct": 0.2, "kosdaq_change_pct": 0.1},
+        snapshot=_with_session_dates(_snapshot(), "2026-11-03"),
+        selected=[cluster],
+    )
+
+    assert "CVS Health" not in note
+    assert "새로 확인된 중요 변화 없음" in note
+
+
+def test_regular_note_keeps_b_semiconductor_news_when_sector_price_confirms(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
+    monkeypatch.setattr(
+        formatter,
+        "_score_grade",
+        lambda cluster: (cluster.materiality_score_override, cluster.materiality_grade_override),
+    )
+    snapshot = _with_session_dates(_snapshot(), "2026-11-03")
+    snapshot["assets"]["^SOX"]["change_pct"] = 2.63
+    cluster = FakeCluster(
+        "반도체 장비, 3년 뒤 계약까지 줄섰다",
+        "반도체 장비 수요와 수주잔고가 장기간 이어지고 있다는 내용이 확인됐다.",
+        "이벤트",
+        ["반도체"],
+        [],
+        79,
+        "B",
+        "https://example.com/semicap",
+    )
+    note = formatter.build_market_note(
+        original_report="1) [79/B] 반도체 장비, 3년 뒤 계약까지 줄섰다\n검증: 테스트",
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=datetime(2026, 11, 4, 20, 48, tzinfo=KST),
+        market_context={"kospi_change_pct": 0.2, "kosdaq_change_pct": 0.1},
+        snapshot=snapshot,
+        selected=[cluster],
+    )
+
+    assert "반도체 장비, 3년 뒤 계약까지 줄섰다" in note
+    assert "섹터 영향 확인 필요: 반도체" in note
+
+
+def test_regular_note_excludes_invalid_qqq_and_surfaces_data_warning(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
+    snapshot = _with_session_dates(_snapshot(), "2026-11-03")
+    snapshot["assets"]["QQQ"].update({
+        "change_pct": -5.30,
+        "validated_change_pct": None,
+        "validation_status": "invalid",
+        "validation_reason": "benchmark_divergence:^IXIC:6.13pp",
+    })
+    snapshot["validation_warnings"] = ["QQQ -5.30% vs ^IXIC +0.83% 괴리 6.13%p"]
+    note = formatter.build_market_note(
+        original_report="검증: 테스트",
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=datetime(2026, 11, 4, 20, 48, tzinfo=KST),
+        market_context={"kospi_change_pct": 0.2, "kosdaq_change_pct": 0.1},
+        snapshot=snapshot,
+        selected=[],
+    )
+
+    assert "QQQ -5.30%" not in note
+    assert "비정상 프록시 제외" in note
+    assert "QQQ -5.30% vs ^IXIC +0.83% 괴리 6.13%p" in note
