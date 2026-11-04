@@ -145,3 +145,18 @@ def test_empty_learning_state_is_hidden_until_strategy_exists():
         0,
     )
     assert "🧠 지속학습 상태" in active
+
+
+def test_single_source_grade_d_cannot_be_ranked_as_top_market_news(monkeypatch):
+    cluster = FakeCluster(
+        "SharkNinja 3분기 실적",
+        "매출 19.76억 달러, 전년 대비 21.2% 증가",
+        "실적",
+        urls=[],
+        channels=1,
+        item_count=1,
+    )
+    monkeypatch.setattr(rules, "_ORIGINAL_MATERIALITY_SCORE", lambda _cluster: 100)
+
+    assert rules.consistent_materiality_grade(cluster) == "D"
+    assert rules.consistent_materiality_score(cluster) <= 59
