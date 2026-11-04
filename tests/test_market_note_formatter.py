@@ -164,7 +164,7 @@ def test_market_note_does_not_invent_unobserved_options_story(monkeypatch):
     assert "감마 스퀴즈" not in note
     assert "0DTE" not in note
     assert "CTA" not in note
-    assert "미확인 옵션/수급 서사 생성 금지" in note
+    assert "ETF 수익률은 자금유입/유출이 아니라 가격 프록시" in note
 
 
 def test_messenger_bridge_prefers_cached_formatted_note(monkeypatch):
@@ -215,27 +215,25 @@ def test_messenger_bridge_expands_reply_route_limit(monkeypatch):
     assert response == long_note
 
 
-def test_regular_evening_note_uses_one_market_snapshot_and_removes_routine_noise(monkeypatch):
+def _with_session_dates(snapshot, date="2026-10-07"):
+    for item in snapshot["assets"].values():
+        item["session_date"] = date
+    return snapshot
+
+
+def test_regular_evening_note_is_decision_useful_and_does_not_claim_premarket_or_fund_flows(monkeypatch):
     monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
     monkeypatch.setattr(
         formatter,
-        "_outlook",
-        lambda *args, **kwargs: SimpleNamespace(
-            verdict="중립/혼조",
-            score=1,
-            confidence="높음",
-            evidence_line="축1 지수(30%) +0.00 | 축2 레짐(30%) +0 | 축3 흐름(20%) -1 | 축4 뉴스(20%) +2",
-            upside_condition="미국 지수·위험선호 동반 개선",
-            downside_condition="미국 지수 약세 지속",
-        ),
+        "_score_grade",
+        lambda cluster: (cluster.materiality_score_override, cluster.materiality_grade_override),
     )
     now = datetime(2026, 10, 8, 20, 33, tzinfo=KST)
-    snapshot = _snapshot()
+    snapshot = _with_session_dates(_snapshot())
     snapshot["assets"]["^GSPC"]["change_pct"] = -0.22
     snapshot["assets"]["^IXIC"]["change_pct"] = -0.22
     snapshot["assets"]["^RUT"]["change_pct"] = -1.31
     snapshot["assets"]["^SOX"]["change_pct"] = -1.15
-    snapshot["assets"]["^GSPC"]["session_date"] = "2026-10-07"
 
     cluster = FakeCluster(
         "🔔 삼성전자 실적 호조에도 ETF 리밸런싱 여파 📈 #삼성전자 #반도체",
@@ -252,9 +250,7 @@ def test_regular_evening_note_uses_one_market_snapshot_and_removes_routine_noise
             "1) [99/A] 삼성전자 실적 호조에도 ETF 리밸런싱 여파",
             "🧠 지속학습 상태",
             "  • 누적 성과: 303건",
-            "🎯 아침 글로벌 매매전략",
-            "1) 미국 반도체(SOXX) LONG",
-            "검증: 로컬인사이트엔진 · 원문 16건",
+            "검증: 로컬인사이트엔진 · 엄격 · 원문 16건 → 신규 1개 선별 · 중복억제 0건",
         ]
     )
 
@@ -276,75 +272,102 @@ def test_regular_evening_note_uses_one_market_snapshot_and_removes_routine_noise
         selected=[cluster],
     )
 
-    assert "10/08 한국 증시 마감 · 미 증시 프리마켓" in note
-    assert "글로벌 마감 시황 노트" not in note
-    assert "KOSDAQ +4.25% vs S&P500" not in note
-    assert "S&P500 +1.96%" not in note
+    assert "10/08 한국 증시 마감 · 미국 최근 확정세션" in note
+    assert "프리마켓" not in note
+    assert "KOSPI ▲ +1.10%" in note
+    assert "KOSDAQ ▲ +4.25%" in note
     assert "S&P500 ▼ -0.22%" in note
+    assert "핵심 변화" in note
+    assert "다음 확인" in note
+    assert "삼성전자 실적 호조에도 ETF 리밸런싱 여파" in note
+    assert "한국 상장사 직접 재료: 삼성전자(005930.KS)" in note
+    assert "복수 원문 확인" in note
+    assert "ETF 가격 프록시 2026-10-07:" in note
+    assert "성장주" not in note
+    assert "자금 흐름" not in note
+    assert "4축 판정" not in note
+    assert "■ 시황 판정" not in note
+    assert "중요도등급" not in note
     assert "🧠 지속학습 상태" not in note
     assert "🎯 아침 글로벌 매매전략" not in note
-    assert "출처 A" not in note
-    assert "중요도등급 A" in note
-    assert "■ AI인프라" not in note
-    assert "■ 반도체" not in note
-    assert "하락가 핵심 변수" not in note
     assert "#삼성전자" not in note
-    assert "뉴스 범위: 최근 1시간" in note
-    assert "미 증시 기준세션 2026-10-07" in note
+    assert "미국 확정세션 2026-10-07" in note
 
 
-def test_regular_note_does_not_repeat_korean_headline_in_korea_section(monkeypatch):
+def test_regular_note_drops_single_source_d_even_when_raw_score_is_97(monkeypatch):
     monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
     monkeypatch.setattr(
         formatter,
-        "_outlook",
-        lambda *args, **kwargs: SimpleNamespace(
-            verdict="중립",
-            score=0,
-            confidence="중간",
-            evidence_line="축1 지수(30%) +0.00",
-            upside_condition="확인 필요",
-            downside_condition="확인 필요",
-        ),
+        "_score_grade",
+        lambda cluster: (cluster.materiality_score_override, cluster.materiality_grade_override),
     )
     cluster = FakeCluster(
-        "삼성전자 실적 발표",
-        "삼성전자 실적 발표가 확인됐다.",
+        "SharkNinja 2026년 3분기 실적 요약",
+        "매출과 EBITDA가 증가했다.",
         "실적",
-        ["반도체"],
-        [_symbol("삼성전자", "005930.KS")],
-        90,
-        "A",
+        ["소비재"],
+        [],
+        97,
+        "D",
+        "",
     )
     note = formatter.build_market_note(
-        original_report="검증: 테스트",
+        original_report="1) [97/D] SharkNinja 2026년 3분기 실적 요약\n검증: 로컬인사이트엔진 · 엄격 · 원문 38건 → 신규 1개 선별 · 중복억제 0건",
         summaries=[],
         hours=1,
         timezone_name="Asia/Seoul",
         kind="regular",
-        now=datetime(2026, 10, 8, 20, 33, tzinfo=KST),
-        market_context={"kospi_change_pct": 0.2, "kosdaq_change_pct": 0.1},
-        snapshot=_snapshot(),
+        now=datetime(2026, 11, 4, 20, 48, tzinfo=KST),
+        market_context={"kospi_change_pct": -0.2, "kosdaq_change_pct": 0.1, "usd_krw": 1338.6},
+        snapshot=_with_session_dates(_snapshot(), "2026-11-03"),
         selected=[cluster],
     )
-    korea_block = note.split("■ 한국 증시 관련", 1)[1].split("■ 시황 판정", 1)[0]
-    assert "삼성전자(005930.KS) · 상단 핵심요인/섹터에 직접 언급" in korea_block
-    assert "삼성전자 실적 발표" not in korea_block
 
-def test_regular_empty_note_aligns_verification_and_hides_internal_axis_math(monkeypatch):
+    assert "SharkNinja" not in note
+    assert "새로 확인된 중요 변화 없음" in note
+    assert "단일출처 D급" in note
+    assert "신규 0개 선별" in note
+
+
+def test_regular_note_keeps_verified_korean_direct_event_without_sector_dump(monkeypatch):
     monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
     monkeypatch.setattr(
         formatter,
-        "_outlook",
-        lambda *args, **kwargs: SimpleNamespace(
-            verdict="중립/혼조",
-            score=1,
-            confidence="보통",
-            evidence_line="축1 지수(30%) +0.75 | 축2 레짐(30%) +0 | 축3 흐름(20%) +0 | 축4 뉴스(20%) +0",
-            upside_condition="주요 지수 강세 확산",
-            downside_condition="지수 저점 이탈",
-        ),
+        "_score_grade",
+        lambda cluster: (cluster.materiality_score_override, cluster.materiality_grade_override),
     )
+    cluster = FakeCluster(
+        "삼성전자 HBM 공급계약 확정",
+        "삼성전자가 HBM 공급계약 체결을 공시했다.",
+        "공시/확정",
+        ["반도체", "AI인프라"],
+        [_symbol("삼성전자", "005930.KS")],
+        91,
+        "B",
+        "https://example.com/disclosure",
+    )
+    note = formatter.build_market_note(
+        original_report="1) [91/B] 삼성전자 HBM 공급계약 확정\n검증: 테스트",
+        summaries=[],
+        hours=1,
+        timezone_name="Asia/Seoul",
+        kind="regular",
+        now=datetime(2026, 11, 4, 20, 48, tzinfo=KST),
+        market_context={"kospi_change_pct": 0.2, "kosdaq_change_pct": 0.1},
+        snapshot=_with_session_dates(_snapshot(), "2026-11-03"),
+        selected=[cluster],
+    )
+
+    assert "삼성전자 HBM 공급계약 확정" in note
+    assert "한국 상장사 직접 재료" in note
+    assert "원문 확인" in note
+    assert "■ AI인프라" not in note
+    assert "■ 반도체" not in note
+    assert "파생 관찰 섹터" not in note
+
+
+def test_regular_empty_note_aligns_verification_and_hides_internal_axis_math(monkeypatch):
+    monkeypatch.setattr(formatter, "_ensure_note_assets", lambda snapshot: snapshot)
 
     note = formatter.build_market_note(
         original_report="검증: 로컬인사이트엔진 · 엄격 · 원문 1건 → 신규 1개 선별 · 중복억제 0건",
@@ -354,13 +377,13 @@ def test_regular_empty_note_aligns_verification_and_hides_internal_axis_math(mon
         kind="regular",
         now=datetime(2026, 10, 10, 8, 30, tzinfo=KST),
         market_context={"usd_krw": 1340.8},
-        snapshot=_snapshot(),
+        snapshot=_with_session_dates(_snapshot()),
         selected=[],
     )
 
-    assert "새 중요 뉴스 없음" in note
-    assert "■ 한국 증시 관련" not in note
+    assert "새로 확인된 중요 변화 없음" in note
     assert "축1 지수(30%)" not in note
+    assert "4축 판정" not in note
     assert "신규 0개 선별" in note
     assert "신규 1개 선별" not in note
 
