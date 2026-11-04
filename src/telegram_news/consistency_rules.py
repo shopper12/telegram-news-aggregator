@@ -124,6 +124,10 @@ def consistent_materiality_score(cluster: Any) -> int:
     best = cluster.best()
     text = f"{best.item.title} {best.item.body}".lower()
     grade = source_grade(cluster)
+    # A single uncorroborated source must never become a top-priority market driver
+    # merely because it contains earnings numbers or other high-scoring keywords.
+    if grade == "D":
+        return min(59, _scaled(raw, 20, 59))
     news_type = str(getattr(best, "news_type", "") or "")
     has_number = bool(strict_quality.NUMBER_EVIDENCE_RE.search(text))
     has_confirmation = strict_quality._has_any(text, strict_quality.CONFIRMATION_WORDS)
