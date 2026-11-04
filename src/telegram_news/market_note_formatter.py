@@ -133,7 +133,7 @@ def _note_name(kind: str, now: datetime) -> str:
     if normalized == "strategy_evening":
         return "미 증시 오프닝 전략"
     if normalized in {"us_premarket_before", "us_premarket_after"}:
-        return "미 증시 프리마켓 노트"
+        return "미국 장전 점검"
     if normalized in {"kr_premarket", "premarket"}:
         return "한국 증시 장전 노트"
     if normalized == "intraday":
@@ -150,7 +150,7 @@ def _note_name(kind: str, now: datetime) -> str:
     if minute < 15 * 60 + 30:
         return "한국 증시 장중 노트"
     if ny_phase == "premarket":
-        return "한국 증시 마감 · 미 증시 프리마켓"
+        return "한국 증시 마감 · 미국 최근 확정세션"
     if ny_phase == "regular":
         return "미 증시 장중 노트"
     if ny_phase == "afterhours":
@@ -232,6 +232,113 @@ def _cluster_payload(cluster: Any) -> dict[str, Any]:
     }
 
 
+def _cluster_repeat_support(cluster: Any) -> bool:
+    try:
+        if int(cluster.channel_count()) >= 2:
+            return True
+    except Exception:
+        pass
+    try:
+        return len(getattr(cluster, "items", []) or []) >= 2
+    except Exception:
+        return False
+
+
+def _routine_payload_allowed(payload: dict[str, Any]) -> bool:
+    """User-facing routine notes require evidence quality, not just a high score."""
+    grade = str(payload.get("grade") or "D").upper()
+    score = int(payload.get("score") or 0)
+    if grade == "D":
+        return False
+    if grade == "C":
+        return score >= 75 and _cluster_repeat_support(payload.get("cluster"))
+    return score >= 68
+
+
+def _routine_payload_rank(payload: dict[str, Any], note_name: str) -> tuple[int, int, int]:
+    grade = str(payload.get("grade") or "D").upper()
+    source_bonus = {"A": 30, "B": 18, "C": 6}.get(grade, -100)
+    news_type = str(payload.get("news_type") or "")
+    market_wide = 35 if news_type in {"거시", "리스크"} else 0
+    korea_direct = 0
+    if note_name.startswith("한국 증시"):
+        korea_direct = 28 if _symbol_text(payload.get("symbols") or [], korean_only=True) else 0
+    symbol_penalty = -12 if not payload.get("symbols") and news_type not in {"거시", "리스크"} else 0
+    return (int(payload.get("score") or 0) + source_bonus + market_wide + korea_direct + symbol_penalty, source_bonus, int(payload.get("score") or 0))
+
+
+def _source_confidence_text(payload: dict[str, Any]) -> str:
+    grade = str(payload.get("grade") or "D").upper()
+    return {"A": "복수 원문 확인", "B": "원문 확인", "C": "복수 채널 반복"}.get(grade, "검증 부족")
+
+
+def _why_it_matters(payload: dict[str, Any]) -> str:
+    news_type = str(payload.get("news_type") or "")
+    kr = _symbol_text(payload.get("symbols") or [], korean_only=True)
+    symbols = _symbol_text(payload.get("symbols") or [])
+    sectors = [str(value) for value in (payload.get("sectors") or []) if str(value).strip() and str(value) not in GENERIC_SECTORS]
+    if news_type in {"거시", "리스크"}:
+        return "금리·환율·지수 전반에 번질 수 있는 시장 전체 변수"
+    if kr:
+        return f"한국 상장사 직접 재료: {kr}"
+    if sectors:
+        return f"섹터 영향 확인 필요: {' · '.join(sectors[:2])}"
+    if symbols:
+        return f"직접 관련 종목: {symbols}"
+    return "시장 전체 영향은 아직 제한적"
+
+
+def _asset_session_date(snapshot: dict[str, Any], ticker: str) -> str:
+    return str(_asset(snapshot, ticker).get("session_date") or "").strip()
+
+
+def _same_session_change(snapshot: dict[str, Any], ticker: str, anchor_date: str) -> float | None:
+    if not anchor_date or _asset_session_date(snapshot, ticker) != anchor_date:
+        return None
+    return _asset_change(snapshot, ticker)
+
+
+def _routine_market_read(snapshot: dict[str, Any]) -> str:
+    session = _asset_session_date(snapshot, "^GSPC")
+    sp500 = _same_session_change(snapshot, "^GSPC", session)
+    nasdaq = _same_session_change(snapshot, "^IXIC", session)
+    sox = _same_session_change(snapshot, "^SOX", session)
+    russell = _same_session_change(snapshot, "^RUT", session)
+    values = [value for value in (sp500, nasdaq, sox, russell) if value is not None]
+    prefix = f"미국 {session} 확정세션" if session else "미국 최근 확정세션"
+    if len(values) < 2:
+        return f"{prefix}: 방향 판정 보류"
+    if sp500 is not None and nasdaq is not None and sox is not None and sp500 > 0 and nasdaq > 0 and sox > 0:
+        if sox - sp500 >= 1.0:
+            return f"{prefix}: 지수 상승 + 반도체 상대강세"
+        return f"{prefix}: S&P500·Nasdaq·반도체 동반 상승"
+    if sp500 is not None and nasdaq is not None and sp500 < 0 and nasdaq < 0:
+        return f"{prefix}: 대형지수 동반 약세"
+    positives = sum(value > 0 for value in values)
+    negatives = sum(value < 0 for value in values)
+    if positives and negatives:
+        return f"{prefix}: 지수 내부 혼조"
+    return f"{prefix}: 방향성 제한"
+
+
+def _routine_watch_lines(snapshot: dict[str, Any]) -> list[str]:
+    session = _asset_session_date(snapshot, "^GSPC")
+    sp500 = _same_session_change(snapshot, "^GSPC", session)
+    nasdaq = _same_session_change(snapshot, "^IXIC", session)
+    sox = _same_session_change(snapshot, "^SOX", session)
+    lines: list[str] = []
+    if sox is not None and sp500 is not None and abs(sox - sp500) >= 0.75:
+        lines.append(f"반도체 상대강도: SOX가 S&P500 대비 {sox - sp500:+.2f}%p — 다음 확정세션에도 유지되는지")
+    if nasdaq is not None and sp500 is not None and abs(nasdaq - sp500) >= 0.40:
+        lines.append(f"기술주 상대강도: Nasdaq이 S&P500 대비 {nasdaq - sp500:+.2f}%p — 확산/축소 여부")
+    vix = _asset_price(snapshot, "^VIX")
+    if vix is not None:
+        lines.append(f"변동성: VIX {vix:.2f} — 20선 상·하 방향 확인")
+    if not lines:
+        lines.append("다음 확정세션에서 지수·반도체·금리 방향이 같은 쪽으로 모이는지 확인")
+    return lines[:3]
+
+
 def _symbol_text(symbols: list[Any], *, korean_only: bool = False) -> str:
     values: list[str] = []
     for symbol in symbols:
@@ -306,15 +413,24 @@ def _outlook(selected: list[Any], market_context: dict[str, Any] | None, snapsho
 
 
 def _flow_summary(snapshot: dict[str, Any]) -> str:
-    flow = str(snapshot.get("flow_proxy") or "").strip()
-    if flow:
-        return flow
+    """Price proxies only. Never present ETF returns as actual fund-flow data."""
+    anchor = _asset_session_date(snapshot, "^GSPC") or _asset_session_date(snapshot, "QQQ")
     values = []
-    for ticker, label in (("QQQ", "성장주"), ("EEM", "신흥국"), ("HYG", "하이일드"), ("GLD", "금"), ("TLT", "장기채")):
-        change = _asset_change(snapshot, ticker)
+    for ticker, label in (
+        ("QQQ", "QQQ"),
+        ("IWM", "IWM"),
+        ("EEM", "EEM"),
+        ("HYG", "HYG"),
+        ("GLD", "GLD"),
+        ("TLT", "TLT"),
+    ):
+        change = _same_session_change(snapshot, ticker, anchor)
         if change is not None:
             values.append(f"{label} {change:+.2f}%")
-    return " / ".join(values) if values else "자금 흐름 프록시 확인불가"
+    if not values:
+        return "ETF 가격 프록시: 동일 세션 비교불가"
+    date_text = f" {anchor}" if anchor else ""
+    return f"ETF 가격 프록시{date_text}: " + " / ".join(values)
 
 
 def _macro_snapshot(snapshot: dict[str, Any]) -> str:
@@ -507,6 +623,59 @@ def _one_line(payloads: list[dict[str, Any]], outlook: Any, snapshot: dict[str, 
     return f"핵심 변수: {driver}. 4축 판정은 {outlook.verdict}({outlook.score:+d}/10) — {risk}."
 
 
+def _build_routine_note(
+    *,
+    original_report: str,
+    payloads: list[dict[str, Any]],
+    hours: int,
+    note_name: str,
+    now: datetime,
+    market_context: dict[str, Any] | None,
+    snapshot: dict[str, Any],
+) -> str:
+    lines = [
+        f"📌 {now:%m/%d} {note_name}",
+        "",
+        "시장 확인",
+        *_index_lines(note_name, market_context, snapshot),
+        f"　- {_routine_market_read(snapshot)}",
+        f"　- 금리·변동성: {_macro_snapshot(snapshot)}",
+        f"　- {_flow_summary(snapshot)}",
+        "",
+        "핵심 변화",
+    ]
+    if payloads:
+        for index, payload in enumerate(payloads[:3], 1):
+            lines.append(f"{index}. {payload['title']}")
+            lines.append(f"　- 의미: {_why_it_matters(payload)}")
+            lines.append(f"　- 근거: {_source_confidence_text(payload)}")
+            detail = next(iter(_sentences(payload.get("body"), 1)), "")
+            if detail and detail != payload["title"]:
+                lines.append(f"　- 확인된 내용: {detail}")
+            if payload.get("url"):
+                lines.append(f"　- 원문: {payload['url']}")
+    else:
+        lines.append("　- 새로 확인된 중요 변화 없음")
+        lines.append("　- 단일출처 D급·저신뢰 개별실적·반복 뉴스는 알림에서 제외")
+
+    lines += ["", "다음 확인"]
+    lines += [f"　- {value}" for value in _routine_watch_lines(snapshot)]
+
+    verification = _aligned_verification_line(original_report, len(payloads))
+    if verification:
+        lines.extend(["", verification])
+    session_date = _asset_session_date(snapshot, "^GSPC")
+    session_text = f" · 미국 확정세션 {session_date}" if session_date else ""
+    lines.append(
+        f"데이터: 최근 {hours}시간 뉴스{session_text} · ETF 수익률은 자금유입/유출이 아니라 가격 프록시"
+    )
+    note = "\n".join(lines).strip()
+    max_chars = min(MAX_NOTE_CHARS, int(getattr(base_report, "MAX_REPORT_CHARS", MAX_NOTE_CHARS)))
+    if len(note) > max_chars:
+        note = note[: max_chars - 20].rstrip() + "\n… 이하 생략"
+    return note
+
+
 def build_market_note(
     *,
     original_report: str,
@@ -526,8 +695,23 @@ def build_market_note(
     displayed_keys = _issue_title_keys(original_report)
     if displayed_keys:
         payloads = [payload for payload in payloads if _payload_matches_keys(payload, displayed_keys)]
-        selected = [payload["cluster"] for payload in payloads]
     note_name = _note_name(kind, now)
+    strategy_kind = str(kind or "").lower() in {"strategy_morning", "strategy_evening"}
+
+    if not strategy_kind:
+        payloads = [payload for payload in payloads if _routine_payload_allowed(payload)]
+        payloads = sorted(payloads, key=lambda item: _routine_payload_rank(item, note_name), reverse=True)[:3]
+        return _build_routine_note(
+            original_report=original_report,
+            payloads=payloads,
+            hours=hours,
+            note_name=note_name,
+            now=now,
+            market_context=market_context,
+            snapshot=snapshot,
+        )
+
+    selected = [payload["cluster"] for payload in payloads]
     outlook = _outlook(selected, market_context, snapshot, kind, now)
 
     title_driver = payloads[0]["title"] if payloads else f"{outlook.verdict} · 새 중요 뉴스 없음"
@@ -561,7 +745,6 @@ def build_market_note(
         lines.extend(["", *_change_factor_lines(index, payload)])
         used.add(id(payload["cluster"]))
 
-    strategy_kind = str(kind or "").lower() in {"strategy_morning", "strategy_evening"}
     for sector, sector_payloads in _ranked_sector_groups(payloads):
         visible_payloads = sector_payloads if strategy_kind else [
             item for item in sector_payloads if id(item["cluster"]) not in used
