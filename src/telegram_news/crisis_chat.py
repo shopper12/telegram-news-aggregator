@@ -15,6 +15,25 @@ from .crisis_watch import KST, _chat_ids, scan, detect_events, format_alert
 PREFIXES = ("/market", "/risk", "봇 시장", "봇 리스크", "시장 ", "주식 ", "나스닥 ", "코스피 ", "코스닥 ")
 KEYWORDS = ("폭락", "급락", "급등", "패닉", "왜 떨어", "지금 팔아", "지금 사", "시장 왜", "시장 상황", "시장 위험")
 
+_SESSIONS: dict[str, dict[str, Any]] = {}
+SESSION_MINUTES = 60
+
+def market_context_active(chat_id: str) -> bool:
+    info = _SESSIONS.get(str(chat_id)) or {}
+    ts = info.get("at")
+    return isinstance(ts, datetime) and datetime.now(timezone.utc) - ts < timedelta(minutes=SESSION_MINUTES)
+
+def remember_market_question(chat_id: str, text: str) -> None:
+    key = str(chat_id)
+    previous = _SESSIONS.get(key) or {}
+    history = list(previous.get("history") or []) if market_context_active(key) else []
+    history.append(str(text)[:500])
+    _SESSIONS[key] = {"at": datetime.now(timezone.utc), "history": history[-6:]}
+
+def is_other_bot_command(text: str) -> bool:
+    body = (text or "").strip()
+    return body.startswith(("봇 뉴스", "봇 시세", "봇 사주", "봇 생년월일", "봇 도움말", "/start", "뉴스갱신"))
+
 def should_handle(text: str) -> bool:
     text = (text or "").strip()
     if text in ("시장", "봇 시장", "봇 리스크", "/market", "/risk", "주식"):
@@ -99,11 +118,13 @@ def answer(question: str, chat_id: str) -> str:
     allowed = _chat_ids()
     if allowed and str(chat_id) not in allowed:
         return "이 시장 관제 기능은 등록된 텔레그램 채팅에만 제공됩니다."
+    remember_market_question(chat_id, question)
+    history = list((_SESSIONS.get(str(chat_id)) or {}).get("history") or [])
     now = datetime.now(timezone.utc)
     data = scan(now=now)
     initial = _market_text(data)
     headlines = _headlines(now)
-    summary = _model_answer(question, data, headlines)
+    summary = _model_answer("최근 대화(순서대로): " + " | ".join(history) + "\\n현재 질문: " + question, data, headlines)
     if summary:
         return (initial + "\n\n🔎 상황 분석\n" + summary + "\n※ 매매 실행은 하지 않습니다.")[:3850]
     links = "\n".join(f"• {h['title']} ({h['published_at'][:16]} UTC)" for h in headlines[:3])
