@@ -33,6 +33,8 @@ def test_breadth_escalation_and_dedup():
                            "NVDA": _row("NVDA", day=-9, m5=-5.1, m15=-7.1, kind="stock")}}
     events = detect_events(snapshot)
     assert events
+    assert events[0]["key"] == "US-하락"  # aggregate shock outranks single-name alarms
+    assert "동반 움직임" in format_alert(events[0], snapshot)
     assert any(e["key"] == "US-하락" and e["level"] == 3 for e in events)
     assert "데이터" in format_alert(events[0], snapshot)
     event = next(x for x in events if x["key"] == "US-하락")
