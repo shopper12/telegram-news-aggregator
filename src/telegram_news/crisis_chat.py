@@ -118,7 +118,9 @@ def answer(question: str, chat_id: str) -> str:
     allowed = _chat_ids()
     if allowed and str(chat_id) not in allowed:
         return "이 시장 관제 기능은 등록된 텔레그램 채팅에만 제공됩니다."
-    remember_market_question(chat_id, question)
+    existing = list((_SESSIONS.get(str(chat_id)) or {}).get("history") or [])
+    if not existing or existing[-1] != question:
+        remember_market_question(chat_id, question)
     history = list((_SESSIONS.get(str(chat_id)) or {}).get("history") or [])
     now = datetime.now(timezone.utc)
     data = scan(now=now)
