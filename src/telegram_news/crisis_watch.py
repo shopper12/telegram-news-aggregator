@@ -244,6 +244,24 @@ def run_once(send: bool = True, now: datetime | None = None, symbols: dict[str, 
     result = {"checked_at": data["checked_at"], "fresh": data["fresh"], "open_regions": data["open_regions"],
               "detected": events, "pending": pending, "sent": 0}
     if send:
+        # A silent monitor with a dead price source is not a functioning alarm.
+        for region, core in (("US", ("SPY", "QQQ")), ("KR", ("^KS11", "^KQ11"))):
+            if region not in data["open_regions"]:
+                continue
+            present = [data["quotes"].get(symbol) or {} for symbol in core]
+            if any(x.get("fresh") for x in present):
+                continue
+            last_text = (state.get("feed_warnings") or {}).get(region, "")
+            try:
+                last = datetime.fromisoformat(last_text)
+            except (TypeError, ValueError):
+                last = now - timedelta(days=3)
+            if now - last >= timedelta(hours=6):
+                notice = (f"⚠️ [관제 데이터 장애] {region} 시장 시세가 확인되지 않습니다.\n"
+                          f"시각 {data['checked_at']} KST. Yahoo 응답 지연/접속 차단/시장 휴장일 수 있습니다. "
+                          "이 기간에는 급락 경보가 누락될 수 있으니 다른 실시간 시세를 확인하세요.")
+                result["sent"] += send_message(notice)
+                state.setdefault("feed_warnings", {})[region] = now.isoformat()
         for event in pending[:2]:
             message = format_alert(event, data)
             result["sent"] += send_message(message)
