@@ -100,7 +100,6 @@ def interpret_market(question: str, data: dict[str, Any], headlines: list[dict[s
         lines.append("③ 뉴스상 원인 후보(확정 인과 아님): " + "; ".join(clues[:3]) + ".")
     else:
         lines.append("③ 원인: 검증된 사건과 가격 움직임의 인과 연결이 아직 부족함. 뉴스 보강 필요.")
-    lines.append(_headlines_section(headlines))
 
     qqq_row = _quote(data, "QQQ")
     m5 = qqq_row.get("m5_pct") if qqq_row else None
@@ -125,5 +124,6 @@ def interpret_market(question: str, data: dict[str, Any], headlines: list[dict[s
         lines.append("⑥ 행동: 급락 이후 무계획 추격매도·물타기 대신 포지션별 "
                      "레버리지/비중·현금여력 점검. 회복 신호는 거래량과 반도체 상대강도 확인 후 판단.")
 
+    lines.append(_headlines_section(headlines))
     lines.append("※ 시세: Yahoo 비공식 분봉. 최신 갱신시각이 실제 거래소 무지연 시세를 증명하지는 않음.")
     return "\n".join(lines)
