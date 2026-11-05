@@ -6,6 +6,8 @@ cause from simultaneous price moves or represent a Yahoo bar as exchange live.
 from __future__ import annotations
 
 from typing import Any
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 def _quote(data: dict[str, Any], symbol: str) -> dict[str, Any] | None:
@@ -35,10 +37,16 @@ def _headlines_section(headlines: list[dict[str, Any]]) -> str:
         return "최근 원인 뉴스: 조회 불가. 가격변화만으로 특정 원인을 확정할 수 없음."
     rows = ["최근 관련 보도(제목과 시각 확인, 인과관계는 별도 검증 필요):"]
     for h in relevant:
-        pub = str(h.get("published_at") or "")[:16].replace("T", " ")
+        pub = "시각미상"
+        try:
+            pub = datetime.fromisoformat(str(h.get("published_at") or "")).astimezone(
+                ZoneInfo("Asia/Seoul")
+            ).strftime("%m/%d %H:%M KST")
+        except (ValueError, TypeError):
+            pass
         title = str(h.get("title") or "").strip()
         link = str(h.get("link") or "").strip()
-        rows.append(f"• {title} [{pub} UTC]" + (f"\n  {link}" if link else ""))
+        rows.append(f"• {title} [{pub}]" + (f"\n  {link}" if link else ""))
     return "\n".join(rows)
 
 
@@ -46,7 +54,8 @@ def _news_causes(headlines: list[dict[str, Any]]) -> list[str]:
     """Only expose driver candidates actually mentioned in article headlines."""
     text = " | ".join(str(x.get("title") or "") for x in headlines).lower()
     candidates = [
-        (("data center", "data-center", "데이터센터", "ai 규제"), "AI 데이터센터 확장·규제 관련 우려"),
+        (("data center", "data-center", "데이터센터", "ai 규제", "datacenter"), "데이터센터 확대·인허가·정책 관련 불확실성"),
+        (("ai spending", "ai 투자", "ai infrastructure", "ai capex", "투자 수익성", "ai 거품"), "AI 인프라 투자 수익성·자본지출 우려"),
         (("qualcomm", "퀄컴", "earnings", "실적 쇼크", "실적 부진"), "반도체 기업 실적/수요 전망 충격"),
         (("federal reserve", "fed ", "연준", "금리 인상", "bond yields"), "금리·통화정책 재평가"),
         (("iran", "이란", "war ", "전쟁", "유가 급등"), "지정학적 위험·유가 불확실성"),
@@ -95,11 +104,14 @@ def interpret_market(question: str, data: dict[str, Any], headlines: list[dict[s
     else:
         lines.append("② 교차 확인: 채권·금·신용시장 최신 정규장 자료 없음.")
 
-    clues = _news_causes(headlines)
+    trusted = [h for h in headlines if _credible_headline(h)]
+    clues = _news_causes(trusted or headlines)
     if clues:
-        lines.append("③ 뉴스상 원인 후보(확정 인과 아님): " + "; ".join(clues[:3]) + ".")
+        evidence_grade = "주요매체 헤드라인" if trusted else "기사 제목(매체 추가검증 필요)"
+        lines.append("③ " + evidence_grade + "의 원인 후보: " + "; ".join(clues[:3])
+                     + ". 가격 하락과의 단일 인과관계는 확정할 수 없음.")
     else:
-        lines.append("③ 원인: 검증된 사건과 가격 움직임의 인과 연결이 아직 부족함. 뉴스 보강 필요.")
+        lines.append("③ 원인: 제목으로 확인 가능한 구체적 악재가 부족함. 원문·공시 확인 필요.")
 
     qqq_row = _quote(data, "QQQ")
     m5 = qqq_row.get("m5_pct") if qqq_row else None
@@ -123,6 +135,13 @@ def interpret_market(question: str, data: dict[str, Any], headlines: list[dict[s
     else:
         lines.append("⑥ 행동: 급락 이후 무계획 추격매도·물타기 대신 포지션별 "
                      "레버리지/비중·현금여력 점검. 회복 신호는 거래량과 반도체 상대강도 확인 후 판단.")
+
+    kr_index_row = (data.get("quotes") or {}).get("^KS11") or {}
+    if spy is not None and qqq is not None and qqq <= -4 and not kr_index_row.get("open"):
+        lines.append("⑦ 한국장 파급: 현 시점 코스피·코스닥은 정규장 실시간 검증 불가. "
+                     "다음 개장 때 반도체·AI 관련주 갭하락 위험을 먼저 관찰. "
+                     "시초 15분 거래대금, 원/달러, 외국인 선물 수급을 교차 확인. "
+                     "실제 갭 크기는 예측 불가.")
 
     lines.append(_headlines_section(headlines))
     lines.append("※ 시세: Yahoo 비공식 분봉. 최신 갱신시각이 실제 거래소 무지연 시세를 증명하지는 않음.")
