@@ -1,0 +1,62 @@
+name: Equity crisis watch (5-minute fallback)
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Do not send notifications"
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    # GitHub schedule is best effort; this is NOT exchange real-time.
+    - cron: "2,7,12,17,22,27,32,37,42,47,52,57 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: equity-crisis-watch
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_TARGET_CHAT_ID: ${{ secrets.TELEGRAM_TARGET_CHAT_ID }}
+      TELEGRAM_TARGET_CHAT_IDS: ${{ secrets.TELEGRAM_TARGET_CHAT_IDS }}
+      CRISIS_MAX_LAG_SEC: "420"
+      INPUT_DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install HTTP client
+        run: python -m pip install "requests>=2.31,<3"
+      - name: Scan US/KR market
+        run: |
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            python scripts/run_crisis_watch.py --dry-run
+          else
+            python scripts/run_crisis_watch.py
+          fi
+      - name: Commit cooldown state only after successful alert
+        if: success() && env.INPUT_DRY_RUN != 'true'
+        run: |
+          if [ ! -f reports/crisis_watch_state.json ]; then
+            echo "No new alerts"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f reports/crisis_watch_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record crisis alert cooldown [skip ci] [skip render]"
+          git pull --rebase
+          git push
