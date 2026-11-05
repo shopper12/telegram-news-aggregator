@@ -259,6 +259,20 @@ def _run_refresh(chat_id: str) -> None:
             print(f"[telegram-webhook] failure reply failed: {type(send_exc).__name__}: {send_exc}")
 
 
+def _run_market_chat(chat_id: str, question: str) -> None:
+    """Answer price-risk queries without blocking Telegram's webhook acknowledgment."""
+    try:
+        from .crisis_chat import answer
+        reply = answer(question, chat_id)
+        send_telegram_message(_bot_token(), chat_id, reply)
+    except Exception as exc:
+        print(f"[telegram-webhook] market chat failed: {type(exc).__name__}: {exc}")
+        try:
+            send_telegram_message(_bot_token(), chat_id, "시장 실시간 조회를 완료하지 못했습니다. 시세 지연 또는 연결 오류일 수 있습니다.")
+        except Exception:
+            pass
+
+
 def _install_startup_handler(app: Any) -> None:
     """Register startup across FastAPI/Starlette API variants."""
     router = getattr(app, "router", None)
@@ -320,6 +334,12 @@ def apply(api_module: Any) -> Any:
             send_telegram_message(token, chat_id, "뉴스 갱신을 시작합니다. 완료되면 새 리포트를 이 대화창으로 보냅니다.")
             background_tasks.add_task(_run_refresh, chat_id)
             return {"ok": True, "queued": True}
+
+        # Market-risk conversation is handled before the legacy static command router.
+        from .crisis_chat import should_handle as is_market_question
+        if is_market_question(text):
+            background_tasks.add_task(_run_market_chat, chat_id, text)
+            return {"ok": True, "queued": True, "route": "crisis_chat"}
 
         if _command_body(api_module, text).lower() in {"/start", "start"}:
             response_text = api_module._help()
