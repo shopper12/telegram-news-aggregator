@@ -34,7 +34,7 @@ def test_breadth_escalation_and_dedup():
     events = detect_events(snapshot)
     assert events
     assert any(e["key"] == "US-하락" and e["level"] == 3 for e in events)
-    assert "자료" in format_alert(events[0], snapshot)
+    assert "데이터" in format_alert(events[0], snapshot)
     event = next(x for x in events if x["key"] == "US-하락")
     now = datetime(2026, 11, 5, 19, 0, tzinfo=UTC)
     state = {"sent": {event["key"]: {"level": 3, "at": now.isoformat()}}}
