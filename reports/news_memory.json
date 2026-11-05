@@ -1,7 +1,384 @@
 {
   "version": 2,
-  "updated_at": "2026-11-05T21:58:08+09:00",
+  "updated_at": "2026-11-06T05:26:00+09:00",
   "events": [
+    {
+      "signature": "5f867bd17b3bc53df684b23825d66ca16b8e914e",
+      "title": "미 금리선물 12월 금리인상 확률 25bp 80.8% -> 65.2% 50bp 0.0% -> 0.0%",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "금리"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26453"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:13:02+00:00",
+      "last_seen": "2026-11-05T20:13:02+00:00",
+      "count": 1
+    },
+    {
+      "signature": "315e37f075d85c8d6ca85f49f8a4c0efc5e85184",
+      "title": "🔔 삼성전자 14년간 과학기술 연구에 1.2조 지원 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/305d…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "삼성전자"
+      ],
+      "tickers": [
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/305d46",
+        "https://t.me/dreago_news_ch/322161"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:11:33+00:00",
+      "last_seen": "2026-11-05T20:11:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "cae0b2d1afec3f78bbf9ac3e772e8d6f8b796b13",
+      "title": "만날 줄은 알았는데 이렇게 만나나",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26452"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:06:50+00:00",
+      "last_seen": "2026-11-05T20:06:50+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2f8971693e5c77b5121bda2e2ff31e3efdf0f476",
+      "title": "나스닥바이오테크 -3.03% 필라델피아반도체 -9.13%",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26451"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:06:36+00:00",
+      "last_seen": "2026-11-05T20:06:36+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2804840c46039991b82bb1be9772ece8e3e18ed2",
+      "title": "마이크론 -13.4% SK하이닉스ADR -9.9%",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26450"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:03:08+00:00",
+      "last_seen": "2026-11-05T20:03:08+00:00",
+      "count": 1
+    },
+    {
+      "signature": "9e8b15e7430375a8af44bcb6ec9faf2697cca051",
+      "title": "미 데이터센터 -3.42% 엔비디아 -8.75%",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "데이터센터",
+        "엔비디아"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26449"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:02:41+00:00",
+      "last_seen": "2026-11-05T20:02:41+00:00",
+      "count": 1
+    },
+    {
+      "signature": "6bac690e2a9d51faf737cf534cf76d18584a704a",
+      "title": "D램 ETF 가격 -13.8% 좌수 -0.8%(하루전)",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "FTEC",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26448"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:01:57+00:00",
+      "last_seen": "2026-11-05T20:01:57+00:00",
+      "count": 1
+    },
+    {
+      "signature": "17a636da1ffd3ab6a3fa41fd4c0bb27d83d7f5ba",
+      "title": "🔔",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "애플",
+        "아마존",
+        "테슬라"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/ae9c3b",
+        "https://t.me/dreago_news_ch/320630",
+        "https://dreago.kr/n/b068d2",
+        "https://t.me/dreago_news_ch/321102",
+        "https://dreago.kr/n/14cc07"
+      ],
+      "materiality": 10,
+      "sentiment": 0,
+      "first_seen": "2026-11-02T21:48:09+00:00",
+      "last_seen": "2026-11-05T20:00:48+00:00",
+      "count": 7
+    },
+    {
+      "signature": "313d3e069d4879e236501545d05ee005550498ae",
+      "title": "미국 4.833% 한국 3.875% 차 0.958%p 일본 2.785%",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26447"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T20:00:18+00:00",
+      "last_seen": "2026-11-05T20:00:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "852b9db8270e8251a3e49c929a04fbb9e5917e06",
+      "title": "WTI 91 브렌트 98 두바이 94(하루전)",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26445"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T19:58:29+00:00",
+      "last_seen": "2026-11-05T19:58:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bd5bb307ccf661bfd580c7cedfca5addf3553968",
+      "title": "OPENAI, 보안 연구를 위한 GPT-6 사이버 모델 출시 ...",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/24220"
+      ],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-11-05T19:47:11+00:00",
+      "last_seen": "2026-11-05T19:47:11+00:00",
+      "count": 1
+    },
+    {
+      "signature": "58253761dca09cbc489b361d282cfe9374a4c435",
+      "title": "Meta Platforms(META.O): AI 안경에서 Muse 음성 대화 기능과 Muse Charm을 출시했습니다.",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "meta",
+        "mu"
+      ],
+      "tickers": [
+        "META",
+        "METAM"
+      ],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/24219"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-11-05T19:47:01+00:00",
+      "last_seen": "2026-11-05T19:47:01+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e7ce2ca7066a50b752ca4b568e011f0e33822383",
+      "title": "마르코 루비오, 중간선거 참패 후 트럼프 행정부 사퇴 검토 중 블룸버그 통신에 따르면, 마르코 루비오 국무장관이 공화당의 중간선…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/24218"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-05T19:46:46+00:00",
+      "last_seen": "2026-11-05T19:46:46+00:00",
+      "count": 1
+    },
+    {
+      "signature": "20f32c9d63242fbe29ddf75edee7d30c6dc773cb",
+      "title": "이란 고위 관료는 이란이 카타르를 통해 핵 제안서를 미국에 보냈으며, 미국이 이란의 7가지 요구 조건을 충족한 후에야 논의될 것…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/24217"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-05T19:46:20+00:00",
+      "last_seen": "2026-11-05T19:46:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d59f147502e54df41f3d88a1dd1b66d3084fee75",
+      "title": "브렌트유 선물은 배럴당 98.29달러로 마감했으며, 이는 3.67달러(3.88%) 상승한 가격입니다.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/24216"
+      ],
+      "materiality": 2,
+      "sentiment": 2,
+      "first_seen": "2026-11-05T19:45:48+00:00",
+      "last_seen": "2026-11-05T19:45:48+00:00",
+      "count": 1
+    },
+    {
+      "signature": "08d143aea4dc799cba619fcf5841ef986ff10b11",
+      "title": "마이클 버리는 자신이 보유한 반도체 ETF 풋옵션의 25%를 매도했다고 밝혔습니다. ...",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [
+        "FTEC",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://t.me/FastStockNewsUSA/24215"
+      ],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-11-05T19:45:39+00:00",
+      "last_seen": "2026-11-05T19:45:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "61d9901cddbfebaa9b7b4caaaf7bc930cc554c43",
+      "title": "🔔",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "데이터센터",
+        "메모리",
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/951acf",
+        "https://t.me/dreago_news_ch/322159"
+      ],
+      "materiality": 6,
+      "sentiment": -1,
+      "first_seen": "2026-11-05T19:40:12+00:00",
+      "last_seen": "2026-11-05T19:40:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ab69ee57d659a450ac61927a71fac7ce3f34a674",
+      "title": "구글·메타·틱톡, 캘리포니아 청소년 소셜미디어 규제법 시행 저지 소송 제기 https://m.stock.naver.com/inv…",
+      "sectors": [
+        "거시/정책",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "규제",
+        "메타",
+        "알파벳"
+      ],
+      "tickers": [
+        "035420.KS",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://m.stock.naver.com/investment/news/worldnews/fnGuide/2803299",
+        "https://t.me/moneythemestock/65946"
+      ],
+      "materiality": 13,
+      "sentiment": -2,
+      "first_seen": "2026-11-05T19:37:06+00:00",
+      "last_seen": "2026-11-05T19:37:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d713fce8b87b6b7b8e59f8a8f40901fc95e98298",
+      "title": "[인사이트 나우] 금리의 방향은 여전히 상방, 몸을 낮추는 OpenAI, 살아남기 위한 맥도날드의 전략\n출처: 실시간 | 시각: 2026-11-05T19:31:19+00:00",
+      "sectors": [
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "ai",
+        "금리"
+      ],
+      "tickers": [
+        "035420.KS",
+        "XP"
+      ],
+      "source_urls": [
+        "https://naver.me/xpjIpsy1",
+        "https://t.me/realtime_stock_news/62002"
+      ],
+      "materiality": 12,
+      "sentiment": 0,
+      "first_seen": "2026-11-05T19:31:19+00:00",
+      "last_seen": "2026-11-05T19:31:19+00:00",
+      "count": 1
+    },
     {
       "signature": "4992c64ea6a27d5ab82eb3a6320f633a1f29f56a",
       "title": "최태원 SK그룹 회장이 미국 중간선거 이후 나타난 증시 변동성과 관련해 과잉 유동성에 따른 자금 쏠림 현상을 주요 원인으로 지목…",
@@ -9262,28 +9639,6 @@
       "count": 1
     },
     {
-      "signature": "17a636da1ffd3ab6a3fa41fd4c0bb27d83d7f5ba",
-      "title": "🔔",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "애플"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/ae9c3b",
-        "https://t.me/dreago_news_ch/320630",
-        "https://dreago.kr/n/b068d2",
-        "https://t.me/dreago_news_ch/321102"
-      ],
-      "materiality": 10,
-      "sentiment": 1,
-      "first_seen": "2026-11-02T21:48:09+00:00",
-      "last_seen": "2026-11-03T20:10:02+00:00",
-      "count": 5
-    },
-    {
       "signature": "e7164909eccc2b5c7f4c876e4eb68193d4f33566",
       "title": "[인사이트 나우] 디즈니의 대규모 감원, 애플 실적 발표의 디테일, 전력에 진심인 구글\n출처: 실시간 | 시각: 2026-11-03T19:31:32+00:00",
       "sectors": [
@@ -9560,345 +9915,6 @@
       "sentiment": 0,
       "first_seen": "2026-11-03T12:42:23+00:00",
       "last_seen": "2026-11-03T12:42:23+00:00",
-      "count": 1
-    },
-    {
-      "signature": "25c92d67bf31721459049a5481953538dc525289",
-      "title": "미국 미주리주 상공에서 B-2 스피릿 전략 스텔스 폭격기가 공중급유기와 함께 비행하는 모습이 이날 오전 포착. 이란과의 긴장이 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/68203"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:42:10+00:00",
-      "last_seen": "2026-11-03T12:42:10+00:00",
-      "count": 1
-    },
-    {
-      "signature": "67b38e81663fec16d2fba1000ad2107e3d9fbb40",
-      "title": "🔔 “설마 했는데 진짜 30% 올랐다” 코스피 폭락에도 개미들 환호…무슨 종목이길래 【 겁나빠른 #드리고봇 뉴스 】 https:…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/546643",
-        "https://t.me/dreago_news_ch/321079"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:41:43+00:00",
-      "last_seen": "2026-11-03T12:41:43+00:00",
-      "count": 1
-    },
-    {
-      "signature": "a882717ff9fba48dc693714aeaad625513c46ee0",
-      "title": "속보: 트럼프 2기 행정부에서 이란 등 글로벌 위협에 관한 미국 정보기관의 정보 공유가 의회와 연방정부 전반에 걸쳐 둔화됐고, …",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "정책"
-      ],
-      "tickers": [
-        "NIC",
-        "ODNI"
-      ],
-      "source_urls": [
-        "https://t.me/TNBfolio/71835"
-      ],
-      "materiality": 18,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:38:39+00:00",
-      "last_seen": "2026-11-03T12:38:39+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4852c1a3f8a68de20488cc373998af5c4dfd47a2",
-      "title": "Yum! Brands 2026년 3분기 실적 요약 📍실적 • 매출 $20.54억, YoY +4% • 영업이익 $23.17억, Y…",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "환율"
-      ],
-      "tickers": [
-        "YUM"
-      ],
-      "source_urls": [
-        "https://t.me/insidertracking/68196",
-        "https://t.me/insidertracking/68202"
-      ],
-      "materiality": 17,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:20:34+00:00",
-      "last_seen": "2026-11-03T12:34:53+00:00",
-      "count": 2
-    },
-    {
-      "signature": "e3757e135a16689d432762708b705ce47cdce21b",
-      "title": "우리는 여전히 합의에 도달하고, 이 위기에 대한 지속 가능한 해결책을 모색하기 위한 미래 협상에 긍정적인 분위기를 조성할 수 있…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/68201"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:34:37+00:00",
-      "last_seen": "2026-11-03T12:34:37+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e9187645601cf6d97114a756f9d7434c3a8fd414",
-      "title": "코스피 야간선물 상승",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/68200"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-11-03T12:32:55+00:00",
-      "last_seen": "2026-11-03T12:32:55+00:00",
-      "count": 1
-    },
-    {
-      "signature": "864b923aee294c0c02fca5c876ca768ea778eec0",
-      "title": "🔔 동양에세이/ 석양이 가을을 물들였을까 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/a27609",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/a27609",
-        "https://t.me/dreago_news_ch/321078"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:32:28+00:00",
-      "last_seen": "2026-11-03T12:32:28+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1b953ffa013e198dba830fb7d5909b70334ad779",
-      "title": "일단 공포 탐욕지수는 22에서 19로 또 내려왔네요. 다시 올라가줘라...",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/68199"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:32:07+00:00",
-      "last_seen": "2026-11-03T12:32:07+00:00",
-      "count": 1
-    },
-    {
-      "signature": "05f2771b8f5e97a68e8184869002bcc4769b61fc",
-      "title": "🔔 알테오젠 분기최대 실적…KAI는 매출 50% 늘었네 📈 #알테오젠 #한국항공우주 📝 #바이오의약품 #항공우주 #방산 알테오젠…",
-      "sectors": [
-        "AI인프라",
-        "방산/항공"
-      ],
-      "keywords": [
-        "ai",
-        "kai",
-        "방산",
-        "한국항공우주",
-        "항공우주"
-      ],
-      "tickers": [
-        "047810.KS",
-        "FFIV"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/4df57c",
-        "https://t.me/dreago_news_ch/321077"
-      ],
-      "materiality": 14,
-      "sentiment": 2,
-      "first_seen": "2026-11-03T12:31:46+00:00",
-      "last_seen": "2026-11-03T12:31:46+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6881f00f9b22960b12d9187194de3f2c6f635b6c",
-      "title": "이란 대통령, 지도자가 협상 불가 사안에 대한 논의를 허용했다고 밝힘",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/Yeouido_Lab/38647",
-        "https://t.me/insidertracking/68198",
-        "https://t.me/sharpha/56925"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:28:05+00:00",
-      "last_seen": "2026-11-03T12:31:24+00:00",
-      "count": 3
-    },
-    {
-      "signature": "1fe3d03cc43022aa66fd6654a3c78420f2b200ef",
-      "title": "[키움 허혜민] 노바티스, BioArctic과 $800mn 뇌질환 치료제 개발 계약 중단 Novartis, 스웨덴 BioArctic과 체결한 최대 $802mn 규모의 신경퇴행성질환 치료제 공동개발 계약 종료 결정. ",
-      "sectors": [
-        "AI인프라",
-        "바이오"
-      ],
-      "keywords": [
-        "ai",
-        "biotech",
-        "eli lilly",
-        "임상"
-      ],
-      "tickers": [
-        "BBB",
-        "BTMD",
-        "NOV",
-        "NVMI"
-      ],
-      "source_urls": [
-        "https://fiercebiotech.com/biotech/novartis-scraps-800m-bioartic-neuroscience-collab-after-barely-year",
-        "https://t.me/insidertracking/68197"
-      ],
-      "materiality": 17,
-      "sentiment": 1,
-      "first_seen": "2026-11-03T12:29:46+00:00",
-      "last_seen": "2026-11-03T12:29:46+00:00",
-      "count": 1
-    },
-    {
-      "signature": "b142f885a2db9807200382906650325db115697b",
-      "title": "🔔 통합 LCC 출범 앞두고 박병률 진에어 대표 돌연 사임…후임 미정 📈 #진에어 📝 #저비용항공사 #항공 통합 LCC 출범을 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/c47438",
-        "https://t.me/dreago_news_ch/321076"
-      ],
-      "materiality": 3,
-      "sentiment": -1,
-      "first_seen": "2026-11-03T12:25:43+00:00",
-      "last_seen": "2026-11-03T12:25:43+00:00",
-      "count": 1
-    },
-    {
-      "signature": "bc4739856ab6cd420cadb505615312f01e979a22",
-      "title": "#포스코퓨처엠, 현대차그룹과 인조흑연 음극재 맞손…1000억원 지분투자 검토",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "음극재"
-      ],
-      "tickers": [
-        "005380.KS",
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/016/0002718256?sid=101",
-        "https://t.me/sharpha/56924"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:21:16+00:00",
-      "last_seen": "2026-11-03T12:21:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "29722a77036e4f7896e7c6c98656ceba45f2edc5",
-      "title": "🔔 한진칼우 30%·AP위성 29.98% 상승…7개 종목 상한가권 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.k…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/0276a1",
-        "https://t.me/dreago_news_ch/321075"
-      ],
-      "materiality": 2,
-      "sentiment": 2,
-      "first_seen": "2026-11-03T12:18:53+00:00",
-      "last_seen": "2026-11-03T12:18:53+00:00",
-      "count": 1
-    },
-    {
-      "signature": "dfd29e2509a5477c16870e11b6ca19cfede85445",
-      "title": "페르미와 텐서웨이브 간 데이터센터 임대 계약이 10월 31일 체결 마감 기한을 넘겼으며, 아직 계약 효력이 발생하지 않은 상태.…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "데이터센터"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/68195"
-      ],
-      "materiality": 17,
-      "sentiment": 1,
-      "first_seen": "2026-11-03T12:18:04+00:00",
-      "last_seen": "2026-11-03T12:18:04+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f4286d7794f600fc6eb12b82a379525aca1223d5",
-      "title": "🔔 한수원·대우건설, '체코 원전' 재협상 희박할 듯 📈 #대우건설 📝 #원자력발전 #원전수출 체코 두코바니 원전 시공 협상이 …",
-      "sectors": [
-        "원전"
-      ],
-      "keywords": [
-        "원전",
-        "체코",
-        "한수원"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/5a484e",
-        "https://t.me/dreago_news_ch/321074"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-11-03T12:17:14+00:00",
-      "last_seen": "2026-11-03T12:17:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c2803bd3f6fee96535d1519a6cf3c9d664ede2db",
-      "title": "중간선거 D-Day라서 트럼프는 계속 공화당 의원들 샤라웃중",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/68194"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:16:27+00:00",
-      "last_seen": "2026-11-03T12:16:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "aa910489cdcc64576df04a3e6f87adb2e1cd02b2",
-      "title": "미국 의회는 상원과 하원으로 구성된 양원제입니다. 상원은 100석으로 각 주에서 2명씩 선출하며, 하원은 435석으로 주별 인구…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/56923"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-03T12:12:56+00:00",
-      "last_seen": "2026-11-03T12:12:56+00:00",
       "count": 1
     }
   ]
