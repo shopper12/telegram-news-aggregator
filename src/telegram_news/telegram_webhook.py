@@ -336,8 +336,14 @@ def apply(api_module: Any) -> Any:
             return {"ok": True, "queued": True}
 
         # Market-risk conversation is handled before the legacy static command router.
-        from .crisis_chat import should_handle as is_market_question
-        if is_market_question(text):
+        from .crisis_chat import (
+            should_handle as is_market_question,
+            market_context_active,
+            remember_market_question,
+            is_other_bot_command,
+        )
+        if is_market_question(text) or (market_context_active(chat_id) and not is_other_bot_command(text)):
+            remember_market_question(chat_id, text)
             background_tasks.add_task(_run_market_chat, chat_id, text)
             return {"ok": True, "queued": True, "route": "crisis_chat"}
 
