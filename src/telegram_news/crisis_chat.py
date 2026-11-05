@@ -10,7 +10,8 @@ from urllib.parse import urlencode
 import xml.etree.ElementTree as ET
 
 import requests
-from .crisis_watch import KST, _chat_ids, scan, detect_events, format_alert
+from .crisis_watch import KST, _chat_ids, scan, detect_events
+from .market_interpreter import interpret_market
 
 PREFIXES = ("/market", "/risk", "봇 시장", "봇 리스크", "시장 ", "주식 ", "나스닥 ", "코스피 ", "코스닥 ")
 KEYWORDS = ("폭락", "급락", "급등", "패닉", "왜 떨어", "지금 팔아", "지금 사", "시장 왜", "시장 상황", "시장 위험")
@@ -41,31 +42,58 @@ def should_handle(text: str) -> bool:
     return text.lower().startswith(PREFIXES) or any(token in text for token in KEYWORDS)
 
 def _headlines(now: datetime) -> list[dict[str, str]]:
-    """Fresh headline evidence, not a proof of price causality."""
-    query = "미국 나스닥 S&P500 반도체 주식 급락 OR 코스피 급락"
-    try:
-        url = "https://news.google.com/rss/search?" + urlencode({"q": query, "hl": "ko", "gl": "KR", "ceid": "KR:ko"})
-        response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=4)
-        response.raise_for_status()
-        root = ET.fromstring(response.content)
-        result = []
-        for item in root.findall(".//item"):
-            title, published = item.findtext("title"), item.findtext("pubDate")
-            if not title or not published:
-                continue
-            dt = parsedate_to_datetime(published).astimezone(timezone.utc)
-            if dt > now + timedelta(minutes=10) or dt < now - timedelta(hours=8):
-                continue
-            result.append({"title": title[:160], "published_at": dt.isoformat(), "link": item.findtext("link") or ""})
-            if len(result) >= 4:
-                break
-        return result
-    except Exception:
-        return []
+    """Query news by relevance and credible outlet; dated headlines are leads, not causal proof."""
+    queries = (
+        "나스닥 반도체 AI 실적 데이터센터 미국증시 when:1d",
+        "site:reuters.com Nasdaq semiconductor AI stocks when:1d",
+    )
+    rows: list[tuple[int, dict[str, str]]] = []
+    seen: set[str] = set()
+    trust = ("reuters", "로이터", "연합뉴스", "ap news", "associated press",
+             "bloomberg", "블룸버그", "financial times", "wall street journal")
+    useful = ("ai", "semiconductor", "chip", "nasdaq", "qualcomm", "earnings", "data center",
+              "반도체", "나스닥", "퀄컴", "규제", "데이터센터", "실적", "금리")
+    for search in queries:
+        try:
+            url = "https://news.google.com/rss/search?" + urlencode(
+                {"q": search, "hl": "ko", "gl": "KR", "ceid": "KR:ko"}
+            )
+            response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
+            response.raise_for_status()
+            root = ET.fromstring(response.content)
+            for item in root.findall(".//item")[:30]:
+                title, published = item.findtext("title"), item.findtext("pubDate")
+                if not title or not published:
+                    continue
+                try:
+                    dt = parsedate_to_datetime(published).astimezone(timezone.utc)
+                except (ValueError, TypeError):
+                    continue
+                age = (now - dt).total_seconds()
+                if age < -600 or age > 18 * 3600:
+                    continue
+                key = " ".join(title.strip().lower().split())
+                if key in seen:
+                    continue
+                seen.add(key)
+                term_count = sum(1 for word in useful if word in key)
+                if term_count == 0:
+                    continue
+                score = 12 * any(word in key for word in trust) + 2 * term_count
+                score += max(0, 7 - int(age // 3600))
+                rows.append((score, {
+                    "title": title.strip()[:165],
+                    "published_at": dt.isoformat(),
+                    "link": str(item.findtext("link") or ""),
+                }))
+        except Exception as exc:
+            print(f"[crisis-chat] headline feed degraded: {type(exc).__name__}")
+    rows.sort(key=lambda x: -x[0])
+    return [item for _, item in rows[:5]]
 
 def _market_text(data: dict[str, Any]) -> str:
     parts = [f"📊 시장 점검 {data['checked_at']} (KST)",
-             "Yahoo Finance 비공식 1분봉; 시세 지연·오류 가능. 420초 초과 자료는 판단 제외."]
+             "Yahoo 비공식 1분봉 / 제공봉 시각 표시(거래소 무지연 시세 아님). 7분 초과 자료는 제외."]
     for symbol in ("SPY", "QQQ", "SOXX", "NVDA", "^KS11", "^KQ11", "005930.KS", "000660.KS", "TLT", "GLD"):
         row = (data.get("quotes") or {}).get(symbol)
         if not row:
@@ -77,7 +105,12 @@ def _market_text(data: dict[str, Any]) -> str:
         five = row.get("m5_pct")
         a = f"일간 {daily:+.2f}%" if daily is not None else "일간 미확인"
         b = f"5분 {five:+.2f}%" if five is not None else "5분 미확인"
-        parts.append(f"{row['name']}: {a}, {b} (자료 {row.get('age_sec')}초 전)")
+        bar_time = str(row.get("at") or "")
+        try:
+            bar_time = datetime.fromisoformat(bar_time).astimezone(KST).strftime("%H:%M")
+        except (ValueError, TypeError):
+            bar_time = "미확인"
+        parts.append(f"{row['name']}: {a}, {b} (제공봉 {bar_time} KST)")
     events = detect_events(data)
     if events:
         first = events[0]
@@ -86,33 +119,55 @@ def _market_text(data: dict[str, Any]) -> str:
         parts.append("신규 임계치 충족 없음 (정상이라는 뜻은 아니며, 데이터 부재 가능)")
     return "\n".join(parts)
 
-def _model_answer(question: str, data: dict[str, Any], headlines: list[dict[str, str]]) -> str | None:
+def _model_answer(question: str, data: dict[str, Any],
+                  headlines: list[dict[str, str]]) -> tuple[str | None, str]:
     key = (os.getenv("GEMINI_API_KEY") or "").strip()
     if not key:
-        return None
-    model = os.getenv("CRISIS_GEMINI_MODEL", "gemini-2.5-flash")
+        return None, "미설정"
+    model = os.getenv("CRISIS_GEMINI_MODEL", os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
+    evidence = json.dumps({
+        "checked_at": data.get("checked_at"),
+        "quotes": {k: {key: v.get(key) for key in
+                 ("name", "price", "day_pct", "m5_pct", "m15_pct", "at", "age_sec", "fresh", "open")}
+                 for k, v in (data.get("quotes") or {}).items()},
+    }, ensure_ascii=False)
+    prompt = (
+        "너는 근거 기반의 시장위험 전문 애널리스트다. 사용자가 왜 폭락했는지, "
+        "자산배분과 보유종목에 어떻게 대응해야 할지 알고 싶어 한다. "
+        "절대 시세를 나열하고 '원인 단정 불가'만 말하고 끝내지 마라. "
+        "1) 관측 수치와 상대강도 2) 최신 보도에 등장하는 구체적 악재(제목/발행시각), "
+        "보도로 확인된 사실과 가능한 해석 구별 3) 채권·금·신용으로 교차검증 "
+        "4) 추가 급락/반등을 가를 검증가능한 지표와 조건 "
+        "5) 실제 보유종목·평단·비중 모르면 확정적 매매 지시 하지 말고 "
+        "레버리지/현금/장기 ETF 경우를 구분한 행동 기준을 한국어로 600~900자 작성. "
+        "근거 없이 배경사실 추가하거나 뉴스 제목만으로 원인 확정하지 말 것. "
+        "시세는 Yahoo 비공식 분봉이며 최근 봉 표기가 실시간성을 보장하지 않음. "
+        "뉴스가 없거나 무관하면 없다고 밝힐 것. "
+        f"질문 및 최근 대화: {question}\\n시세: {evidence[:10000]}\\n"
+        f"최근 뉴스: {json.dumps(headlines, ensure_ascii=False)[:4000]}"
+    )
     payload = {
-        "contents": [{"parts": [{"text": (
-            "당신은 한국어 금융위험 관제 보조자다. 반드시 제공된 시세와 뉴스만 근거로 답변하라. "
-            "시세가 stale/closed이면 실시간으로 단정하지 마라. 뉴스 헤드라인은 시장 원인으로 확정하지 말고 "
-            "'가능한 설명(미확인)'으로만 제시. 포지션·계좌·매수가를 모르므로 '지금 팔아?'에 확정 주문 지시 금지. "
-            "1) 확인된 사실 2) 원인 후보와 근거/불확실성 3) 포지션 위험에 따른 대응조건 4) 다음 확인 지표를 "
-            "총 500자 내외로 간결하게 한국어로 설명. 시장 데이터 부재는 부재로 기재. "
-            f"질문: {question}\n데이터: {json.dumps(data, ensure_ascii=False)[:11000]}\n"
-            f"최근 헤드라인: {json.dumps(headlines, ensure_ascii=False)[:3500]}"
-        )}]}],
-        "generationConfig": {"temperature": 0.15, "maxOutputTokens": 1100},
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.15, "maxOutputTokens": 1450},
     }
     try:
-        response = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                                 headers={"x-goog-api-key": key}, json=payload, timeout=15)
+        response = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+            headers={"x-goog-api-key": key, "Content-Type": "application/json"},
+            json=payload, timeout=20,
+        )
         response.raise_for_status()
-        answer = "".join(p.get("text", "") for p in
-                         ((response.json().get("candidates") or [{}])[0].get("content") or {}).get("parts", []))
-        return answer.strip()[:3000] or None
+        candidates = response.json().get("candidates") or []
+        answer = "".join(part.get("text", "") for part in
+                         (candidates[0].get("content", {}).get("parts") or [])) if candidates else ""
+        return (answer.strip()[:2800], "정상") if answer.strip() else (None, "응답 없음")
+    except requests.HTTPError as exc:
+        status = exc.response.status_code if exc.response is not None else "unknown"
+        print(f"[crisis-chat] AI HTTP {status} (key not logged)")
+        return None, f"HTTP {status}"
     except Exception as exc:
-        print(f"[crisis-chat] model unavailable: {type(exc).__name__}")
-        return None
+        print(f"[crisis-chat] AI unavailable: {type(exc).__name__}")
+        return None, type(exc).__name__
 
 def answer(question: str, chat_id: str) -> str:
     allowed = _chat_ids()
@@ -124,17 +179,19 @@ def answer(question: str, chat_id: str) -> str:
     history = list((_SESSIONS.get(str(chat_id)) or {}).get("history") or [])
     now = datetime.now(timezone.utc)
     data = scan(now=now)
-    initial = _market_text(data)
     headlines = _headlines(now)
-    summary = _model_answer("최근 대화(순서대로): " + " | ".join(history) + "\\n현재 질문: " + question, data, headlines)
-    if summary:
-        return (initial + "\n\n🔎 상황 분석\n" + summary + "\n※ 매매 실행은 하지 않습니다.")[:3850]
-    links = "\n".join(f"• {h['title']} ({h['published_at'][:16]} UTC)" for h in headlines[:3])
-    fallback = "가격 변동의 인과관계는 시세만으로 단정할 수 없습니다."
-    if any(t in question for t in ("팔아", "매도", "손절")):
-        fallback += " 레버리지·신용/만기와 손실한도부터 확인하고, 즉시 매도 여부는 투자기간·보유비중·현금여력에 따라 판단해야 합니다."
-    else:
-        fallback += " 지수와 반도체 동반 하락인지, VIX·국채·달러의 움직임과 기업 실적·정책 뉴스를 함께 확인해야 합니다."
-    if links:
-        fallback += "\n최근 헤드라인(관련성·인과관계 미검증):\n" + links
-    return (initial + "\n\n" + fallback + "\n※ 시세 실시간 보장 불가 / 자동 주문 없음")[:3850]
+    initial = _market_text(data)
+    analysis, model_status = _model_answer(
+        "최근 대화(순서대로): " + " | ".join(history) + "\\n현재 질문: " + question,
+        data, headlines,
+    )
+    if analysis:
+        return (initial + "\\n\\n🧠 AI 분석(시장 데이터·뉴스 확인)\\n" + analysis
+                + "\\n※ 매매 자동 실행 없음")[:3900]
+    # An absent/failed API key may not silently reduce the user to a canned sentence.
+    objective = interpret_market(question, data, headlines)
+    reason = ("모델 인증키가 서버에 설정되지 않음" if model_status == "미설정"
+              else f"모델 호출 실패({model_status})")
+    return (initial + "\\n\\n" + objective
+            + f"\\n⚙️ AI 추가분석 미적용: {reason}. 위 내용은 실제 가격/기사 기반 규칙형 분석."
+            + "\\n※ 자동주문 없음")[:3900]
