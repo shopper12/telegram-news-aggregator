@@ -33,7 +33,7 @@ def test_fallback_is_decision_useful_not_one_line():
     out = interpret_market("왜 떨어져? 지금 팔아?", data, news)
     for term in ("4.09%", "5.84%", "10.65%", "4.81%p",
                  "반도체", "안전자산", "원인 후보", "매도/매수 확정 지시는 불가",
-                 "최근 5분", "퀄컴"):
+                 "최근 5분", "Qualcomm"):
         assert term in out, term
     assert out.index("⑥ 대응 기준") < out.index("최근 관련 보도")
 
