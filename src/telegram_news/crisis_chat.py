@@ -143,7 +143,7 @@ def _model_answer(question: str, data: dict[str, Any],
         "근거 없이 배경사실 추가하거나 뉴스 제목만으로 원인 확정하지 말 것. "
         "시세는 Yahoo 비공식 분봉이며 최근 봉 표기가 실시간성을 보장하지 않음. "
         "뉴스가 없거나 무관하면 없다고 밝힐 것. "
-        f"질문 및 최근 대화: {question}\\n시세: {evidence[:10000]}\\n"
+        f"질문 및 최근 대화: {question}\n시세: {evidence[:10000]}\n"
         f"최근 뉴스: {json.dumps(headlines, ensure_ascii=False)[:4000]}"
     )
     payload = {
@@ -182,16 +182,16 @@ def answer(question: str, chat_id: str) -> str:
     headlines = _headlines(now)
     initial = _market_text(data)
     analysis, model_status = _model_answer(
-        "최근 대화(순서대로): " + " | ".join(history) + "\\n현재 질문: " + question,
+        "최근 대화(순서대로): " + " | ".join(history) + "\n현재 질문: " + question,
         data, headlines,
     )
     if analysis:
-        return (initial + "\\n\\n🧠 AI 분석(시장 데이터·뉴스 확인)\\n" + analysis
-                + "\\n※ 매매 자동 실행 없음")[:3900]
+        return (initial + "\n\n🧠 AI 분석(시장 데이터·뉴스 확인)\n" + analysis
+                + "\n※ 매매 자동 실행 없음")[:3900]
     # An absent/failed API key may not silently reduce the user to a canned sentence.
     objective = interpret_market(question, data, headlines)
     reason = ("모델 인증키가 서버에 설정되지 않음" if model_status == "미설정"
               else f"모델 호출 실패({model_status})")
-    return (initial + "\\n\\n" + objective
-            + f"\\n⚙️ AI 추가분석 미적용: {reason}. 위 내용은 실제 가격/기사 기반 규칙형 분석."
-            + "\\n※ 자동주문 없음")[:3900]
+    return (initial + "\n\n" + objective
+            + f"\n⚙️ AI 추가분석 미적용: {reason}. 위 내용은 실제 가격/기사 기반 규칙형 분석."
+            + "\n※ 자동주문 없음")[:3900]
