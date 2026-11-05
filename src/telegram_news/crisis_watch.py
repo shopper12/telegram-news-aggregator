@@ -174,7 +174,8 @@ def detect_events(snapshot: dict[str, Any]) -> list[dict[str, Any]]:
         if rank >= 2:
             events.append({"key": f"{symbol}-{direction}", "region": row.get("region"), "direction": direction,
                            "level": rank, "symbols": [symbol], "kind": "single"})
-    return sorted(events, key=lambda item: (-item["level"], item["key"]))[:6]
+    # Broad correlated shocks outrank single names in the notification queue.
+    return sorted(events, key=lambda item: (-item["level"], item["kind"] != "market", item["key"]))[:6]
 
 def format_alert(event: dict[str, Any], snapshot: dict[str, Any]) -> str:
     grade = {1: "주의", 2: "경계", 3: "긴급"}[event["level"]]
@@ -188,6 +189,21 @@ def format_alert(event: dict[str, Any], snapshot: dict[str, Any]) -> str:
         fields = ["m5_pct", "m15_pct", "day_pct"]
         changes = [f"{label} {row[field]:+.2f}%" for label, field in zip(measures, fields) if _num(row.get(field)) is not None]
         lines.append(f"• {row['name']}({symbol}): {row['price']:,.2f} | " + " / ".join(changes) + f" | 데이터 {row['age_sec']}초 전")
+    if event["kind"] == "market":
+        companions = [
+            row for row in snapshot["quotes"].values()
+            if row.get("region") == event["region"]
+            and row.get("kind") in ("sector", "stock")
+            and row.get("fresh") and row.get("open")
+            and _num(row.get("day_pct")) is not None
+            and row.get("symbol") not in event["symbols"]
+        ]
+        companions.sort(key=lambda row: _num(row.get("day_pct")) or 0, reverse=event["direction"] == "상승")
+        if companions:
+            lines.append("동반 움직임: " + " / ".join(
+                f"{row['name']} {row['day_pct']:+.2f}%"
+                for row in companions[:3]
+            ))
     lines.extend([
         "원인: 가격만으로는 확인 불가. 개별 뉴스·지표와 교차검증 필요.",
         "대응: 레버리지·신용 증거금과 포지션 집중도 점검. 급락 추격매도·무계획 물타기 금지.",
@@ -240,7 +256,14 @@ def run_once(send: bool = True, now: datetime | None = None, symbols: dict[str, 
     data = scan(now, symbols=symbols)
     events = detect_events(data)
     state = _read_state()
-    pending = [e for e in events if should_send(e, state, now)]
+    market_regions = {e["region"] for e in events if e["kind"] == "market"}
+    # One aggregate notification is preferable to three correlated ticker alerts.
+    pending = [
+        e for e in events
+        if should_send(e, state, now)
+        and (e["kind"] == "market" or e["region"] not in market_regions
+             or (abs(_num((data["quotes"].get(e["symbols"][0]) or {}).get("day_pct")) or 0) >= 12))
+    ]
     result = {"checked_at": data["checked_at"], "fresh": data["fresh"], "open_regions": data["open_regions"],
               "detected": events, "pending": pending, "sent": 0}
     if send:
