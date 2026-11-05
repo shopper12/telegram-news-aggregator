@@ -63,5 +63,13 @@ jobs:
           git add -f reports/crisis_watch_state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Record crisis alert cooldown [skip ci] [skip render]"
-          git pull --rebase
-          git push
+          # Do not lose cooldown history if another commit lands during this run.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase
+            if git push; then
+              exit 0
+            fi
+            echo "Concurrent push detected; retry $attempt"
+            sleep 2
+          done
+          exit 1
