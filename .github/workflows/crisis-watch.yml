@@ -1,6 +1,11 @@
 name: Equity crisis watch (5-minute fallback)
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "src/telegram_news/crisis_watch.py"
+      - ".github/workflows/crisis-watch.yml"
   workflow_dispatch:
     inputs:
       dry_run:
