@@ -1,7 +1,115 @@
 {
   "version": 2,
-  "updated_at": "2026-11-10T23:15:35+09:00",
+  "updated_at": "2026-11-11T05:07:35+09:00",
   "events": [
+    {
+      "signature": "0b472faffe8de05f8e37758b7323713d0fcc7043",
+      "title": "🔔",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [
+        "FFIV"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/cdf546",
+        "https://t.me/dreago_news_ch/323868"
+      ],
+      "materiality": 5,
+      "sentiment": -1,
+      "first_seen": "2026-11-10T19:57:53+00:00",
+      "last_seen": "2026-11-10T19:57:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bbdecdfa016f06aec58b39ccad9ff98d21ce33d1",
+      "title": "스타벅스, FY2027 매출 감소에도 EPS 18% 성장 목표 https://finance.yahoo.com/markets/st…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://finance.yahoo.com/markets/stocks/articles/sbux-deliver-18-eps-growth-182600985.html?.tsrc=rss",
+        "https://t.me/moneythemestock/66235"
+      ],
+      "materiality": 3,
+      "sentiment": -1,
+      "first_seen": "2026-11-10T19:52:06+00:00",
+      "last_seen": "2026-11-10T19:52:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-11-10T19:40:10+00:00",
+      "count": 2132,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
+    {
+      "signature": "4c633b60d141a80834435a8928989d27aaf07838",
+      "title": "[인사이트 나우] 높은 CPI, 엔비디아 서버가 반드시 필요한 중국, 젠슨 황의 가치, 앤트로픽 상장 임박\n출처: 실시간 | 시각: 2026-11-10T19:31:59+00:00",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "cpi",
+        "서버",
+        "엔비디아"
+      ],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://naver.me/F7Floz5F",
+        "https://t.me/realtime_stock_news/62073"
+      ],
+      "materiality": 17,
+      "sentiment": 0,
+      "first_seen": "2026-11-10T19:31:59+00:00",
+      "last_seen": "2026-11-10T19:31:59+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4698e2bd21b55e6d6b2249f7a6b459fb051513a2",
+      "title": "킨더 모건 회장, 자사주 1,500만달러 추가 매수 https://www.tikr.com/blog/kinder-morgans-e…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "KBSX",
+        "KMI",
+        "STAK",
+        "YI"
+      ],
+      "source_urls": [
+        "https://t.me/moneythemestock/66234",
+        "https://tikr.com/blog/kinder-morgans-executive-chairman-just-bought-15-million-of-stock-his-stake-is-now-246-7-million-shares?.tsrc=rss&tlnk=yf-261110-w4rr567g"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-11-10T19:17:06+00:00",
+      "last_seen": "2026-11-10T19:17:06+00:00",
+      "count": 1
+    },
     {
       "signature": "ca947ef51a80c29ba192e6aeb2bcffded0bb2f31",
       "title": "가스터빈 생산예약 축소…GE버노바 주가 폭락",
@@ -1898,25 +2006,6 @@
       "first_seen": "2026-11-10T04:54:15+00:00",
       "last_seen": "2026-11-10T05:02:57+00:00",
       "count": 4
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 0,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-11-10T05:02:31+00:00",
-      "count": 2131,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "09d436e09e16f17574ae59de45f59d3e19afc912",
@@ -10300,112 +10389,6 @@
       "sentiment": -2,
       "first_seen": "2026-11-08T03:38:38+00:00",
       "last_seen": "2026-11-08T03:38:38+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0624492a3935b33943fe160cff7304bfe7d1fa37",
-      "title": "🔔 미국 민주당 중간선거 압승…한화솔루션·LG엔솔·삼성SDI·효성중공업 ... 📈 #한화솔루션 #LG에너지솔루션 #삼성SDI #…",
-      "sectors": [
-        "2차전지",
-        "거시/정책",
-        "전력기기"
-      ],
-      "keywords": [
-        "2차전지",
-        "lg에너지솔루션",
-        "관세",
-        "전력기기",
-        "효성중공업"
-      ],
-      "tickers": [
-        "267260.KS",
-        "298040.KS",
-        "373220.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/b55e8e",
-        "https://t.me/dreago_news_ch/322787"
-      ],
-      "materiality": 19,
-      "sentiment": 0,
-      "first_seen": "2026-11-08T03:29:47+00:00",
-      "last_seen": "2026-11-08T03:29:47+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f4c5d08dcda79d0acccd81cbc00b68b2f87fcf5e",
-      "title": "반등 예고? 골드만삭스 미국 공포지수 '극단적 수준' • 골드만삭스 변동성 공포지수는 9.57로 만점에 근접. 일일 상승폭은 역…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24248",
-        "https://t.me/c/1208429502/127566",
-        "https://wallstreetcn.com/articles/3785438"
-      ],
-      "materiality": 4,
-      "sentiment": 3,
-      "first_seen": "2026-11-08T03:25:51+00:00",
-      "last_seen": "2026-11-08T03:25:51+00:00",
-      "count": 2
-    },
-    {
-      "signature": "702e4f5ad0d68c7031d81a88f6ca053b12efa0fd",
-      "title": "🔔 현대차그룹, 친환경 교육·지방소멸 대응 CSR 행보 박차 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "005380.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/bf9ef4",
-        "https://t.me/dreago_news_ch/322786"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-11-08T03:16:44+00:00",
-      "last_seen": "2026-11-08T03:16:44+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4c0d73418d67511df689336b8f0f7b21326fdc09",
-      "title": "The Information) AI 데이터센터 건설 지연, 마이크로소프트, 아마존, 구글 3대 기업은 오히려 수혜 Microso…",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "바이오",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "ai 인프라",
-        "amzn",
-        "googl",
-        "gpu",
-        "msft",
-        "규제",
-        "데이터센터",
-        "마이크로소프트",
-        "아마존"
-      ],
-      "tickers": [
-        "AMZN",
-        "ATI",
-        "GOOG",
-        "GOOGL",
-        "GOOGM",
-        "GOOGN",
-        "MSFT",
-        "ROI"
-      ],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24247"
-      ],
-      "materiality": 25,
-      "sentiment": 1,
-      "first_seen": "2026-11-08T03:13:29+00:00",
-      "last_seen": "2026-11-08T03:13:29+00:00",
       "count": 1
     }
   ]
