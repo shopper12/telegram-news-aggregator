@@ -695,7 +695,7 @@ def _build_routine_note(
             if payload.get("url"):
                 lines.append(f"　- 원문: {payload['url']}")
     else:
-        source_match = re.search(r"원문\\s+(\\d+)\\s*건", original_report)
+        source_match = re.search(r"원문\s+(\d+)\s*건", original_report)
         source_count = int(source_match.group(1)) if source_match else None
         if source_count is not None and source_count < 5:
             lines.append(f"　- 뉴스 표본 {source_count}건: 중요 변화 유무를 판단하기에 근거 부족")
