@@ -324,7 +324,7 @@ def test_regular_note_drops_single_source_d_even_when_raw_score_is_97(monkeypatc
     )
 
     assert "SharkNinja" not in note
-    assert "새로 확인된 중요 변화 없음" in note
+    assert "선별 기준을 통과한 신규 중요 뉴스 없음" in note
     assert "단일출처 D급" in note
     assert "신규 0개 선별" in note
 
@@ -381,7 +381,7 @@ def test_regular_empty_note_aligns_verification_and_hides_internal_axis_math(mon
         selected=[],
     )
 
-    assert "새로 확인된 중요 변화 없음" in note
+    assert "뉴스 표본 1건: 중요 변화 유무를 판단하기에 근거 부족" in note
     assert "축1 지수(30%)" not in note
     assert "4축 판정" not in note
     assert "신규 0개 선별" in note
@@ -435,7 +435,7 @@ def test_regular_note_drops_unconfirmed_us_company_news_even_when_source_is_b(mo
     )
 
     assert "CVS Health" not in note
-    assert "새로 확인된 중요 변화 없음" in note
+    assert "선별 기준을 통과한 신규 중요 뉴스 없음" in note
 
 
 def test_regular_note_keeps_b_semiconductor_news_when_sector_price_confirms(monkeypatch):
