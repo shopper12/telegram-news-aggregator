@@ -83,7 +83,7 @@ async def _resolve_entity(client: TelegramClient, channel: ChannelConfig):
         # Telethon cannot resolve it by get_entity(url) without an access hash.
         # Existing memberships are instead discoverable through account dialogs.
         private = re.fullmatch(
-            r"https?://(?:www\\.)?t\\.me/c/(\\d+)(?:/\\d+)?/?",
+            r"https?://(?:www\.)?t\.me/c/(\d+)(?:/\d+)?/?",
             channel.invite_link.strip(),
             re.IGNORECASE,
         )
