@@ -79,6 +79,27 @@ async def _resolve_entity(client: TelegramClient, channel: ChannelConfig):
     if channel.username:
         return await client.get_entity(channel.username)
     if channel.invite_link:
+        # t.me/c/<id> is a private post/chat URL, NOT an invitation link.
+        # Telethon cannot resolve it by get_entity(url) without an access hash.
+        # Existing memberships are instead discoverable through account dialogs.
+        private = re.fullmatch(
+            r"https?://(?:www\\.)?t\\.me/c/(\\d+)(?:/\\d+)?/?",
+            channel.invite_link.strip(),
+            re.IGNORECASE,
+        )
+        if private:
+            channel_id = int(private.group(1))
+            async for dialog in client.iter_dialogs():
+                entity = getattr(dialog, "entity", None)
+                entity_id = getattr(entity, "id", None)
+                dialog_id = getattr(dialog, "id", None)
+                if entity_id == channel_id or dialog_id == int(f"-100{channel_id}"):
+                    return entity
+            raise ValueError(
+                f"private channel {channel.name} ({channel_id}) not found in Telegram "
+                "account dialogs; join with the SAME account as TELEGRAM_STRING_SESSION "
+                "or replace t.me/c URL with a valid channel username/invite"
+            )
         return await client.get_entity(channel.invite_link)
     raise ValueError(f"Channel has neither username nor invite_link: {channel.name}")
 
