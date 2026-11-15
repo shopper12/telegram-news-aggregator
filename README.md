@@ -212,3 +212,39 @@ API 키가 없으면 로컬 규칙 기반 요약으로 동작합니다.
 ## 11. 한계
 
 이 프로젝트는 뉴스 수집·정리 도구입니다. 매수/매도 자동 실행 기능은 포함하지 않습니다. 가격·거래량·수급 검증은 별도 시세 API를 붙여 확장해야 합니다.
+
+## 카카오톡 메모 발송 재인증 (invalid_grant / expired_or_invalid_refresh_token)
+
+GitHub Actions 로그에서 이 오류가 나오면 기존 `KAKAO_REFRESH_TOKEN`을 재사용할 수 없습니다.
+로컬 Windows PC에서 **카카오 로그인**을 다시 하여 발급받아야 합니다.
+OAuth 코드·클라이언트 시크릿·리프레시 토큰을 채팅, GitHub Issue, 커밋, Actions 입력란에 올리지 마세요.
+
+1. [Kakao Developers](https://developers.kakao.com/console/app)에서 해당 앱의 **Kakao Login ON**, `talk_message` 동의 항목,
+   REST API 키와 클라이언트 시크릿을 확인합니다.
+2. **앱 > 플랫폼 키 > REST API 키 > Redirect URI**에
+   `http://localhost:4000/redirect`를 등록합니다. 다른 등록 URI를 쓰는 경우 스크립트 실행 시 정확히 입력하세요.
+3. PC의 PowerShell에서 저장소를 열고 다음 명령을 실행합니다.
+
+   ```powershell
+   python -m pip install -r requirements.txt
+   python scripts/renew_kakao_token.py
+   ```
+
+4. 스크립트가 여는 Kakao 로그인 화면에서 승인하고, 브라우저의 최종 리다이렉트 주소 전체를 **로컬 터미널에만** 붙여넣습니다.
+   localhost 페이지가 열리지 않아도 주소에 `code`와 `state`가 있으면 됩니다.
+5. GitHub CLI(`gh`)가 인증된 PC에서는 스크립트가
+   `KAKAO_REFRESH_TOKEN`을 GitHub Actions Secret에 직접 저장합니다.
+   `gh`가 없으면 로컬 터미널에서 토큰을 확인하여
+   [GitHub Secrets](https://github.com/shopper12/telegram-news-aggregator/settings/secrets/actions)에 직접 저장합니다.
+   `KAKAO_CLIENT_SECRET`도 저장소의 기존 앱 설정과 일치해야 합니다.
+
+주의: Kakao가 기존 리프레시 토큰을 **회전**하면 새 토큰을 사용해야 합니다.
+이 저장소의 GitHub Actions 토큰 자동 갱신/Secrets 자동 저장은 아직 구현되어 있지 않으며,
+회전 시 재인증이 필요할 수 있습니다. Actions 로그에는 민감한 토큰을 출력하지 않습니다.
+
+## 비공개 텔레그램 채널 접근
+
+`config/channels.yaml`의 `https://t.me/c/1579665908`은 초대 링크가 아닌 비공개 채널 주소입니다.
+수집용 `TELEGRAM_STRING_SESSION`을 생성한 **동일 계정**이 가입해야 합니다.
+수집기는 이제 이 주소를 Telethon 대화 목록에서 채널 ID로 찾습니다.
+미가입 또는 접근권한 없음 상태라면 해당 채널만 경고를 남기고 다른 뉴스는 계속 수집합니다.
