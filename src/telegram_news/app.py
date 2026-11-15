@@ -137,8 +137,14 @@ def _send_report_to_kakao(report: str) -> None:
     )
     print("Sent to KakaoTalk memo")
     if rotated_refresh_token:
-        print("Kakao returned a rotated refresh token. Update the KAKAO_REFRESH_TOKEN GitHub secret with the new value shown below.")
-        print(rotated_refresh_token)
+        # Secrets must never be written to public GitHub Actions logs.
+        # Without a secure secret-rotation backend, this requires reauthorization
+        # before the next Kakao delivery; Telegram delivery is unaffected.
+        print(
+            "[kakao-dispatch] KAKAO_REFRESH_TOKEN was rotated by Kakao. "
+            "The new secret is intentionally NOT logged. Reauthorize Kakao "
+            "and update the GitHub Actions secret before the next Kakao delivery."
+        )
 
 
 def _send_report_to_discord(report: str) -> None:
