@@ -174,7 +174,9 @@ def _fetch_us_quote(ticker: str) -> Quote:
         result = data.get("chart", {}).get("result", [])[0] if isinstance(data, dict) else None
         meta = result.get("meta", {}) if result else {}
         price = _safe_float(meta.get("regularMarketPrice"))
-        prev = _safe_float(meta.get("chartPreviousClose") or meta.get("previousClose"))
+        prev = _safe_float(meta.get("previousClose"))
+        # chartPreviousClose may refer to the start of a multi-day chart range,
+        # not the prior trading session: never use it as yesterday's close.
         volume = _safe_float(meta.get("regularMarketVolume"))
         change_pct = ((price - prev) / prev * 100) if price is not None and prev else None
         return Quote(ticker, price, change_pct, volume, "Yahoo Finance", _now_kst())
@@ -218,7 +220,7 @@ def _valid_quote(label: str, quote: Quote) -> Quote:
     if quote.price is None:
         return quote
     ranges = {
-        "KOSPI": (1800, 5000),
+        "KOSPI": (1800, 12000),
         "KOSDAQ": (400, 1500),
         "S&P500": (3000, 9000),
         "NASDAQ": (8000, 40000),
@@ -239,16 +241,35 @@ def _first_valid(*quotes: Quote) -> Quote:
     return quotes[-1]
 
 
+def _first_valid_index(label: str, *quotes: Quote) -> Quote:
+    """Never publish a >=5% Korean index move without independent confirmation."""
+    primary = _first_valid(*quotes)
+    if primary.price is None or primary.change_pct is None or abs(primary.change_pct) < 5.0:
+        return primary
+    for peer in quotes:
+        if (peer is primary or peer.price is None or peer.change_pct is None
+                or peer.source == primary.source):
+            continue
+        same_price = abs(peer.price - primary.price) <= primary.price * 0.02
+        same_move = abs(peer.change_pct - primary.change_pct) <= 0.75
+        if same_price and same_move:
+            return primary
+    return Quote(
+        primary.ticker, primary.price, None, primary.turnover,
+        primary.source, primary.timestamp, "large index move lacks independent confirmation",
+    )
+
+
 def _fetch_index(label: str, ticker: str) -> Quote:
     if ticker == "KRX:KOSPI":
-        return _first_valid(
-            _fetch_pykrx_index("KOSPI", "1001", 1800, 5000),
-            _fetch_naver_index_json("KOSPI", "KOSPI", 1800, 5000),
+        return _first_valid_index("KOSPI",
+            _fetch_pykrx_index("KOSPI", "1001", 1800, 12000),
+            _fetch_naver_index_json("KOSPI", "KOSPI", 1800, 12000),
             _valid_quote("KOSPI", _fetch_us_quote("^KS11")),
-            _fetch_naver_index_html("KOSPI", "KOSPI", 1800, 5000),
+            _fetch_naver_index_html("KOSPI", "KOSPI", 1800, 12000),
         )
     if ticker == "KRX:KOSDAQ":
-        return _first_valid(
+        return _first_valid_index("KOSDAQ",
             _fetch_pykrx_index("KOSDAQ", "2001", 400, 1500),
             _fetch_naver_index_json("KOSDAQ", "KOSDAQ", 400, 1500),
             _valid_quote("KOSDAQ", _fetch_us_quote("^KQ11")),
