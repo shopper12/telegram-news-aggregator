@@ -103,6 +103,10 @@ jobs:
               hours = "1"
               limit = "999"
               if schedule == "0 22 * * *":
+                  # A one-hour window at 07:00 loses nearly all of the US session.
+                  # Mondays need the entire weekend plus Friday's Korean close.
+                  hours = "72" if now_kst.weekday() == 0 else "18"
+                  limit = "300"
                   briefing_kind = "strategy_morning"
                   reason = "kst_0700_morning_strategy"
               elif schedule == "30 22 * * 1-5":
