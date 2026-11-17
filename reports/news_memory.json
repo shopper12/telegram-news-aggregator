@@ -1,7 +1,198 @@
 {
   "version": 2,
-  "updated_at": "2026-11-18T06:55:10+09:00",
+  "updated_at": "2026-11-18T07:10:56+09:00",
   "events": [
+    {
+      "signature": "0535327d2cafd8b549415712aafea039b3f68531",
+      "title": "📌 11/17 미 증시 — 엔비디아 실적 앞두고 하락 후 낙폭 축소, 반도체지수는 상승 엔비디아 실적과 수출 규제 부담, NSA…",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "양자",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "amd",
+        "gpu",
+        "규제",
+        "금리",
+        "데이터센터",
+        "반도체",
+        "선박",
+        "양자컴",
+        "양자컴퓨터"
+      ],
+      "tickers": [
+        "FTEC",
+        "MSCI",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://t.me/goldilbong/17159"
+      ],
+      "materiality": 32,
+      "sentiment": -2,
+      "first_seen": "2026-11-17T22:00:01+00:00",
+      "last_seen": "2026-11-17T22:00:01+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4a0222a16bab8c4b7e2e75990571fe18b68ed7c3",
+      "title": "🔔 ‘실패한 코로나藥’ 꼬리표 떼나…신풍제약, 獨 머크 업고 말라리아 시... 📈 #신풍제약 📝 #말라리아치료제 #제약바이오 머…",
+      "sectors": [
+        "바이오"
+      ],
+      "keywords": [
+        "임상"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/5ce019",
+        "https://t.me/dreago_news_ch/326503"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-17T21:58:48+00:00",
+      "last_seen": "2026-11-17T21:58:48+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1d7d4c391505845ba05fa016f1382943d57ee330",
+      "title": "🔔 \"중국산 광트랜시버 막겠다\"…美규제에 관련주 들썩",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "규제"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/6a325b",
+        "https://t.me/dreago_news_ch/326502"
+      ],
+      "materiality": 14,
+      "sentiment": 0,
+      "first_seen": "2026-11-17T21:57:39+00:00",
+      "last_seen": "2026-11-17T21:57:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "59f6f8f8f16cef9a0161aa86cfc3e82b921d3019",
+      "title": "삼성전자, 메타용 커스텀 HBM4E 개발…베이스 다이 2나노 자체 생산 계획 2026.11.17",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "amd",
+        "hbm",
+        "meta",
+        "sk하이닉스",
+        "tsmc",
+        "메모리",
+        "메타",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "NWS",
+        "NWSA",
+        "YI"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/13687",
+        "https://trendforce.com/news/2026/11/17/news-samsung-reportedly-developing-custom-hbm4e-for-meta-plans-2nm-base-die-production"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-11-17T21:57:34+00:00",
+      "last_seen": "2026-11-17T21:57:34+00:00",
+      "count": 1
+    },
+    {
+      "signature": "0575d24891e2271680dc29bbc380c8a93260a26a",
+      "title": "머스크 「스페이스X, 오픈AI 매출 0 가정」…「수요 안 늘면 제품에 문제」 2026.11.17",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "gpu",
+        "hbm",
+        "mu",
+        "sk하이닉스",
+        "데이터센터",
+        "반도체",
+        "삼성전자",
+        "엔비디아"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "YI"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/13686",
+        "https://wccftech.com/elon-musk-says-spacex-is-assuming-zero-sales-to-openai-and-says-something-is-wrong-with-their-products-if-theyre-not-seeing-super-fast-demand-growth"
+      ],
+      "materiality": 22,
+      "sentiment": 2,
+      "first_seen": "2026-11-17T21:55:31+00:00",
+      "last_seen": "2026-11-17T21:55:31+00:00",
+      "count": 1
+    },
+    {
+      "signature": "17842786abc27a4caaf0f8be3f54d3c1aa5ef20a",
+      "title": "AI 차익실현에 3대 지수 하락, 장마감 후 엔비디아 실적·가이던스 컨센 상회 동일가중 S&P500(RSP) -1.4%로 시가총액 가중 지수보다 더 빠져 상승 종목 수가 적었음. 엔비디아가 매출·EPS·4Q 가이던스",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "fomc",
+        "hbm",
+        "관세",
+        "규제",
+        "금리",
+        "데이터센터",
+        "메모리",
+        "반도체"
+      ],
+      "tickers": [
+        "CENTCOM",
+        "CIB",
+        "HBM",
+        "NDAQ",
+        "RSP",
+        "TPG",
+        "TPGXL",
+        "WTI"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/13685",
+        "https://t.me/rafikiresearch/26793"
+      ],
+      "materiality": 27,
+      "sentiment": -1,
+      "first_seen": "2026-11-17T21:18:05+00:00",
+      "last_seen": "2026-11-17T21:53:35+00:00",
+      "count": 2
+    },
     {
       "signature": "7f25d9410f46a7a272576bbe55eb35a297ed82a9",
       "title": "엔비디아 리더십·규제 리스크: 젠슨 황은 복귀 의사를 밝혔지만 이사회는 검토하지 않는다는 보도가 있고, 12/1 의회 증언과 수출통제(메가스피드) 조사가 남아 있습니다. 매파 연준과 시장 폭 약화: 무살렘 총재의 추",
@@ -33,7 +224,7 @@
       "sentiment": -1,
       "first_seen": "2026-11-17T21:49:19+00:00",
       "last_seen": "2026-11-17T21:49:19+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "09c9294c35f0bf58f5d877cf8e06baa65d3b8d66",
@@ -59,7 +250,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:49:17+00:00",
       "last_seen": "2026-11-17T21:49:17+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "bb80e1a3dbea97f342957b8612d4f48f592aeae0",
@@ -88,7 +279,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-17T21:49:14+00:00",
       "last_seen": "2026-11-17T21:49:14+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "f7019418bb4ff94c5ec9a53637ec0c1767b04d39",
@@ -112,7 +303,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:49:12+00:00",
       "last_seen": "2026-11-17T21:49:12+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "73cd42439054e3598c3dd4c26f631a2ea100e2af",
@@ -139,7 +330,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:49:10+00:00",
       "last_seen": "2026-11-17T21:49:10+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "35cfc196092314d654d53888c8c74880dac9ea08",
@@ -158,7 +349,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:49:07+00:00",
       "last_seen": "2026-11-17T21:49:07+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "e14ac95bb5ec2302d51e1e9db1150407f7003046",
@@ -188,7 +379,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:49:05+00:00",
       "last_seen": "2026-11-17T21:49:05+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "989e2bba79bd6f24ec2ff0a48a6605713538382f",
@@ -219,7 +410,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:49:03+00:00",
       "last_seen": "2026-11-17T21:49:03+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "1b5ae13a1124e6d590daa212d969769ead6424f2",
@@ -250,7 +441,7 @@
       "sentiment": 3,
       "first_seen": "2026-11-17T21:45:28+00:00",
       "last_seen": "2026-11-17T21:45:28+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "a9060a979f107c1d1708d624f47e6c7d148ac4f8",
@@ -292,7 +483,34 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:44:55+00:00",
       "last_seen": "2026-11-17T21:44:55+00:00",
-      "count": 1
+      "count": 2
+    },
+    {
+      "signature": "17a636da1ffd3ab6a3fa41fd4c0bb27d83d7f5ba",
+      "title": "🔔",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "엔비디아",
+        "알파벳",
+        "메타",
+        "애플",
+        "아마존"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/162554",
+        "https://t.me/dreago_news_ch/324498",
+        "https://dreago.kr/n/43c471",
+        "https://t.me/dreago_news_ch/324601",
+        "https://dreago.kr/n/4e8d58"
+      ],
+      "materiality": 18,
+      "sentiment": 0,
+      "first_seen": "2026-11-12T01:52:37+00:00",
+      "last_seen": "2026-11-17T21:38:00+00:00",
+      "count": 15
     },
     {
       "signature": "176c4e900cacaabf875e7b2d81a305d104f6bbf5",
@@ -317,7 +535,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:37:31+00:00",
       "last_seen": "2026-11-17T21:37:31+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "ce7a6fb93b70c4fb3c12b05aa5f3916d37f8ae3c",
@@ -338,7 +556,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:37:07+00:00",
       "last_seen": "2026-11-17T21:37:07+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "424955dc9670ba984ba526cf6871313348dd6b62",
@@ -361,7 +579,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:37:05+00:00",
       "last_seen": "2026-11-17T21:37:05+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d065f1a5b25cfc15d476d04fe4e48eb4d56896b3",
@@ -380,7 +598,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:36:29+00:00",
       "last_seen": "2026-11-17T21:36:29+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c4911ef97a01541e91c9ebb4b13740f9831de73b",
@@ -403,7 +621,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:35:57+00:00",
       "last_seen": "2026-11-17T21:35:57+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "cea7fdf2b2ffb6aa9c40e9e0d37f6e40de0b23ed",
@@ -418,7 +636,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:35:32+00:00",
       "last_seen": "2026-11-17T21:35:32+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "7d2dd2f3fb0ee57736cd7769678ff0e93ee2823b",
@@ -444,7 +662,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:34:44+00:00",
       "last_seen": "2026-11-17T21:34:44+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "538b10ba57d78f98bc9f6badf225ca5fd5d5a4d6",
@@ -469,7 +687,7 @@
       "sentiment": 3,
       "first_seen": "2026-11-17T21:34:26+00:00",
       "last_seen": "2026-11-17T21:34:26+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d1060f50869433a92a014c21e9f2abd314f73e5d",
@@ -493,7 +711,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-17T21:34:23+00:00",
       "last_seen": "2026-11-17T21:34:23+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "967a850e59a6fa911cda5919ccf462af631e1a06",
@@ -512,7 +730,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:32:13+00:00",
       "last_seen": "2026-11-17T21:32:13+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "968fc76ebed040b931708a34bb5a2a1e6c4d95ea",
@@ -543,7 +761,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-17T21:31:54+00:00",
       "last_seen": "2026-11-17T21:31:54+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "365f4ecdaf3b2333213d08b4a07e5312085e316d",
@@ -567,7 +785,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:31:25+00:00",
       "last_seen": "2026-11-17T21:31:25+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "dd1896cfa4bd021b8cfbef18b1aa62197095d3ac",
@@ -582,7 +800,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:31:06+00:00",
       "last_seen": "2026-11-17T21:31:06+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "de7e6dd23f543e12edffa6efff39ba17a004c7af",
@@ -602,7 +820,7 @@
       "sentiment": 3,
       "first_seen": "2026-11-17T21:30:39+00:00",
       "last_seen": "2026-11-17T21:30:39+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "ba191f67fb7e86e0c341e850fe01f804410c601a",
@@ -632,7 +850,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:52:00+00:00",
       "last_seen": "2026-11-17T21:30:37+00:00",
-      "count": 2
+      "count": 4
     },
     {
       "signature": "fee64932b0210f1b73dada5a0fe3afa330e5ccd3",
@@ -647,7 +865,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:29:40+00:00",
       "last_seen": "2026-11-17T21:29:40+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "b7c12e66c96d9760b5da57ad067e8e34d3894c28",
@@ -668,7 +886,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:29:06+00:00",
       "last_seen": "2026-11-17T21:29:06+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8cb59539e43b5f1a98585d4376d739a610e6da49",
@@ -698,7 +916,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:26:05+00:00",
       "last_seen": "2026-11-17T21:26:05+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "82994869d369fabebd917152975152dfb53bb903",
@@ -713,7 +931,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:26:02+00:00",
       "last_seen": "2026-11-17T21:26:02+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "1d5f4f49dc3ab7636f8631806d3b6565a25e00d9",
@@ -736,7 +954,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-17T21:21:43+00:00",
       "last_seen": "2026-11-17T21:21:43+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "4cb34cb605a4f0616c4fbb8791ddd8c68892c245",
@@ -802,7 +1020,7 @@
       "sentiment": -1,
       "first_seen": "2026-11-17T21:16:46+00:00",
       "last_seen": "2026-11-17T21:16:46+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "b3a841925240bbedf161bf2f996c5db80d046eca",
@@ -827,7 +1045,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:16:17+00:00",
       "last_seen": "2026-11-17T21:16:17+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "53054326dab60677ecc229c7966a8ff601f57e3f",
@@ -843,7 +1061,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:15:49+00:00",
       "last_seen": "2026-11-17T21:15:49+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
@@ -855,7 +1073,7 @@
       "sentiment": 0,
       "first_seen": "2026-08-07T11:24:21+00:00",
       "last_seen": "2026-11-17T21:13:39+00:00",
-      "count": 2281,
+      "count": 2283,
       "source_urls": [
         "https://khan.co.kr/article/202608171607001",
         "https://t.me/dreago_news_ch/296031",
@@ -879,7 +1097,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:12:00+00:00",
       "last_seen": "2026-11-17T21:12:00+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "b9230c2c9cd1bd2797eab1806a47c76b5dd74e47",
@@ -894,7 +1112,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:10:40+00:00",
       "last_seen": "2026-11-17T21:10:40+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "5baa7a435dc737a82b49ca500b4541cdaf473df0",
@@ -913,7 +1131,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:09:54+00:00",
       "last_seen": "2026-11-17T21:09:54+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "aad27865b1c5efb98e716ce3c835ce5ac041c067",
@@ -936,7 +1154,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-17T21:09:15+00:00",
       "last_seen": "2026-11-17T21:09:15+00:00",
-      "count": 2
+      "count": 3
     },
     {
       "signature": "d57b7a2c7dba6eed4d0bfc53b8c769cb7240a11f",
@@ -1017,33 +1235,6 @@
       "first_seen": "2026-11-17T21:03:14+00:00",
       "last_seen": "2026-11-17T21:03:14+00:00",
       "count": 2
-    },
-    {
-      "signature": "17a636da1ffd3ab6a3fa41fd4c0bb27d83d7f5ba",
-      "title": "🔔",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "엔비디아",
-        "알파벳",
-        "메타",
-        "애플",
-        "아마존"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/162554",
-        "https://t.me/dreago_news_ch/324498",
-        "https://dreago.kr/n/43c471",
-        "https://t.me/dreago_news_ch/324601",
-        "https://dreago.kr/n/4e8d58"
-      ],
-      "materiality": 18,
-      "sentiment": -1,
-      "first_seen": "2026-11-12T01:52:37+00:00",
-      "last_seen": "2026-11-17T21:02:49+00:00",
-      "count": 14
     },
     {
       "signature": "403b0e052b0407ef24b109a469b9edb31d68d017",
@@ -10884,138 +11075,6 @@
       "sentiment": -1,
       "first_seen": "2026-11-16T04:20:42+00:00",
       "last_seen": "2026-11-16T04:20:42+00:00",
-      "count": 1
-    },
-    {
-      "signature": "aac6f89803ac26c55d39f68087603e392c0f19d0",
-      "title": "$NVDA 국가별 매출 비중",
-      "sectors": [
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "nvda"
-      ],
-      "tickers": [
-        "NVDA"
-      ],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24496"
-      ],
-      "materiality": 7,
-      "sentiment": 1,
-      "first_seen": "2026-11-16T04:17:28+00:00",
-      "last_seen": "2026-11-16T04:17:28+00:00",
-      "count": 1
-    },
-    {
-      "signature": "fca462f5c7e99d130b05cd4d21e96438650a06c6",
-      "title": "🔔",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/f2ac0a",
-        "https://t.me/dreago_news_ch/323048",
-        "https://dreago.kr/n/bd5d47",
-        "https://t.me/dreago_news_ch/323418",
-        "https://dreago.kr/n/2b060b"
-      ],
-      "materiality": 13,
-      "sentiment": 2,
-      "first_seen": "2026-11-09T01:39:06+00:00",
-      "last_seen": "2026-11-16T04:17:15+00:00",
-      "count": 9
-    },
-    {
-      "signature": "fc956b3b292d007663f8b0247e161331a71d600d",
-      "title": "순환금융의 종료. AI 사업 조달금리가 높아도 진행되었던 것은 뒷배에 돈 쏴주는 형님이 계셨기 때문 젠슨황이 사임한 이후 차기 …",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "nvda",
-        "금리"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/stockinvcowcow/13301"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-11-16T04:16:39+00:00",
-      "last_seen": "2026-11-16T04:16:39+00:00",
-      "count": 1
-    },
-    {
-      "signature": "24cf1fe519d718fafc4bbe6bbd327ef5deccbe30",
-      "title": "엔비디아, AI 기업 지원 자금 삭감 예정; '무제한 ATM' 시대 종말의 위기 젠슨 황 CEO는 퇴임에 앞서 엔비디아가 AI …",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크"
-      ],
-      "keywords": [
-        "ai",
-        "엔비디아"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/stockinvcowcow/13300"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-11-16T04:14:21+00:00",
-      "last_seen": "2026-11-16T04:14:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e387b85b94826bbf8e43718c299f501a01d3c36f",
-      "title": "🔔 안기홍 HLB테라퓨틱스 대표 \"NK치료제 美임상3상 유의성 미확보, 데이터... 📈 #HLB테라퓨틱스 📝 #바이오 #안과질환…",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "임상",
-        "임상3상",
-        "허가"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/cc3a97",
-        "https://t.me/dreago_news_ch/325671"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-11-16T04:10:31+00:00",
-      "last_seen": "2026-11-16T04:10:31+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e9ceb6c40157bd99c53f2635ce5883cde496f476",
-      "title": "🔔 HLB테라퓨틱스 'RGN-259' 3번째 임상 실패 … 개발비 834억 회수 가능할... 📈 #HLB테라퓨틱스 📝 #바이오 …",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "임상"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/d2ccfb",
-        "https://t.me/dreago_news_ch/325672"
-      ],
-      "materiality": 5,
-      "sentiment": -1,
-      "first_seen": "2026-11-16T04:10:31+00:00",
-      "last_seen": "2026-11-16T04:10:31+00:00",
       "count": 1
     }
   ]
