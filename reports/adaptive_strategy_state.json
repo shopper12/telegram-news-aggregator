@@ -1,18 +1,18 @@
 {
   "version": 2,
-  "updated_at": "2026-11-18T13:02:22+09:00",
+  "updated_at": "2026-11-18T14:46:41+09:00",
   "weights": {
-    "momentum": 1.0946,
-    "regime": 0.825,
-    "news": 1.3731,
-    "defensive": 0.9431
+    "momentum": 1.0953,
+    "regime": 0.8211,
+    "news": 1.3798,
+    "defensive": 0.9417
   },
   "stats": {
-    "evaluated_24h": 310,
+    "evaluated_24h": 311,
     "wins_24h": 116,
     "losses_24h": 86,
-    "flat_24h": 108,
-    "average_return_24h_pct": 0.2346,
+    "flat_24h": 109,
+    "average_return_24h_pct": 0.2336,
     "average_win_24h_pct": 1.7448,
     "average_loss_24h_pct": -1.5063,
     "payoff_ratio_24h": 1.1583,
@@ -53,13 +53,13 @@
       "average_return_pct": 0.5538
     },
     "UUP": {
-      "evaluated": 12,
+      "evaluated": 13,
       "wins": 3,
-      "average_return_pct": -0.0423
+      "average_return_pct": -0.0443
     }
   },
   "last_run": {
-    "timestamp": "2026-11-18T13:02:22+09:00",
+    "timestamp": "2026-11-18T14:46:41+09:00",
     "kind": "regular",
     "slot": null,
     "regime": "risk_off",
