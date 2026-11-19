@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-20T06:07:11+09:00",
+  "updated_at": "2026-11-20T06:46:18+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22503,8 +22503,52 @@
           "evaluated_at": "2026-11-19T13:02:40+09:00",
           "price": 29.62,
           "return_pct": 0.0676
+        },
+        "24h": {
+          "evaluated_at": "2026-11-20T06:46:18+09:00",
+          "price": 29.6293,
+          "return_pct": 0.099
         }
       },
+      "learned_24h": true,
+      "learned_at": "2026-11-20T06:46:18+09:00"
+    },
+    {
+      "id": "b0b2dab2346ca91b",
+      "created_at": "2026-11-20T06:46:18+09:00",
+      "slot": "evening",
+      "ticker": "UUP",
+      "asset": "달러",
+      "direction": "LONG",
+      "entry_price": 29.6293,
+      "entry_zone": [
+        29.481154,
+        29.777446
+      ],
+      "stop_price": 29.036714,
+      "target_price": 30.814472,
+      "score": 3.157,
+      "components": {
+        "momentum": 0.5376979710210428,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.0
+      },
+      "component_text": "momentum +0.54, regime +2.00, news +0.00, defensive +1.00",
+      "weights": {
+        "momentum": 1.0969,
+        "regime": 0.8139,
+        "news": 1.3932,
+        "defensive": 0.9393
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.54, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
