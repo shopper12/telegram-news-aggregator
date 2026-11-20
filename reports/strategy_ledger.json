@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-21T05:52:42+09:00",
+  "updated_at": "2026-11-21T06:27:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22571,6 +22571,52 @@
           "return_pct": 0.0024
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "07980d0f10c0339d",
+      "created_at": "2026-11-21T06:27:32+09:00",
+      "slot": "evening",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 81.2004,
+      "entry_zone": [
+        80.794398,
+        81.606402
+      ],
+      "stop_price": 79.576392,
+      "target_price": 84.448416,
+      "score": 4.369,
+      "components": {
+        "momentum": 1.0437252679224307,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +1.04, regime +2.00, news +0.00, defensive +1.70",
+      "weights": {
+        "momentum": 1.0969,
+        "regime": 0.8139,
+        "news": 1.3932,
+        "defensive": 0.9393
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.04, 뉴스 +0.00 / 연결 뉴스: 돈이 채권으로 가면서 국채금리가 떨어지는것=과정은 지난 10월처럼 나쁘지만 결과물(절대치)는 주식에 우호적",
+      "news_evidence": [
+        {
+          "title": "돈이 채권으로 가면서 국채금리가 떨어지는것=과정은 지난 10월처럼 나쁘지만 결과물(절대치)는 주식에 우호적",
+          "urls": [
+            "https://t.me/sharpha/58242"
+          ],
+          "last_seen": "2026-11-20T01:19:50+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
