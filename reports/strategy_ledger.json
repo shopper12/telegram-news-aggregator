@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-22T04:53:40+09:00",
+  "updated_at": "2026-11-22T05:12:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22681,6 +22681,44 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "0d071c5c902b85c9",
+      "created_at": "2026-11-22T05:12:32+09:00",
+      "slot": "evening",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 81.45,
+      "entry_zone": [
+        81.04275,
+        81.85725
+      ],
+      "stop_price": 79.821,
+      "target_price": 84.708,
+      "score": 4.184,
+      "components": {
+        "momentum": 0.8819790400929437,
+        "regime": 2.0,
+        "news": 0.0,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +0.88, regime +2.00, news +0.00, defensive +1.70",
+      "weights": {
+        "momentum": 1.0977,
+        "regime": 0.8103,
+        "news": 1.3999,
+        "defensive": 0.9381
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.88, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
