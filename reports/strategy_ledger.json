@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-21T12:13:42+09:00",
+  "updated_at": "2026-11-21T12:28:06+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22630,7 +22630,13 @@
       "price_is_derivative_proxy": false,
       "proxy_divergence_pct": null,
       "status": "open",
-      "evaluations": {},
+      "evaluations": {
+        "6h": {
+          "evaluated_at": "2026-11-21T12:28:06+09:00",
+          "price": 81.45,
+          "return_pct": 0.3074
+        }
+      },
       "learned_24h": false
     },
     {
