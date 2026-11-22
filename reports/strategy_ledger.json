@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-23T05:05:33+09:00",
+  "updated_at": "2026-11-23T05:27:31+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22743,9 +22743,15 @@
           "evaluated_at": "2026-11-22T11:47:43+09:00",
           "price": 81.45,
           "return_pct": 0.0
+        },
+        "24h": {
+          "evaluated_at": "2026-11-23T05:27:31+09:00",
+          "price": 81.45,
+          "return_pct": 0.0
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-11-23T05:27:31+09:00"
     },
     {
       "id": "576190583e76d9d7",
@@ -22798,6 +22804,53 @@
           "return_pct": 0.0
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "cdeae66de9087bff",
+      "created_at": "2026-11-23T05:27:31+09:00",
+      "slot": "evening",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 81.45,
+      "entry_zone": [
+        81.04275,
+        81.85725
+      ],
+      "stop_price": 79.821,
+      "target_price": 84.708,
+      "score": 4.119,
+      "components": {
+        "momentum": 0.8819790400929437,
+        "regime": 2.0,
+        "news": -0.03041247090810186,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +0.88, regime +2.00, news -0.03, defensive +1.70",
+      "weights": {
+        "momentum": 1.1001,
+        "regime": 0.8004,
+        "news": 1.42,
+        "defensive": 0.9357
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.88, 뉴스 -0.03 / 연결 뉴스: 🔔 한국 투자자, 9월 미 국채 1977년 집계 이후 최대 순매수...7월 국내 증시 급락 영향 📝 #미국국채 #금리 #환율 9…",
+      "news_evidence": [
+        {
+          "title": "🔔 한국 투자자, 9월 미 국채 1977년 집계 이후 최대 순매수...7월 국내 증시 급락 영향 📝 #미국국채 #금리 #환율 9…",
+          "urls": [
+            "https://dreago.kr/n/1d411d",
+            "https://t.me/dreago_news_ch/327918"
+          ],
+          "last_seen": "2026-11-22T01:40:20+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
