@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-11-22T11:09:19+09:00",
+  "updated_at": "2026-11-22T11:47:43+09:00",
   "weights": {
     "momentum": 1.0985,
     "regime": 0.807,
@@ -64,13 +64,11 @@
     }
   },
   "last_run": {
-    "timestamp": "2026-11-22T11:09:19+09:00",
-    "kind": "strategy_morning",
-    "slot": "morning",
+    "timestamp": "2026-11-22T11:47:43+09:00",
+    "kind": "regular",
+    "slot": null,
     "regime": "risk_off",
     "regime_score": -1.633,
-    "recommendation_ids": [
-      "576190583e76d9d7"
-    ]
+    "recommendation_ids": []
   }
 }
