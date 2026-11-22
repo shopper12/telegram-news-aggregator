@@ -1,7 +1,98 @@
 {
   "version": 2,
-  "updated_at": "2026-11-23T05:27:31+09:00",
+  "updated_at": "2026-11-23T05:40:01+09:00",
   "events": [
+    {
+      "signature": "1bdf1d43ddd5fc2d7cde312f2c9933f710a24dd4",
+      "title": "미 금리선물 12월 금리인상 확률 25bp 100% -> 91.2% 50bp 6.0% -> 0.0%",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "금리"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26943"
+      ],
+      "materiality": 8,
+      "sentiment": 0,
+      "first_seen": "2026-11-22T20:35:32+00:00",
+      "last_seen": "2026-11-22T20:35:32+00:00",
+      "count": 1
+    },
+    {
+      "signature": "34e7887a4911e964ad1a6a10cebcbcd016934c32",
+      "title": "역전될 것 같았는데 이렇게 될 줄은 몰랐네",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26942"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-22T20:28:32+00:00",
+      "last_seen": "2026-11-22T20:28:32+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4fcc6f927cf8bd6361028bdd0dcef2ccaac836db",
+      "title": "2026년 수익률 나바 18.1% 필반 18.0%",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26940"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-22T20:28:12+00:00",
+      "last_seen": "2026-11-22T20:28:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4d0837944528ce56a918a99431f3864dea88b4ed",
+      "title": "나스닥바이오테크 -2.05% 필라델피아반도체 -10.55%",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26939"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-22T20:27:51+00:00",
+      "last_seen": "2026-11-22T20:27:51+00:00",
+      "count": 1
+    },
+    {
+      "signature": "9a0de484eac0a67bfaabb777f2d4bef44aa4002f",
+      "title": "SK하이닉스ADR -13.11% 마이크론 -13.89% CXMT -6.24% 삼성전자GDR -10.04%",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/26938"
+      ],
+      "materiality": 6,
+      "sentiment": 0,
+      "first_seen": "2026-11-22T20:26:53+00:00",
+      "last_seen": "2026-11-22T20:26:53+00:00",
+      "count": 1
+    },
     {
       "signature": "ab845ac09473a9ed4525a974dcacae2f3e0381c7",
       "title": "미 데이터센터 -4.72% 엔비디아 -14.01%",
@@ -21,7 +112,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:25:11+00:00",
       "last_seen": "2026-11-22T20:25:11+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "74cec36f597f27f1cc5ef1f59e41ed01a7376639",
@@ -39,7 +130,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:24:17+00:00",
       "last_seen": "2026-11-22T20:24:17+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c6ae6b1ed591b4c8f9cc2c508d70427821fcb04e",
@@ -62,7 +153,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:23:08+00:00",
       "last_seen": "2026-11-22T20:23:08+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "01f5d6f708cf45747682cf784726766d80d5bfd0",
@@ -77,7 +168,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:21:38+00:00",
       "last_seen": "2026-11-22T20:21:38+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8f5c46c91d7ab2a98680ce1054d5877de35a731e",
@@ -96,7 +187,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:19:35+00:00",
       "last_seen": "2026-11-22T20:19:35+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "60ea79014ffe9245821b54305c0fddab1b7ff447",
@@ -111,7 +202,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:18:42+00:00",
       "last_seen": "2026-11-22T20:18:42+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "56d7d5f5f4546d079d75f287426a6ad7775fa847",
@@ -126,7 +217,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-22T20:16:26+00:00",
       "last_seen": "2026-11-22T20:16:26+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "f4667b55db39b244cb2e21bcdb8aabc098b79836",
@@ -10286,87 +10377,6 @@
       "first_seen": "2026-11-20T00:14:26+00:00",
       "last_seen": "2026-11-20T02:01:28+00:00",
       "count": 3
-    },
-    {
-      "signature": "98b41c988d0b56734c9962dc95209132023dd68c",
-      "title": "다음주는 확실히 이번주보단 좋다!!!!!!!!!!!! 믿으시라!",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/58244"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T02:00:49+00:00",
-      "last_seen": "2026-11-20T02:00:49+00:00",
-      "count": 1
-    },
-    {
-      "signature": "c63c8c156bb1cf7c5f858186abbca104f27639f1",
-      "title": "까뮤이앤씨 수주공시",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261120/1002840",
-        "https://t.me/rassiro_channel/312886"
-      ],
-      "materiality": 15,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T02:00:20+00:00",
-      "last_seen": "2026-11-20T02:00:20+00:00",
-      "count": 1
-    },
-    {
-      "signature": "dc17a15303308bdcc41e90a2c382966400b24148",
-      "title": "🔔 바이오니아, 유럽서 '세미 RNA' 경쟁력 부각…\"전신 부작용 최소화\" 📈 #바이오니아 📝 #RNA치료제 #RNA간섭 글로벌…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/a6740a",
-        "https://t.me/dreago_news_ch/327493"
-      ],
-      "materiality": 10,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T01:58:53+00:00",
-      "last_seen": "2026-11-20T01:58:53+00:00",
-      "count": 1
-    },
-    {
-      "signature": "47b49b481f6bc3f6b20ff9157a8a751116d838e5",
-      "title": "코스닥도 하락폭은 비슷비슷하지만 전일 저가까지는 다시 이탈하는 모습은 아니고 여전히 코스피보다는 코스닥 내에서 종목을 찾는게 아…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/goldilbong/17213"
-      ],
-      "materiality": 2,
-      "sentiment": -2,
-      "first_seen": "2026-11-20T01:52:15+00:00",
-      "last_seen": "2026-11-20T01:52:15+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6c6fe41fe8b3524c0e4dce73dd937fef9d6f16f8",
-      "title": "엔터 주가를 보면 확실히 방향성은 나온 것 같음. 바닥에 쩔어있는 친구들은 이제 줍줍대회가 열리고 있음. 오늘이야 쓰나미로 인해…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/Yeouido_Lab/39008"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T01:51:01+00:00",
-      "last_seen": "2026-11-20T01:51:01+00:00",
-      "count": 1
     }
   ]
 }
