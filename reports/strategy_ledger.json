@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-25T07:56:40+09:00",
+  "updated_at": "2026-11-25T08:15:40+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -22962,6 +22962,115 @@
           "return_pct": -0.1779
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "ff50128961f0a71d",
+      "created_at": "2026-11-25T08:15:40+09:00",
+      "slot": "evening",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 81.34,
+      "entry_zone": [
+        80.9333,
+        81.7467
+      ],
+      "stop_price": 79.7132,
+      "target_price": 84.5936,
+      "score": 2.639,
+      "components": {
+        "momentum": 0.9673519717091366,
+        "regime": 2.0,
+        "news": -0.010000000000000002,
+        "defensive": 0.0
+      },
+      "component_text": "momentum +0.97, regime +2.00, news -0.01, defensive +0.00",
+      "weights": {
+        "momentum": 1.1017,
+        "regime": 0.7938,
+        "news": 1.4334,
+        "defensive": 0.9341
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +0.97, 뉴스 -0.01 / 연결 뉴스: 🔔 삼성전자, 중동 스마트폰 점유율 45%…시장 침체 속 1위 지켜 📈 #삼성전자 📝 #스마트폰 중동 시장 침체에도 점유율을 4…; 11/24 화요일 (미국) 11월 CB 소비자신뢰지수/ 이전: 91.7 채권:미국 5년물 국채입찰",
+      "news_evidence": [
+        {
+          "title": "🔔 삼성전자, 중동 스마트폰 점유율 45%…시장 침체 속 1위 지켜 📈 #삼성전자 📝 #스마트폰 중동 시장 침체에도 점유율을 4…",
+          "urls": [
+            "https://dreago.kr/n/7ad1f4",
+            "https://t.me/dreago_news_ch/328516"
+          ],
+          "last_seen": "2026-11-23T23:45:16+00:00"
+        },
+        {
+          "title": "11/24 화요일 (미국) 11월 CB 소비자신뢰지수/ 이전: 91.7 채권:미국 5년물 국채입찰",
+          "urls": [
+            "https://t.me/sharpha/58487"
+          ],
+          "last_seen": "2026-11-24T05:52:41+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "9f2b5dea31bf6c85",
+      "created_at": "2026-11-25T08:15:40+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 638.2,
+      "entry_zone": [
+        635.009,
+        641.391
+      ],
+      "stop_price": 607.399391,
+      "target_price": 699.801219,
+      "score": 1.614,
+      "components": {
+        "momentum": -2.2979255118129736,
+        "regime": -2.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -2.30, regime -2.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.1017,
+        "regime": 0.7938,
+        "news": 1.4334,
+        "defensive": 0.9341
+      },
+      "reason": "글로벌 레짐 -2.00, 모멘텀 -2.30, 뉴스 +4.00 / 연결 뉴스: [미래에셋 전기전자/IT하드웨어 박준서] 전기전자/IT하드웨어 주요 뉴스 정리 2026. 11. 25 (수) ■ 전기전자/IT하…; [SK증권 미래산업/미드스몰캡] Analyst 허선재/02-3773-8197 ▶️티로보틱스 (117730/KQ) / Not Ra…",
+      "news_evidence": [
+        {
+          "title": "[미래에셋 전기전자/IT하드웨어 박준서] 전기전자/IT하드웨어 주요 뉴스 정리 2026. 11. 25 (수) ■ 전기전자/IT하…",
+          "urls": [
+            "https://han.gl/IpziG",
+            "https://han.gl/KNyQZ"
+          ],
+          "last_seen": "2026-11-24T22:51:28+00:00"
+        },
+        {
+          "title": "[SK증권 미래산업/미드스몰캡] Analyst 허선재/02-3773-8197 ▶️티로보틱스 (117730/KQ) / Not Ra…",
+          "urls": [
+            "https://buly.kr/APyDrAy",
+            "https://t.me/YeouidoStory2/120254"
+          ],
+          "last_seen": "2026-11-24T23:08:24+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
