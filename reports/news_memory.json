@@ -1,7 +1,791 @@
 {
   "version": 2,
-  "updated_at": "2026-11-24T09:34:44+09:00",
+  "updated_at": "2026-11-24T10:12:40+09:00",
   "events": [
+    {
+      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
+      "title": "🔔",
+      "sectors": [
+        "거시/정책"
+      ],
+      "keywords": [
+        "정책"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/3dc4c1",
+        "https://t.me/dreago_news_ch/328008",
+        "https://dreago.kr/n/e74c0a",
+        "https://t.me/dreago_news_ch/328550"
+      ],
+      "materiality": 22,
+      "sentiment": 0,
+      "first_seen": "2026-11-22T12:04:32+00:00",
+      "last_seen": "2026-11-24T01:08:35+00:00",
+      "count": 2
+    },
+    {
+      "signature": "9ea82af5f889ca9590263081e30b97cc2090f533",
+      "title": "[하이불스 투뿔 추천주] 삼현(437730) 1차 목표가 돌파 알림\n출처: 하이불스 | 시각: 2026-11-24T00:01:00+00:00",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://hibulls.com?p=89909",
+        "https://naver.me/Fz8r9D5f",
+        "https://t.me/hibulls/10749",
+        "https://hibulls.com?p=89226",
+        "https://naver.me/5wr92Y3q"
+      ],
+      "materiality": 3,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:01:00+00:00",
+      "last_seen": "2026-11-24T01:08:12+00:00",
+      "count": 3
+    },
+    {
+      "signature": "90b93f4411b36c8ec34d4159f13dbc0c4b28b181",
+      "title": "한국 KOSPI 지수가 7.00% 급등, 현재 5038.63 포인트",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70102"
+      ],
+      "materiality": 2,
+      "sentiment": 2,
+      "first_seen": "2026-11-24T01:06:23+00:00",
+      "last_seen": "2026-11-24T01:06:23+00:00",
+      "count": 1
+    },
+    {
+      "signature": "96bf97ad3eb3e3075377cbe64311a5b0beb8ec7b",
+      "title": "핸드랩이 새로운 내용은 아니고 올햬 계속 나왔던 뉴스입니다. 과거 기사들보면 핸드랩이 연구하는건 텐던방식인데 이번 기사에서 CE…",
+      "sectors": [
+        "로봇",
+        "반도체"
+      ],
+      "keywords": [
+        "로봇",
+        "삼성전자",
+        "휴머노이드"
+      ],
+      "tickers": [
+        "005930.KS",
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/009/0005754927?sid=101",
+        "https://t.me/Yeouido_Lab/39061"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T01:03:11+00:00",
+      "last_seen": "2026-11-24T01:03:11+00:00",
+      "count": 1
+    },
+    {
+      "signature": "69bb477a038e657ed7dcc01031219c41aec45741",
+      "title": "\"트럼프, 은밀히 젠슨 황 CEO 복귀 작전…밴스에 주말 특명\" https://www.yna.co.kr/view/AKR20261…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "npu"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/Yeouido_Lab/39060",
+        "https://yna.co.kr/view/AKR20261124005500071?input=copy"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T01:02:19+00:00",
+      "last_seen": "2026-11-24T01:02:19+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1fa7e907c7ecb07292202a86c1805701b031c55c",
+      "title": "세미파이브, '흑자전환 직전' 증권사 발표에 강세 http://spot.thinkpool.com/rd/20261124/10008…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1000849",
+        "https://t.me/rassiro_channel/313079"
+      ],
+      "materiality": 2,
+      "sentiment": 2,
+      "first_seen": "2026-11-24T01:01:47+00:00",
+      "last_seen": "2026-11-24T01:01:47+00:00",
+      "count": 1
+    },
+    {
+      "signature": "81b8084d25a502f019160890dd10f3aefe2e6295",
+      "title": "코미코, '투자 부담의 정점 통과, 증설 효과 가시화 국면' 증권사 발표에 강세 http://spot.thinkpool.com/…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1000842",
+        "https://t.me/rassiro_channel/313078"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T01:01:45+00:00",
+      "last_seen": "2026-11-24T01:01:45+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3bd491fbae56441e676373cd8a55b3bd4361fce3",
+      "title": "NAVER, '2027년 인터넷/게임: 바텀 피싱' 증권사 발표에 강세 http://spot.thinkpool.com/rd/20…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1000836",
+        "https://t.me/rassiro_channel/313075",
+        "https://t.me/rassiro_channel/313077"
+      ],
+      "materiality": 5,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T01:01:34+00:00",
+      "last_seen": "2026-11-24T01:01:43+00:00",
+      "count": 2
+    },
+    {
+      "signature": "67368922ddfd7df0f7e7ba0cc6dd0b41b77c6370",
+      "title": "삼성E&A '불확실성의 시대, 가장 확실한 성장 스토리' 증권사 발표에 강세…4.32% http://spot.thinkpool.…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1000832",
+        "https://t.me/rassiro_channel/313076"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T01:01:39+00:00",
+      "last_seen": "2026-11-24T01:01:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "487ba4a115daa44ce9335b9dc8b41939e5e67d46",
+      "title": "SK텔레콤, '12월 전략: 7만원 매수는 엄청난 기회입니다' 증권사 발표에 강세 http://spot.thinkpool.com…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1000821",
+        "https://t.me/rassiro_channel/313074"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T01:01:23+00:00",
+      "last_seen": "2026-11-24T01:01:23+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f886e7fab756d6ed287c380c5ee5f09243f21c92",
+      "title": "장가간다니까 장이 올라주네~~~~~~~~다행",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/sharpha/58450"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T01:00:21+00:00",
+      "last_seen": "2026-11-24T01:00:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "63fccb8e12a3d97d6a0b8614b74cc5c157d95abf",
+      "title": "✅ 후속기사는 엔비디아와 엮어서 나왔네요. 빅웨이브로보틱스, 엔비디아 연동 이족보행 휴머노이드 ’국내 최초‘ 자동차 부품 공장 …",
+      "sectors": [
+        "로봇",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "엔비디아",
+        "휴머노이드"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://financialpost.co.kr/news/articleView.html?idxno=302710",
+        "https://t.me/c/1208429502/128386"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T01:00:07+00:00",
+      "last_seen": "2026-11-24T01:00:07+00:00",
+      "count": 1
+    },
+    {
+      "signature": "5a967f42a5b700b674a7259d944d1de5577b955c",
+      "title": "🔔 현대차·기아, LA오토쇼서 신차 공개…북미 하이브리드 공략 강화 📈 #현대차 #기아 📝 #하이브리드차 #자동차 북미 하이브리…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "000270.KS",
+        "005380.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/1ad05a",
+        "https://t.me/dreago_news_ch/328548"
+      ],
+      "materiality": 4,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:59:29+00:00",
+      "last_seen": "2026-11-24T00:59:29+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1ba3138a383539ed6f20febf8e4f2c1fd7d8f929",
+      "title": "[리포트 브리핑]SK이노베이션, '정유 외에 엔무브, E&S, On 등에서도 전쟁 이전 대비 높아진 이익 체력' 목표가 190,…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1003410",
+        "https://t.me/rassiro_channel/313073"
+      ],
+      "materiality": 2,
+      "sentiment": -1,
+      "first_seen": "2026-11-24T00:59:21+00:00",
+      "last_seen": "2026-11-24T00:59:21+00:00",
+      "count": 1
+    },
+    {
+      "signature": "cf17dc78df809576b6efa8bc8accdb3ae29369a3",
+      "title": "🔔 \"350만닉스 간다더니\"…삼전·닉스 목표가 낮추는 글로벌 IB들 📈 #삼성전자 #SK하이닉스 📝 #메모리반도체 #HBM #A…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "hbm",
+        "sk하이닉스",
+        "메모리",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/65b888",
+        "https://t.me/dreago_news_ch/328547"
+      ],
+      "materiality": 14,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:55:27+00:00",
+      "last_seen": "2026-11-24T00:55:27+00:00",
+      "count": 1
+    },
+    {
+      "signature": "142c3b9c2a78641f20c4f126ade07b69b2ed3172",
+      "title": "🔔 현대차·기아, 안전한 연구환경 3년째 공식 인증받아 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/0f…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "000270.KS",
+        "005380.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/0f35ee",
+        "https://t.me/dreago_news_ch/328546"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:53:35+00:00",
+      "last_seen": "2026-11-24T00:53:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "4ba2b6b1d7ca0d905363ea20bae5d57cd5ea1f29",
+      "title": "\"2030년 이전엔 못 받는다\" 가스터빈 공급난에 데이터센터들 중고시장으로 https://www.market-ink.co.kr/…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "데이터센터"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://market-ink.co.kr/news/articleView.html?idxno=15806",
+        "https://t.me/YeouidoStory2/120205"
+      ],
+      "materiality": 12,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:51:30+00:00",
+      "last_seen": "2026-11-24T00:51:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8ac0d678834d3e4a20eb73a49b9c4bbbe2ea98a2",
+      "title": "안녕하세요 키움 이차전지 권준수입니다.",
+      "sectors": [
+        "2차전지",
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "lg에너지솔루션",
+        "데이터센터",
+        "리튬",
+        "배터리",
+        "양극재",
+        "에코프로",
+        "에코프로비엠",
+        "정책"
+      ],
+      "tickers": [
+        "086520.KQ",
+        "247540.KQ",
+        "373220.KS",
+        "ATI"
+      ],
+      "source_urls": [
+        "https://t.me/battery_kwon",
+        "https://t.me/corevalue/47781"
+      ],
+      "materiality": 27,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:48:50+00:00",
+      "last_seen": "2026-11-24T00:48:50+00:00",
+      "count": 1
+    },
+    {
+      "signature": "5511289e2cff26c65d4cb244fd3222d24902359c",
+      "title": "🔔 휴림로봇 주가, 11월 24일 장중 7,070원 23.60% 상승 【 겁나빠른 #드리고봇 뉴스 】 https://dreago…",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "로봇"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/dc8b84",
+        "https://t.me/dreago_news_ch/328544"
+      ],
+      "materiality": 4,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:47:40+00:00",
+      "last_seen": "2026-11-24T00:47:40+00:00",
+      "count": 1
+    },
+    {
+      "signature": "cece42879784ac1b9df9bad7d6b37e92e6f3a931",
+      "title": "올해만 사이드카 101번…2008년 금융위기 2배 넘는 ‘널뛰기 증시’",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/chel3337/36548"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:47:38+00:00",
+      "last_seen": "2026-11-24T00:47:38+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f0a13541ec2aee3774ed7b0e34522a2609f48d1c",
+      "title": "[특징주] 삼전닉스 장 초반 7∼8% 급등…3거래일만에 반등",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://t.me/chel3337/36547"
+      ],
+      "materiality": 3,
+      "sentiment": 3,
+      "first_seen": "2026-11-24T00:47:20+00:00",
+      "last_seen": "2026-11-24T00:47:20+00:00",
+      "count": 1
+    },
+    {
+      "signature": "b70c0dc2dead30369a31b72ada800c32451cf5f7",
+      "title": "[리포트 브리핑]아모텍, 'AI 숫자는 탄탄 그 이상' 목표가 25,000원",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "052710.KQ"
+      ],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1003255",
+        "https://t.me/rassiro_channel/313072"
+      ],
+      "materiality": 5,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:47:15+00:00",
+      "last_seen": "2026-11-24T00:47:15+00:00",
+      "count": 1
+    },
+    {
+      "signature": "784446b535c505430440105c5f7a245eae29c374",
+      "title": "#삼성E&A",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "PLUS"
+      ],
+      "source_urls": [
+        "https://awakeplus.co.kr/board/contract/028050",
+        "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261124800292",
+        "https://t.me/sharpha/58447"
+      ],
+      "materiality": 18,
+      "sentiment": 2,
+      "first_seen": "2026-11-24T00:45:01+00:00",
+      "last_seen": "2026-11-24T00:45:01+00:00",
+      "count": 1
+    },
+    {
+      "signature": "14d7142fc2de635dd6bee2c590314fe5b5bdf6c9",
+      "title": "✅ 반도체, 방산에 로봇까지…구미 로봇 산업벨트 구축 https://www.mbn.co.kr/news/society/5232589",
+      "sectors": [
+        "로봇",
+        "반도체",
+        "방산/항공"
+      ],
+      "keywords": [
+        "로봇",
+        "반도체",
+        "방산"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://mbn.co.kr/news/society/5232589",
+        "https://t.me/c/1208429502/128385"
+      ],
+      "materiality": 8,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:45:00+00:00",
+      "last_seen": "2026-11-24T00:45:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "32d6711c9275b454c9e7ecc06f1beddd601d44c7",
+      "title": "원익홀딩스 분기별 실적 추이&매출 비중 반도체 특수가스 + 장비 + 석영 부품 자회사 원익로보틱스는 최근 국민성장펀드 투자계약 …",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/jeilstock/47419"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:44:42+00:00",
+      "last_seen": "2026-11-24T00:44:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1b2909d6bc2e9adca1bf527948be278432641311",
+      "title": "🔔 '두 마리 토끼 잡은' 두산에너빌리티, 원전·가스터빈 쌍끌이..실적개선... 【 겁나빠른 #드리고봇 뉴스 】 https://…",
+      "sectors": [
+        "원전"
+      ],
+      "keywords": [
+        "두산에너빌리티",
+        "원전"
+      ],
+      "tickers": [
+        "034020.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/c43e22",
+        "https://t.me/dreago_news_ch/328539"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:40:06+00:00",
+      "last_seen": "2026-11-24T00:40:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "dc04fc93bdc3a1dd0fd6b36801ce76a630df8ad0",
+      "title": "🔔 폴란드, 내년 초 美 웨스팅하우스와 원전 계약 예정...두산에너빌 수주... 📈 #두산에너빌리티 📝 #원자력발전 #원전기자재…",
+      "sectors": [
+        "원전"
+      ],
+      "keywords": [
+        "두산에너빌리티",
+        "원전",
+        "웨스팅하우스"
+      ],
+      "tickers": [
+        "034020.KS",
+        "JFU"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/d89f4f",
+        "https://t.me/dreago_news_ch/328540"
+      ],
+      "materiality": 13,
+      "sentiment": 2,
+      "first_seen": "2026-11-24T00:40:06+00:00",
+      "last_seen": "2026-11-24T00:40:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "60268654e6e62eb9a42daabd8af9c40879e4edfd",
+      "title": "🔔 두산에너빌리티·우리기술·한전기술 등 원자력발전주 동반 강세…장 초... 【 겁나빠른 #드리고봇 뉴스 】 https://dre…",
+      "sectors": [
+        "원전"
+      ],
+      "keywords": [
+        "두산에너빌리티"
+      ],
+      "tickers": [
+        "034020.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/8257d0",
+        "https://t.me/dreago_news_ch/328538"
+      ],
+      "materiality": 5,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:40:05+00:00",
+      "last_seen": "2026-11-24T00:40:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "197bc3e7e3fb05c35f82a9bce1c6d581f0233f34",
+      "title": "✅ 디케이락, '글로벌 반도체 투톱' 삼성·하이닉스 수주 확대 '잭팟'…IGS 핵심 부품 양산 '주목' http://m.news…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "source_urls": [
+        "http://m.newsprime.co.kr/section_view.html?menu=index&no=756184",
+        "https://t.me/c/1208429502/128384"
+      ],
+      "materiality": 12,
+      "sentiment": 3,
+      "first_seen": "2026-11-24T00:38:44+00:00",
+      "last_seen": "2026-11-24T00:38:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "64331554fa0875ebd7ef1ef26bb733f8fa5cbe5c",
+      "title": "[리포트 브리핑]HL홀딩스, '성장 잠재력과 주주환원대비 주가 저평가' 목표가 45,000원",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1003181",
+        "https://t.me/rassiro_channel/313071"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:37:16+00:00",
+      "last_seen": "2026-11-24T00:37:16+00:00",
+      "count": 1
+    },
+    {
+      "signature": "9a132a95102ee79785795948d43eabad0ac33cf1",
+      "title": "🔔",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "로봇",
+        "휴머노이드"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/e77760",
+        "https://t.me/dreago_news_ch/328545",
+        "https://dreago.kr/n/481ad0",
+        "https://t.me/dreago_news_ch/328543",
+        "https://dreago.kr/n/72aaa3"
+      ],
+      "materiality": 13,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:53:21+00:00",
+      "last_seen": "2026-11-24T00:37:14+00:00",
+      "count": 3
+    },
+    {
+      "signature": "b1c11ce568985ef60aabb0c2f06bc4a237e2a896",
+      "title": "[리포트 브리핑]와이지엔터테인먼트, '비용의 고비를 지나, 2027년은 IP 확장의 해' 목표가 65,000원",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "http://spot.thinkpool.com/rd/20261124/1003175",
+        "https://t.me/rassiro_channel/313070"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:36:14+00:00",
+      "last_seen": "2026-11-24T00:36:14+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ee172758edb84ddcb5b3004385781c6a52745c24",
+      "title": "🔔 젠슨 황 돌아오자 코스피도 5%대 급등…삼전·하닉 ‘불기둥’ 📈 #삼성전자 #SK하이닉스 #삼성전기 📝 #AI반도체 #HBM…",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "바이오",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "cda",
+        "hbm",
+        "sk하이닉스",
+        "반도체",
+        "삼성전자",
+        "엔비디아"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/cda017",
+        "https://t.me/dreago_news_ch/328536"
+      ],
+      "materiality": 10,
+      "sentiment": 2,
+      "first_seen": "2026-11-24T00:35:18+00:00",
+      "last_seen": "2026-11-24T00:35:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "de95c4b8d98ce8fba72d1066713015b8af1220d1",
+      "title": "디케이티가 요즘 스터디들에서 10월부터 이야기가 계속 나왔엇고 오늘 신고가 뚫었네요 실적 + 휴머노이드 + ESS",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "휴머노이드"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/c/1208429502/128383"
+      ],
+      "materiality": 10,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:35:17+00:00",
+      "last_seen": "2026-11-24T00:35:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bf7ab0a23cb716d4f612e5a1fe897f8cc577b9bf",
+      "title": "오늘은 지루하게 견조할듯",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/sharpha/58443"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T00:31:40+00:00",
+      "last_seen": "2026-11-24T00:31:40+00:00",
+      "count": 1
+    },
+    {
+      "signature": "adadfe3b736577abe5ef932d864bb9ac86795696",
+      "title": "🔔 젠슨 황 복귀에 환호…삼전닉스 급등에 장중 '오천피' 회복 📈 #SK하이닉스 #삼성전자 #SK스퀘어 📝 #AI반도체 #HBM…",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "hbm",
+        "sk하이닉스",
+        "반도체",
+        "삼성전자",
+        "엔비디아"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/386a18",
+        "https://t.me/dreago_news_ch/328535"
+      ],
+      "materiality": 8,
+      "sentiment": 3,
+      "first_seen": "2026-11-24T00:31:00+00:00",
+      "last_seen": "2026-11-24T00:31:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "3eb48d31f8b089d8c4b8c32fa7adf7a230180104",
+      "title": "🔔 손정의 ‘1조 달러’ 인수설…SK하이닉스 20% 폭등 📈 #SK하이닉스 📝 #AI반도체 인수 타진 보도가 사실이면 경영권 프…",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "sk하이닉스",
+        "반도체"
+      ],
+      "tickers": [
+        "000660.KS",
+        "FFIV",
+        "JFU"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/19f5e4",
+        "https://t.me/dreago_news_ch/328534"
+      ],
+      "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:30:56+00:00",
+      "last_seen": "2026-11-24T00:30:56+00:00",
+      "count": 1
+    },
     {
       "signature": "a79aa2f3af3eba012698d3c93d9b5c1e9f80cc7b",
       "title": "안녕하세요. 당사의 파트너제품 다이이찌산쿄의 엔허투SC의 임상정보가 업데이트되어 내용 공유드립니다. ▶️ 미국 임상정보사이트",
@@ -23,7 +807,7 @@
       "sentiment": -1,
       "first_seen": "2026-11-24T00:30:13+00:00",
       "last_seen": "2026-11-24T00:30:13+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d245df8832377a85332db424af26180afb7c3021",
@@ -47,7 +831,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:30:04+00:00",
       "last_seen": "2026-11-24T00:30:04+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "0c040d86995fe181c11fd76c79da1d46b40692c8",
@@ -67,7 +851,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:29:49+00:00",
       "last_seen": "2026-11-24T00:29:49+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "fa455d22486423c3ee01e5ce1efac69b1ea893d6",
@@ -82,7 +866,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:28:29+00:00",
       "last_seen": "2026-11-24T00:28:29+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "99956a55defb0b6a3afe0901ae0ce03c21af9199",
@@ -98,7 +882,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-24T00:28:25+00:00",
       "last_seen": "2026-11-24T00:28:25+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "bb969c10e24f44c6c8ae91e8d6da1f83a95c79b4",
@@ -118,7 +902,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-24T00:28:22+00:00",
       "last_seen": "2026-11-24T00:28:22+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "827d1ebd15e0401bbd4fdbd360e65f7cb50f3f34",
@@ -133,7 +917,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T00:28:14+00:00",
       "last_seen": "2026-11-24T00:28:14+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "23757ce16f2523cf26ce2794b672703811b7f767",
@@ -152,7 +936,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T00:25:49+00:00",
       "last_seen": "2026-11-24T00:25:49+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "d48c0973d7cc81fdbf367aeeeacecdba2bc7db73",
@@ -178,7 +962,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:25:42+00:00",
       "last_seen": "2026-11-24T00:25:42+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "dcaee69d3d98b1dd8ae3ec8a382294068edd89f6",
@@ -193,7 +977,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-24T00:25:37+00:00",
       "last_seen": "2026-11-24T00:25:37+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8c067086eef6d9fb38509dec4fa023b2b733e489",
@@ -212,7 +996,7 @@
       "sentiment": 2,
       "first_seen": "2026-11-24T00:24:19+00:00",
       "last_seen": "2026-11-24T00:24:19+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "59e440e574118a6f4e042a8c0bea27101a2fd8fb",
@@ -233,7 +1017,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:21:17+00:00",
       "last_seen": "2026-11-24T00:21:17+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "673465522f572f999ef382615a834b776bd84cf6",
@@ -256,7 +1040,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:21:06+00:00",
       "last_seen": "2026-11-24T00:21:06+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c81c31e74735b2f7c6e18001ec2453eebfecc6af",
@@ -272,7 +1056,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:20:18+00:00",
       "last_seen": "2026-11-24T00:20:18+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "0620a4337528671326e9f193f85284f7148f5a15",
@@ -293,7 +1077,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T00:19:47+00:00",
       "last_seen": "2026-11-24T00:19:47+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c1e9a0f5bb2a08771ce3dafac4dd05d62211af48",
@@ -315,7 +1099,26 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T00:19:02+00:00",
       "last_seen": "2026-11-24T00:19:02+00:00",
-      "count": 1
+      "count": 2
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": -2,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-11-24T00:18:31+00:00",
+      "count": 2428,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
     },
     {
       "signature": "6749b7d87c18515a7566c4ba7bbfd1465b0f5966",
@@ -345,7 +1148,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:15:45+00:00",
       "last_seen": "2026-11-24T00:15:45+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8b2297e6740a870843adbf2aae25976711824b7a",
@@ -364,7 +1167,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T00:13:19+00:00",
       "last_seen": "2026-11-24T00:13:19+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "6fb5bec0b19af176ab772ebae93d94bf6bc47715",
@@ -386,6 +1189,30 @@
         "https://t.me/c/1208429502/128380"
       ],
       "materiality": 9,
+      "sentiment": 1,
+      "first_seen": "2026-11-24T00:11:18+00:00",
+      "last_seen": "2026-11-24T00:12:04+00:00",
+      "count": 2
+    },
+    {
+      "signature": "2a8fa97100e5ef3882cd21a825855baceb31349d",
+      "title": "예스티, 세계 최초 D램용 125매 고압어닐링장비 출하 https://www.edaily.co.kr/News/Read?newsI…",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai"
+      ],
+      "tickers": [
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02043446645649000",
+        "https://t.me/YeouidoStory2/120202",
+        "https://t.me/c/1208429502/128380"
+      ],
+      "materiality": 8,
       "sentiment": 1,
       "first_seen": "2026-11-24T00:11:18+00:00",
       "last_seen": "2026-11-24T00:12:04+00:00",
@@ -420,7 +1247,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-24T00:10:46+00:00",
       "last_seen": "2026-11-24T00:10:46+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "2dbf06a1e0609b26e5fe32e91b85fb171eff515d",
@@ -436,6 +1263,31 @@
         "https://t.me/jeilstock/47418"
       ],
       "materiality": 4,
+      "sentiment": -2,
+      "first_seen": "2026-11-24T00:10:09+00:00",
+      "last_seen": "2026-11-24T00:10:09+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d75ee22fe288e397dcadb0c40ace7e97fae3c921",
+      "title": "어제 급락장에도 잘 버텼고, 오늘도 강한 로봇주들 시세 강하면서 추세까지 좋은 대장주는 ㆍ삼현 https://hibulls.co…",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "로봇"
+      ],
+      "tickers": [
+        "035420.KS"
+      ],
+      "source_urls": [
+        "https://hibulls.com?p=87836",
+        "https://hibulls.com?p=89620",
+        "https://hibulls.com?p=89909",
+        "https://naver.me/5suKvgN2",
+        "https://naver.me/Fz8r9D5f"
+      ],
+      "materiality": 5,
       "sentiment": -2,
       "first_seen": "2026-11-24T00:10:09+00:00",
       "last_seen": "2026-11-24T00:10:09+00:00",
@@ -468,7 +1320,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T00:10:05+00:00",
       "last_seen": "2026-11-24T00:10:05+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "56387183efc7ee8bf0a2e48ecefb1856579e14b3",
@@ -686,27 +1538,6 @@
       "first_seen": "2026-11-24T00:01:11+00:00",
       "last_seen": "2026-11-24T00:01:11+00:00",
       "count": 1
-    },
-    {
-      "signature": "9ea82af5f889ca9590263081e30b97cc2090f533",
-      "title": "[하이불스 투뿔 추천주] 삼현(437730) 1차 목표가 돌파 알림\n출처: 하이불스 | 시각: 2026-11-24T00:01:00+00:00",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS"
-      ],
-      "source_urls": [
-        "https://hibulls.com?p=89909",
-        "https://naver.me/Fz8r9D5f",
-        "https://t.me/hibulls/10749",
-        "https://hibulls.com?p=89226",
-        "https://naver.me/5wr92Y3q"
-      ],
-      "materiality": 3,
-      "sentiment": -1,
-      "first_seen": "2026-11-24T00:01:00+00:00",
-      "last_seen": "2026-11-24T00:00:27+00:00",
-      "count": 2
     },
     {
       "signature": "602de625c71b789676ca408c2f3f9b037a226459",
@@ -1198,25 +2029,6 @@
       "first_seen": "2026-11-23T23:39:58+00:00",
       "last_seen": "2026-11-23T23:39:58+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 2,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-11-23T23:39:04+00:00",
-      "count": 2422,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "54a679248fba425eef9477bb24cdd16fd98f6e50",
@@ -4990,26 +5802,6 @@
       "sentiment": -2,
       "first_seen": "2026-11-22T12:05:16+00:00",
       "last_seen": "2026-11-22T12:05:16+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8280461323f6b4d84002494783eb0c293331c50d",
-      "title": "🔔",
-      "sectors": [
-        "거시/정책"
-      ],
-      "keywords": [
-        "정책"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/3dc4c1",
-        "https://t.me/dreago_news_ch/328008"
-      ],
-      "materiality": 16,
-      "sentiment": 0,
-      "first_seen": "2026-11-22T12:04:32+00:00",
-      "last_seen": "2026-11-22T12:04:32+00:00",
       "count": 1
     },
     {
@@ -9510,822 +10302,6 @@
       "sentiment": 0,
       "first_seen": "2026-11-21T00:03:48+00:00",
       "last_seen": "2026-11-21T00:03:48+00:00",
-      "count": 2
-    },
-    {
-      "signature": "0ca0571d35139a69694d953ee42c8ca50c7db0d6",
-      "title": "앤트로픽, Claude 활용해 167년 난제 ‘리만 가설’ 증명 주장. 독립 검증에서도 주요 관문 통과 : 앤트로픽 소속 수학자…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "GRH",
-        "NNBR"
-      ],
-      "source_urls": [
-        "https://alpo.ge/remark.pdf",
-        "https://t.me/FastStockNewsUSA/24633"
-      ],
-      "materiality": 6,
-      "sentiment": 2,
-      "first_seen": "2026-11-20T23:59:01+00:00",
-      "last_seen": "2026-11-20T23:59:01+00:00",
-      "count": 2
-    },
-    {
-      "signature": "78b1576150cc68a180ae43b90cef106c86311a26",
-      "title": "KBL (업데이트)",
-      "sectors": [
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "nvda",
-        "엔비디아"
-      ],
-      "tickers": [
-        "NVDA"
-      ],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24632"
-      ],
-      "materiality": 7,
-      "sentiment": 2,
-      "first_seen": "2026-11-20T23:55:41+00:00",
-      "last_seen": "2026-11-20T23:55:41+00:00",
-      "count": 2
-    },
-    {
-      "signature": "549a64d97f0762f717e1d37d4418145a74b363e0",
-      "title": "스타링크가 CAAD와 가나 아크라에 위치한 인프라 설계 회사인 CAD 컨설트를 연결했습니다. CAD 컨설트는 외딴 건설 현장에서…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24631"
-      ],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:54:49+00:00",
-      "last_seen": "2026-11-20T23:54:49+00:00",
-      "count": 2
-    },
-    {
-      "signature": "9e89e247009dffa7b5bd0358f2d22d5fc4f02234",
-      "title": "UBS",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24630"
-      ],
-      "materiality": 6,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:54:10+00:00",
-      "last_seen": "2026-11-20T23:54:10+00:00",
-      "count": 2
-    },
-    {
-      "signature": "7067321269ab2bf6fd57a1fabaebcd0ec49392f7",
-      "title": "S&P 500, 2025년 4월 이후 최악의 한 주 마감하며 조정 S&P 500 지수는 2020년 2월 이후 처음으로 7거래일 …",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [
-        "VIX"
-      ],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24629"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:53:16+00:00",
-      "last_seen": "2026-11-20T23:53:16+00:00",
-      "count": 2
-    },
-    {
-      "signature": "99f2224dc9def87ba490bef16088f4d860673c1b",
-      "title": "미국 공화당 상원의원: 젠슨 황, 상원 공개 청문회 참석 동의 미국 공화당 스콧 상원의원 보좌관은 엔비디아 전 CEO 젠슨 황이…",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "엔비디아"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/FastStockNewsUSA/24628"
-      ],
-      "materiality": 4,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:52:48+00:00",
-      "last_seen": "2026-11-20T23:52:48+00:00",
-      "count": 2
-    },
-    {
-      "signature": "0af5f1360124cf0d6bb12d8604391f8c281e6ead",
-      "title": "*SEC PROBES NVIDIA OVER POTENTIAL ACCOUNTING ISSUES: REUTERS *SEC, 엔비디아…",
-      "sectors": [
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "nvidia",
-        "엔비디아"
-      ],
-      "tickers": [
-        "NVDA"
-      ],
-      "source_urls": [
-        "https://t.me/rafikiresearch/26917"
-      ],
-      "materiality": 7,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:51:29+00:00",
-      "last_seen": "2026-11-20T23:51:29+00:00",
-      "count": 2
-    },
-    {
-      "signature": "1cf8dd325d905149b7c8b18522d9d79412b3c23b",
-      "title": "인프라에서 큰 수익 안나니까 반토막씩 난거 아님?",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/rafikiresearch/26916"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:49:47+00:00",
-      "last_seen": "2026-11-20T23:49:47+00:00",
-      "count": 2
-    },
-    {
-      "signature": "a68583ae18846fb7235b8477c1e72563d119090b",
-      "title": "✅",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "엔비디아"
-      ],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/029/0003060294?sid=101",
-        "https://t.me/c/1208429502/128263"
-      ],
-      "materiality": 16,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:49:11+00:00",
-      "last_seen": "2026-11-20T23:49:11+00:00",
-      "count": 2
-    },
-    {
-      "signature": "8166e716d4ddd9df5f56bea06cd3667f438d9189",
-      "title": "어제 그제 사람들이 얘기 많이 했던 건데 1. 앞으로 인프라에서 큰 수익은 안난다 2. 그래도 인프라는 빈 집이라 트레이딩은 된…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/rafikiresearch/26915"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:49:04+00:00",
-      "last_seen": "2026-11-20T23:49:04+00:00",
-      "count": 2
-    },
-    {
-      "signature": "1df29ba813ff501816d7b2faf7f7d4730755e3e4",
-      "title": "🔔 젠슨 황 스캔들에 '폭풍 매수'…믿었던 개미들 비명 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/9b…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/9b6636",
-        "https://t.me/dreago_news_ch/327789"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:40:11+00:00",
-      "last_seen": "2026-11-20T23:40:11+00:00",
-      "count": 2
-    },
-    {
-      "signature": "19a9ba39a8e44127b4574a7657c717e019e58fea",
-      "title": "🔔 삼성전자, 전영현은 파운드리·노태문은 로봇…'투톱' 겸직 해제의 속뜻 📈 #삼성전자 📝 #반도체 #파운드리 #로봇 사업부별 …",
-      "sectors": [
-        "로봇",
-        "반도체"
-      ],
-      "keywords": [
-        "로봇",
-        "반도체",
-        "삼성전자",
-        "파운드리"
-      ],
-      "tickers": [
-        "005930.KS",
-        "JFU"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/e49fcd",
-        "https://t.me/dreago_news_ch/327788"
-      ],
-      "materiality": 14,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:39:32+00:00",
-      "last_seen": "2026-11-20T23:39:32+00:00",
-      "count": 2
-    },
-    {
-      "signature": "76a155a3846519948af2a287e5063ea80b4a23ff",
-      "title": "미장에 삼각파도가 덮쳤다… 엔비디아 조사·앤트로픽 급락·수출규제·금리가 하루에 겹쳐 2026.11.21",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "바이오",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "fomc",
-        "규제",
-        "금리",
-        "데이터센터",
-        "반도체",
-        "서버",
-        "수출규제",
-        "알파벳",
-        "엔비디아"
-      ],
-      "tickers": [
-        "035420.KS"
-      ],
-      "source_urls": [
-        "https://m.blog.naver.com/ranto28/224485601967",
-        "https://t.me/aicorporateanalysisdeepdive/13847"
-      ],
-      "materiality": 21,
-      "sentiment": -2,
-      "first_seen": "2026-11-20T23:39:04+00:00",
-      "last_seen": "2026-11-20T23:39:04+00:00",
-      "count": 2
-    },
-    {
-      "signature": "fd3d46235e933510e5300518317d393975e71888",
-      "title": "속보: 반도체 업종에서 단 일주일 만에 시가총액 2.3조 달러가 증발했다. 필라델피아 반도체지수",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "amd",
-        "규제",
-        "반도체",
-        "서버",
-        "알파벳",
-        "엔비디아"
-      ],
-      "tickers": [
-        "SOX"
-      ],
-      "source_urls": [
-        "https://t.me/TNBfolio/72090"
-      ],
-      "materiality": 27,
-      "sentiment": -2,
-      "first_seen": "2026-11-20T23:29:42+00:00",
-      "last_seen": "2026-11-20T23:29:42+00:00",
-      "count": 2
-    },
-    {
-      "signature": "a791ccba2701e56791068dc5e20cfdb1ecb5aa5e",
-      "title": "🔔 인구 느는데 집·전력은 부족…현대건설이 '기회의 땅' 호주에 꽂힌 이... 📈 #현대건설 📝 #해외건설 #전력인프라 #주택개…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/4bcf94",
-        "https://t.me/dreago_news_ch/327786"
-      ],
-      "materiality": 9,
-      "sentiment": 2,
-      "first_seen": "2026-11-20T23:24:42+00:00",
-      "last_seen": "2026-11-20T23:24:42+00:00",
-      "count": 2
-    },
-    {
-      "signature": "4fe785d670dc11c4bf58cdfd5aa2a40c64967c22",
-      "title": "미국 농무부",
-      "sectors": [
-        "미국빅테크"
-      ],
-      "keywords": [
-        "애플"
-      ],
-      "tickers": [
-        "USDA"
-      ],
-      "source_urls": [
-        "https://t.me/insidertracking/69884"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:21:34+00:00",
-      "last_seen": "2026-11-20T23:21:34+00:00",
-      "count": 2
-    },
-    {
-      "signature": "8b5c5a95056b9bd162f45c54cafb678b4e23cc50",
-      "title": "오라클, 오픈AI 클라우드 계약 이행에 필요한 자금 조달 완료 https://finance.yahoo.com/technology…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "oracle"
-      ],
-      "tickers": [
-        "ORCL"
-      ],
-      "source_urls": [
-        "https://finance.yahoo.com/technology/ai/articles/oracle-says-openai-contract-fully-224306974.html?.tsrc=rss",
-        "https://t.me/moneythemestock/66818"
-      ],
-      "materiality": 12,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:17:02+00:00",
-      "last_seen": "2026-11-20T23:17:02+00:00",
-      "count": 2
-    },
-    {
-      "signature": "017399c81089f41bc0fe592c79a014e969e82bb2",
-      "title": "🔔 위기의 삼전닉스, 팔까 살까… 변동성 클때는 일단 피하는 게 상책 📈 #삼성전자 #SK하이닉스 📝 #메모리반도체 #AI반도체…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "sk하이닉스",
-        "메모리",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/aa4b51",
-        "https://t.me/dreago_news_ch/327785"
-      ],
-      "materiality": 14,
-      "sentiment": 2,
-      "first_seen": "2026-11-20T23:15:36+00:00",
-      "last_seen": "2026-11-20T23:15:36+00:00",
-      "count": 2
-    },
-    {
-      "signature": "f4b24b73ab597e71e9b692f24ecad575e5f32243",
-      "title": "🔔 폭락한 AI주, 물타기할까 갈아탈까…주가 말고 '이것' 보라 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/5b85ed",
-        "https://t.me/dreago_news_ch/327784"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:10:43+00:00",
-      "last_seen": "2026-11-20T23:10:43+00:00",
-      "count": 2
-    },
-    {
-      "signature": "099cc2e6256bd39ef64e7eb0511ddd58ae428f7b",
-      "title": "🔔 현대차 모셔널, TÜV·우버와 무인 로보택시 안전검토 완료 📈 #현대차 📝 #로보택시 #자율주행 무인 로보택시 상용화 전 안…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "005380.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/b21ea0",
-        "https://t.me/dreago_news_ch/327782"
-      ],
-      "materiality": 9,
-      "sentiment": 1,
-      "first_seen": "2026-11-20T23:02:07+00:00",
-      "last_seen": "2026-11-20T23:02:07+00:00",
-      "count": 2
-    },
-    {
-      "signature": "1565ec646764686793513201797c4df2cc613686",
-      "title": "🔔 현대차 엘란트라, 36년 세단의 저력…美 판매 2위에 'AI·하이브리드' 장... 📈 #현대차 📝 #자동차 #하이브리드 엘란…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [
-        "005380.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/5bd418",
-        "https://t.me/dreago_news_ch/327783"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T23:02:07+00:00",
-      "last_seen": "2026-11-20T23:02:07+00:00",
-      "count": 2
-    },
-    {
-      "signature": "38a0974408274b1697907ddcb12c4949705e475e",
-      "title": "\"미녹시딜 압도\" 빗질만으로 탈모 부위 98% 재생… 中·홍콩 연구진 전자 빗 개발 2026.11.21",
-      "sectors": [
-        "AI인프라",
-        "바이오"
-      ],
-      "keywords": [
-        "ai",
-        "임상"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://sedaily.com/article/20117184",
-        "https://t.me/aicorporateanalysisdeepdive/13846"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:56:16+00:00",
-      "last_seen": "2026-11-20T22:56:16+00:00",
-      "count": 2
-    },
-    {
-      "signature": "716a99512440c5ad31feb6c54afc4352b3dc4385",
-      "title": "크로거 브랜드 이유식에서 FDA 가이드라인 초과 납 검출 의혹 https://finance.yahoo.com/markets/st…",
-      "sectors": [
-        "바이오"
-      ],
-      "keywords": [
-        "fda"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://finance.yahoo.com/markets/stocks/articles/kroger-kr-report-says-baby-221234632.html?.tsrc=rss",
-        "https://t.me/moneythemestock/66817"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:43:09+00:00",
-      "last_seen": "2026-11-20T22:43:09+00:00",
-      "count": 2
-    },
-    {
-      "signature": "82faea523f5b64368b639440705570b1c8b50e15",
-      "title": "🔔 SK하이닉스, 키옥시아 투자법인 100% 확보 추진…신규 지출은 1억엔 📈 #SK하이닉스 📝 #반도체 #낸드플래시 기존 키옥…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "낸드",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/a8d156",
-        "https://t.me/dreago_news_ch/327779"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:42:05+00:00",
-      "last_seen": "2026-11-20T22:42:05+00:00",
-      "count": 2
-    },
-    {
-      "signature": "0d1652cc9e67101cabe88fc9ec32a33788df9d64",
-      "title": "🔔 코스피 15% 하락했는데…AI 무장한 GS건설 주가, 상대적 '선방' 【 겁나빠른 #드리고봇 뉴스 】 https://drea…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/11bb05",
-        "https://t.me/dreago_news_ch/327778"
-      ],
-      "materiality": 4,
-      "sentiment": -1,
-      "first_seen": "2026-11-20T22:40:37+00:00",
-      "last_seen": "2026-11-20T22:40:37+00:00",
-      "count": 2
-    },
-    {
-      "signature": "b65d1ccf421701447e83955372466fe816787ce8",
-      "title": "📌 11/20 미 증시 — 옵션 만기와 규제·비용 이슈가 겹친 반도체 중심 조정 엔비디아 회계 조사 보도, 대중국 규제 우려, …",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체",
-        "전력기기"
-      ],
-      "keywords": [
-        "ai",
-        "amd",
-        "sk하이닉스",
-        "규제",
-        "금리",
-        "낸드",
-        "데이터센터",
-        "메모리",
-        "반도체",
-        "서버"
-      ],
-      "tickers": [
-        "000660.KS",
-        "HPQ",
-        "T"
-      ],
-      "source_urls": [
-        "https://t.me/goldilbong/17223"
-      ],
-      "materiality": 23,
-      "sentiment": -2,
-      "first_seen": "2026-11-20T22:32:36+00:00",
-      "last_seen": "2026-11-20T22:32:36+00:00",
-      "count": 2
-    },
-    {
-      "signature": "457db84fffbc96d039c11b717baf3687207c88ca",
-      "title": "크라우드스트라이크가 사이버보안 기업 지스케일러 인수를 위한 협상을 진행 중인 것으로 알려짐. 크라우드 애프터 추가 하락 지스케일…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/69882"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:24:28+00:00",
-      "last_seen": "2026-11-20T22:24:28+00:00",
-      "count": 2
-    },
-    {
-      "signature": "94e592e667dede3785f39d147af04e9edb6a802a",
-      "title": "11월 20일 미주인 브리핑 📺 https://youtu.be/FP1PTe6y_lw ━━━━━━━━━━━━━━ 🎧 주요 이슈와 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/69881",
-        "https://youtu.be/FP1PTe6y_lw"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:11:58+00:00",
-      "last_seen": "2026-11-20T22:11:58+00:00",
-      "count": 2
-    },
-    {
-      "signature": "10c33c5e81f6d5bd8dce20d3369b50c050294526",
-      "title": "🔔 삼전·닉스 따라 무너진 '소부장'株…실적 기대에도 낮아지는 눈높이 📈 #테스 #원익IPS 📝 #반도체장비 #반도체소부장 실적…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/0b11e2",
-        "https://t.me/dreago_news_ch/327774"
-      ],
-      "materiality": 11,
-      "sentiment": -2,
-      "first_seen": "2026-11-20T22:10:31+00:00",
-      "last_seen": "2026-11-20T22:10:31+00:00",
-      "count": 2
-    },
-    {
-      "signature": "1063b5a2d2f7ee47b746964ef68efd1555def550",
-      "title": "속보: 미국 기술주가 코로나19 위기 이후 최악의 한 주를 보내며 약세장에 진입했다. 나스닥100 지수는 금요일 5.6% 급락해…",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "금리",
-        "반도체",
-        "엔비디아",
-        "연준"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/TNBfolio/72089"
-      ],
-      "materiality": 26,
-      "sentiment": -2,
-      "first_seen": "2026-11-20T22:07:55+00:00",
-      "last_seen": "2026-11-20T22:07:55+00:00",
-      "count": 2
-    },
-    {
-      "signature": "c98b79cbc98e375de3130892a45ec4ccf3c8a967",
-      "title": "🔔 외국인, SK하이닉스 2조 팔았다…기관·개인은 삼성전자 '줍줍' 📈 #SK하이닉스 #삼성전자 #삼성전기 📝 #반도체 #전자부…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/bb74cd",
-        "https://t.me/dreago_news_ch/327773"
-      ],
-      "materiality": 12,
-      "sentiment": -1,
-      "first_seen": "2026-11-20T22:05:18+00:00",
-      "last_seen": "2026-11-20T22:05:18+00:00",
-      "count": 2
-    },
-    {
-      "signature": "6dab9a8441dbe1e800f449c81383e55f2c9d2da2",
-      "title": "🔔 SK하이닉스, 키옥시아 CB 보통주 전환…간접 최대주주 올라 📈 #SK하이닉스 📝 #낸드플래시 #반도체 키옥시아 지분을 통한…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "낸드",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/7aba68",
-        "https://t.me/dreago_news_ch/327772"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:05:17+00:00",
-      "last_seen": "2026-11-20T22:05:17+00:00",
-      "count": 2
-    },
-    {
-      "signature": "7a981bb48f0ddbef38a33a2d7ef8f61c175c0b6d",
-      "title": "뉴욕증시 다음 주 전망: 엔비디아 SEC 조사·앤트로픽 공모가 방어·PCE가 방향 결정 2026.11.21",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "fomc",
-        "mu",
-        "금리",
-        "반도체",
-        "엔비디아",
-        "연준",
-        "정책"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/aicorporateanalysisdeepdive/13845",
-        "https://t.me/kimu_nim"
-      ],
-      "materiality": 21,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T22:01:22+00:00",
-      "last_seen": "2026-11-20T22:01:22+00:00",
-      "count": 2
-    },
-    {
-      "signature": "3b877a962294554f41a90ee87e5e1b9d64fc71f9",
-      "title": "속보: 미국 증권거래위원회",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크"
-      ],
-      "keywords": [
-        "ai",
-        "엔비디아"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/TNBfolio/72088"
-      ],
-      "materiality": 27,
-      "sentiment": 2,
-      "first_seen": "2026-11-20T22:00:34+00:00",
-      "last_seen": "2026-11-20T22:00:34+00:00",
-      "count": 2
-    },
-    {
-      "signature": "72cdaafaae1fb4bc21edad367b6efed152ed03e8",
-      "title": "속보: 도널드 트럼프 대통령이 해외에 데이터센터를 짓는 미국 기업에 불이익을 주겠다고 밝혔다. 트럼프 대통령은 아시아 순방 뒤 …",
-      "sectors": [
-        "AI인프라",
-        "거시/정책",
-        "전력기기"
-      ],
-      "keywords": [
-        "ai",
-        "ai 인프라",
-        "규제",
-        "데이터센터",
-        "전선"
-      ],
-      "tickers": [
-        "EQIX"
-      ],
-      "source_urls": [
-        "https://t.me/TNBfolio/72087"
-      ],
-      "materiality": 19,
-      "sentiment": -1,
-      "first_seen": "2026-11-20T21:59:22+00:00",
-      "last_seen": "2026-11-20T21:59:22+00:00",
-      "count": 2
-    },
-    {
-      "signature": "c3fb28d8ec01075255c981f1ae57b8a36f4f86bf",
-      "title": "왜 꼭 좋은 건 나눠서 오고 안좋은 건 한번에 올까",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/rafikiresearch/26913"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T21:58:06+00:00",
-      "last_seen": "2026-11-20T21:58:06+00:00",
-      "count": 2
-    },
-    {
-      "signature": "5d5abe6068547db53cd9015ea410bd69a5e14217",
-      "title": "이란 외무장관 아락치에 따르면 호르무즈 해협은 미국이 이란의 7가지 조건을 수용할 때까지 폐쇄 상태를 유지할 방침이며, 이틀간 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/insidertracking/69880"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-20T21:57:39+00:00",
-      "last_seen": "2026-11-20T21:57:39+00:00",
       "count": 2
     }
   ]
