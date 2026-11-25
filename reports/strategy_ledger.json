@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-26T07:08:43+09:00",
+  "updated_at": "2026-11-26T07:43:32+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -23108,6 +23108,59 @@
           "return_pct": -0.0157
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "576ffb2393261456",
+      "created_at": "2026-11-26T07:43:32+09:00",
+      "slot": "evening",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 82.22,
+      "entry_zone": [
+        81.8089,
+        82.6311
+      ],
+      "stop_price": 80.5756,
+      "target_price": 85.5088,
+      "score": 4.03,
+      "components": {
+        "momentum": 1.1999434604743786,
+        "regime": 2.0,
+        "news": -0.31989409670592595,
+        "defensive": 1.7
+      },
+      "component_text": "momentum +1.20, regime +2.00, news -0.32, defensive +1.70",
+      "weights": {
+        "momentum": 1.1027,
+        "regime": 0.7905,
+        "news": 1.4398,
+        "defensive": 0.9333
+      },
+      "reason": "글로벌 레짐 +2.00, 모멘텀 +1.20, 뉴스 -0.32 / 연결 뉴스: 금일 발언 없음 (참고: 11/22 X에서 연준이 12/9에 또 실수를 하려 한다며 2% 목표 고수 시 경기침체 가능성 경고, 3% 목표가 현실적이라는 입장) 금일 발언 없음 (참고: 11/21 AI 매도세에 대해 ; 금리 많이 내렸네요 아마 주식이 가리지않고 워낙 두들겨패고 박살나니깐 국채에 수요가 좀 몰린감이 있는듯한데 다시 주식이 반등하면…",
+      "news_evidence": [
+        {
+          "title": "금일 발언 없음 (참고: 11/22 X에서 연준이 12/9에 또 실수를 하려 한다며 2% 목표 고수 시 경기침체 가능성 경고, 3% 목표가 현실적이라는 입장) 금일 발언 없음 (참고: 11/21 AI 매도세에 대해 ",
+          "urls": [
+            "https://t.me/rafikiresearch/27070"
+          ],
+          "last_seen": "2026-11-25T21:55:10+00:00"
+        },
+        {
+          "title": "금리 많이 내렸네요 아마 주식이 가리지않고 워낙 두들겨패고 박살나니깐 국채에 수요가 좀 몰린감이 있는듯한데 다시 주식이 반등하면…",
+          "urls": [
+            "https://t.me/goldilbong/17317"
+          ],
+          "last_seen": "2026-11-25T17:33:58+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
