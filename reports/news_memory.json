@@ -1,7 +1,1019 @@
 {
   "version": 2,
-  "updated_at": "2026-11-26T02:47:51+09:00",
+  "updated_at": "2026-11-26T07:08:43+09:00",
   "events": [
+    {
+      "signature": "903049f8358974e99570f555542bb30ae60d6517",
+      "title": "美 FCC, 스페이스X AI 우주 데이터센터 위성 100만 기 배치 승인 2026.11.26",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "ai",
+        "규제",
+        "데이터센터",
+        "아마존",
+        "한은"
+      ],
+      "tickers": [
+        "035420.KS",
+        "FCC",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/001/0016463993",
+        "https://t.me/aicorporateanalysisdeepdive/14010"
+      ],
+      "materiality": 21,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T22:01:30+00:00",
+      "last_seen": "2026-11-25T22:01:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "85aaa4fef1d66090ca810a1b103ad262c602bba4",
+      "title": "🔔 SK하이닉스·中 창신메모리, 차세대 수직형 D램 기술 경쟁 '후끈' 📈 #SK하이닉스 📝 #D램 #반도체 중국 창신메모리의 …",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "sk하이닉스",
+        "메모리",
+        "반도체"
+      ],
+      "tickers": [
+        "000660.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/68bfc5",
+        "https://t.me/aicorporateanalysisdeepdive/14009",
+        "https://t.me/dreago_news_ch/329347"
+      ],
+      "materiality": 13,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:33:55+00:00",
+      "last_seen": "2026-11-25T22:00:45+00:00",
+      "count": 2
+    },
+    {
+      "signature": "682c7ccd4efc19f2eb655677ce8e901e541a3c8d",
+      "title": "🔔 남양주~하남 잇는 새 다리名 ‘팔당창우대교’ 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/0556e7",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/0556e7",
+        "https://t.me/dreago_news_ch/329350"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T22:00:18+00:00",
+      "last_seen": "2026-11-25T22:00:18+00:00",
+      "count": 1
+    },
+    {
+      "signature": "292c0e0f0c8f3804c039b901e8585b865ad44586",
+      "title": "📌 11/25 미 증시 — AI 자금조달 우려로 낙폭 확대 후 반등, 다우·러셀 상승 마감 AI 기업의 신용위험과 관세 이슈로 …",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "cpi",
+        "fomc",
+        "gpu",
+        "관세",
+        "금리",
+        "데이터센터",
+        "메모리",
+        "메타",
+        "반도체"
+      ],
+      "tickers": [
+        "HPQ",
+        "MSCI"
+      ],
+      "source_urls": [
+        "https://t.me/goldilbong/17322"
+      ],
+      "materiality": 27,
+      "sentiment": 2,
+      "first_seen": "2026-11-25T22:00:00+00:00",
+      "last_seen": "2026-11-25T22:00:00+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e535b7cd87658af386ac9a37cd2526703e878d89",
+      "title": "美 10월 PCE 연 3.8% 상승, 3분기 GDP 연 4.3% 성장 2026.11.25",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "fomc",
+        "sk하이닉스",
+        "금리",
+        "삼성전자",
+        "엔비디아",
+        "연준"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS",
+        "035420.KS",
+        "NNBR",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://n.news.naver.com/mnews/article/015/0005358284",
+        "https://t.me/aicorporateanalysisdeepdive/14008"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:59:30+00:00",
+      "last_seen": "2026-11-25T21:59:30+00:00",
+      "count": 1
+    },
+    {
+      "signature": "da8a8bca9bb6776ab3d42378bcdaed36468c0a6e",
+      "title": "나스닥 장중 -4.6%에서 V자 반등, 근원 PCE 3.3%에 12월 인상 98% 반영 트럼프 행정부는 중국·EU·인도·일본 등 14개국에 301조 신규 관세를 제안함. 그런데도 장 후반에는 AI 매도로 채권 쪽으로",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "fomc",
+        "gpu",
+        "관세",
+        "금리",
+        "메모리",
+        "메타",
+        "반도체",
+        "아마존"
+      ],
+      "tickers": [
+        "NDAQ",
+        "WTI"
+      ],
+      "source_urls": [
+        "https://t.me/aicorporateanalysisdeepdive/14007",
+        "https://t.me/insidertracking/70220",
+        "https://t.me/rafikiresearch/27061"
+      ],
+      "materiality": 30,
+      "sentiment": -1,
+      "first_seen": "2026-11-25T21:12:16+00:00",
+      "last_seen": "2026-11-25T21:58:10+00:00",
+      "count": 3
+    },
+    {
+      "signature": "eb10bd5290e2bf722de1a1c287cc0abca61d6fc4",
+      "title": "10월 PCE 3.8%로 12/8~9 FOMC 인상이 거의 기정사실이 되었습니다. AI 신규 상장주의 공모가 하회 민주당의 중간선거 압승으로 AI 규제 강화 우려가 커진 점도 기술주 할인 요인입니다.\n출처: rafi",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크"
+      ],
+      "keywords": [
+        "ai",
+        "fomc",
+        "관세",
+        "규제",
+        "금리",
+        "엔비디아",
+        "연준",
+        "정책"
+      ],
+      "tickers": [
+        "JFU",
+        "NWS",
+        "NWSA"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27074"
+      ],
+      "materiality": 19,
+      "sentiment": -1,
+      "first_seen": "2026-11-25T21:55:19+00:00",
+      "last_seen": "2026-11-25T21:55:19+00:00",
+      "count": 1
+    },
+    {
+      "signature": "14229d7f94c78f23017f57dcc70163fb168db24d",
+      "title": "Ashish Vaswani (NVIDIA, 2026.6 Essential AI에서 합류) Noam Shazeer (OpenAI, 2026.6 Google Gemini 공동리드에서 이적) (참고: 11/10~11 블룸",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체",
+        "방산/항공"
+      ],
+      "keywords": [
+        "ai",
+        "googl",
+        "kai",
+        "nvidia",
+        "mu"
+      ],
+      "tickers": [
+        "NNBR",
+        "NVDA"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27025",
+        "https://t.me/rafikiresearch/27073"
+      ],
+      "materiality": 10,
+      "sentiment": 0,
+      "first_seen": "2026-11-24T22:46:04+00:00",
+      "last_seen": "2026-11-25T21:55:16+00:00",
+      "count": 4
+    },
+    {
+      "signature": "a6d03d9b1308c7037b7753d3b9deec7f55e1bead",
+      "title": "11/25 SpaceX 주가는 합병 희석 우려로 7.5% 하락해 공모가 135달러를 하회) 11/23 CEO 복귀 후 11/24 첫 전사회의를 주재했습니다. 현지 보도(WIRED 녹취 인용 2차 매체 기준)에 따르면",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "mu",
+        "nvidia",
+        "반도체",
+        "엔비디아"
+      ],
+      "tickers": [
+        "NVDA",
+        "NVIDIA",
+        "TSLA"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27072"
+      ],
+      "materiality": 15,
+      "sentiment": -1,
+      "first_seen": "2026-11-25T21:55:14+00:00",
+      "last_seen": "2026-11-25T21:55:14+00:00",
+      "count": 1
+    },
+    {
+      "signature": "18425620672b99e0a4e02a879dde4c42f1d53228",
+      "title": "Cathie Wood (ARK Invest) 금일 발언 없음 (참고: 발언은 아니나 11/24 Anthropic 약 6,160만달러 매수, Meta와 Palantir 축소, ARKB 일부 매도. 11/20 엔비디아 ",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "meta",
+        "엔비디아"
+      ],
+      "tickers": [
+        "CRWV",
+        "HPQ"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27071"
+      ],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:55:12+00:00",
+      "last_seen": "2026-11-25T21:55:12+00:00",
+      "count": 1
+    },
+    {
+      "signature": "aec352882e159ede07ff90cb0590f3cad3ef2cf4",
+      "title": "금일 발언 없음 (참고: 11/22 X에서 연준이 12/9에 또 실수를 하려 한다며 2% 목표 고수 시 경기침체 가능성 경고, 3% 목표가 현실적이라는 입장) 금일 발언 없음 (참고: 11/21 AI 매도세에 대해 ",
+      "sectors": [
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "ai",
+        "연준"
+      ],
+      "tickers": [
+        "LASR",
+        "PS"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27070"
+      ],
+      "materiality": 18,
+      "sentiment": -2,
+      "first_seen": "2026-11-25T21:55:10+00:00",
+      "last_seen": "2026-11-25T21:55:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ca853b79b169e043c1cbcc8ed6f3b2e7b5ecc63c",
+      "title": "금일 발언 없음 (참고: 11/17 CNBC/TBPN에서 소수 프런티어 모델 독점 시 칩 공급사 가격결정력 약화 가능성 언급) 금일 발언 없음 (참고: 11/8 공개 영상에서 OpenAI와 Anthropic을 이번 ",
+      "sectors": [
+        "AI인프라",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "반도체"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27069"
+      ],
+      "materiality": 13,
+      "sentiment": -1,
+      "first_seen": "2026-11-25T21:55:07+00:00",
+      "last_seen": "2026-11-25T21:55:07+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e14ac95bb5ec2302d51e1e9db1150407f7003046",
+      "title": "→ 시사점: 재정적자 확대와 PCE 재가속 국면에서 금 비중 10~15%는 구조적 헤지로 유효하다는 입장입니다. AI 신규 상장주의 평가이익에 대한 경계도 함께 시사합니다. 금일 발언 없음 (참고: 최근 13F에서 ",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "tsmc",
+        "아마존",
+        "알파벳",
+        "엔비디아"
+      ],
+      "tickers": [
+        "NNBR"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27068"
+      ],
+      "materiality": 13,
+      "sentiment": -1,
+      "first_seen": "2026-11-25T21:55:05+00:00",
+      "last_seen": "2026-11-25T21:55:05+00:00",
+      "count": 1
+    },
+    {
+      "signature": "aeb4b8f222d466789cb2ea5ec973b956dd5a84dd",
+      "title": "[글로벌 투자 구루 브리핑] 2026.11.26 (목) 기준: 11/25(수) 미국장 마감",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "fomc",
+        "meta",
+        "관세",
+        "금리",
+        "반도체"
+      ],
+      "tickers": [
+        "ALC",
+        "JFU",
+        "PS"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70217",
+        "https://t.me/rafikiresearch/27067"
+      ],
+      "materiality": 23,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:08:24+00:00",
+      "last_seen": "2026-11-25T21:55:03+00:00",
+      "count": 2
+    },
+    {
+      "signature": "68249c03414308aac8bab33d1ecda23fd2f9bc92",
+      "title": "민주당 데이터센터 반대 발언 브리핑 — 2026-11-26",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "바이오"
+      ],
+      "keywords": [
+        "규제",
+        "데이터센터",
+        "허가"
+      ],
+      "tickers": [
+        "KST"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27066"
+      ],
+      "materiality": 17,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:53:25+00:00",
+      "last_seen": "2026-11-25T21:53:25+00:00",
+      "count": 1
+    },
+    {
+      "signature": "446277dc8f6377fc2b60e873788119136ebb6e93",
+      "title": "11월 26일 미주인 브리핑 📺 https://youtu.be/27kdOwf6hqQ ━━━━━━━━━━━━━━ 🎧 주요 이슈와 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "DOW"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70238",
+        "https://youtu.be/27kdOwf6hqQ"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:50:55+00:00",
+      "last_seen": "2026-11-25T21:50:55+00:00",
+      "count": 1
+    },
+    {
+      "signature": "31c3ea9616466848d3415f6e9f451c2267816997",
+      "title": "🔔 엔비디아 3.9%↓…\"변동성 끝이 안보인다\" 했는데 뜻밖의 전망 📝 #AI #반도체 #미국증시 AI 인프라 투자와 자금조달 …",
+      "sectors": [
+        "AI인프라",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "반도체",
+        "엔비디아"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/4d5b11",
+        "https://t.me/dreago_news_ch/329349"
+      ],
+      "materiality": 6,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:50:43+00:00",
+      "last_seen": "2026-11-25T21:50:43+00:00",
+      "count": 1
+    },
+    {
+      "signature": "2e7157c1604d77e0c76f6bac934e20d183c47f17",
+      "title": "근데 어제처럼 3일만 떨어지면 마이너스네",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27065"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:36:35+00:00",
+      "last_seen": "2026-11-25T21:36:35+00:00",
+      "count": 1
+    },
+    {
+      "signature": "31ca831f130eab9ecb3572406fcdd787cd5a31bd",
+      "title": "미국 국무부가 우크라이나의 F-16 전투기 기술 지원, 유지보수 및 예비 부품 공급을 위한 6억 2,200만 달러 규모의 지원 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70237"
+      ],
+      "materiality": 8,
+      "sentiment": 2,
+      "first_seen": "2026-11-25T21:36:33+00:00",
+      "last_seen": "2026-11-25T21:36:33+00:00",
+      "count": 1
+    },
+    {
+      "signature": "aa52f4dd7bb785aca65be9662b7bab531f3e16a2",
+      "title": "우크라이나군이 러시아 벨고로드주 발루이키에 위치한 자랴 쇼핑센터를 공격용 드론으로 타격한 것으로 전해짐. 해당 시설은 민간 및 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70236"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:35:59+00:00",
+      "last_seen": "2026-11-25T21:35:59+00:00",
+      "count": 1
+    },
+    {
+      "signature": "237da49b47399bf4fd96415d27d0713f68b5fda4",
+      "title": "이렇게 떨어졌는데도 아직 ytd 20% 올라 있네",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27063"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:35:03+00:00",
+      "last_seen": "2026-11-25T21:35:03+00:00",
+      "count": 1
+    },
+    {
+      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
+      "title": "🔔",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-08-07T11:24:21+00:00",
+      "last_seen": "2026-11-25T21:34:59+00:00",
+      "count": 2480,
+      "source_urls": [
+        "https://khan.co.kr/article/202608171607001",
+        "https://t.me/dreago_news_ch/296031",
+        "https://t.me/dreago_news_ch/296082",
+        "https://ytn.co.kr/_ln/0101_202608171951149507",
+        "https://news1.kr/politics/assembly/6261083"
+      ]
+    },
+    {
+      "signature": "c096312897844b70af97dd7e9cdb51e12c06c07a",
+      "title": "블룸버그는 전 임원이 팔로알토 네트웍스에 회계 부정 혐의를 제기했다고 보도",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70235"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:34:07+00:00",
+      "last_seen": "2026-11-25T21:34:07+00:00",
+      "count": 1
+    },
+    {
+      "signature": "76c0ff084e1119937357cc194999da133cae158c",
+      "title": "로이터에 따르면 콜롬비아 보안군이 카르타헤나의 한 슈퍼마켓에서 17시간 동안 이어진 인질극을 종료하고 약 20~30명의 인질을 …",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70234"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:32:58+00:00",
+      "last_seen": "2026-11-25T21:32:58+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e5338fadf5f1b0024eb1efbffd93d59eb005bd2a",
+      "title": "미 육군 장관 대행은 오늘 미들타운에 위치한 아이오와 육군 탄약공장에서 실시한 통제 폭파 작업을 통해 통제 불능 폭발 위험을 제…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "EPA"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70233"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:31:14+00:00",
+      "last_seen": "2026-11-25T21:31:14+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f26cacd2350a94442ab5c78deb814835a7600beb",
+      "title": "공개된 드론 영상에는 미 육군 폭발물 처리반",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "EOD"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70232"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:30:50+00:00",
+      "last_seen": "2026-11-25T21:30:50+00:00",
+      "count": 1
+    },
+    {
+      "signature": "82e7004df61d4436138a51ef71b325c3b360d1d3",
+      "title": "미국 연방정부 산하 복수 기관이 사이버 보안 침해 사건을 조사 중인 가운데, 재무부 산하 금융범죄단속네트워크",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "CIA",
+        "FBI",
+        "NCIC",
+        "NGA",
+        "ODNI",
+        "USDA"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70229"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:27:39+00:00",
+      "last_seen": "2026-11-25T21:27:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e31957ce08933145c811a76beee802c7a3d8f148",
+      "title": "🔔",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "아마존"
+      ],
+      "tickers": [
+        "005380.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/70440e",
+        "https://t.me/dreago_news_ch/329346"
+      ],
+      "materiality": 19,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:26:56+00:00",
+      "last_seen": "2026-11-25T21:26:56+00:00",
+      "count": 1
+    },
+    {
+      "signature": "1302ac15a542b21d1286028bd47cc179b5b4f1b1",
+      "title": "오늘은 추수감사절로 인해 미장이 휴장합니다.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70228"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:25:54+00:00",
+      "last_seen": "2026-11-25T21:25:54+00:00",
+      "count": 1
+    },
+    {
+      "signature": "21b53197103f80a280671934672b51a9ed10a9b1",
+      "title": "디어",
+      "sectors": [
+        "AI인프라",
+        "거시/정책"
+      ],
+      "keywords": [
+        "ai",
+        "관세",
+        "금리",
+        "환율"
+      ],
+      "tickers": [
+        "DE"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70227"
+      ],
+      "materiality": 24,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:22:06+00:00",
+      "last_seen": "2026-11-25T21:22:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "f76abf3dc7c157618da74c086300bca3c342be50",
+      "title": "SpaceX Wins Government Approval to Launch Space Data Centers",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "artificial intelligence",
+        "data center",
+        "fed",
+        "mu"
+      ],
+      "tickers": [
+        "ATI"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27055"
+      ],
+      "materiality": 11,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:20:45+00:00",
+      "last_seen": "2026-11-25T21:20:45+00:00",
+      "count": 1
+    },
+    {
+      "signature": "23b8aafb16ed7cc40474855c09b3926990e27931",
+      "title": "🔔 D램 미세화 걸림돌 ‘캐패시터’… 삼성전자는 ‘쌓고’ SK하이닉스는 ... 📈 #삼성전자 #SK하이닉스 📝 #DRAM #메모…",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "dram",
+        "sk하이닉스",
+        "메모리",
+        "반도체",
+        "삼성전자"
+      ],
+      "tickers": [
+        "000660.KS",
+        "005930.KS"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/311821",
+        "https://t.me/dreago_news_ch/329345"
+      ],
+      "materiality": 12,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:20:06+00:00",
+      "last_seen": "2026-11-25T21:20:06+00:00",
+      "count": 1
+    },
+    {
+      "signature": "334a1738f9edaba7cf2ba3a2312d3c7b8a0af694",
+      "title": "미국 레딧 관심도 엔비디아, 앤트로픽 그리고 나스닥 집중",
+      "sectors": [
+        "미국빅테크"
+      ],
+      "keywords": [
+        "엔비디아"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70226"
+      ],
+      "materiality": 4,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:19:39+00:00",
+      "last_seen": "2026-11-25T21:19:39+00:00",
+      "count": 1
+    },
+    {
+      "signature": "ba914c1e36c7da566343728ba2ac36c66c70d71f",
+      "title": "🇺🇸 미국 증시 마감 브리핑 📅 2026년 11월 25일",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "amd",
+        "fed",
+        "mu",
+        "nvda",
+        "관세",
+        "금리",
+        "반도체",
+        "서버"
+      ],
+      "tickers": [
+        "NNBR"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking",
+        "https://t.me/insidertracking/70218",
+        "https://t.me/insidertracking/70223",
+        "https://t.me/insidertracking/70225"
+      ],
+      "materiality": 27,
+      "sentiment": -2,
+      "first_seen": "2026-11-25T21:09:13+00:00",
+      "last_seen": "2026-11-25T21:18:48+00:00",
+      "count": 3
+    },
+    {
+      "signature": "463b2ee67a32bbced7a08a9d8aacd71fa4199884",
+      "title": "미국 기업 섹터별 소식 정리",
+      "sectors": [
+        "AI인프라",
+        "로봇",
+        "미국빅테크",
+        "바이오",
+        "반도체",
+        "방산/항공"
+      ],
+      "keywords": [
+        "ai",
+        "fda",
+        "meta",
+        "nvda",
+        "데이터센터",
+        "로봇",
+        "메타",
+        "반도체",
+        "방산",
+        "엔비디아"
+      ],
+      "tickers": [
+        "ANT",
+        "AZN",
+        "BTBT",
+        "CAPR",
+        "CPNG",
+        "CRL",
+        "CRWV",
+        "DAVA"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70224"
+      ],
+      "materiality": 30,
+      "sentiment": 3,
+      "first_seen": "2026-11-25T21:17:42+00:00",
+      "last_seen": "2026-11-25T21:17:42+00:00",
+      "count": 1
+    },
+    {
+      "signature": "a9ce0776be28e9e5bc131f531690a22b5ddec685",
+      "title": "공포 탐욕지수는 Extreme Fear 17에서 15로 이동",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70222"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:13:13+00:00",
+      "last_seen": "2026-11-25T21:13:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "dedc91a4837d7d7c30c1c06d9b841f4a37dca889",
+      "title": "코스피 야간선물 반등 마감 (양전)",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70221"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:12:37+00:00",
+      "last_seen": "2026-11-25T21:12:37+00:00",
+      "count": 1
+    },
+    {
+      "signature": "924564252282f8d8b0a41c922bbc218d3f8adb5a",
+      "title": "난 도대체 어떤 세상을 살고 있는거야",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27054"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:11:50+00:00",
+      "last_seen": "2026-11-25T21:11:50+00:00",
+      "count": 1
+    },
+    {
+      "signature": "91bafbc39c136476c32d979971d717f5348cabec",
+      "title": "Neuralink Says Received Approval for Trial on Brain Implant 2026-11-25 …",
+      "sectors": [
+        "AI인프라",
+        "바이오"
+      ],
+      "keywords": [
+        "ai",
+        "fda"
+      ],
+      "tickers": [
+        "TILE"
+      ],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27053"
+      ],
+      "materiality": 7,
+      "sentiment": 0,
+      "first_seen": "2026-11-25T21:11:37+00:00",
+      "last_seen": "2026-11-25T21:11:37+00:00",
+      "count": 1
+    },
+    {
+      "signature": "165f949db533f21b02bc8bb852cd783c6afabed4",
+      "title": "트럼프 트루스 소셜 발언 모음 ━━━━━━━━━━━━━━ 아이오와에서 들어오는 초기 보고에 따르면, 미 육군의 위험 완화 조치는…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "NNBR"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70219"
+      ],
+      "materiality": 3,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:10:40+00:00",
+      "last_seen": "2026-11-25T21:10:40+00:00",
+      "count": 1
+    },
+    {
+      "signature": "bbb619226865f318bba065d3cee3f14094d0d4d7",
+      "title": "🔔 폭락장에 커버드콜 ETF도 직격탄… 월분배금 받아도 두 자릿수 손실 📝 #커버드콜ETF 급락기 방어가 약하고 반등 수익도 제…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "FTEC",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://dreago.kr/n/074408",
+        "https://t.me/dreago_news_ch/329343"
+      ],
+      "materiality": 4,
+      "sentiment": -1,
+      "first_seen": "2026-11-25T21:10:10+00:00",
+      "last_seen": "2026-11-25T21:10:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "fca462f5c7e99d130b05cd4d21e96438650a06c6",
+      "title": "🔔",
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "amd"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/cd3cb9",
+        "https://t.me/dreago_news_ch/327040",
+        "https://dreago.kr/n/e0525c",
+        "https://t.me/dreago_news_ch/327132",
+        "https://dreago.kr/n/ee4be4"
+      ],
+      "materiality": 26,
+      "sentiment": 0,
+      "first_seen": "2026-11-19T01:43:24+00:00",
+      "last_seen": "2026-11-25T21:09:02+00:00",
+      "count": 17
+    },
+    {
+      "signature": "86e6ac6b04978e7e375c661b901f25f06e14b23f",
+      "title": "*BOEHLY SIGNS SHARE SWAP DEAL FOR LUKOIL GLOBAL ASSETS: REUTERS *보흘리, 루…",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/rafikiresearch/27050"
+      ],
+      "materiality": 14,
+      "sentiment": 1,
+      "first_seen": "2026-11-25T21:08:53+00:00",
+      "last_seen": "2026-11-25T21:08:53+00:00",
+      "count": 1
+    },
+    {
+      "signature": "d57b7a2c7dba6eed4d0bfc53b8c769cb7240a11f",
+      "title": "🔔",
+      "sectors": [
+        "AI인프라"
+      ],
+      "keywords": [
+        "ai",
+        "데이터센터"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/8a63a5",
+        "https://t.me/dreago_news_ch/324848",
+        "https://dreago.kr/n/0f7d6b",
+        "https://t.me/dreago_news_ch/324871",
+        "https://dreago.kr/n/b5bcdd"
+      ],
+      "materiality": 25,
+      "sentiment": 0,
+      "first_seen": "2026-11-12T14:24:56+00:00",
+      "last_seen": "2026-11-25T21:05:59+00:00",
+      "count": 43
+    },
     {
       "signature": "0ac0cbc614f1e072aba2134d36b6b3eb57a7fa16",
       "title": "저항선 부근에서 쉬었다가 다시 재돌파시도중 오늘은 그 전형적인 약세장 패턴은 아니긴함. 전강후약 전약후약이였는데 전약후강 뒷심이…",
@@ -1135,25 +2147,6 @@
       "first_seen": "2026-11-25T05:50:50+00:00",
       "last_seen": "2026-11-25T05:50:50+00:00",
       "count": 1
-    },
-    {
-      "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
-      "title": "🔔",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "materiality": 26,
-      "sentiment": 0,
-      "first_seen": "2026-08-07T11:24:21+00:00",
-      "last_seen": "2026-11-25T05:47:21+00:00",
-      "count": 2478,
-      "source_urls": [
-        "https://khan.co.kr/article/202608171607001",
-        "https://t.me/dreago_news_ch/296031",
-        "https://t.me/dreago_news_ch/296082",
-        "https://ytn.co.kr/_ln/0101_202608171951149507",
-        "https://news1.kr/politics/assembly/6261083"
-      ]
     },
     {
       "signature": "9d84863ee6db1ca56a9c22df218c79d809a5fea7",
@@ -3816,34 +4809,6 @@
       "count": 3
     },
     {
-      "signature": "14229d7f94c78f23017f57dcc70163fb168db24d",
-      "title": "Ashish Vaswani (NVIDIA, 2026.6 Essential AI에서 합류) Noam Shazeer (OpenAI, 2026.6 Google Gemini 공동리드에서 이적) (참고: 11/10~11 블룸",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체",
-        "방산/항공"
-      ],
-      "keywords": [
-        "ai",
-        "googl",
-        "kai",
-        "nvidia"
-      ],
-      "tickers": [
-        "NNBR",
-        "NVDA"
-      ],
-      "source_urls": [
-        "https://t.me/rafikiresearch/27025"
-      ],
-      "materiality": 10,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T22:46:04+00:00",
-      "last_seen": "2026-11-24T22:46:04+00:00",
-      "count": 3
-    },
-    {
       "signature": "9aa879630a4b8c990a5f8bd37dc449da256ba0a8",
       "title": "11/14에는 외부 AI 에이전트의 계좌 접근을 차단하겠다는 입장('rogue agents')을 밝혔습니다.) FT(11/24)는 테슬라·스페이스X가 연말을 목표로 합병 협상 중이라고 보도했으며, 이는 본인 발언이 ",
       "sectors": [
@@ -4434,30 +5399,6 @@
       "first_seen": "2026-11-24T22:17:13+00:00",
       "last_seen": "2026-11-24T22:17:13+00:00",
       "count": 2
-    },
-    {
-      "signature": "d57b7a2c7dba6eed4d0bfc53b8c769cb7240a11f",
-      "title": "🔔",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "데이터센터"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/8a63a5",
-        "https://t.me/dreago_news_ch/324848",
-        "https://dreago.kr/n/0f7d6b",
-        "https://t.me/dreago_news_ch/324871",
-        "https://dreago.kr/n/b5bcdd"
-      ],
-      "materiality": 25,
-      "sentiment": -1,
-      "first_seen": "2026-11-12T14:24:56+00:00",
-      "last_seen": "2026-11-24T22:16:40+00:00",
-      "count": 41
     },
     {
       "signature": "132861cca3460763306dc7aa3c5c2d5fc23b1900",
@@ -9835,30 +10776,6 @@
       "count": 1
     },
     {
-      "signature": "fca462f5c7e99d130b05cd4d21e96438650a06c6",
-      "title": "🔔",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체",
-        "amd"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/cd3cb9",
-        "https://t.me/dreago_news_ch/327040",
-        "https://dreago.kr/n/e0525c",
-        "https://t.me/dreago_news_ch/327132",
-        "https://dreago.kr/n/ee4be4"
-      ],
-      "materiality": 26,
-      "sentiment": 2,
-      "first_seen": "2026-11-19T01:43:24+00:00",
-      "last_seen": "2026-11-24T03:17:40+00:00",
-      "count": 16
-    },
-    {
       "signature": "c62447dbdab40e87ab51869ad4172aa8b3317d6d",
       "title": "[리포트 브리핑]지투지바이오, '기술 검증에서 기술수출로' Not Rated",
       "sectors": [],
@@ -9933,883 +10850,6 @@
       "sentiment": 0,
       "first_seen": "2026-11-24T03:06:41+00:00",
       "last_seen": "2026-11-24T03:06:41+00:00",
-      "count": 1
-    },
-    {
-      "signature": "19daf656e927bf1103f71217ee876744c463e634",
-      "title": "[리포트 브리핑]모나용평, '단기 분양 실적보다 지속될 개발에 주목' 목표가 2,500원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1005073",
-        "https://t.me/rassiro_channel/313116"
-      ],
-      "materiality": 8,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T03:06:18+00:00",
-      "last_seen": "2026-11-24T03:06:18+00:00",
-      "count": 1
-    },
-    {
-      "signature": "43a9bae21f5b4be65a05e2b402ec3cd444d1a7d9",
-      "title": "SK하이닉스 임원, 주가 급등 하루 전 자사주 1500주 매수 https://m.stock.naver.com/investment…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스"
-      ],
-      "tickers": [
-        "000660.KS",
-        "035420.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://m.stock.naver.com/investment/news/flashnews/421/0009306950",
-        "https://t.me/moneythemestock/66907"
-      ],
-      "materiality": 8,
-      "sentiment": 3,
-      "first_seen": "2026-11-24T03:06:13+00:00",
-      "last_seen": "2026-11-24T03:06:13+00:00",
-      "count": 1
-    },
-    {
-      "signature": "46ce2642f3ecd35ab85de1de7b5ca69a7ad77e07",
-      "title": "🔔 \"젠슨 황은 신뢰예요\" 돌아온 투심...5000피 복귀 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #HBM 젠슨 황의 복귀…",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "sk하이닉스",
-        "반도체",
-        "삼성전자",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/f095ca",
-        "https://t.me/dreago_news_ch/328625"
-      ],
-      "materiality": 21,
-      "sentiment": 3,
-      "first_seen": "2026-11-24T03:05:42+00:00",
-      "last_seen": "2026-11-24T03:05:42+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1274fb5d5ed3ee96986f059ed46b4ef40b477cd8",
-      "title": "🔔 “생큐 젠슨황”… 엔비디아 시총 1280조원 ↑, 삼전닉스 불기둥 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #HBM 엔비…",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "sk하이닉스",
-        "반도체",
-        "삼성전자",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/2f81c0",
-        "https://t.me/dreago_news_ch/328626"
-      ],
-      "materiality": 14,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T03:05:42+00:00",
-      "last_seen": "2026-11-24T03:05:42+00:00",
-      "count": 1
-    },
-    {
-      "signature": "029476d33042e6ac0ef9b83fd53ffc65a7499f0f",
-      "title": "🔔 웍스피어 임원진 연쇄 퇴진…엑시트 고심하는 어피너티, 윤현준 체제 정... 【 겁나빠른 #드리고봇 뉴스 】 https://d…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/0caa29",
-        "https://t.me/dreago_news_ch/328624"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T03:04:21+00:00",
-      "last_seen": "2026-11-24T03:04:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "37802d14f31693c7eca35fc37b1d6c861aa62c7a",
-      "title": "🔔 IBK기업은행, 내용증명 우편 모바일로 전환…카카오 인증 후 열람 📈 #기업은행 📝 #디지털금융 #전자문서 일부 통지서의 모…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/7ea350",
-        "https://t.me/dreago_news_ch/328623"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T03:03:04+00:00",
-      "last_seen": "2026-11-24T03:03:04+00:00",
-      "count": 1
-    },
-    {
-      "signature": "4e13388d2ff056b130fd7ef5c896a124e06bda04",
-      "title": "[리포트 브리핑]한미글로벌, '2027년을 기대하며' 목표가 20,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1005035",
-        "https://t.me/rassiro_channel/313115"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T03:02:19+00:00",
-      "last_seen": "2026-11-24T03:02:19+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f2d1e4175c34f43c8bd25a9d0c806e2359ee36df",
-      "title": "🔔 카카오페이, '굿딜' 제휴 브랜드 111개로 확대 📈 #카카오페이 📝 #간편결제 #핀테크 스타벅스 제휴와 상시 할인은 카카오…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS",
-        "YI"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/3b21e2",
-        "https://t.me/dreago_news_ch/328622"
-      ],
-      "materiality": 4,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T02:57:45+00:00",
-      "last_seen": "2026-11-24T02:57:45+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d669cc5043fbda89a5a59eb2356d1dbcd5205fe2",
-      "title": "'나이스디앤비' 52주 신고가 경신, 최근 3일간 기관 대량 순매수 http://spot.thinkpool.com/rd/2026…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1005022",
-        "https://t.me/rassiro_channel/313069",
-        "https://t.me/rassiro_channel/313114"
-      ],
-      "materiality": 4,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T00:28:25+00:00",
-      "last_seen": "2026-11-24T02:57:26+00:00",
-      "count": 2
-    },
-    {
-      "signature": "bdf9dd422ab1610273030d31873fac3f6b366edd",
-      "title": "🔔 삼성전자 \"韓, 손쉬운 기술 탈취처 오명…간첩죄 개정으로 기술유출 사... 📈 #삼성전자 #SK하이닉스 📝 #반도체 #기술보…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "FFIV"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/f57548",
-        "https://t.me/dreago_news_ch/328621"
-      ],
-      "materiality": 13,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T02:56:22+00:00",
-      "last_seen": "2026-11-24T02:56:22+00:00",
-      "count": 1
-    },
-    {
-      "signature": "35d02f56e14a619df6e7e0a685dc47bce076b980",
-      "title": "✅",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "반도체"
-      ],
-      "tickers": [
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://t.me/c/1208429502/128395",
-        "https://t.me/dreago_news_ch/328613",
-        "https://widedaily.com/news/articleView.html?idxno=304543"
-      ],
-      "materiality": 10,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T02:38:05+00:00",
-      "last_seen": "2026-11-24T02:52:24+00:00",
-      "count": 2
-    },
-    {
-      "signature": "cf199ee858a531ea628595172b277aff804c00f4",
-      "title": "🔔 'AI 거품론' 잠재운 黃의 귀환…증시 패닉 분위기 하루 만에 폭등세로 📈 #삼성전자 #SK하이닉스 📝 #AI반도체 #HBM…",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "sk하이닉스",
-        "반도체",
-        "삼성전자",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/098144",
-        "https://t.me/dreago_news_ch/328618"
-      ],
-      "materiality": 8,
-      "sentiment": 3,
-      "first_seen": "2026-11-24T02:50:47+00:00",
-      "last_seen": "2026-11-24T02:50:47+00:00",
-      "count": 1
-    },
-    {
-      "signature": "2094dfbf3e79166ebff5f59bc2ef80ec307d87bc",
-      "title": "🔔 美 AI 반도체주·韓 삼전닉스 급반등…‘한숨 돌린’ 개미들 📈 #SK하이닉스 #삼성전자 📝 #AI반도체 #HBM 엔비디아 경…",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "hbm",
-        "sk하이닉스",
-        "반도체",
-        "삼성전자",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS",
-        "JFU"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/809f77",
-        "https://t.me/dreago_news_ch/328619"
-      ],
-      "materiality": 22,
-      "sentiment": 3,
-      "first_seen": "2026-11-24T02:50:47+00:00",
-      "last_seen": "2026-11-24T02:50:47+00:00",
-      "count": 1
-    },
-    {
-      "signature": "48be27cc15ade66a598c61cca8a30aae19a04ef2",
-      "title": "🔔 주가 떨어지면 3배 번다더니 “이건 몰살이다”…엔비디아 31% 폭등에 공매도 15조 원 증발 📈 #SK하이닉스 📝 #AI반도…",
-      "sectors": [
-        "AI인프라",
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "sk하이닉스",
-        "반도체",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/b96080",
-        "https://t.me/dreago_news_ch/328620"
-      ],
-      "materiality": 20,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T02:50:47+00:00",
-      "last_seen": "2026-11-24T02:50:47+00:00",
-      "count": 1
-    },
-    {
-      "signature": "94eec4a85c0695580baec2721810e7bbce6c0173",
-      "title": "//4,600(기준)-10%반등/5,060p-20%/ 5,520p-30%반등/6,000p",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/58454"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:34:55+00:00",
-      "last_seen": "2026-11-24T01:34:55+00:00",
-      "count": 1
-    },
-    {
-      "signature": "3fb45881bff6455faaed8c5c2a35a6837e1cdf1c",
-      "title": "[리포트 브리핑]LG에너지솔루션, 'ESS 시스템 통합과 46시리즈가 흑자 견인' 목표가 450,000원",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "lg에너지솔루션"
-      ],
-      "tickers": [
-        "373220.KS"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1004127",
-        "https://t.me/rassiro_channel/313084"
-      ],
-      "materiality": 5,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:34:17+00:00",
-      "last_seen": "2026-11-24T01:34:17+00:00",
-      "count": 1
-    },
-    {
-      "signature": "e916820eed0146aaf17791761dafa08f11a90c31",
-      "title": "🔔",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [
-        "HPQ"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/7003f9",
-        "https://t.me/dreago_news_ch/328573"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:33:14+00:00",
-      "last_seen": "2026-11-24T01:33:14+00:00",
-      "count": 1
-    },
-    {
-      "signature": "7df39bc4d1efc51efd0604afb9fffab468a14ede",
-      "title": "대만 국방부에 따르면 11월 23일 오전 6시부터 24일 오전 6시까지 대만 주변 해역 및 공역에서 중국 인민해방군 군용기 3대…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "ADIZ"
-      ],
-      "source_urls": [
-        "https://t.me/insidertracking/70105"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:32:23+00:00",
-      "last_seen": "2026-11-24T01:32:23+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f43feb70ed65d718c82fd5e3296655ba9c1692a5",
-      "title": "[리포트 브리핑]삼성SDI, '각형 LFP와 SBB로 ESS 수익성 상승' 목표가 550,000원",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1004071",
-        "https://t.me/rassiro_channel/313083"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:31:18+00:00",
-      "last_seen": "2026-11-24T01:31:18+00:00",
-      "count": 1
-    },
-    {
-      "signature": "3f6d34219077af30be867c7c3c2593d9a5ddbeea",
-      "title": "🔔 사이드카 다음날 사이드카…젠슨 황이 선물한 ‘121번째 롤러코스피’ 【 겁나빠른 #드리고봇 뉴스 】 https://dreag…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/a5d61a",
-        "https://t.me/dreago_news_ch/328571"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:30:31+00:00",
-      "last_seen": "2026-11-24T01:30:31+00:00",
-      "count": 1
-    },
-    {
-      "signature": "29e4354fa7fb653c2dcaa0c6d9e7b0ced00a8a5e",
-      "title": "🚀 [KRX 상승률 TOP10] 2026-11-24 10:30 (KST)",
-      "sectors": [
-        "로봇",
-        "반도체"
-      ],
-      "keywords": [
-        "로봇",
-        "반도체"
-      ],
-      "tickers": [
-        "KST"
-      ],
-      "source_urls": [
-        "https://t.me/moneythemestock/66904"
-      ],
-      "materiality": 7,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:30:04+00:00",
-      "last_seen": "2026-11-24T01:30:04+00:00",
-      "count": 1
-    },
-    {
-      "signature": "38a9f0a4ba68b49e6f5f7fc7937a82ba9c89af0e",
-      "title": "🔔 삼성전기 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/10205c",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/10205c",
-        "https://t.me/dreago_news_ch/328570"
-      ],
-      "materiality": 2,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:28:36+00:00",
-      "last_seen": "2026-11-24T01:28:36+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d4f468e06cdfff4e75c825d6cbbfa0fa5e11751a",
-      "title": "🔔 휴림로봇 주가 장중 25%대 올라, 삼성전기 자동화 로봇 공급에 이틀째 ... 【 겁나빠른 #드리고봇 뉴스 】 https:/…",
-      "sectors": [
-        "로봇"
-      ],
-      "keywords": [
-        "로봇"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/2b6c61",
-        "https://t.me/dreago_news_ch/328569"
-      ],
-      "materiality": 10,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:27:59+00:00",
-      "last_seen": "2026-11-24T01:27:59+00:00",
-      "count": 1
-    },
-    {
-      "signature": "edca89b18a0067bfee83298fc6df8e2fc082c395",
-      "title": "🔔 삼성전자 131명 임원승진 '70명이 반도체'...女 11명 '역대 최다' 【 겁나빠른 #드리고봇 뉴스 】 https://d…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/b47a9d",
-        "https://t.me/dreago_news_ch/328568"
-      ],
-      "materiality": 5,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:27:26+00:00",
-      "last_seen": "2026-11-24T01:27:26+00:00",
-      "count": 1
-    },
-    {
-      "signature": "6425d7ca386716e12582ee8aa3a02a1cba9f33af",
-      "title": "LG전자, 중국 TV 경쟁에 유럽 생산라인 구조조정 https://n.news.naver.com/mnews/article/009…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "066570.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/009/0005767968",
-        "https://t.me/moneythemestock/66903"
-      ],
-      "materiality": 7,
-      "sentiment": -1,
-      "first_seen": "2026-11-24T01:27:20+00:00",
-      "last_seen": "2026-11-24T01:27:20+00:00",
-      "count": 1
-    },
-    {
-      "signature": "618a5b257e3f5fcc1b72e9509fe1424c72009364",
-      "title": "🔔",
-      "sectors": [
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "반도체",
-        "엔비디아"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/285e9d",
-        "https://t.me/dreago_news_ch/328566"
-      ],
-      "materiality": 6,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T01:26:52+00:00",
-      "last_seen": "2026-11-24T01:26:52+00:00",
-      "count": 1
-    },
-    {
-      "signature": "028efd57febc6d1f0d04c9ca0edc74895667ab94",
-      "title": "🔔 로봇주 일제급등…젠슨황 AI랠리에 삼전발 기대감 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr/n/2bbb…",
-      "sectors": [
-        "AI인프라",
-        "로봇"
-      ],
-      "keywords": [
-        "ai",
-        "로봇"
-      ],
-      "tickers": [
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/2bbb4f",
-        "https://t.me/dreago_news_ch/328567"
-      ],
-      "materiality": 7,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T01:26:52+00:00",
-      "last_seen": "2026-11-24T01:26:52+00:00",
-      "count": 1
-    },
-    {
-      "signature": "61d9901cddbfebaa9b7b4caaaf7bc930cc554c43",
-      "title": "🔔",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/8278fd",
-        "https://t.me/dreago_news_ch/328564"
-      ],
-      "materiality": 6,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:26:51+00:00",
-      "last_seen": "2026-11-24T01:26:51+00:00",
-      "count": 1
-    },
-    {
-      "signature": "021eba365c600672cdabb0e4cf11154bbbbef87b",
-      "title": "대만 +9%로 시작. 사실상 대부분 종목 상한가..",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/58452"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:26:15+00:00",
-      "last_seen": "2026-11-24T01:26:15+00:00",
-      "count": 1
-    },
-    {
-      "signature": "5ed968b324acf11361ebcc070fe4fc966d0a32b3",
-      "title": "[리포트 브리핑]포스코퓨처엠, '비중국 양극재로 에너지소재 성장' 목표가 200,000원",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "양극재"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1003880",
-        "https://t.me/rassiro_channel/313081"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:24:18+00:00",
-      "last_seen": "2026-11-24T01:24:18+00:00",
-      "count": 1
-    },
-    {
-      "signature": "853f9924ab1a45082563ef1547228bc186fe6927",
-      "title": "젠슨 황이 엔비디아 CEO로 전격 복귀했다는 소식에 힘입어 화요일 아시아 기술주가 급등. 한국 코스피 지수는 장중 한때 7% 상…",
-      "sectors": [
-        "미국빅테크",
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "tsmc",
-        "삼성전자",
-        "엔비디아"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://t.me/insidertracking/70104"
-      ],
-      "materiality": 8,
-      "sentiment": 3,
-      "first_seen": "2026-11-24T01:23:03+00:00",
-      "last_seen": "2026-11-24T01:23:03+00:00",
-      "count": 1
-    },
-    {
-      "signature": "aac646f1ad74355cf5b74b0d9a8967cb7fe93b9f",
-      "title": "🔔 삼성전기, 2027년 임원 15명 승진 단행...'AI 시대 기술 선점' 방점 【 겁나빠른 #드리고봇 뉴스 】 https:/…",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/e30778",
-        "https://t.me/dreago_news_ch/328559"
-      ],
-      "materiality": 4,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:22:43+00:00",
-      "last_seen": "2026-11-24T01:22:43+00:00",
-      "count": 1
-    },
-    {
-      "signature": "f1f6dfbf6415b336fc2f1a898f6615f282a0f377",
-      "title": "의미있는 기술적반등 1단계 20일선 2단계 60이리선",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://t.me/sharpha/58451"
-      ],
-      "materiality": 2,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:21:21+00:00",
-      "last_seen": "2026-11-24T01:21:21+00:00",
-      "count": 1
-    },
-    {
-      "signature": "0892a01e0350ea0a40854a374f3d0d3c3aa0afff",
-      "title": "🔔 에코프로·에코프로비엠 주가 동반 급등…그룹주 일제히 '껑충' 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.kr…",
-      "sectors": [
-        "2차전지"
-      ],
-      "keywords": [
-        "에코프로",
-        "에코프로비엠"
-      ],
-      "tickers": [
-        "086520.KQ",
-        "247540.KQ"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/91e15e",
-        "https://t.me/dreago_news_ch/328558"
-      ],
-      "materiality": 6,
-      "sentiment": 2,
-      "first_seen": "2026-11-24T01:19:41+00:00",
-      "last_seen": "2026-11-24T01:19:41+00:00",
-      "count": 1
-    },
-    {
-      "signature": "809b61d7f532db57d9e487af8c1436bc5069c746",
-      "title": "🔔 중국發 낸드 공급과잉 경고···삼성전자·SK하이닉스 신규 증설 '신중... 📈 #삼성전자 #SK하이닉스 📝 #낸드플래시 #반…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "낸드",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/c881d3",
-        "https://t.me/dreago_news_ch/328557"
-      ],
-      "materiality": 12,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:17:42+00:00",
-      "last_seen": "2026-11-24T01:17:42+00:00",
-      "count": 1
-    },
-    {
-      "signature": "defe7070cb86a4045c673608e6b79790c00cc966",
-      "title": "[SK·키옥시아 관계 재편]①라이벌서 최대주주로, 8년 동행 전환점 2026.11.24",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "ai 추론",
-        "sk하이닉스",
-        "낸드",
-        "데이터센터",
-        "메모리",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://bloter.net/news/articleView.html?idxno=679435",
-        "https://t.me/aicorporateanalysisdeepdive/13943"
-      ],
-      "materiality": 15,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:15:49+00:00",
-      "last_seen": "2026-11-24T01:15:49+00:00",
-      "count": 1
-    },
-    {
-      "signature": "49b72493d6bc9d8df2f16386127be94c04c303f3",
-      "title": "OCI홀딩스, 'Tesla, 폴리실리콘 투자 검토. 현실화돼도 규모가 작아 투자포인트 훼손은 없어' 증권사 발표에 강세 http…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "TSLA"
-      ],
-      "source_urls": [
-        "http://spot.thinkpool.com/rd/20261124/1003526",
-        "https://t.me/rassiro_channel/313080"
-      ],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:15:11+00:00",
-      "last_seen": "2026-11-24T01:15:11+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1f355c90d2729b213a6d8d6e73468f85f3e05823",
-      "title": "🔔",
-      "sectors": [
-        "AI인프라"
-      ],
-      "keywords": [
-        "ai",
-        "서버"
-      ],
-      "tickers": [
-        "052710.KQ"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/4957ec",
-        "https://t.me/dreago_news_ch/328556"
-      ],
-      "materiality": 5,
-      "sentiment": 3,
-      "first_seen": "2026-11-24T01:15:00+00:00",
-      "last_seen": "2026-11-24T01:15:00+00:00",
-      "count": 1
-    },
-    {
-      "signature": "8bece98a29d52b6185ee9b4e15e1545d2d969cee",
-      "title": "🔔 SK하이닉스, 협력사 R&D 도전보상제에 5년간 1천억원 지원 📈 #SK하이닉스 📝 #반도체 #반도체소부장 협력사 R&D 지…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "sk하이닉스",
-        "반도체"
-      ],
-      "tickers": [
-        "000660.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/c4201d",
-        "https://t.me/dreago_news_ch/328552"
-      ],
-      "materiality": 11,
-      "sentiment": 1,
-      "first_seen": "2026-11-24T01:11:22+00:00",
-      "last_seen": "2026-11-24T01:11:22+00:00",
-      "count": 1
-    },
-    {
-      "signature": "bd0440bfb04845e51200ddcd64b8454fa97d9a80",
-      "title": "📊 정규장 테마·대장주 11/24 10:09 기준 · 거래대금(누적) 1. 로봇 | +28.65%",
-      "sectors": [
-        "2차전지",
-        "AI인프라",
-        "로봇",
-        "반도체"
-      ],
-      "keywords": [
-        "2차전지",
-        "ai",
-        "데이터센터",
-        "로봇",
-        "반도체"
-      ],
-      "tickers": [
-        "066570.KS"
-      ],
-      "source_urls": [
-        "https://t.me/moneythemestock/66902"
-      ],
-      "materiality": 9,
-      "sentiment": 0,
-      "first_seen": "2026-11-24T01:10:02+00:00",
-      "last_seen": "2026-11-24T01:10:02+00:00",
       "count": 1
     }
   ]
