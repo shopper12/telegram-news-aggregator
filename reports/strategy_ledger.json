@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-27T07:32:47+09:00",
+  "updated_at": "2026-11-27T07:56:27+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -23177,9 +23177,15 @@
           "evaluated_at": "2026-11-26T13:45:07+09:00",
           "price": 82.24,
           "return_pct": 0.0243
+        },
+        "24h": {
+          "evaluated_at": "2026-11-27T07:56:27+09:00",
+          "price": 82.24,
+          "return_pct": 0.0243
         }
       },
-      "learned_24h": false
+      "learned_24h": true,
+      "learned_at": "2026-11-27T07:56:27+09:00"
     },
     {
       "id": "dde5559ada3140ba",
