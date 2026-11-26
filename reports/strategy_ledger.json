@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-27T07:04:12+09:00",
+  "updated_at": "2026-11-27T07:32:47+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -23179,6 +23179,98 @@
           "return_pct": 0.0243
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "dde5559ada3140ba",
+      "created_at": "2026-11-27T07:32:47+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 633.93,
+      "entry_zone": [
+        630.76035,
+        637.09965
+      ],
+      "stop_price": 603.463595,
+      "target_price": 694.862811,
+      "score": 2.629,
+      "components": {
+        "momentum": -2.2505449970688,
+        "regime": 0.0,
+        "news": 3.536492742314954,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -2.25, regime +0.00, news +3.54, defensive +0.00",
+      "weights": {
+        "momentum": 1.1039,
+        "regime": 0.7877,
+        "news": 1.4459,
+        "defensive": 0.9325
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -2.25, 뉴스 +3.54 / 연결 뉴스: 이유를 모르는 나스닥 반등, 단서는 '일론 머스크' 2026.11.26; 스페이스X: 우주 데이터센터 위성 100만기 허가 2026.11.26",
+      "news_evidence": [
+        {
+          "title": "이유를 모르는 나스닥 반등, 단서는 '일론 머스크' 2026.11.26",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/14067",
+            "https://youtu.be/XPdEX8AYadc"
+          ],
+          "last_seen": "2026-11-26T22:02:17+00:00"
+        },
+        {
+          "title": "스페이스X: 우주 데이터센터 위성 100만기 허가 2026.11.26",
+          "urls": [
+            "https://t.me/aicorporateanalysisdeepdive/14072"
+          ],
+          "last_seen": "2026-11-26T22:07:10+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "f7f87788763d4646",
+      "created_at": "2026-11-27T07:32:47+09:00",
+      "slot": "evening",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 82.24,
+      "entry_zone": [
+        81.8288,
+        82.6512
+      ],
+      "stop_price": 80.5952,
+      "target_price": 85.5296,
+      "score": 1.831,
+      "components": {
+        "momentum": 0.9247059972571323,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +0.92, regime +0.20, news +0.00, defensive +0.70",
+      "weights": {
+        "momentum": 1.1039,
+        "regime": 0.7877,
+        "news": 1.4459,
+        "defensive": 0.9325
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.92, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
