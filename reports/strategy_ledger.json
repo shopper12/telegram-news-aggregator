@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-27T07:56:27+09:00",
+  "updated_at": "2026-11-27T13:23:46+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -23271,6 +23271,153 @@
       },
       "reason": "글로벌 레짐 +0.20, 모멘텀 +0.92, 뉴스 +0.00",
       "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "1004c2dcf4995e2f",
+      "created_at": "2026-11-27T13:23:46+09:00",
+      "slot": "morning",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 633.93,
+      "entry_zone": [
+        630.76035,
+        637.09965
+      ],
+      "stop_price": 603.463595,
+      "target_price": 694.862811,
+      "score": 3.321,
+      "components": {
+        "momentum": -2.2505449970688,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -2.25, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.1051,
+        "regime": 0.7849,
+        "news": 1.452,
+        "defensive": 0.9317
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -2.25, 뉴스 +4.00 / 연결 뉴스: 🔔; 지엔씨에너지(119850) 단일판매ㆍ공급계약체결 📌 규모 기간대비 : 4.15 % 매출대비 : 12.8 % 계약총액 : 336 …",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/8a63a5",
+            "https://t.me/dreago_news_ch/324848"
+          ],
+          "last_seen": "2026-11-27T01:34:08+00:00"
+        },
+        {
+          "title": "지엔씨에너지(119850) 단일판매ㆍ공급계약체결 📌 규모 기간대비 : 4.15 % 매출대비 : 12.8 % 계약총액 : 336 …",
+          "urls": [
+            "https://t.me/c/1208429502/128603",
+            "https://t.me/corevalue/47827"
+          ],
+          "last_seen": "2026-11-27T01:52:09+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "532562d12662211e",
+      "created_at": "2026-11-27T13:23:46+09:00",
+      "slot": "morning",
+      "ticker": "TLT",
+      "asset": "미국 장기국채",
+      "direction": "LONG",
+      "entry_price": 82.24,
+      "entry_zone": [
+        81.8288,
+        82.6512
+      ],
+      "stop_price": 80.5952,
+      "target_price": 85.5296,
+      "score": 1.831,
+      "components": {
+        "momentum": 0.9247059972571323,
+        "regime": 0.2,
+        "news": 0.0,
+        "defensive": 0.7
+      },
+      "component_text": "momentum +0.92, regime +0.20, news +0.00, defensive +0.70",
+      "weights": {
+        "momentum": 1.1051,
+        "regime": 0.7849,
+        "news": 1.452,
+        "defensive": 0.9317
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 +0.92, 뉴스 +0.00",
+      "news_evidence": [],
+      "price_source": "Yahoo Finance regular-session snapshot",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "0bb2fbc292f20135",
+      "created_at": "2026-11-27T13:23:46+09:00",
+      "slot": "morning",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 129.19,
+      "entry_zone": [
+        128.54405,
+        129.83595
+      ],
+      "stop_price": 118.8548,
+      "target_price": 149.8604,
+      "score": 1.768,
+      "components": {
+        "momentum": -3.6561934147317787,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -3.66, regime +0.00, news +4.00, defensive +0.00",
+      "weights": {
+        "momentum": 1.1051,
+        "regime": 0.7849,
+        "news": 1.452,
+        "defensive": 0.9317
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -3.66, 뉴스 +4.00 / 연결 뉴스: 🔔; 마켓레이더",
+      "news_evidence": [
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/ed8b49",
+            "https://t.me/dreago_news_ch/328531"
+          ],
+          "last_seen": "2026-11-27T01:57:27+00:00"
+        },
+        {
+          "title": "마켓레이더",
+          "urls": [
+            "https://t.me/chel3337/36603"
+          ],
+          "last_seen": "2026-11-27T02:10:52+00:00"
+        }
+      ],
       "price_source": "Yahoo Finance regular-session snapshot",
       "price_warning": "",
       "price_is_derivative_proxy": false,
