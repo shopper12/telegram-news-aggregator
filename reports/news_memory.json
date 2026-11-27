@@ -1,7 +1,219 @@
 {
   "version": 2,
-  "updated_at": "2026-11-28T06:45:52+09:00",
+  "updated_at": "2026-11-28T07:15:48+09:00",
   "events": [
+    {
+      "signature": "7942ea3eab0c7207585bb00b96d9efc1361e8fb4",
+      "title": "🔔 “주가 10만원 더 오릅니다”…현대오토에버 목표가 47만 원 나왔다",
+      "sectors": [
+        "로봇"
+      ],
+      "keywords": [
+        "로봇"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://dreago.kr/n/4e847c",
+        "https://t.me/dreago_news_ch/330235"
+      ],
+      "materiality": 17,
+      "sentiment": 1,
+      "first_seen": "2026-11-27T22:12:17+00:00",
+      "last_seen": "2026-11-27T22:12:17+00:00",
+      "count": 1
+    },
+    {
+      "signature": "092abb45f6c83c7ffc8005f9f41ec2d49859294c",
+      "title": "🇺🇸 미국 증시 마감 브리핑 📅 2026년 11월 27일",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "반도체"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "관세",
+        "금리",
+        "메모리",
+        "반도체",
+        "연준",
+        "정책"
+      ],
+      "tickers": [
+        "YI"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking",
+        "https://t.me/insidertracking/70371",
+        "https://t.me/insidertracking/70376",
+        "https://t.me/insidertracking/70378"
+      ],
+      "materiality": 12,
+      "sentiment": 2,
+      "first_seen": "2026-11-27T22:01:58+00:00",
+      "last_seen": "2026-11-27T22:11:45+00:00",
+      "count": 3
+    },
+    {
+      "signature": "dfe6c960641448dffd4d425c692c74a30f92055a",
+      "title": "미국 기업 섹터별 소식 정리",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "로봇",
+        "미국빅테크",
+        "바이오",
+        "반도체"
+      ],
+      "keywords": [
+        "aapl",
+        "ai",
+        "fda",
+        "smr",
+        "tsla",
+        "tsmc",
+        "규제",
+        "데이터센터",
+        "로봇",
+        "마이크로소프트"
+      ],
+      "tickers": [
+        "AAPL",
+        "ATEX",
+        "BUD",
+        "CBRS",
+        "FCC",
+        "GEV",
+        "MDA",
+        "MO"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70377"
+      ],
+      "materiality": 36,
+      "sentiment": 3,
+      "first_seen": "2026-11-27T22:09:44+00:00",
+      "last_seen": "2026-11-27T22:09:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "e518d4a1bea72031b1cfc4b4da3dc09d1deaf956",
+      "title": "코스피 야간선물은 일단 양전 마감 (+0.4%)",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70375"
+      ],
+      "materiality": 2,
+      "sentiment": 0,
+      "first_seen": "2026-11-27T22:05:13+00:00",
+      "last_seen": "2026-11-27T22:05:13+00:00",
+      "count": 1
+    },
+    {
+      "signature": "8ce27682a5fb897fe352d4fb269b1fd8234972e8",
+      "title": "공포 탐욕지수는 Extreme Fear 15에서 25로 상승.",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70374"
+      ],
+      "materiality": 2,
+      "sentiment": 1,
+      "first_seen": "2026-11-27T22:04:44+00:00",
+      "last_seen": "2026-11-27T22:04:44+00:00",
+      "count": 1
+    },
+    {
+      "signature": "7b7959bbad326a42b801853dd32dc830c8337763",
+      "title": "2026년 11월 28일 미장 마감 📈 S&P 500",
+      "sectors": [],
+      "keywords": [],
+      "tickers": [
+        "YI"
+      ],
+      "source_urls": [
+        "https://t.me/insidertracking/70373"
+      ],
+      "materiality": 3,
+      "sentiment": 0,
+      "first_seen": "2026-11-27T22:04:10+00:00",
+      "last_seen": "2026-11-27T22:04:10+00:00",
+      "count": 1
+    },
+    {
+      "signature": "fd6e584a1d821f377c9b07bccb87b97efc3db2e0",
+      "title": "🌎 글로벌 뉴스 브리핑",
+      "sectors": [
+        "2차전지",
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "방산/항공",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "관세",
+        "규제",
+        "금리",
+        "데이터센터",
+        "배터리",
+        "선박",
+        "애플",
+        "엔비디아"
+      ],
+      "tickers": [],
+      "source_urls": [
+        "https://t.me/insidertracking/70370"
+      ],
+      "materiality": 27,
+      "sentiment": 2,
+      "first_seen": "2026-11-27T22:00:55+00:00",
+      "last_seen": "2026-11-27T22:00:55+00:00",
+      "count": 1
+    },
+    {
+      "signature": "20f7598e124ce5e829aa59c567879e0ca90c0ae7",
+      "title": "📌 11/27 미 증시 — 중국발 투자심리 회복에 AI 관련주 반등, 지수 상승 중국 정부의 증시 부양책으로 위험선호가 살아나며…",
+      "sectors": [
+        "AI인프라",
+        "거시/정책",
+        "미국빅테크",
+        "바이오",
+        "반도체",
+        "조선"
+      ],
+      "keywords": [
+        "ai",
+        "ai 인프라",
+        "fda",
+        "fomc",
+        "규제",
+        "금리",
+        "데이터센터",
+        "메모리",
+        "메타",
+        "반도체"
+      ],
+      "tickers": [
+        "FTEC",
+        "MSCI",
+        "ZZZTT"
+      ],
+      "source_urls": [
+        "https://t.me/goldilbong/17348"
+      ],
+      "materiality": 25,
+      "sentiment": 2,
+      "first_seen": "2026-11-27T22:00:04+00:00",
+      "last_seen": "2026-11-27T22:00:04+00:00",
+      "count": 1
+    },
     {
       "signature": "00df59b0b852edffcd70047f036cb1427bc64d63",
       "title": "🔔 주식시장 새내기인데 첫날 몸값이 6.6조원…개미가 만나는 美 기업 달라졌다 📝 #기업공개 #비상장투자 비상장 단계에서 기업의…",
@@ -16,7 +228,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-27T21:40:27+00:00",
       "last_seen": "2026-11-27T21:40:27+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "8a81b5f791d6e3f729fc8a15ecc0201c14aa395e",
@@ -32,7 +244,7 @@
       "sentiment": 1,
       "first_seen": "2026-11-27T21:30:10+00:00",
       "last_seen": "2026-11-27T21:30:10+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "9b17ab0415fd471ae46088846aee84225785a893",
@@ -48,7 +260,7 @@
       "sentiment": 0,
       "first_seen": "2026-11-27T21:16:37+00:00",
       "last_seen": "2026-11-27T21:16:37+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "c4cdf2a952b0ea8bfc5cc74b211fd41a370260ea",
@@ -64,7 +276,7 @@
       "sentiment": -1,
       "first_seen": "2026-11-27T21:15:30+00:00",
       "last_seen": "2026-11-27T21:15:30+00:00",
-      "count": 1
+      "count": 2
     },
     {
       "signature": "707e3afc0a02331613cc73c11f429d8ce504ff6e",
@@ -9952,192 +10164,6 @@
       "sentiment": 0,
       "first_seen": "2026-11-26T02:28:03+00:00",
       "last_seen": "2026-11-26T02:28:03+00:00",
-      "count": 1
-    },
-    {
-      "signature": "3d66fc266227454e0c8be6bf0beabc28bb082673",
-      "title": "🔔 삼성전기·LG이노텍, 반도체기판 투자 확대… 장비업계 수주 본격화 📈 #삼성전기 #LG이노텍 📝 #반도체기판 #반도체장비 기…",
-      "sectors": [
-        "반도체"
-      ],
-      "keywords": [
-        "반도체"
-      ],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/17f2d7",
-        "https://t.me/dreago_news_ch/329474"
-      ],
-      "materiality": 11,
-      "sentiment": 3,
-      "first_seen": "2026-11-26T02:25:54+00:00",
-      "last_seen": "2026-11-26T02:25:54+00:00",
-      "count": 1
-    },
-    {
-      "signature": "1519bf75b27ecf234f161e006711bcd7349405df",
-      "title": "🔔 머스크·HMM·MSC, 컨테이너선 발주 주도… 신규 집계 선복량 80% 차지 📈 #HD한국조선해양 #삼성중공업 #한화오션 📝…",
-      "sectors": [
-        "조선"
-      ],
-      "keywords": [
-        "조선"
-      ],
-      "tickers": [
-        "009540.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/961d71",
-        "https://t.me/dreago_news_ch/329472"
-      ],
-      "materiality": 18,
-      "sentiment": 3,
-      "first_seen": "2026-11-26T02:24:12+00:00",
-      "last_seen": "2026-11-26T02:24:12+00:00",
-      "count": 1
-    },
-    {
-      "signature": "b584d3fa707a6cc630eb819e7943e6a7df134f6f",
-      "title": "🔔 HMM, 최원혁 대표이사 재선임..2028년 3월까지 임기 연장 【 겁나빠른 #드리고봇 뉴스 】 https://dreago.…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [],
-      "source_urls": [
-        "https://dreago.kr/n/4f4e08",
-        "https://t.me/dreago_news_ch/329473"
-      ],
-      "materiality": 3,
-      "sentiment": 0,
-      "first_seen": "2026-11-26T02:24:12+00:00",
-      "last_seen": "2026-11-26T02:24:12+00:00",
-      "count": 1
-    },
-    {
-      "signature": "04f5ce5c69391ebc46ee1c93670179f224b6ad68",
-      "title": "마켓레이더",
-      "sectors": [
-        "2차전지",
-        "AI인프라",
-        "거시/정책",
-        "미국빅테크",
-        "반도체",
-        "원전"
-      ],
-      "keywords": [
-        "ai",
-        "gpu",
-        "meta",
-        "nvda",
-        "관세",
-        "금리",
-        "데이터센터",
-        "반도체",
-        "삼성전자",
-        "에코프로"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005380.KS",
-        "005930.KS",
-        "086520.KQ",
-        "247540.KQ",
-        "CSPI"
-      ],
-      "source_urls": [
-        "https://t.me/chel3337/36588",
-        "https://t.me/sharpha/58675"
-      ],
-      "materiality": 29,
-      "sentiment": 0,
-      "first_seen": "2026-11-26T01:16:28+00:00",
-      "last_seen": "2026-11-26T02:21:38+00:00",
-      "count": 2
-    },
-    {
-      "signature": "bdc18ec8437422736682d6145a7cea1d57238bd7",
-      "title": "🔔 호재엔 반짝, 악재엔 와르르…악재에 더 예민한 코스피 📈 #삼성전자 #SK하이닉스 📝 #반도체 #AI AI 투자 수익성·메모…",
-      "sectors": [
-        "AI인프라",
-        "반도체"
-      ],
-      "keywords": [
-        "ai",
-        "sk하이닉스",
-        "메모리",
-        "반도체",
-        "삼성전자"
-      ],
-      "tickers": [
-        "000660.KS",
-        "005930.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/fb2593",
-        "https://t.me/dreago_news_ch/329470"
-      ],
-      "materiality": 14,
-      "sentiment": 1,
-      "first_seen": "2026-11-26T02:20:38+00:00",
-      "last_seen": "2026-11-26T02:20:38+00:00",
-      "count": 1
-    },
-    {
-      "signature": "55048bc63724162a38122a5357eb485b8981697e",
-      "title": "🔔 카카오게임즈 'POE 2', 정식 출시 첫 리그에 공성전을 넣은 이유 📈 #카카오게임즈 📝 #온라인게임 #게임 정식 출시와 …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035720.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/6e26f6",
-        "https://t.me/dreago_news_ch/329467"
-      ],
-      "materiality": 3,
-      "sentiment": 1,
-      "first_seen": "2026-11-26T02:19:27+00:00",
-      "last_seen": "2026-11-26T02:19:27+00:00",
-      "count": 1
-    },
-    {
-      "signature": "a00292badfa19ed4277df68f607f3fd61a8870ea",
-      "title": "삼성전기, 1조7300억원 규모 자사주 205만3430주 소각 https://n.news.naver.com/mnews/artic…",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "035420.KS",
-        "NNBR",
-        "NWS",
-        "NWSA"
-      ],
-      "source_urls": [
-        "https://n.news.naver.com/mnews/article/123/0002394849",
-        "https://t.me/moneythemestock/66997"
-      ],
-      "materiality": 6,
-      "sentiment": 1,
-      "first_seen": "2026-11-26T02:17:02+00:00",
-      "last_seen": "2026-11-26T02:17:02+00:00",
-      "count": 1
-    },
-    {
-      "signature": "d0eb5ae4deaf9c55327e6aacecd076cb4029fdad",
-      "title": "🔔 “경영 불확실성 돌파·SDV 전환 가속”..현대차그룹, 백철승 등 사장단... 📈 #현대모비스 #현대차 #기아 📝 #SDV …",
-      "sectors": [],
-      "keywords": [],
-      "tickers": [
-        "000270.KS",
-        "005380.KS",
-        "012330.KS"
-      ],
-      "source_urls": [
-        "https://dreago.kr/n/e23c48",
-        "https://t.me/dreago_news_ch/329466"
-      ],
-      "materiality": 11,
-      "sentiment": 0,
-      "first_seen": "2026-11-26T02:16:41+00:00",
-      "last_seen": "2026-11-26T02:16:41+00:00",
       "count": 1
     }
   ]

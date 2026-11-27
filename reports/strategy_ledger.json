@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-28T06:45:52+09:00",
+  "updated_at": "2026-11-28T07:15:48+09:00",
   "recommendations": [
     {
       "id": "8674e232bc849df1",
@@ -23454,6 +23454,166 @@
           "return_pct": 4.8069
         }
       },
+      "learned_24h": false
+    },
+    {
+      "id": "f94e1b2dacc0b458",
+      "created_at": "2026-11-28T07:15:48+09:00",
+      "slot": "evening",
+      "ticker": "QQQ",
+      "asset": "나스닥100",
+      "direction": "LONG",
+      "entry_price": 650.62,
+      "entry_zone": [
+        647.3669,
+        653.8731
+      ],
+      "stop_price": 618.49036,
+      "target_price": 714.87928,
+      "score": 4.745,
+      "components": {
+        "momentum": -0.5406410476130121,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum -0.54, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.1051,
+        "regime": 0.7849,
+        "news": 1.452,
+        "defensive": 0.9317
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -0.54, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🔔",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/70377"
+          ],
+          "last_seen": "2026-11-27T22:09:44+00:00"
+        },
+        {
+          "title": "🔔",
+          "urls": [
+            "https://dreago.kr/n/8a63a5",
+            "https://t.me/dreago_news_ch/324848"
+          ],
+          "last_seen": "2026-11-27T20:46:10+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "3dd7892c0d1b69f9",
+      "created_at": "2026-11-28T07:15:48+09:00",
+      "slot": "evening",
+      "ticker": "EWY",
+      "asset": "한국 주식",
+      "direction": "LONG",
+      "entry_price": 135.39,
+      "entry_zone": [
+        134.71305,
+        136.06695
+      ],
+      "stop_price": 124.5588,
+      "target_price": 157.0524,
+      "score": 3.918,
+      "components": {
+        "momentum": -1.2884386957899074,
+        "regime": 0.0,
+        "news": 4.0,
+        "defensive": -0.5
+      },
+      "component_text": "momentum -1.29, regime +0.00, news +4.00, defensive -0.50",
+      "weights": {
+        "momentum": 1.1051,
+        "regime": 0.7849,
+        "news": 1.452,
+        "defensive": 0.9317
+      },
+      "reason": "글로벌 레짐 +0.00, 모멘텀 -1.29, 뉴스 +4.00 / 연결 뉴스: 미국 기업 섹터별 소식 정리; 🌎 글로벌 뉴스 브리핑",
+      "news_evidence": [
+        {
+          "title": "미국 기업 섹터별 소식 정리",
+          "urls": [
+            "https://t.me/insidertracking/70377"
+          ],
+          "last_seen": "2026-11-27T22:09:44+00:00"
+        },
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/70370"
+          ],
+          "last_seen": "2026-11-27T22:00:55+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
+      "learned_24h": false
+    },
+    {
+      "id": "64837550e1ea420d",
+      "created_at": "2026-11-28T07:15:48+09:00",
+      "slot": "evening",
+      "ticker": "GLD",
+      "asset": "금",
+      "direction": "LONG",
+      "entry_price": 334.93,
+      "entry_zone": [
+        333.25535,
+        336.60465
+      ],
+      "stop_price": 323.072215,
+      "target_price": 358.64557,
+      "score": 1.88,
+      "components": {
+        "momentum": -0.9925094958685193,
+        "regime": 0.2,
+        "news": 1.9417256575907182,
+        "defensive": 0.0
+      },
+      "component_text": "momentum -0.99, regime +0.20, news +1.94, defensive +0.00",
+      "weights": {
+        "momentum": 1.1051,
+        "regime": 0.7849,
+        "news": 1.452,
+        "defensive": 0.9317
+      },
+      "reason": "글로벌 레짐 +0.20, 모멘텀 -0.99, 뉴스 +1.94 / 연결 뉴스: 🌎 글로벌 뉴스 브리핑; 📌 11/27 미 증시 — 중국발 투자심리 회복에 AI 관련주 반등, 지수 상승 중국 정부의 증시 부양책으로 위험선호가 살아나며…",
+      "news_evidence": [
+        {
+          "title": "🌎 글로벌 뉴스 브리핑",
+          "urls": [
+            "https://t.me/insidertracking/70370"
+          ],
+          "last_seen": "2026-11-27T22:00:55+00:00"
+        },
+        {
+          "title": "📌 11/27 미 증시 — 중국발 투자심리 회복에 AI 관련주 반등, 지수 상승 중국 정부의 증시 부양책으로 위험선호가 살아나며…",
+          "urls": [
+            "https://t.me/goldilbong/17348"
+          ],
+          "last_seen": "2026-11-27T22:00:04+00:00"
+        }
+      ],
+      "price_source": "Yahoo Finance extended-hours",
+      "price_warning": "",
+      "price_is_derivative_proxy": false,
+      "proxy_divergence_pct": null,
+      "status": "open",
+      "evaluations": {},
       "learned_24h": false
     }
   ]
